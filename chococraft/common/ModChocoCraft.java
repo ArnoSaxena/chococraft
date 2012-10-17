@@ -44,9 +44,8 @@ import cpw.mods.fml.common.registry.EntityRegistry;
 
 @Mod(modid="ChocoCraft", name="Torojimas ChocoCraft", version="1.8.1")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false, 
-		channels = { Constants.PCHAN_HEALTHUPDATE, Constants.PCHAN_MOUNTED_MOVE_UPDATE,
-		Constants.PCHAN_MOUNTUPDATE, Constants.PCHAN_TAMEDUPDATE, Constants.PCHAN_ATTRIBUTEUPDATE,
-		Constants.PCHAN_STEERING_UPDATE },
+		channels = { Constants.PCHAN_HEALTHUPDATE, Constants.PCHAN_RIDERJUMPUPDATE,
+		Constants.PCHAN_MOUNTUPDATE, Constants.PCHAN_TAMEDUPDATE, Constants.PCHAN_ATTRIBUTEUPDATE },
 		packetHandler = ChocoboPacketHandler.class)
 public class ModChocoCraft
 {
@@ -507,7 +506,7 @@ public class ModChocoCraft
         this.registerChocoboEntityClass(EntityChocoboGold.class, "ChocoboGold", this.getRGBInt(250, 130, 70), this.getRGBInt(111, 90, 33), "Gold Chocobo");
         this.registerChocoboEntityClass(EntityChocoboPink.class, "ChocoboPink", this.getRGBInt(222, 40, 222), this.getRGBInt(250, 200, 250), "Pink Chocobo");
         this.registerChocoboEntityClass(EntityChocoboRed.class, "ChocoboRed", this.getRGBInt(250, 20, 20), this.getRGBInt(100, 20, 20), "Red Chocobo");
-        this.registerChocoboEntityClass(EntityChocoboPurple.class, "ChocoboPurple", this.getRGBInt(170, 70, 160), this.getRGBInt(60, 50, 111), "Purple Chocobo");
+        //this.registerChocoboEntityClass(EntityChocoboPurple.class, "ChocoboPurple", this.getRGBInt(170, 70, 160), this.getRGBInt(60, 50, 111), "Purple Chocobo");
     }
     
     private void registerChocoboEntityClass(Class <? extends Entity> entityClass, String entityName, int eggColor, int eggDotsColor, String visibleName)
@@ -526,6 +525,6 @@ public class ModChocoCraft
 	private void addChocoboSpawns()
 	{
 		EntityRegistry.addSpawn(EntityChocoboYellow.class, 100, 5, 8, EnumCreatureType.creature, chocoboYellowSpawnBiomes);
-		EntityRegistry.addSpawn(EntityChocoboPurple.class, 100, 5, 8, EnumCreatureType.creature, chocoboPurpleSpawnBiomes);
+		//EntityRegistry.addSpawn(EntityChocoboPurple.class, 100, 5, 8, EnumCreatureType.creature, chocoboPurpleSpawnBiomes);
 	}
 }

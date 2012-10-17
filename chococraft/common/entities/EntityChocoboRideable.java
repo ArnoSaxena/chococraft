@@ -22,7 +22,6 @@ import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Side;
 import net.minecraft.src.DamageSource;
 import net.minecraft.src.Entity;
-import net.minecraft.src.EntityPlayerSP;
 import net.minecraft.src.IInventory;
 import net.minecraft.src.IMob;
 import net.minecraft.src.EntityPlayer;
@@ -37,8 +36,6 @@ import chococraft.common.ModChocoCraft;
 import chococraft.common.bags.ChocoBagInventory;
 import chococraft.common.bags.ChocoPackBagInventory;
 import chococraft.common.bags.ChocoSaddleBagInventory;
-import chococraft.common.gui.GuiChocoboBag;
-import chococraft.debugger.DebugFileWriter;
 
 
 public abstract class EntityChocoboRideable extends EntityAnimalChocobo {
@@ -237,7 +234,7 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo {
 			{
 				if(side == Side.CLIENT)
 				{
-					ModChocoCraft.mcc.displayGuiScreen(new GuiChocoboBag(entityplayer.inventory, this.getIInventory()));
+					//ModChocoCraft.mcc.displayGuiScreen(new GuiChocoboBag(entityplayer.inventory, this.getIInventory()));
 				}
 				interacted = true;
 			}
@@ -246,7 +243,7 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo {
 		{
 			if(side == Side.CLIENT)
 			{
-				ModChocoCraft.mcc.displayGuiScreen(new GuiChocoboBag(entityplayer.inventory, this.getIInventory()));
+				//ModChocoCraft.mcc.displayGuiScreen(new GuiChocoboBag(entityplayer.inventory, this.getIInventory()));
 			}
 			interacted = true;
 		}
@@ -262,7 +259,7 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo {
 			if(Side.CLIENT == FMLCommonHandler.instance().getEffectiveSide())
 			{
 				//entityplayer.mountEntity(this);
-				this.sendClientMountUpdate();
+				this.sendMountUpdate();
 				if (this.riddenByEntity == null)
 				{
 					this.dismountChocobo(entityplayer);
@@ -294,39 +291,25 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo {
     {
         if (this.riddenByEntity != null)
         {
-        	DebugFileWriter.instance().writeLine("EnChRi", "From " + FMLCommonHandler.instance().getEffectiveSide().toString().toLowerCase() + ", " + ((EntityPlayer)this.riddenByEntity).username + " is riding the chocobo");
-        	if(this.riddenByEntity instanceof EntityPlayerSP)
-        	{
-        		if (Side.CLIENT == FMLCommonHandler.instance().getEffectiveSide())
-        		{
-        			DebugFileWriter.instance().writeLine("EnChRi", FMLCommonHandler.instance().getEffectiveSide().toString().toLowerCase() + " is sending steering update");
-        			this.sendSteeringUpdate((EntityPlayerSP)this.riddenByEntity);
-        		}
-        	}
+        	this.sendRiderJumpUpdate();
+        	
             if (!this.isRiderUsingBow())
             {
                 this.setRotationYawAndPitch();
-
-                if (this.onGround && /*!this.isOnIce() ||*/ this.isInWeb)
+                
+                if (this.onGround)
                 {
-            		//ChocoboHelper.showParticleAroundEntityFxDebugger("portal", this);
-
-                	//this.riddenByEntity.isInWeb = false;
                 	this.motionX = this.riddenByEntity.motionX * this.landSpeedFactor;
                 	this.motionZ = this.riddenByEntity.motionZ * this.landSpeedFactor;
-
+                	this.isInWeb = false;
                 }
                 else if (this.isAirBorne)
                 {
-            		//ChocoboHelper.showParticleAroundEntityFxDebugger("bubble", this);
-
                 	this.motionX = this.riddenByEntity.motionX * this.airbornSpeedFactor;
                 	this.motionZ = this.riddenByEntity.motionZ * this.airbornSpeedFactor;
                 }
                 else
                 {
-            		//ChocoboHelper.showParticleAroundEntityFxDebugger("spell", this);
-
                 	this.motionX = this.riddenByEntity.motionX * this.landSpeedFactor;
                 	this.motionZ = this.riddenByEntity.motionZ * this.landSpeedFactor;
                 }
@@ -334,17 +317,16 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo {
                 this.prevMotionX = this.motionX;
                 this.prevMotionZ = this.motionZ;                
                 
-                ////////////////// TODO
     			if(this.riddenByEntity instanceof EntityPlayer)
-    			{
+    			{    				
     				EntityPlayer entityplayer = (EntityPlayer)this.riddenByEntity;
+    				
     				if (entityplayer.isJumping)
     				{
     					if (this.canFly)
     					{
     						this.motionY += 0.1D;
     						this.setFlying(true);
-    						DebugFileWriter.instance().writeLine("EnChoc", "now flying " + this.motionY);
     					}
     					else if (this.canJumpHigh && !this.isHighJumping)
     					{
@@ -356,25 +338,15 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo {
     				{
     					this.motionY -= 0.15D;
     				}
-    				//this.sendMountedMoveUpdate(entityplayer);
     			}
-                //////////////////
-                
                 
                 super.moveEntity(this.motionX, this.motionY, this.motionZ);
-            	//this.sendMountedMoveUpdate(ModChocoCraft.mcc.thePlayer);
             }
             else
             {
                 this.motionX = this.prevMotionX;
                 this.motionZ = this.prevMotionZ;
                 super.moveEntity(this.motionX, this.motionY, this.motionZ);
-            	//this.sendMountedMoveUpdate(ModChocoCraft.mcc.thePlayer);
-
-//                if (((EntityPlayer)this.riddenByEntity).movementInput.moveForward >= 0.8F)
-//                {
-//                	this.shouldSteer = false;
-//                }
             }
         }
         else
@@ -383,7 +355,6 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo {
         }
     }
     
-    ///////////////
 	public void setFlying(Boolean flying)
 	{
 		this.flying = flying;
@@ -393,7 +364,6 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo {
 	{
 		return this.flying;
 	}
-    ///////////////
     
 	public void updateRiderPosition()
     {
@@ -497,15 +467,8 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo {
 
 	public void setSaddleBagged(boolean saddleBags)
 	{
-		DebugFileWriter.instance().writeLine("EnChRi", "now in setSaddleBagged");
-
-		DebugFileWriter.instance().writeLine("EnChRi", "saddleBags (local flag): " + Boolean.toString(saddleBags));
-		DebugFileWriter.instance().writeLine("EnChRi", "this.saddleBags: " + Boolean.toString(this.isSaddleBagged()));
-		
 		if(saddleBags != this.isSaddleBagged())
 		{
-			DebugFileWriter.instance().writeLine("EnChRi", "create new Bag Inventory");
-			
 			ChocoBagInventory newBagInventory;
 	        byte ecrFlags = this.dataWatcher.getWatchableObjectByte(Constants.DW_ID_ECR_FLAGS);
 	        if (saddleBags)
@@ -523,7 +486,6 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo {
 	        
 			this.texture = this.getEntityTexture();
 		}    	
-		DebugFileWriter.instance().writeLine("EnChRi", "all done, leave setSaddleBagged");
 	}
 
 	public Boolean isPackBagged()

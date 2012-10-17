@@ -666,8 +666,7 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
             this.pathToEntity = null;
             return;
         }
-        Vec3 vector = this.pathToEntity.getPosition(this); // Leon mcp
-        //Vec3D vec3d = this.pathToEntity.getCurrentNodeVec3d(this); // Arno mcp
+        Vec3 vector = this.pathToEntity.getPosition(this);
         for (double d = this.width * 2.0F; vector != null && vector.squareDistanceTo(posX, vector.yCoord, posZ) < d * d;)
         {
             this.pathToEntity.incrementPathIndex();
@@ -678,8 +677,7 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
             }
             else
             {
-                vector = this.pathToEntity.getPosition(this); // Leon mcp
-                //vec3d = this.pathToEntity.getCurrentNodeVec3d(this); // Arno mcp
+                vector = this.pathToEntity.getPosition(this);
             }
         }
 
@@ -768,7 +766,7 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
 		return ModChocoCraft.showChocoboNames && !this.isHidename() && this.getName() != "" && this.isTamed();
 	}
 	
-    private void sendTamedUpdate(EntityPlayer entityPlayer)
+    protected void sendTamedUpdate(EntityPlayer entityPlayer)
     {
 		if (Side.SERVER == FMLCommonHandler.instance().getEffectiveSide())
 		{
@@ -795,7 +793,7 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
 		}
 	}
 	
-    private void sendAttributeUpdate(EntityPlayer entityPlayer)
+    protected void sendAttributeUpdate(EntityPlayer entityPlayer)
     {
 		if (Side.CLIENT == FMLCommonHandler.instance().getEffectiveSide())
 		{
@@ -848,7 +846,7 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
 		}
 	}
 	
-	protected void sendClientMountUpdate()
+	protected void sendMountUpdate()
 	{
 		if(Side.CLIENT == FMLCommonHandler.instance().getEffectiveSide())
 		{
@@ -875,6 +873,37 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
 			packet.length = bos.size();
 			PacketDispatcher.sendPacketToServer(packet);
 		}
+	}
+	
+	protected void sendRiderJumpUpdate()
+	{
+		if(Side.CLIENT == FMLCommonHandler.instance().getEffectiveSide())
+		{
+			if(null != this.riddenByEntity && this.riddenByEntity instanceof EntityPlayer)
+			{
+				ByteArrayOutputStream bos = new ByteArrayOutputStream(8);
+				DataOutputStream outputStream = new DataOutputStream(bos);
+				try
+				{
+					EntityPlayer riderEntity = (EntityPlayer)this.riddenByEntity;
+					outputStream.writeInt(this.entityId);
+					outputStream.writeUTF(riderEntity.username);
+					outputStream.writeInt(riderEntity.entityId);
+					outputStream.writeBoolean(riderEntity.isJumping);
+					outputStream.writeBoolean(riderEntity.isSneaking());
+				}
+				catch (Exception ex)
+				{
+					ex.printStackTrace();
+				}
+
+				Packet250CustomPayload packet = new Packet250CustomPayload();
+				packet.channel = Constants.PCHAN_RIDERJUMPUPDATE;
+				packet.data = bos.toByteArray();
+				packet.length = bos.size();
+				PacketDispatcher.sendPacketToServer(packet);
+			}
+		}		
 	}
 	
 	protected void sendSteeringUpdate(EntityPlayerSP entityPlayer)

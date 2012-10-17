@@ -1,12 +1,7 @@
 package chococraft.common.items;
 
 import chococraft.common.Constants;
-import chococraft.common.ModChocoCraft;
-import chococraft.debugger.DebugEntitySpawner;
-import net.minecraft.src.EntityPlayer;
 import net.minecraft.src.Item;
-import net.minecraft.src.ItemStack;
-import net.minecraft.src.World;
 
 public class ChocoboItem extends Item {
 

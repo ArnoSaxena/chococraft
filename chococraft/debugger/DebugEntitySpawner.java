@@ -10,7 +10,8 @@ import chococraft.common.entities.EntityChicobo;
 import chococraft.common.entities.FactoryEntityChocobo;
 import net.minecraft.src.World;
 
-public class DebugEntitySpawner {
+public class DebugEntitySpawner
+{
 	private static final DebugEntitySpawner INSTANCE = new DebugEntitySpawner();
 	
 	public static DebugEntitySpawner instance()

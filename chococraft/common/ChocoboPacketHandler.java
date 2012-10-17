@@ -4,8 +4,6 @@ import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.IOException;
 import chococraft.common.entities.EntityAnimalChocobo;
-import chococraft.debugger.DebugFileWriter;
-
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.src.Entity;
 import net.minecraft.src.EntityPlayer;
@@ -27,7 +25,7 @@ public class ChocoboPacketHandler implements IPacketHandler
 	@Override
 	public void onPacketData(NetworkManager manager, Packet250CustomPayload packet, Player player)
 	{
-		DebugFileWriter.instance().writeLine("ChPaHa", "receiving packet " + packet.channel);
+//		DebugFileWriter.instance().writeLine("ChPaHa", "receiving packet " + packet.channel);
 		
 		if (packet.channel.equals(Constants.PCHAN_HEALTHUPDATE))
 		{
@@ -49,57 +47,48 @@ public class ChocoboPacketHandler implements IPacketHandler
 		{
 			this.handleAttributeUpdate(packet, player);
 		}
-		else if (packet.channel.equals(Constants.PCHAN_STEERING_UPDATE))
+		else if (packet.channel.equals(Constants.PCHAN_RIDERJUMPUPDATE))
 		{
-			this.handleSteeringUpdate(packet, player);
+			this.handleRiderJumpUpdate(packet, player);
 		}
 	}
 
-	private void handleSteeringUpdate(Packet250CustomPayload packet, Player player)
+	private void handleRiderJumpUpdate(Packet250CustomPayload packet, Player player)
 	{
 		if (Side.SERVER == FMLCommonHandler.instance().getEffectiveSide())
 		{
 			DataInputStream inputStream = new DataInputStream(new ByteArrayInputStream(packet.data));
 			try
 			{
-				int chocoboId = inputStream.readInt();
-				String userName = inputStream.readUTF();
+				int chocoboEntityId = inputStream.readInt();
+				String riderName = inputStream.readUTF();
+				int riderEntityId = inputStream.readInt();
+				boolean riderJumping = inputStream.readBoolean();
+				boolean riderSneaking = inputStream.readBoolean();
 				
-				boolean jump = inputStream.readBoolean();
-				boolean sneak = inputStream.readBoolean();
-				float moveForward = inputStream.readFloat();
-				float moveStrafe = inputStream.readFloat();
-				float rotationYaw = inputStream.readFloat();
+//				DebugFileWriter.instance().writeLine("EnAnCh", "received packet chocoId: " + chocoboEntityId
+//						+ ", rider name: " + riderName 
+//						+ ", id: " + riderEntityId 
+//						+ ", jumping: " + Boolean.toString(riderJumping) 
+//						+ ", sneaking: " + Boolean.toString(riderSneaking));
 
-				EntityPlayerMP riderEntity = MinecraftServer.getServer().getConfigurationManager().getPlayerForUsername(userName);
-				EntityAnimalChocobo chocobo = this.getChocoboByID(chocoboId, player);
-
-				if(null != chocobo)
+				EntityAnimalChocobo chocobo = this.getChocoboByID(chocoboEntityId, player);
+				EntityPlayer riderEntity = null;
+				if(!riderName.isEmpty())
 				{
-					float speedFactor = (float) chocobo.landSpeedFactor;
-					if(chocobo.isAirBorne)
-					{
-						speedFactor = (float) chocobo.airbornSpeedFactor;
-					}
-					
-					if(chocobo.canFly)
-					{
-						if(jump)
-						{
-							chocobo.motionY = 0.1D * chocobo.flyingMovementFactor;
-						}
-						else if (sneak)
-						{
-							chocobo.motionY = -0.1D * chocobo.flyingMovementFactor;
-						}
-					}
-					
-					chocobo.rotationYaw = rotationYaw;
-					riderEntity.rotationYaw = rotationYaw;
-					
-					chocobo.moveEntityWithHeading(moveStrafe * speedFactor, moveForward * speedFactor);
-					chocobo.updateRiderPosition();
+					riderEntity = this.getPlayer(riderEntityId, riderName, player);
 				}
+				
+//				DebugFileWriter.instance().writeLine("ChPaHa", "right before set jumping/sneaking check");
+				
+				if(riderEntity != null && chocobo != null && chocobo.riddenByEntity != null
+						&& chocobo.riddenByEntity.equals(riderEntity))
+				{
+					riderEntity.isJumping = riderJumping;
+					riderEntity.setSneaking(riderSneaking);
+				}
+				
+//				DebugFileWriter.instance().writeLine("ChPaHa", "set riderEntity to jumping: " + Boolean.toString(riderEntity.isJumping) + ", is sneaking: " + Boolean.toString(riderEntity.isSneaking()));
 			}
 			catch(IOException e)
 			{

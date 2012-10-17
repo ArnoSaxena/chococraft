@@ -91,25 +91,25 @@ public class Constants {
 	public static float CHOCOBO_RED_FLYMOVEFACT       = 0.25F;
 	public static float CHOCOBO_PURPLE_FLYMOVEFACT    = 0.25F;
 	
-	public static double CHOCOBO_YELLOW_LANDSPEEDFACT = 10; // 20
-	public static double CHOCOBO_GREEN_LANDSPEEDFACT  = 15; // 35
-	public static double CHOCOBO_BLUE_LANDSPEEDFACT   = 15; // 35
-	public static double CHOCOBO_WHITE_LANDSPEEDFACT  = 20; // 45
-	public static double CHOCOBO_BLACK_LANDSPEEDFACT  = 25; // 50
-	public static double CHOCOBO_GOLD_LANDSPEEDFACT   = 30; // 70
-	public static double CHOCOBO_PINK_LANDSPEEDFACT   = 35; // 75
-	public static double CHOCOBO_RED_LANDSPEEDFACT    = 35; // 75
-	public static double CHOCOBO_PURPLE_LANDSPEEDFACT = 25; // 65
+	public static double CHOCOBO_YELLOW_LANDSPEEDFACT = 10;
+	public static double CHOCOBO_GREEN_LANDSPEEDFACT  = 15;
+	public static double CHOCOBO_BLUE_LANDSPEEDFACT   = 15;
+	public static double CHOCOBO_WHITE_LANDSPEEDFACT  = 20;
+	public static double CHOCOBO_BLACK_LANDSPEEDFACT  = 25;
+	public static double CHOCOBO_GOLD_LANDSPEEDFACT   = 30;
+	public static double CHOCOBO_PINK_LANDSPEEDFACT   = 35;
+	public static double CHOCOBO_RED_LANDSPEEDFACT    = 35;
+	public static double CHOCOBO_PURPLE_LANDSPEEDFACT = 25;
 	
-	public static double CHOCOBO_YELLOW_AIRSPEEDFACT  =  0; //  0
-	public static double CHOCOBO_GREEN_AIRSPEEDFACT   =  0; //  0
-	public static double CHOCOBO_BLUE_AIRSPEEDFACT    =  0; //  0
-	public static double CHOCOBO_WHITE_AIRSPEEDFACT   =  0; //  0
-	public static double CHOCOBO_BLACK_AIRSPEEDFACT   =  0; //  0
-	public static double CHOCOBO_GOLD_AIRSPEEDFACT    = 35; // 80
-	public static double CHOCOBO_PINK_AIRSPEEDFACT    = 40; // 90
-	public static double CHOCOBO_RED_AIRSPEEDFACT     = 40; // 90
-	public static double CHOCOBO_PURPLE_AIRSPEEDFACT  = 30; // 70
+	public static double CHOCOBO_YELLOW_AIRSPEEDFACT  =  0;
+	public static double CHOCOBO_GREEN_AIRSPEEDFACT   =  0;
+	public static double CHOCOBO_BLUE_AIRSPEEDFACT    =  0;
+	public static double CHOCOBO_WHITE_AIRSPEEDFACT   =  0;
+	public static double CHOCOBO_BLACK_AIRSPEEDFACT   =  0;
+	public static double CHOCOBO_GOLD_AIRSPEEDFACT    = 35;
+	public static double CHOCOBO_PINK_AIRSPEEDFACT    = 40;
+	public static double CHOCOBO_RED_AIRSPEEDFACT     = 40;
+	public static double CHOCOBO_PURPLE_AIRSPEEDFACT  = 30;
 	
 	// max length of channel name is 16                     "xxxxxxxxxxxxxxxx"
 	public static final String PCHAN_INTERACTION          = "TCC_Interact";
@@ -119,6 +119,7 @@ public class Constants {
 	public static final String PCHAN_TAMEDUPDATE          = "TCC_TameUp";
 	public static final String PCHAN_ATTRIBUTEUPDATE      = "TCC_RenameUp";
 	public static final String PCHAN_STEERING_UPDATE      = "TCC_SteerUp";
+	public static final String PCHAN_RIDERJUMPUPDATE      = "TCC_RiderJumpUp";
 	
 	// dataWatcher
 	// EAC - EntityAnimalChocobo

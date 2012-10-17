@@ -28,7 +28,6 @@ import chococraft.common.ChocoboHelper;
 import chococraft.common.Constants;
 import chococraft.common.ModChocoCraft;
 import chococraft.common.entities.colours.EntityChocoboPurple;
-import chococraft.debugger.DebugFileWriter;
 import net.minecraft.src.AxisAlignedBB;
 import net.minecraft.src.Block;
 import net.minecraft.src.DamageSource;
@@ -43,7 +42,6 @@ import net.minecraft.src.NBTTagCompound;
 import net.minecraft.src.PathEntity;
 import net.minecraft.src.World;
 
-//public class EntityChocobo extends EntityAnimalChoco
 public abstract class EntityChocobo extends EntityChocoboRideable
 {	
 	public float wingRotation;
@@ -51,13 +49,6 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 	public float wingRotDelta;
 	public int timeUntilNextFeather;
 	public boolean fedGold;
-
-//	protected boolean canClimb;
-//	protected boolean canCrossWater;
-//	protected boolean canJumpHigh;
-//	protected boolean canFly;
-//	protected boolean flying;
-//	protected boolean isHighJumping;
 
 	public EntityChocobo(World world)
 	{
@@ -100,16 +91,6 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 	{
 		super.fall(fallHeight);
 	}
-
-//	public void setFlying(Boolean flying)
-//	{
-//		this.flying = flying;
-//	}
-//
-//	public Boolean isFlying()
-//	{
-//		return this.flying;
-//	}
 
 	abstract public String getEntityColourTexture();
 
@@ -190,10 +171,12 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 		{
 			this.setFlying(false);
 		}
+
 		if (this.isHighJumping && this.onGround)
 		{
 			this.isHighJumping = false;
 		}
+
 		if (this.isInWater() && this.canCrossWater)
 		{
 			int i = 5;
@@ -338,7 +321,7 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 					this.motionY = 0.0D;
 				}
 			}
-			moveEntity(this.motionX, this.motionY, this.motionZ);
+			this.moveEntity(this.motionX, this.motionY, this.motionZ);
 			if (this.isCollidedHorizontally && isOnLadder())
 			{
 				this.motionY = 0.2D;
@@ -439,9 +422,6 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 
 	public boolean interact(EntityPlayer entityplayer)
 	{
-		DebugFileWriter.instance().writeDashLine();
-		DebugFileWriter.instance().writeSideStatement("EnChoc");
-		
 		boolean interacted = false;
 		interacted  = super.interact(entityplayer);
 		
@@ -485,7 +465,6 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 			this.onEmptyHandInteraction(entityplayer);
 		}
 		
-		DebugFileWriter.instance().writeDashLine();
 		return interacted;
 	}
 	
