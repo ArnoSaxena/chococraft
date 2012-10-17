@@ -1,0 +1,46 @@
+// <copyright file="WorldGenGysahls.java">
+// Copyright (c) 2012 All Right Reserved, http://chococraft.arno-saxena.de/
+//
+// THIS CODE AND INFORMATION ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY 
+// KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
+// PARTICULAR PURPOSE.
+//
+// </copyright>
+// <author>Arno Saxena</author>
+// <email>al-s@gmx.de</email>
+// <date>2012-05-09</date>
+// <summary>distributing wild Gysahl greens in a newly generated chunk</summary>
+
+package chococraft.common;
+
+import java.util.Random;
+
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.IWorldGenerator;
+import cpw.mods.fml.common.Side;
+import net.minecraft.src.IChunkProvider;
+import net.minecraft.src.World;
+import net.minecraft.src.WorldGenFlowers;
+
+public class WorldGenGysahls implements IWorldGenerator
+{
+	@Override
+	public void generate(Random random, int chunkX, int chunkZ, World world,
+			IChunkProvider chunkGenerator, IChunkProvider chunkProvider)
+	{
+		if(Side.SERVER == FMLCommonHandler.instance().getEffectiveSide())
+		{
+			if(world.provider.isSurfaceWorld())
+			{
+				if(random.nextInt(4) == 0)
+				{
+					int randPosX = chunkX*16 + random.nextInt(16);
+					int randPosZ = chunkZ*16 + random.nextInt(16);
+					int randPosY = world.getTopSolidOrLiquidBlock(randPosX, randPosX);
+					new WorldGenFlowers(ModChocoCraft.gysahlGreenBlock.blockID).generate(world, random, randPosX, randPosY, randPosZ);
+				}
+			}
+		}
+	}
+}
