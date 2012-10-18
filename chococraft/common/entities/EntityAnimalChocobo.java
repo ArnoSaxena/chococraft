@@ -15,8 +15,6 @@
 
 package chococraft.common.entities;
 
-import java.io.ByteArrayOutputStream;
-import java.io.DataOutputStream;
 import java.util.List;
 import java.util.Random;
 
@@ -30,17 +28,16 @@ import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
 
 import chococraft.common.*;
 import chococraft.common.gui.GuiChocopedia;
+import chococraft.common.network.*;
 import net.minecraft.src.Block;
 import net.minecraft.src.DamageSource;
 import net.minecraft.src.Entity;
 import net.minecraft.src.EntityPlayer;
-import net.minecraft.src.EntityPlayerSP;
 import net.minecraft.src.EntityTameable;
 import net.minecraft.src.EntityWolf;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.MathHelper;
 import net.minecraft.src.NBTTagCompound;
-import net.minecraft.src.Packet250CustomPayload;
 import net.minecraft.src.PathEntity;
 import net.minecraft.src.StepSound;
 import net.minecraft.src.Vec3;
@@ -320,6 +317,7 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
     			interacted = true;
     		}
     	}
+    	
     	return interacted;
     }
     
@@ -462,14 +460,38 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
         this.fleeingTick = 60;
         this.entityToAttack = null;
         this.setInLove(false);
-        if(this.isTamed() && damageSource.getEntity() instanceof EntityWolf)
+        
+        if(this.isTamed())
         {
-        	EntityWolf attackingWolf = (EntityWolf)damageSource.getEntity();
-        	if(attackingWolf.isTamed())
+        	if(damageSource.getEntity() instanceof EntityWolf)
         	{
-        		attackingWolf.getOwner().setLastAttackingEntity(attackingWolf);
-        		attackingWolf.setAttackTarget(null);
-        		return false;
+        		EntityWolf attackingWolf = (EntityWolf)damageSource.getEntity();
+        		if(attackingWolf.isTamed())
+        		{
+        			attackingWolf.getOwner().setLastAttackingEntity(attackingWolf);
+        			attackingWolf.setAttackTarget(null);
+        			return false;
+        		}
+        	}
+        	
+        	if(damageSource.getEntity() instanceof EntityPlayer)
+        	{
+        		EntityPlayer entityPlayer = (EntityPlayer)damageSource.getEntity();        		
+        		if(null != entityPlayer)
+        		{
+        			if(null != this.getOwner() && this.getOwner().equals(entityPlayer))
+        			{
+        				if(entityPlayer.isSneaking())
+        				{
+        					return false;
+        				}
+        			}
+
+        			if(null != this.riddenByEntity && this.riddenByEntity.equals(entityPlayer))
+        			{
+        				return false;
+        			}
+        		}
         	}
         }
         
@@ -770,24 +792,7 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
     {
 		if (Side.SERVER == FMLCommonHandler.instance().getEffectiveSide())
 		{
-			ByteArrayOutputStream bos = new ByteArrayOutputStream(8);
-			DataOutputStream outputStream = new DataOutputStream(bos);
-			try
-			{
-				outputStream.writeInt(this.entityId);
-				outputStream.writeBoolean(this.isTamed());
-				outputStream.writeUTF(this.getOwnerName());
-			}
-			catch (Exception ex)
-			{
-				ex.printStackTrace();
-			}		
-
-			Packet250CustomPayload packet = new Packet250CustomPayload();
-			packet.channel = Constants.PCHAN_TAMEDUPDATE;
-			packet.data = bos.toByteArray();
-			packet.length = bos.size();
-
+			PacketChocoboTamed packet = new PacketChocoboTamed(this);			
 			PacketDispatcher.sendPacketToAllAround(this.lastTickPosX, this.lastTickPosY, this.lastTickPosZ, 16*5, entityPlayer.dimension, packet);
 
 		}
@@ -795,29 +800,10 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
 	
     protected void sendAttributeUpdate(EntityPlayer entityPlayer)
     {
-		if (Side.CLIENT == FMLCommonHandler.instance().getEffectiveSide())
+    	if (Side.CLIENT == FMLCommonHandler.instance().getEffectiveSide())
 		{
-			ByteArrayOutputStream bos = new ByteArrayOutputStream(8);
-			DataOutputStream outputStream = new DataOutputStream(bos);
-			try
-			{
-				outputStream.writeInt(this.entityId);
-				outputStream.writeUTF(this.getName());
-				outputStream.writeBoolean(this.isHidename());
-				outputStream.writeBoolean(this.isFollowing());
-				outputStream.writeBoolean(this.isWander());
-			}
-			catch (Exception ex)
-			{
-				ex.printStackTrace();
-			}		
-
-			Packet250CustomPayload packet = new Packet250CustomPayload();
-			packet.channel = Constants.PCHAN_ATTRIBUTEUPDATE;
-			packet.data = bos.toByteArray();
-			packet.length = bos.size();
-
-			PacketDispatcher.sendPacketToAllAround(this.lastTickPosX, this.lastTickPosY, this.lastTickPosZ, 16*5, entityPlayer.dimension, packet);
+			PacketChocoboAttribute packet = new PacketChocoboAttribute(this);
+			PacketDispatcher.sendPacketToServer(packet);
 		}
 	}
     
@@ -825,23 +811,7 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
 	{
 		if (Side.SERVER == FMLCommonHandler.instance().getEffectiveSide())
 		{
-			ByteArrayOutputStream bos = new ByteArrayOutputStream(8);
-			DataOutputStream outputStream = new DataOutputStream(bos);
-			try
-			{
-				outputStream.writeInt(this.entityId);
-				outputStream.writeInt(this.getHealth());
-			}
-			catch (Exception ex)
-			{
-				ex.printStackTrace();
-			}		
-
-			Packet250CustomPayload packet = new Packet250CustomPayload();
-			packet.channel = Constants.PCHAN_HEALTHUPDATE;
-			packet.data = bos.toByteArray();
-			packet.length = bos.size();
-
+			PacketChocoboHealth packet = new PacketChocoboHealth(this);
 			PacketDispatcher.sendPacketToAllAround(this.lastTickPosX, this.lastTickPosY, this.lastTickPosZ, 16*5, entityPlayer.dimension, packet);
 		}
 	}
@@ -850,27 +820,7 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
 	{
 		if(Side.CLIENT == FMLCommonHandler.instance().getEffectiveSide())
 		{
-			ByteArrayOutputStream bos = new ByteArrayOutputStream(8);
-			DataOutputStream outputStream = new DataOutputStream(bos);
-			try
-			{
-				String playerName = "";
-				int playerEntityId = 0;
-				playerName = ModChocoCraft.mcc.thePlayer.username;
-				playerEntityId = ModChocoCraft.mcc.thePlayer.entityId;
-				outputStream.writeInt(this.entityId);
-				outputStream.writeUTF(playerName);
-				outputStream.writeInt(playerEntityId);
-			}
-			catch (Exception ex)
-			{
-				ex.printStackTrace();
-			}
-
-			Packet250CustomPayload packet = new Packet250CustomPayload();
-			packet.channel = Constants.PCHAN_MOUNTUPDATE;
-			packet.data = bos.toByteArray();
-			packet.length = bos.size();
+			PacketChocoboMount packet = new PacketChocoboMount(this);
 			PacketDispatcher.sendPacketToServer(packet);
 		}
 	}
@@ -881,57 +831,12 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
 		{
 			if(null != this.riddenByEntity && this.riddenByEntity instanceof EntityPlayer)
 			{
-				ByteArrayOutputStream bos = new ByteArrayOutputStream(8);
-				DataOutputStream outputStream = new DataOutputStream(bos);
-				try
+				if(this instanceof EntityChocobo)
 				{
-					EntityPlayer riderEntity = (EntityPlayer)this.riddenByEntity;
-					outputStream.writeInt(this.entityId);
-					outputStream.writeUTF(riderEntity.username);
-					outputStream.writeInt(riderEntity.entityId);
-					outputStream.writeBoolean(riderEntity.isJumping);
-					outputStream.writeBoolean(riderEntity.isSneaking());
+					PacketChocoboRiderJump packet = new PacketChocoboRiderJump((EntityPlayer)this.riddenByEntity, (EntityChocobo)this);
+					PacketDispatcher.sendPacketToServer(packet);
 				}
-				catch (Exception ex)
-				{
-					ex.printStackTrace();
-				}
-
-				Packet250CustomPayload packet = new Packet250CustomPayload();
-				packet.channel = Constants.PCHAN_RIDERJUMPUPDATE;
-				packet.data = bos.toByteArray();
-				packet.length = bos.size();
-				PacketDispatcher.sendPacketToServer(packet);
 			}
 		}		
-	}
-	
-	protected void sendSteeringUpdate(EntityPlayerSP entityPlayer)
-	{
-		if (Side.CLIENT == FMLCommonHandler.instance().getEffectiveSide())
-		{
-			ByteArrayOutputStream bos = new ByteArrayOutputStream(8);
-			DataOutputStream outputStream = new DataOutputStream(bos);
-			try
-			{
-				outputStream.writeInt(this.entityId);
-				outputStream.writeUTF(entityPlayer.username);
-				
-				outputStream.writeBoolean(entityPlayer.movementInput.jump);
-				outputStream.writeBoolean(entityPlayer.movementInput.sneak);
-				outputStream.writeFloat(entityPlayer.movementInput.moveForward);
-				outputStream.writeFloat(entityPlayer.movementInput.moveStrafe);
-				outputStream.writeFloat(entityPlayer.rotationYaw);
-			}
-			catch (Exception ex)
-			{
-				ex.printStackTrace();
-			}
-			Packet250CustomPayload packet = new Packet250CustomPayload();
-			packet.channel = Constants.PCHAN_STEERING_UPDATE;
-			packet.data = bos.toByteArray();
-			packet.length = bos.size();
-			PacketDispatcher.sendPacketToServer(packet);
-		}
 	}
 }

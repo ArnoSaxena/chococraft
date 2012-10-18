@@ -14,7 +14,9 @@
 
 package chococraft.common;
 
-public class Constants {
+public class Constants
+{
+	public static String TCC_VERSION = "2.0.0";	
 
 	// default item id's (reserved 3801-3900)
 	public static int CHOCOBO_SADDLE_ID          = 22601;
@@ -112,14 +114,15 @@ public class Constants {
 	public static double CHOCOBO_PURPLE_AIRSPEEDFACT  = 30;
 	
 	// max length of channel name is 16                     "xxxxxxxxxxxxxxxx"
-	public static final String PCHAN_INTERACTION          = "TCC_Interact";
-	public static final String PCHAN_HEALTHUPDATE         = "TCC_HealthUp";
-	public static final String PCHAN_MOUNTED_MOVE_UPDATE  = "TCC_MoMoUp";
-	public static final String PCHAN_MOUNTUPDATE          = "TCC_MountUp";
-	public static final String PCHAN_TAMEDUPDATE          = "TCC_TameUp";
-	public static final String PCHAN_ATTRIBUTEUPDATE      = "TCC_RenameUp";
-	public static final String PCHAN_STEERING_UPDATE      = "TCC_SteerUp";
-	public static final String PCHAN_RIDERJUMPUPDATE      = "TCC_RiderJumpUp";
+	public static final String PCHAN_CHOCOBO              = "ChocoCraftPChan";
+//	public static final String PCHAN_INTERACTION          = "TCC_Interact";
+//	public static final String PCHAN_HEALTHUPDATE         = "TCC_HealthUp";
+//	public static final String PCHAN_MOUNTED_MOVE_UPDATE  = "TCC_MoMoUp";
+//	public static final String PCHAN_MOUNTUPDATE          = "TCC_MountUp";
+//	public static final String PCHAN_TAMEDUPDATE          = "TCC_TameUp";
+//	public static final String PCHAN_ATTRIBUTEUPDATE      = "TCC_RenameUp";
+//	public static final String PCHAN_STEERING_UPDATE      = "TCC_SteerUp";
+//	public static final String PCHAN_RIDERJUMPUPDATE      = "TCC_RiderJumpUp";
 	
 	// dataWatcher
 	// EAC - EntityAnimalChocobo

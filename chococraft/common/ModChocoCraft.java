@@ -20,6 +20,7 @@ import chococraft.client.ClientProxyChocoCraft;
 import chococraft.common.entities.EntityChicobo;
 import chococraft.common.entities.colours.*;
 import chococraft.common.items.*;
+import chococraft.common.network.ChocoboPacketHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.src.BiomeGenBase;
 import net.minecraft.src.Block;
@@ -42,10 +43,9 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.common.registry.EntityRegistry;
 
-@Mod(modid="ChocoCraft", name="Torojimas ChocoCraft", version="1.8.1")
+@Mod(modid="ChocoCraft", name="Torojimas ChocoCraft", version="2.0.0")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false, 
-		channels = { Constants.PCHAN_HEALTHUPDATE, Constants.PCHAN_RIDERJUMPUPDATE,
-		Constants.PCHAN_MOUNTUPDATE, Constants.PCHAN_TAMEDUPDATE, Constants.PCHAN_ATTRIBUTEUPDATE },
+		channels = { Constants.PCHAN_CHOCOBO },
 		packetHandler = ChocoboPacketHandler.class)
 public class ModChocoCraft
 {

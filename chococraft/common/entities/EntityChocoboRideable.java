@@ -22,60 +22,52 @@ import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Side;
 import net.minecraft.src.DamageSource;
 import net.minecraft.src.Entity;
-import net.minecraft.src.IInventory;
 import net.minecraft.src.IMob;
 import net.minecraft.src.EntityPlayer;
 import net.minecraft.src.Item;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.NBTTagCompound;
-import net.minecraft.src.NBTTagList;
 import net.minecraft.src.World;
 
 import chococraft.common.Constants;
 import chococraft.common.ModChocoCraft;
-import chococraft.common.bags.ChocoBagInventory;
-import chococraft.common.bags.ChocoPackBagInventory;
-import chococraft.common.bags.ChocoSaddleBagInventory;
 
 
 public abstract class EntityChocoboRideable extends EntityAnimalChocobo {
 
-    protected double prevMotionX;
-    protected double prevMotionZ;
-    protected boolean shouldSteer;
-    
-    ////////////
+	protected double prevMotionX;
+	protected double prevMotionZ;
+	protected boolean shouldSteer;    
 	protected boolean flying;
 	protected boolean isHighJumping;
-    ////////////
 
-	protected ChocoBagInventory bagsInventory;    
-    
+	//protected ChocoBagInventory bagsInventory;    
+
 	public EntityChocoboRideable(World world) {
 		super(world);
-        this.ignoreFrustumCheck = true;
+		this.ignoreFrustumCheck = true;
 	}
 
 	protected void entityInit()
 	{
 		super.entityInit();
-        this.dataWatcher.addObject(Constants.DW_ID_ECR_FLAGS, Byte.valueOf((byte)0));
-		this.bagsInventory = new ChocoSaddleBagInventory(this);
+		this.dataWatcher.addObject(Constants.DW_ID_ECR_FLAGS, Byte.valueOf((byte)0));
+		//this.bagsInventory = new ChocoSaddleBagInventory(this);
 	}
-	
-    public boolean isAIEnabled()
-    {
-        return false;
-    }
 
-    public void writeEntityToNBT(NBTTagCompound nbttagcompound)
-    {
-    	super.writeEntityToNBT(nbttagcompound);
-    	nbttagcompound.setBoolean("Saddle", this.isSaddled());
-    	nbttagcompound.setBoolean("SaddleBag", this.isSaddleBagged());
-    	nbttagcompound.setBoolean("PackBag", this.isPackBagged());
-    	nbttagcompound.setTag("SaddleBagInventory", this.bagsInventory.writeToNBT(new NBTTagList()));
-    }
+	public boolean isAIEnabled()
+	{
+		return false;
+	}
+
+	public void writeEntityToNBT(NBTTagCompound nbttagcompound)
+	{
+		super.writeEntityToNBT(nbttagcompound);
+		nbttagcompound.setBoolean("Saddle", this.isSaddled());
+		nbttagcompound.setBoolean("SaddleBag", this.isSaddleBagged());
+		nbttagcompound.setBoolean("PackBag", this.isPackBagged());
+		//nbttagcompound.setTag("SaddleBagInventory", this.bagsInventory.writeToNBT(new NBTTagList()));
+	}
 
 	public void readEntityFromNBT(NBTTagCompound nbttagcompound)
 	{
@@ -84,10 +76,10 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo {
 		this.setSaddleBagged(nbttagcompound.getBoolean("SaddleBag"));
 		this.setPackBagged(nbttagcompound.getBoolean("PackBag"));
 		this.setWander(!this.isFollowing() && !this.isSaddled() && !this.isPackBagged());
-		NBTTagList nbttaglist = nbttagcompound.getTagList("SaddleBagInventory");
-		this.bagsInventory.readFromNBT(nbttaglist);
+		//NBTTagList nbttaglist = nbttagcompound.getTagList("SaddleBagInventory");
+		//this.bagsInventory.readFromNBT(nbttaglist);
 	}    
-    
+
 	public void writeSpawnData(ByteArrayDataOutput data)
 	{
 		super.writeSpawnData(data);
@@ -103,34 +95,34 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo {
 		this.setSaddleBagged(data.readBoolean());
 		this.setPackBagged(data.readBoolean());
 	}
-	
+
 	public void onLivingUpdate()
-    {
-        if (this.riddenByEntity != null)
-        {
-            this.setRotationYawAndPitch();
-            
-            List<?> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, boundingBox.expand(0.21D, 0.0D, 0.21D));
-            if (list != null && list.size() > 0)
-            {
-            	for (int i = 0; i < list.size(); i++)
-            	{
-            		Entity entity = (Entity)list.get(i);
-            		if (entity instanceof IMob && entity.canBePushed() && entity != this.riddenByEntity)
-            		{
-            			entity.applyEntityCollision(this);
-            			//this.trample(entity);
-            		}
-            	}
-            }
-        }
-        super.onLivingUpdate();
-    }
+	{
+		if (this.riddenByEntity != null)
+		{
+			this.setRotationYawAndPitch();
+
+			List<?> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, boundingBox.expand(0.21D, 0.0D, 0.21D));
+			if (list != null && list.size() > 0)
+			{
+				for (int i = 0; i < list.size(); i++)
+				{
+					Entity entity = (Entity)list.get(i);
+					if (entity instanceof IMob && entity.canBePushed() && entity != this.riddenByEntity)
+					{
+						entity.applyEntityCollision(this);
+						//this.trample(entity);
+					}
+				}
+			}
+		}
+		super.onLivingUpdate();
+	}
 
 	public void onDeath(DamageSource damageSource)
 	{
 		Side side = FMLCommonHandler.instance().getEffectiveSide();
-		
+
 		if(side == Side.SERVER && this.isSaddled())
 		{
 			this.dropItem(ModChocoCraft.chocoboSaddleItem.shiftedIndex, 1);
@@ -138,16 +130,16 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo {
 		if(side == Side.SERVER && this.isSaddleBagged())
 		{
 			this.dropItem(ModChocoCraft.chocoboSaddleBagsItem.shiftedIndex, 1);
-			this.bagsInventory.dropAllItems();
+			//this.bagsInventory.dropAllItems();
 		}
 		if(side == Side.SERVER && this.isPackBagged())
 		{
 			this.dropItem(ModChocoCraft.chocoboPackBagsItem.shiftedIndex, 1);
-			this.bagsInventory.dropAllItems();
+			//this.bagsInventory.dropAllItems();
 		}
 		super.onDeath(damageSource);
 	}
-    
+
 	public boolean interact(EntityPlayer entityplayer)
 	{
 		boolean interacted = false;
@@ -158,7 +150,7 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo {
 			if(entityplayer.isSneaking() && (this.isSaddleBagged() || this.isPackBagged())){
 				return this.onOpenSaddlePackBagInteraction(entityplayer);
 			}
-			
+
 			ItemStack itemstack = entityplayer.inventory.getCurrentItem();
 			if(itemstack != null)
 			{
@@ -223,7 +215,7 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo {
 		// whistle no longer for untaming but for teleporting last ridden chocobo to player...
 		// also this should go to EntityChocoboRideable
 	}
-	
+
 	protected boolean onOpenSaddlePackBagInteraction(EntityPlayer entityplayer)
 	{
 		Side side = FMLCommonHandler.instance().getEffectiveSide();
@@ -249,112 +241,123 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo {
 		}
 		return interacted;
 	}
-	
+
 	protected boolean onEmptyHandInteraction(EntityPlayer entityplayer)
 	{
 		boolean interacted = false;
 		interacted = super.onEmptyHandInteraction(entityplayer);
-		if (this.riddenByEntity == null || this.riddenByEntity == entityplayer)
+		if(this.isSaddled())
 		{
-			if(Side.CLIENT == FMLCommonHandler.instance().getEffectiveSide())
+			if (this.riddenByEntity == null || this.riddenByEntity == entityplayer)
 			{
-				//entityplayer.mountEntity(this);
-				this.sendMountUpdate();
-				if (this.riddenByEntity == null)
+				if(Side.CLIENT == FMLCommonHandler.instance().getEffectiveSide())
 				{
-					this.dismountChocobo(entityplayer);
+					this.sendMountUpdate();
+					if (this.riddenByEntity == null)
+					{
+						this.dismountChocobo(entityplayer);
+					}
+					else
+					{
+						this.mountChocobo(entityplayer);
+					}
 				}
-				else
-				{
-					this.mountChocobo(entityplayer);
-				}
+
+				interacted = true;
 			}
-			
-			interacted = true;
 		}
 		return interacted;
 	}
-	
-    private void setRotationYawAndPitch()
-    {
-        this.rotationPitch = 0.0F;
-        EntityPlayer rider = (EntityPlayer)this.riddenByEntity;
-        this.rotationYaw = rider.rotationYaw;
-        this.prevRotationYaw = rider.rotationYaw;
-        this.setRotation(this.rotationYaw, this.rotationPitch);
-    }
 
-    /**
-     * Tries to moves the entity by the passed in displacement. Args: x, y, z
-     */
-    public void moveEntity(double moveX, double moveY, double moveZ)
-    {
-        if (this.riddenByEntity != null)
-        {
-        	this.sendRiderJumpUpdate();
-        	
-            if (!this.isRiderUsingBow())
-            {
-                this.setRotationYawAndPitch();
-                
-                if (this.onGround)
-                {
-                	this.motionX = this.riddenByEntity.motionX * this.landSpeedFactor;
-                	this.motionZ = this.riddenByEntity.motionZ * this.landSpeedFactor;
-                	this.isInWeb = false;
-                }
-                else if (this.isAirBorne)
-                {
-                	this.motionX = this.riddenByEntity.motionX * this.airbornSpeedFactor;
-                	this.motionZ = this.riddenByEntity.motionZ * this.airbornSpeedFactor;
-                }
-                else
-                {
-                	this.motionX = this.riddenByEntity.motionX * this.landSpeedFactor;
-                	this.motionZ = this.riddenByEntity.motionZ * this.landSpeedFactor;
-                }
-                
-                this.prevMotionX = this.motionX;
-                this.prevMotionZ = this.motionZ;                
-                
-    			if(this.riddenByEntity instanceof EntityPlayer)
-    			{    				
-    				EntityPlayer entityplayer = (EntityPlayer)this.riddenByEntity;
-    				
-    				if (entityplayer.isJumping)
-    				{
-    					if (this.canFly)
-    					{
-    						this.motionY += 0.1D;
-    						this.setFlying(true);
-    					}
-    					else if (this.canJumpHigh && !this.isHighJumping)
-    					{
-    						this.motionY += 0.4D;
-    						this.isHighJumping = true;
-    					}
-    				}
-    				if (entityplayer.isSneaking() && this.canFly)
-    				{
-    					this.motionY -= 0.15D;
-    				}
-    			}
-                
-                super.moveEntity(this.motionX, this.motionY, this.motionZ);
-            }
-            else
-            {
-                this.motionX = this.prevMotionX;
-                this.motionZ = this.prevMotionZ;
-                super.moveEntity(this.motionX, this.motionY, this.motionZ);
-            }
-        }
-        else
-        {
-            super.moveEntity(moveX, moveY, moveZ);
-        }
-    }
-    
+	private void setRotationYawAndPitch()
+	{
+		if (this.riddenByEntity != null && this.riddenByEntity instanceof EntityPlayer)
+		{
+			this.rotationPitch = 0.0F;
+			EntityPlayer rider = (EntityPlayer)this.riddenByEntity;
+			this.rotationYaw = rider.rotationYaw;
+			this.prevRotationYaw = rider.rotationYaw;
+			this.setRotation(this.rotationYaw, this.rotationPitch);
+		}
+	}
+
+	/**
+	 * Tries to moves the entity by the passed in displacement. Args: x, y, z
+	 */
+	public void moveEntity(double moveX, double moveY, double moveZ)
+	{
+		if (this.riddenByEntity != null)
+		{
+			this.sendRiderJumpUpdate();
+
+			if (!this.isRiderUsingBow())
+			{
+				this.setRotationYawAndPitch();
+
+				if (this.onGround)
+				{
+					this.motionX = this.riddenByEntity.motionX * this.landSpeedFactor;
+					this.motionZ = this.riddenByEntity.motionZ * this.landSpeedFactor;
+					this.isInWeb = false;
+				}
+				else if (this.isAirBorne)
+				{
+					this.motionX = this.riddenByEntity.motionX * this.airbornSpeedFactor;
+					this.motionZ = this.riddenByEntity.motionZ * this.airbornSpeedFactor;
+				}
+				else
+				{
+					this.motionX = this.riddenByEntity.motionX * this.landSpeedFactor;
+					this.motionZ = this.riddenByEntity.motionZ * this.landSpeedFactor;
+				}
+
+				this.prevMotionX = this.motionX;
+				this.prevMotionZ = this.motionZ;                
+
+				if(this.riddenByEntity instanceof EntityPlayer)
+				{    				
+					EntityPlayer entityplayer = (EntityPlayer)this.riddenByEntity;
+
+					if (entityplayer.isJumping)
+					{
+						if (this.canFly)
+						{
+							this.motionY += 0.1D;
+							this.setFlying(true);
+						}
+						else if (this.canJumpHigh && !this.isHighJumping)
+						{
+							this.motionY += 0.4D;
+							this.isHighJumping = true;
+						}
+					}
+					if (entityplayer.isSneaking() && this.canFly)
+					{
+						this.motionY -= 0.15D;
+					}
+				}
+
+				super.moveEntity(this.motionX, this.motionY, this.motionZ);
+			}
+			else
+			{
+				this.motionX = this.prevMotionX;
+				this.motionZ = this.prevMotionZ;
+				super.moveEntity(this.motionX, this.motionY, this.motionZ);
+			}
+		}
+		else
+		{
+			super.moveEntity(moveX, moveY, moveZ);
+		}
+	}
+
+	public void onUpdate()
+	{
+		super.onUpdate();
+
+	}
+
 	public void setFlying(Boolean flying)
 	{
 		this.flying = flying;
@@ -364,101 +367,101 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo {
 	{
 		return this.flying;
 	}
-    
+
 	public void updateRiderPosition()
-    {
-        if (this.riddenByEntity != null)
-        {
-            double deltaPosX = Math.cos((double)this.rotationYaw * Math.PI / 180.0D) * 0.4D;
-            double deltaPosZ = Math.sin((double)this.rotationYaw * Math.PI / 180.0D) * 0.4D;
-            this.riddenByEntity.setPosition(this.posX + deltaPosX, this.posY + this.getMountedYOffset() + this.riddenByEntity.getYOffset(), this.posZ + deltaPosZ);
-        }
-    }   
-    
-//    public void trample(Entity entity)
-//    {
-//    	if(entity instanceof EntityAnimalChoco)
-//    	{
-//    		return;
-//    	}
-//    	
-//        double addVX = -MathHelper.sin((rotationYaw * (float)Math.PI) / 180F);
-//        double addVY = 0.3D;
-//        double addVZ = MathHelper.cos((rotationYaw * (float)Math.PI) / 180F);
-//        double vFactor = 0.5D;
-//
-//        if ((entity instanceof EntityMob) && ChocoboHelper.isHostile(entity))
-//        {
-//            this.attackEntityAsMob(entity);
-//            vFactor = 1.5D;
-//        }
-//        entity.addVelocity(addVX, addVY, addVZ);
-//        entity.motionX *= vFactor;
-//        entity.motionZ *= vFactor;
-//    }
-    
-    /**
-     * Called when the entity is attacked.
-     */
-    public boolean attackEntityFrom(DamageSource damagesource, int i)
-    {
-        Entity entity = damagesource.getEntity();
-
-        if (entity != null && entity == this.riddenByEntity)
-        {
-            return false;
-        }
-        else
-        {
-            return super.attackEntityFrom(damagesource, i);
-        }
-    }
-
-    public boolean isRiderUsingBow()
-    {
-        EntityPlayer entityplayer = (EntityPlayer)this.riddenByEntity;
-        if (entityplayer != null)
-        {
-            ItemStack itemstack = entityplayer.getCurrentEquippedItem();
-            if (itemstack != null && itemstack.itemID == Item.bow.shiftedIndex && entityplayer.isUsingItem())
-            {
-                return true;
-            }
-        }
-        return false;
-    }
-    
-    // Chocobo as saddled mount
-    public double getMountedYOffset()
-    {
-    	return 1.1D;
-    }
-    
-    public boolean isSaddled()
-    {
-        return (this.dataWatcher.getWatchableObjectByte(Constants.DW_ID_ECR_FLAGS) & Constants.DW_VAL_ECR_SADDLED_ON) != 0;
-    }
-
-    public void setSaddled(boolean saddled)
-    {
-        byte ecrFlags = this.dataWatcher.getWatchableObjectByte(Constants.DW_ID_ECR_FLAGS);
-
-        if (saddled)
-        {
-            this.dataWatcher.updateObject(Constants.DW_ID_ECR_FLAGS, Byte.valueOf((byte)(ecrFlags | Constants.DW_VAL_ECR_SADDLED_ON)));
-        }
-        else
-        {
-            this.dataWatcher.updateObject(Constants.DW_ID_ECR_FLAGS, Byte.valueOf((byte)(ecrFlags & Constants.DW_VAL_ECR_SADDLED_OFF)));
-        }
-		this.texture = this.getEntityTexture();
-    }
-        
-	// Chocobo as inventory
-	public IInventory getIInventory()
 	{
-		return (IInventory)this.bagsInventory;
+		if (this.riddenByEntity != null)
+		{
+			double deltaPosX = Math.cos((double)this.rotationYaw * Math.PI / 180.0D) * 0.4D;
+			double deltaPosZ = Math.sin((double)this.rotationYaw * Math.PI / 180.0D) * 0.4D;
+			this.riddenByEntity.setPosition(this.posX + deltaPosX, this.posY + this.getMountedYOffset() + this.riddenByEntity.getYOffset(), this.posZ + deltaPosZ);
+		}
+	}   
+
+	//    public void trample(Entity entity)
+	//    {
+		//    	if(entity instanceof EntityAnimalChoco)
+	//    	{
+	//    		return;
+	//    	}
+	//    	
+	//        double addVX = -MathHelper.sin((rotationYaw * (float)Math.PI) / 180F);
+	//        double addVY = 0.3D;
+	//        double addVZ = MathHelper.cos((rotationYaw * (float)Math.PI) / 180F);
+	//        double vFactor = 0.5D;
+	//
+	//        if ((entity instanceof EntityMob) && ChocoboHelper.isHostile(entity))
+	//        {
+	//            this.attackEntityAsMob(entity);
+	//            vFactor = 1.5D;
+	//        }
+	//        entity.addVelocity(addVX, addVY, addVZ);
+	//        entity.motionX *= vFactor;
+	//        entity.motionZ *= vFactor;
+	//    }
+
+	/**
+	 * Called when the entity is attacked.
+	 */
+	public boolean attackEntityFrom(DamageSource damagesource, int i)
+	{
+		Entity entity = damagesource.getEntity();
+
+		if (entity != null && entity == this.riddenByEntity)
+		{
+			return false;
+		}
+		else
+		{
+			return super.attackEntityFrom(damagesource, i);
+		}
 	}
+
+	public boolean isRiderUsingBow()
+	{
+		EntityPlayer entityplayer = (EntityPlayer)this.riddenByEntity;
+		if (entityplayer != null)
+		{
+			ItemStack itemstack = entityplayer.getCurrentEquippedItem();
+			if (itemstack != null && itemstack.itemID == Item.bow.shiftedIndex && entityplayer.isUsingItem())
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
+	// Chocobo as saddled mount
+	public double getMountedYOffset()
+	{
+		return 1.1D;
+	}
+
+	public boolean isSaddled()
+	{
+		return (this.dataWatcher.getWatchableObjectByte(Constants.DW_ID_ECR_FLAGS) & Constants.DW_VAL_ECR_SADDLED_ON) != 0;
+	}
+
+	public void setSaddled(boolean saddled)
+	{
+		byte ecrFlags = this.dataWatcher.getWatchableObjectByte(Constants.DW_ID_ECR_FLAGS);
+
+		if (saddled)
+		{
+			this.dataWatcher.updateObject(Constants.DW_ID_ECR_FLAGS, Byte.valueOf((byte)(ecrFlags | Constants.DW_VAL_ECR_SADDLED_ON)));
+		}
+		else
+		{
+			this.dataWatcher.updateObject(Constants.DW_ID_ECR_FLAGS, Byte.valueOf((byte)(ecrFlags & Constants.DW_VAL_ECR_SADDLED_OFF)));
+		}
+		this.texture = this.getEntityTexture();
+	}
+
+	// Chocobo as inventory
+	//	public IInventory getIInventory()
+	//	{
+		//		return (IInventory)this.bagsInventory;
+	//	}
 
 	public Boolean isSaddleBagged()
 	{
@@ -469,21 +472,21 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo {
 	{
 		if(saddleBags != this.isSaddleBagged())
 		{
-			ChocoBagInventory newBagInventory;
-	        byte ecrFlags = this.dataWatcher.getWatchableObjectByte(Constants.DW_ID_ECR_FLAGS);
-	        if (saddleBags)
-	        {
-				newBagInventory = new ChocoSaddleBagInventory(this);
-	            this.dataWatcher.updateObject(Constants.DW_ID_ECR_FLAGS, Byte.valueOf((byte)(ecrFlags | Constants.DW_VAL_ECR_SADDLEBAGGED_ON)));
-	        }
-	        else
-	        {
-				newBagInventory = new ChocoPackBagInventory(this);
-	            this.dataWatcher.updateObject(Constants.DW_ID_ECR_FLAGS, Byte.valueOf((byte)(ecrFlags & Constants.DW_VAL_ECR_SADDLEBAGGED_OFF)));
-	        }
-			newBagInventory.insertInventory(this.getIInventory());
-			this.bagsInventory = newBagInventory;
-	        
+			//ChocoBagInventory newBagInventory;
+			byte ecrFlags = this.dataWatcher.getWatchableObjectByte(Constants.DW_ID_ECR_FLAGS);
+			if (saddleBags)
+			{
+				//newBagInventory = new ChocoSaddleBagInventory(this);
+				this.dataWatcher.updateObject(Constants.DW_ID_ECR_FLAGS, Byte.valueOf((byte)(ecrFlags | Constants.DW_VAL_ECR_SADDLEBAGGED_ON)));
+			}
+			else
+			{
+				//newBagInventory = new ChocoPackBagInventory(this);
+				this.dataWatcher.updateObject(Constants.DW_ID_ECR_FLAGS, Byte.valueOf((byte)(ecrFlags & Constants.DW_VAL_ECR_SADDLEBAGGED_OFF)));
+			}
+			//newBagInventory.insertInventory(this.getIInventory());
+			//this.bagsInventory = newBagInventory;
+
 			this.texture = this.getEntityTexture();
 		}    	
 	}
@@ -497,25 +500,25 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo {
 	{
 		if(packBagged != this.isPackBagged())
 		{
-			ChocoBagInventory newBagInventory;
+			//ChocoBagInventory newBagInventory;
 			byte ecrFlags = this.dataWatcher.getWatchableObjectByte(Constants.DW_ID_ECR_FLAGS);
-	        if (packBagged)
-	        {
-				newBagInventory = new ChocoPackBagInventory(this);
-	            this.dataWatcher.updateObject(Constants.DW_ID_ECR_FLAGS, Byte.valueOf((byte)(ecrFlags | Constants.DW_VAL_ECR_PACKBAGGED_ON)));
-	        }
-	        else
-	        {
-				newBagInventory = new ChocoSaddleBagInventory(this);
-	            this.dataWatcher.updateObject(Constants.DW_ID_ECR_FLAGS, Byte.valueOf((byte)(ecrFlags & Constants.DW_VAL_ECR_PACKBAGGED_OFF)));
-	        }
-			newBagInventory.insertInventory(this.getIInventory());
-			this.bagsInventory = newBagInventory;
+			if (packBagged)
+			{
+				//newBagInventory = new ChocoPackBagInventory(this);
+				this.dataWatcher.updateObject(Constants.DW_ID_ECR_FLAGS, Byte.valueOf((byte)(ecrFlags | Constants.DW_VAL_ECR_PACKBAGGED_ON)));
+			}
+			else
+			{
+				//newBagInventory = new ChocoSaddleBagInventory(this);
+				this.dataWatcher.updateObject(Constants.DW_ID_ECR_FLAGS, Byte.valueOf((byte)(ecrFlags & Constants.DW_VAL_ECR_PACKBAGGED_OFF)));
+			}
+			//newBagInventory.insertInventory(this.getIInventory());
+			//this.bagsInventory = newBagInventory;
 
-	        this.texture = this.getEntityTexture();
+			this.texture = this.getEntityTexture();
 		}
 	}
-	
+
 	public boolean canRenderName()
 	{
 		return super.canRenderName() && riddenByEntity == null &&  this.isSaddled();
@@ -525,7 +528,7 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo {
 	{
 		return super.canDespawn() && !isSaddled();
 	}
-	
+
 	protected void mountChocobo(EntityPlayer entityplayer)
 	{
 		this.setStepHeight(true);
@@ -538,9 +541,42 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo {
 		this.setStepHeight(false);
 		this.setLandMovementFactor(false);
 	}
-	
-	public void injectInventory(ChocoBagInventory inventory)
+
+//	public void injectInventory(ChocoBagInventory inventory)
+//	{
+//		this.bagsInventory = inventory;
+//	}
+
+	public void dropSaddleAndBags()
 	{
-		this.bagsInventory = inventory;
+		Side side = FMLCommonHandler.instance().getEffectiveSide();
+		if(this.isSaddleBagged())
+		{
+			if(side == Side.SERVER)
+			{
+				this.dropItem(ModChocoCraft.chocoboSaddleBagsItem.shiftedIndex, 1);
+				//this.bagsInventory.dropAllItems();
+			}
+			this.setSaddleBagged(false);
+		}
+
+		if(this.isSaddled())
+		{
+			if(side == Side.SERVER)
+			{
+				this.dropItem(ModChocoCraft.chocoboSaddleItem.shiftedIndex, 1);
+			}
+			this.setSaddled(false);
+		}
+
+		if(this.isPackBagged())
+		{
+			if(side == Side.SERVER)
+			{
+				this.dropItem(ModChocoCraft.chocoboPackBagsItem.shiftedIndex, 1);
+				//this.bagsInventory.dropAllItems();
+			}
+			this.setPackBagged(false);
+		}
 	}
 }

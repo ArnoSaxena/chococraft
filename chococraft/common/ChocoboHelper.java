@@ -17,12 +17,15 @@ package chococraft.common;
 import java.util.ArrayList;
 import java.util.Random;
 
+import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Side;
+import cpw.mods.fml.common.network.Player;
 
 import chococraft.common.entities.EntityAnimalChocobo;
 import chococraft.common.entities.EntityChocobo;
 
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.src.*;
 
 public class ChocoboHelper {
@@ -261,5 +264,81 @@ public class ChocoboHelper {
         Boolean isPosPathWeight = chocobo.getBlockPathWeight(posX, posY, posZ) >= 0.0F;
 		
 		return normalCubeBelow && thisNotNormalCube && thisNotLiquidCube && notNormalAbove && isPosPathWeight;
+	}
+	
+	public static EntityAnimalChocobo getChocoboByID(int entityId, Player player)
+	{
+		Entity targetEntity = null;
+
+		Side side = FMLCommonHandler.instance().getEffectiveSide();
+		if (side == Side.SERVER)
+		{
+			if(player instanceof EntityPlayer)
+			{
+				EntityPlayerMP playerMP = MinecraftServer.getServer().getConfigurationManager().getPlayerForUsername(((EntityPlayer)player).username);
+				for (Object object : playerMP.worldObj.loadedEntityList )
+				{
+					if(object instanceof Entity)
+					{
+						if(((Entity)object).entityId == entityId)
+						{
+							targetEntity = ((Entity)object);
+						}
+					}
+				}
+			}
+		}
+    	else if (side == Side.CLIENT)
+		{
+			targetEntity = (Entity)FMLClientHandler.instance().getClient().theWorld.getEntityByID(entityId);
+		}
+    	
+    	
+    	if(null != targetEntity && targetEntity instanceof EntityAnimalChocobo)
+    	{
+    		return (EntityAnimalChocobo)targetEntity;
+    	}
+    	else
+    	{
+    		return null;
+    	}
+    }
+	
+	public static EntityPlayer getPlayer(int searchedPlayerId, String searchedPlayerName, Player searchingPlayer)
+	{
+		Entity targetEntity = null;
+
+		Side side = FMLCommonHandler.instance().getEffectiveSide();
+		if (side == Side.SERVER)
+		{
+			if(searchingPlayer instanceof EntityPlayer)
+			{
+				EntityPlayerMP searchingPlayerMP = MinecraftServer.getServer().getConfigurationManager().getPlayerForUsername(((EntityPlayer)searchingPlayer).username);
+				for (Object object : searchingPlayerMP.worldObj.loadedEntityList )
+				{
+					if(object instanceof Entity)
+					{
+						if(((Entity)object).entityId == searchedPlayerId)
+						{
+							targetEntity = ((Entity)object);
+						}
+					}
+				}
+			}
+		}
+    	else if (side == Side.CLIENT)
+		{
+    		targetEntity =  FMLClientHandler.instance().getClient().theWorld.getPlayerEntityByName(searchedPlayerName);
+		}
+    	
+    	
+    	if(null != targetEntity && targetEntity instanceof EntityPlayer)
+    	{
+    		return (EntityPlayer)targetEntity;
+    	}
+    	else
+    	{
+    		return null;
+    	}
 	}
 }

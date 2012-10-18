@@ -131,38 +131,10 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 		return (new StringBuilder()).append(s).append(this.getEntityColourTexture()).toString();
 	}
 
-	// handle y-movement while riding ...
 	public void onUpdate()
 	{
 		super.onUpdate();
-		if (this.riddenByEntity != null)
-		{
-			// TODO
-//			if(this.riddenByEntity instanceof EntityPlayer)
-//			{
-//				EntityPlayer entityplayer = (EntityPlayer)this.riddenByEntity;
-//				if (entityplayer.isJumping)
-//				{
-//					if (this.canFly)
-//					{
-//						this.motionY += 0.1D;
-//						this.setFlying(true);
-//						DebugFileWriter.instance().writeLine("EnChoc", "now flying " + this.motionY);
-//					}
-//					else if (this.canJumpHigh && !this.isHighJumping)
-//					{
-//						this.motionY += 0.4D;
-//						this.isHighJumping = true;
-//					}
-//				}
-//				if (entityplayer.isSneaking() && this.canFly)
-//				{
-//					this.motionY -= 0.15D;
-//				}
-//				this.sendMountedMoveUpdate(entityplayer);
-//			}
-		}
-		else if (this.isFlying() && !this.onGround)
+		if (this.riddenByEntity == null && this.isFlying() && !this.onGround)
 		{
 			this.motionY -= 0.25D;
 		}
@@ -208,64 +180,59 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 		}
 	}
 
-	// TODO parts of it to rideable
 	public void moveEntityWithHeading(float f, float f1)
 	{
-		if (isInWater())
+		if (this.isInWater())
 		{
 			float landMovement = 0.02F;
-			if (canCrossWater)
+			if (this.canCrossWater)
 			{
-				landMovement = landMovementFactor * 0.3F;
+				landMovement = this.landMovementFactor * 0.3F;
 			}
-			moveFlying(f, f1, landMovement);
-			moveEntity(motionX, motionY, motionZ);
-			motionX *= 0.8D;
-			motionY *= 0.8D;
-			motionZ *= 0.8D;
+			this.moveFlying(f, f1, landMovement);
+			this.moveEntity(this.motionX, this.motionY, this.motionZ);
+			this.motionX *= 0.8D;
+			this.motionY *= 0.8D;
+			this.motionZ *= 0.8D;
 			
-//			if (!canCrossWater)
-//			{
-//				motionY -= 0.0001D;
-//			}
-			
-			if (isCollidedHorizontally && isOffsetPositionInLiquid(motionX, ((motionY + 0.6D) - this.posY) + this.posY, motionZ))
+			if (this.isCollidedHorizontally && this.isOffsetPositionInLiquid(this.motionX, ((this.motionY + 0.6D) - this.posY) + this.posY, this.motionZ))
 			{
-				motionY = 0.3D;
+				this.motionY = 0.3D;
 			}
 		}
-		else if (handleLavaMovement())
+		else if (this.handleLavaMovement())
 		{
 			if(this instanceof EntityChocoboPurple)
 			{
-				moveFlying(f, f1, this.landMovementFactor * 2.0F);
-				moveEntity(motionX, motionY, motionZ);
-				motionX *= 0.8D;
-				motionY *= 0.8D;
-				motionZ *= 0.8D;
+				this.moveFlying(f, f1, this.landMovementFactor * 2.0F);
+				this.moveEntity(motionX, motionY, motionZ);
+				this.motionX *= 0.8D;
+				this.motionY *= 0.8D;
+				this.motionZ *= 0.8D;
 			}
 			else
 			{
-				moveFlying(f, f1, 0.02F);
-				moveEntity(motionX, motionY, motionZ);
-				motionX *= 0.5D;
-				motionY *= 0.5D;
-				motionZ *= 0.5D;
-				motionY -= 0.02D;
+				this.moveFlying(f, f1, 0.02F);
+				this.moveEntity(this.motionX, this.motionY, this.motionZ);
+				this.motionX *= 0.5D;
+				this.motionY *= 0.5D;
+				this.motionZ *= 0.5D;
+				this.motionY -= 0.02D;
 			}
-			if (isCollidedHorizontally && isOffsetPositionInLiquid(motionX, ((motionY + 0.6D) - this.posY) + this.posY, motionZ))
+			
+			if (this.isCollidedHorizontally && this.isOffsetPositionInLiquid(this.motionX, ((this.motionY + 0.6D) - this.posY) + this.posY, this.motionZ))
 			{
-				motionY = 0.3D;
+				this.motionY = 0.3D;
 			}
 		}
 		else if (this.isFlying())
 		{
-			moveFlying(f, f1, this.flyingMovementFactor);
-			moveEntity(motionX, motionY, motionZ);
-			motionX *= 0.8D;
-			motionY *= 0.8D;
-			motionZ *= 0.8D;
-			motionY -= 0.02D;
+			this.moveFlying(f, f1, this.flyingMovementFactor);
+			this.moveEntity(this.motionX, this.motionY, this.motionZ);
+			this.motionX *= 0.8D;
+			this.motionY *= 0.8D;
+			this.motionZ *= 0.8D;
+			this.motionY -= 0.02D;
 		}
 		else
 		{
@@ -465,6 +432,11 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 			this.onEmptyHandInteraction(entityplayer);
 		}
 		
+		// don't hit Chocobo by accident if shift key is pressed
+    	if(!interacted && entityplayer.isSneaking())
+    	{
+    		interacted = true;
+    	}		
 		return interacted;
 	}
 	
@@ -588,7 +560,8 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 				}
 				return;
 			}
-			if (!this.hasAttacked && !this.hasPath() && this.isFollowing() && (this.isSaddled() || this.isTamed()))
+			
+			if (!this.hasAttacked && !this.hasPath() && this.isFollowing() && this.isTamed())
 			{
 				if (entityplayer != null)
 				{
@@ -602,7 +575,7 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 					float f = entityplayer.getDistanceToEntity(this);
 					if (f > 4F)
 					{
-						getPathOrWalkableBlock(entityplayer, f);
+						this.getPathOrWalkableBlock(entityplayer, f);
 					}
 					else
 					{
