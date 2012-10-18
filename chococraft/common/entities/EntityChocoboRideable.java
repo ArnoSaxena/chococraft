@@ -20,6 +20,7 @@ import com.google.common.io.ByteArrayDataOutput;
 
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Side;
+import cpw.mods.fml.common.network.PacketDispatcher;
 import net.minecraft.src.DamageSource;
 import net.minecraft.src.Entity;
 import net.minecraft.src.IMob;
@@ -31,6 +32,8 @@ import net.minecraft.src.World;
 
 import chococraft.common.Constants;
 import chococraft.common.ModChocoCraft;
+import chococraft.common.network.PacketChocoboDropSaddleAndBags;
+import chococraft.common.network.PacketChocoboMount;
 
 
 public abstract class EntityChocoboRideable extends EntityAnimalChocobo {
@@ -547,35 +550,23 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo {
 //		this.bagsInventory = inventory;
 //	}
 
-	public void dropSaddleAndBags()
+	protected void sendMountUpdate()
 	{
-		Side side = FMLCommonHandler.instance().getEffectiveSide();
-		if(this.isSaddleBagged())
+		if(Side.CLIENT == FMLCommonHandler.instance().getEffectiveSide())
 		{
-			if(side == Side.SERVER)
-			{
-				this.dropItem(ModChocoCraft.chocoboSaddleBagsItem.shiftedIndex, 1);
-				//this.bagsInventory.dropAllItems();
-			}
+			PacketChocoboMount packet = new PacketChocoboMount(this);
+			PacketDispatcher.sendPacketToServer(packet);
+		}
+	}
+	
+	public void sendDropSaddleAndBags()
+	{
+		if(Side.CLIENT == FMLCommonHandler.instance().getEffectiveSide())
+		{
+			PacketChocoboDropSaddleAndBags packet = new PacketChocoboDropSaddleAndBags(this);
+			PacketDispatcher.sendPacketToServer(packet);
 			this.setSaddleBagged(false);
-		}
-
-		if(this.isSaddled())
-		{
-			if(side == Side.SERVER)
-			{
-				this.dropItem(ModChocoCraft.chocoboSaddleItem.shiftedIndex, 1);
-			}
 			this.setSaddled(false);
-		}
-
-		if(this.isPackBagged())
-		{
-			if(side == Side.SERVER)
-			{
-				this.dropItem(ModChocoCraft.chocoboPackBagsItem.shiftedIndex, 1);
-				//this.bagsInventory.dropAllItems();
-			}
 			this.setPackBagged(false);
 		}
 	}

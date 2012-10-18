@@ -9,15 +9,17 @@ import java.io.IOException;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.network.Player;
-
 import chococraft.common.ChocoboHelper;
 import chococraft.common.Constants;
+import chococraft.common.ModChocoCraft;
 import chococraft.common.entities.EntityAnimalChocobo;
+import chococraft.common.entities.EntityChocoboRideable;
+import net.minecraft.src.ItemStack;
 import net.minecraft.src.Packet250CustomPayload;
 
-public class PacketChocoboAttribute extends Packet250CustomPayload
+public class PacketChocoboDropSaddleAndBags extends Packet250CustomPayload
 {
-	public PacketChocoboAttribute(EntityAnimalChocobo chocobo)
+	public PacketChocoboDropSaddleAndBags(EntityChocoboRideable chocobo)
 	{
 		this.channel = Constants.PCHAN_CHOCOBO;
 
@@ -26,10 +28,6 @@ public class PacketChocoboAttribute extends Packet250CustomPayload
 		try
 		{
 			outputStream.writeInt(chocobo.entityId);
-			outputStream.writeUTF(chocobo.getName());
-			outputStream.writeBoolean(chocobo.isHidename());
-			outputStream.writeBoolean(chocobo.isFollowing());
-			outputStream.writeBoolean(chocobo.isWander());
 		}
 		catch (Exception ex)
 		{
@@ -48,17 +46,30 @@ public class PacketChocoboAttribute extends Packet250CustomPayload
 			try
 			{
 				int chocoboId = inputStream.readInt();
-				String chocoboName = inputStream.readUTF();
-				boolean hidename = inputStream.readBoolean();
-				boolean following = inputStream.readBoolean();
-				boolean wander = inputStream.readBoolean();
 				EntityAnimalChocobo chocobo = ChocoboHelper.getChocoboByID(chocoboId, player);
-				if(null != chocobo)
+				if(null != chocobo && chocobo instanceof EntityChocoboRideable)
 				{
-					chocobo.setName(chocoboName);
-					chocobo.setHidename(hidename);
-					chocobo.setFollowing(following);
-					chocobo.setWander(wander);
+					EntityChocoboRideable chocoRideable = (EntityChocoboRideable)chocobo;
+					
+					if(chocoRideable.isSaddleBagged())
+					{
+						chocoRideable.entityDropItem(new ItemStack(ModChocoCraft.chocoboSaddleBagsItem, 1), 0.0F);
+						//chocoRideable.bagsInventory.dropAllItems();
+						chocoRideable.setSaddleBagged(false);
+					}
+
+					if(chocoRideable.isSaddled())
+					{
+						chocoRideable.entityDropItem(new ItemStack(ModChocoCraft.chocoboSaddleItem, 1), 0.0F);
+						chocoRideable.setSaddled(false);
+					}
+
+					if(chocoRideable.isPackBagged())
+					{
+						chocoRideable.entityDropItem(new ItemStack(ModChocoCraft.chocoboPackBagsItem, 1), 0.0F);
+						//chocoRideable.bagsInventory.dropAllItems();
+						chocoRideable.setPackBagged(false);
+					}	
 				}
 			}
 			catch(IOException e)

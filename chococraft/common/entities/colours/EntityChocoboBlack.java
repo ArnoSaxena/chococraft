@@ -76,7 +76,7 @@ public class EntityChocoboBlack extends EntityChocobo
 	}
 
 	@Override
-	protected void setStepHeight(boolean mounted)
+	public void setStepHeight(boolean mounted)
 	{
 		if (mounted)
 		{
@@ -88,7 +88,7 @@ public class EntityChocoboBlack extends EntityChocobo
 		}
 	}
 
-	protected void setLandMovementFactor(boolean mounted)
+	public void setLandMovementFactor(boolean mounted)
 	{
 		if (mounted)
 		{

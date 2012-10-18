@@ -50,8 +50,8 @@ public class GuiChocopedia extends GuiScreen
 		Keyboard.enableRepeatEvents(true);
 		this.controlList.clear();
 
-
-		int yPos = 48;
+		//int yPos = 48;
+		int yPos = 24;
 
 		// rename button
 		this.controlList.add(new GuiButton(0, this.width / 2 - 100, this.height / 4 + yPos + 12, stringtranslate.translateKey("Rename")));
@@ -66,16 +66,20 @@ public class GuiChocopedia extends GuiScreen
 		this.followingButton = new GuiButton(3, this.width / 2 - 100, this.height / 4 + (yPos += 24) + 12, stringtranslate.translateKey(lblFollowing));
 		this.controlList.add(this.followingButton);
 
+		// confirm button
+		this.controlList.add(new GuiButton(1, this.width / 2 - 100, this.height / 4 + (yPos += 24) + 12, stringtranslate.translateKey("Confirm")));
+		
 		// remove saddle button
 		if(this.chocobo instanceof EntityChocoboRideable)
 		{
-			String lblRemoveSaddle = "Remove Saddle, Saddlebags or Packbags";
-			this.removeSaddleButton = new GuiButton(4, this.width / 2 - 100, this.height / 4 + (yPos += 24) + 12, stringtranslate.translateKey(lblRemoveSaddle));
-			this.controlList.add(this.removeSaddleButton);
-		}
-
-		// confirm button
-		this.controlList.add(new GuiButton(1, this.width / 2 - 100, this.height / 4 + (yPos += 24) + 12, stringtranslate.translateKey("Confirm")));
+			EntityChocoboRideable chocoboRideable = (EntityChocoboRideable)this.chocobo;
+			if(chocoboRideable.isSaddled() || chocoboRideable.isPackBagged())
+			{
+				String lblRemoveSaddle = "Remove Saddle and Bags";
+				this.removeSaddleButton = new GuiButton(4, this.width / 2 - 100, this.height / 4 + (yPos += 30) + 12, stringtranslate.translateKey(lblRemoveSaddle));
+				this.controlList.add(this.removeSaddleButton);
+			}
+		}		
 	}
 
 	public void onGuiClosed()
@@ -111,8 +115,9 @@ public class GuiChocopedia extends GuiScreen
 		{
 			if(this.chocobo instanceof EntityChocoboRideable)
 			{
-				((EntityChocoboRideable)this.chocobo).dropSaddleAndBags();
+				((EntityChocoboRideable)this.chocobo).sendDropSaddleAndBags();
 			}
+			mc.displayGuiScreen(parentGuiScreen);
 		}
 	}
 

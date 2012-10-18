@@ -180,7 +180,7 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 		}
 	}
 
-	public void moveEntityWithHeading(float f, float f1)
+	public void moveEntityWithHeading(float strafe, float forward)
 	{
 		if (this.isInWater())
 		{
@@ -189,7 +189,7 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 			{
 				landMovement = this.landMovementFactor * 0.3F;
 			}
-			this.moveFlying(f, f1, landMovement);
+			this.moveFlying(strafe, forward, landMovement);
 			this.moveEntity(this.motionX, this.motionY, this.motionZ);
 			this.motionX *= 0.8D;
 			this.motionY *= 0.8D;
@@ -204,7 +204,7 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 		{
 			if(this instanceof EntityChocoboPurple)
 			{
-				this.moveFlying(f, f1, this.landMovementFactor * 2.0F);
+				this.moveFlying(strafe, forward, this.landMovementFactor * 2.0F);
 				this.moveEntity(motionX, motionY, motionZ);
 				this.motionX *= 0.8D;
 				this.motionY *= 0.8D;
@@ -212,7 +212,7 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 			}
 			else
 			{
-				this.moveFlying(f, f1, 0.02F);
+				this.moveFlying(strafe, forward, 0.02F);
 				this.moveEntity(this.motionX, this.motionY, this.motionZ);
 				this.motionX *= 0.5D;
 				this.motionY *= 0.5D;
@@ -227,7 +227,7 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 		}
 		else if (this.isFlying())
 		{
-			this.moveFlying(f, f1, this.flyingMovementFactor);
+			this.moveFlying(strafe, forward, this.flyingMovementFactor);
 			this.moveEntity(this.motionX, this.motionY, this.motionZ);
 			this.motionX *= 0.8D;
 			this.motionY *= 0.8D;
@@ -248,7 +248,7 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 			}
 			float f4 = 0.1627714F / (f3 * f3 * f3);
 			float f6 = this.onGround ? this.landMovementFactor * f4 : this.jumpMovementFactor;
-			this.moveFlying(f, f1, f6);
+			this.moveFlying(strafe, forward, f6);
 			f3 = 0.91F;
 			if (this.onGround)
 			{
@@ -572,10 +572,10 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 						return;
 					}
 					this.setStepHeight(true);
-					float f = entityplayer.getDistanceToEntity(this);
-					if (f > 4F)
+					float distanceToEntityPlayer = entityplayer.getDistanceToEntity(this);
+					if (distanceToEntityPlayer > 4F)
 					{
-						this.getPathOrWalkableBlock(entityplayer, f);
+						this.getPathOrWalkableBlock(entityplayer, distanceToEntityPlayer);
 					}
 					else
 					{
@@ -596,21 +596,27 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 		}
 	}
 
-	void getPathOrWalkableBlock(Entity entity, float f)
+	protected void getPathOrWalkableBlock(Entity entity, float distanceToEntity)
 	{
-		PathEntity pathentity = worldObj.getPathEntityToEntity(this, entity, 16F, canCrossWater, canClimb, canFly, true);
-		if (pathentity == null && f > 12F)
+		PathEntity pathentity = this.worldObj.getPathEntityToEntity(this, entity, 16F, this.canCrossWater, this.canClimb, this.canFly, true);
+		if (pathentity == null && distanceToEntity > 12F)
 		{
-			int i = MathHelper.floor_double(entity.posX) - 2;
-			int j = MathHelper.floor_double(entity.posZ) - 2;
-			int k = MathHelper.floor_double(entity.boundingBox.minY);
-			for (int l = 0; l <= 4; l++)
+			int entityPosX = MathHelper.floor_double(entity.posX) - 2;
+			int entityPosZ = MathHelper.floor_double(entity.posZ) - 2;
+			int entityPosY = MathHelper.floor_double(entity.boundingBox.minY);
+			for (int i = 0; i <= 4; i++)
 			{
-				for (int i1 = 0; i1 <= 4; i1++)
+				for (int j = 0; j <= 4; j++)
 				{
-					if ((l < 1 || i1 < 1 || l > 3 || i1 > 3) && worldObj.isBlockOpaqueCube(i + l, k - 1, j + i1) && !worldObj.isBlockOpaqueCube(i + l, k, j + i1) && !worldObj.isBlockOpaqueCube(i + l, k + 1, j + i1))
+					if ((i < 1 || j < 1 || i > 3 || j > 3) 
+							&& this.worldObj.isBlockOpaqueCube(entityPosX + i, entityPosY - 1, entityPosZ + j) 
+							&& !this.worldObj.isBlockOpaqueCube(entityPosX + i, entityPosY, entityPosZ + j) 
+							&& !this.worldObj.isBlockOpaqueCube(entityPosX + i, entityPosY + 1, entityPosZ + j))
 					{
-						setLocationAndAngles((float)(i + l) + 0.5F, k, (float)(j + i1) + 0.5F, rotationYaw, rotationPitch);
+						float gPosX = (float)(entityPosX + i) + 0.5F;
+						float gPosY = entityPosY;
+						float gPosZ = (float)(entityPosZ + j) + 0.5F;
+						this.setLocationAndAngles(gPosX, gPosY, gPosZ, this.rotationYaw, this.rotationPitch);
 						return;
 					}
 				}
@@ -618,7 +624,7 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 		}
 		else
 		{
-			setPathToEntity(pathentity);
+			this.setPathToEntity(pathentity);
 		}
 	}
 

@@ -411,12 +411,12 @@ public class EntityChicobo extends EntityAnimalChocobo
 	}
 
 	@Override
-	protected void setStepHeight(boolean mounted)
+	public void setStepHeight(boolean mounted)
 	{
 		this.stepHeight = 0.5F;
 	}
 	
-	protected void setLandMovementFactor(boolean mounted)
+	public void setLandMovementFactor(boolean mounted)
 	{
 		this.landMovementFactor = 0.1F;			
 	}

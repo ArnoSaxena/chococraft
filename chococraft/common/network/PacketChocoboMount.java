@@ -14,6 +14,7 @@ import chococraft.common.ChocoboHelper;
 import chococraft.common.Constants;
 import chococraft.common.ModChocoCraft;
 import chococraft.common.entities.EntityAnimalChocobo;
+import chococraft.common.entities.EntityChocoboRideable;
 import net.minecraft.src.EntityPlayer;
 import net.minecraft.src.Packet250CustomPayload;
 
@@ -58,17 +59,25 @@ public class PacketChocoboMount extends Packet250CustomPayload
 				mountId = inputStream.readInt();
 				riderName = inputStream.readUTF();
 				riderId = inputStream.readInt();
-				
+
 				EntityAnimalChocobo chocobo = ChocoboHelper.getChocoboByID(mountId, player);
-				
-				if(riderName.isEmpty())
+				if(chocobo instanceof EntityChocoboRideable)
 				{
-					chocobo.riddenByEntity = null;
-				}
-				else
-				{
-					EntityPlayer riderEntity = ChocoboHelper.getPlayer(riderId, riderName, player);
-					riderEntity.mountEntity(chocobo);
+					EntityChocoboRideable chocoboRideable = (EntityChocoboRideable)chocobo;
+					if(riderName.isEmpty())
+					{
+						chocoboRideable.riddenByEntity = null;
+						chocoboRideable.isJumping = false;
+						chocoboRideable.setStepHeight(false);
+						chocoboRideable.setLandMovementFactor(false);
+					}
+					else
+					{
+						EntityPlayer riderEntity = ChocoboHelper.getPlayer(riderId, riderName, player);
+						riderEntity.mountEntity(chocoboRideable);
+						chocoboRideable.setStepHeight(true);
+						chocoboRideable.setLandMovementFactor(true);
+					}
 				}
 			}
 			catch(IOException e)
