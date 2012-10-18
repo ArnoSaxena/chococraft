@@ -1,14 +1,19 @@
-This is the official Chococraft version 1.6.11 for usage with minecraft 1.2.5. Chococraft has been created by EddieV and is now officially maintained by Torojima.
+This is the official version of Torojimas Chococraft v2.0.0 for usage with minecraft 1.3.2. Chococraft has been originally created by EddieV and is now refactored and officially maintained by Torojima.
 
-This version (1.6.11) has modified the config file, so if you had run an older version of Chococraft before, the old config file should be deleted so this mod can create a new one.
+This mod adds a mob called Chocobo to the game. This includes different coloured mob types with different attributes in their grown-up and juvenile form.
+
+The most basic type can be found in the wild and can be tamed by using "Gysahl Greens" on them. Gysahl Greens is a plant found in the wild, but also can be planted by sowing Gysahl Seeds. Gysahl Seeds can be received by crafting from Gysahl Greens or by harvesting planted Gysahl Greens.
+
+Chocobos can be breed and procreate. The offspring will be a Chicobo, the juvenile form of a Chocobo. After a while a Chicobo will grow into a Chocobo. Chicobos will be born wild and have to be tamed. Chicobos will inherit the type from one of their parents or mutate into new types. Thus by repeatedly breeding Chocobos all normal types of Chocobos can be acquired from tamed wild Chocobos. There are a few special Chocobo types though, which can only be acquired by special means.
+
+ACHTUNG! CAUTION! ¡CUIDADO! चेतावनी! ATTENZIONE! береги́сь!
+This version of Chococraft is not compatible to versions pre 1.3.2. It will destroy your saved world if old Chocobos are included. Thus, if you want to use an old world with the new version of this mod, you should first start minecraft without the Chococraft mod, enter and save your world, thus removing all traces of older versions of Chococraft and only then start minecraft with the new version of Chococraft and tame new Chocobos.
 
 Changelog:
-1. added Genders and different names and skins for males and females. Now breeding has to be done between two Chocobos with different gender.
-2. moved Chocobo entity classes to be derived from EntityAnimal rather than from EntityCreature.
-3. removed buggy "feature" where Chocobos will follow a player with loverly Ghysal equipped in active slot (and do not stop following even after loverly Ghysal is unequipped).
-4. removed Chocobo tweezers.
-5. reorganised skin folder
-6. non-swimming Chocobos will sink very slow when in deep water to give the owner time to rescue it.
+1. Updated to Minecraft 1.3.2 compatibility
+2. Switched from ModLoader to Forge
+3. Completely refactored the class structure
+4. Temporarily switched off Purple Chocobos, Saddle- and Pack-Bags and Chocobo Whistle
 
 see the minecraft forums for further informations
 http://www.minecraftforum.net/topic/1119809-125-eddievs-chococraft-1610-torojimas-official-update/
