@@ -1,0 +1,477 @@
+[img]http://www.arno-saxena.de/pictures/chococraft/banner_title.png[/img]
+
+UPDATED FOR MINECRAFT 1.3.2
+Version 2.0.0
+Requires: [url="http://www.minecraftforge.net/"]Forge[/url] [url="http://files.minecraftforge.net/"]4.1.4.297+[/url]
+
+This Mod is the continuation of [url="http://www.minecraftforum.net/user/1051245-eddiev/"]EddieV's[/url] mod. The original thread can be found [url="http://www.minecraftforum.net/topic/952372-chococraft-12-mc-11-chocobos-now-fly/"]here[/url]. I've officially taken over the helm with Eddie's kind blessings.
+
+This mod adds a mob called Chocobo to the game. This includes different coloured mob types with different attributes in their grown-up and juvenile form.
+
+The most basic type can be found in the wild and can be tamed by using "Gysahl Greens" on them. Gysahl Greens is a plant found in the wild, but also can be planted by sowing Gysahl Seeds. Gysahl Seeds can be received by crafting from Gysahl Greens or by harvesting planted Gysahl Greens.
+
+Chocobos can be breed and procreate. The offspring will be a Chicobo, the juvenile form of a Chocobo. After a while a Chicobo will grow into a Chocobo. Chicobos will be born wild and have to be tamed. Chicobos will inherit the type from one of their parents or mutate into new types. Thus by repeatedly breeding Chocobos all normal types of Chocobos can be acquired from tamed wild Chocobos. There are a few special Chocobo types though, which can only be acquired by special means.
+
+
+[color=#ff0000][b]ACHTUNG! CAUTION! ¡CUIDADO! चेतावनी! ATTENZIONE! береги́сь!
+This version of Chococraft is not compatible to versions pre 2.0.0 (pre mc 1.3.2). It will destroy your saved world if old Chocobos are included. Thus, if you want to use an old world with the new version of this mod, you should first start minecraft without the Chococraft mod, enter and save your world, thus removing all traces of older versions of Chococraft and only then start minecraft with the new version of Chococraft and tame new Chocobos.[/b][/color]
+
+Download: [url="http://www.arno-saxena.de/minecraft/Chococraft_2.0.0.zip"]Torojimas ChocoCraft 2.0.0[/url]
+
+Downloads so far: [img]http://www.arno-saxena.de/minecraft/chocoboDownloads.png[/img]
+
+Post in the original thread for [url="http://www.minecraftforum.net/user/490126-haploc/"]haploc's[/url] server version (mc 1.2.3) can be found [url="http://www.minecraftforum.net/topic/952372-chococraft-12-mc-11-chocobos-now-fly/page__view__findpost__p__13661196"]here[/url]
+
+Old versions:
+[spoiler]
+[url="http://www.arno-saxena.de/minecraft/Chococraft_1.6.10.zip"]minecraft 1.2.5: ChocoCraft 1.6.10[/url]
+[url="http://www.arno-saxena.de/minecraft/Chococraft_1.5.2.zip"]minecraft 1.2.4: ChocoCraft 1.5.2[/url]
+[url="http://www.arno-saxena.de/minecraft/Chococraft_1.4.1u.zip"]minecraft 1.2.3: ChocoCraft 1.4.1u[/url]
+[/spoiler]
+
+VIDEOS:
+[spoiler]
+Spotlights:
+[url="http://www.minecraftforum.net/user/1276763-aggressionssbb/"]aggressionssbb[/url] has made a whole series of videos while playing with the Chococraft mod. Here is the first one. Make sure to watch the rest of it on [url="http://www.youtube.com/playlist?list=PLF03FD65BE93F73C2&feature=mh_lolz"]his youtube chocobo playlist[/url]!
+[media]http://www.youtube.com/watch?v=W3bvAlq5kpo[/media]
+
+Old Chocobo Model Videos:
+EddieV's original video:
+[media]http://www.youtube.com/watch?v=U_JWa8LzSas[/media]
+
+[media]http://www.youtube.com/watch?v=ZWHMNQvtIHE[/media]
+Thanks to [url="http://www.minecraftforum.net/user/772620-jeff-theking/"]Jeff_theking[/url] on Apr 11, 2012
+
+[media]http://www.youtube.com/watch?v=RZXyXX2uHs4[/media]
+Thanks to rsmalec
+
+[media]http://www.youtube.com/watch?v=k2GhtKxZX4g[/media]
+Thanks to InTheLittleWood
+[/spoiler]
+
+CHANGELOG:
+[spoiler]
+v.2.0.0 by Torojima
+   1. Updated to Minecraft version 1.3.2
+   2. Switched from ModLoader to Forge
+   3. Completely refactored the class structure
+   4. Temporarily switched off Purple Chocobos, Saddle- and Pack-Bags and Chocobo Whistle
+
+v.1.6.10 by Torojima and LeonBlade
+   1. added feather drop chance parameters to the config file (increased the drop rate in the default values)
+   2. shift-click to open pack inventory
+   3. reduced speed on water for non blue Chocobos
+   4. introducing coloured feathers
+
+v.1.6.9 by Torojima
+   1. removed a bug in the nomenclature of one of the config file entries, pawnMinGroup will now be known as spawnMinGroup [img]http://static.minecraftforum.net//public/style_emoticons/default/biggrin.png[/img]
+   2. added pack Chocobos with bigger inventory, but can not be used as mount.
+   3. added entries for spawn time cycle and spawn threshold to the config file
+
+v.1.6.8 by Torojima
+   1. Saddle-bagged Chocobos will drop saddle, saddlebags and content of the saddlebags when set free.
+   2. fixed bug causing disappearing of Chocobos at grow-up.
+
+v.1.6.7 by Torojima
+   1. Major cleanup of EntityChocobo and derived EntityNetherChocobo classes. (Moving similar classes from EntityNetherChocobo to EntityChocobo for better maintenance, this should not be noticeable by the player).
+   2. Added item Chocobo saddle bags item.
+   3. Chocobo saddle bags can be put on a saddled Chocobo, thus giving a Chocobo an inventory accessible by shift-right-clicking the respective Chocobo.
+
+v.1.6.6 by Torojima
+  1. Recipes have been changed, so they do not need the empty spaces above or beside them, now smaller recipes can be crafted in the 2x2 grid.
+  2. Recipe for Ghysal Cake has been changed to milk, Ghysal green, milk, sugar, egg, sugar, wheat, Ghysal green and wheat.
+  3. Added Chocobo Saddle Bags item which can be put on a saddled Chocobo (undocumented)
+  4. Added Saddlebagged Chocobo Skins
+  5. Switched ModLoader Spawning of Nether Chocobos back on. For now, Nether Chocobos only spawn in new generated chunks.
+
+v.1.6.5 by Torojima
+  1. Saddled Chocobos will drop the saddle if killed
+  2. Bug in purple Chocobos flying fixed
+  3. Bug in purple Chocobos riding position fixed
+  4. Bug preventing Chicobos to change texture when tamed fixed
+
+v1.6.4 by Torojima
+  1. Tamed wolves will not attack tamed chocobos.
+  2. Chocobo fertilizer recipe changed to bone meal and chocobo feather.
+
+v1.6.3 by Torojima
+  1. Fixed floating rider bug
+  2. Wing flutter can be switched off by flag in config file.
+
+v1.6.2 by Torojima
+  1. Changed chocobo model
+
+v1.6.1 by Torojima
+  1. Changed recipes for loverly ghysal and chocopedia
+
+v1.6.0 by Torojima
+  1. Patched for Minecraft version 1.2.5
+
+v1.5.2 by Torojima
+  1. Added independend spawning class
+  2. modified configuration file
+
+v1.5.1u by Torojima
+   1. Fixed the Chocobo-skin bug
+
+v1.5.0u by Torojima
+   1. Patched for Minecraft version 1.2.4
+
+v1.4.1u by Torojima
+   1. Added declaration of item ids to the config file
+
+v1.4.0u by Torojima
+   1. Added a config file which includes name display switch, spawn biome list for standard Chocobos and spawn properties
+
+v1.3.1u by Torojima
+   1. Patched for Minecraft version 1.2.3
+
+v1.2 by EddieV
+
+   1. Added Chocobo Abilities
+   2. Added a new type of Chocobo - the Purple Chocobo
+   3. The Purple Chocobo spawns only in the Nether
+   4. Breeding a Purple Chocobo with one of any other color, will make the Purple Chocobo behave as a normal yellow one
+   5. Breeding two Purple Chocobos will drop a Nether Chocobo Egg
+   6. Nether Chocobo Eggs will hatch into a Purple Chicobo when thrown.
+   7. Adjusted the speed of the chocobos due to the introduction of abilities.
+   8. The rider of the Chocobo won't receive fall damage as of now.
+   9. Fixed an issue where a tamed Chocobo would get a new name when re-tamed.
+  10. Fixed an issue where Minecraft would crash when players entered The Nether
+  11. Fixed an issue where the mutation chance by use of Golden Gysahls was lower than intended
+
+v1.1.1: by EddieV
+
+   1. Added new item Chocobo Tweezers that allows players to pluck out a feather from a tamed or saddled Chocobo.
+   2. Feathers can only be plucked out every once in a while, and they have a 75% change of being plucked out
+   3. If the player fails to pluck out the feather, the tamed/saddled chocobo will become wild
+   4. Added a new item Chocopedia that offers players some control over a tamed/saddled chocobo or chicobo
+   5. Using the Chocopedia, players can name the chocobo, hide the name individually and make them follow or stay (tamed chocobos will still roam while not following). The Chocopedia also presents information about the chocobo's health and if he already can breed or needs to wait more.
+   6. Gold, Pink and Red Chocobos now won't receive any fall damage.
+   7. Extended the default Chocobo name list to 55 different names.
+   8. Fixed the ID of the Chocobo Fertilizer to be compatible with Millenaire mod
+   9. Fixed an issue where Chocobo Feathers wouldn't spawn
+  10. Fixed an issue where Chocobo and Chicobo's health wasn't working as intended.
+  11. Fixed an issue where players weren't able to cure Chocobos even when hurt.
+
+v1.1: by EddieV
+
+   1. Added a config file for players to change the mod's properties
+   2. Included Custom Mob Spawner API for better control on Chocobo Spawning
+   3. Adjusted spawning rate of Gysahl Greens
+   4. Adjusted spawning rate of Chocobos
+   5. Chocobos now only spawn at forests, plains and mountains (includes snowy mountains)
+   6. A maximum of 50 Chocobos will spawn (can be changed through the config file)
+   7. Chocobos will despawn if too far from player (tamed or saddled Chocobos and Chicobos will always remain)
+   8. Tamed Chicobos now remain tamed after growing up
+   9. Chocobos won't lose ownership anymore, even when playing offline
+  10. Adjusted Chocobo Feather spawning rate
+  11. The player can now pick up items while on a Chocobo
+  12. Added new item Chibi Gysahl - an item that will force a Chicobo to not grow up
+  13. Added new item Gysahl Seeds - can be planted and will grow into Gysahl Greens
+  14. Added new item Chocobo Fertilizer - used to instantly grow Gysahl Seeds into Gysahl Greens
+  15. Added 15 Choco Achievements
+  16. Chocobos and Chicobos can now be named once tamed. The name wilfl show above their head
+  17. Fixed a bug where Gysahl Greens wouldn't show up on Creative mode
+  18. Fixed Chicobos behaviour - now they'll follow correctly and not push the player
+  19. Fixed a bug where Saddled Chocobos wouldn't move to mate
+
+v1.0.1: by EddieV
+
+   1. Slightly increased the size of Chocobos and Chicobos.
+   2. Adjustments to the bounding boxes were made to improve riding animations and interactions.
+   3. Adjustments were made to how close the Chocobo will follow his owner, due to the increased size.
+   4. Chocobos won't Kweh as often.
+   5. Saddled Chocobos texture was adjusted to remove glitch through the wings.
+   6. Chocobos will now fit through doors.
+   7. When following the owner, Chocobos will stop wandering to facilitate movement and instructions.
+   8. Fixed an issue where saddled Chocobos would remain stationary even when freed.
+   9. Fixed an issue where Chocobos kept pushing the owner when following.
+  10. Fixed an issue where following orders would be reset when loading the game.
+  11. Fixed an issue where Red or Pink Gysahls would not be consumed when used.
+
+v1.0: by EddieV
+
+   1. Fixed an issue where you weren't able to get a Pink Chocobo.
+   2. White/Black Chocobos are now faster than the previous ones, but still slower than Gold.
+   3. Fixed the spawning rate of Chocobo packs.
+
+[/spoiler]
+
+Chocobos and their behaviour:
+[spoiler]Types of Chocobos:
+[spoiler]There are currently 9 types of Chocobos:
+Yellow, Green, Blue, Black, White, Gold, Pink, Red and Purple
+
+[img]http://www.arno-saxena.de/pictures/chococraft/chocobo_colours.png[/img]
+
+The average Chocobos are yellow, so all the wild ones you'll encounter will be of this type. Chocobos can be found in forests, plains and mountains (including snowy forests and mountains).
+The other types can be obtained by breeding.
+
+There are also rumors of there being 3 secret types.  [img]http://static.minecraftforum.net//public/style_emoticons/default/rolleyes.gif[/img]
+[spoiler][img]http://www.arno-saxena.de/pictures/chococraft/chocobo_pink_red.png[/img][/spoiler]
+[/spoiler]
+
+What's the difference between each type of Chocobo?
+[spoiler]
+   1. Yellow Chocobos are the average chocobos and have no clear abilities.
+   2. Green Chocobos have the ability to climb, which means that they don't need to jump in order to go up a block that is one step higher.
+   3. Blue Chocobos have the ability to cross water, which means that they don't won't sink in water and will travel fast in water.
+   4. White Chocobos have the ability to climb and cross water, and are faster than the previous ones.
+   5. Black Chocobos have the ability to jump high, climb and cross water, and are as fast as the white ones.
+   6. Gold/Pink/Red Chocobos have the ability to fly, climb and cross water, don't take fall damage, and are the fastest chocobos.
+   7. (Purple Chocobos have the ability to fly, climb and cross lava, don't take fall damage, are as fast as white and black chocobos, and are immune to fire. They will be found only in The Nether.) Not available at the moment.
+[/spoiler]
+
+Where can I find Gysahl Greens?
+[spoiler]
+[img]http://www.arno-saxena.de/pictures/chococraft/pic_gysahl_in_wild.png[/img]
+
+   1. Gysahl Greens can be found around the world, in places where flowers can grow (mainly forests, plains and mountains)
+   2. You can also craft Gysahl Seeds to plant in your farm.
+   3. For the seeds to grow instantly, you can use Chocobo Fertilizer
+
+[/spoiler]
+
+How do I tame a Chocobo?
+[spoiler]
+[img]http://www.arno-saxena.de/pictures/chococraft/pic_choco_in_wild.png[/img]
+
+   1. find a pack of Chocobos
+   2. Feed one some Gysahl Greens
+   3. You will see some hearts and a red collar when the Chocobo is tamed
+
+[/spoiler]
+
+What happens when a Chocobo is tamed?
+[spoiler]
+   1. the Chocobo will follow his owner
+   2. the Chocobo will stop following his owner if the owner right-clicks on it
+   3. can be healed using Gysahl Greens
+   4. can be saddled using a Chocobo Saddle
+   5. can be equipted with a transport pack
+
+[/spoiler]
+
+What happens when a Chocobo is saddled?
+[spoiler]
+[img]http://www.arno-saxena.de/pictures/chococraft/pic_saddled.png[/img]
+
+   1. the Chocobo will stay where left
+   2. the Chocobo will follow his owner if the owner uses a Chocobo Feather on it, and stop following the same way (The feather will not be consumed)
+   3. can be healed using Gysahl Greens
+   4. can be ridden by right-clicking on it
+   5. can be equipted with saddle bags by left-clicking with one
+
+[/spoiler]
+
+What happens when a Chocobo is equipted with saddle bags?
+[spoiler]
+    1. the Chocobo can store and transport up to 36 item stacks. Saddle bags can be accessed by shift-right-click.
+[/spoiler]
+
+What happens when a Chocobo is equipted with a transport pack?
+[spoiler]
+   1. the Chocobo can store and transport up to 54 item stacks (but can no longer be equipted with a saddle). Transport bags can be accessed by shift-right-click.
+[/spoiler]
+
+What happens when a Chocobo dies?
+[spoiler]
+   1. the Chocobo will sometimes drop a Raw Chocobo Leg which can be cooked (and is yummy)
+[/spoiler]
+
+How can I obtain a Chocobo Feather?
+[spoiler]
+   1. Chocobo Feathers are occasionally dropped by wild or tamed Chocobos.
+[/spoiler]
+
+How can I breed two Chocobos?
+[spoiler]
+[img]http://www.arno-saxena.de/pictures/chococraft/pic_chocobo_hearts.png[/img]
+
+   1. both Chocobos have to be fed Loverly Gysahls or Golden Gysahls. After that, they'll procreate and a Chicobo will born. You'll have 25% chance of breeding a mutation, i.e, of a chocobo of a new type to be born.
+   2. by feeding both Chocobos with Golden Gysahls, the probability of a mutation will increase to 50%.
+   3. you can only breed Chocobos you own
+[/spoiler]
+
+When will a Chicobo grow into a Chocobo?
+[spoiler]
+[img]http://www.arno-saxena.de/pictures/chococraft/pic_chocobo_chicobo.png[/img]
+
+   1. Chicobos are young Chocobos, so after some time they will eventually grow up
+   2. Chicobos can also be fed a Gysahl Cake to grow up instantly, but only after they have been tamed.
+      *]Chicobos can also be fed a Chici Gysahl to remain as Chicobos. After this, a Chicobo will only grow up when fed a Gysahl Cake.
+[/spoiler]
+
+How can I get the other types of Chocobos?
+[spoiler]
+I'll put a new spoiler tag on this, since these are the exact breeding instructions to get the other types. So be warned! If you want to experiment and find out about how to get the other types DO NOT READ THIS. You've been warned.
+
+[spoiler]
+   1. Yellow + Yellow = Green or Blue
+   2. Green + Blue = White
+   3. Yellow + White = Black
+   4. Black + White =(Golden Gysahls REQUIRED)= Gold
+
+I won't tell you how to get the other two types anyway >[img]http://static.minecraftforum.net//public/style_emoticons/default/smile.png[/img] All I can say is it is not through breeding, but by forcing a Gold chocobo to be another one ;P[/spoiler]
+[/spoiler]
+
+And why do I want a Chocobo?
+[spoiler]
+[img]http://www.arno-saxena.de/pictures/chococraft/pic_riding.png[/img]
+
+   1. Chocobos are cute
+   2. They are a fast way to travel
+   3. KWEH!
+[/spoiler]
+[/spoiler]
+
+Items and Blocks:
+[spoiler]
+   1. [img]http://www.arno-saxena.de/pictures/chococraft/item_gysahl_green.png[/img] Gysahl Greens - Gysahl Greens are the most important block in ChocoCraft. They are used to tame Chocobos and to create various other greens. Just like flowers, Gysahl Greens will grow randomly across the map and can be collected and even planted again.
+   2. [img]http://www.arno-saxena.de/pictures/chococraft/item_choco_leg_raw.png[/img] Raw Chocobo Leg - This piece of meat is dropped by the most unfortunate Chocobos. Just like regular chicken legs, they can be cooked on a furnace.
+   3. [img]http://www.arno-saxena.de/pictures/chococraft/item_choco_leg_cooked.png[/img] Cooked Chocobo Leg - By eating this yummy chocobo leg, you'll reduce your famine. A Chocobo Leg reduces famine even more than a cooked chicken leg, healing just as much as a cooked pork chop.
+   4. [img]http://www.arno-saxena.de/pictures/chococraft/item_choco_feather.png[/img]Chocobo Feather - Chocobo Feathers are very attractive items to Chocobos. They can be used to build saddles, whistles, and even special types of gysahls. Tamed chocobos will occasionaly drop these.
+   5. [img]http://www.arno-saxena.de/pictures/chococraft/item_saddle.png[/img] Chocobo Saddle - Tamed Chocobos can only be ridden once they are saddled with these special saddles.
+   6. [img]http://www.arno-saxena.de/pictures/chococraft/item_saddle_bags.png[/img] Chocobo Saddle Bags - Saddled Chocobos can be equipted with one of these to give them some transport and storage capacities. Once saddle bags are fitted onto a Chocobo, they can be accessed by shift-right-clicking the Chocobo. (can be used on Chocobo, but inventories are disabled at the moment)
+   7. [img]http://www.arno-saxena.de/pictures/chococraft/item_choco_pack_bags.png[/img] Chocobo Pack Bags - Tamed Chocobos can be equipted with one of these to give them some transport and storage capacities. Once pack bags are fitted onto a Chocobo, they can be accessed by right-clicking the Chocobo. (can be used on Chocobo, but inventories are disabled at the moment)
+   8. [img]http://www.arno-saxena.de/pictures/chococraft/item_whistle.png[/img] Chocobo Whistle - (no function yet, will be used in future to call last ridden Chocobo to the current player position).
+   9. [img]http://www.arno-saxena.de/pictures/chococraft/item_gysahl_loverly.png[/img] Loverly Gysahl - Loverly Gysahls are a special kind of Gysahl Greens adorned with Chocobo Feathers. These herbs are used to make a Chocobo fall in love and look for a partner to procreate.
+10. [img]http://www.arno-saxena.de/pictures/chococraft/item_gysahl_golden.png[/img] Golden Gysahl - Just like Loverly Gysahls, Golden Gysahls are used to make Chocobos procreate. These romantic herbs are known to increase the chances of adquiring a new type of Chocobo.
+11. [img]http://www.arno-saxena.de/pictures/chococraft/item_gysahl_cake.png[/img] Gysahl Cake - Chicobos just love gysahl greens and cakes, and when you join both, they're get really happy. Gysahl Cakes give joy to a Chicobo, making him grow up instantly into one big and beautiful Chocobo.
+12. [img]http://www.arno-saxena.de/pictures/chococraft/item_gysahl_pink.png[/img] Pink Gysahl - Weird synthetic gysahls are known to cause extreme effects to Chocobos. So beware.
+13. [img]http://www.arno-saxena.de/pictures/chococraft/item_gysahl_red.png[/img] Red Gysahl - Weird synthetic gysahls are known to cause extreme effects to Chocobos. So beware.
+14. [img]http://www.arno-saxena.de/pictures/chococraft/item_gysahl_seed.png[/img] Gysahl Seeds - Seeds made from Gysahl Greens. Can be planted to build a Gysahl Green farm and can be fertilized with Chocobo Fertilizer.
+15. [img]http://www.arno-saxena.de/pictures/chococraft/item_gysahl_chibi.png[/img] Chibi Gysahl - Bitter gysahl empowered with Redstone to prevent a Chicobo to grow up.
+16. [img]http://www.arno-saxena.de/pictures/chococraft/item_chocopedia.png[/img] Chocopedia - Notebook that keeps information about the Chocobos. Allows player to name their chocobo, check on information about health and breeing status and even give orders.
+[/spoiler]
+
+Recipes:
+[spoiler]
+   1. [img]http://www.arno-saxena.de/pictures/chococraft/item_saddle.png[/img] Chocobo Saddle = 1 Leather, 2 Strings, 1 Chocobo Feather
+
+      [img]http://www.arno-saxena.de/pictures/chococraft/crafting_saddle.png[/img]
+
+   2. [img]http://www.arno-saxena.de/pictures/chococraft/item_saddle_bags.png[/img] Chocobo Saddle Bags = 3 Leather, 1 Chocobo Feather
+
+      [img]http://www.arno-saxena.de/pictures/chococraft/crafting_saddle_bags.png[/img]
+
+   3. [img]http://www.arno-saxena.de/pictures/chococraft/item_choco_pack_bags.png[/img] Chocobo Pack Bags = 4 Silk, 2 Cloth, 1 Leather, 1 Chocobo Feather
+
+     [img]http://www.arno-saxena.de/pictures/chococraft/crafting_pack_bags.png[/img]
+
+   4. [img]http://www.arno-saxena.de/pictures/chococraft/item_whistle.png[/img] Chocobo Whistle = 1 Gold Ingot, 1 Chocobo Feather
+
+      [img]http://www.arno-saxena.de/pictures/chococraft/crafting_whistle.png[/img]
+
+   5. [img]http://www.arno-saxena.de/pictures/chococraft/item_gysahl_loverly.png[/img] Loverly Gysahl = 1 Gysahl Greens, 1 Chocobo Feather and 1 Rose
+
+      [img]http://www.arno-saxena.de/pictures/chococraft/crafting_loverly.png[/img]
+
+   6. [img]http://www.arno-saxena.de/pictures/chococraft/item_gysahl_golden.png[/img] Golden Gysahl = 1 Gysahl Greens, 4 Chocobo Feathers, 4 Gold Nuggets
+
+      [img]http://www.arno-saxena.de/pictures/chococraft/crafting_golden.png[/img]
+
+   7. [img]http://www.arno-saxena.de/pictures/chococraft/item_gysahl_cake.png[/img] Gysahl Cake = 2 Milk, 2 Wheat, 2 Sugar, 2 Gysahl Green, 1 Egg
+
+      [img]http://www.arno-saxena.de/pictures/chococraft/crafting_cake.png[/img]
+
+   8. [img]http://www.arno-saxena.de/pictures/chococraft/item_gysahl_seed.png[/img] Gysahl Seeds = 1 Gysahl Green
+
+      [img]http://www.arno-saxena.de/pictures/chococraft/crafting_seeds.png[/img]
+
+   9. [img]http://www.arno-saxena.de/pictures/chococraft/item_gysahl_chibi.png[/img] Chibi Gysahl = 1 Gysahl Green, 4 Redstone
+
+      [img]http://www.arno-saxena.de/pictures/chococraft/crafting_chibi.png[/img]
+
+  10. [img]http://www.arno-saxena.de/pictures/chococraft/item_chocopedia.png[/img] Chocopedia = 1 Book,  2 Ink Sac, 4 Chocobo Feathers, 1 Lapis Lazuli and 1 Gold Nugget
+
+      [img]http://www.arno-saxena.de/pictures/chococraft/crafting_chocopedia.png[/img]
+
+[/spoiler]
+
+Screenshots:
+[spoiler]
+Different types of Chocobos:
+[img]http://www.arno-saxena.de/pictures/chococraft/chocobo_colours.png[/img]
+
+Okay, maybe there are more than 6:
+[img]http://www.arno-saxena.de/pictures/chococraft/chocobo_pink_red.png[/img]
+
+Gysahl Greens:
+[img]http://www.arno-saxena.de/pictures/chococraft/pic_gysahl_in_wild.png[/img]
+
+Ready to Ride:
+[img]http://www.arno-saxena.de/pictures/chococraft/pic_saddled.png[/img]
+
+Golden big bird next to a proud owner:
+[img]http://www.arno-saxena.de/pictures/chococraft/pic_riding.png[/img]
+
+Love in the air:
+[img]http://www.arno-saxena.de/pictures/chococraft/pic_chocobo_hearts.png[/img]
+
+Proud of his offspring:
+[img]http://www.arno-saxena.de/pictures/chococraft/pic_chocobo_chicobo.png[/img]
+
+Chocobo Names:
+[img]http://www.arno-saxena.de/pictures/chococraft/pic_name_display.png[/img]
+
+Chocopedia:
+[img]http://www.arno-saxena.de/pictures/chococraft/pic_chocobo_gui.png[/img]
+[/spoiler]
+
+NOTES:
+
+Known Issues and Bugs:
+[spoiler]
+   1. Chocobos love to stare in the face of people. It's not as much dangerous as it is creepy.
+   2. Inventory not working yet.
+   3. While traveling on Chocobo, Chocobo model will twitch left and right.
+If you happen to find any more bug or issue, please report it on this thread and I'll look into it ASAP [img]http://static.minecraftforum.net//public/style_emoticons/default/smile.png[/img] [/spoiler]
+
+Config File (not available at the moment):
+[spoiler] As of 1.4.1u, ChocoCraft allows you to customize the mod by editing the config file.
+For example, you can change item IDs to solve conflicts, change the maximum number of Chocobos and choose whether to hide or show the name of the chocobos above their head.
+Here's how to do it:
+   1. You can find the config file in your main minecraft folder and it's called "chocobo_config.txt".
+   2. Open it with Notepad or any other text editor
+   3. Lines that start with "//" are comment lines.
+   4. Change any entry according to the description in the config file.
+
+For any other mod developer, or people that want to change other mod's ids and not these, here are the IDs that I use:
+1551 for the block of Gysahl Greens
+1552 for the Gysahl crops
+22601-22620 for the items
+[/spoiler]
+
+Ideas for Future Development:
+[spoiler]
+  1. Special Gui when riding Chocobo that will show his current health and name
+  2. Chocobos to attack enemies of the owner, much like wolves do
+  3. Chocobo music when riding
+  4. Randomize Chocobo heights
+  5. Yellow Chocobo spawn eggs
+  6. FFX hot & cold
+  7. dynamic abilities (???)
+  8. idle animation for saddled and waiting Chocobos
+If you have any more suggestions, comments or ideas, keep 'em coming [img]http://static.minecraftforum.net//public/style_emoticons/default/smile.png[/img][/spoiler]
+
+How to Install:
+[spoiler]
+1. Install Forge v4.1.4.297 or newer by following the instructions on the corresponding pages. The link to both can be found above the link to this mod.
+2. With Forge installed, put this mod's .zip file in your minecraft "mods" folder.
+[/spoiler]
+
+Acknowledgments:
+[spoiler]
+1. Chococraft has been created by [url="http://www.minecraftforum.net/user/1051245-eddiev/"]EddieV[/url]
+2. Chocobos are creatures from Square Enix's Final Fantasy franchise, which later became main characters on their own games. As such, I do not own any right on them.
+3. The design of the new Chocobo model has been created by [url="http://www.minecraftforum.net/user/758250-firas333/"]firas333[/url].
+4. Pictures of new Chocobos made by [url="http://www.minecraftforum.net/user/524192-uncletravis/"]uncletravis[/url].
+5. The old models of the Chocobos were HIGHLY inspired by the Moa creatures in The Aether Mod. If you don't know this mod, you should. Go get it ASAP.
+6. The models of the Chicobos were HIGHLY inspired by the chicks present in Baby Animals Mod. If you don't know this mod, you should also go get it ASAP.
+7. [url="http://www.minecraftforum.net/user/21540-leonblade/"]LeonBlade[/url] for beeing part of the developer team
+[/spoiler]
+
+Banner/Sig:
+[code][url="http://www.minecraftforum.net/topic/1119809-124-eddievs-chococraft-150u-torojimas-unofficial-update/"][img]http://www.arno-saxena.de/pictures/chococraft/banner_signature.png[/img][/url][/code]
