@@ -21,7 +21,6 @@ public class PacketChocoboRiderJump extends Packet250CustomPayload
 {
 	public PacketChocoboRiderJump(EntityPlayer riderEntity, EntityChocobo chocobo)
 	{
-		//this.channel = Constants.PCHAN_RIDERJUMPUPDATE;
 		this.channel = Constants.PCHAN_CHOCOBO;
 		
 		ByteArrayOutputStream bos = new ByteArrayOutputStream(8);
@@ -30,9 +29,9 @@ public class PacketChocoboRiderJump extends Packet250CustomPayload
 		{
 			outputStream.writeInt(chocobo.entityId);
 			outputStream.writeUTF(riderEntity.username);
-			outputStream.writeInt(riderEntity.entityId);
 			outputStream.writeBoolean(riderEntity.isJumping);
 			outputStream.writeBoolean(riderEntity.isSneaking());
+			outputStream.writeInt(chocobo.worldObj.getWorldInfo().getDimension());
 		}
 		catch (Exception ex)
 		{
@@ -49,17 +48,17 @@ public class PacketChocoboRiderJump extends Packet250CustomPayload
 			DataInputStream inputStream = new DataInputStream(new ByteArrayInputStream(packet.data));
 			try
 			{
-				int chocoboEntityId = inputStream.readInt();
-				String riderName = inputStream.readUTF();
-				int riderEntityId = inputStream.readInt();
-				boolean riderJumping = inputStream.readBoolean();
-				boolean riderSneaking = inputStream.readBoolean();
+				int chocoboEntityId    = inputStream.readInt();
+				String riderName       = inputStream.readUTF();
+				boolean riderJumping   = inputStream.readBoolean();
+				boolean riderSneaking  = inputStream.readBoolean();
+				int dimension          = inputStream.readInt();
 				
-				EntityAnimalChocobo chocobo = ChocoboHelper.getChocoboByID(chocoboEntityId, player);
+				EntityAnimalChocobo chocobo = ChocoboHelper.getChocoboByID(chocoboEntityId, dimension);
 				EntityPlayer riderEntity = null;
 				if(!riderName.isEmpty())
 				{
-					riderEntity = ChocoboHelper.getPlayer(riderEntityId, riderName, player);
+					riderEntity = ChocoboHelper.getPlayer(riderName, dimension);
 				}
 								
 				if(riderEntity != null && chocobo != null && chocobo.riddenByEntity != null

@@ -434,10 +434,11 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo {
 		return false;
 	}
 
-	// Chocobo as saddled mount
 	public double getMountedYOffset()
 	{
-		return 1.1D;
+		//return 1.1D; //current 2.0.0 player to deep
+		//return 0.5D; //player to deep
+		return 1.5D;
 	}
 
 	public boolean isSaddled()

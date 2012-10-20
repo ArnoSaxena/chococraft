@@ -21,7 +21,6 @@ import chococraft.common.entities.EntityChicobo;
 import chococraft.common.entities.colours.*;
 import chococraft.common.items.*;
 import chococraft.common.network.ChocoboPacketHandler;
-import net.minecraft.client.Minecraft;
 import net.minecraft.src.BiomeGenBase;
 import net.minecraft.src.Block;
 import net.minecraft.src.Entity;
@@ -33,7 +32,6 @@ import net.minecraft.src.ItemStack;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.Property;
-import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.Mod.*;
@@ -43,7 +41,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.common.registry.EntityRegistry;
 
-@Mod(modid="ChocoCraft", name="Torojimas ChocoCraft", version="2.0.0")
+@Mod(modid="ChocoCraft", name="Torojimas ChocoCraft", version="2.0.2")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false, 
 		channels = { Constants.PCHAN_CHOCOBO },
 		packetHandler = ChocoboPacketHandler.class)
@@ -52,8 +50,6 @@ public class ModChocoCraft
 	
 	public static Configuration mainConfiguration;
 	
-    public static Minecraft mcc = FMLClientHandler.instance().getClient();
-
 	public static Property chocoboSaddleId;	
 	public static Property gysahlSeedsId;    
     public static Property gysahlLoverlyId;
@@ -524,7 +520,7 @@ public class ModChocoCraft
 
 	private void addChocoboSpawns()
 	{
-		EntityRegistry.addSpawn(EntityChocoboYellow.class, 100, 5, 8, EnumCreatureType.creature, chocoboYellowSpawnBiomes);
+		EntityRegistry.addSpawn(EntityChocoboYellow.class, Constants.DEFAULT_CHOCOBO_SPAWN_RATE, Constants.DEFAULT_CHOCOBO_SPAWN_MIN, Constants.DEFAULT_CHOCOBO_SPAWN_MAX, EnumCreatureType.creature, chocoboYellowSpawnBiomes);
 		//EntityRegistry.addSpawn(EntityChocoboPurple.class, 100, 5, 8, EnumCreatureType.creature, chocoboPurpleSpawnBiomes);
 	}
 }

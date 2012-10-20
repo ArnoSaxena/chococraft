@@ -22,13 +22,10 @@ import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.asm.SideOnly;
 import chococraft.common.*;
-import net.minecraft.src.Entity;
 import net.minecraft.src.EntityAnimal;
 import net.minecraft.src.EntityPlayer;
 import net.minecraft.src.ItemStack;
-import net.minecraft.src.MathHelper;
 import net.minecraft.src.NBTTagCompound;
-import net.minecraft.src.PathEntity;
 import net.minecraft.src.World;
 
 public class EntityChicobo extends EntityAnimalChocobo
@@ -45,6 +42,9 @@ public class EntityChicobo extends EntityAnimalChocobo
         this.setMaxHealth(10);
         this.setSize(0.5F, 0.5F);
         this.growUp = false;
+        this.canCrossWater = false;
+        this.canFly = false;
+        this.canClimb = false;
         this.setGrowingAge(this.getTimeUntilAdult());
     }
     
@@ -336,10 +336,10 @@ public class EntityChicobo extends EntityAnimalChocobo
 
     public void updateEntityActionState()
     {
-        if (!worldObj.playerEntities.isEmpty())
+        if (!this.worldObj.playerEntities.isEmpty())
         {
-            EntityPlayer entityplayer = (EntityPlayer)worldObj.playerEntities.get(0);
-            if (!hasPath() && this.isTamed() && this.isFollowing())
+            EntityPlayer entityplayer = (EntityPlayer)this.worldObj.playerEntities.get(0);
+            if (!this.hasPath() && this.isTamed() && this.isFollowing())
             {
                 if (entityplayer != null)
                 {
@@ -349,10 +349,10 @@ public class EntityChicobo extends EntityAnimalChocobo
                     	this.setWander(false);
                         return;
                     }
-                    float f = entityplayer.getDistanceToEntity(this);
-                    if (f > 4F)
+                    float distance = entityplayer.getDistanceToEntity(this);
+                    if (distance > 4F)
                     {
-                        getPathOrWalkableBlock(entityplayer, f);
+                        this.getPathOrWalkableBlock(entityplayer, distance);
                     }
                     else
                     {
@@ -366,32 +366,6 @@ public class EntityChicobo extends EntityAnimalChocobo
                 super.updateEntityActionState();
                 return;
             }
-        }
-    }
-
-    private void getPathOrWalkableBlock(Entity entity, float f)
-    {
-        PathEntity pathentity = worldObj.getPathEntityToEntity(this, entity, 16F, false, false, false, false);
-        if (pathentity == null && f > 12F)
-        {
-            int i = MathHelper.floor_double(entity.posX) - 2;
-            int j = MathHelper.floor_double(entity.posZ) - 2;
-            int k = MathHelper.floor_double(entity.boundingBox.minY);
-            for (int l = 0; l <= 4; l++)
-            {
-                for (int i1 = 0; i1 <= 4; i1++)
-                {
-                    if ((l < 1 || i1 < 1 || l > 3 || i1 > 3) && worldObj.isBlockOpaqueCube(i + l, k - 1, j + i1) && !worldObj.isBlockOpaqueCube(i + l, k, j + i1) && !worldObj.isBlockOpaqueCube(i + l, k + 1, j + i1))
-                    {
-                        setLocationAndAngles((float)(i + l) + 0.5F, k, (float)(j + i1) + 0.5F, rotationYaw, rotationPitch);
-                        return;
-                    }
-                }
-            }
-        }
-        else
-        {
-            setPathToEntity(pathentity);
         }
     }
 

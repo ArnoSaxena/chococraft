@@ -16,9 +16,9 @@ package chococraft.common;
 
 public class Constants
 {
-	public static String TCC_VERSION = "2.0.0";	
+	public static String TCC_VERSION = "2.0.2";	
 
-	// default item id's (reserved 3801-3900)
+	// default item id's (reserved 22601-22650)
 	public static int CHOCOBO_SADDLE_ID          = 22601;
 	public static int GYSAHL_SEEDS_ID            = 22602;
 	public static int GYSAHL_LOVERLY_ID          = 22603;
@@ -40,6 +40,7 @@ public class Constants
 	public static int CHOCO_DISGUISE_LEGS_ID     = 22619;
 	public static int CHOCO_DISGUISE_BOOTS_ID    = 22620;
 	
+	// default (flower) block id's (reserved 1551 and 1552)
 	public static int GYSAHL_GREEN_BLOCK_ID      = 1551;
 	public static int GYSAHL_STEM_BLOCK_ID       = 1552;
 	
@@ -66,9 +67,13 @@ public class Constants
 	public static boolean DEFAULT_CHOCOBO_WING_FLUTTER = false;
 	public static boolean DEFAULT_SHOW_CHOCOBO_NAMES = true;
 	public static int DEFAULT_GENDER_MALE_CHANCE = 50;
-	public static int DEFAULT_FEATHER_DROP_CHANCE = 50;
+	public static int DEFAULT_FEATHER_DROP_CHANCE = 15;
 	public static int DEFAULT_FEATHER_DELAY_RANDOM = 600;
 	public static int DEFAULT_FEATHER_DELAY_STATIC = 600;
+	public static int DEFAULT_GHYSAL_SPAWN_RATE = 100;
+	public static int DEFAULT_CHOCOBO_SPAWN_RATE = 5;
+	public static int DEFAULT_CHOCOBO_SPAWN_MIN = 5;
+	public static int DEFAULT_CHOCOBO_SPAWN_MAX = 8;
 	
 	//
 	public static float CHOCOBO_DEFAULT_LANDMOVEFACT  = 0.2F;

@@ -28,6 +28,7 @@ public class PacketChocoboDropSaddleAndBags extends Packet250CustomPayload
 		try
 		{
 			outputStream.writeInt(chocobo.entityId);
+			outputStream.writeInt(chocobo.worldObj.getWorldInfo().getDimension());			
 		}
 		catch (Exception ex)
 		{
@@ -46,7 +47,8 @@ public class PacketChocoboDropSaddleAndBags extends Packet250CustomPayload
 			try
 			{
 				int chocoboId = inputStream.readInt();
-				EntityAnimalChocobo chocobo = ChocoboHelper.getChocoboByID(chocoboId, player);
+				int dimension = inputStream.readInt();
+				EntityAnimalChocobo chocobo = ChocoboHelper.getChocoboByID(chocoboId, dimension);
 				if(null != chocobo && chocobo instanceof EntityChocoboRideable)
 				{
 					EntityChocoboRideable chocoRideable = (EntityChocoboRideable)chocobo;

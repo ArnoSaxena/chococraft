@@ -39,7 +39,6 @@ import net.minecraft.src.ItemStack;
 import net.minecraft.src.Material;
 import net.minecraft.src.MathHelper;
 import net.minecraft.src.NBTTagCompound;
-import net.minecraft.src.PathEntity;
 import net.minecraft.src.World;
 
 public abstract class EntityChocobo extends EntityChocoboRideable
@@ -353,14 +352,14 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 
 		if (Side.SERVER == FMLCommonHandler.instance().getEffectiveSide())
 		{
-			if(--timeUntilNextFeather <= 0)
+			if(--this.timeUntilNextFeather <= 0)
 			{
-				int i = rand.nextInt(100);
+				int i = this.rand.nextInt(100);
 				if (i < ModChocoCraft.featherDropChance)
 				{
-					dropFeather();
+					this.dropFeather();
 				}
-				timeUntilNextFeather = rand.nextInt(ModChocoCraft.featherDelayRandom) + ModChocoCraft.featherDelayStatic;
+				this.timeUntilNextFeather = this.rand.nextInt(ModChocoCraft.featherDelayRandom) + ModChocoCraft.featherDelayStatic;
 			}
 		}
 	}
@@ -593,38 +592,6 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 				super.updateEntityActionState();
 				return;
 			}
-		}
-	}
-
-	protected void getPathOrWalkableBlock(Entity entity, float distanceToEntity)
-	{
-		PathEntity pathentity = this.worldObj.getPathEntityToEntity(this, entity, 16F, this.canCrossWater, this.canClimb, this.canFly, true);
-		if (pathentity == null && distanceToEntity > 12F)
-		{
-			int entityPosX = MathHelper.floor_double(entity.posX) - 2;
-			int entityPosZ = MathHelper.floor_double(entity.posZ) - 2;
-			int entityPosY = MathHelper.floor_double(entity.boundingBox.minY);
-			for (int i = 0; i <= 4; i++)
-			{
-				for (int j = 0; j <= 4; j++)
-				{
-					if ((i < 1 || j < 1 || i > 3 || j > 3) 
-							&& this.worldObj.isBlockOpaqueCube(entityPosX + i, entityPosY - 1, entityPosZ + j) 
-							&& !this.worldObj.isBlockOpaqueCube(entityPosX + i, entityPosY, entityPosZ + j) 
-							&& !this.worldObj.isBlockOpaqueCube(entityPosX + i, entityPosY + 1, entityPosZ + j))
-					{
-						float gPosX = (float)(entityPosX + i) + 0.5F;
-						float gPosY = entityPosY;
-						float gPosZ = (float)(entityPosZ + j) + 0.5F;
-						this.setLocationAndAngles(gPosX, gPosY, gPosZ, this.rotationYaw, this.rotationPitch);
-						return;
-					}
-				}
-			}
-		}
-		else
-		{
-			this.setPathToEntity(pathentity);
 		}
 	}
 

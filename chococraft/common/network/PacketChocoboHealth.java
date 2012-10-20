@@ -28,6 +28,7 @@ public class PacketChocoboHealth extends Packet250CustomPayload
 		{
 			outputStream.writeInt(chocobo.entityId);
 			outputStream.writeInt(chocobo.getHealth());
+			outputStream.writeInt(chocobo.worldObj.getWorldInfo().getDimension());
 		}
 		catch (Exception ex)
 		{
@@ -45,12 +46,14 @@ public class PacketChocoboHealth extends Packet250CustomPayload
 			DataInputStream inputStream = new DataInputStream(new ByteArrayInputStream(packet.data));
 			int entityId;
 			int health;
+			int dimension;
 
 			try
 			{
 				entityId = inputStream.readInt();
 				health = inputStream.readInt();
-				EntityAnimalChocobo chocobo = ChocoboHelper.getChocoboByID(entityId, player);
+				dimension = inputStream.readInt();
+				EntityAnimalChocobo chocobo = ChocoboHelper.getChocoboByID(entityId, dimension);
 				if(null != chocobo)
 				{
 					chocobo.setEntityHealth(health);

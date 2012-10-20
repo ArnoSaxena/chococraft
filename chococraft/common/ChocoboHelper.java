@@ -20,8 +20,6 @@ import java.util.Random;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Side;
-import cpw.mods.fml.common.network.Player;
-
 import chococraft.common.entities.EntityAnimalChocobo;
 import chococraft.common.entities.EntityChocobo;
 
@@ -247,12 +245,24 @@ public class ChocoboHelper {
     	return false;
     }
     
-    public static boolean isBlockIce(double posX, double posY, double posZ)
+    public static boolean isBlockIce(double posX, double posY, double posZ, int dimension)
     {
         int blockPosX = MathHelper.floor_double(posX);
         int blockPosY = MathHelper.floor_double(posY);
         int blockPosZ = MathHelper.floor_double(posZ);
-        return ModChocoCraft.mcc.theWorld.getBlockId(blockPosX, blockPosY, blockPosZ) == Block.ice.blockID;
+        int blockId = 0;
+        
+        Side side = FMLCommonHandler.instance().getEffectiveSide();
+        if (side == Side.SERVER)
+        {
+        	WorldServer worldserver = MinecraftServer.getServer().worldServerForDimension(dimension);
+        	blockId = worldserver.getBlockId(blockPosX, blockPosY, blockPosZ);
+        }
+        else if (side == Side.CLIENT)
+        {
+            blockId = FMLClientHandler.instance().getClient().theWorld.getBlockId(blockPosX, blockPosY, blockPosZ);        	
+        }
+        return blockId == Block.ice.blockID;
     }
     
 	public static boolean canChocoboSpawnAtLocation(World world, EntityAnimalChocobo chocobo, int posX, int posY, int posZ)
@@ -266,33 +276,20 @@ public class ChocoboHelper {
 		return normalCubeBelow && thisNotNormalCube && thisNotLiquidCube && notNormalAbove && isPosPathWeight;
 	}
 	
-	public static EntityAnimalChocobo getChocoboByID(int entityId, Player player)
+	public static EntityAnimalChocobo getChocoboByID(int entityId, int dimension)
 	{
 		Entity targetEntity = null;
 
 		Side side = FMLCommonHandler.instance().getEffectiveSide();
 		if (side == Side.SERVER)
 		{
-			if(player instanceof EntityPlayer)
-			{
-				EntityPlayerMP playerMP = MinecraftServer.getServer().getConfigurationManager().getPlayerForUsername(((EntityPlayer)player).username);
-				for (Object object : playerMP.worldObj.loadedEntityList )
-				{
-					if(object instanceof Entity)
-					{
-						if(((Entity)object).entityId == entityId)
-						{
-							targetEntity = ((Entity)object);
-						}
-					}
-				}
-			}
+			WorldServer worldserver = MinecraftServer.getServer().worldServerForDimension(dimension);
+			targetEntity = worldserver.getEntityByID(entityId);
 		}
     	else if (side == Side.CLIENT)
 		{
 			targetEntity = (Entity)FMLClientHandler.instance().getClient().theWorld.getEntityByID(entityId);
 		}
-    	
     	
     	if(null != targetEntity && targetEntity instanceof EntityAnimalChocobo)
     	{
@@ -304,41 +301,18 @@ public class ChocoboHelper {
     	}
     }
 	
-	public static EntityPlayer getPlayer(int searchedPlayerId, String searchedPlayerName, Player searchingPlayer)
+	public static EntityPlayer getPlayer(String name, int dimension)
 	{
-		Entity targetEntity = null;
-
 		Side side = FMLCommonHandler.instance().getEffectiveSide();
 		if (side == Side.SERVER)
 		{
-			if(searchingPlayer instanceof EntityPlayer)
-			{
-				EntityPlayerMP searchingPlayerMP = MinecraftServer.getServer().getConfigurationManager().getPlayerForUsername(((EntityPlayer)searchingPlayer).username);
-				for (Object object : searchingPlayerMP.worldObj.loadedEntityList )
-				{
-					if(object instanceof Entity)
-					{
-						if(((Entity)object).entityId == searchedPlayerId)
-						{
-							targetEntity = ((Entity)object);
-						}
-					}
-				}
-			}
+			WorldServer worldserver = MinecraftServer.getServer().worldServerForDimension(dimension);
+			return worldserver.getPlayerEntityByName(name);
 		}
     	else if (side == Side.CLIENT)
 		{
-    		targetEntity =  FMLClientHandler.instance().getClient().theWorld.getPlayerEntityByName(searchedPlayerName);
+    		return  FMLClientHandler.instance().getClient().theWorld.getPlayerEntityByName(name);
 		}
-    	
-    	
-    	if(null != targetEntity && targetEntity instanceof EntityPlayer)
-    	{
-    		return (EntityPlayer)targetEntity;
-    	}
-    	else
-    	{
-    		return null;
-    	}
+		return null;
 	}
 }

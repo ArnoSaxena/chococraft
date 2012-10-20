@@ -30,6 +30,7 @@ public class PacketChocoboAttribute extends Packet250CustomPayload
 			outputStream.writeBoolean(chocobo.isHidename());
 			outputStream.writeBoolean(chocobo.isFollowing());
 			outputStream.writeBoolean(chocobo.isWander());
+			outputStream.writeInt(chocobo.worldObj.getWorldInfo().getDimension());
 		}
 		catch (Exception ex)
 		{
@@ -52,7 +53,8 @@ public class PacketChocoboAttribute extends Packet250CustomPayload
 				boolean hidename = inputStream.readBoolean();
 				boolean following = inputStream.readBoolean();
 				boolean wander = inputStream.readBoolean();
-				EntityAnimalChocobo chocobo = ChocoboHelper.getChocoboByID(chocoboId, player);
+				int dimension = inputStream.readInt();
+				EntityAnimalChocobo chocobo = ChocoboHelper.getChocoboByID(chocoboId, dimension);
 				if(null != chocobo)
 				{
 					chocobo.setName(chocoboName);

@@ -20,7 +20,6 @@ public class PacketChocoboTamed extends Packet250CustomPayload
 	public PacketChocoboTamed(EntityAnimalChocobo chocobo)
 	{
 		this.channel = Constants.PCHAN_CHOCOBO;
-		//this.channel = Constants.PCHAN_TAMEDUPDATE;
 		
 		ByteArrayOutputStream bos = new ByteArrayOutputStream(8);
 		DataOutputStream outputStream = new DataOutputStream(bos);
@@ -29,6 +28,7 @@ public class PacketChocoboTamed extends Packet250CustomPayload
 			outputStream.writeInt(chocobo.entityId);
 			outputStream.writeBoolean(chocobo.isTamed());
 			outputStream.writeUTF(chocobo.getOwnerName());
+			outputStream.writeInt(chocobo.worldObj.getWorldInfo().getDimension());
 		}
 		catch (Exception ex)
 		{
@@ -44,17 +44,15 @@ public class PacketChocoboTamed extends Packet250CustomPayload
 		if (Side.CLIENT == FMLCommonHandler.instance().getEffectiveSide())
 		{
 			DataInputStream inputStream = new DataInputStream(new ByteArrayInputStream(packet.data));
-			int entityId;
-			boolean tamed;
-			String ownerName;
 
 			try
 			{				
-				entityId = inputStream.readInt();
-				tamed = inputStream.readBoolean();
-				ownerName = inputStream.readUTF();
+				int entityId = inputStream.readInt();
+				boolean tamed = inputStream.readBoolean();
+				String ownerName = inputStream.readUTF();
+				int dimension = inputStream.readInt();
 				
-				EntityAnimalChocobo chocobo = ChocoboHelper.getChocoboByID(entityId, player);
+				EntityAnimalChocobo chocobo = ChocoboHelper.getChocoboByID(entityId, dimension);
 				if(null != chocobo)
 				{
 					chocobo.setTamed(tamed);

@@ -21,6 +21,7 @@ import java.util.Random;
 import com.google.common.io.ByteArrayDataInput;
 import com.google.common.io.ByteArrayDataOutput;
 
+import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.network.PacketDispatcher;
@@ -161,7 +162,7 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
     public void setName(String name)
     {
     	this.dataWatcher.updateObject(Constants.DW_ID_EAC_NAME, name);
-    	this.sendAttributeUpdate(ModChocoCraft.mcc.thePlayer);
+    	this.sendAttributeUpdate();
     }
     
     public String getName()
@@ -218,7 +219,7 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
             this.dataWatcher.updateObject(Constants.DW_ID_EAC_FLAGS, Byte.valueOf((byte)(eacFlags & Constants.DW_VAL_EAC_HIDENAME_OFF)));
         }
         
-    	this.sendAttributeUpdate(ModChocoCraft.mcc.thePlayer);
+    	this.sendAttributeUpdate();
     }
     
     public boolean isWander()
@@ -238,7 +239,7 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
         {
             this.dataWatcher.updateObject(Constants.DW_ID_EAC_FLAGS, Byte.valueOf((byte)(eacFlags & Constants.DW_VAL_EAC_WANDER_OFF)));
         }
-    	this.sendAttributeUpdate(ModChocoCraft.mcc.thePlayer);
+    	this.sendAttributeUpdate();
     }
 
     public Boolean isFollowing()
@@ -258,7 +259,7 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
         {
             this.dataWatcher.updateObject(Constants.DW_ID_EAC_FLAGS, Byte.valueOf((byte)(eacFlags & Constants.DW_VAL_EAC_FOLLOWING_OFF)));
         }
-    	this.sendAttributeUpdate(ModChocoCraft.mcc.thePlayer);
+    	this.sendAttributeUpdate();
     }
     
     public String getGender()
@@ -333,7 +334,7 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
     	{
     		if (this.isTamed())
     		{
-    			ModChocoCraft.mcc.displayGuiScreen(new GuiChocopedia(ModChocoCraft.mcc.currentScreen, this));
+    			FMLClientHandler.instance().getClient().displayGuiScreen(new GuiChocopedia(FMLClientHandler.instance().getClient().currentScreen, this));
     		}
     		else
     		{
@@ -360,7 +361,7 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
     					this.setHidename(true);
     					this.worldObj.setEntityState(this, (byte)7);
     					this.setOwner(entityplayer.username);
-    					this.sendTamedUpdate(entityplayer);
+    					this.sendTamedUpdate();
     				}
     				else
     				{
@@ -499,7 +500,7 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
         
         if(Side.SERVER == FMLCommonHandler.instance().getEffectiveSide())
         {
-        	this.sendHealthUpdate(ModChocoCraft.mcc.thePlayer);
+        	this.sendHealthUpdate();
         }
         return check;
     }
@@ -513,7 +514,7 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
         }
         if (this.isInLove() || getGrowingAge() > 0)
         {
-            List list = this.worldObj.getEntitiesWithinAABB(getClass(), boundingBox.expand(8F, 8F, 8F));
+            List list = this.worldObj.getEntitiesWithinAABB(this.getClass(), this.boundingBox.expand(8F, 8F, 8F));
             for (int i = 0; i < list.size(); i++)
             {
                 EntityAnimalChocobo otherChoco = (EntityAnimalChocobo)list.get(i);
@@ -583,23 +584,23 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
         {
             if (i > 4)
             {
-                worldObj.playSoundAtEntity(this, "damage.fallbig", 1.0F, 1.0F);
+                this.worldObj.playSoundAtEntity(this, "damage.fallbig", 1.0F, 1.0F);
             }
             else
             {
-                worldObj.playSoundAtEntity(this, "damage.fallsmall", 1.0F, 1.0F);
+                this.worldObj.playSoundAtEntity(this, "damage.fallsmall", 1.0F, 1.0F);
             }
             attackEntityFrom(DamageSource.fall, i);
             
             int blockPosX = MathHelper.floor_double(this.posX);
             int blockPosY = MathHelper.floor_double(this.posY - 0.2D - (double)this.yOffset);
             int blockPosZ = MathHelper.floor_double(this.posZ);
-            int blockId = worldObj.getBlockId(blockPosX, blockPosY, blockPosZ);
+            int blockId = this.worldObj.getBlockId(blockPosX, blockPosY, blockPosZ);
             
             if (blockId > 0)
             {
                 StepSound stepsound = Block.blocksList[blockId].stepSound;
-                worldObj.playSoundAtEntity(this, stepsound.getStepSound(), stepsound.getVolume() * 0.5F, stepsound.getPitch() * 0.75F);
+                this.worldObj.playSoundAtEntity(this, stepsound.getStepSound(), stepsound.getVolume() * 0.5F, stepsound.getPitch() * 0.75F);
             }
         }
     }
@@ -608,6 +609,39 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
     {
     	this.fall(fallHeight);
     }
+
+	protected void getPathOrWalkableBlock(Entity entity, float distance)
+	{
+		boolean canDrown = true;
+		PathEntity pathentity = this.worldObj.getPathEntityToEntity(this, entity, 16F, this.canCrossWater, this.canClimb, this.canFly, canDrown);
+		if (pathentity == null && distance > 12F)
+		{
+			int entityPosX = MathHelper.floor_double(entity.posX) - 2;
+			int entityPosY = MathHelper.floor_double(entity.boundingBox.minY);
+			int entityPosZ = MathHelper.floor_double(entity.posZ) - 2;
+			for (int i = 0; i <= 4; i++)
+			{
+				for (int j = 0; j <= 4; j++)
+				{
+					if ((i < 1 || j < 1 || i > 3 || j > 3) 
+							&& this.worldObj.isBlockOpaqueCube(entityPosX + i, entityPosY - 1, entityPosZ + j) 
+							&& !this.worldObj.isBlockOpaqueCube(entityPosX + i, entityPosY, entityPosZ + j) 
+							&& !this.worldObj.isBlockOpaqueCube(entityPosX + i, entityPosY + 1, entityPosZ + j))
+					{
+						float gPosX = (float)(entityPosX + i) + 0.5F;
+						float gPosY = entityPosY;
+						float gPosZ = (float)(entityPosZ + j) + 0.5F;
+						this.setLocationAndAngles(gPosX, gPosY, gPosZ, this.rotationYaw, this.rotationPitch);
+						return;
+					}
+				}
+			}
+		}
+		else
+		{
+			this.setPathToEntity(pathentity);
+		}
+	}
     
     protected void updateWanderPath()
     {
@@ -766,7 +800,7 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
     protected EntityPlayer getNearestPlayer()
     {
         @SuppressWarnings("rawtypes")
-		List list1 = worldObj.getEntitiesWithinAABB(net.minecraft.src.EntityPlayer.class, boundingBox.expand(8F, 8F, 8F));
+		List list1 = this.worldObj.getEntitiesWithinAABB(net.minecraft.src.EntityPlayer.class, boundingBox.expand(8F, 8F, 8F));
         double distance = 9999;
         EntityPlayer nearestPlayer = null;
 
@@ -788,17 +822,18 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
 		return ModChocoCraft.showChocoboNames && !this.isHidename() && this.getName() != "" && this.isTamed();
 	}
 	
-    protected void sendTamedUpdate(EntityPlayer entityPlayer)
+    protected void sendTamedUpdate()
     {
 		if (Side.SERVER == FMLCommonHandler.instance().getEffectiveSide())
 		{
-			PacketChocoboTamed packet = new PacketChocoboTamed(this);			
-			PacketDispatcher.sendPacketToAllAround(this.lastTickPosX, this.lastTickPosY, this.lastTickPosZ, 16*5, entityPlayer.dimension, packet);
+			PacketChocoboTamed packet = new PacketChocoboTamed(this);
+			int dimension = this.worldObj.getWorldInfo().getDimension();
+			PacketDispatcher.sendPacketToAllAround(this.lastTickPosX, this.lastTickPosY, this.lastTickPosZ, 16*5, dimension, packet);
 
 		}
 	}
 	
-    protected void sendAttributeUpdate(EntityPlayer entityPlayer)
+    protected void sendAttributeUpdate()
     {
     	if (Side.CLIENT == FMLCommonHandler.instance().getEffectiveSide())
 		{
@@ -807,12 +842,13 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
 		}
 	}
     
-	protected void sendHealthUpdate(EntityPlayer entityPlayer)
+	protected void sendHealthUpdate()
 	{
 		if (Side.SERVER == FMLCommonHandler.instance().getEffectiveSide())
 		{
-			PacketChocoboHealth packet = new PacketChocoboHealth(this);
-			PacketDispatcher.sendPacketToAllAround(this.lastTickPosX, this.lastTickPosY, this.lastTickPosZ, 16*5, entityPlayer.dimension, packet);
+			PacketChocoboHealth packet = new PacketChocoboHealth(this);			
+			int dimension = this.worldObj.getWorldInfo().getDimension();			
+			PacketDispatcher.sendPacketToAllAround(this.lastTickPosX, this.lastTickPosY, this.lastTickPosZ, 16*5, dimension, packet);
 		}
 	}
 	

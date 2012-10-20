@@ -6,13 +6,13 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
+import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.network.Player;
 
 import chococraft.common.ChocoboHelper;
 import chococraft.common.Constants;
-import chococraft.common.ModChocoCraft;
 import chococraft.common.entities.EntityAnimalChocobo;
 import chococraft.common.entities.EntityChocoboRideable;
 import net.minecraft.src.EntityPlayer;
@@ -22,7 +22,6 @@ public class PacketChocoboMount extends Packet250CustomPayload
 {
 	public PacketChocoboMount(EntityAnimalChocobo chocobo)
 	{
-		//this.channel = Constants.PCHAN_MOUNTUPDATE;
 		this.channel = Constants.PCHAN_CHOCOBO;
 
 		ByteArrayOutputStream bos = new ByteArrayOutputStream(8);
@@ -30,12 +29,11 @@ public class PacketChocoboMount extends Packet250CustomPayload
 		try
 		{
 			String playerName = "";
-			int playerEntityId = 0;
-			playerName = ModChocoCraft.mcc.thePlayer.username;
-			playerEntityId = ModChocoCraft.mcc.thePlayer.entityId;
+			playerName = FMLClientHandler.instance().getClient().thePlayer.username;
+
 			outputStream.writeInt(chocobo.entityId);
 			outputStream.writeUTF(playerName);
-			outputStream.writeInt(playerEntityId);
+			outputStream.writeInt(chocobo.worldObj.getWorldInfo().getDimension());
 		}
 		catch (Exception ex)
 		{
@@ -51,16 +49,13 @@ public class PacketChocoboMount extends Packet250CustomPayload
 		if (Side.SERVER == FMLCommonHandler.instance().getEffectiveSide())
 		{
 			DataInputStream inputStream = new DataInputStream(new ByteArrayInputStream(packet.data));
-			int mountId;
-			String riderName;
-			int riderId;
 			try
 			{
-				mountId = inputStream.readInt();
-				riderName = inputStream.readUTF();
-				riderId = inputStream.readInt();
+				int mountId = inputStream.readInt();
+				String riderName = inputStream.readUTF();
+				int dimension = inputStream.readInt();
 
-				EntityAnimalChocobo chocobo = ChocoboHelper.getChocoboByID(mountId, player);
+				EntityAnimalChocobo chocobo = ChocoboHelper.getChocoboByID(mountId, dimension);
 				if(chocobo instanceof EntityChocoboRideable)
 				{
 					EntityChocoboRideable chocoboRideable = (EntityChocoboRideable)chocobo;
@@ -73,7 +68,7 @@ public class PacketChocoboMount extends Packet250CustomPayload
 					}
 					else
 					{
-						EntityPlayer riderEntity = ChocoboHelper.getPlayer(riderId, riderName, player);
+						EntityPlayer riderEntity = ChocoboHelper.getPlayer(riderName, dimension);
 						riderEntity.mountEntity(chocoboRideable);
 						chocoboRideable.setStepHeight(true);
 						chocoboRideable.setLandMovementFactor(true);

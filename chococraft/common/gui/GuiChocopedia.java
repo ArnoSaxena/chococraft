@@ -21,7 +21,8 @@ import net.minecraft.src.StringTranslate;
 
 import org.lwjgl.input.Keyboard;
 
-import chococraft.common.ModChocoCraft;
+import cpw.mods.fml.client.FMLClientHandler;
+
 import chococraft.common.entities.EntityAnimalChocobo;
 import chococraft.common.entities.EntityChocoboRideable;
 
@@ -109,7 +110,7 @@ public class GuiChocopedia extends GuiScreen
 		}
 		else if (guibutton.id == 0)
 		{
-			ModChocoCraft.mcc.displayGuiScreen(new GuiNameChocobo(this, chocobo));
+			FMLClientHandler.instance().getClient().displayGuiScreen(new GuiNameChocobo(this, chocobo));
 		}
 		else if (guibutton.id == 4)
 		{

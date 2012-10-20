@@ -33,7 +33,7 @@ public class WorldGenGysahls implements IWorldGenerator
 		{
 			if(world.provider.isSurfaceWorld())
 			{
-				if(random.nextInt(4) == 0)
+				if(random.nextInt(6) == 0)
 				{
 					int randPosX = chunkX*16 + random.nextInt(16);
 					int randPosZ = chunkZ*16 + random.nextInt(16);
