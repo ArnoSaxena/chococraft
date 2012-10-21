@@ -36,7 +36,7 @@ public class EntityChocoboBlack extends EntityChocobo
 		this.landMovementFactor = Constants.CHOCOBO_DEFAULT_LANDMOVEFACT;
 		this.canClimb = true;
 		this.canCrossWater = true;
-		this.canJumpHigh = true;
+		this.canJumpHigh = false;
 		this.canFly = false;
 		this.isImmuneToFire = false;
 		this.landSpeedFactor = Constants.CHOCOBO_BLACK_LANDSPEEDFACT;
@@ -97,6 +97,18 @@ public class EntityChocoboBlack extends EntityChocobo
 		else
 		{
 			this.landMovementFactor = Constants.CHOCOBO_DEFAULT_LANDMOVEFACT;			
+		}
+	}
+	
+	public void setJumpHigh(boolean mounted)
+	{
+		if(mounted)
+		{
+			this.canJumpHigh = Constants.CHOCOBO_BLACK_CANJUMPHIGH;
+		}
+		else
+		{
+			this.canJumpHigh = false;
 		}
 	}
 

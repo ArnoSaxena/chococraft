@@ -272,7 +272,7 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo {
 		return interacted;
 	}
 
-	private void setRotationYawAndPitch()
+	protected void setRotationYawAndPitch()
 	{
 		if (this.riddenByEntity != null && this.riddenByEntity instanceof EntityPlayer)
 		{
@@ -438,7 +438,7 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo {
 	{
 		//return 1.1D; //current 2.0.0 player to deep
 		//return 0.5D; //player to deep
-		return 1.5D;
+		return 1.4D;
 	}
 
 	public boolean isSaddled()
@@ -523,11 +523,6 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo {
 		}
 	}
 
-	public boolean canRenderName()
-	{
-		return super.canRenderName() && riddenByEntity == null &&  this.isSaddled();
-	}
-
 	protected boolean canDespawn()
 	{
 		return super.canDespawn() && !isSaddled();
@@ -536,6 +531,7 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo {
 	protected void mountChocobo(EntityPlayer entityplayer)
 	{
 		this.setStepHeight(true);
+		this.setJumpHigh(true);
 		this.setLandMovementFactor(true);
 	}
 
@@ -543,6 +539,7 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo {
 	{
 		this.isJumping = false;
 		this.setStepHeight(false);
+		this.setJumpHigh(false);
 		this.setLandMovementFactor(false);
 	}
 

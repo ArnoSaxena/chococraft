@@ -23,6 +23,7 @@ import chococraft.common.items.*;
 import chococraft.common.network.ChocoboPacketHandler;
 import net.minecraft.src.BiomeGenBase;
 import net.minecraft.src.Block;
+import net.minecraft.src.CreativeTabs;
 import net.minecraft.src.Entity;
 import net.minecraft.src.EnumCreatureType;
 import net.minecraft.src.Item;
@@ -32,7 +33,9 @@ import net.minecraft.src.ItemStack;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.Property;
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.Mod.*;
 import cpw.mods.fml.common.event.*;
@@ -150,7 +153,10 @@ public class ModChocoCraft
 		
 	    this.addRecipes();
 
-        ClientProxyChocoCraft.registerRenderInformation();
+	    if(Side.CLIENT == FMLCommonHandler.instance().getEffectiveSide())
+	    {
+	    	ClientProxyChocoCraft.registerRenderInformation();
+	    }
 
         this.registerChocobos();
 
@@ -223,93 +229,111 @@ public class ModChocoCraft
         chocoboSaddleItem = (new ChocoboItem(Integer.parseInt(chocoboSaddleId.value))).setItemName("chocoboSaddle").setMaxStackSize(5);
     	chocoboSaddleItem.setIconIndex(0);
 		LanguageRegistry.addName(chocoboSaddleItem, "Chocobo Saddle");		
+		chocoboSaddleItem.setTabToDisplayOn(CreativeTabs.tabTransport);
 
         // Gysahl seeds
     	gysahlSeedsItem = (new ItemSeeds(Integer.parseInt(gysahlSeedsId.value), Integer.parseInt(gysahlStemBlockId.value), Block.tilledField.blockID)).setItemName("gysahlSeeds");
     	gysahlSeedsItem.setTextureFile(Constants.CHOCOBO_ITEM_TEXTURES);
     	gysahlSeedsItem.setIconIndex(1);
 		LanguageRegistry.addName(gysahlSeedsItem, "Gysahl Seeds");
+		gysahlSeedsItem.setTabToDisplayOn(CreativeTabs.tabMaterials);
 
     	// Loverly Gysahl
     	gysahlLoverlyItem = (new ChocoboItem(Integer.parseInt(gysahlLoverlyId.value))).setItemName("gysahlLoverly").setMaxStackSize(64);
     	gysahlLoverlyItem.setIconIndex(2);
-    	LanguageRegistry.addName(gysahlLoverlyItem, "Loverly Gysahl");		
+    	LanguageRegistry.addName(gysahlLoverlyItem, "Loverly Gysahl");
+    	gysahlLoverlyItem.setTabToDisplayOn(CreativeTabs.tabMisc);
 
     	// Golden Gysahl
 		gysahlGoldenItem = (new ChocoboItem(Integer.parseInt(gysahlGoldenId.value))).setItemName("gysahlGolden").setMaxStackSize(64);
     	gysahlGoldenItem.setIconIndex(3);
     	LanguageRegistry.addName(gysahlGoldenItem, "Golden Gysahl");
+    	gysahlGoldenItem.setTabToDisplayOn(CreativeTabs.tabMisc);
 
 		// Pink Gysahl
         gysahlPinkItem = (new ChocoboItem(Integer.parseInt(gysahlPinkId.value))).setItemName("gysahlPink").setMaxStackSize(64);
     	gysahlPinkItem.setIconIndex(4);
 		LanguageRegistry.addName(gysahlPinkItem, "Pink Gysahl");
+		gysahlPinkItem.setTabToDisplayOn(CreativeTabs.tabMisc);
 
         // Red Gysahl
         gysahlRedItem = (new ChocoboItem(Integer.parseInt(gysahlRedId.value))).setItemName("gysahlRed").setMaxStackSize(64);
     	gysahlRedItem.setIconIndex(5);
         LanguageRegistry.addName(gysahlRedItem, "Red Gysahl");
+        gysahlRedItem.setTabToDisplayOn(CreativeTabs.tabMisc);
 
         // Chibi Gysahl
         gysahlChibiItem = (new ChocoboItem(Integer.parseInt(gysahlChibiId.value))).setItemName("gysahlChibi").setMaxStackSize(64);
     	gysahlChibiItem.setIconIndex(6);
         LanguageRegistry.addName(gysahlChibiItem, "Chibi Gysahl");
+        gysahlChibiItem.setTabToDisplayOn(CreativeTabs.tabMisc);
 
         // Chocobo Cake
         chocoboCakeItem = (new ChocoboItem(Integer.parseInt(chocoboCakeId.value))).setItemName("chocoboCake").setMaxStackSize(8);
     	chocoboCakeItem.setIconIndex(7);
         LanguageRegistry.addName(chocoboCakeItem, "Chocobo Cake");
+        chocoboCakeItem.setTabToDisplayOn(CreativeTabs.tabMisc);
 
         // Chocobo Feather
         chocoboFeatherItem = (new ChocoboItem(Integer.parseInt(chocoboFeatherId.value))).setItemName("chocoboFeather").setMaxStackSize(64);
     	chocoboFeatherItem.setIconIndex(10);
     	LanguageRegistry.addName(chocoboFeatherItem, "Chocobo Feather");
+    	chocoboFeatherItem.setTabToDisplayOn(CreativeTabs.tabMaterials);
 
         // Chocobo Saddle Bags
         chocoboSaddleBagsItem = (new ChocoboItem(Integer.parseInt(chocoboSaddleBagsId.value))).setItemName("chocoboSaddleBags").setMaxStackSize(8);
     	chocoboSaddleBagsItem.setIconIndex(11);
         LanguageRegistry.addName(chocoboSaddleBagsItem, "Chocobo Saddle Bags");
+        chocoboSaddleBagsItem.setTabToDisplayOn(CreativeTabs.tabTransport);
 
         // Chocobo Pack Bags
         chocoboPackBagsItem = (new ChocoboItem(Integer.parseInt(chocoboPackBagsId.value))).setItemName("chocoboPackBags").setMaxStackSize(8);
     	chocoboPackBagsItem.setIconIndex(12);
 		LanguageRegistry.addName(chocoboPackBagsItem, "Chocobo Pack Bags");
+		chocoboPackBagsItem.setTabToDisplayOn(CreativeTabs.tabTransport);
 
         // Chocob Whistle
         chocoboWhistleItem = (new ChocoboItem(Integer.parseInt(chocoboWhistleId.value))).setItemName("chocoboWhistle").setMaxStackSize(64);
     	chocoboWhistleItem.setIconIndex(13);
 		LanguageRegistry.addName(chocoboWhistleItem, "Chocobo Whistle");
+		chocoboWhistleItem.setTabToDisplayOn(CreativeTabs.tabTools);
 
         // Chocopedia
         chocopediaItem = (new ChocoboItem(Integer.parseInt(chocopediaId.value))).setItemName("chocopedia").setMaxStackSize(1);
     	chocopediaItem.setIconIndex(14);
         LanguageRegistry.addName(chocopediaItem, "Chocopedia");
+        chocopediaItem.setTabToDisplayOn(CreativeTabs.tabTools);
 
-        // Nether Chocobo Egg
-        netherChocoboEggItem = (new ChocoboItem(Integer.parseInt(netherChocoboEggId.value))).setItemName("netherChocoboEgg").setMaxStackSize(8);
-    	netherChocoboEggItem.setIconIndex(15);
-        LanguageRegistry.addName(netherChocoboEggItem, "Nether Chocobo Egg");
+//        // Nether Chocobo Egg
+//        netherChocoboEggItem = (new ChocoboItem(Integer.parseInt(netherChocoboEggId.value))).setItemName("netherChocoboEgg").setMaxStackSize(8);
+//    	netherChocoboEggItem.setIconIndex(15);
+//        LanguageRegistry.addName(netherChocoboEggItem, "Nether Chocobo Egg");
+//        netherChocoboEggItem.setTabToDisplayOn(CreativeTabs.tabMisc);
 
         // Armour
         // Cocodisguise Helmet
         chocoDisguiseHelmetItem = (new ChocoboItem(Integer.parseInt(chocoDisguiseHelmetId.value))).setItemName("chocoDisguiseHelmet").setMaxStackSize(1);
     	chocoDisguiseHelmetItem.setIconIndex(17);
         LanguageRegistry.addName(chocoDisguiseHelmetItem, "Chocodisguise Helmet");
+        chocoDisguiseHelmetItem.setTabToDisplayOn(CreativeTabs.tabTools);
 
         // Chocodisguise Plate
         chocoDisguisePlateItem = (new ChocoboItem(Integer.parseInt(chocoDisguisePlateId.value))).setItemName("chocoDisguisePlate").setMaxStackSize(1);
     	chocoDisguisePlateItem.setIconIndex(18);
         LanguageRegistry.addName(chocoDisguisePlateItem, "Chocodisguise Plate");
+        chocoDisguisePlateItem.setTabToDisplayOn(CreativeTabs.tabTools);
 
         // Chocodisguise Legs
         chocoDisguiseLegsItem = (new ChocoboItem(Integer.parseInt(chocoDisguiseLegsId.value))).setItemName("chocoDisguiseLegs").setMaxStackSize(1);
     	chocoDisguiseLegsItem.setIconIndex(19);
         LanguageRegistry.addName(chocoDisguiseLegsItem, "Chocodisguise Legs");
+        chocoDisguiseLegsItem.setTabToDisplayOn(CreativeTabs.tabTools);
 
         // Chocodisguise Boots
         chocoDisguiseBootsItem = (new ChocoboItem(Integer.parseInt(chocoDisguiseBootsId.value))).setItemName("chocoDisguiseBoots").setMaxStackSize(1);    	
     	chocoDisguiseBootsItem.setIconIndex(20);
         LanguageRegistry.addName(chocoDisguiseBootsItem, "Chocodisguise Boots");
+        chocoDisguiseBootsItem.setTabToDisplayOn(CreativeTabs.tabTools);
 
         // food items
         // Raw Chocobo Leg

@@ -1,7 +1,7 @@
 [img]http://www.arno-saxena.de/pictures/chococraft/banner_title.png[/img]
 
 UPDATED FOR MINECRAFT 1.3.2
-Version 2.0.1
+Version 2.0.3
 Requires: [url="http://www.minecraftforge.net/"]Forge[/url] [url="http://files.minecraftforge.net/"]4.1.4.297+[/url]
 
 This Mod is the continuation of [url="http://www.minecraftforum.net/user/1051245-eddiev/"]EddieV's[/url] mod. The original thread can be found [url="http://www.minecraftforum.net/topic/952372-chococraft-12-mc-11-chocobos-now-fly/"]here[/url]. I've officially taken over the helm with Eddie's kind blessings.
@@ -16,7 +16,7 @@ Chocobos can be breed and procreate. The offspring will be a Chicobo, the juveni
 [color=#ff0000][b]ACHTUNG! CAUTION! ¡CUIDADO! चेतावनी! ATTENZIONE! береги́сь!
 This version of Chococraft is not compatible to versions pre 2.0.0 (pre mc 1.3.2). It will destroy your saved world if old Chocobos are included. Thus, if you want to use an old world with the new version of this mod, you should first start minecraft without the Chococraft mod, enter and save your world, thus removing all traces of older versions of Chococraft and only then start minecraft with the new version of Chococraft and tame new Chocobos.[/b][/color]
 
-Download: [url="http://www.arno-saxena.de/minecraft/Chococraft_2.0.1.zip"]Torojimas ChocoCraft 2.0.1[/url]
+Download: [url="http://www.arno-saxena.de/minecraft/Chococraft_2.0.3.zip"]Torojimas ChocoCraft 2.0.3[/url]
 
 Downloads so far: [img]http://www.arno-saxena.de/minecraft/chocoboDownloads.png[/img]
 
@@ -51,6 +51,19 @@ Thanks to InTheLittleWood
 
 CHANGELOG:
 [spoiler]
+
+v.2.0.3 by Torojima
+   1. names show regardless of sattle status
+   2. different colour Chocobos can mate and procreate
+   3. made all Chocobos faster when mounted
+
+v.2.0.2a by Torojima
+   1. fixed a bug created by fixing the last server crash bug
+
+v.2.0.2 by Torojima
+   1. fixed another server bug
+   2. Chocobo items in creative
+
 v.2.0.1 by Torojima
    1. removed server-mod bug
    2. corrected rider position, now rider is no longer sitting *in* the Chocobo
@@ -459,12 +472,17 @@ Ideas for Future Development:
   6. FFX hot & cold
   7. dynamic abilities (???)
   8. idle animation for saddled and waiting Chocobos
+  9. make genders disable-able from config-file
+ 10. maybe: item to increase spawn rate when equipped or Chocobo-seeker item
+ 11. maybe: double wide chocobo fence doors
+ 12. maybe: eat grass for time to be able to breed bonus
 If you have any more suggestions, comments or ideas, keep 'em coming [img]http://static.minecraftforum.net//public/style_emoticons/default/smile.png[/img][/spoiler]
 
 How to Install:
 [spoiler]
 1. Install Forge v4.1.4.297 or newer by following the instructions on the corresponding pages. The link to both can be found above the link to this mod.
 2. With Forge installed, put this mod's .zip file in your minecraft "mods" folder.
+3. Extract the mod zip in a different folder and get the file choco_kweh.ogg from /resources/sounds and put it into the folder minecraft/resources/mod/. (The other extracted files from the zip won't be needed anymore and can be deleted. Do not delete the zip in the minecraft/mods folder, or if you have extracted the files into the minecraft/mods folder delete them after extracting the sound file. In the minecraft/mods folder only the chococraft_x.x.x_zip file should stay.)
 [/spoiler]
 
 Acknowledgments:

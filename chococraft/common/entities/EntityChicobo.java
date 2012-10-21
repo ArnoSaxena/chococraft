@@ -394,4 +394,14 @@ public class EntityChicobo extends EntityAnimalChocobo
 	{
 		this.landMovementFactor = 0.1F;			
 	}
+
+	@Override
+	public void setJumpHigh(boolean mounting) {
+		this.canJumpHigh = false;
+	}
+	
+    public boolean canMateWith(EntityAnimal entityAnimal)
+    {
+        return false;
+    }
 }

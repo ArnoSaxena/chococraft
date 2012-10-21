@@ -98,25 +98,35 @@ public class Constants
 	public static float CHOCOBO_RED_FLYMOVEFACT       = 0.25F;
 	public static float CHOCOBO_PURPLE_FLYMOVEFACT    = 0.25F;
 	
-	public static double CHOCOBO_YELLOW_LANDSPEEDFACT = 10;
-	public static double CHOCOBO_GREEN_LANDSPEEDFACT  = 15;
-	public static double CHOCOBO_BLUE_LANDSPEEDFACT   = 15;
-	public static double CHOCOBO_WHITE_LANDSPEEDFACT  = 20;
-	public static double CHOCOBO_BLACK_LANDSPEEDFACT  = 25;
-	public static double CHOCOBO_GOLD_LANDSPEEDFACT   = 30;
-	public static double CHOCOBO_PINK_LANDSPEEDFACT   = 35;
-	public static double CHOCOBO_RED_LANDSPEEDFACT    = 35;
-	public static double CHOCOBO_PURPLE_LANDSPEEDFACT = 25;
+	public static double CHOCOBO_YELLOW_LANDSPEEDFACT = 20;
+	public static double CHOCOBO_GREEN_LANDSPEEDFACT  = 27;
+	public static double CHOCOBO_BLUE_LANDSPEEDFACT   = 27;
+	public static double CHOCOBO_WHITE_LANDSPEEDFACT  = 35;
+	public static double CHOCOBO_BLACK_LANDSPEEDFACT  = 40;
+	public static double CHOCOBO_GOLD_LANDSPEEDFACT   = 50;
+	public static double CHOCOBO_PINK_LANDSPEEDFACT   = 55;
+	public static double CHOCOBO_RED_LANDSPEEDFACT    = 55;
+	public static double CHOCOBO_PURPLE_LANDSPEEDFACT = 40;
 	
 	public static double CHOCOBO_YELLOW_AIRSPEEDFACT  =  0;
 	public static double CHOCOBO_GREEN_AIRSPEEDFACT   =  0;
 	public static double CHOCOBO_BLUE_AIRSPEEDFACT    =  0;
 	public static double CHOCOBO_WHITE_AIRSPEEDFACT   =  0;
 	public static double CHOCOBO_BLACK_AIRSPEEDFACT   =  0;
-	public static double CHOCOBO_GOLD_AIRSPEEDFACT    = 35;
-	public static double CHOCOBO_PINK_AIRSPEEDFACT    = 40;
-	public static double CHOCOBO_RED_AIRSPEEDFACT     = 40;
-	public static double CHOCOBO_PURPLE_AIRSPEEDFACT  = 30;
+	public static double CHOCOBO_GOLD_AIRSPEEDFACT    = 55;
+	public static double CHOCOBO_PINK_AIRSPEEDFACT    = 60;
+	public static double CHOCOBO_RED_AIRSPEEDFACT     = 60;
+	public static double CHOCOBO_PURPLE_AIRSPEEDFACT  = 55;
+	
+	public static boolean CHOCOBO_YELLOW_CANJUMPHIGH  = false;
+	public static boolean CHOCOBO_GREEN_CANJUMPHIGH   = false;
+	public static boolean CHOCOBO_BLUE_CANJUMPHIGH    = false;
+	public static boolean CHOCOBO_WHITE_CANJUMPHIGH   = false;
+	public static boolean CHOCOBO_BLACK_CANJUMPHIGH   = true;
+	public static boolean CHOCOBO_GOLD_CANJUMPHIGH    = true;
+	public static boolean CHOCOBO_PINK_CANJUMPHIGH    = true;
+	public static boolean CHOCOBO_RED_CANJUMPHIGH     = true;
+	public static boolean CHOCOBO_PURPLE_CANJUMPHIGH  = false;
 	
 	// max length of channel name is 16                     "xxxxxxxxxxxxxxxx"
 	public static final String PCHAN_CHOCOBO              = "ChocoCraftPChan";

@@ -106,6 +106,18 @@ public class EntityChocoboGold extends EntityChocobo
 		}
 	}
 
+	public void setJumpHigh(boolean mounted)
+	{
+		if(mounted)
+		{
+			this.canJumpHigh = Constants.CHOCOBO_GOLD_CANJUMPHIGH;
+		}
+		else
+		{
+			this.canJumpHigh = false;
+		}
+	}
+
 	@Override
 	public int getMaxHealth()
 	{

@@ -93,9 +93,28 @@ public class EntityChocoboYellow extends EntityChocobo
 	
 	public void setLandMovementFactor(boolean mounted)
 	{
-		this.landMovementFactor = Constants.CHOCOBO_YELLOW_LANDMOVEFACT;
+		if (mounted)
+		{
+			this.landMovementFactor = Constants.CHOCOBO_YELLOW_LANDMOVEFACT;
+		}
+		else
+		{
+			this.landMovementFactor = Constants.CHOCOBO_DEFAULT_LANDMOVEFACT;			
+		}
 	}
 	
+	public void setJumpHigh(boolean mounted)
+	{
+		if(mounted)
+		{
+			this.canJumpHigh = Constants.CHOCOBO_YELLOW_CANJUMPHIGH;
+		}
+		else
+		{
+			this.canJumpHigh = false;
+		}
+	}
+
 	@Override
 	public int getMaxHealth()
 	{

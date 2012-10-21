@@ -312,7 +312,8 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 	public void onLivingUpdate()
 	{
 		super.onLivingUpdate();
-        if (this.isInLove())
+		
+		if (this.isInLove())
         {
             // do we have an attack entity?
             if (this.entityToAttack != null)
@@ -447,7 +448,7 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 	}
 	
 	public void onBreedGysahlUse(EntityPlayer entityplayer, boolean fedGold)
-	{
+	{		
 		if (this.isTamed() && this.getGrowingAge() == 0)
 		{
 			this.fedGold = fedGold;
@@ -568,9 +569,9 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 					{
 						this.setFollowing(false);
 						this.setWander(false);
+						this.setStepHeight(false);
 						return;
 					}
-					this.setStepHeight(true);
 					float distanceToEntityPlayer = entityplayer.getDistanceToEntity(this);
 					if (distanceToEntityPlayer > 4F)
 					{
@@ -607,6 +608,21 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 
 		super.onDeath(damageSource);
 	}
+	
+	@Override
+    public boolean canMateWith(EntityAnimal entityAnimal)
+    {
+		Boolean canmatewith = false;
+		
+    	if(entityAnimal != this)
+    	{
+    		if(entityAnimal instanceof EntityChocobo)
+    		{
+    			canmatewith = this.isInLove() && entityAnimal.isInLove();
+    		}
+    	}
+    	return canmatewith;
+    }
 	
 	public abstract chocoboColor getBabyAnimalColor(EntityAnimal otherAnimalParent);
 	public EntityAnimal spawnBabyAnimal(EntityAnimal otherAnimalParent)

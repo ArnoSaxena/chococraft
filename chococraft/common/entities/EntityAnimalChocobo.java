@@ -148,6 +148,7 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
 	abstract public void setStepHeight(boolean mounting);
 	abstract public void setLandMovementFactor(boolean mounted);
 	abstract public int getMaxHealth();
+	abstract public void setJumpHigh(boolean mounting);
 	
 	public void resetEntityTexture()
 	{
@@ -388,7 +389,8 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
     	if (entity instanceof EntityAnimalChocobo)
         {
             EntityAnimalChocobo entityanimalchoco = (EntityAnimalChocobo)entity;
-            if (getGrowingAge() > 0 && entityanimalchoco.getGrowingAge() < 0)
+            
+            if (this.getGrowingAge() > 0 && entityanimalchoco.getGrowingAge() < 0)
             {
                 if ((double)targetDistance < 2.5D)
                 {
@@ -397,21 +399,21 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
             }
             else if (this.isInLove() && entityanimalchoco.isInLove())
             {
-                if (entityanimalchoco.entityToAttack == null)
+            	if (entityanimalchoco.entityToAttack == null)
                 {
                     entityanimalchoco.entityToAttack = this;
                 }
                 
-                if (entityanimalchoco.entityToAttack == this && (double)targetDistance < 3.5D)
+                if (entityanimalchoco.entityToAttack == this && (double)targetDistance < 5.0D)
                 {
                     entityanimalchoco.setInLove(true);
                     this.setInLove(true);
                     this.breeding++;
-                    if (breeding % 4 == 0)
+                    if (this.breeding % 4 == 0)
                     {
                     	ChocoboHelper.showParticleAroundEntityFx("heart", this);
                     }
-                    if (breeding == 60)
+                    if (this.breeding == 60)
                     {
                     	this.procreate((EntityAnimalChocobo)entity);
                     }
@@ -455,7 +457,7 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
     		}
     	}
     }
-
+    
     public boolean attackEntityFrom(DamageSource damageSource, int tmpNaturalArmorRating)
     {
         this.fleeingTick = 60;
@@ -514,7 +516,7 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
         }
         if (this.isInLove() || getGrowingAge() > 0)
         {
-            List list = this.worldObj.getEntitiesWithinAABB(this.getClass(), this.boundingBox.expand(8F, 8F, 8F));
+            List list = this.worldObj.getEntitiesWithinAABB(EntityChocobo.class, this.boundingBox.expand(8F, 8F, 8F));
             for (int i = 0; i < list.size(); i++)
             {
                 EntityAnimalChocobo otherChoco = (EntityAnimalChocobo)list.get(i);
@@ -819,7 +821,9 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
     
 	public boolean canRenderName()
 	{
-		return ModChocoCraft.showChocoboNames && !this.isHidename() && this.getName() != "" && this.isTamed();
+		return Side.CLIENT == FMLCommonHandler.instance().getEffectiveSide()
+				&& ModChocoCraft.showChocoboNames && this.isTamed()
+				&& !this.isHidename() && !this.getName().isEmpty();
 	}
 	
     protected void sendTamedUpdate()
