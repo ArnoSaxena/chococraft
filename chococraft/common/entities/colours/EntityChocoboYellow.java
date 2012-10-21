@@ -17,9 +17,6 @@ package chococraft.common.entities.colours;
 import com.google.common.io.ByteArrayDataInput;
 import com.google.common.io.ByteArrayDataOutput;
 
-import cpw.mods.fml.common.Side;
-import cpw.mods.fml.common.asm.SideOnly;
-
 import net.minecraft.src.EntityAnimal;
 import net.minecraft.src.NBTTagCompound;
 import net.minecraft.src.World;
@@ -72,7 +69,7 @@ public class EntityChocoboYellow extends EntityChocobo
         super.readEntityFromNBT(nbttagcompound);
     }
 
-    @SideOnly(Side.CLIENT)
+    //@SideOnly(Side.CLIENT)
     public String getEntityColourTexture()
     {
     	return "/chocobo.png";

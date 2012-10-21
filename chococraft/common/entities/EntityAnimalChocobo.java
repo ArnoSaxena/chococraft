@@ -21,14 +21,13 @@ import java.util.Random;
 import com.google.common.io.ByteArrayDataInput;
 import com.google.common.io.ByteArrayDataOutput;
 
-import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
 
 import chococraft.common.*;
-import chococraft.common.gui.GuiChocopedia;
+import chococraft.common.gui.GuiStarter;
 import chococraft.common.network.*;
 import net.minecraft.src.Block;
 import net.minecraft.src.DamageSource;
@@ -335,7 +334,8 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
     	{
     		if (this.isTamed())
     		{
-    			FMLClientHandler.instance().getClient().displayGuiScreen(new GuiChocopedia(FMLClientHandler.instance().getClient().currentScreen, this));
+    			GuiStarter.startChocopediaGui(this);
+    			//FMLClientHandler.instance().getClient().displayGuiScreen(new GuiChocopedia(FMLClientHandler.instance().getClient().currentScreen, this));
     		}
     		else
     		{

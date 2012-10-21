@@ -17,9 +17,6 @@ package chococraft.common.entities.colours;
 import com.google.common.io.ByteArrayDataInput;
 import com.google.common.io.ByteArrayDataOutput;
 
-import cpw.mods.fml.common.Side;
-import cpw.mods.fml.common.asm.SideOnly;
-
 import chococraft.common.Constants;
 import chococraft.common.ModChocoCraft;
 import chococraft.common.entities.EntityAnimalChocobo;
@@ -71,7 +68,7 @@ public class EntityChocoboPurple extends EntityChocobo
 		super.readEntityFromNBT(nbttagcompound);
 	}	
 
-    @SideOnly(Side.CLIENT)
+    //@SideOnly(Side.CLIENT)
 	public String getEntityColourTexture()
 	{
 		return "/purplechocobo.png";

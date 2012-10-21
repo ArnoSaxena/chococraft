@@ -20,7 +20,6 @@ import com.google.common.io.ByteArrayDataOutput;
 
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Side;
-import cpw.mods.fml.common.asm.SideOnly;
 import chococraft.common.*;
 import net.minecraft.src.EntityAnimal;
 import net.minecraft.src.EntityPlayer;
@@ -101,7 +100,7 @@ public class EntityChicobo extends EntityAnimalChocobo
         this.setWander(!this.isFollowing());
     }
     
-    @SideOnly(Side.CLIENT)
+    //@SideOnly(Side.CLIENT)
     public String getEntityTexture()
     {
         String s = new String(Constants.CHICOBO_ENTITY_TEXTURES);
