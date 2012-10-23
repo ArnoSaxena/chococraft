@@ -1,6 +1,5 @@
 package chococraft.common.network;
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -11,20 +10,18 @@ import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.network.Player;
 
 import chococraft.common.ChocoboHelper;
-import chococraft.common.Constants;
 import chococraft.common.entities.EntityAnimalChocobo;
-import net.minecraft.src.Packet250CustomPayload;
 
-public class PacketChocoboTamed extends Packet250CustomPayload
+public class PacketChocoboTamed extends PacketChocobo
 {
 	public PacketChocoboTamed(EntityAnimalChocobo chocobo)
 	{
-		this.channel = Constants.PCHAN_CHOCOBO;
-		
+		super();
 		ByteArrayOutputStream bos = new ByteArrayOutputStream(8);
 		DataOutputStream outputStream = new DataOutputStream(bos);
 		try
 		{
+			outputStream.writeInt(PID_TAMED);			
 			outputStream.writeInt(chocobo.entityId);
 			outputStream.writeBoolean(chocobo.isTamed());
 			outputStream.writeUTF(chocobo.getOwnerName());
@@ -35,18 +32,16 @@ public class PacketChocoboTamed extends Packet250CustomPayload
 			ex.printStackTrace();
 		}		
 
-		this.data = bos.toByteArray();
-		this.length = bos.size();
+		this.packet.data = bos.toByteArray();
+		this.packet.length = bos.size();
 	}
 
-	public static void handleUpdate(Packet250CustomPayload packet, Player player)
+	public static void handleUpdate(DataInputStream inputStream, Player player)
 	{
 		if (Side.CLIENT == FMLCommonHandler.instance().getEffectiveSide())
 		{
-			DataInputStream inputStream = new DataInputStream(new ByteArrayInputStream(packet.data));
-
 			try
-			{				
+			{
 				int entityId = inputStream.readInt();
 				boolean tamed = inputStream.readBoolean();
 				String ownerName = inputStream.readUTF();

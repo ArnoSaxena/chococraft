@@ -823,6 +823,7 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
 	{
 		return Side.CLIENT == FMLCommonHandler.instance().getEffectiveSide()
 				&& ModChocoCraft.showChocoboNames && this.isTamed()
+				&& this.riddenByEntity == null
 				&& !this.isHidename() && !this.getName().isEmpty();
 	}
 	
@@ -832,8 +833,7 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
 		{
 			PacketChocoboTamed packet = new PacketChocoboTamed(this);
 			int dimension = this.worldObj.getWorldInfo().getDimension();
-			PacketDispatcher.sendPacketToAllAround(this.lastTickPosX, this.lastTickPosY, this.lastTickPosZ, 16*5, dimension, packet);
-
+			PacketDispatcher.sendPacketToAllAround(this.lastTickPosX, this.lastTickPosY, this.lastTickPosZ, 16*5, dimension, packet.getPacket());
 		}
 	}
 	
@@ -842,7 +842,7 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
     	if (Side.CLIENT == FMLCommonHandler.instance().getEffectiveSide())
 		{
 			PacketChocoboAttribute packet = new PacketChocoboAttribute(this);
-			PacketDispatcher.sendPacketToServer(packet);
+			PacketDispatcher.sendPacketToServer(packet.getPacket());
 		}
 	}
     
@@ -850,9 +850,9 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
 	{
 		if (Side.SERVER == FMLCommonHandler.instance().getEffectiveSide())
 		{
-			PacketChocoboHealth packet = new PacketChocoboHealth(this);			
-			int dimension = this.worldObj.getWorldInfo().getDimension();			
-			PacketDispatcher.sendPacketToAllAround(this.lastTickPosX, this.lastTickPosY, this.lastTickPosZ, 16*5, dimension, packet);
+			PacketChocoboHealth packet = new PacketChocoboHealth(this);
+			int dimension = this.worldObj.getWorldInfo().getDimension();
+			PacketDispatcher.sendPacketToAllAround(this.lastTickPosX, this.lastTickPosY, this.lastTickPosZ, 16*5, dimension, packet.getPacket());
 		}
 	}
 	
@@ -861,7 +861,7 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
 		if(Side.CLIENT == FMLCommonHandler.instance().getEffectiveSide())
 		{
 			PacketChocoboMount packet = new PacketChocoboMount(this);
-			PacketDispatcher.sendPacketToServer(packet);
+			PacketDispatcher.sendPacketToServer(packet.getPacket());
 		}
 	}
 	
@@ -874,7 +874,7 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
 				if(this instanceof EntityChocobo)
 				{
 					PacketChocoboRiderJump packet = new PacketChocoboRiderJump((EntityPlayer)this.riddenByEntity, (EntityChocobo)this);
-					PacketDispatcher.sendPacketToServer(packet);
+					PacketDispatcher.sendPacketToServer(packet.getPacket());
 				}
 			}
 		}		

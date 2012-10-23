@@ -553,7 +553,7 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo {
 		if(Side.CLIENT == FMLCommonHandler.instance().getEffectiveSide())
 		{
 			PacketChocoboMount packet = new PacketChocoboMount(this);
-			PacketDispatcher.sendPacketToServer(packet);
+			PacketDispatcher.sendPacketToServer(packet.getPacket());
 		}
 	}
 	
@@ -562,7 +562,7 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo {
 		if(Side.CLIENT == FMLCommonHandler.instance().getEffectiveSide())
 		{
 			PacketChocoboDropSaddleAndBags packet = new PacketChocoboDropSaddleAndBags(this);
-			PacketDispatcher.sendPacketToServer(packet);
+			PacketDispatcher.sendPacketToServer(packet.getPacket());
 			this.setSaddleBagged(false);
 			this.setSaddled(false);
 			this.setPackBagged(false);

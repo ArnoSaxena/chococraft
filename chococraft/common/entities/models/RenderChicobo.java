@@ -37,7 +37,8 @@ public class RenderChicobo extends RenderLiving
         super.doRenderLiving(entitychicobo, d, d1, d2, f, f1);
         if (entitychicobo.canRenderName())
         {
-            super.renderLivingLabel(entitychicobo, entitychicobo.getName(), d, d1, d2, 20);
+        	String tmpName = entitychicobo.getName() + " "+ entitychicobo.getTimeUntilAdult();
+            super.renderLivingLabel(entitychicobo, tmpName, d, d1, d2, 20);
         }
     }
 

@@ -1,6 +1,5 @@
 package chococraft.common.network;
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -11,22 +10,20 @@ import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.network.Player;
 
 import chococraft.common.ChocoboHelper;
-import chococraft.common.Constants;
 import chococraft.common.entities.EntityAnimalChocobo;
 import chococraft.common.entities.EntityChocobo;
 import net.minecraft.src.EntityPlayer;
-import net.minecraft.src.Packet250CustomPayload;
 
-public class PacketChocoboRiderJump extends Packet250CustomPayload
+public class PacketChocoboRiderJump extends PacketChocobo
 {
 	public PacketChocoboRiderJump(EntityPlayer riderEntity, EntityChocobo chocobo)
 	{
-		this.channel = Constants.PCHAN_CHOCOBO;
-		
+		super();
 		ByteArrayOutputStream bos = new ByteArrayOutputStream(8);
 		DataOutputStream outputStream = new DataOutputStream(bos);
 		try
 		{
+			outputStream.writeInt(PID_RIDERJUMP);
 			outputStream.writeInt(chocobo.entityId);
 			outputStream.writeUTF(riderEntity.username);
 			outputStream.writeBoolean(riderEntity.isJumping);
@@ -37,15 +34,14 @@ public class PacketChocoboRiderJump extends Packet250CustomPayload
 		{
 			ex.printStackTrace();
 		}
-		this.data = bos.toByteArray();
-		this.length = bos.size();
+		this.packet.data = bos.toByteArray();
+		this.packet.length = bos.size();
 	}
 	
-	static public void handleUpdate(Packet250CustomPayload packet, Player player)
+	static public void handleUpdate(DataInputStream inputStream, Player player)
 	{
 		if (Side.SERVER == FMLCommonHandler.instance().getEffectiveSide())
 		{
-			DataInputStream inputStream = new DataInputStream(new ByteArrayInputStream(packet.data));
 			try
 			{
 				int chocoboEntityId    = inputStream.readInt();

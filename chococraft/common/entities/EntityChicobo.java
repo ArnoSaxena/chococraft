@@ -29,36 +29,36 @@ import net.minecraft.src.World;
 
 public class EntityChicobo extends EntityAnimalChocobo
 {
-    public boolean growUp;
-    protected int maxHealth;
+	public boolean growUp;
+	protected int maxHealth;
 
-    public EntityChicobo(World world)
-    {
-    	super(world);
-        this.dataWatcher.addObject(Constants.DW_ID_CHIC_FLAGS, Byte.valueOf((byte)0));
-        this.dataWatcher.addObject(Constants.DW_ID_CHIC_TIMEUNTILADULT, new Integer(rand.nextInt(2000) + 27000));
-        this.setColor(chocoboColor.YELLOW);
-        this.setMaxHealth(10);
-        this.setSize(0.5F, 0.5F);
-        this.growUp = false;
-        this.canCrossWater = false;
-        this.canFly = false;
-        this.canClimb = false;
-        this.setGrowingAge(this.getTimeUntilAdult());
-    }
-    
-    public void setColor(chocoboColor color)
-    {
-    	this.color = color;
-    	this.texture = this.getEntityTexture();
-        this.setMaxHealth(this.getColorMaxHealth());
-    	this.setEntityHealth(this.getColorMaxHealth());
-        if (color == chocoboColor.PURPLE)
-        {
-            isImmuneToFire = true;
-        }
-    }    
-    
+	public EntityChicobo(World world)
+	{
+		super(world);
+		this.dataWatcher.addObject(Constants.DW_ID_CHIC_FLAGS, Byte.valueOf((byte)0));
+		this.dataWatcher.addObject(Constants.DW_ID_CHIC_TIMEUNTILADULT, new Integer(rand.nextInt(2000) + 27000));
+		this.setColor(chocoboColor.YELLOW);
+		this.setMaxHealth(10);
+		this.setSize(0.5F, 0.5F);
+		this.growUp = false;
+		this.canCrossWater = false;
+		this.canFly = false;
+		this.canClimb = false;
+		this.setGrowingAge(this.getTimeUntilAdult());
+	}
+
+	public void setColor(chocoboColor color)
+	{
+		this.color = color;
+		this.texture = this.getEntityTexture();
+		this.setMaxHealth(this.getColorMaxHealth());
+		this.setEntityHealth(this.getColorMaxHealth());
+		if (color == chocoboColor.PURPLE)
+		{
+			isImmuneToFire = true;
+		}
+	}    
+
 	public void writeSpawnData(ByteArrayDataOutput data)
 	{
 		super.writeSpawnData(data);
@@ -80,9 +80,9 @@ public class EntityChicobo extends EntityAnimalChocobo
 		this.health = data.readInt();
 		this.growUp = data.readBoolean();
 		this.setTimeUntilAdult(data.readInt());
-        this.texture = this.getEntityTexture();
+		this.texture = this.getEntityTexture();
 	}
-	    
+
 	public void writeEntityToNBT(NBTTagCompound nbttagcompound)
 	{
 		super.writeEntityToNBT(nbttagcompound);
@@ -91,292 +91,293 @@ public class EntityChicobo extends EntityAnimalChocobo
 		nbttagcompound.setBoolean("CanGrow", this.isCanGrowUp());
 	}
 
-    public void readEntityFromNBT(NBTTagCompound nbttagcompound)
-    {
-        super.readEntityFromNBT(nbttagcompound);
-        this.setTimeUntilAdult(nbttagcompound.getInteger("TimeToAdult"));
-        this.setColor(chocoboColor.valueOf(nbttagcompound.getString("Color")));
-        this.setCanGrowUp(nbttagcompound.getBoolean("CanGrow"));
-        this.setWander(!this.isFollowing());
-    }
-    
-    //@SideOnly(Side.CLIENT)
-    public String getEntityTexture()
-    {
-        String s = new String(Constants.CHICOBO_ENTITY_TEXTURES);
-        if (this.isTamed())
-        {
-            s = (new StringBuilder()).append(s).append(Constants.CHICOBO_ETXT_TAMED).toString();
-        }
-        switch(this.color)
-        {
-        case YELLOW:
-        	return (new StringBuilder()).append(s).append("/chocobo.png").toString();
-        case GREEN:
-        	return (new StringBuilder()).append(s).append("/greenchocobo.png").toString();
-        case BLUE:
-        	return (new StringBuilder()).append(s).append("/bluechocobo.png").toString();
-        case WHITE:
-        	return (new StringBuilder()).append(s).append("/whitechocobo.png").toString();
-        case BLACK:
-        	return (new StringBuilder()).append(s).append("/blackchocobo.png").toString();
-        case GOLD:
-        	return (new StringBuilder()).append(s).append("/goldchocobo.png").toString();
-        case PINK:
-        	return (new StringBuilder()).append(s).append("/pinkchocobo.png").toString();
-        case RED:
-        	return (new StringBuilder()).append(s).append("/redchocobo.png").toString();
-        case PURPLE:
-        	return (new StringBuilder()).append(s).append("/purplechocobo.png").toString();
-        default:
-        	// todo error handling...
-        	return "";
-        }
-    }
+	public void readEntityFromNBT(NBTTagCompound nbttagcompound)
+	{
+		super.readEntityFromNBT(nbttagcompound);
+		this.setTimeUntilAdult(nbttagcompound.getInteger("TimeToAdult"));
+		this.setColor(chocoboColor.valueOf(nbttagcompound.getString("Color")));
+		this.setCanGrowUp(nbttagcompound.getBoolean("CanGrow"));
+		this.setWander(!this.isFollowing());
+	}
 
-    public int getColorMaxHealth()
-    {
-    	switch(this.color)
-    	{
-    	case YELLOW:
-    	case GREEN:
-    	case BLUE:
-    		return 10;
-    	case WHITE:
-    	case BLACK:
-    		return 15;
-    	case GOLD:
-    	case PINK:
-    	case RED:
-    	case PURPLE:
-    		return 20;
-    	default:
-    		return 10;
-    		// todo error handling
-    	}
-    }
-    
-    // Data Watcher
-    
-    public boolean isCanGrowUp()
-    {
-        return (this.dataWatcher.getWatchableObjectByte(Constants.DW_ID_CHIC_FLAGS) & 4) != 0;
-    }
+	//@SideOnly(Side.CLIENT)
+	public String getEntityTexture()
+	{
+		String s = new String(Constants.CHICOBO_ENTITY_TEXTURES);
+		if (this.isTamed())
+		{
+			s = (new StringBuilder()).append(s).append(Constants.CHICOBO_ETXT_TAMED).toString();
+		}
+		switch(this.color)
+		{
+		case YELLOW:
+			return (new StringBuilder()).append(s).append("/chocobo.png").toString();
+		case GREEN:
+			return (new StringBuilder()).append(s).append("/greenchocobo.png").toString();
+		case BLUE:
+			return (new StringBuilder()).append(s).append("/bluechocobo.png").toString();
+		case WHITE:
+			return (new StringBuilder()).append(s).append("/whitechocobo.png").toString();
+		case BLACK:
+			return (new StringBuilder()).append(s).append("/blackchocobo.png").toString();
+		case GOLD:
+			return (new StringBuilder()).append(s).append("/goldchocobo.png").toString();
+		case PINK:
+			return (new StringBuilder()).append(s).append("/pinkchocobo.png").toString();
+		case RED:
+			return (new StringBuilder()).append(s).append("/redchocobo.png").toString();
+		case PURPLE:
+			return (new StringBuilder()).append(s).append("/purplechocobo.png").toString();
+		default:
+			// todo error handling...
+			return "";
+		}
+	}
 
-    public void setCanGrowUp(boolean canGrowUp)
-    {
-        byte watchedFlags = this.dataWatcher.getWatchableObjectByte(Constants.DW_ID_CHIC_FLAGS);
+	public int getColorMaxHealth()
+	{
+		switch(this.color)
+		{
+		case YELLOW:
+		case GREEN:
+		case BLUE:
+			return 10;
+		case WHITE:
+		case BLACK:
+			return 15;
+		case GOLD:
+		case PINK:
+		case RED:
+		case PURPLE:
+			return 20;
+		default:
+			return 10;
+			// todo error handling
+		}
+	}
 
-        if (canGrowUp)
-        {
-            this.dataWatcher.updateObject(Constants.DW_ID_CHIC_FLAGS, Byte.valueOf((byte)(watchedFlags | 4)));
-        }
-        else
-        {
-            this.dataWatcher.updateObject(Constants.DW_ID_CHIC_FLAGS, Byte.valueOf((byte)(watchedFlags & -5)));
-        }
-    }
-    
-    public void setMaxHealth(int maxHealth)
-    {
-    	this.maxHealth = maxHealth;
-    }
-    
-    public int getMaxHealth()
-    {
-    	return this.maxHealth;
-    }
-        
-    public void setTimeUntilAdult(int timeUntilAdult)
-    {
-    	this.dataWatcher.updateObject(Constants.DW_ID_CHIC_TIMEUNTILADULT, timeUntilAdult);
-    }
-    
-    public int getTimeUntilAdult()
-    {
-    	return this.dataWatcher.getWatchableObjectInt(Constants.DW_ID_CHIC_TIMEUNTILADULT);
-    }        
-    
-    public boolean isChild()
-    {
-        return true;
-    }
+	// Data Watcher
 
-    public void onLivingUpdate()
-    {
-    	super.onLivingUpdate();
-    	if (!this.growUp)
-    	{
-    		this.setTimeUntilAdult(this.getGrowingAge());
-    		this.setTimeUntilAdult(this.getTimeUntilAdult() -1);
-    		this.setGrowingAge(this.getTimeUntilAdult());
-    		if (this.getTimeUntilAdult() <= 0)
-    		{
-    			this.growUp = true;
-    		}
-    	}
-    	if (this.growUp && this.isCanGrowUp())
-    	{
-    		if(Side.SERVER == FMLCommonHandler.instance().getEffectiveSide())
-    		{
-    			this.lastTickPosX = this.posX;
-    			this.lastTickPosY = this.posY;
-    			this.lastTickPosZ = this.posZ;
-    			EntityChocobo entitychocobo = FactoryEntityChocobo.createChocobo(this.worldObj, this.color, this.getName(), this.getOwnerName(), this.isHidename(), this.isTamed(), this.isFollowing(), this.isMale());
-    			entitychocobo.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, 0.0F);
-    			entitychocobo.setGrowingAge(6000);
-    			this.worldObj.spawnEntityInWorld(entitychocobo);
-    			for (int i = 0; i < 20; i++)
-    			{
-    				ChocoboHelper.showParticleAroundEntityFx("explode", this);
-    			}
-    			this.setEntityHealth(0);
-    			setDead();
-    			this.growUp = false;
-    		}
-    	}
-    }
+	public boolean isCanGrowUp()
+	{
+		return (this.dataWatcher.getWatchableObjectByte(Constants.DW_ID_CHIC_FLAGS) & 4) != 0;
+	}
 
-    protected void entityInit()
-    {
-        super.entityInit();
-    }
+	public void setCanGrowUp(boolean canGrowUp)
+	{
+		byte watchedFlags = this.dataWatcher.getWatchableObjectByte(Constants.DW_ID_CHIC_FLAGS);
 
-    protected String getLivingSound()
-    {
-        if (rand.nextInt(2) == 0)
-        {
-            return "choco_kweh";
-        }
-        else
-        {
-            return "";
-        }
-    }
+		if (canGrowUp)
+		{
+			this.dataWatcher.updateObject(Constants.DW_ID_CHIC_FLAGS, Byte.valueOf((byte)(watchedFlags | 4)));
+		}
+		else
+		{
+			this.dataWatcher.updateObject(Constants.DW_ID_CHIC_FLAGS, Byte.valueOf((byte)(watchedFlags & -5)));
+		}
+	}
 
-    protected String getHurtSound()
-    {
-        return "choco_kweh";
-    }
+	public void setMaxHealth(int maxHealth)
+	{
+		this.maxHealth = maxHealth;
+	}
 
-    protected String getDeathSound()
-    {
-        return "choco_kweh";
-    }
+	public int getMaxHealth()
+	{
+		return this.maxHealth;
+	}
 
-    public boolean interact(EntityPlayer entityplayer)
-    {
-    	boolean interacted = false;
-    	interacted = super.interact(entityplayer);
-    	if(!interacted)
-    	{
-    		ItemStack itemstack = entityplayer.inventory.getCurrentItem();
-    		if(itemstack != null)
-    		{
-    			if (itemstack.itemID == ModChocoCraft.chocoboCakeItem.shiftedIndex)
-    			{
-    				this.onGysahlCakeUse(entityplayer);
-    				interacted = true;
-    			} 
-    			else if (itemstack.itemID == ModChocoCraft.gysahlChibiItem.shiftedIndex)
-    			{
-    				this.onGysahlChibiUse(entityplayer);
-    				interacted = true;
-    			}
-    		}
-    	}
+	public void setTimeUntilAdult(int timeUntilAdult)
+	{
+		this.dataWatcher.updateObject(Constants.DW_ID_CHIC_TIMEUNTILADULT, timeUntilAdult);
+	}
+
+	public int getTimeUntilAdult()
+	{
+		return this.dataWatcher.getWatchableObjectInt(Constants.DW_ID_CHIC_TIMEUNTILADULT);
+	}        
+
+	public boolean isChild()
+	{
+		return true;
+	}
+
+	public void onLivingUpdate()
+	{
+		super.onLivingUpdate();
+		if (!this.growUp)
+		{
+			this.setTimeUntilAdult(this.getGrowingAge());
+			this.setTimeUntilAdult(this.getTimeUntilAdult() -1);
+			this.setGrowingAge(this.getTimeUntilAdult());
+			if (this.getTimeUntilAdult() <= 0)
+			{
+				this.growUp = true;
+				this.setCanGrowUp(true);
+			}
+		}
+		if (this.growUp && this.isCanGrowUp())
+		{
+			if(Side.SERVER == FMLCommonHandler.instance().getEffectiveSide())
+			{
+				this.lastTickPosX = this.posX;
+				this.lastTickPosY = this.posY;
+				this.lastTickPosZ = this.posZ;
+				EntityChocobo entitychocobo = FactoryEntityChocobo.createChocobo(this.worldObj, this.color, this.getName(), this.getOwnerName(), this.isHidename(), this.isTamed(), this.isFollowing(), this.isMale());
+				entitychocobo.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, 0.0F);
+				entitychocobo.setGrowingAge(6000);
+				this.worldObj.spawnEntityInWorld(entitychocobo);
+				for (int i = 0; i < 20; i++)
+				{
+					ChocoboHelper.showParticleAroundEntityFx("explode", this);
+				}
+				this.setEntityHealth(0);
+				this.setDead();
+				this.growUp = false;
+			}
+		}
+	}
+
+	protected void entityInit()
+	{
+		super.entityInit();
+	}
+
+	protected String getLivingSound()
+	{
+		if (rand.nextInt(2) == 0)
+		{
+			return "choco_kweh";
+		}
+		else
+		{
+			return "";
+		}
+	}
+
+	protected String getHurtSound()
+	{
+		return "choco_kweh";
+	}
+
+	protected String getDeathSound()
+	{
+		return "choco_kweh";
+	}
+
+	public boolean interact(EntityPlayer entityplayer)
+	{
+		boolean interacted = false;
+		interacted = super.interact(entityplayer);
+		if(!interacted)
+		{
+			ItemStack itemstack = entityplayer.inventory.getCurrentItem();
+			if(itemstack != null)
+			{
+				if (itemstack.itemID == ModChocoCraft.chocoboCakeItem.shiftedIndex)
+				{
+					this.onGysahlCakeUse(entityplayer);
+					interacted = true;
+				} 
+				else if (itemstack.itemID == ModChocoCraft.gysahlChibiItem.shiftedIndex)
+				{
+					this.onGysahlChibiUse(entityplayer);
+					interacted = true;
+				}
+			}
+		}
 		return interacted;
-    }
+	}
 
-    protected void onGysahlChibiUse(EntityPlayer entityplayer)
-    {
-    	if (Side.SERVER == FMLCommonHandler.instance().getEffectiveSide())
-    	{
-    		if (this.isTamed())
-    		{
-    			this.useItem(entityplayer);
-    			this.setCanGrowUp(false);
-    		}
-    		else
-    		{
-    			this.showAmountHeartsOrSmokeFx(false, 7);
-    		}
-    	}
-    }
+	protected void onGysahlChibiUse(EntityPlayer entityplayer)
+	{
+		if (Side.SERVER == FMLCommonHandler.instance().getEffectiveSide())
+		{
+			if (this.isTamed())
+			{
+				this.useItem(entityplayer);
+				this.setCanGrowUp(false);
+			}
+			else
+			{
+				this.showAmountHeartsOrSmokeFx(false, 7);
+			}
+		}
+	}
 
-    protected void onGysahlCakeUse(EntityPlayer entityplayer)
-    {
-    	if (Side.SERVER == FMLCommonHandler.instance().getEffectiveSide())
-    	{
-    		if (this.isTamed())
-    		{
-    			this.useItem(entityplayer);
-    			this.setCanGrowUp(true);
-    			this.growUp = true;
-    		}
-    		else
-    		{
-    			this.showAmountHeartsOrSmokeFx(false, 7);
-    		}
-    	}
-    }
+	protected void onGysahlCakeUse(EntityPlayer entityplayer)
+	{
+		if (Side.SERVER == FMLCommonHandler.instance().getEffectiveSide())
+		{
+			if (this.isTamed())
+			{
+				this.useItem(entityplayer);
+				this.setCanGrowUp(true);
+				this.growUp = true;
+			}
+			else
+			{
+				this.showAmountHeartsOrSmokeFx(false, 7);
+			}
+		}
+	}
 
-    public void toggleFollow()
-    {
-    	this.setFollowing(!this.isFollowing());
-    	this.setWander(!this.isFollowing());
-    	this.showAmountHeartsOrSmokeFx(this.isFollowing(), 7);
-    }
+	public void toggleFollow()
+	{
+		this.setFollowing(!this.isFollowing());
+		this.setWander(!this.isFollowing());
+		this.showAmountHeartsOrSmokeFx(this.isFollowing(), 7);
+	}
 
-    protected int getDropItemId()
-    {
-        return -1;
-    }
+	protected int getDropItemId()
+	{
+		return -1;
+	}
 
-    public void updateEntityActionState()
-    {
-        if (!this.worldObj.playerEntities.isEmpty())
-        {
-            EntityPlayer entityplayer = (EntityPlayer)this.worldObj.playerEntities.get(0);
-            if (!this.hasPath() && this.isTamed() && this.isFollowing())
-            {
-                if (entityplayer != null)
-                {
-                    if (entityplayer.isDead)
-                    {
-                    	this.setFollowing(false);
-                    	this.setWander(false);
-                        return;
-                    }
-                    float distance = entityplayer.getDistanceToEntity(this);
-                    if (distance > 4F)
-                    {
-                        this.getPathOrWalkableBlock(entityplayer, distance);
-                    }
-                    else
-                    {
-                        super.updateEntityActionState();
-                        return;
-                    }
-                }
-            }
-            else
-            {
-                super.updateEntityActionState();
-                return;
-            }
-        }
-    }
+	public void updateEntityActionState()
+	{
+		if (!this.worldObj.playerEntities.isEmpty())
+		{
+			EntityPlayer entityplayer = (EntityPlayer)this.worldObj.playerEntities.get(0);
+			if (!this.hasPath() && this.isTamed() && this.isFollowing())
+			{
+				if (entityplayer != null)
+				{
+					if (entityplayer.isDead)
+					{
+						this.setFollowing(false);
+						this.setWander(false);
+						return;
+					}
+					float distance = entityplayer.getDistanceToEntity(this);
+					if (distance > 4F)
+					{
+						this.getPathOrWalkableBlock(entityplayer, distance);
+					}
+					else
+					{
+						super.updateEntityActionState();
+						return;
+					}
+				}
+			}
+			else
+			{
+				super.updateEntityActionState();
+				return;
+			}
+		}
+	}
 
-    protected boolean canDespawn()
-    {
-        return false;
-    }
+	protected boolean canDespawn()
+	{
+		return false;
+	}
 
-    public boolean canRenderName()
-    {
-        return super.canRenderName() && this.getName() != "";
-    }
+	public boolean canRenderName()
+	{
+		return super.canRenderName() && this.getName() != "";
+	}
 
 	@Override
 	public EntityAnimal spawnBabyAnimal(EntityAnimal dummy) {
@@ -388,7 +389,7 @@ public class EntityChicobo extends EntityAnimalChocobo
 	{
 		this.stepHeight = 0.5F;
 	}
-	
+
 	public void setLandMovementFactor(boolean mounted)
 	{
 		this.landMovementFactor = 0.1F;			
@@ -398,9 +399,9 @@ public class EntityChicobo extends EntityAnimalChocobo
 	public void setJumpHigh(boolean mounting) {
 		this.canJumpHigh = false;
 	}
-	
-    public boolean canMateWith(EntityAnimal entityAnimal)
-    {
-        return false;
-    }
+
+	public boolean canMateWith(EntityAnimal entityAnimal)
+	{
+		return false;
+	}
 }
