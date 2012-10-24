@@ -32,7 +32,6 @@ public class GuiChocoboBag extends GuiContainer
 
     public GuiChocoboBag(IInventory chocoboIInventory, IInventory playerIInventory)
     {
-        //super(new ContainerChest(chocoboIInventory, playerIInventory));
         super(new ChocoBagContainer(chocoboIInventory, playerIInventory));
         playerInvRows = 0;
         chocoboInventory = chocoboIInventory;

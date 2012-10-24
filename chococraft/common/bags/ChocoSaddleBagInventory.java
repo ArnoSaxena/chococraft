@@ -78,27 +78,27 @@ public class ChocoSaddleBagInventory extends ChocoBagInventory {
 	@Override
 	public void writeSpawnData(ByteArrayDataOutput data)
 	{
-//		for(int i = 0; i < INVENTORY_SIZE_SMALL; i++)
-//		{
-//			data.writeInt(this.mainInventory[i].stackSize);
-//			if(this.mainInventory[i].stackSize > 0)
-//			{
-//				data.writeInt(this.mainInventory[i].itemID);
-//				data.writeInt(this.mainInventory[i].getItemDamage());
-//			}
-//		}
+		for(int i = 0; i < INVENTORY_SIZE_SMALL; i++)
+		{
+			data.writeInt(this.mainInventory[i].stackSize);
+			if(this.mainInventory[i].stackSize > 0)
+			{
+				data.writeInt(this.mainInventory[i].itemID);
+				data.writeInt(this.mainInventory[i].getItemDamage());
+			}
+		}
 	}
 
 	@Override
 	public void readSpawnData(ByteArrayDataInput data)
 	{		
-//		for(int i = 0; i < INVENTORY_SIZE_SMALL; i++)
-//		{
-//			int stackSize = data.readInt();
-//			if(stackSize > 0)
-//			{
-//				this.mainInventory[i] = new ItemStack(stackSize, data.readInt(), data.readInt());				
-//			}
-//		}
+		for(int i = 0; i < INVENTORY_SIZE_SMALL; i++)
+		{
+			int stackSize = data.readInt();
+			if(stackSize > 0)
+			{
+				this.mainInventory[i] = new ItemStack(stackSize, data.readInt(), data.readInt());				
+			}
+		}
 	}
 }

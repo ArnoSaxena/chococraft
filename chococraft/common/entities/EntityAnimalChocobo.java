@@ -686,11 +686,11 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
         	}
         }
         
-        this.hasAttacked = isMovementCeased();
+        this.hasAttacked = this.isMovementCeased();
         float f = 16F;
         if (this.entityToAttack == null)
         {
-        	this.entityToAttack = findPlayerToAttack();
+        	this.entityToAttack = this.findPlayerToAttack();
             if (this.entityToAttack != null)
             {
             	this.pathToEntity = this.worldObj.getPathEntityToEntity(this, this.entityToAttack, f, false, false, false, false);

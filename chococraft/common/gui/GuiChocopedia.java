@@ -53,22 +53,23 @@ public class GuiChocopedia extends GuiScreen
 
 		//int yPos = 48;
 		int yPos = 24;
+		int xPos = this.width / 2 - 100;
 
 		// rename button
-		this.controlList.add(new GuiButton(0, this.width / 2 - 100, this.height / 4 + yPos + 12, stringtranslate.translateKey("Rename")));
+		this.controlList.add(this.createGuiButton(0, xPos, (yPos += 24), stringtranslate.translateKey("Rename")));
 
 		// hide name button
 		String lblNameShown = (this.chocobo.isHidename()) ? "Name Hidden" : "Name Shown";
-		this.namingButton = new GuiButton(2, this.width / 2 - 100, this.height / 4 + (yPos += 24) + 12, stringtranslate.translateKey(lblNameShown));
+		this.namingButton = this.createGuiButton(2, xPos, (yPos += 24), stringtranslate.translateKey(lblNameShown));
 		this.controlList.add(this.namingButton);
 
 		// following button
 		String lblFollowing = (this.chocobo.isFollowing()) ? "Following" : "Not Following";
-		this.followingButton = new GuiButton(3, this.width / 2 - 100, this.height / 4 + (yPos += 24) + 12, stringtranslate.translateKey(lblFollowing));
+		this.followingButton = this.createGuiButton(3, xPos, (yPos += 24), stringtranslate.translateKey(lblFollowing));
 		this.controlList.add(this.followingButton);
 
 		// confirm button
-		this.controlList.add(new GuiButton(1, this.width / 2 - 100, this.height / 4 + (yPos += 24) + 12, stringtranslate.translateKey("Confirm")));
+		this.controlList.add(this.createGuiButton(1, xPos, (yPos += 24), stringtranslate.translateKey("Confirm")));
 		
 		// remove saddle button
 		if(this.chocobo instanceof EntityChocoboRideable)
@@ -76,11 +77,16 @@ public class GuiChocopedia extends GuiScreen
 			EntityChocoboRideable chocoboRideable = (EntityChocoboRideable)this.chocobo;
 			if(chocoboRideable.isSaddled() || chocoboRideable.isPackBagged())
 			{
-				String lblRemoveSaddle = "Remove Saddle and Bags";
-				this.removeSaddleButton = new GuiButton(4, this.width / 2 - 100, this.height / 4 + (yPos += 30) + 12, stringtranslate.translateKey(lblRemoveSaddle));
+				String lblRemoveSaddle = "Drop Gear";
+				this.removeSaddleButton = this.createGuiButton(4, xPos, (yPos += 30), stringtranslate.translateKey(lblRemoveSaddle));
 				this.controlList.add(this.removeSaddleButton);
 			}
 		}		
+	}
+	
+	protected GuiButton createGuiButton(int id, int xPos, int yPos, String label)
+	{
+		return new GuiButton(id, xPos, yPos, 90, 20, label);
 	}
 
 	public void onGuiClosed()
@@ -129,24 +135,32 @@ public class GuiChocopedia extends GuiScreen
 
 	public void drawScreen(int i, int j, float f)
 	{
+		
 		drawDefaultBackground();
 		String breedStatus = "";
-		String gender = "";
+		String gender = this.chocobo.getGender();
+		String ownerName = (new StringBuilder()).append("owner: ").append(this.chocobo.getOwnerName()).toString();
+		String health = (new StringBuilder()).append("health: ").append(chocobo.getHealth()).append("/").append(chocobo.getMaxHealth()).toString();
 
 		if (this.chocobo.getGrowingAge() > 0 || this.chocobo.isChild())
 		{
-			breedStatus = "Cannot breed";
+			breedStatus = "cannot breed";
 		}
 		else
 		{
-			breedStatus = "Can breed";
+			breedStatus = "can breed";
 		}
-		gender = chocobo.getGender();
-
-		drawCenteredString(fontRenderer, chocobo.getName(), width / 2, (height / 4 - 60) + 20, 0xffffff);
-		drawCenteredString(fontRenderer, (new StringBuilder()).append("health = ").append(chocobo.getHealth()).append("/").append(chocobo.getMaxHealth()).toString(), width / 2, 40, 0xa0a0a0);
-		drawCenteredString(fontRenderer, breedStatus, width / 2, 60, 0xa0a0a0);
-		drawCenteredString(fontRenderer, gender, width / 2, 80, 0xa0a0a0);
+		
+		this.drawCenteredString(this.fontRenderer, chocobo.getName(), this.width / 2, (height / 4 - 60) + 20, 0xffffff);
+				
+		int posY = 24;
+		int posX = this.width / 2 + 10;
+		int fontColour = 0xa0a0a0;
+		
+		this.drawString(this.fontRenderer, ownerName,   posX, (posY += 24), fontColour);
+		this.drawString(this.fontRenderer, health,      posX, (posY += 24), fontColour);
+		this.drawString(this.fontRenderer, gender + " (" + breedStatus + ")",      posX, (posY += 24), fontColour);
+		//this.drawString(this.fontRenderer, breedStatus, posX, (posY += 24), fontColour);
 		super.drawScreen(i, j, f);
 	}
 }

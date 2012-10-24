@@ -527,12 +527,11 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 	{
 		if (!worldObj.playerEntities.isEmpty())
 		{
-			EntityPlayer entityplayer = (EntityPlayer)worldObj.playerEntities.get(0);
-			if (riddenByEntity != null && (riddenByEntity instanceof EntityLiving))
+			if (this.riddenByEntity != null && (this.riddenByEntity instanceof EntityLiving))
 			{
 				if(this instanceof EntityChocoboPurple)
 				{
-					entityplayer.extinguish();
+					this.riddenByEntity.extinguish();
 				}
 				prevRotationYaw = rotationYaw = riddenByEntity.rotationYaw;
 				prevRotationPitch = rotationPitch = 0.0F;
@@ -546,7 +545,7 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 					motionZ = motionZ * d1;
 				}
 				@SuppressWarnings("rawtypes")
-				List list = worldObj.getEntitiesWithinAABBExcludingEntity(entityplayer, boundingBox.expand(1.0D, 1.0D, 1.0D));
+				List list = worldObj.getEntitiesWithinAABBExcludingEntity(this.riddenByEntity, boundingBox.expand(1.0D, 1.0D, 1.0D));
 				if (list != null)
 				{
 					for (int i = 0; i < list.size(); i++)
@@ -554,7 +553,10 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 						Entity entity = (Entity)list.get(i);
 						if (!entity.isDead)
 						{
-							entity.onCollideWithPlayer(entityplayer);
+							if(this.riddenByEntity instanceof EntityPlayer)
+							{
+								entity.onCollideWithPlayer((EntityPlayer)this.riddenByEntity);
+							}
 						}
 					}
 				}
@@ -563,19 +565,21 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 			
 			if (!this.hasAttacked && !this.hasPath() && this.isFollowing() && this.isTamed())
 			{
-				if (entityplayer != null)
+				EntityPlayer owner = this.getOwner();
+				
+				if (owner != null)
 				{
-					if (entityplayer.isDead)
+					if (owner.isDead)
 					{
 						this.setFollowing(false);
 						this.setWander(false);
 						this.setStepHeight(false);
 						return;
 					}
-					float distanceToEntityPlayer = entityplayer.getDistanceToEntity(this);
-					if (distanceToEntityPlayer > 4F)
+					float distanceToOwner = owner.getDistanceToEntity(this);
+					if (distanceToOwner > 10F)
 					{
-						this.getPathOrWalkableBlock(entityplayer, distanceToEntityPlayer);
+						this.getPathOrWalkableBlock(owner, distanceToOwner);
 					}
 					else
 					{
