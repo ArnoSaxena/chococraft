@@ -19,6 +19,7 @@ import java.io.File;
 import chococraft.client.ClientProxyChocoCraft;
 import chococraft.common.entities.EntityChicobo;
 import chococraft.common.entities.colours.*;
+import chococraft.common.gui.ChocoboGuiHandler;
 import chococraft.common.items.*;
 import chococraft.common.network.ChocoboPacketHandler;
 import net.minecraft.src.BiomeGenBase;
@@ -40,6 +41,7 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.Mod.*;
 import cpw.mods.fml.common.event.*;
 import cpw.mods.fml.common.network.NetworkMod;
+import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.common.registry.EntityRegistry;
@@ -165,6 +167,8 @@ public class ModChocoCraft
         GameRegistry.registerWorldGenerator(new WorldGenGysahls());
         
 		proxy.registerRenderThings();
+		
+		NetworkRegistry.instance().registerGuiHandler(this, new ChocoboGuiHandler());
     }
 
 	@PreInit

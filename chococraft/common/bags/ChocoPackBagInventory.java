@@ -14,8 +14,8 @@
 
 package chococraft.common.bags;
 
-import com.google.common.io.ByteArrayDataInput;
-import com.google.common.io.ByteArrayDataOutput;
+//import com.google.common.io.ByteArrayDataInput;
+//import com.google.common.io.ByteArrayDataOutput;
 
 import chococraft.common.entities.EntityChocoboRideable;
 import net.minecraft.src.ItemStack;
@@ -26,23 +26,22 @@ import net.minecraft.src.NBTTagList;
 public class ChocoPackBagInventory extends ChocoBagInventory
 {
 	
-	public static int INVENTORY_SIZE_BIG = 54;
+	public static int INV_SIZE_BIG = 54;
 	
 	public ChocoPackBagInventory(EntityChocoboRideable entityChocobo)
 	{
-		this.inventoryChanged = false;
 		this.entitychocobo = entityChocobo;
-		this.mainInventory = new ItemStack[INVENTORY_SIZE_BIG];
-	}
+		this.mainInventory = new ItemStack[INV_SIZE_BIG];
+	}	
 
 	@Override
 	public String getInvName()
 	{
-        return this.entitychocobo.getName() + " pack bags";
+        return this.entitychocobo.getName() + " saddle bags";
 	}
-
+	
 	public void readFromNBT(NBTTagList nbttaglist) {
-        mainInventory = new ItemStack[INVENTORY_SIZE_BIG];
+        mainInventory = new ItemStack[INV_SIZE_BIG];
 
         for (int i = 0; i < nbttaglist.tagCount(); i++)
         {
@@ -74,32 +73,5 @@ public class ChocoPackBagInventory extends ChocoBagInventory
             }
         }
         return nbtTagList;
-	}
-
-	@Override
-	public void writeSpawnData(ByteArrayDataOutput data)
-	{
-		for(int i = 0; i < INVENTORY_SIZE_BIG; i++)
-		{
-			data.writeInt(this.mainInventory[i].stackSize);
-			if(this.mainInventory[i].stackSize > 0)
-			{
-				data.writeInt(this.mainInventory[i].itemID);
-				data.writeInt(this.mainInventory[i].getItemDamage());
-			}
-		}
-	}
-
-	@Override
-	public void readSpawnData(ByteArrayDataInput data)
-	{		
-		for(int i = 0; i < INVENTORY_SIZE_BIG; i++)
-		{
-			int stackSize = data.readInt();
-			if(stackSize > 0)
-			{
-				this.mainInventory[i] = new ItemStack(stackSize, data.readInt(), data.readInt());				
-			}
-		}
 	}
 }

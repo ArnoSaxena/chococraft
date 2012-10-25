@@ -23,17 +23,23 @@ import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.network.PacketDispatcher;
 import net.minecraft.src.DamageSource;
 import net.minecraft.src.Entity;
+import net.minecraft.src.IInventory;
 import net.minecraft.src.IMob;
 import net.minecraft.src.EntityPlayer;
 import net.minecraft.src.Item;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.NBTTagCompound;
+import net.minecraft.src.NBTTagList;
 import net.minecraft.src.World;
 
 import chococraft.common.Constants;
 import chococraft.common.ModChocoCraft;
+import chococraft.common.bags.ChocoBagInventory;
+import chococraft.common.bags.ChocoPackBagInventory;
+import chococraft.common.bags.ChocoSaddleBagInventory;
 import chococraft.common.network.PacketChocoboDropSaddleAndBags;
 import chococraft.common.network.PacketChocoboMount;
+//import chococraft.debugger.DebugFileWriter;
 
 
 public abstract class EntityChocoboRideable extends EntityAnimalChocobo {
@@ -44,7 +50,7 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo {
 	protected boolean flying;
 	protected boolean isHighJumping;
 
-	//protected ChocoBagInventory bagsInventory;    
+	protected ChocoBagInventory bagsInventory;    
 
 	public EntityChocoboRideable(World world) {
 		super(world);
@@ -55,7 +61,7 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo {
 	{
 		super.entityInit();
 		this.dataWatcher.addObject(Constants.DW_ID_ECR_FLAGS, Byte.valueOf((byte)0));
-		//this.bagsInventory = new ChocoSaddleBagInventory(this);
+		this.bagsInventory = new ChocoSaddleBagInventory(this);
 	}
 
 	public boolean isAIEnabled()
@@ -69,7 +75,7 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo {
 		nbttagcompound.setBoolean("Saddle", this.isSaddled());
 		nbttagcompound.setBoolean("SaddleBag", this.isSaddleBagged());
 		nbttagcompound.setBoolean("PackBag", this.isPackBagged());
-		//nbttagcompound.setTag("SaddleBagInventory", this.bagsInventory.writeToNBT(new NBTTagList()));
+		nbttagcompound.setTag("SaddleBagInventory", this.bagsInventory.writeToNBT(new NBTTagList()));
 	}
 
 	public void readEntityFromNBT(NBTTagCompound nbttagcompound)
@@ -79,8 +85,7 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo {
 		this.setSaddleBagged(nbttagcompound.getBoolean("SaddleBag"));
 		this.setPackBagged(nbttagcompound.getBoolean("PackBag"));
 		this.setWander(!this.isFollowing() && !this.isSaddled() && !this.isPackBagged());
-		//NBTTagList nbttaglist = nbttagcompound.getTagList("SaddleBagInventory");
-		//this.bagsInventory.readFromNBT(nbttaglist);
+		this.bagsInventory.readFromNBT(nbttagcompound.getTagList("SaddleBagInventory"));
 	}    
 
 	public void writeSpawnData(ByteArrayDataOutput data)
@@ -133,12 +138,12 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo {
 		if(side == Side.SERVER && this.isSaddleBagged())
 		{
 			this.dropItem(ModChocoCraft.chocoboSaddleBagsItem.shiftedIndex, 1);
-			//this.bagsInventory.dropAllItems();
+			this.bagsInventory.dropAllItems();
 		}
 		if(side == Side.SERVER && this.isPackBagged())
 		{
 			this.dropItem(ModChocoCraft.chocoboPackBagsItem.shiftedIndex, 1);
-			//this.bagsInventory.dropAllItems();
+			this.bagsInventory.dropAllItems();
 		}
 		super.onDeath(damageSource);
 	}
@@ -223,22 +228,25 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo {
 	{
 		Side side = FMLCommonHandler.instance().getEffectiveSide();
 		boolean interacted = false;
+		
 		if (this.isSaddled())
 		{
 			if(entityplayer.isSneaking() && this.isSaddleBagged())
 			{
+				entityplayer.openGui(ModChocoCraft.instance, 0, worldObj, this.entityId, 0, 0);
 				if(side == Side.CLIENT)
 				{
-					//ModChocoCraft.mcc.displayGuiScreen(new GuiChocoboBag(entityplayer.inventory, this.getIInventory()));
+					//FMLClientHandler.instance().getClient().displayGuiScreen(new GuiChocoboBag(this.getIInventory(), entityplayer.inventory));
 				}
 				interacted = true;
 			}
 		}
 		else if (entityplayer.isSneaking() && this.isPackBagged())
 		{
+			//entityplayer.openGui(ModChocoCraft.instance, 0, worldObj, this.entityId, 1, 0);
 			if(side == Side.CLIENT)
 			{
-				//ModChocoCraft.mcc.displayGuiScreen(new GuiChocoboBag(entityplayer.inventory, this.getIInventory()));
+				//FMLClientHandler.instance().getClient().displayGuiScreen(new GuiChocoboBag(this.getIInventory(), entityplayer.inventory));
 			}
 			interacted = true;
 		}
@@ -462,11 +470,21 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo {
 	}
 
 	// Chocobo as inventory
-	//	public IInventory getIInventory()
-	//	{
-		//		return (IInventory)this.bagsInventory;
-	//	}
+	public IInventory getIInventory()
+	{
+		return (IInventory)this.bagsInventory;
+	}
+	
+	public ChocoBagInventory getChocoBagInventory()
+	{
+		return this.bagsInventory;
+	}
 
+	public void injectInventory(ChocoBagInventory inventory)
+	{
+		this.bagsInventory = inventory;
+	}	
+	
 	public Boolean isSaddleBagged()
 	{
 		return (this.dataWatcher.getWatchableObjectByte(Constants.DW_ID_ECR_FLAGS) & Constants.DW_VAL_ECR_SADDLEBAGGED_ON) != 0;
@@ -476,20 +494,20 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo {
 	{
 		if(saddleBags != this.isSaddleBagged())
 		{
-			//ChocoBagInventory newBagInventory;
+			ChocoBagInventory newBagInventory;
 			byte ecrFlags = this.dataWatcher.getWatchableObjectByte(Constants.DW_ID_ECR_FLAGS);
 			if (saddleBags)
 			{
-				//newBagInventory = new ChocoSaddleBagInventory(this);
+				newBagInventory = new ChocoSaddleBagInventory(this);
 				this.dataWatcher.updateObject(Constants.DW_ID_ECR_FLAGS, Byte.valueOf((byte)(ecrFlags | Constants.DW_VAL_ECR_SADDLEBAGGED_ON)));
 			}
 			else
 			{
-				//newBagInventory = new ChocoPackBagInventory(this);
+				newBagInventory = new ChocoPackBagInventory(this);
 				this.dataWatcher.updateObject(Constants.DW_ID_ECR_FLAGS, Byte.valueOf((byte)(ecrFlags & Constants.DW_VAL_ECR_SADDLEBAGGED_OFF)));
 			}
-			//newBagInventory.insertInventory(this.getIInventory());
-			//this.bagsInventory = newBagInventory;
+			newBagInventory.insertInventory(this.getIInventory());
+			this.bagsInventory = newBagInventory;
 
 			this.texture = this.getEntityTexture();
 		}    	
@@ -504,20 +522,20 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo {
 	{
 		if(packBagged != this.isPackBagged())
 		{
-			//ChocoBagInventory newBagInventory;
+			ChocoBagInventory newBagInventory;
 			byte ecrFlags = this.dataWatcher.getWatchableObjectByte(Constants.DW_ID_ECR_FLAGS);
 			if (packBagged)
 			{
-				//newBagInventory = new ChocoPackBagInventory(this);
+				newBagInventory = new ChocoPackBagInventory(this);
 				this.dataWatcher.updateObject(Constants.DW_ID_ECR_FLAGS, Byte.valueOf((byte)(ecrFlags | Constants.DW_VAL_ECR_PACKBAGGED_ON)));
 			}
 			else
 			{
-				//newBagInventory = new ChocoSaddleBagInventory(this);
+				newBagInventory = new ChocoSaddleBagInventory(this);
 				this.dataWatcher.updateObject(Constants.DW_ID_ECR_FLAGS, Byte.valueOf((byte)(ecrFlags & Constants.DW_VAL_ECR_PACKBAGGED_OFF)));
 			}
-			//newBagInventory.insertInventory(this.getIInventory());
-			//this.bagsInventory = newBagInventory;
+			newBagInventory.insertInventory(this.getIInventory());
+			this.bagsInventory = newBagInventory;
 
 			this.texture = this.getEntityTexture();
 		}
@@ -542,11 +560,6 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo {
 		this.setJumpHigh(false);
 		this.setLandMovementFactor(false);
 	}
-
-//	public void injectInventory(ChocoBagInventory inventory)
-//	{
-//		this.bagsInventory = inventory;
-//	}
 
 	protected void sendMountUpdate()
 	{

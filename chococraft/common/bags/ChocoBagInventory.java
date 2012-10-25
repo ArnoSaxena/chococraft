@@ -14,7 +14,7 @@
 
 package chococraft.common.bags;
 
-import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
+//import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
 import chococraft.common.entities.EntityChocoboRideable;
 import net.minecraft.src.EntityPlayer;
 import net.minecraft.src.IInventory;
@@ -22,95 +22,67 @@ import net.minecraft.src.ItemStack;
 import net.minecraft.src.NBTBase;
 import net.minecraft.src.NBTTagList;
 
-public abstract class ChocoBagInventory implements IInventory, IEntityAdditionalSpawnData
+public abstract class ChocoBagInventory implements IInventory
 {
-
-    public ItemStack mainInventory[];
-	public boolean inventoryChanged;
+	protected ItemStack[] mainInventory;
 	protected EntityChocoboRideable entitychocobo;
-
-    @Override
-	public int getSizeInventory() 
+	protected boolean inventoryChanged;
+	
+	@Override
+	public int getSizeInventory()
 	{
 		return this.mainInventory.length;
 	}
 
 	@Override
-	public ItemStack getStackInSlot(int i)
+	public ItemStack getStackInSlot(int slot)
 	{
-		if(i >= this.mainInventory.length)
+		return this.mainInventory[slot];
+	}
+
+	@Override
+	public void setInventorySlotContents(int slot, ItemStack stack)
+	{
+		this.mainInventory[slot] = stack;
+		if (stack != null && stack.stackSize > getInventoryStackLimit())
 		{
-			return null;
+			stack.stackSize = getInventoryStackLimit();
+		}              
+	}
+
+	@Override
+	public ItemStack decrStackSize(int slot, int amt)
+	{
+		ItemStack stack = getStackInSlot(slot);
+		if (stack != null)
+		{
+			if (stack.stackSize <= amt)
+			{
+				this.setInventorySlotContents(slot, null);
+			}
+			else
+			{
+				stack = stack.splitStack(amt);
+				if (stack.stackSize == 0)
+				{
+					this.setInventorySlotContents(slot, null);
+				}
+			}
 		}
-        return this.mainInventory[i];
+		return stack;
+	}
+
+	@Override
+	public ItemStack getStackInSlotOnClosing(int slot)
+	{
+		ItemStack stack = getStackInSlot(slot);
+		if (stack != null)
+		{
+			this.setInventorySlotContents(slot, null);
+		}
+		return stack;
 	}
 	
-	@Override
-	public ItemStack decrStackSize(int i, int decrAmount)
-	{
-        if (i >= this.mainInventory.length)
-        {
-        	return null;
-        }
-
-        if (this.mainInventory[i] != null)
-        {
-            if (this.mainInventory[i].stackSize <= decrAmount)
-            {
-                ItemStack itemstack = this.mainInventory[i];
-                this.mainInventory[i] = null;
-                return itemstack;
-            }
-
-            ItemStack itemstack = this.mainInventory[i].splitStack(decrAmount);
-
-            if (this.mainInventory[i].stackSize == 0)
-            {
-            	this.mainInventory[i] = null;
-            }
-
-            return itemstack;
-        }
-        else
-        {
-            return null;
-        }
-	}
-	@Override
-	public ItemStack getStackInSlotOnClosing(int i)
-	{
-        if (i >= this.mainInventory.length)
-        {
-        	return null;
-        }
-
-        if (this.mainInventory[i] != null)
-        {
-            ItemStack itemstack = this.mainInventory[i];
-            this.mainInventory[i] = null;
-            return itemstack;
-        }
-        else
-        {
-            return null;
-        }
-	}
-
-	@Override
-	public void setInventorySlotContents(int i, ItemStack itemstack)
-	{
-        if (i >= this.mainInventory.length)
-        {
-        	return;
-        }
-        this.mainInventory[i] = itemstack;
-	}
-	@Override
-	public int getInventoryStackLimit()
-	{
-		return 64;
-	}
-
 	@Override
 	public void onInventoryChanged()
 	{
@@ -118,25 +90,28 @@ public abstract class ChocoBagInventory implements IInventory, IEntityAdditional
 	}
 
 	@Override
-	public boolean isUseableByPlayer(EntityPlayer entityplayer)
+	public int getInventoryStackLimit()
 	{
-        return entityplayer.getDistanceSqToEntity(this.entitychocobo) <= 64D;
+		return 64;
 	}
 
 	@Override
-	public void openChest() {
+	public boolean isUseableByPlayer(EntityPlayer player)
+	{
+		boolean useable = false;
+		if(null != this.entitychocobo)
+		{
+		useable = player.getDistanceSqToEntity(this.entitychocobo) <= 64D;
+		}
+		return useable;
 	}
 
-	@Override
-	public void closeChest() {
-	}
-	
 	public void dropAllItems()
 	{
         for (int i = 0; i < this.getSizeInventory(); i++)
         {
         	ItemStack itemStack = this.getStackInSlot(i);
-            if (itemStack != null)
+            if (itemStack != null && this.entitychocobo != null)
             {
                 this.entitychocobo.entityDropItem(itemStack, 0.0F);
                 this.setInventorySlotContents(i, null);
@@ -150,6 +125,7 @@ public abstract class ChocoBagInventory implements IInventory, IEntityAdditional
 		{
 			return;
 		}
+		
 		for(int invIdx = 0; invIdx < inventory.getSizeInventory(); invIdx++)
 		{
 			if(invIdx < this.getSizeInventory())
@@ -158,11 +134,24 @@ public abstract class ChocoBagInventory implements IInventory, IEntityAdditional
 			}
 			else
 			{
-				this.entitychocobo.entityDropItem(inventory.getStackInSlot(invIdx), 0.0F);
+				ItemStack dropItemStack = inventory.getStackInSlot(invIdx);
+				if(null != dropItemStack && dropItemStack.stackSize > 0)
+				{
+					if(null !=  this.entitychocobo)
+					{
+						this.entitychocobo.entityDropItem(dropItemStack, 0.0F);
+					}
+				}
 			}
 			inventory.setInventorySlotContents(invIdx, null);
 		}
-	}	
+	}
+	
+	@Override
+	public void openChest() {}
+
+	@Override
+	public void closeChest() {}
 
 	abstract public void readFromNBT(NBTTagList nbttaglist);
 	

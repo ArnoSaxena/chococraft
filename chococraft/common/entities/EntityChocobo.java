@@ -28,6 +28,7 @@ import chococraft.common.ChocoboHelper;
 import chococraft.common.Constants;
 import chococraft.common.ModChocoCraft;
 import chococraft.common.entities.colours.EntityChocoboPurple;
+import chococraft.debugger.DebugFileWriter;
 import net.minecraft.src.AxisAlignedBB;
 import net.minecraft.src.Block;
 import net.minecraft.src.DamageSource;
@@ -395,7 +396,7 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 		if(!interacted)
 		{
 			ItemStack itemstack = entityplayer.inventory.getCurrentItem();
-			if(itemstack == null)
+			if(itemstack == null || itemstack.stackSize == 0)
 			{
 				interacted = this.onOpenSaddlePackBagInteraction(entityplayer);
 			}
@@ -423,6 +424,9 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 				}
 			}
 		}
+		
+		DebugFileWriter.instance().writeLine("EnChoc", "01 interacted: " + Boolean.toString(interacted));
+		
 		if(!interacted)
 		{
 			interacted = this.onOpenSaddlePackBagInteraction(entityplayer);
