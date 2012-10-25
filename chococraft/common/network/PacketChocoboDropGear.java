@@ -1,3 +1,17 @@
+// <copyright file="PacketChocoboDropGear.java">
+// Copyright (c) 2012 All Right Reserved, http://chococraft.arno-saxena.de/
+//
+// THIS CODE AND INFORMATION ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY 
+// KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
+// PARTICULAR PURPOSE.
+//
+// </copyright>
+// <author>Arno Saxena</author>
+// <email>al-s@gmx.de</email>
+// <date>2012-10-25</date>
+// <summary>Network Packet wrapper for sending drop gear request to a Chocobo entity</summary>
+
 package chococraft.common.network;
 
 import java.io.ByteArrayOutputStream;
@@ -14,9 +28,9 @@ import chococraft.common.entities.EntityAnimalChocobo;
 import chococraft.common.entities.EntityChocoboRideable;
 import net.minecraft.src.ItemStack;
 
-public class PacketChocoboDropSaddleAndBags extends PacketChocobo
+public class PacketChocoboDropGear extends PacketChocobo
 {
-	public PacketChocoboDropSaddleAndBags(EntityChocoboRideable chocobo)
+	public PacketChocoboDropGear(EntityChocoboRideable chocobo)
 	{
 		super();		
 		ByteArrayOutputStream bos = new ByteArrayOutputStream(8);
@@ -52,7 +66,7 @@ public class PacketChocoboDropSaddleAndBags extends PacketChocobo
 					if(chocoRideable.isSaddleBagged())
 					{
 						chocoRideable.entityDropItem(new ItemStack(ModChocoCraft.chocoboSaddleBagsItem, 1), 0.0F);
-						//chocoRideable.bagsInventory.dropAllItems();
+						chocoRideable.getChocoBagInventory().dropAllItems();
 						chocoRideable.setSaddleBagged(false);
 					}
 
@@ -65,7 +79,7 @@ public class PacketChocoboDropSaddleAndBags extends PacketChocobo
 					if(chocoRideable.isPackBagged())
 					{
 						chocoRideable.entityDropItem(new ItemStack(ModChocoCraft.chocoboPackBagsItem, 1), 0.0F);
-						//chocoRideable.bagsInventory.dropAllItems();
+						//chocoRideable.getChocoBagInventory().dropAllItems(); TODO
 						chocoRideable.setPackBagged(false);
 					}	
 				}

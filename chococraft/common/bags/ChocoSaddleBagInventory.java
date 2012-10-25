@@ -14,9 +14,6 @@
 
 package chococraft.common.bags;
 
-//import com.google.common.io.ByteArrayDataInput;
-//import com.google.common.io.ByteArrayDataOutput;
-
 import chococraft.common.entities.EntityChocoboRideable;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.NBTBase;

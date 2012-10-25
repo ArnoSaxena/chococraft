@@ -1,3 +1,17 @@
+// <copyright file="PacketChocoboTamed.java">
+// Copyright (c) 2012 All Right Reserved, http://chococraft.arno-saxena.de/
+//
+// THIS CODE AND INFORMATION ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY 
+// KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
+// PARTICULAR PURPOSE.
+//
+// </copyright>
+// <author>Arno Saxena</author>
+// <email>al-s@gmx.de</email>
+// <date>2012-10-25</date>
+// <summary>Network Packet wrapper for distributing a Chocobo taming event to the clients</summary>
+
 package chococraft.common.network;
 
 import java.io.ByteArrayOutputStream;

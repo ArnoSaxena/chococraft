@@ -37,7 +37,7 @@ import chococraft.common.ModChocoCraft;
 import chococraft.common.bags.ChocoBagInventory;
 import chococraft.common.bags.ChocoPackBagInventory;
 import chococraft.common.bags.ChocoSaddleBagInventory;
-import chococraft.common.network.PacketChocoboDropSaddleAndBags;
+import chococraft.common.network.PacketChocoboDropGear;
 import chococraft.common.network.PacketChocoboMount;
 //import chococraft.debugger.DebugFileWriter;
 
@@ -574,7 +574,7 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo {
 	{
 		if(Side.CLIENT == FMLCommonHandler.instance().getEffectiveSide())
 		{
-			PacketChocoboDropSaddleAndBags packet = new PacketChocoboDropSaddleAndBags(this);
+			PacketChocoboDropGear packet = new PacketChocoboDropGear(this);
 			PacketDispatcher.sendPacketToServer(packet.getPacket());
 			this.setSaddleBagged(false);
 			this.setSaddled(false);
