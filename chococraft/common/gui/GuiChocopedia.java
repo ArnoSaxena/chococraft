@@ -15,6 +15,7 @@
 
 package chococraft.common.gui;
 
+import net.minecraft.src.EntityPlayer;
 import net.minecraft.src.GuiButton;
 import net.minecraft.src.GuiScreen;
 import net.minecraft.src.StringTranslate;
@@ -29,14 +30,18 @@ import chococraft.common.entities.EntityChocoboRideable;
 public class GuiChocopedia extends GuiScreen
 {
 	private EntityAnimalChocobo chocobo;
+	private EntityPlayer player;
 	private GuiScreen parentGuiScreen;
-	private GuiButton namingButton;
+	private GuiButton hideNameButton;
 	private GuiButton followingButton;
 	private GuiButton removeSaddleButton;
+	private GuiButton renameButton;
+	private GuiButton confirmButton;
 
-	public GuiChocopedia(GuiScreen guiscreen, EntityAnimalChocobo entitychocobo)
+	public GuiChocopedia(GuiScreen guiscreen, EntityAnimalChocobo entitychocobo, EntityPlayer thePlayer)
 	{
 		this.chocobo = entitychocobo;
+		this.player = thePlayer;
 		this.parentGuiScreen = guiscreen;
 	}
 
@@ -56,20 +61,26 @@ public class GuiChocopedia extends GuiScreen
 		int xPos = this.width / 2 - 100;
 
 		// rename button
-		this.controlList.add(this.createGuiButton(0, xPos, (yPos += 24), stringtranslate.translateKey("Rename")));
+		this.renameButton = this.createGuiButton(0, xPos, (yPos += 24), stringtranslate.translateKey("Rename"));
+		this.checkButtonOwner(this.player, this.chocobo.getOwner(), this.renameButton);
+		this.controlList.add(this.renameButton);
 
 		// hide name button
 		String lblNameShown = (this.chocobo.isHidename()) ? "Name Hidden" : "Name Shown";
-		this.namingButton = this.createGuiButton(2, xPos, (yPos += 24), stringtranslate.translateKey(lblNameShown));
-		this.controlList.add(this.namingButton);
-
+		this.hideNameButton = this.createGuiButton(2, xPos, (yPos += 24), stringtranslate.translateKey(lblNameShown));
+		this.checkButtonOwner(this.player, this.chocobo.getOwner(), this.hideNameButton);
+		this.controlList.add(this.hideNameButton);
+		
 		// following button
 		String lblFollowing = (this.chocobo.isFollowing()) ? "Following" : "Not Following";
 		this.followingButton = this.createGuiButton(3, xPos, (yPos += 24), stringtranslate.translateKey(lblFollowing));
+		this.checkButtonOwner(this.player, this.chocobo.getOwner(), this.followingButton);
 		this.controlList.add(this.followingButton);
 
 		// confirm button
-		this.controlList.add(this.createGuiButton(1, xPos, (yPos += 24), stringtranslate.translateKey("Confirm")));
+		this.confirmButton = this.createGuiButton(1, xPos, (yPos += 24), stringtranslate.translateKey("Confirm"));
+		this.checkButtonOwner(this.player, this.chocobo.getOwner(), this.confirmButton);
+		this.controlList.add(this.confirmButton);
 		
 		// remove saddle button
 		if(this.chocobo instanceof EntityChocoboRideable)
@@ -79,9 +90,10 @@ public class GuiChocopedia extends GuiScreen
 			{
 				String lblRemoveSaddle = "Drop Gear";
 				this.removeSaddleButton = this.createGuiButton(4, xPos, (yPos += 30), stringtranslate.translateKey(lblRemoveSaddle));
+				this.checkButtonOwner(this.player, this.chocobo.getOwner(), this.removeSaddleButton);
 				this.controlList.add(this.removeSaddleButton);
 			}
-		}		
+		}
 	}
 	
 	protected GuiButton createGuiButton(int id, int xPos, int yPos, String label)
@@ -107,7 +119,7 @@ public class GuiChocopedia extends GuiScreen
 		else if (guibutton.id == 2)
 		{
 			chocobo.setHidename(!chocobo.isHidename());
-			namingButton.displayString = (chocobo.isHidename()) ? "Name Hidden" : "Name Shown";
+			hideNameButton.displayString = (chocobo.isHidename()) ? "Name Hidden" : "Name Shown";
 		}
 		else if (guibutton.id == 3)
 		{
@@ -162,5 +174,13 @@ public class GuiChocopedia extends GuiScreen
 		this.drawString(this.fontRenderer, gender + " (" + breedStatus + ")",      posX, (posY += 24), fontColour);
 		//this.drawString(this.fontRenderer, breedStatus, posX, (posY += 24), fontColour);
 		super.drawScreen(i, j, f);
+	}
+	
+	private void checkButtonOwner(EntityPlayer player, EntityPlayer owner, GuiButton button)
+	{
+		if(!player.equals(owner))
+		{
+			button.enabled = false;
+		}
 	}
 }

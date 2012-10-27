@@ -47,7 +47,7 @@ public class GuiChocoboBag extends GuiContainer
 	}
 
 	@Override
-	protected void drawGuiContainerForegroundLayer()
+	protected void drawGuiContainerForegroundLayer(int dummy, int dummy2)
 	{
 		fontRenderer.drawString(StatCollector.translateToLocal(this.chocoBagInv.getInvName()), 8, 6, 0x404040);
 		int labelYPos;

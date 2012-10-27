@@ -306,7 +306,7 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 			moveDistance = 1.0F;
 		}
 		this.legYaw += (moveDistance - this.legYaw) * 0.4F;
-		this.field_70754_ba += this.legYaw;
+		this.legSwing += this.legYaw;
 	}
 
 	public void onLivingUpdate()
@@ -615,15 +615,16 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 	}
 	
 	@Override
-    public boolean canMateWith(EntityAnimal entityAnimal)
+    public boolean canMateWith(EntityAnimal otherEntity)
     {
 		Boolean canmatewith = false;
 		
-    	if(entityAnimal != this)
+    	if(otherEntity != this)
     	{
-    		if(entityAnimal instanceof EntityChocobo)
+    		if(otherEntity instanceof EntityChocobo)
     		{
-    			canmatewith = this.isInLove() && entityAnimal.isInLove();
+    			EntityChocobo otherChocobo = (EntityChocobo)otherEntity;
+    			canmatewith = this.isInLove() && otherChocobo.isInLove();
     		}
     	}
     	return canmatewith;

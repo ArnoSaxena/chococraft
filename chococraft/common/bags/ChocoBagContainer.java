@@ -64,7 +64,8 @@ public class ChocoBagContainer extends Container
 	}
 
 	@Override
-	public ItemStack transferStackInSlot(int slot)
+//	public ItemStack transferStackInSlot(int slot)	
+	public ItemStack func_82846_b(EntityPlayer par1EntityPlayer, int slot)
 	{
 		ItemStack stack = null;
 		Slot slotObject = (Slot) this.inventorySlots.get(slot);

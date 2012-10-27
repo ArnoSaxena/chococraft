@@ -25,6 +25,6 @@ public class GuiStarter
 	public static void startChocopediaGui(EntityAnimalChocobo chocobo)
 	{
 		Minecraft client = FMLClientHandler.instance().getClient();
-		client.displayGuiScreen(new GuiChocopedia(client.currentScreen, chocobo));
+		client.displayGuiScreen(new GuiChocopedia(client.currentScreen, chocobo, client.thePlayer));
 	}
 }

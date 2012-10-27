@@ -242,7 +242,7 @@ public class ModelChocobo extends ModelBase
 	{
 		// this super method is empty
 		super.render(entity, f, f1, f2, f3, f4, f5);
-		setRotationAngles(f, f1, f2, f3, f4, f5);
+		this.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
 
 		head.render(f5);
 		feather.render(f5);
@@ -283,10 +283,11 @@ public class ModelChocobo extends ModelBase
 		model.rotateAngleZ = z;
 	}
 
-	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5)
+	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity)
 	{
 		// this super method is empty ...
-		super.setRotationAngles(f, f1, f2, f3, f4, f5);
+		
+		super.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
 
 		// f2 = wing z movement (flutter)
 		// f3 = head y movement

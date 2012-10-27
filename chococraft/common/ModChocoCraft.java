@@ -46,13 +46,12 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.common.registry.EntityRegistry;
 
-@Mod(modid="ChocoCraft", name="Torojimas ChocoCraft", version="2.0.3a")
+@Mod(modid="ChocoCraft", name="Torojimas ChocoCraft", version="2.1.0")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false, 
 		channels = { Constants.PCHAN_CHOCOBO },
 		packetHandler = ChocoboPacketHandler.class)
 public class ModChocoCraft
-{
-	
+{	
 	public static Configuration mainConfiguration;
 	
 	public static Property chocoboSaddleId;	
@@ -176,46 +175,46 @@ public class ModChocoCraft
     {
 		mainConfiguration = new Configuration(new File(preInitEvent.getModConfigurationDirectory(), "chococraft/main.conf"));
 		
-    	chocoboSaddleId = mainConfiguration.getOrCreateIntProperty("chocoboSaddleItem.id", Configuration.CATEGORY_ITEM, Constants.CHOCOBO_SADDLE_ID);
-    	gysahlSeedsId = mainConfiguration.getOrCreateIntProperty("gysahlSeedsItem.id", Configuration.CATEGORY_ITEM, Constants.GYSAHL_SEEDS_ID);
-        gysahlLoverlyId = mainConfiguration.getOrCreateIntProperty("gysahlLoverlyItem.id", Configuration.CATEGORY_ITEM, Constants.GYSAHL_LOVERLY_ID);
-        gysahlGoldenId = mainConfiguration.getOrCreateIntProperty("gysahlGoldenItem.id", Configuration.CATEGORY_ITEM, Constants.GYSAHL_GOLDEN_ID);
-        gysahlPinkId = mainConfiguration.getOrCreateIntProperty("gysahlPinkItem.id", Configuration.CATEGORY_ITEM, Constants.GYSAHL_PINK_ID);
-        gysahlRedId = mainConfiguration.getOrCreateIntProperty("gysahlRedItem.id", Configuration.CATEGORY_ITEM, Constants.GYSAHL_RED_ID);
-        gysahlChibiId = mainConfiguration.getOrCreateIntProperty("gysahlChibiItem.id", Configuration.CATEGORY_ITEM, Constants.GYSAHL_CHIBI_ID);
-        chocoboCakeId = mainConfiguration.getOrCreateIntProperty("chocoboCakeItem.id", Configuration.CATEGORY_ITEM, Constants.CHOCOBO_CAKE_ID);
-        chocoboLegRawId = mainConfiguration.getOrCreateIntProperty("chocoboLegRawItem.id", Configuration.CATEGORY_ITEM, Constants.CHOCOBO_LEG_RAW_ID);
-        chocoboLegCookedId = mainConfiguration.getOrCreateIntProperty("chocoboLegCookedItem.id", Configuration.CATEGORY_ITEM, Constants.CHOCOBO_LEG_COOKED_ID);
-        chocoboFeatherId = mainConfiguration.getOrCreateIntProperty("chocoboFeatherItem.id", Configuration.CATEGORY_ITEM, Constants.CHOCOBO_FEATHER_ID);
-        chocoboSaddleBagsId = mainConfiguration.getOrCreateIntProperty("chocoboSaddleBagsItem.id", Configuration.CATEGORY_ITEM, Constants.CHOCOBO_SADDLE_BAGS_ID);
-        chocoboPackBagsId = mainConfiguration.getOrCreateIntProperty("chocoboPackBagsItem.id", Configuration.CATEGORY_ITEM, Constants.CHOCOBO_PACK_BAGS_ID);
-        chocoboWhistleId = mainConfiguration.getOrCreateIntProperty("chocoboWhistleItem.id", Configuration.CATEGORY_ITEM, Constants.CHOCOBO_WHISTLE_ID);
-        chocopediaId = mainConfiguration.getOrCreateIntProperty("chocopediaItem.id", Configuration.CATEGORY_ITEM, Constants.CHOCOPEDIA_ID);
-        netherChocoboEggId = mainConfiguration.getOrCreateIntProperty("netherChocoboEggItem.id", Configuration.CATEGORY_ITEM, Constants.NETHER_CHOCOBO_EGG_ID);
-        chocoDisguiseHelmetId = mainConfiguration.getOrCreateIntProperty("chocoDisguiseHelmetItem.id", Configuration.CATEGORY_ITEM, Constants.CHOCO_DISGUISE_HELMET_ID);
-        chocoDisguisePlateId = mainConfiguration.getOrCreateIntProperty("chocoDisguisePlateItem.id", Configuration.CATEGORY_ITEM, Constants.CHOCO_DISGUISE_PLATE_ID);
-        chocoDisguiseLegsId = mainConfiguration.getOrCreateIntProperty("chocoDisguiseLegsItem.id", Configuration.CATEGORY_ITEM, Constants.CHOCO_DISGUISE_LEGS_ID);
-        chocoDisguiseBootsId = mainConfiguration.getOrCreateIntProperty("chocoDisguiseBootsItem.id", Configuration.CATEGORY_ITEM, Constants.CHOCO_DISGUISE_BOOTS_ID);
+		chocoboSaddleId = mainConfiguration.get(Configuration.CATEGORY_ITEM, "chocoboSaddleItem.id", Constants.CHOCOBO_SADDLE_ID);
+		gysahlSeedsId = mainConfiguration.get(Configuration.CATEGORY_ITEM, "gysahlSeedsItem.id", Constants.GYSAHL_SEEDS_ID);
+		gysahlLoverlyId = mainConfiguration.get(Configuration.CATEGORY_ITEM, "gysahlLoverlyItem.id", Constants.GYSAHL_LOVERLY_ID);
+		gysahlGoldenId = mainConfiguration.get(Configuration.CATEGORY_ITEM, "gysahlGoldenItem.id", Constants.GYSAHL_GOLDEN_ID);
+		gysahlPinkId = mainConfiguration.get(Configuration.CATEGORY_ITEM, "gysahlPinkItem.id", Constants.GYSAHL_PINK_ID);
+        gysahlRedId = mainConfiguration.get(Configuration.CATEGORY_ITEM, "gysahlRedItem.id", Constants.GYSAHL_RED_ID);
+        gysahlChibiId = mainConfiguration.get(Configuration.CATEGORY_ITEM, "gysahlChibiItem.id", Constants.GYSAHL_CHIBI_ID);
+        chocoboCakeId = mainConfiguration.get(Configuration.CATEGORY_ITEM, "chocoboCakeItem.id", Constants.CHOCOBO_CAKE_ID);
+        chocoboLegRawId = mainConfiguration.get(Configuration.CATEGORY_ITEM, "chocoboLegRawItem.id", Constants.CHOCOBO_LEG_RAW_ID);
+        chocoboLegCookedId = mainConfiguration.get(Configuration.CATEGORY_ITEM, "chocoboLegCookedItem.id", Constants.CHOCOBO_LEG_COOKED_ID);
+        chocoboFeatherId = mainConfiguration.get(Configuration.CATEGORY_ITEM, "chocoboFeatherItem.id", Constants.CHOCOBO_FEATHER_ID);
+        chocoboSaddleBagsId = mainConfiguration.get(Configuration.CATEGORY_ITEM, "chocoboSaddleBagsItem.id", Constants.CHOCOBO_SADDLE_BAGS_ID);
+        chocoboPackBagsId = mainConfiguration.get(Configuration.CATEGORY_ITEM, "chocoboPackBagsItem.id", Constants.CHOCOBO_PACK_BAGS_ID);
+        chocoboWhistleId = mainConfiguration.get(Configuration.CATEGORY_ITEM, "chocoboWhistleItem.id", Constants.CHOCOBO_WHISTLE_ID);
+        chocopediaId = mainConfiguration.get(Configuration.CATEGORY_ITEM, "chocopediaItem.id", Constants.CHOCOPEDIA_ID);
+        netherChocoboEggId = mainConfiguration.get(Configuration.CATEGORY_ITEM, "netherChocoboEggItem.id", Constants.NETHER_CHOCOBO_EGG_ID);
+        chocoDisguiseHelmetId = mainConfiguration.get(Configuration.CATEGORY_ITEM, "chocoDisguiseHelmetItem.id", Constants.CHOCO_DISGUISE_HELMET_ID);
+        chocoDisguisePlateId = mainConfiguration.get(Configuration.CATEGORY_ITEM, "chocoDisguisePlateItem.id", Constants.CHOCO_DISGUISE_PLATE_ID);
+        chocoDisguiseLegsId = mainConfiguration.get(Configuration.CATEGORY_ITEM, "chocoDisguiseLegsItem.id", Constants.CHOCO_DISGUISE_LEGS_ID);
+        chocoDisguiseBootsId = mainConfiguration.get(Configuration.CATEGORY_ITEM, "chocoDisguiseBootsItem.id", Constants.CHOCO_DISGUISE_BOOTS_ID);
 
-        gysahlGreenBlockId = mainConfiguration.getOrCreateBlockIdProperty("gysahlGreenBlock.id", Constants.GYSAHL_GREEN_BLOCK_ID);
-        gysahlStemBlockId = mainConfiguration.getOrCreateBlockIdProperty("gysahlStemBlock.id", Constants.GYSAHL_STEM_BLOCK_ID);
+        gysahlGreenBlockId = mainConfiguration.getBlock("gysahlGreenBlock.id", Constants.GYSAHL_GREEN_BLOCK_ID);
+        gysahlStemBlockId = mainConfiguration.getBlock("gysahlStemBlock.id", Constants.GYSAHL_STEM_BLOCK_ID);
         
-        chocoboWingFlutterProperty = mainConfiguration.getOrCreateBooleanProperty("setup.chocoboWingFlutter", Configuration.CATEGORY_GENERAL, Constants.DEFAULT_CHOCOBO_WING_FLUTTER);
+        chocoboWingFlutterProperty = mainConfiguration.get(Configuration.CATEGORY_GENERAL, "setup.chocoboWingFlutter", Constants.DEFAULT_CHOCOBO_WING_FLUTTER);
         chocoboWingFlutter = Boolean.parseBoolean(chocoboWingFlutterProperty.value);
         
-        genderMaleChanceProperty = mainConfiguration.getOrCreateIntProperty("setup.genderMaleChance", Configuration.CATEGORY_GENERAL, Constants.DEFAULT_GENDER_MALE_CHANCE);
+        genderMaleChanceProperty = mainConfiguration.get(Configuration.CATEGORY_GENERAL, "setup.genderMaleChance", Constants.DEFAULT_GENDER_MALE_CHANCE);
         genderMaleChance = Integer.parseInt(genderMaleChanceProperty.value);
         
-        showChocoboNamesProperty = mainConfiguration.getOrCreateBooleanProperty("setup.showChocoboNames", Configuration.CATEGORY_GENERAL, Constants.DEFAULT_SHOW_CHOCOBO_NAMES);
+        showChocoboNamesProperty = mainConfiguration.get(Configuration.CATEGORY_GENERAL, "setup.showChocoboNames", Constants.DEFAULT_SHOW_CHOCOBO_NAMES);
         showChocoboNames = Boolean.parseBoolean(showChocoboNamesProperty.value);
         
-        featherDropChanceProperty = mainConfiguration.getOrCreateIntProperty("setup.featherDropChance", Configuration.CATEGORY_GENERAL, Constants.DEFAULT_FEATHER_DROP_CHANCE);
+        featherDropChanceProperty = mainConfiguration.get(Configuration.CATEGORY_GENERAL, "setup.featherDropChance", Constants.DEFAULT_FEATHER_DROP_CHANCE);
         featherDropChance = Integer.parseInt(featherDropChanceProperty.value);
         
-        featherDelayRandomProperty = mainConfiguration.getOrCreateIntProperty("setup.featherDelayRandom", Configuration.CATEGORY_GENERAL, Constants.DEFAULT_FEATHER_DELAY_RANDOM);
+        featherDelayRandomProperty = mainConfiguration.get(Configuration.CATEGORY_GENERAL, "setup.featherDelayRandom", Constants.DEFAULT_FEATHER_DELAY_RANDOM);
         featherDelayRandom = Integer.parseInt(featherDelayRandomProperty.value);
         
-        featherDelayStaticProperty = mainConfiguration.getOrCreateIntProperty("setup.featherDelayStatic", Configuration.CATEGORY_GENERAL, Constants.DEFAULT_FEATHER_DELAY_STATIC);
+        featherDelayStaticProperty = mainConfiguration.get(Configuration.CATEGORY_GENERAL, "setup.featherDelayStatic", Constants.DEFAULT_FEATHER_DELAY_STATIC);
         featherDelayStatic = Integer.parseInt(featherDelayStaticProperty.value);
         
         MinecraftForge.EVENT_BUS.register(new ChocoCraftEvent());
@@ -233,80 +232,80 @@ public class ModChocoCraft
         chocoboSaddleItem = (new ChocoboItem(Integer.parseInt(chocoboSaddleId.value))).setItemName("chocoboSaddle").setMaxStackSize(5);
     	chocoboSaddleItem.setIconIndex(0);
 		LanguageRegistry.addName(chocoboSaddleItem, "Chocobo Saddle");		
-		chocoboSaddleItem.setTabToDisplayOn(CreativeTabs.tabTransport);
+		chocoboSaddleItem.setCreativeTab(CreativeTabs.tabTransport);
 
         // Gysahl seeds
     	gysahlSeedsItem = (new ItemSeeds(Integer.parseInt(gysahlSeedsId.value), Integer.parseInt(gysahlStemBlockId.value), Block.tilledField.blockID)).setItemName("gysahlSeeds");
     	gysahlSeedsItem.setTextureFile(Constants.CHOCOBO_ITEM_TEXTURES);
     	gysahlSeedsItem.setIconIndex(1);
 		LanguageRegistry.addName(gysahlSeedsItem, "Gysahl Seeds");
-		gysahlSeedsItem.setTabToDisplayOn(CreativeTabs.tabMaterials);
+		gysahlSeedsItem.setCreativeTab(CreativeTabs.tabMaterials);
 
     	// Loverly Gysahl
     	gysahlLoverlyItem = (new ChocoboItem(Integer.parseInt(gysahlLoverlyId.value))).setItemName("gysahlLoverly").setMaxStackSize(64);
     	gysahlLoverlyItem.setIconIndex(2);
     	LanguageRegistry.addName(gysahlLoverlyItem, "Loverly Gysahl");
-    	gysahlLoverlyItem.setTabToDisplayOn(CreativeTabs.tabMisc);
+    	gysahlLoverlyItem.setCreativeTab(CreativeTabs.tabMisc);
 
     	// Golden Gysahl
 		gysahlGoldenItem = (new ChocoboItem(Integer.parseInt(gysahlGoldenId.value))).setItemName("gysahlGolden").setMaxStackSize(64);
     	gysahlGoldenItem.setIconIndex(3);
     	LanguageRegistry.addName(gysahlGoldenItem, "Golden Gysahl");
-    	gysahlGoldenItem.setTabToDisplayOn(CreativeTabs.tabMisc);
+    	gysahlGoldenItem.setCreativeTab(CreativeTabs.tabMisc);
 
 		// Pink Gysahl
         gysahlPinkItem = (new ChocoboItem(Integer.parseInt(gysahlPinkId.value))).setItemName("gysahlPink").setMaxStackSize(64);
     	gysahlPinkItem.setIconIndex(4);
 		LanguageRegistry.addName(gysahlPinkItem, "Pink Gysahl");
-		gysahlPinkItem.setTabToDisplayOn(CreativeTabs.tabMisc);
+		gysahlPinkItem.setCreativeTab(CreativeTabs.tabMisc);
 
         // Red Gysahl
         gysahlRedItem = (new ChocoboItem(Integer.parseInt(gysahlRedId.value))).setItemName("gysahlRed").setMaxStackSize(64);
     	gysahlRedItem.setIconIndex(5);
         LanguageRegistry.addName(gysahlRedItem, "Red Gysahl");
-        gysahlRedItem.setTabToDisplayOn(CreativeTabs.tabMisc);
+        gysahlRedItem.setCreativeTab(CreativeTabs.tabMisc);
 
         // Chibi Gysahl
         gysahlChibiItem = (new ChocoboItem(Integer.parseInt(gysahlChibiId.value))).setItemName("gysahlChibi").setMaxStackSize(64);
     	gysahlChibiItem.setIconIndex(6);
         LanguageRegistry.addName(gysahlChibiItem, "Chibi Gysahl");
-        gysahlChibiItem.setTabToDisplayOn(CreativeTabs.tabMisc);
+        gysahlChibiItem.setCreativeTab(CreativeTabs.tabMisc);
 
         // Chocobo Cake
         chocoboCakeItem = (new ChocoboItem(Integer.parseInt(chocoboCakeId.value))).setItemName("chocoboCake").setMaxStackSize(8);
     	chocoboCakeItem.setIconIndex(7);
         LanguageRegistry.addName(chocoboCakeItem, "Chocobo Cake");
-        chocoboCakeItem.setTabToDisplayOn(CreativeTabs.tabMisc);
+        chocoboCakeItem.setCreativeTab(CreativeTabs.tabMisc);
 
         // Chocobo Feather
         chocoboFeatherItem = (new ChocoboItem(Integer.parseInt(chocoboFeatherId.value))).setItemName("chocoboFeather").setMaxStackSize(64);
     	chocoboFeatherItem.setIconIndex(10);
     	LanguageRegistry.addName(chocoboFeatherItem, "Chocobo Feather");
-    	chocoboFeatherItem.setTabToDisplayOn(CreativeTabs.tabMaterials);
+    	chocoboFeatherItem.setCreativeTab(CreativeTabs.tabMaterials);
 
         // Chocobo Saddle Bags
         chocoboSaddleBagsItem = (new ChocoboItem(Integer.parseInt(chocoboSaddleBagsId.value))).setItemName("chocoboSaddleBags").setMaxStackSize(8);
     	chocoboSaddleBagsItem.setIconIndex(11);
         LanguageRegistry.addName(chocoboSaddleBagsItem, "Chocobo Saddle Bags");
-        chocoboSaddleBagsItem.setTabToDisplayOn(CreativeTabs.tabTransport);
+        chocoboSaddleBagsItem.setCreativeTab(CreativeTabs.tabTransport);
 
         // Chocobo Pack Bags
         chocoboPackBagsItem = (new ChocoboItem(Integer.parseInt(chocoboPackBagsId.value))).setItemName("chocoboPackBags").setMaxStackSize(8);
     	chocoboPackBagsItem.setIconIndex(12);
 		LanguageRegistry.addName(chocoboPackBagsItem, "Chocobo Pack Bags");
-		chocoboPackBagsItem.setTabToDisplayOn(CreativeTabs.tabTransport);
+		chocoboPackBagsItem.setCreativeTab(CreativeTabs.tabTransport);
 
         // Chocob Whistle
         chocoboWhistleItem = (new ChocoboItem(Integer.parseInt(chocoboWhistleId.value))).setItemName("chocoboWhistle").setMaxStackSize(64);
     	chocoboWhistleItem.setIconIndex(13);
 		LanguageRegistry.addName(chocoboWhistleItem, "Chocobo Whistle");
-		chocoboWhistleItem.setTabToDisplayOn(CreativeTabs.tabTools);
+		chocoboWhistleItem.setCreativeTab(CreativeTabs.tabTools);
 
         // Chocopedia
         chocopediaItem = (new ChocoboItem(Integer.parseInt(chocopediaId.value))).setItemName("chocopedia").setMaxStackSize(1);
     	chocopediaItem.setIconIndex(14);
         LanguageRegistry.addName(chocopediaItem, "Chocopedia");
-        chocopediaItem.setTabToDisplayOn(CreativeTabs.tabTools);
+        chocopediaItem.setCreativeTab(CreativeTabs.tabTools);
 
 //        // Nether Chocobo Egg
 //        netherChocoboEggItem = (new ChocoboItem(Integer.parseInt(netherChocoboEggId.value))).setItemName("netherChocoboEgg").setMaxStackSize(8);
@@ -319,25 +318,25 @@ public class ModChocoCraft
         chocoDisguiseHelmetItem = (new ChocoboItem(Integer.parseInt(chocoDisguiseHelmetId.value))).setItemName("chocoDisguiseHelmet").setMaxStackSize(1);
     	chocoDisguiseHelmetItem.setIconIndex(17);
         LanguageRegistry.addName(chocoDisguiseHelmetItem, "Chocodisguise Helmet");
-        chocoDisguiseHelmetItem.setTabToDisplayOn(CreativeTabs.tabTools);
+        chocoDisguiseHelmetItem.setCreativeTab(CreativeTabs.tabTools);
 
         // Chocodisguise Plate
         chocoDisguisePlateItem = (new ChocoboItem(Integer.parseInt(chocoDisguisePlateId.value))).setItemName("chocoDisguisePlate").setMaxStackSize(1);
     	chocoDisguisePlateItem.setIconIndex(18);
         LanguageRegistry.addName(chocoDisguisePlateItem, "Chocodisguise Plate");
-        chocoDisguisePlateItem.setTabToDisplayOn(CreativeTabs.tabTools);
+        chocoDisguisePlateItem.setCreativeTab(CreativeTabs.tabTools);
 
         // Chocodisguise Legs
         chocoDisguiseLegsItem = (new ChocoboItem(Integer.parseInt(chocoDisguiseLegsId.value))).setItemName("chocoDisguiseLegs").setMaxStackSize(1);
     	chocoDisguiseLegsItem.setIconIndex(19);
         LanguageRegistry.addName(chocoDisguiseLegsItem, "Chocodisguise Legs");
-        chocoDisguiseLegsItem.setTabToDisplayOn(CreativeTabs.tabTools);
+        chocoDisguiseLegsItem.setCreativeTab(CreativeTabs.tabTools);
 
         // Chocodisguise Boots
         chocoDisguiseBootsItem = (new ChocoboItem(Integer.parseInt(chocoDisguiseBootsId.value))).setItemName("chocoDisguiseBoots").setMaxStackSize(1);    	
     	chocoDisguiseBootsItem.setIconIndex(20);
         LanguageRegistry.addName(chocoDisguiseBootsItem, "Chocodisguise Boots");
-        chocoDisguiseBootsItem.setTabToDisplayOn(CreativeTabs.tabTools);
+        chocoDisguiseBootsItem.setCreativeTab(CreativeTabs.tabTools);
 
         // food items
         // Raw Chocobo Leg

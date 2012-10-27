@@ -28,7 +28,7 @@ public class BlockGysahlGreen extends BlockFlower
         setTickRandomly(true);
         float f = 0.5F;
         setBlockBounds(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, 0.25F, 0.5F + f);
-        this.setCreativeTab(CreativeTabs.tabDeco);
+        this.setCreativeTab(CreativeTabs.tabDecorations);
         this.disableStats();
         this.setRequiresSelfNotify();
         this.setTextureFile(Constants.CHOCOBO_ITEM_TEXTURES);

@@ -357,8 +357,8 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
     				if (rand.nextInt(3) == 0)
     				{
     					this.setTamed(true);
-    					this.setWander(false);
-    					this.setFollowing(true);
+    					this.setWander(true);
+    					this.setFollowing(false);
     					this.setHidename(true);
     					this.worldObj.setEntityState(this, (byte)7);
     					this.setOwner(entityplayer.username);
@@ -388,25 +388,25 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
     {
     	if (entity instanceof EntityAnimalChocobo)
         {
-            EntityAnimalChocobo entityanimalchoco = (EntityAnimalChocobo)entity;
+            EntityAnimalChocobo otherChocobo = (EntityAnimalChocobo)entity;
             
-            if (this.getGrowingAge() > 0 && entityanimalchoco.getGrowingAge() < 0)
+            if (this.getGrowingAge() > 0 && otherChocobo.getGrowingAge() < 0)
             {
                 if ((double)targetDistance < 2.5D)
                 {
                     this.hasAttacked = true;
                 }
             }
-            else if (this.isInLove() && entityanimalchoco.isInLove())
+            else if (this.isInLove() && otherChocobo.isInLove())
             {
-            	if (entityanimalchoco.entityToAttack == null)
+            	if (otherChocobo.entityToAttack == null)
                 {
-                    entityanimalchoco.entityToAttack = this;
+                    otherChocobo.entityToAttack = this;
                 }
                 
-                if (entityanimalchoco.entityToAttack == this && (double)targetDistance < 5.0D)
+                if (otherChocobo.entityToAttack == this && (double)targetDistance < 5.0D)
                 {
-                    entityanimalchoco.setInLove(true);
+                    otherChocobo.setInLove(true);
                     this.setInLove(true);
                     this.breeding++;
                     if (this.breeding % 4 == 0)
@@ -420,7 +420,7 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
                 }
                 else
                 {
-                	entityanimalchoco.entityToAttack = null;
+                	otherChocobo.entityToAttack = null;
                     breeding = 0;
                 }
             }
@@ -514,12 +514,14 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
         {
             return null;
         }
+        
         if (this.isInLove() || getGrowingAge() > 0)
         {
             List list = this.worldObj.getEntitiesWithinAABB(EntityChocobo.class, this.boundingBox.expand(8F, 8F, 8F));
             for (int i = 0; i < list.size(); i++)
             {
                 EntityAnimalChocobo otherChoco = (EntityAnimalChocobo)list.get(i);
+                
                 if(otherChoco != this)
                 {
                 	boolean canMate = otherChoco.isInLove() && otherChoco.isMale() != this.isMale();

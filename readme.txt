@@ -1,4 +1,4 @@
-This is the official version of Torojimas Chococraft v2.0.0 for usage with minecraft 1.3.2. Chococraft has been originally created by EddieV and is now refactored and officially maintained by Torojima.
+This is the official version of Torojimas Chococraft v2.1.0 for usage with minecraft 1.4.2. Chococraft has been originally created by EddieV and is now refactored and officially maintained by Torojima.
 
 This mod adds a mob called Chocobo to the game. This includes different coloured mob types with different attributes in their grown-up and juvenile form.
 
@@ -10,12 +10,11 @@ ACHTUNG! CAUTION! ¡CUIDADO! चेतावनी! ATTENZIONE! береги́с
 This version of Chococraft is not compatible to versions pre 1.3.2. It will destroy your saved world if old Chocobos are included. Thus, if you want to use an old world with the new version of this mod, you should first start minecraft without the Chococraft mod, enter and save your world, thus removing all traces of older versions of Chococraft and only then start minecraft with the new version of Chococraft and tame new Chocobos.
 
 Changelog:
-1. Updated to Minecraft 1.3.2 compatibility
-2. Switched from ModLoader to Forge
-3. Completely refactored the class structure
-4. Temporarily switched off Purple Chocobos, Saddle- and Pack-Bags and Chocobo Whistle
+1. Rearranging of Chocopedia and added owner info
+2. Chocobos follow owner in SMP, not first player in world player stack
+3. working saddle bags (pack bags still disabled; saddle bags should also work in SMP)
 
 see the minecraft forums for further informations
-http://www.minecraftforum.net/topic/1119809-125-eddievs-chococraft-1610-torojimas-official-update/
+http://www.minecraftforum.net/topic/1119809-132forge-torojimas-chococraft-200-former-eddievs-chococraft/
 
 Torojima
