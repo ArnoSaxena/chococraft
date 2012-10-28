@@ -71,9 +71,9 @@ public class Constants
 	public static int DEFAULT_FEATHER_DELAY_RANDOM = 600;
 	public static int DEFAULT_FEATHER_DELAY_STATIC = 600;
 	public static int DEFAULT_GHYSAL_SPAWN_RATE = 100;
-	public static int DEFAULT_CHOCOBO_SPAWN_RATE = 5;
-	public static int DEFAULT_CHOCOBO_SPAWN_MIN = 5;
-	public static int DEFAULT_CHOCOBO_SPAWN_MAX = 8;
+	public static int DEFAULT_YELLOW_SPAWN_RATE = 5;
+	public static int DEFAULT_YELLOW_SPAWN_MIN = 5;
+	public static int DEFAULT_YELLOW_SPAWN_MAX = 8;
 	
 	//
 	public static float CHOCOBO_DEFAULT_LANDMOVEFACT  = 0.2F;
@@ -130,14 +130,6 @@ public class Constants
 	
 	// max length of channel name is 16                     "xxxxxxxxxxxxxxxx"
 	public static final String PCHAN_CHOCOBO              = "ChocoCraftPChan";
-//	public static final String PCHAN_INTERACTION          = "TCC_Interact";
-//	public static final String PCHAN_HEALTHUPDATE         = "TCC_HealthUp";
-//	public static final String PCHAN_MOUNTED_MOVE_UPDATE  = "TCC_MoMoUp";
-//	public static final String PCHAN_MOUNTUPDATE          = "TCC_MountUp";
-//	public static final String PCHAN_TAMEDUPDATE          = "TCC_TameUp";
-//	public static final String PCHAN_ATTRIBUTEUPDATE      = "TCC_RenameUp";
-//	public static final String PCHAN_STEERING_UPDATE      = "TCC_SteerUp";
-//	public static final String PCHAN_RIDERJUMPUPDATE      = "TCC_RiderJumpUp";
 	
 	// dataWatcher
 	// EAC - EntityAnimalChocobo

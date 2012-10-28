@@ -289,7 +289,7 @@ What happens when a Chocobo is tamed?
    2. the Chocobo will stop following his owner if the owner right-clicks on it
    3. can be healed using Gysahl Greens
    4. can be saddled using a Chocobo Saddle
-   5. can be equipted with a transport pack
+   (5. can be equipted with a transport pack)
 
 [/spoiler]
 
