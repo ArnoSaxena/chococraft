@@ -284,6 +284,11 @@ public class EntityChicobo extends EntityAnimalChocobo
 					this.onGysahlChibiUse(entityplayer);
 					interacted = true;
 				}
+				else if (itemstack.itemID == ModChocoCraft.chocoboFeatherItem.shiftedIndex)
+				{
+					this.onFeatherUse(entityplayer);
+					interacted = true;
+				}
 			}
 		}
 		return interacted;
@@ -319,6 +324,18 @@ public class EntityChicobo extends EntityAnimalChocobo
 			{
 				this.showAmountHeartsOrSmokeFx(false, 7);
 			}
+		}
+	}
+	
+	public void onFeatherUse(EntityPlayer entityplayer)
+	{
+		if (this.isTamed())
+		{
+			this.toggleFollow();
+		}
+		else
+		{
+			this.showAmountHeartsOrSmokeFx(false, 7);
 		}
 	}
 
