@@ -1,7 +1,7 @@
 [img]http://www.arno-saxena.de/pictures/chococraft/banner_title.png[/img]
 
 UPDATED FOR MINECRAFT 1.4.2
-Version 2.1.0
+Version 2.1.2
 Requires: [url="http://www.minecraftforge.net/"]Forge[/url] [url="http://files.minecraftforge.net/"]6.0.1.332+[/url]
 
 This Mod is the continuation of [url="http://www.minecraftforum.net/user/1051245-eddiev/"]EddieV's[/url] mod. The original thread can be found [url="http://www.minecraftforum.net/topic/952372-chococraft-12-mc-11-chocobos-now-fly/"]here[/url]. I've officially taken over the helm with Eddie's kind blessings.
@@ -17,7 +17,7 @@ As of version 2.0.4 this mod is in working condition for SMP.
 [color=#ff0000][b]ACHTUNG! CAUTION! ¡CUIDADO! चेतावनी! ATTENZIONE! береги́сь!
 This version of Chococraft is not compatible to versions pre 2.0.0 (pre mc 1.3.2). It will destroy your saved world if old Chocobos are included. Thus, if you want to use an old world with the new version of this mod, you should first start minecraft without the Chococraft mod, enter and save your world, thus removing all traces of older versions of Chococraft and only then start minecraft with the new version of Chococraft and tame new Chocobos.[/b][/color]
 
-Download: [url="http://www.arno-saxena.de/minecraft/Chococraft_2.1.0.zip"]Torojimas ChocoCraft 2.1.0[/url]
+Download: [url="http://www.arno-saxena.de/minecraft/Chococraft_2.1.2.zip"]Torojimas ChocoCraft 2.1.2[/url]
 
 Downloads so far: [img]http://www.arno-saxena.de/minecraft/chocoboDownloads.png[/img]
 
@@ -34,10 +34,17 @@ Post in the original thread for [url="http://www.minecraftforum.net/user/490126-
 VIDEOS:
 [spoiler]
 Spotlights:
+[url="http://www.minecraftforum.net/user/1680849-privatespeakz/"]PrivateSpeakz[/url] has done a video using the 2.1.0 version
+[media]http://www.youtube.com/watch?v=bGORV3UVo2o[/media]
+
+pre v2.0.0 Videos
+[spoiler]
 [url="http://www.minecraftforum.net/user/1276763-aggressionssbb/"]aggressionssbb[/url] has made a whole series of videos while playing with the Chococraft mod. Here is the first one. Make sure to watch the rest of it on [url="http://www.youtube.com/playlist?list=PLF03FD65BE93F73C2&feature=mh_lolz"]his youtube chocobo playlist[/url]!
 [media]http://www.youtube.com/watch?v=W3bvAlq5kpo[/media]
+[/spoiler]
 
-Old Chocobo Model Videos:
+old Chocobo Model Videos:
+[spoiler]
 EddieV's original video:
 [media]http://www.youtube.com/watch?v=U_JWa8LzSas[/media]
 
@@ -50,9 +57,18 @@ Thanks to rsmalec
 [media]http://www.youtube.com/watch?v=k2GhtKxZX4g[/media]
 Thanks to InTheLittleWood
 [/spoiler]
+[/spoiler]
 
 CHANGELOG:
 [spoiler]
+v.2.1.1 by Torojima
+   1. Bonemeal use on Ghysal Green stem will actually use a bonemeal unit
+   2. Chicobos follow toggled by feather use
+   3. fixed crash in server version due to introduction of config file
+
+v.2.1.1 by Torojima
+   1. added config file
+
 v.2.1.0 by Torojima
    1. updated for mc 1.4.2
    2. enable Chocopedia buttons only if player is owner of the Chocobo
@@ -277,7 +293,7 @@ How do I tame a Chocobo?
 [spoiler]
 [img]http://www.arno-saxena.de/pictures/chococraft/pic_choco_in_wild.png[/img]
 
-   1. find a pack of Chocobos
+   1. find a pack of wild Chocobos
    2. Feed one some Gysahl Greens
    3. You will see some hearts and a red collar when the Chocobo is tamed
 
@@ -285,10 +301,10 @@ How do I tame a Chocobo?
 
 What happens when a Chocobo is tamed?
 [spoiler]
-   1. the Chocobo will follow his owner
-   2. the Chocobo will stop following his owner if the owner right-clicks on it
-   3. can be healed using Gysahl Greens
-   4. can be saddled using a Chocobo Saddle
+   1. you can use the Chocopedia on it
+   2. the Chocobo can be saddled using a Chocobo Saddle.
+   3. can be made to follow its owner with help of the Chocopedia or a right click with a feather. (Default after taming is not following)
+   4. can be healed using Gysahl Greens
    (5. can be equipted with a transport pack)
 
 [/spoiler]
@@ -297,22 +313,23 @@ What happens when a Chocobo is saddled?
 [spoiler]
 [img]http://www.arno-saxena.de/pictures/chococraft/pic_saddled.png[/img]
 
-   1. the Chocobo will stay where left
-   2. the Chocobo will follow his owner if the owner uses a Chocobo Feather on it, and stop following the same way (The feather will not be consumed)
-   3. can be healed using Gysahl Greens
-   4. can be ridden by right-clicking on it
-   5. can be equipted with saddle bags by left-clicking with one
+   1. the Chocobo will stay where left (will follow again if set in Chocopedia)
+   2. can be ridden by right-clicking on it
+   3. can be equipted with saddle bags by left-clicking with one
+   4. can drop its saddle by clicking on "drop gear" in Chocopedia
 
 [/spoiler]
 
 What happens when a Chocobo is equipted with saddle bags?
 [spoiler]
     1. the Chocobo can store and transport up to 36 item stacks. Saddle bags can be accessed by shift-right-click.
+    2. can drop saddle and saddle bags by clicking on "drop gear" in Chocopedia
 [/spoiler]
 
-What happens when a Chocobo is equipted with a transport pack?
+(What happens when a Chocobo is equipted with a transport pack?)
 [spoiler]
-   1. the Chocobo can store and transport up to 54 item stacks (but can no longer be equipted with a saddle). Transport bags can be accessed by shift-right-click.
+   (1. the Chocobo can store and transport up to 54 item stacks (but can no longer be equipted with a saddle). Transport bags can be accessed by shift-right-click.) currently disabled!
+   2. can drop the pack bag by clicking on "drop gear" in Chocopedia
 [/spoiler]
 
 What happens when a Chocobo dies?
@@ -328,10 +345,10 @@ How can I obtain a Chocobo Feather?
 How can I breed two Chocobos?
 [spoiler]
 [img]http://www.arno-saxena.de/pictures/chococraft/pic_chocobo_hearts.png[/img]
-
-   1. both Chocobos have to be fed Loverly Gysahls or Golden Gysahls. After that, they'll procreate and a Chicobo will born. You'll have 25% chance of breeding a mutation, i.e, of a chocobo of a new type to be born.
-   2. by feeding both Chocobos with Golden Gysahls, the probability of a mutation will increase to 50%.
-   3. you can only breed Chocobos you own
+   1. select two tamed Chocobos of different gender to be breed. You can only choose Chocobos you own.
+   2. wait until the status in the Chocopedia changes from "can not breed" to "can breed". Chocobos need some time after breeding (and after growing up) to be ready to breed again.
+   3. both Chocobos have to be fed Loverly Gysahls or Golden Gysahls. After that, they'll procreate and a Chicobo will born. There is a certain chance of breeding a mutation, thus a different colored Chocobo will be born.
+   4. by feeding both Chocobos with Golden Gysahls, the probability of a mutation will increase noticeably.
 [/spoiler]
 
 When will a Chicobo grow into a Chocobo?
@@ -340,7 +357,7 @@ When will a Chicobo grow into a Chocobo?
 
    1. Chicobos are young Chocobos, so after some time they will eventually grow up
    2. Chicobos can also be fed a Gysahl Cake to grow up instantly, but only after they have been tamed.
-      *]Chicobos can also be fed a Chici Gysahl to remain as Chicobos. After this, a Chicobo will only grow up when fed a Gysahl Cake.
+   3. Chicobos can also be fed a Chibi Gysahl to remain as Chicobos. After this, a Chicobo will only grow up when fed a Gysahl Cake.
 [/spoiler]
 
 How can I get the other types of Chocobos?
