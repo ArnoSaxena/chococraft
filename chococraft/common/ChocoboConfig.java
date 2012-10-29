@@ -26,7 +26,11 @@ import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.Side;
+
 import net.minecraft.client.Minecraft;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.src.BiomeGenBase;
 
 public class ChocoboConfig
@@ -226,8 +230,7 @@ public class ChocoboConfig
 
 	private static void createNewConfigFile()
 	{
-		String fileName = getConfigFileName();
-		File file = new File(Minecraft.getMinecraftDir(), fileName);
+		File file = getConfigFile();		
 		if(!file.exists()) {
 			try {
 				file.createNewFile();
@@ -346,9 +349,31 @@ public class ChocoboConfig
 
 	public static BufferedReader getConfigReader() throws UnsupportedEncodingException, FileNotFoundException
 	{
+		File file = getConfigFile();		
+		if(file != null)
+		{
+			return new BufferedReader(new InputStreamReader(new FileInputStream(file), "UTF8"));
+		}
+		else
+		{
+			return null;
+		}
+	}
+	
+	private static File getConfigFile()
+	{
+		File file = null;
 		String fileName = getConfigFileName();
-		File file = new File(Minecraft.getMinecraftDir(), fileName);
-		return new BufferedReader(new InputStreamReader(new FileInputStream(file), "UTF8"));
+		Side side = FMLCommonHandler.instance().getEffectiveSide();
+		if (side == Side.SERVER)
+		{
+			file = new File(MinecraftServer.getServer().getFolderName(), fileName);
+		}
+    	else if (side == Side.CLIENT)
+		{
+    		file = new File(Minecraft.getMinecraftDir(), fileName);
+		}
+		return file;		
 	}
 
 	public static String getConfigFileName()
