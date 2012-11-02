@@ -46,7 +46,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.common.registry.EntityRegistry;
 
-@Mod(modid="ChocoCraft", name="Torojimas ChocoCraft", version="2.1.2")
+@Mod(modid="ChocoCraft", name="Torojimas ChocoCraft", version="2.1.3")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false, 
 		channels = { Constants.PCHAN_CHOCOBO },
 		packetHandler = ChocoboPacketHandler.class)
