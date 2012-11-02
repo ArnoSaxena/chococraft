@@ -335,7 +335,6 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
     		if (this.isTamed())
     		{
     			GuiStarter.startChocopediaGui(this);
-    			//FMLClientHandler.instance().getClient().displayGuiScreen(new GuiChocopedia(FMLClientHandler.instance().getClient().currentScreen, this));
     		}
     		else
     		{
@@ -553,7 +552,8 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
 
 	protected boolean canDespawn()
 	{
-		return !this.isTamed();
+		return false;
+		//return !this.isTamed();
 	}    
 
     protected boolean isLoverlyGysahl(ItemStack itemstack)
