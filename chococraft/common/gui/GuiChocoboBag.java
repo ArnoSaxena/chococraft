@@ -17,7 +17,6 @@ package chococraft.common.gui;
 import net.minecraft.src.GuiContainer;
 import net.minecraft.src.InventoryPlayer;
 import net.minecraft.src.StatCollector;
-
 import org.lwjgl.opengl.GL11;
 
 import chococraft.common.bags.ChocoBagContainer;
@@ -49,31 +48,40 @@ public class GuiChocoboBag extends GuiContainer
 	@Override
 	protected void drawGuiContainerForegroundLayer(int dummy, int dummy2)
 	{
-		fontRenderer.drawString(StatCollector.translateToLocal(this.chocoBagInv.getInvName()), 8, 6, 0x404040);
-		int labelYPos;
+		int plyLabelYPos;
+		int chocLabelYPos;
 		if(this.chocoBagInv instanceof ChocoPackBagInventory)
 		{
-			labelYPos = this.ySize - 50;
+			plyLabelYPos = this.ySize - 62;
+			chocLabelYPos = -16;
 		}
 		else
 		{
-			labelYPos = this.ySize - 74;
+			plyLabelYPos = this.ySize - 74;
+			chocLabelYPos = 6;
 		}
-
-		fontRenderer.drawString(StatCollector.translateToLocal(this.playerInv.getInvName()), 8, labelYPos, 0x404040);
+		
+		fontRenderer.drawString(StatCollector.translateToLocal(this.chocoBagInv.getInvName()), 8, chocLabelYPos, 0x404040);
+		fontRenderer.drawString(StatCollector.translateToLocal(this.playerInv.getInvName()), 8, plyLabelYPos, 0x404040);
 	}
 
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float par1, int par2, int par3)
 	{
 		int chocoInvRows = this.chocoBagInv.getSizeInventory() / 9;
+		
+		int yPosOffset = 0;
+		if(this.chocoBagInv instanceof ChocoPackBagInventory)
+		{
+			yPosOffset = -24;
+		}
 
 		int i = mc.renderEngine.getTexture("/gui/container.png");
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		this.mc.renderEngine.bindTexture(i);
 		int j = (width - xSize) / 2;
-		int k = (height - ySize) / 2;
-		this.drawTexturedModalRect(j, k, 0, 0, xSize, chocoInvRows * 18 + 17);
-		this.drawTexturedModalRect(j, k + chocoInvRows * 18 + 17, 0, 126, xSize, this.invHeight);
+		int k = (height - ySize) / 2 + yPosOffset;
+		this.drawTexturedModalRect(j, k, 0, 0, this.xSize, chocoInvRows * 18 + 17);
+		this.drawTexturedModalRect(j, k + chocoInvRows * 18 + 17, 0, 126, this.xSize, this.invHeight);
 	}
 }

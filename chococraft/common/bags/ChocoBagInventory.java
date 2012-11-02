@@ -14,7 +14,6 @@
 
 package chococraft.common.bags;
 
-//import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
 import chococraft.common.entities.EntityChocoboRideable;
 import net.minecraft.src.EntityPlayer;
 import net.minecraft.src.IInventory;

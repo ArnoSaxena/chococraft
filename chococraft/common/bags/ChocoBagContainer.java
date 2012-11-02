@@ -30,11 +30,17 @@ public class ChocoBagContainer extends Container
 		this.chocoBagInv = chocoBagInv;
 		this.chocoBagRows = chocoBagInv.getSizeInventory() / 9;
 
+		int offset = 0;
+		if(this.chocoBagInv instanceof ChocoPackBagInventory)
+		{
+			offset -= 24;
+		}
+		
 		for (int i = 0; i < this.chocoBagRows; ++i)
 		{
 			for (int j = 0; j < 9; ++j)
 			{
-				this.addSlotToContainer(new Slot(chocoBagInv, j + i * 9, 8 + j * 18, 18 + i * 18));
+				this.addSlotToContainer(new Slot(chocoBagInv, j + i * 9, 8 + j * 18, 18 + i * 18 + offset));
 			}
 		}
 		this.bindPlayerInventory(inventoryPlayer);
@@ -49,17 +55,23 @@ public class ChocoBagContainer extends Container
 
 	protected void bindPlayerInventory(InventoryPlayer inventoryPlayer)
 	{
+		int offset = (this.chocoBagRows - 4) * 18;
+		if(this.chocoBagInv instanceof ChocoPackBagInventory)
+		{
+			offset -= 24;
+		}
+		
 		for (int i = 0; i < 3; i++)
 		{
 			for (int j = 0; j < 9; j++)
 			{
-				addSlotToContainer(new Slot(inventoryPlayer, j + i * 9 + 9, 8 + j * 18, 103 + i * 18));
+				addSlotToContainer(new Slot(inventoryPlayer, j + i * 9 + 9, 8 + j * 18, 103 + i * 18 + offset));
 			}
 		}
 
 		for (int i = 0; i < 9; i++)
 		{
-			addSlotToContainer(new Slot(inventoryPlayer, i, 8 + i * 18, 161));
+			addSlotToContainer(new Slot(inventoryPlayer, i, 8 + i * 18, 161 + offset));
 		}
 	}
 
