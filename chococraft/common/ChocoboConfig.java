@@ -263,8 +263,9 @@ public class ChocoboConfig
 			writer.write(getConfigLine(CFG_KEY_YELLOW_SPAWN_MAX, Integer.toString(ModChocoCraft.yellowSpawnMax)));
 			
 			writer.write("\n");
-			writer.write(getCommentLine("tamed chocobos have a chance of "+ CFG_KEY_FEATHER_DROP_CHANCE +" in 100 to drop a feather"));
-			writer.write(getCommentLine("every 0 to "+CFG_KEY_FEATHER_DELAY_RANDOM+"/60 plus "+CFG_KEY_FEATHER_DELAY_STATIC+"/60 seconds"));
+			writer.write(getCommentLine("tamed chocobos have a chance of "+ CFG_KEY_FEATHER_DROP_CHANCE +" in 100 to drop a feather every"));
+			writer.write(getCommentLine(CFG_KEY_FEATHER_DELAY_RANDOM+"/20 to "+CFG_KEY_FEATHER_DELAY_RANDOM+"/20 plus "+CFG_KEY_FEATHER_DELAY_STATIC+"/20 seconds"));
+			writer.write(getCommentLine(""));
 			writer.write(getConfigLine(CFG_KEY_FEATHER_DELAY_RANDOM, Integer.toString(ModChocoCraft.featherDelayRandom)));
 			writer.write(getConfigLine(CFG_KEY_FEATHER_DELAY_STATIC, Integer.toString(ModChocoCraft.featherDelayStatic)));
 			writer.write(getConfigLine(CFG_KEY_FEATHER_DROP_CHANCE, Integer.toString(ModChocoCraft.featherDropChance)));
