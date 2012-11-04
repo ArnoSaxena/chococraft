@@ -32,8 +32,7 @@ Post in the original thread for [url="http://www.minecraftforum.net/user/490126-
 [/spoiler]
 
 VIDEOS:
-[spoiler]
-Spotlights:
+[spoiler]Spotlights:
 [url="http://www.minecraftforum.net/user/1723035-shiftthemine/"]ShiftTheMine[/url] has done a video using the 2.1.2 version
 [media]http://www.youtube.com/watch?v=6aRs1iAmgzk[/media]
 
@@ -47,14 +46,12 @@ Spotlights:
 [media]http://www.youtube.com/watch?v=abGRrtryQb0[/media]
 
 pre v2.0.0 Videos
-[spoiler]
-[url="http://www.minecraftforum.net/user/1276763-aggressionssbb/"]aggressionssbb[/url] has made a whole series of videos while playing with the Chococraft mod. Here is the first one. Make sure to watch the rest of it on [url="http://www.youtube.com/playlist?list=PLF03FD65BE93F73C2&feature=mh_lolz"]his youtube chocobo playlist[/url]!
+[spoiler][url="http://www.minecraftforum.net/user/1276763-aggressionssbb/"]aggressionssbb[/url] has made a whole series of videos while playing with the Chococraft mod. Here is the first one. Make sure to watch the rest of it on [url="http://www.youtube.com/playlist?list=PLF03FD65BE93F73C2&feature=mh_lolz"]his youtube chocobo playlist[/url]!
 [media]http://www.youtube.com/watch?v=W3bvAlq5kpo[/media]
 [/spoiler]
 
 old Chocobo Model Videos:
-[spoiler]
-EddieV's original video:
+[spoiler]EddieV's original video:
 [media]http://www.youtube.com/watch?v=U_JWa8LzSas[/media]
 
 [media]http://www.youtube.com/watch?v=ZWHMNQvtIHE[/media]
@@ -64,9 +61,7 @@ Thanks to [url="http://www.minecraftforum.net/user/772620-jeff-theking/"]Jeff_th
 Thanks to rsmalec
 
 [media]http://www.youtube.com/watch?v=k2GhtKxZX4g[/media]
-Thanks to InTheLittleWood
-[/spoiler]
-[/spoiler]
+Thanks to InTheLittleWood[/spoiler][/spoiler]
 
 CHANGELOG:
 [spoiler]
@@ -264,7 +259,6 @@ v1.0: by EddieV
    1. Fixed an issue where you weren't able to get a Pink Chocobo.
    2. White/Black Chocobos are now faster than the previous ones, but still slower than Gold.
    3. Fixed the spawning rate of Chocobo packs.
-
 [/spoiler]
 
 Chocobos and their behaviour:
@@ -273,13 +267,14 @@ Chocobos and their behaviour:
 Yellow, Green, Blue, Black, White, Gold, Pink, Red and Purple
 
 [img]http://www.arno-saxena.de/pictures/chococraft/chocobo_colours.png[/img]
+Picture by [url="http://www.minecraftforum.net/user/524192-uncletravis/"]uncletravis[/url]
 
 The average Chocobos are yellow, so all the wild ones you'll encounter will be of this type. Chocobos can be found in forests, plains and mountains (including snowy forests and mountains).
 The other types can be obtained by breeding.
 
 There are also rumors of there being 3 secret types.  [img]http://static.minecraftforum.net//public/style_emoticons/default/rolleyes.gif[/img]
-[spoiler][img]http://www.arno-saxena.de/pictures/chococraft/chocobo_pink_red.png[/img][/spoiler]
-[/spoiler]
+[spoiler][img]http://www.arno-saxena.de/pictures/chococraft/chocobo_pink_red.png[/img]
+Screenshot by [url="http://www.minecraftforum.net/user/524192-uncletravis/"]uncletravis[/url][/spoiler][/spoiler]
 
 What's the difference between each type of Chocobo?
 [spoiler]
@@ -293,23 +288,19 @@ What's the difference between each type of Chocobo?
 [/spoiler]
 
 Where can I find Gysahl Greens?
-[spoiler]
-[img]http://www.arno-saxena.de/pictures/chococraft/pic_gysahl_in_wild.png[/img]
+[spoiler][img]http://www.arno-saxena.de/pictures/chococraft/pic_gysahl_in_wild.png[/img]
 
    1. Gysahl Greens can be found around the world, in places where flowers can grow (mainly forests, plains and mountains)
    2. You can also craft Gysahl Seeds to plant in your farm.
    3. For the seeds to grow instantly, you can use Chocobo Fertilizer
-
 [/spoiler]
 
 How do I tame a Chocobo?
-[spoiler]
-[img]http://www.arno-saxena.de/pictures/chococraft/pic_choco_in_wild.png[/img]
+[spoiler][img]http://www.arno-saxena.de/pictures/chococraft/pic_choco_in_wild.png[/img]
 
    1. find a pack of wild Chocobos
    2. Feed one some Gysahl Greens
    3. You will see some hearts and a red collar when the Chocobo is tamed
-
 [/spoiler]
 
 What happens when a Chocobo is tamed?
@@ -325,12 +316,15 @@ What happens when a Chocobo is tamed?
 What happens when a Chocobo is saddled?
 [spoiler]
 [img]http://www.arno-saxena.de/pictures/chococraft/pic_saddled.png[/img]
+Screenshot by [url="http://www.minecraftforum.net/user/173045-torojima/"]Torojima[/url]
 
    1. the Chocobo will stay where left (will follow again if set in Chocopedia)
    2. can be ridden by right-clicking on it
    3. can be equipted with saddle bags by left-clicking with one
    4. can drop its saddle by clicking on "drop gear" in Chocopedia
 
+[img]http://www.arno-saxena.de/pictures/chococraft/pic_chocobo_riding.png[/img]
+Screenshot by [url="http://www.minecraftforum.net/user/1099767-poloniumradon/"]PoloniumRadon[/url]
 [/spoiler]
 
 What happens when a Chocobo is equipted with saddle bags?
@@ -356,8 +350,9 @@ How can I obtain a Chocobo Feather?
 [/spoiler]
 
 How can I breed two Chocobos?
-[spoiler]
-[img]http://www.arno-saxena.de/pictures/chococraft/pic_chocobo_hearts.png[/img]
+[spoiler][img]http://www.arno-saxena.de/pictures/chococraft/pic_chocobo_hearts.png[/img]
+Screenshot by [url="http://www.minecraftforum.net/user/524192-uncletravis/"]uncletravis[/url]
+
    1. select two tamed Chocobos of different gender to be breed. You can only choose Chocobos you own.
    2. wait until the status in the Chocopedia changes from "can not breed" to "can breed". Chocobos need some time after breeding (and after growing up) to be ready to breed again.
    3. both Chocobos have to be fed Loverly Gysahls or Golden Gysahls. After that, they'll procreate and a Chicobo will born. There is a certain chance of breeding a mutation, thus a different colored Chocobo will be born.
@@ -365,8 +360,7 @@ How can I breed two Chocobos?
 [/spoiler]
 
 When will a Chicobo grow into a Chocobo?
-[spoiler]
-[img]http://www.arno-saxena.de/pictures/chococraft/pic_chocobo_chicobo.png[/img]
+[spoiler][img]http://www.arno-saxena.de/pictures/chococraft/pic_chocobo_chicobo.png[/img]
 
    1. Chicobos are young Chocobos, so after some time they will eventually grow up
    2. Chicobos can also be fed a Gysahl Cake to grow up instantly, but only after they have been tamed.
@@ -374,8 +368,7 @@ When will a Chicobo grow into a Chocobo?
 [/spoiler]
 
 How can I get the other types of Chocobos?
-[spoiler]
-I'll put a new spoiler tag on this, since these are the exact breeding instructions to get the other types. So be warned! If you want to experiment and find out about how to get the other types DO NOT READ THIS. You've been warned.
+[spoiler]I'll put a new spoiler tag on this, since these are the exact breeding instructions to get the other types. So be warned! If you want to experiment and find out about how to get the other types DO NOT READ THIS. You've been warned.
 
 [spoiler]
    1. Yellow + Yellow = Green or Blue
@@ -383,18 +376,18 @@ I'll put a new spoiler tag on this, since these are the exact breeding instructi
    3. Yellow + White = Black
    4. Black + White =(Golden Gysahls REQUIRED)= Gold
 
-I won't tell you how to get the other two types anyway >[img]http://static.minecraftforum.net//public/style_emoticons/default/smile.png[/img] All I can say is it is not through breeding, but by forcing a Gold chocobo to be another one ;P[/spoiler]
-[/spoiler]
+I won't tell you how to get the other two types anyway >[img]http://static.minecraftforum.net//public/style_emoticons/default/smile.png[/img] All I can say is it is not through breeding, but by forcing a Gold chocobo to be another one ;P[/spoiler][/spoiler]
 
 And why do I want a Chocobo?
-[spoiler]
-[img]http://www.arno-saxena.de/pictures/chococraft/pic_riding.png[/img]
+[spoiler][img]http://www.arno-saxena.de/pictures/chococraft/pic_riding.png[/img]
+Screenshot by [url="http://www.minecraftforum.net/user/524192-uncletravis/"]uncletravis[/url]
 
    1. Chocobos are cute
    2. They are a fast way to travel
    3. KWEH!
-[/spoiler]
-[/spoiler]
+
+[img]http://www.arno-saxena.de/pictures/chococraft/pic_chocobo_riding_view.png[/img]
+Screenshot by [url="http://www.minecraftforum.net/user/1099767-poloniumradon/"]PoloniumRadon[/url][/spoiler][/spoiler]
 
 Items and Blocks:
 [spoiler]
@@ -461,24 +454,32 @@ Recipes:
 [/spoiler]
 
 Screenshots:
-[spoiler]
-Different types of Chocobos:
+[spoiler]Different types of Chocobos:
 [img]http://www.arno-saxena.de/pictures/chococraft/chocobo_colours.png[/img]
+Screenshot by [url="http://www.minecraftforum.net/user/524192-uncletravis/"]uncletravis[/url]
 
 Okay, maybe there are more than 6:
 [img]http://www.arno-saxena.de/pictures/chococraft/chocobo_pink_red.png[/img]
+Screenshot by [url="http://www.minecraftforum.net/user/524192-uncletravis/"]uncletravis[/url]
 
 Gysahl Greens:
 [img]http://www.arno-saxena.de/pictures/chococraft/pic_gysahl_in_wild.png[/img]
 
 Ready to Ride:
 [img]http://www.arno-saxena.de/pictures/chococraft/pic_saddled.png[/img]
+Screenshot by [url="http://www.minecraftforum.net/user/173045-torojima/"]Torojima[/url]
+
+Riding view:
+[img]http://www.arno-saxena.de/pictures/chococraft/pic_chocobo_riding_view.png[/img]
+Screenshot by [url="http://www.minecraftforum.net/user/1099767-poloniumradon/"]PoloniumRadon[/url]
 
 Golden big bird next to a proud owner:
 [img]http://www.arno-saxena.de/pictures/chococraft/pic_riding.png[/img]
+Screenshot by [url="http://www.minecraftforum.net/user/524192-uncletravis/"]uncletravis[/url]
 
 Love in the air:
 [img]http://www.arno-saxena.de/pictures/chococraft/pic_chocobo_hearts.png[/img]
+Screenshot by [url="http://www.minecraftforum.net/user/524192-uncletravis/"]uncletravis[/url]
 
 Proud of his offspring:
 [img]http://www.arno-saxena.de/pictures/chococraft/pic_chocobo_chicobo.png[/img]
@@ -488,7 +489,7 @@ Chocobo Names:
 
 Chocopedia:
 [img]http://www.arno-saxena.de/pictures/chococraft/pic_chocobo_gui.png[/img]
-[/spoiler]
+Screenshot by [url="http://www.minecraftforum.net/user/1099767-poloniumradon/"]PoloniumRadon[/url][/spoiler]
 
 NOTES:
 
@@ -538,8 +539,7 @@ How to Install:
 [/spoiler]
 
 How to Install server version:
-[spoiler]
-Chococraft version 2.0.4+ is needed
+[spoiler]Chococraft version 2.0.4+ is needed
 
 1. Install Forge v4.1.4.297 or newer into a minecraft server.
 2. Run the server once. (And stop it again)
@@ -552,7 +552,7 @@ Acknowledgments:
 1. Chococraft has been created by [url="http://www.minecraftforum.net/user/1051245-eddiev/"]EddieV[/url]
 2. Chocobos are creatures from Square Enix's Final Fantasy franchise, which later became main characters on their own games. As such, I do not own any right on them.
 3. The design of the new Chocobo model has been created by [url="http://www.minecraftforum.net/user/758250-firas333/"]firas333[/url].
-4. Pictures of new Chocobos made by [url="http://www.minecraftforum.net/user/524192-uncletravis/"]uncletravis[/url].
+4. Pictures of new Chocobos made by [url="http://www.minecraftforum.net/user/524192-uncletravis/"]uncletravis[/url] and [url="http://www.minecraftforum.net/user/1099767-poloniumradon/"]PoloniumRadon[/url].
 5. The old models of the Chocobos were HIGHLY inspired by the Moa creatures in The Aether Mod. If you don't know this mod, you should. Go get it ASAP.
 6. The models of the Chicobos were HIGHLY inspired by the chicks present in Baby Animals Mod. If you don't know this mod, you should also go get it ASAP.
 7. [url="http://www.minecraftforum.net/user/21540-leonblade/"]LeonBlade[/url] for beeing part of the developer team
