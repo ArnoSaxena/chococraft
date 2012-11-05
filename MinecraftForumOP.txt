@@ -500,7 +500,7 @@ Known Issues and Bugs:
    3. While traveling on Chocobo, Chocobo model will twitch left and right.
 If you happen to find any more bug or issue, please report it on this thread and I'll look into it ASAP [img]http://static.minecraftforum.net//public/style_emoticons/default/smile.png[/img] [/spoiler]
 
-Config File (not available at the moment):
+Config File:
 [spoiler] As of 1.4.1u, ChocoCraft allows you to customize the mod by editing the config file.
 For example, you can change item IDs to solve conflicts, change the maximum number of Chocobos and choose whether to hide or show the name of the chocobos above their head.
 Here's how to do it:
@@ -536,6 +536,24 @@ How to Install:
 1. Install Forge v4.1.4.297 or newer by following the instructions on the corresponding pages. The link to both can be found above the link to this mod.
 2. With Forge installed, put this mod's .zip file in your minecraft "mods" folder.
 3. Extract the mod zip in a different folder and get the file choco_kweh.ogg from /resources/sounds and put it into the folder minecraft/resources/mod/. (The other extracted files from the zip won't be needed anymore and can be deleted. Do not delete the zip in the minecraft/mods folder, or if you have extracted the files into the minecraft/mods folder delete them after extracting the sound file. In the minecraft/mods folder only the chococraft_x.x.x_zip file should stay.)
+
+controlling mod loading sequence:
+[spoiler]Certain mods can interact with ChocoCraft, but you have to make sure they are loaded in the mod loading sequence before ChocoCraft. For example Chocobos can spawn in the biomes provided by the [url="http://www.minecraftforum.net/topic/1090288-142-extrabiomesxl-330/page__hl__%20xlbiomes"]extrabiomesxl[/url] mod, if the respective names are added in the chocobo config file. But for that to work, the biomesxl mod has to be loaded before ChocoCraft by the Forge modloader.
+
+Mods which are placed in the mods folder are loaded in alphabetic sequence according to their name. Thus, if you want to make sure a certain mod is loaded before another one, just add a number prefix to each mod filename in the mods folder, for example:
+
+01_someMod.zip
+02_someOtherMod.zip
+03_Chococraft_2.1.4.zip
+
+will have the mods loaded in the sequence someMod, someOtherMod, Chococraft. Whereas
+
+01_Chococraft_2.1.4.zip
+03_someOtherMod.zip
+05_someMod.zip
+
+will have the mods loaded in the sequence Chococraft, someOtherMod, someMod.
+[/spoiler]
 [/spoiler]
 
 How to Install server version:
