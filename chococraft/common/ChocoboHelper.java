@@ -15,6 +15,7 @@
 package chococraft.common;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import cpw.mods.fml.client.FMLClientHandler;
@@ -22,12 +23,30 @@ import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Side;
 import chococraft.common.entities.EntityAnimalChocobo;
 import chococraft.common.entities.EntityChocobo;
-
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.src.*;
+import net.minecraft.src.AxisAlignedBB;
+import net.minecraft.src.BiomeGenBase;
+import net.minecraft.src.BiomeGenHell;
+import net.minecraft.src.BiomeGenEnd;
+import net.minecraft.src.Block;
+import net.minecraft.src.Chunk;
+import net.minecraft.src.ChunkPosition;
+import net.minecraft.src.Entity;
+import net.minecraft.src.EntityCow;
+import net.minecraft.src.EntityPlayer;
+import net.minecraft.src.EntitySheep;
+import net.minecraft.src.EntityPig;
+import net.minecraft.src.EntityChicken;
+import net.minecraft.src.EntitySquid;
+import net.minecraft.src.EntityWolf;
+import net.minecraft.src.EntityOcelot;
+import net.minecraft.src.IMob;
+import net.minecraft.src.MathHelper;
+import net.minecraft.src.World;
+import net.minecraft.src.WorldServer;
 
-public class ChocoboHelper {
-
+public class ChocoboHelper
+{
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public static BiomeGenBase[] getBiomeGenBaseArray()
 	{
@@ -314,5 +333,60 @@ public class ChocoboHelper {
     		return  FMLClientHandler.instance().getClient().theWorld.getPlayerEntityByName(name);
 		}
 		return null;
+	}
+
+	public static int getAmountWildYellowsInChunkRadius(EntityAnimalChocobo centerChocobo, int radius)
+	{
+		double minX = centerChocobo.posX - radius*16;
+		double minY = centerChocobo.posY - radius*16;
+		double minZ = centerChocobo.posZ - radius*16;
+		double maxX = centerChocobo.posX + radius*16;
+		double maxY = centerChocobo.posY + radius*16;
+		double maxZ = centerChocobo.posZ + radius*16;
+		AxisAlignedBB axisAlignedBB = AxisAlignedBB.getBoundingBox(minX, minY, minZ, maxX, maxY, maxZ);
+		
+//		DebugFileWriter.instance().writeLine("ChHelp", "getAmWC minX: " + minX);
+//		DebugFileWriter.instance().writeLine("ChHelp", "getAmWC minY: " + minY);
+//		DebugFileWriter.instance().writeLine("ChHelp", "getAmWC minZ: " + minZ);
+//		DebugFileWriter.instance().writeLine("ChHelp", "getAmWC maxX: " + maxX);
+//		DebugFileWriter.instance().writeLine("ChHelp", "getAmWC maxY: " + maxY);
+//		DebugFileWriter.instance().writeLine("ChHelp", "getAmWC maxZ: " + maxZ);
+		
+		int amount = 0;
+		
+		Side side = FMLCommonHandler.instance().getEffectiveSide();
+		if (side == Side.SERVER)
+		{
+			WorldServer worldserver = MinecraftServer.getServer().worldServerForDimension(centerChocobo.dimension);
+			Chunk chunk = worldserver.getChunkFromBlockCoords((int)centerChocobo.posX, (int)centerChocobo.posZ);
+			
+			@SuppressWarnings("rawtypes")
+			List<?> chocobos = new ArrayList();
+			chunk.getEntitiesWithinAABBForEntity(centerChocobo, axisAlignedBB, chocobos);
+			for(Object chocobo : chocobos)
+			{
+				if(chocobo instanceof EntityChocobo && !((EntityChocobo)chocobo).isTamed())
+				{
+					amount++;
+				}
+			}
+		}
+    	else if (side == Side.CLIENT)
+		{
+			World world = FMLClientHandler.instance().getClient().theWorld;
+			Chunk chunk = world.getChunkFromBlockCoords((int)centerChocobo.posX, (int)centerChocobo.posZ);
+			
+			@SuppressWarnings("rawtypes")
+			List<?> chocobos = new ArrayList();
+			chunk.getEntitiesWithinAABBForEntity(centerChocobo, axisAlignedBB, chocobos);
+			for(Object chocobo : chocobos)
+			{
+				if(chocobo instanceof EntityChocobo && !((EntityChocobo)chocobo).isTamed())
+				{
+					amount++;
+				}
+			}
+		}
+		return amount;
 	}
 }

@@ -23,6 +23,7 @@ import net.minecraft.src.RenderLiving;
 
 import org.lwjgl.opengl.GL11;
 
+import chococraft.common.ModChocoCraft;
 import chococraft.common.entities.EntityChocobo;
 
 public class RenderChocobo extends RenderLiving
@@ -38,7 +39,7 @@ public class RenderChocobo extends RenderLiving
 		super.doRenderLiving(entitychocobo, d, d1, d2, f, f1);
 		if (entitychocobo.canRenderName())
 		{
-			super.renderLivingLabel(entitychocobo, entitychocobo.getName(), d, d1, d2, maxNameDistance);
+			super.renderLivingLabel(entitychocobo, entitychocobo.getName(), d, (d1 + ModChocoCraft.renderNameHeight), d2, maxNameDistance);
 		}
 	}
 

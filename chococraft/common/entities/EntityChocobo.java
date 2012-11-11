@@ -367,7 +367,9 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 
 	protected String getLivingSound()
 	{
-		if (rand.nextInt(4) == 0)
+		if (ModChocoCraft.livingSoundProb != 0 
+				&& rand.nextInt(4) == 0 
+				&& rand.nextInt(100) < ModChocoCraft.livingSoundProb)
 		{
 			return "choco_kweh";
 		}
@@ -484,16 +486,6 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 		{
 			this.showAmountHeartsOrSmokeFx(false, 7);
 		}
-	}
-
-	public void toggleFollow()
-	{
-		this.setFollowing(!this.isFollowing());
-		if (!this.isSaddled())
-		{
-			this.setWander(!this.isFollowing());
-		}
-		this.showAmountHeartsOrSmokeFx(this.isFollowing(), 7);
 	}
 
 	public void dropFeather()

@@ -24,6 +24,7 @@ import org.lwjgl.input.Keyboard;
 
 import cpw.mods.fml.client.FMLClientHandler;
 
+import chococraft.common.ChocoboHelper;
 import chococraft.common.entities.EntityAnimalChocobo;
 import chococraft.common.entities.EntityChocoboRideable;
 
@@ -72,7 +73,8 @@ public class GuiChocopedia extends GuiScreen
 		this.controlList.add(this.hideNameButton);
 		
 		// following button
-		String lblFollowing = (this.chocobo.isFollowing()) ? "Following" : "Not Following";
+		//String lblFollowing = (this.chocobo.isFollowing()) ? "Following" : "Not Following";
+		String lblFollowing = this.getFollowStatus();
 		this.followingButton = this.createGuiButton(3, xPos, (yPos += 24), stringtranslate.translateKey(lblFollowing));
 		this.checkButtonOwner(this.player, this.chocobo.getOwner(), this.followingButton);
 		this.controlList.add(this.followingButton);
@@ -83,7 +85,7 @@ public class GuiChocopedia extends GuiScreen
 		this.controlList.add(this.confirmButton);
 		
 		// remove saddle button
-		if(this.chocobo instanceof EntityChocoboRideable)
+		if(this.chocobo instanceof EntityChocoboRideable  && null == this.chocobo.riddenByEntity)
 		{
 			EntityChocoboRideable chocoboRideable = (EntityChocoboRideable)this.chocobo;
 			if(chocoboRideable.isSaddled() || chocoboRideable.isPackBagged())
@@ -114,17 +116,18 @@ public class GuiChocopedia extends GuiScreen
 		}
 		if (guibutton.id == 1)
 		{
-			mc.displayGuiScreen(parentGuiScreen);
+			this.mc.displayGuiScreen(parentGuiScreen);
 		}
 		else if (guibutton.id == 2)
 		{
-			chocobo.setHidename(!chocobo.isHidename());
-			hideNameButton.displayString = (chocobo.isHidename()) ? "Name Hidden" : "Name Shown";
+			this.chocobo.setHidename(!this.chocobo.isHidename());
+			this.hideNameButton.displayString = (this.chocobo.isHidename()) ? "Name Hidden" : "Name Shown";
 		}
 		else if (guibutton.id == 3)
 		{
-			chocobo.toggleFollow();
-			followingButton.displayString = (chocobo.isFollowing()) ? "Following" : "Not Following";
+			this.chocobo.toggleFollow();
+			//followingButton.displayString = (chocobo.isFollowing()) ? "Following" : "Not Following";
+			this.followingButton.displayString = this.getFollowStatus();
 		}
 		else if (guibutton.id == 0)
 		{
@@ -132,14 +135,14 @@ public class GuiChocopedia extends GuiScreen
 		}
 		else if (guibutton.id == 4)
 		{
-			if(this.chocobo instanceof EntityChocoboRideable)
+			if(this.chocobo instanceof EntityChocoboRideable && null == this.chocobo.riddenByEntity)
 			{
 				((EntityChocoboRideable)this.chocobo).sendDropSaddleAndBags();
 			}
-			mc.displayGuiScreen(parentGuiScreen);
+			this.mc.displayGuiScreen(this.parentGuiScreen);
 		}
 	}
-
+	
 	protected void mouseClicked(int i, int j, int k)
 	{
 		super.mouseClicked(i, j, k);
@@ -163,7 +166,7 @@ public class GuiChocopedia extends GuiScreen
 			breedStatus = "can breed";
 		}
 		
-		this.drawCenteredString(this.fontRenderer, chocobo.getName(), this.width / 2, (height / 4 - 60) + 20, 0xffffff);
+		this.drawCenteredString(this.fontRenderer, this.chocobo.getName(), this.width / 2, (height / 4 - 60) + 20, 0xffffff);
 				
 		int posY = 24;
 		int posX = this.width / 2 + 10;
@@ -172,7 +175,20 @@ public class GuiChocopedia extends GuiScreen
 		this.drawString(this.fontRenderer, ownerName,   posX, (posY += 24), fontColour);
 		this.drawString(this.fontRenderer, health,      posX, (posY += 24), fontColour);
 		this.drawString(this.fontRenderer, gender + " (" + breedStatus + ")",      posX, (posY += 24), fontColour);
-		//this.drawString(this.fontRenderer, breedStatus, posX, (posY += 24), fontColour);
+		
+		if(this.chocobo.getOwnerName().equals("Torojima"))
+		{
+			// it's me, display debug information
+			int amountWildChocobos = ChocoboHelper.countWildChocobos(this.chocobo.worldObj);
+			int amountChocobos = ChocoboHelper.countEntities(EntityAnimalChocobo.class, this.chocobo.worldObj);
+			int debugFontColour = 0x11a0a0;
+			String biomeName = this.chocobo.worldObj.getBiomeGenForCoords((int)this.chocobo.posX, (int)this.chocobo.posZ).biomeName;
+			String biomeDisplayString = "Biome: " + biomeName;
+			
+			String chocoAmountString = (new StringBuilder()).append("Chocos: ").append(amountChocobos).append(" wild: ").append(amountWildChocobos).toString();			
+			this.drawString(this.fontRenderer, chocoAmountString,   posX, (posY += 15), debugFontColour);
+			this.drawString(this.fontRenderer, biomeDisplayString,   posX, (posY += 15), debugFontColour);
+		}		
 		super.drawScreen(i, j, f);
 	}
 	
@@ -181,6 +197,26 @@ public class GuiChocopedia extends GuiScreen
 		if(!player.equals(owner))
 		{
 			button.enabled = false;
+		}
+	}
+	
+	private String getFollowStatus()
+	{
+		if(this.chocobo.isFollowing() && !this.chocobo.isWander())
+		{
+			return "follow";
+		}
+		else if(!this.chocobo.isFollowing() && this.chocobo.isWander())
+		{
+			return "wander";
+		}
+		else if(!this.chocobo.isFollowing() && !this.chocobo.isWander())
+		{
+			return "stay";
+		}
+		else
+		{
+			return "";
 		}
 	}
 }

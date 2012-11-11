@@ -46,7 +46,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.common.registry.EntityRegistry;
 
-@Mod(modid="ChocoCraft", name="Torojimas ChocoCraft", version="2.1.3")
+@Mod(modid="ChocoCraft", name="Torojimas ChocoCraft", version="2.1.4")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false, 
 		channels = { Constants.PCHAN_CHOCOBO },
 		packetHandler = ChocoboPacketHandler.class)
@@ -111,23 +111,33 @@ public class ModChocoCraft
 	public static int yellowSpawnRate;
 	public static int yellowSpawnMin;
 	public static int yellowSpawnMax;
+	public static int yellowSpawnProbability;
+	public static double renderNameHeight;
+	public static int livingSoundProb;
 
 	public static BiomeGenBase[] yellowSpawnBiomes = {
-		BiomeGenBase.beach, 
-		BiomeGenBase.desert,
-		BiomeGenBase.desertHills, 
 		BiomeGenBase.extremeHills,
 		BiomeGenBase.extremeHillsEdge,
 		BiomeGenBase.forest,
 		BiomeGenBase.forestHills,
 		BiomeGenBase.jungle,
 		BiomeGenBase.jungleHills,
-		BiomeGenBase.mushroomIslandShore,
 		BiomeGenBase.plains,
-		BiomeGenBase.river,
 		BiomeGenBase.swampland,
 		BiomeGenBase.taiga,
-		BiomeGenBase.taigaHills
+		BiomeGenBase.taigaHills,
+		BiomeGenBase.iceMountains,
+		BiomeGenBase.icePlains
+	};
+	
+	public static BiomeGenBase[] onlyYellowSpawnBiomes =
+	{
+		BiomeGenBase.beach, 
+		BiomeGenBase.desert,
+		BiomeGenBase.desertHills,
+		BiomeGenBase.frozenRiver,
+		BiomeGenBase.river
+		
 	};
 
 	public static BiomeGenBase[] chocoboPurpleSpawnBiomes = {
@@ -205,6 +215,9 @@ public class ModChocoCraft
 		yellowSpawnRate = Constants.DEFAULT_YELLOW_SPAWN_RATE;
 		yellowSpawnMin = Constants.DEFAULT_YELLOW_SPAWN_MIN;
 		yellowSpawnMax = Constants.DEFAULT_YELLOW_SPAWN_MAX;
+		yellowSpawnProbability = Constants.DEFAULT_YELLOW_SPAWN_PROBABILITY;
+		renderNameHeight = Constants.DEFAULT_RENDER_NAME_HEIGHT;
+		livingSoundProb = Constants.DEFAULT_LIVING_SOUND_PROB;
     	ChocoboConfig.readConfigFile();
 
 		MinecraftForge.EVENT_BUS.register(new ChocoCraftEvent());

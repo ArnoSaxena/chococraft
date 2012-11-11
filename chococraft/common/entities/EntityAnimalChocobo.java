@@ -272,8 +272,26 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
         return false;
     }
 
-    public abstract void toggleFollow();
-    
+	public void toggleFollow()
+	{
+		if(this.isFollowing() && !this.isWander())
+		{
+			this.setFollowing(false);
+			this.setWander(false);
+		}
+		else if(!this.isFollowing() && !this.isWander())
+		{
+			this.setFollowing(false);
+			this.setWander(true);
+		}
+		else
+		{
+			this.setFollowing(true);
+			this.setWander(false);
+		}
+		
+		this.showAmountHeartsOrSmokeFx(this.isFollowing(), 7);
+	}    
     public EntityPlayer getOwner()
     {
     	return this.worldObj.getPlayerEntityByName(this.getOwnerName());
@@ -536,6 +554,12 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
         return null;
     }
 
+    
+    public int getMaxSpawnedInChunk()
+    {
+        return 5;
+    }
+    
     public boolean getCanSpawnHere()
     {
         int x = MathHelper.floor_double(posX);

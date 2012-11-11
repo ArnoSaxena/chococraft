@@ -49,15 +49,20 @@ public class ChocoboConfig
 	static String CFG_KEY_FEATHER_DELAY_RANDOM = "featherDelayRandom";
 	static String CFG_KEY_FEATHER_DELAY_STATIC = "featherDelayStatic";
 	static String CFG_KEY_FEATHER_DROP_CHANCE = "featherDropChance";
+	static String CFG_KEY_RENDER_NAME_HEIGHT = "renderNameHeight";
+	static String CFG_KEY_LIVING_SOUND_PROB = "livingSoundProbability";
 
 	public static void readConfigFile()
 	{
-		try {
+		try
+		{
 			BufferedReader reader = getConfigReader();
 			String line;
 
-			while (null != (line = reader.readLine())) {
-				if (0 < (line.trim().length()) && (!line.trim().startsWith(CFG_TOKEN_COMMENT))) {
+			while (null != (line = reader.readLine()))
+			{
+				if (0 < (line.trim().length()) && (!line.trim().startsWith(CFG_TOKEN_COMMENT)))
+				{
 					String[] temp = line.split("=");
 					if (2 == temp.length)
 					{
@@ -77,7 +82,8 @@ public class ChocoboConfig
 						else
 						{
 							// now parse the key/value
-							try {
+							try
+							{
 
 								if(key.equalsIgnoreCase(CFG_KEY_SHOW_CHOCO_NAMES))
 								{
@@ -168,7 +174,37 @@ public class ChocoboConfig
 										ModChocoCraft.featherDropChance = tmpfdr;	
 									}
 								}
-							} catch (NumberFormatException e) {
+								else if(key.equalsIgnoreCase(CFG_KEY_RENDER_NAME_HEIGHT))
+								{
+									double tmprnh = Double.parseDouble(value);
+									if(tmprnh < 0.0)
+									{
+										ModChocoCraft.renderNameHeight = -2.2;
+									}
+									else if(tmprnh > 10.0)
+									{
+										ModChocoCraft.renderNameHeight = 7.7;
+									}
+									else
+									{
+										ModChocoCraft.renderNameHeight = tmprnh;
+									}
+								}
+								else if(key.equalsIgnoreCase(CFG_KEY_LIVING_SOUND_PROB))
+								{
+									int tmplsp = Integer.parseInt(value);
+									if(tmplsp < 0 || tmplsp > 100)
+									{
+										ModChocoCraft.livingSoundProb = 100;
+									}
+									else
+									{
+										ModChocoCraft.livingSoundProb = tmplsp;
+									}
+								}
+							}
+							catch (NumberFormatException e)
+							{
 								// do nothing, just keep the default config values...
 							}
 						}
@@ -176,9 +212,13 @@ public class ChocoboConfig
 				}
 			}
 			reader.close();
-		} catch (FileNotFoundException fnfe) {
+		}
+		catch (FileNotFoundException fnfe)
+		{
 			createNewConfigFile();
-		} catch (Exception e) {
+		}
+		catch (Exception e)
+		{
 			e.printStackTrace();
 		}
 	}
@@ -231,19 +271,37 @@ public class ChocoboConfig
 	private static void createNewConfigFile()
 	{
 		File file = getConfigFile();		
-		if(!file.exists()) {
-			try {
+		if(!file.exists())
+		{
+			try
+			{
 				file.createNewFile();
-			} catch (IOException e) {
+			}
+			catch (IOException e)
+			{
 				e.printStackTrace();
 			}
 		}
-		try {
+		
+		try
+		{
 			BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file), "UTF8"));
 			
 			writer.write("\n");
 			writer.write(getConfigLine(CFG_KEY_SHOW_CHOCO_NAMES, Boolean.toString(Constants.DEFAULT_SHOW_CHOCOBO_NAMES)));
 			writer.write(getConfigLine(CFG_KEY_CHOCOBO_WING_FLUTTER, Boolean.toString(Constants.DEFAULT_CHOCOBO_WING_FLUTTER)));
+			
+			writer.write("\n");
+			writer.write(getCommentLine("The default name height is 2.3 blocks from the ground. You can add height"));			
+			writer.write(getCommentLine("up to 10 blocks by the number given as " + CFG_KEY_RENDER_NAME_HEIGHT + "."));
+			writer.write(getConfigLine(CFG_KEY_RENDER_NAME_HEIGHT, (Double.toString(Constants.DEFAULT_RENDER_NAME_HEIGHT))));
+			
+			writer.write("\n");
+			writer.write(getCommentLine("The value given as " + CFG_KEY_LIVING_SOUND_PROB + "will determine the Chocobo 'Kweh' frequency. The system"));			
+			writer.write(getCommentLine("will call a method to trigger the living sound and the Chocobo will do a 'Kweh'. The number"));
+			writer.write(getCommentLine("set with this key will reduce the frequency to this number in 100. Thus if it is set to"));
+			writer.write(getCommentLine("50 only every second 'Kweh' will be heared. If set to 1 only every 100th etc..."));
+			writer.write(getConfigLine(CFG_KEY_LIVING_SOUND_PROB, Integer.toString(Constants.DEFAULT_LIVING_SOUND_PROB)));
 			
 			writer.write("\n");
 			writer.write(getCommentLine("add any name of the following list as comma separated values to"));
@@ -272,7 +330,9 @@ public class ChocoboConfig
 			
 			writer.close();
 
-		} catch (Exception e) {
+		}
+		catch (Exception e)
+		{
 			e.printStackTrace();
 		}
 	}
@@ -326,7 +386,8 @@ public class ChocoboConfig
 	{
 		String configLine = key + " = ";
 		Boolean firstValue = true;
-		for (String value : values) {
+		for (String value : values)
+		{
 			if(!firstValue)
 			{
 				configLine = configLine + ", ";
@@ -342,7 +403,8 @@ public class ChocoboConfig
 
 	public static String getCommentLine(String comment)
 	{
-		if(!comment.endsWith("\n")) {
+		if(!comment.endsWith("\n"))
+		{
 			comment = comment + "\n";
 		}
 		return CFG_TOKEN_COMMENT + " " + comment;

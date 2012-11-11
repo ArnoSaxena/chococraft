@@ -20,7 +20,9 @@ import com.google.common.io.ByteArrayDataOutput;
 
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Side;
+import cpw.mods.fml.common.network.PacketDispatcher;
 import chococraft.common.*;
+import chococraft.common.network.PacketChicoboCanGrowUp;
 import net.minecraft.src.EntityAnimal;
 import net.minecraft.src.EntityPlayer;
 import net.minecraft.src.ItemStack;
@@ -302,6 +304,7 @@ public class EntityChicobo extends EntityAnimalChocobo
 			{
 				this.useItem(entityplayer);
 				this.setCanGrowUp(false);
+				this.sendCanGrowUpUpdate();
 			}
 			else
 			{
@@ -319,6 +322,7 @@ public class EntityChicobo extends EntityAnimalChocobo
 				this.useItem(entityplayer);
 				this.setCanGrowUp(true);
 				this.growUp = true;
+				this.sendCanGrowUpUpdate();
 			}
 			else
 			{
@@ -337,13 +341,6 @@ public class EntityChicobo extends EntityAnimalChocobo
 		{
 			this.showAmountHeartsOrSmokeFx(false, 7);
 		}
-	}
-
-	public void toggleFollow()
-	{
-		this.setFollowing(!this.isFollowing());
-		this.setWander(!this.isFollowing());
-		this.showAmountHeartsOrSmokeFx(this.isFollowing(), 7);
 	}
 
 	protected int getDropItemId()
@@ -420,5 +417,14 @@ public class EntityChicobo extends EntityAnimalChocobo
 	public boolean canMateWith(EntityAnimal entityAnimal)
 	{
 		return false;
+	}
+	
+	protected void sendCanGrowUpUpdate()
+	{
+		if(Side.CLIENT == FMLCommonHandler.instance().getEffectiveSide())
+		{
+			PacketChicoboCanGrowUp packet = new PacketChicoboCanGrowUp(this);
+			PacketDispatcher.sendPacketToServer(packet.getPacket());
+		}		
 	}
 }

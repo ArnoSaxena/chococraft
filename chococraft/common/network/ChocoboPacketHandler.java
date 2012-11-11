@@ -61,6 +61,10 @@ public class ChocoboPacketHandler implements IPacketHandler
 			{
 				PacketChocoboDropGear.handleUpdate(data, player);
 			}
+			else if(packetId == PacketChocobo.PID_CHIGROWUP)
+			{
+				PacketChicoboCanGrowUp.handleUpdate(data, player);
+			}
 		}
 		catch (Exception ex)
 		{

@@ -20,7 +20,9 @@ import com.google.common.io.ByteArrayDataOutput;
 import net.minecraft.src.EntityAnimal;
 import net.minecraft.src.NBTTagCompound;
 import net.minecraft.src.World;
+import chococraft.common.ChocoboHelper;
 import chococraft.common.Constants;
+import chococraft.common.ModChocoCraft;
 import chococraft.common.entities.EntityChocobo;
 
 public class EntityChocoboYellow extends EntityChocobo
@@ -29,23 +31,23 @@ public class EntityChocoboYellow extends EntityChocobo
 	//public final chocoboColor color = chocoboColor.YELLOW;
 
 	public EntityChocoboYellow(World world)
-    {
-        super(world);
-        this.setEntityHealth(this.getMaxHealth());
-    	this.landMovementFactor = Constants.CHOCOBO_DEFAULT_LANDMOVEFACT;
-    	this.flyingMovementFactor = Constants.CHOCOBO_YELLOW_FLYMOVEFACT;
-        this.canClimb = false;
-        this.canCrossWater = false;
-        this.canJumpHigh = false;
-        this.canFly = false;
-        this.isImmuneToFire = false;
+	{
+		super(world);
+		this.setEntityHealth(this.getMaxHealth());
+		this.landMovementFactor = Constants.CHOCOBO_DEFAULT_LANDMOVEFACT;
+		this.flyingMovementFactor = Constants.CHOCOBO_YELLOW_FLYMOVEFACT;
+		this.canClimb = false;
+		this.canCrossWater = false;
+		this.canJumpHigh = false;
+		this.canFly = false;
+		this.isImmuneToFire = false;
 		this.landSpeedFactor = Constants.CHOCOBO_YELLOW_LANDSPEEDFACT;
 		this.airbornSpeedFactor = Constants.CHOCOBO_YELLOW_AIRSPEEDFACT;
-    }
+	}
 
 	protected void entityInit()
 	{
-    	this.color = chocoboColor.YELLOW;
+		this.color = chocoboColor.YELLOW;
 		super.entityInit();
 	}	
 
@@ -59,21 +61,21 @@ public class EntityChocoboYellow extends EntityChocobo
 		super.readSpawnData(data);
 	}
 
-    public void writeEntityToNBT(NBTTagCompound nbttagcompound)
-    {
-        super.writeEntityToNBT(nbttagcompound);
-    }
-    
-    public void readEntityFromNBT(NBTTagCompound nbttagcompound)
-    {
-        super.readEntityFromNBT(nbttagcompound);
-    }
+	public void writeEntityToNBT(NBTTagCompound nbttagcompound)
+	{
+		super.writeEntityToNBT(nbttagcompound);
+	}
 
-    //@SideOnly(Side.CLIENT)
-    public String getEntityColourTexture()
-    {
-    	return "/chocobo.png";
-    }
+	public void readEntityFromNBT(NBTTagCompound nbttagcompound)
+	{
+		super.readEntityFromNBT(nbttagcompound);
+	}
+
+	//@SideOnly(Side.CLIENT)
+	public String getEntityColourTexture()
+	{
+		return "/chocobo.png";
+	}
 
 	@Override
 	public void setStepHeight(boolean mounted)
@@ -87,7 +89,7 @@ public class EntityChocoboYellow extends EntityChocobo
 			this.stepHeight = 0.5F;
 		}
 	}
-	
+
 	public void setLandMovementFactor(boolean mounted)
 	{
 		if (mounted)
@@ -99,7 +101,7 @@ public class EntityChocoboYellow extends EntityChocobo
 			this.landMovementFactor = Constants.CHOCOBO_DEFAULT_LANDMOVEFACT;			
 		}
 	}
-	
+
 	public void setJumpHigh(boolean mounted)
 	{
 		if(mounted)
@@ -112,71 +114,85 @@ public class EntityChocoboYellow extends EntityChocobo
 		}
 	}
 
+	public boolean getCanSpawnHere()
+	{
+		if(ChocoboHelper.countWildChocobos(this.worldObj) >= ModChocoCraft.yellowSpawnMax)
+		{
+			return false;
+		}
+		
+		if(this.rand.nextInt(100) > ModChocoCraft.yellowSpawnProbability)
+		{
+			return false;
+		}		
+		return super.getCanSpawnHere();
+	}
+
 	@Override
 	public int getMaxHealth()
 	{
 		return 30;
 	}
-    
-    protected void fall(float fallHeight)
-    {
-    	super.fall(fallHeight);
-    }
-    
-    public chocoboColor getBabyAnimalColor(EntityAnimal otherAnimalParent)
-    {
-    	if(otherAnimalParent instanceof EntityChocobo)
-    	{
-        	EntityChocobo otherParent = (EntityChocobo) otherAnimalParent;
 
-    		boolean bothFedGold = this.fedGold && otherParent.fedGold;
+	protected void fall(float fallHeight)
+	{
+		super.fall(fallHeight);
+	}
 
-    		int randColor = rand.nextInt(100);
-    		chocoboColor chicoboColor = chocoboColor.YELLOW;
-    		switch(otherParent.color)
-    		{
-    		case YELLOW:
-    			if(randColor > 88)
-    			{
-    				chicoboColor = chocoboColor.BLUE;
-    			}
-    			else if (randColor > 75)
-    			{
-    				chicoboColor = bothFedGold ? chocoboColor.BLUE : chocoboColor.GREEN;
-    			}
-    			else if (randColor > 50 && bothFedGold)
-    			{
-    				chicoboColor = chocoboColor.GREEN;
-    			}
-    			break;
-    		case GREEN:
-    		case BLUE:
-    		case BLACK:
-    			if(randColor > 50)
-    			{
-    				chicoboColor = otherParent.color;
-    			}
-    			break;
-    		case WHITE:
-    			if(randColor > 75)
-    			{
-    				chicoboColor = chocoboColor.BLACK;
-    			}
-    			if(randColor > 50)
-    			{
-    				chicoboColor = bothFedGold ? chocoboColor.BLACK : chocoboColor.WHITE;
-    			}
-    			if(randColor > 38 || (randColor > 25 && bothFedGold))
-    			{
-    				chicoboColor = chocoboColor.WHITE;
-    			}
-    			break;
-    		}
-    		return chicoboColor;
-    	}
-    	else
-    	{
-    		return null;
-    	}
-    }
+	public chocoboColor getBabyAnimalColor(EntityAnimal otherAnimalParent)
+	{
+		if(otherAnimalParent instanceof EntityChocobo)
+		{
+			EntityChocobo otherParent = (EntityChocobo) otherAnimalParent;
+
+			boolean bothFedGold = this.fedGold && otherParent.fedGold;
+
+			int randColor = rand.nextInt(100);
+			chocoboColor chicoboColor = chocoboColor.YELLOW;
+			switch(otherParent.color)
+			{
+			case YELLOW:
+				if(randColor > 88)
+				{
+					chicoboColor = chocoboColor.BLUE;
+				}
+				else if (randColor > 75)
+				{
+					chicoboColor = bothFedGold ? chocoboColor.BLUE : chocoboColor.GREEN;
+				}
+				else if (randColor > 50 && bothFedGold)
+				{
+					chicoboColor = chocoboColor.GREEN;
+				}
+				break;
+			case GREEN:
+			case BLUE:
+			case BLACK:
+				if(randColor > 50)
+				{
+					chicoboColor = otherParent.color;
+				}
+				break;
+			case WHITE:
+				if(randColor > 75)
+				{
+					chicoboColor = chocoboColor.BLACK;
+				}
+				if(randColor > 50)
+				{
+					chicoboColor = bothFedGold ? chocoboColor.BLACK : chocoboColor.WHITE;
+				}
+				if(randColor > 38 || (randColor > 25 && bothFedGold))
+				{
+					chicoboColor = chocoboColor.WHITE;
+				}
+				break;
+			}
+			return chicoboColor;
+		}
+		else
+		{
+			return null;
+		}
+	}
 }
