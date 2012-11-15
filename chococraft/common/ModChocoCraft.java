@@ -22,11 +22,11 @@ import chococraft.common.entities.colours.*;
 import chococraft.common.gui.ChocoboGuiHandler;
 import chococraft.common.items.*;
 import chococraft.common.network.ChocoboPacketHandler;
+import chococraft.common.tick.ServerSpawnTickHandler;
 import net.minecraft.src.BiomeGenBase;
 import net.minecraft.src.Block;
 import net.minecraft.src.CreativeTabs;
 import net.minecraft.src.Entity;
-import net.minecraft.src.EnumCreatureType;
 import net.minecraft.src.Item;
 import net.minecraft.src.ItemFood;
 import net.minecraft.src.ItemSeeds;
@@ -45,8 +45,9 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.common.registry.EntityRegistry;
+import cpw.mods.fml.common.registry.TickRegistry;
 
-@Mod(modid="ChocoCraft", name="Torojimas ChocoCraft", version="2.1.4")
+@Mod(modid="ChocoCraft", name="Torojimas ChocoCraft", version="2.2.1")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false, 
 		channels = { Constants.PCHAN_CHOCOBO },
 		packetHandler = ChocoboPacketHandler.class)
@@ -108,14 +109,18 @@ public class ModChocoCraft
 	public static int featherDropChance;
 	public static int featherDelayRandom;
 	public static int featherDelayStatic;
-	public static int yellowSpawnRate;
-	public static int yellowSpawnMin;
-	public static int yellowSpawnMax;
-	public static int yellowSpawnProbability;
+	
+	// spawn setup
+	public static int spawnWeightedProb;
+	public static int spawnGroupMin;
+	public static int spawnGroupMax;
+	public static int spawnTotalMax;
+	public static int spawnProbability;
+	
 	public static double renderNameHeight;
 	public static int livingSoundProb;
 
-	public static BiomeGenBase[] yellowSpawnBiomes = {
+	public static BiomeGenBase[] spawnBiomes = {
 		BiomeGenBase.extremeHills,
 		BiomeGenBase.extremeHillsEdge,
 		BiomeGenBase.forest,
@@ -175,6 +180,8 @@ public class ModChocoCraft
 		proxy.registerRenderThings();
 
 		NetworkRegistry.instance().registerGuiHandler(this, new ChocoboGuiHandler());
+		
+		TickRegistry.registerScheduledTickHandler(new ServerSpawnTickHandler(), Side.SERVER);
 	}
 
 	@PreInit
@@ -212,10 +219,13 @@ public class ModChocoCraft
 		featherDropChance = Constants.DEFAULT_FEATHER_DROP_CHANCE;
 		featherDelayRandom = Constants.DEFAULT_FEATHER_DELAY_RANDOM;
 		featherDelayStatic = Constants.DEFAULT_FEATHER_DELAY_STATIC;
-		yellowSpawnRate = Constants.DEFAULT_YELLOW_SPAWN_RATE;
-		yellowSpawnMin = Constants.DEFAULT_YELLOW_SPAWN_MIN;
-		yellowSpawnMax = Constants.DEFAULT_YELLOW_SPAWN_MAX;
-		yellowSpawnProbability = Constants.DEFAULT_YELLOW_SPAWN_PROBABILITY;
+
+		spawnWeightedProb = Constants.DEFAULT_SPAWN_WEIGHTED_PROB;
+		spawnGroupMin = Constants.DEFAULT_SPAWN_GROUP_MIN;
+		spawnGroupMax = Constants.DEFAULT_SPAWN_GROUP_MAX;
+		spawnTotalMax = Constants.DEFAULT_SPAWN_TOTAL_MAX;
+		spawnProbability = Constants.DEFAULT_SPAWN_PROBABILITY;
+		
 		renderNameHeight = Constants.DEFAULT_RENDER_NAME_HEIGHT;
 		livingSoundProb = Constants.DEFAULT_LIVING_SOUND_PROB;
     	ChocoboConfig.readConfigFile();
@@ -518,7 +528,17 @@ public class ModChocoCraft
 			"Y Y",
 			"Y Y",
 			Character.valueOf('Y'), chocoboFeatherItem
-		});	 	
+		});
+		
+		GameRegistry.addRecipe(new ItemStack(Item.arrow, 4), new Object[]
+		{
+			" F ",
+			" S ",
+			" Y ",
+			Character.valueOf('F'), Item.flint, 
+			Character.valueOf('S'), Item.stick, 
+			Character.valueOf('Y'), chocoboFeatherItem
+		});
 	}
 
 	private void registerChocobos()
@@ -550,7 +570,7 @@ public class ModChocoCraft
 
 	private void addChocoboSpawns()
 	{
-		EntityRegistry.addSpawn(EntityChocoboYellow.class, yellowSpawnRate, yellowSpawnMin, yellowSpawnMax, EnumCreatureType.creature, yellowSpawnBiomes);
+		//EntityRegistry.addSpawn(EntityChocoboYellow.class, spawnWeightedProb, spawnGroupMin, spawnGroupMax, EnumCreatureType.creature, spawnBiomes);
 		//EntityRegistry.addSpawn(EntityChocoboPurple.class, 5, 5, 8, EnumCreatureType.creature, chocoboPurpleSpawnBiomes);
 	}
 }

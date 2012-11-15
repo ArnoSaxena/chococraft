@@ -447,9 +447,13 @@ Recipes:
 
       [img]http://www.arno-saxena.de/pictures/chococraft/crafting_chibi.png[/img]
 
-  10. [img]http://www.arno-saxena.de/pictures/chococraft/item_chocopedia.png[/img] Chocopedia = 1 Book,  2 Ink Sac, 4 Chocobo Feathers, 1 Lapis Lazuli and 1 Gold Nugget
+  10. [img]http://www.arno-saxena.de/pictures/chococraft/item_chocopedia.png[/img] Chocopedia = 1 Book, 2 Ink Sac, 4 Chocobo Feathers, 1 Lapis Lazuli and 1 Gold Nugget
 
       [img]http://www.arno-saxena.de/pictures/chococraft/crafting_chocopedia.png[/img]
+
+  11. [img]http://www.arno-saxena.de/pictures/chococraft/item_arrow.png[/img] Arrow = 1 Flint, 1 Stick and 1 Chocobo Feather
+
+      [img]http://www.arno-saxena.de/pictures/chococraft/crafting_arrow.png[/img]
 
 [/spoiler]
 

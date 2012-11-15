@@ -23,6 +23,7 @@ import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.network.PacketDispatcher;
 import chococraft.common.*;
 import chococraft.common.network.PacketChicoboCanGrowUp;
+import net.minecraft.src.EntityAgeable;
 import net.minecraft.src.EntityAnimal;
 import net.minecraft.src.EntityPlayer;
 import net.minecraft.src.ItemStack;
@@ -394,7 +395,9 @@ public class EntityChicobo extends EntityAnimalChocobo
 	}
 
 	@Override
-	public EntityAnimal spawnBabyAnimal(EntityAnimal dummy) {
+	//public EntityAnimal spawnBabyAnimal(EntityAnimal dummy)
+	public EntityAgeable func_90011_a(EntityAgeable var1)
+	{
 		return null;
 	}
 

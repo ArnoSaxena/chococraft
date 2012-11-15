@@ -452,7 +452,8 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
     {
     	if(Side.SERVER == FMLCommonHandler.instance().getEffectiveSide())
     	{
-    		EntityChicobo babyChicobo = (EntityChicobo) this.spawnBabyAnimal(otherParent);
+    		//EntityChicobo babyChicobo = (EntityChicobo) this.spawnBabyAnimal(otherParent);
+    		EntityChicobo babyChicobo = (EntityChicobo) this.func_90011_a(otherParent);
 
     		if (babyChicobo != null)
     		{

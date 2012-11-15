@@ -38,14 +38,17 @@ public class ChocoboConfig
 	static String CONFIG_FILE_NAME = "chocobo_config.txt";
 	static String CFG_TOKEN_COMMENT = "//";
 
-	static String CFG_KEY_SHOW_CHOCO_NAMES = "showChocoboNames";	
-	static String CFG_KEY_YELLOW_SPAWN_BIOMES = "yellowSpawnBiomes";
-	static String CFG_KEY_YELLOW_SPAWN_RATE = "yellowSpawnRate";
-	static String CFG_KEY_YELLOW_SPAWN_MIN = "yellowSpawnMin";
-	static String CFG_KEY_YELLOW_SPAWN_MAX = "yellowSpawnMax";
+	static String CFG_KEY_SHOW_CHOCO_NAMES = "showChocoboNames";
+	
+	static String CFG_KEY_SPAWN_BIOMES = "spawnBiomes";
+	static String CFG_KEY_SPAWN_WEIGHTED_PROB = "spawnWeightedProb";
+	static String CFG_KEY_SPAWN_GROUP_MIN = "spawnGroupMin";
+	static String CFG_KEY_SPAWN_GROUP_MAX = "spawnGroupMax";
+	static String CFG_KEY_SPAWN_TOTAL_MAX = "spawnTotalMax";
+	static String CFG_KEY_SPAWN_PROBABILITY = "spawnProbability";
+	
 	static String CFG_KEY_CHOCOBO_WING_FLUTTER = "chocoboWingFlutter";
 	static String CFG_TOKEN_ALL = "all";
-	//static String CFG_TOKEN_CHOCO_BIOMES = "Plains,Desert,Extreme Hills,Forest,Taiga,Swampland,Beach,DesertHills,ForestHills,TaigaHills,Extreme Hills Edge,Jungle,JungleHills";
 	static String CFG_KEY_FEATHER_DELAY_RANDOM = "featherDelayRandom";
 	static String CFG_KEY_FEATHER_DELAY_STATIC = "featherDelayStatic";
 	static String CFG_KEY_FEATHER_DROP_CHANCE = "featherDropChance";
@@ -89,48 +92,76 @@ public class ChocoboConfig
 								{
 									ModChocoCraft.showChocoboNames = Boolean.parseBoolean(value);
 								}
-								else if(key.equalsIgnoreCase(CFG_KEY_YELLOW_SPAWN_BIOMES))
+								else if(key.equalsIgnoreCase(CFG_KEY_SPAWN_BIOMES))
 								{
-									ModChocoCraft.yellowSpawnBiomes = getBiomeGenBaseArray(value);
+									ModChocoCraft.spawnBiomes = getBiomeGenBaseArray(value);
 								}
-								else if(key.equalsIgnoreCase(CFG_KEY_YELLOW_SPAWN_RATE))
+								else if(key.equalsIgnoreCase(CFG_KEY_SPAWN_WEIGHTED_PROB))
 								{
 									int tmpProb = Integer.parseInt(value);
 									if(tmpProb > 200)
 									{
-										ModChocoCraft.yellowSpawnRate = 200;
+										ModChocoCraft.spawnWeightedProb = 200;
 									}
 									else if(tmpProb < 1)
 									{
-										ModChocoCraft.yellowSpawnRate = 1;
+										ModChocoCraft.spawnWeightedProb = 1;
 									}
 									else
 									{
-										ModChocoCraft.yellowSpawnRate = tmpProb;
+										ModChocoCraft.spawnWeightedProb = tmpProb;
 									}
 								}
-								else if(key.equalsIgnoreCase(CFG_KEY_YELLOW_SPAWN_MIN))
+								else if(key.equalsIgnoreCase(CFG_KEY_SPAWN_PROBABILITY))
+								{
+									int tmpProb = Integer.parseInt(value);
+									if(tmpProb > 100)
+									{
+										ModChocoCraft.spawnProbability = 100;
+									}
+									else if(tmpProb < 1)
+									{
+										ModChocoCraft.spawnProbability = 1;
+									}
+									else
+									{
+										ModChocoCraft.spawnProbability = tmpProb;
+									}
+								}
+								else if(key.equalsIgnoreCase(CFG_KEY_SPAWN_GROUP_MIN))
 								{
 									int tmpsming = Integer.parseInt(value);
 									if(tmpsming < 1)
 									{
-										ModChocoCraft.yellowSpawnMin = 1;
+										ModChocoCraft.spawnGroupMin = 1;
 									}
 									else
 									{
-										ModChocoCraft.yellowSpawnMin = tmpsming;	
+										ModChocoCraft.spawnGroupMin = tmpsming;	
 									}
 								}
-								else if(key.equalsIgnoreCase(CFG_KEY_YELLOW_SPAWN_MAX))
+								else if(key.equalsIgnoreCase(CFG_KEY_SPAWN_GROUP_MAX))
 								{
 									int tmpsmaxg = Integer.parseInt(value);
 									if(tmpsmaxg < 1)
 									{
-										ModChocoCraft.yellowSpawnMax = 1;
+										ModChocoCraft.spawnGroupMax = 1;
 									}
 									else
 									{
-										ModChocoCraft.yellowSpawnMax = tmpsmaxg;	
+										ModChocoCraft.spawnGroupMax = tmpsmaxg;	
+									}
+								}
+								else if(key.equalsIgnoreCase(CFG_KEY_SPAWN_TOTAL_MAX))
+								{
+									int tmpsmaxg = Integer.parseInt(value);
+									if(tmpsmaxg < 1)
+									{
+										ModChocoCraft.spawnTotalMax = 1;
+									}
+									else
+									{
+										ModChocoCraft.spawnTotalMax = tmpsmaxg;	
 									}
 								}
 								else if(key.equalsIgnoreCase(CFG_KEY_CHOCOBO_WING_FLUTTER))
@@ -297,28 +328,31 @@ public class ChocoboConfig
 			writer.write(getConfigLine(CFG_KEY_RENDER_NAME_HEIGHT, (Double.toString(Constants.DEFAULT_RENDER_NAME_HEIGHT))));
 			
 			writer.write("\n");
-			writer.write(getCommentLine("The value given as " + CFG_KEY_LIVING_SOUND_PROB + "will determine the Chocobo 'Kweh' frequency. The system"));			
-			writer.write(getCommentLine("will call a method to trigger the living sound and the Chocobo will do a 'Kweh'. The number"));
-			writer.write(getCommentLine("set with this key will reduce the frequency to this number in 100. Thus if it is set to"));
-			writer.write(getCommentLine("50 only every second 'Kweh' will be heared. If set to 1 only every 100th etc..."));
+			writer.write(getCommentLine("The value given as " + CFG_KEY_LIVING_SOUND_PROB + "will determine the Chocobo 'Kweh' frequency."));			
+			writer.write(getCommentLine("The system will call a method to trigger the living sound and the Chocobo will do a"));
+			writer.write(getCommentLine("'Kweh'. The number set with this key will reduce the frequency to this number in 100."));
+			writer.write(getCommentLine("Thus if it is set to 50 only every second 'Kweh' will be heared. If set to 1 only "));
+			writer.write(getCommentLine("every 100th etc..."));
 			writer.write(getConfigLine(CFG_KEY_LIVING_SOUND_PROB, Integer.toString(Constants.DEFAULT_LIVING_SOUND_PROB)));
 			
 			writer.write("\n");
 			writer.write(getCommentLine("add any name of the following list as comma separated values to"));
-			writer.write(getCommentLine("the " + CFG_KEY_YELLOW_SPAWN_BIOMES + "key, to have Chocobos spawn in the"));
+			writer.write(getCommentLine("the " + CFG_KEY_SPAWN_BIOMES + "key, to have Chocobos spawn in the"));
 			writer.write(getCommentLine("designated biomes. Add the token 'all' to have Chocobos spawn in "));
 			writer.write(getCommentLine("all biomes."));
 			writer.write(getCommentLine("Possible biome names:"));
 			writer.write(getCommentLine(getAllBiomeNames()));
-			writer.write(getConfigLine(CFG_KEY_YELLOW_SPAWN_BIOMES, writeCSVBiomeNames(ModChocoCraft.yellowSpawnBiomes)));
+			writer.write(getConfigLine(CFG_KEY_SPAWN_BIOMES, writeCSVBiomeNames(ModChocoCraft.spawnBiomes)));
 			
 			writer.write("\n");
-			writer.write(getCommentLine("Yellow Chocobos will spawn with a weighted spawn rate given as " + CFG_KEY_YELLOW_SPAWN_RATE + ". "));
-			writer.write(getCommentLine("They will spawn in groups with at least " + CFG_KEY_YELLOW_SPAWN_MIN + " and up to " + CFG_KEY_YELLOW_SPAWN_MAX));
-			writer.write(getCommentLine("individuals."));
-			writer.write(getConfigLine(CFG_KEY_YELLOW_SPAWN_RATE, Integer.toString(ModChocoCraft.yellowSpawnRate)));
-			writer.write(getConfigLine(CFG_KEY_YELLOW_SPAWN_MIN, Integer.toString(ModChocoCraft.yellowSpawnMin)));
-			writer.write(getConfigLine(CFG_KEY_YELLOW_SPAWN_MAX, Integer.toString(ModChocoCraft.yellowSpawnMax)));
+			writer.write(getCommentLine("A group of " + CFG_KEY_SPAWN_GROUP_MIN + " to " + CFG_KEY_SPAWN_GROUP_MAX + " Yellow Chocobos will spawn with the"));
+			writer.write(getCommentLine("probability of " + CFG_KEY_SPAWN_PROBABILITY + " around every player. There will be no additional"));
+			writer.write(getCommentLine("spawning if " + CFG_KEY_SPAWN_TOTAL_MAX + " wild Chocobos are active in the chunk."));
+			//writer.write(getConfigLine(CFG_KEY_SPAWN_WEIGHTED_PROB, Integer.toString(ModChocoCraft.spawnWeightedProb)));
+			writer.write(getConfigLine(CFG_KEY_SPAWN_PROBABILITY, Integer.toString(ModChocoCraft.spawnProbability)));
+			writer.write(getConfigLine(CFG_KEY_SPAWN_GROUP_MIN, Integer.toString(ModChocoCraft.spawnGroupMin)));
+			writer.write(getConfigLine(CFG_KEY_SPAWN_GROUP_MAX, Integer.toString(ModChocoCraft.spawnGroupMax)));
+			writer.write(getConfigLine(CFG_KEY_SPAWN_TOTAL_MAX, Integer.toString(ModChocoCraft.spawnTotalMax)));
 			
 			writer.write("\n");
 			writer.write(getCommentLine("tamed chocobos have a chance of "+ CFG_KEY_FEATHER_DROP_CHANCE +" in 100 to drop a feather every"));

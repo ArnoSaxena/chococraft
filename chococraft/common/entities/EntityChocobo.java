@@ -32,6 +32,7 @@ import net.minecraft.src.AxisAlignedBB;
 import net.minecraft.src.Block;
 import net.minecraft.src.DamageSource;
 import net.minecraft.src.Entity;
+import net.minecraft.src.EntityAgeable;
 import net.minecraft.src.EntityAnimal;
 import net.minecraft.src.EntityLiving;
 import net.minecraft.src.EntityPlayer;
@@ -472,13 +473,10 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 		this.showAmountHeartsOrSmokeFx(false, 7);
 	}
 
+    // TODO: goes to EntityAnimalChocobo
 	public void onFeatherUse(EntityPlayer entityplayer)
 	{
-		if (this.isSaddled() && this.riddenByEntity == null)
-		{
-			this.toggleFollow();
-		}
-		else if (this.isTamed())
+		if (this.isTamed())
 		{
 			this.toggleFollow();
 		}
@@ -622,8 +620,10 @@ public abstract class EntityChocobo extends EntityChocoboRideable
     	return canmatewith;
     }
 	
-	public abstract chocoboColor getBabyAnimalColor(EntityAnimal otherAnimalParent);
-	public EntityAnimal spawnBabyAnimal(EntityAnimal otherAnimalParent)
+	public abstract chocoboColor getBabyAnimalColor(EntityAgeable otherAnimalParent);
+	//public EntityAnimal spawnBabyAnimal(EntityAnimal otherAnimalParent)
+	@Override
+	public EntityAgeable func_90011_a(EntityAgeable otherAnimalParent)
 	{
 		chocoboColor chicoboColor = this.getBabyAnimalColor(otherAnimalParent);
 		EntityChicobo childChicobo = new EntityChicobo(worldObj);

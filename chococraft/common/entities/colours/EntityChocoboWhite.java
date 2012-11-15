@@ -17,7 +17,7 @@ package chococraft.common.entities.colours;
 import com.google.common.io.ByteArrayDataInput;
 import com.google.common.io.ByteArrayDataOutput;
 
-import net.minecraft.src.EntityAnimal;
+import net.minecraft.src.EntityAgeable;
 import net.minecraft.src.NBTTagCompound;
 import net.minecraft.src.World;
 import chococraft.common.Constants;
@@ -121,7 +121,8 @@ public class EntityChocoboWhite extends EntityChocobo
 		super.fall(fallHeight);
 	}
 
-    public chocoboColor getBabyAnimalColor(EntityAnimal otherAnimalParent)
+	@Override
+    public chocoboColor getBabyAnimalColor(EntityAgeable otherAnimalParent)
 	{
 		if(otherAnimalParent instanceof EntityChocobo)
 		{

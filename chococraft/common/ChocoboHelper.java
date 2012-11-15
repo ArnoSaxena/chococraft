@@ -156,6 +156,27 @@ public class ChocoboHelper
 		return amountEntities;
 	}
 	
+	public static int countWildChocobosInChunk(World world, Chunk chunk)
+	{
+		int amountEntities = 0;
+		for(int i = 0; i < world.loadedEntityList.size(); i++)
+		{
+			Entity entity = (Entity)world.loadedEntityList.get(i);
+			if(entity instanceof EntityChocobo)
+			{
+				if(!((EntityChocobo)entity).isTamed())
+				{
+					Chunk entityChunk = world.getChunkFromBlockCoords(MathHelper.floor_double(entity.posX), MathHelper.floor_double(entity.posZ));
+					if(entityChunk.equals(chunk))
+					{
+						amountEntities++;
+					}
+				}
+			}
+		}
+		return amountEntities;
+	}
+	
 	public static boolean isBiomeHell(World world, int posX, int posZ)
 	{
 		BiomeGenBase chocoBgb = world.getBiomeGenForCoords(posX, posZ);

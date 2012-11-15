@@ -16,7 +16,7 @@ package chococraft.common;
 
 public class Constants
 {
-	public static String TCC_VERSION = "2.1.4";	
+	public static String TCC_VERSION = "2.2.1";	
 
 	// default item id's (reserved 22601-22650)
 	public static int CHOCOBO_SADDLE_ID          = 22601;
@@ -71,10 +71,13 @@ public class Constants
 	public static int DEFAULT_FEATHER_DELAY_RANDOM = 600;
 	public static int DEFAULT_FEATHER_DELAY_STATIC = 600;
 	public static int DEFAULT_GHYSAL_SPAWN_RATE = 100;
-	public static int DEFAULT_YELLOW_SPAWN_RATE = 5;
-	public static int DEFAULT_YELLOW_SPAWN_MIN = 2;
-	public static int DEFAULT_YELLOW_SPAWN_MAX = 4;
-	public static int DEFAULT_YELLOW_SPAWN_PROBABILITY = 5;
+	
+	public static int DEFAULT_SPAWN_WEIGHTED_PROB = 5;
+	public static int DEFAULT_SPAWN_GROUP_MIN = 2;
+	public static int DEFAULT_SPAWN_GROUP_MAX = 4;
+	public static int DEFAULT_SPAWN_TOTAL_MAX = 10;
+	public static int DEFAULT_SPAWN_PROBABILITY = 2;
+	
 	public static double DEFAULT_RENDER_NAME_HEIGHT = 0.0;
 	public static int DEFAULT_LIVING_SOUND_PROB = 100;
 	
@@ -132,7 +135,7 @@ public class Constants
 	public static boolean CHOCOBO_PURPLE_CANJUMPHIGH  = false;
 	
 	// max length of channel name is 16                     "xxxxxxxxxxxxxxxx"
-	public static final String PCHAN_CHOCOBO              = "ChocoCraftPChan";	
+	public static final String PCHAN_CHOCOBO              = "ChocoCraftPChan";
 	
 	// dataWatcher
 	// EAC - EntityAnimalChocobo

@@ -22,7 +22,7 @@ import chococraft.common.ModChocoCraft;
 import chococraft.common.entities.EntityAnimalChocobo;
 import chococraft.common.entities.EntityChicobo;
 import chococraft.common.entities.EntityChocobo;
-import net.minecraft.src.EntityAnimal;
+import net.minecraft.src.EntityAgeable;
 import net.minecraft.src.NBTTagCompound;
 import net.minecraft.src.World;
 
@@ -122,7 +122,8 @@ public class EntityChocoboPurple extends EntityChocobo
 		return;
 	}
 
-    public chocoboColor getBabyAnimalColor(EntityAnimal otherAnimalParent)
+	@Override
+    public chocoboColor getBabyAnimalColor(EntityAgeable otherAnimalParent)
 	{
 		if(otherAnimalParent instanceof EntityChocobo)
 		{
