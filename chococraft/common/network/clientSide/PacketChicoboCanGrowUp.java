@@ -1,4 +1,4 @@
-package chococraft.common.network;
+package chococraft.common.network.clientSide;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
@@ -9,11 +9,10 @@ import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.network.Player;
 
-import chococraft.common.ChocoboHelper;
 import chococraft.common.entities.EntityAnimalChocobo;
 import chococraft.common.entities.EntityChicobo;
 
-public class PacketChicoboCanGrowUp extends PacketChocobo
+public class PacketChicoboCanGrowUp extends PacketChocoboClient
 {
 	public PacketChicoboCanGrowUp(EntityChicobo chicobo)
 	{
@@ -48,7 +47,7 @@ public class PacketChicoboCanGrowUp extends PacketChocobo
 				boolean growUp = inputStream.readBoolean();
 				int dimension = inputStream.readInt();
 
-				EntityAnimalChocobo chicobo = ChocoboHelper.getChocoboByID(entityId, dimension);
+				EntityAnimalChocobo chicobo = getChocoboByID(entityId, dimension);
 				if(null != chicobo && chicobo instanceof EntityChicobo)
 				{
 					((EntityChicobo)chicobo).setCanGrowUp(canGrowUp);

@@ -20,10 +20,10 @@ import com.google.common.io.ByteArrayDataOutput;
 import net.minecraft.src.EntityAgeable;
 import net.minecraft.src.NBTTagCompound;
 import net.minecraft.src.World;
-import chococraft.common.ChocoboHelper;
 import chococraft.common.Constants;
 import chococraft.common.ModChocoCraft;
 import chococraft.common.entities.EntityChocobo;
+import chococraft.common.helper.ChocoboEntityHelper;
 
 public class EntityChocoboYellow extends EntityChocobo
 {
@@ -116,7 +116,7 @@ public class EntityChocoboYellow extends EntityChocobo
 
 	public boolean getCanSpawnHere()
 	{
-		if(ChocoboHelper.countWildChocobos(this.worldObj) >= ModChocoCraft.spawnGroupMax)
+		if(ChocoboEntityHelper.countWildChocobos(this.worldObj) >= ModChocoCraft.spawnGroupMax)
 		{
 			return false;
 		}

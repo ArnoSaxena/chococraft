@@ -47,7 +47,7 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.TickRegistry;
 
-@Mod(modid="ChocoCraft", name="Torojimas ChocoCraft", version="2.2.1")
+@Mod(modid="ChocoCraft", name="Torojimas ChocoCraft", version="2.2.2")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false, 
 		channels = { Constants.PCHAN_CHOCOBO },
 		packetHandler = ChocoboPacketHandler.class)
@@ -353,13 +353,13 @@ public class ModChocoCraft
 
 		// food items
 		// Raw Chocobo Leg
-		chocoboLegRawItem = (new ItemFood(Integer.parseInt(chocoboLegRawId.value), 4, true)).setItemName("chocoboLegRaw").setMaxStackSize(8);
+		chocoboLegRawItem = (new ItemFood(Integer.parseInt(chocoboLegRawId.value), 4, true)).setItemName("chocoboLegRaw").setMaxStackSize(64);
 		chocoboLegRawItem.setTextureFile(Constants.CHOCOBO_ITEM_TEXTURES);
 		chocoboLegRawItem.setIconIndex(8);
 		LanguageRegistry.addName(chocoboLegRawItem, "Raw Chocobo Leg");
 
 		// Cooked Chocobo Leg
-		chocoboLegCookedItem = (new ItemFood(Integer.parseInt(chocoboLegCookedId.value), 8, false)).setItemName("chocoboLegCooked").setMaxStackSize(8);
+		chocoboLegCookedItem = (new ItemFood(Integer.parseInt(chocoboLegCookedId.value), 8, false)).setItemName("chocoboLegCooked").setMaxStackSize(64);
 		chocoboLegCookedItem.setTextureFile(Constants.CHOCOBO_ITEM_TEXTURES);
 		chocoboLegCookedItem.setIconIndex(9);
 		LanguageRegistry.addName(chocoboLegCookedItem, "Cooked Chocobo Leg");

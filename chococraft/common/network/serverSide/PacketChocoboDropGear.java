@@ -12,7 +12,7 @@
 // <date>2012-10-25</date>
 // <summary>Network Packet wrapper for sending drop gear request to a Chocobo entity</summary>
 
-package chococraft.common.network;
+package chococraft.common.network.serverSide;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
@@ -22,13 +22,12 @@ import java.io.IOException;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.network.Player;
-import chococraft.common.ChocoboHelper;
 import chococraft.common.ModChocoCraft;
 import chococraft.common.entities.EntityAnimalChocobo;
 import chococraft.common.entities.EntityChocoboRideable;
 import net.minecraft.src.ItemStack;
 
-public class PacketChocoboDropGear extends PacketChocobo
+public class PacketChocoboDropGear extends PacketChocoboServer
 {
 	public PacketChocoboDropGear(EntityChocoboRideable chocobo)
 	{
@@ -58,7 +57,7 @@ public class PacketChocoboDropGear extends PacketChocobo
 			{
 				int chocoboId = inputStream.readInt();
 				int dimension = inputStream.readInt();
-				EntityAnimalChocobo chocobo = ChocoboHelper.getChocoboByID(chocoboId, dimension);
+				EntityAnimalChocobo chocobo = getChocoboByID(chocoboId, dimension);
 				if(null != chocobo && chocobo instanceof EntityChocoboRideable)
 				{
 					EntityChocoboRideable chocoRideable = (EntityChocoboRideable)chocobo;

@@ -26,6 +26,7 @@ import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
+import chococraft.common.helper.ChocoboBiomeHelper;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Side;
 
@@ -258,7 +259,7 @@ public class ChocoboConfig
 	{
 		if(valueString.equals(CFG_TOKEN_ALL))
 		{
-			return ChocoboHelper.getBiomeGenBaseArray();
+			return ChocoboBiomeHelper.getBiomeGenBaseArray();								
 		}
 		String[] values = valueString.split(",");
 		ArrayList<BiomeGenBase> bgbList= new ArrayList<BiomeGenBase>();
@@ -269,7 +270,8 @@ public class ChocoboConfig
 			{
 				if(value.trim().equals(CFG_TOKEN_ALL))
 				{
-					return ChocoboHelper.getBiomeGenBaseArray();
+					return ChocoboBiomeHelper.getBiomeGenBaseArray();								
+
 				}
 				for(int i = 0; i < BiomeGenBase.biomeList.length; i++)
 				{
@@ -295,7 +297,7 @@ public class ChocoboConfig
 		}
 		else
 		{
-			return ChocoboHelper.getBiomeGenBaseArray();
+			return ChocoboBiomeHelper.getBiomeGenBaseArray();								
 		}
 	}
 

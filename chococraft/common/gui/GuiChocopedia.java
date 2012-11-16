@@ -24,9 +24,9 @@ import org.lwjgl.input.Keyboard;
 
 import cpw.mods.fml.client.FMLClientHandler;
 
-import chococraft.common.ChocoboHelper;
 import chococraft.common.entities.EntityAnimalChocobo;
 import chococraft.common.entities.EntityChocoboRideable;
+import chococraft.common.helper.ChocoboEntityHelper;
 
 public class GuiChocopedia extends GuiScreen
 {
@@ -179,8 +179,8 @@ public class GuiChocopedia extends GuiScreen
 		if(this.chocobo.getOwnerName().equals("Torojima"))
 		{
 			// it's me, display debug information
-			int amountWildChocobos = ChocoboHelper.countWildChocobos(this.chocobo.worldObj);
-			int amountChocobos = ChocoboHelper.countEntities(EntityAnimalChocobo.class, this.chocobo.worldObj);
+			int amountWildChocobos = ChocoboEntityHelper.countWildChocobos(this.chocobo.worldObj);
+			int amountChocobos = ChocoboEntityHelper.countEntities(EntityAnimalChocobo.class, this.chocobo.worldObj);
 			int debugFontColour = 0x11a0a0;
 			String biomeName = this.chocobo.worldObj.getBiomeGenForCoords((int)this.chocobo.posX, (int)this.chocobo.posZ).biomeName;
 			String biomeDisplayString = "Biome: " + biomeName;

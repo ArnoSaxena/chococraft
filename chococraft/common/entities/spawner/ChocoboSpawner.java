@@ -16,11 +16,12 @@ package chococraft.common.entities.spawner;
 
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Side;
-import chococraft.common.ChocoboHelper;
 import chococraft.common.ModChocoCraft;
 import chococraft.common.entities.EntityAnimalChocobo.chocoboColor;
 import chococraft.common.entities.EntityChocobo;
 import chococraft.common.entities.FactoryEntityChocobo;
+import chococraft.common.helper.ChocoboBiomeHelper;
+import chococraft.common.helper.ChocoboEntityHelper;
 import net.minecraft.src.BiomeGenBase;
 import net.minecraft.src.Chunk;
 import net.minecraft.src.MathHelper;
@@ -48,7 +49,7 @@ public final class ChocoboSpawner
 			int outerSpawnRadius = 64;
 			int innerSpawnRadius = 32;
 			
-			if(ChocoboHelper.isWorldHell(world))
+			if(ChocoboBiomeHelper.isWorldHell(world))
 			{
 				outerSpawnRadius = 48;
 				innerSpawnRadius = 32;
@@ -79,7 +80,7 @@ public final class ChocoboSpawner
 
 				//DebugFileWriter.instance().writeLine("ChSpaw", "canChocoboSpawnInBiome(world, "+ (posX + randDeltaX) +", "+ (posZ + randDeltaZ) +") is " + Boolean.toString(canSpawnHere));
 
-				if(ChocoboHelper.isWorldHell(world))
+				if(ChocoboBiomeHelper.isWorldHell(world))
 				{
 					canSpawnHere = true;
 				}				
@@ -102,7 +103,7 @@ public final class ChocoboSpawner
 			}
 			
 			Chunk tmpChunk = world.getChunkFromBlockCoords(MathHelper.floor_double(posX + randDeltaX), MathHelper.floor_double(posZ + randDeltaZ));
-			int activeWildChocobosInChunk = ChocoboHelper.countWildChocobosInChunk(world, tmpChunk);
+			int activeWildChocobosInChunk = ChocoboEntityHelper.countWildChocobosInChunk(world, tmpChunk);
 			if (activeWildChocobosInChunk > ModChocoCraft.spawnTotalMax)
 			{
 				//DebugFileWriter.instance().writeLine("ChSpaw", "activeWildChocobosInChunk(" + activeWildChocobosInChunk + ") > ModChocoCraft.spawnTotalMax(" + ModChocoCraft.spawnTotalMax + ")");
@@ -129,7 +130,7 @@ public final class ChocoboSpawner
 				int chocoPosZ = (int)posZ + randDeltaZ + world.rand.nextInt(6);
 
 				int chocoPosY = 0;
-				if(ChocoboHelper.isWorldHell(world))
+				if(ChocoboBiomeHelper.isWorldHell(world))
 				{
 					chocoPosY = world.getFirstUncoveredBlock(chocoPosX, chocoPosZ);
 				}
@@ -148,7 +149,7 @@ public final class ChocoboSpawner
 				// create the entity to be spawn if it can spawn
 				if(canSpawnLoc && canSpawnHere)
 				{
-					chocoboColor color = ChocoboHelper.isWorldHell(world) ? chocoboColor.PURPLE : chocoboColor.YELLOW;
+					chocoboColor color = ChocoboBiomeHelper.isWorldHell(world) ? chocoboColor.PURPLE : chocoboColor.YELLOW;
 					EntityChocobo newChocobo = FactoryEntityChocobo.createNewChocobo(world, color);
 					newChocobo.setLocationAndAngles(chocoPosX, chocoPosY, chocoPosZ, chocoRotYawn, 0.0F);
 
@@ -172,7 +173,7 @@ public final class ChocoboSpawner
 		int tmpPosZ = MathHelper.floor_double(posZ);
 
 		int tmpPosY = 0;
-		if(ChocoboHelper.isWorldHell(world))
+		if(ChocoboBiomeHelper.isWorldHell(world))
 		{
 			tmpPosY = world.getFirstUncoveredBlock(tmpPosX, tmpPosZ);
 		}

@@ -37,8 +37,8 @@ import chococraft.common.ModChocoCraft;
 import chococraft.common.bags.ChocoBagInventory;
 import chococraft.common.bags.ChocoPackBagInventory;
 import chococraft.common.bags.ChocoSaddleBagInventory;
-import chococraft.common.network.PacketChocoboDropGear;
-import chococraft.common.network.PacketChocoboMount;
+import chococraft.common.network.serverSide.PacketChocoboDropGear;
+import chococraft.common.network.serverSide.PacketChocoboMount;
 
 
 public abstract class EntityChocoboRideable extends EntityAnimalChocobo {
@@ -249,6 +249,7 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo {
 	{
 		boolean interacted = false;
 		interacted = super.onEmptyHandInteraction(entityplayer);
+		
 		if(this.isSaddled())
 		{
 			if (this.riddenByEntity == null || this.riddenByEntity == entityplayer)
@@ -535,6 +536,7 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo {
 		this.setStepHeight(true);
 		this.setJumpHigh(true);
 		this.setLandMovementFactor(true);
+		entityplayer.mountEntity(this);
 	}
 
 	protected void dismountChocobo(EntityPlayer entityplayer)
@@ -543,6 +545,7 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo {
 		this.setStepHeight(false);
 		this.setJumpHigh(false);
 		this.setLandMovementFactor(false);
+		entityplayer.mountEntity(null);
 	}
 
 	protected void sendMountUpdate()
@@ -565,4 +568,10 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo {
 			this.setPackBagged(false);
 		}
 	}
+	
+	@Override
+    public boolean shouldRiderFaceForward(EntityPlayer player)
+    {
+    	return true;
+    }
 }

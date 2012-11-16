@@ -23,10 +23,10 @@ import net.minecraft.src.EntityAgeable;
 import net.minecraft.src.EntityPlayer;
 import net.minecraft.src.NBTTagCompound;
 import net.minecraft.src.World;
-import chococraft.common.ChocoboHelper;
 import chococraft.common.Constants;
 import chococraft.common.entities.EntityChocobo;
 import chococraft.common.entities.FactoryEntityChocobo;
+import chococraft.common.helper.ChocoboParticleHelper;
 
 public class EntityChocoboGold extends EntityChocobo
 {
@@ -195,7 +195,7 @@ public class EntityChocoboGold extends EntityChocobo
 		{
 			for (int i = 0; i < 20; i++)
 			{
-				ChocoboHelper.showParticleAroundEntityFx("explode", this);
+				ChocoboParticleHelper.showParticleAroundEntityFx("explode", this);
 			}
 		}
 		this.useItem(entityplayer);

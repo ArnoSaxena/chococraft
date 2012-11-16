@@ -13,7 +13,7 @@
 // <summary>Network Packet wrapper for sending the jump/sneak status of 
 // a player riding a chocobo to the server</summary>
 
-package chococraft.common.network;
+package chococraft.common.network.serverSide;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
@@ -24,12 +24,11 @@ import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.network.Player;
 
-import chococraft.common.ChocoboHelper;
 import chococraft.common.entities.EntityAnimalChocobo;
 import chococraft.common.entities.EntityChocobo;
 import net.minecraft.src.EntityPlayer;
 
-public class PacketChocoboRiderJump extends PacketChocobo
+public class PacketChocoboRiderJump extends PacketChocoboServer
 {
 	public PacketChocoboRiderJump(EntityPlayer riderEntity, EntityChocobo chocobo)
 	{
@@ -65,11 +64,11 @@ public class PacketChocoboRiderJump extends PacketChocobo
 				boolean riderSneaking  = inputStream.readBoolean();
 				int dimension          = inputStream.readInt();
 				
-				EntityAnimalChocobo chocobo = ChocoboHelper.getChocoboByID(chocoboEntityId, dimension);
+				EntityAnimalChocobo chocobo = getChocoboByID(chocoboEntityId, dimension);
 				EntityPlayer riderEntity = null;
 				if(!riderName.isEmpty())
 				{
-					riderEntity = ChocoboHelper.getPlayer(riderName, dimension);
+					riderEntity = getPlayer(riderName, dimension);
 				}
 								
 				if(riderEntity != null && chocobo != null && chocobo.riddenByEntity != null

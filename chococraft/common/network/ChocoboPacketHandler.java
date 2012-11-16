@@ -17,6 +17,13 @@ package chococraft.common.network;
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 
+import chococraft.common.network.clientSide.PacketChicoboCanGrowUp;
+import chococraft.common.network.clientSide.PacketChocoboHealth;
+import chococraft.common.network.clientSide.PacketChocoboTamed;
+import chococraft.common.network.serverSide.PacketChocoboAttribute;
+import chococraft.common.network.serverSide.PacketChocoboDropGear;
+import chococraft.common.network.serverSide.PacketChocoboMount;
+import chococraft.common.network.serverSide.PacketChocoboRiderJump;
 import net.minecraft.src.INetworkManager;
 import net.minecraft.src.Packet250CustomPayload;
 import cpw.mods.fml.common.network.IPacketHandler;
@@ -33,7 +40,6 @@ public class ChocoboPacketHandler implements IPacketHandler
 	{
 
 		DataInputStream data = new DataInputStream(new ByteArrayInputStream(packet.data));
-
 		try {
 			int packetId = data.readInt();
 			

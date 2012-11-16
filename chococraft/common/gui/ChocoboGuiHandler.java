@@ -14,10 +14,9 @@
 
 package chococraft.common.gui;
 
-import chococraft.common.ChocoboHelper;
 import chococraft.common.bags.ChocoBagContainer;
-import chococraft.common.entities.EntityAnimalChocobo;
 import chococraft.common.entities.EntityChocobo;
+import net.minecraft.src.Entity;
 import net.minecraft.src.EntityPlayer;
 import net.minecraft.src.World;
 import cpw.mods.fml.common.network.IGuiHandler;
@@ -27,7 +26,7 @@ public class ChocoboGuiHandler implements IGuiHandler
 	@Override
 	public Object getServerGuiElement(int id, EntityPlayer player, World world, int chocoboId, int saddleOrPack, int dummy)
 	{
-		EntityChocobo chocobo = this.getChocoboById(chocoboId, world.getWorldInfo().getDimension());
+		EntityChocobo chocobo = this.getChocoboById(world, chocoboId, world.getWorldInfo().getDimension());
 		if(null != chocobo)
 		{
 			return new ChocoBagContainer(player.inventory, chocobo.getChocoBagInventory());
@@ -38,7 +37,7 @@ public class ChocoboGuiHandler implements IGuiHandler
 	@Override
 	public Object getClientGuiElement(int id, EntityPlayer player, World world, int chocoboId, int saddleOrPack, int dummy)
 	{
-		EntityChocobo chocobo = this.getChocoboById(chocoboId, world.getWorldInfo().getDimension());
+		EntityChocobo chocobo = this.getChocoboById(world, chocoboId, world.getWorldInfo().getDimension());
 		if(null != chocobo)
 		{
 			return new GuiChocoboBag(player.inventory, chocobo.getChocoBagInventory());
@@ -46,13 +45,17 @@ public class ChocoboGuiHandler implements IGuiHandler
 		return null;
 	}
 
-	private EntityChocobo getChocoboById(int chocoboId, int dimension)
+
+	private EntityChocobo getChocoboById(World world, int chocoboId, int dimension)
 	{
-		EntityAnimalChocobo entityAnimalChocobo = ChocoboHelper.getChocoboByID(chocoboId, dimension);
-		if(entityAnimalChocobo instanceof EntityChocobo)
+		Entity entity = world.getEntityByID(chocoboId);
+		if(null != entity && entity instanceof EntityChocobo)
 		{
-			return (EntityChocobo)entityAnimalChocobo;
+			return (EntityChocobo)entity;
 		}
-		return null;
-	}
+		else
+		{
+			return null;
+		}
+	}	
 }

@@ -22,7 +22,7 @@ import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.network.PacketDispatcher;
 import chococraft.common.*;
-import chococraft.common.network.PacketChicoboCanGrowUp;
+import chococraft.common.network.clientSide.PacketChicoboCanGrowUp;
 import net.minecraft.src.EntityAgeable;
 import net.minecraft.src.EntityAnimal;
 import net.minecraft.src.EntityPlayer;
@@ -230,10 +230,11 @@ public class EntityChicobo extends EntityAnimalChocobo
 				entitychocobo.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, 0.0F);
 				entitychocobo.setGrowingAge(6000);
 				this.worldObj.spawnEntityInWorld(entitychocobo);
-				for (int i = 0; i < 20; i++)
-				{
-					ChocoboHelper.showParticleAroundEntityFx("explode", this);
-				}
+				// TODO: send particle order to clients
+//				for (int i = 0; i < 20; i++)
+//				{
+//					ChocoboClientHelper.showParticleAroundEntityFx("explode", this);
+//				}
 				this.setEntityHealth(0);
 				this.setDead();
 				this.growUp = false;

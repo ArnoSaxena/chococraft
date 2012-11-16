@@ -16,7 +16,7 @@ package chococraft.common;
 
 public class Constants
 {
-	public static String TCC_VERSION = "2.2.1";	
+	public static String TCC_VERSION = "2.2.2";	
 
 	// default item id's (reserved 22601-22650)
 	public static int CHOCOBO_SADDLE_ID          = 22601;

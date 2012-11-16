@@ -12,7 +12,7 @@
 // <date>2012-10-25</date>
 // <summary>Network Packet wrapper for distributing a Chocobo taming event to the clients</summary>
 
-package chococraft.common.network;
+package chococraft.common.network.clientSide;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
@@ -23,10 +23,9 @@ import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.network.Player;
 
-import chococraft.common.ChocoboHelper;
 import chococraft.common.entities.EntityAnimalChocobo;
 
-public class PacketChocoboTamed extends PacketChocobo
+public class PacketChocoboTamed extends PacketChocoboClient
 {
 	public PacketChocoboTamed(EntityAnimalChocobo chocobo)
 	{
@@ -61,7 +60,7 @@ public class PacketChocoboTamed extends PacketChocobo
 				String ownerName = inputStream.readUTF();
 				int dimension = inputStream.readInt();
 				
-				EntityAnimalChocobo chocobo = ChocoboHelper.getChocoboByID(entityId, dimension);
+				EntityAnimalChocobo chocobo = getChocoboByID(entityId, dimension);
 				if(null != chocobo)
 				{
 					chocobo.setTamed(tamed);

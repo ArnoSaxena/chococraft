@@ -12,7 +12,7 @@
 // <date>2012-10-25</date>
 // <summary>Network Packet wrapper for sending a mounting signal of a player to a Chocobo entity</summary>
 
-package chococraft.common.network;
+package chococraft.common.network.serverSide;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
@@ -24,12 +24,11 @@ import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.network.Player;
 
-import chococraft.common.ChocoboHelper;
 import chococraft.common.entities.EntityAnimalChocobo;
 import chococraft.common.entities.EntityChocoboRideable;
 import net.minecraft.src.EntityPlayer;
 
-public class PacketChocoboMount extends PacketChocobo
+public class PacketChocoboMount extends PacketChocoboServer
 {
 	public PacketChocoboMount(EntityAnimalChocobo chocobo)
 	{
@@ -59,12 +58,12 @@ public class PacketChocoboMount extends PacketChocobo
 		if (Side.SERVER == FMLCommonHandler.instance().getEffectiveSide())
 		{
 			try
-			{
+			{				
 				int mountId = inputStream.readInt();
 				String riderName = inputStream.readUTF();
 				int dimension = inputStream.readInt();
 				
-				EntityAnimalChocobo chocobo = ChocoboHelper.getChocoboByID(mountId, dimension);
+				EntityAnimalChocobo chocobo = getChocoboByID(mountId, dimension);
 				if(chocobo instanceof EntityChocoboRideable)
 				{
 					EntityChocoboRideable chocoboRideable = (EntityChocoboRideable)chocobo;
@@ -77,7 +76,7 @@ public class PacketChocoboMount extends PacketChocobo
 					}
 					else
 					{
-						EntityPlayer riderEntity = ChocoboHelper.getPlayer(riderName, dimension);
+						EntityPlayer riderEntity = getPlayer(riderName, dimension);
 						riderEntity.mountEntity(chocoboRideable);
 						chocoboRideable.setStepHeight(true);
 						chocoboRideable.setLandMovementFactor(true);

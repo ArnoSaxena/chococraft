@@ -24,10 +24,10 @@ import com.google.common.io.ByteArrayDataOutput;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Side;
 
-import chococraft.common.ChocoboHelper;
 import chococraft.common.Constants;
 import chococraft.common.ModChocoCraft;
 import chococraft.common.entities.colours.EntityChocoboPurple;
+import chococraft.common.helper.ChocoboParticleHelper;
 import net.minecraft.src.AxisAlignedBB;
 import net.minecraft.src.Block;
 import net.minecraft.src.DamageSource;
@@ -319,7 +319,11 @@ public abstract class EntityChocobo extends EntityChocoboRideable
             // do we have an attack entity?
             if (this.entityToAttack != null)
             {
-            	ChocoboHelper.showParticleAroundEntityFx("heart", this);
+        		Side side = FMLCommonHandler.instance().getEffectiveSide();
+        		if (side == Side.CLIENT)
+        		{
+        			ChocoboParticleHelper.showParticleAroundEntityFx("heart", this);
+        		}
             	// are they not in love anymore?
             	if (!((EntityAnimalChocobo)this.entityToAttack).isInLove())
             	{
