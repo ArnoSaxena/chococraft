@@ -1,7 +1,7 @@
 [img]http://www.arno-saxena.de/pictures/chococraft/banner_title.png[/img]
 
 UPDATED FOR MINECRAFT 1.4.4
-Version 2.2.1
+Version 2.2.2
 Requires: [url="http://www.minecraftforge.net/"]Forge[/url] [url="http://files.minecraftforge.net/"]6.3.0.372+[/url]
 
 This Mod is the continuation of [url="http://www.minecraftforum.net/user/1051245-eddiev/"]EddieV's[/url] mod. The original thread can be found [url="http://www.minecraftforum.net/topic/952372-chococraft-12-mc-11-chocobos-now-fly/"]here[/url]. I've officially taken over the helm with Eddie's kind blessings.
@@ -17,7 +17,7 @@ As of version 2.0.4 this mod is in working condition for SMP.
 [color=#ff0000][b]ACHTUNG! CAUTION! ¡CUIDADO! चेतावनी! ATTENZIONE! береги́сь!
 This version of Chococraft is not compatible to versions pre 2.0.0 (pre mc 1.3.2). It will destroy your saved world if old Chocobos are included. Thus, if you want to use an old world with the new version of this mod, you should first start minecraft without the Chococraft mod, enter and save your world, thus removing all traces of older versions of Chococraft and only then start minecraft with the new version of Chococraft and tame new Chocobos.[/b][/color]
 
-Download: [url="http://www.arno-saxena.de/minecraft/Chococraft_2.2.1.zip"]Torojimas ChocoCraft 2.2.1[/url]
+Download: [url="http://www.arno-saxena.de/minecraft/Chococraft_2.2.2.zip"]Torojimas ChocoCraft 2.2.2[/url]
 
 Downloads so far: [img]http://www.arno-saxena.de/minecraft/chocoboDownloads.png[/img]
 
@@ -66,6 +66,11 @@ Thanks to InTheLittleWood[/spoiler][/spoiler]
 
 CHANGELOG:
 [spoiler]
+v.2.2.2 by Torojima
+   1. fixed server crash
+   2. fixed Chocobo mounting crash
+   3. increased Chocobo leg stack limit to 64
+
 v.2.2.1 by Torojima
    1. Updated for mc 1.4.4
    2. custom spawning
@@ -588,3 +593,25 @@ Acknowledgments:
 
 Banner/Sig:
 [code][url="http://www.minecraftforum.net/topic/1119809-124-eddievs-chococraft-150u-torojimas-unofficial-update/"][img]http://www.arno-saxena.de/pictures/chococraft/banner_signature.png[/img][/url][/code]
+
+Copyright:
+[spoiler]
+TERMS AND CONDITIONS
+0. USED TERMS
+MOD - modification, plugin, a piece of software that interfaces with the Minecraft client to extend, add, change or remove original capabilities.
+MOJANG - Mojang AB
+OWNER - , Original author(s) of the MOD. Under the copyright terms accepted when purchasing Minecraft (http://www.minecraft.net/copyright.jsp) the OWNER has full rights over their MOD despite use of MOJANG code.
+USER - End user of the mod, person installing the mod.
+
+1. LIABILITY
+THIS MOD IS PROVIDED 'AS IS' WITH NO WARRANTIES, IMPLIED OR OTHERWISE. THE OWNER OF THIS MOD TAKES NO RESPONSIBILITY FOR ANY DAMAGES INCURRED FROM THE USE OF THIS MOD. THIS MOD ALTERS FUNDAMENTAL PARTS OF THE MINECRAFT GAME, PARTS OF MINECRAFT MAY NOT WORK WITH THIS MOD INSTALLED. ALL DAMAGES CAUSED FROM THE USE OR MISUSE OF THIS MOD FALL ON THE USER.
+
+2. USE
+Use of this MOD to be installed, manually or automatically, is given to the USER without restriction.
+
+3. REDISTRIBUTION
+This MOD may only be distributed where uploaded, mirrored, or otherwise linked to by the OWNER solely. All mirrors of this mod must have advance written permission from the OWNER. ANY attempts to make money off of this MOD (selling, selling modified versions, adfly, sharecash, etc.) are STRICTLY FORBIDDEN, and the OWNER may claim damages or take other action to rectify the situation.
+
+4. DERIVATIVE WORKS/MODIFICATION
+This mod is provided freely and may be decompiled and modified for private use, either with a decompiler or a bytecode editor. Public distribution of modified versions of this MOD require advance written permission of the OWNER and may be subject to certain terms.
+[/spoiler]
