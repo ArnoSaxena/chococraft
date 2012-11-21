@@ -16,7 +16,7 @@ package chococraft.common;
 
 public class Constants
 {
-	public static String TCC_VERSION = "2.2.2";	
+	public static String TCC_VERSION = "2.3.2";	
 
 	// default item id's (reserved 22601-22650)
 	public static int CHOCOBO_SADDLE_ID          = 22601;
@@ -47,8 +47,16 @@ public class Constants
 	// resource folder
 	public static String CHOCOBO_RESOURCES_FOLDER = "/resources";
 
+	// sound folder
+	public static String CHOCOBO_SOUND_FOLDER = CHOCOBO_RESOURCES_FOLDER + "/sounds";
+	
+	// armour folder
+	public static String CHOCOBO_ARMOUR_FOLDER = CHOCOBO_RESOURCES_FOLDER + "/armor";	
+
 	// texture files
 	public static String CHOCOBO_ITEM_TEXTURES = CHOCOBO_RESOURCES_FOLDER + "/chocoboItemTextures.png";
+	public static String CHOCOBO_ARMOUR_TEXTURES_1 = CHOCOBO_ARMOUR_FOLDER + "/chocoDisguise_1.png";
+	public static String CHOCOBO_ARMOUR_TEXTURES_2 = CHOCOBO_ARMOUR_FOLDER + "/chocoDisguise_2.png";
 	public static String CHOCOBO_ENTITY_TEXTURES = CHOCOBO_RESOURCES_FOLDER + "/Chocobos";
 	public static String CHICOBO_ENTITY_TEXTURES = CHOCOBO_RESOURCES_FOLDER + "/Chicobos";
 	public static String CHOCOBO_ETXT_UNTAMED = "/Untamed";
@@ -60,9 +68,6 @@ public class Constants
 	public static String CHOCOBO_ETXT_FEMALE = "/Female";
 	public static String CHICOBO_ETXT_TAMED = CHOCOBO_ETXT_TAMED;
 	
-	// sound folder
-	public static String CHOCOBO_SOUND_FOLDER = CHOCOBO_RESOURCES_FOLDER + "/sounds";
-
 	// setup
 	public static boolean DEFAULT_CHOCOBO_WING_FLUTTER = false;
 	public static boolean DEFAULT_SHOW_CHOCOBO_NAMES = true;
@@ -72,11 +77,13 @@ public class Constants
 	public static int DEFAULT_FEATHER_DELAY_STATIC = 600;
 	public static int DEFAULT_GHYSAL_SPAWN_RATE = 100;
 	
-	public static int DEFAULT_SPAWN_WEIGHTED_PROB = 5;
+	public static int DEFAULT_SPAWN_TIME_DELAY = 200;
 	public static int DEFAULT_SPAWN_GROUP_MIN = 2;
 	public static int DEFAULT_SPAWN_GROUP_MAX = 4;
-	public static int DEFAULT_SPAWN_TOTAL_MAX = 10;
+	public static int DEFAULT_SPAWN_TOTAL_MAX = 3;
 	public static int DEFAULT_SPAWN_PROBABILITY = 2;
+	public static int DEFAULT_SPAWN_LIMIT_CHUNK_RADIUS = 100;
+	public static int DEFAULT_SPAWN_DIST_NEXT_WILD = 300;
 	
 	public static double DEFAULT_RENDER_NAME_HEIGHT = 0.0;
 	public static int DEFAULT_LIVING_SOUND_PROB = 100;
@@ -92,6 +99,17 @@ public class Constants
 	public static float CHOCOBO_PINK_LANDMOVEFACT     = 0.45F;
 	public static float CHOCOBO_RED_LANDMOVEFACT      = 0.45F;
 	public static float CHOCOBO_PURPLE_LANDMOVEFACT   = 0.4F;
+	
+	public static float CHOCOBO_DEFAULT_WATERMOVEFACT  = 0.1F;
+	public static float CHOCOBO_YELLOW_WATERMOVEFACT   = 0.1F;
+	public static float CHOCOBO_GREEN_WATERMOVEFACT    = 0.1F;
+	public static float CHOCOBO_BLUE_WATERMOVEFACT     = 0.45F;
+	public static float CHOCOBO_WHITE_WATERMOVEFACT    = 0.40F;
+	public static float CHOCOBO_BLACK_WATERMOVEFACT    = 0.2F;
+	public static float CHOCOBO_GOLD_WATERMOVEFACT     = 0.2F;
+	public static float CHOCOBO_PINK_WATERMOVEFACT     = 0.2F;
+	public static float CHOCOBO_RED_WATERMOVEFACT      = 0.2F;
+	public static float CHOCOBO_PURPLE_WATERMOVEFACT   = 0.1F;
 	
 	public static float CHOCOBO_DEFAULT_FLYMOVEFACT   = 0.0F;
 	public static float CHOCOBO_YELLOW_FLYMOVEFACT    = 0.0F;
@@ -113,6 +131,16 @@ public class Constants
 	public static double CHOCOBO_PINK_LANDSPEEDFACT   = 55;
 	public static double CHOCOBO_RED_LANDSPEEDFACT    = 55;
 	public static double CHOCOBO_PURPLE_LANDSPEEDFACT = 40;
+	
+	public static double CHOCOBO_YELLOW_WATERSPEEDFACT = 10;
+	public static double CHOCOBO_GREEN_WATERSPEEDFACT  = 10;
+	public static double CHOCOBO_BLUE_WATERSPEEDFACT   = 55;
+	public static double CHOCOBO_WHITE_WATERSPEEDFACT  = 45;
+	public static double CHOCOBO_BLACK_WATERSPEEDFACT  = 20;
+	public static double CHOCOBO_GOLD_WATERSPEEDFACT   = 20;
+	public static double CHOCOBO_PINK_WATERSPEEDFACT   = 25;
+	public static double CHOCOBO_RED_WATERSPEEDFACT    = 25;
+	public static double CHOCOBO_PURPLE_WATERSPEEDFACT = 10;
 	
 	public static double CHOCOBO_YELLOW_AIRSPEEDFACT  =  0;
 	public static double CHOCOBO_GREEN_AIRSPEEDFACT   =  0;

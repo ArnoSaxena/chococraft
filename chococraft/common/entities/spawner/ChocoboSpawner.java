@@ -14,6 +14,8 @@
 
 package chococraft.common.entities.spawner;
 
+import java.util.ArrayList;
+
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Side;
 import chococraft.common.ModChocoCraft;
@@ -21,9 +23,9 @@ import chococraft.common.entities.EntityAnimalChocobo.chocoboColor;
 import chococraft.common.entities.EntityChocobo;
 import chococraft.common.entities.FactoryEntityChocobo;
 import chococraft.common.helper.ChocoboBiomeHelper;
-import chococraft.common.helper.ChocoboEntityHelper;
 import net.minecraft.src.BiomeGenBase;
 import net.minecraft.src.Chunk;
+import net.minecraft.src.Entity;
 import net.minecraft.src.MathHelper;
 import net.minecraft.src.World;
 
@@ -31,8 +33,6 @@ public final class ChocoboSpawner
 {
 	public static void doChocoboSpawning(World world, double posX, double posY, double posZ)
 	{
-		//DebugFileWriter.instance().writeLine("ChSpaw", "doing the spawning");
-
 		if(Side.SERVER == FMLCommonHandler.instance().getEffectiveSide())
 		{
 			int maxTries = 20;
@@ -41,7 +41,7 @@ public final class ChocoboSpawner
 			int d100 = world.rand.nextInt(100);
 			if(d100 > ModChocoCraft.spawnProbability)
 			{
-				//DebugFileWriter.instance().writeLine("ChSpaw", "world.rand.nextInt(100) (" + d100 + ") > ModChocoCraft.spawnProbability(" + ModChocoCraft.spawnProbability + ")");
+				ModChocoCraft.spawnDbStatus = "< prob";
 				return;
 			}				
 
@@ -78,8 +78,6 @@ public final class ChocoboSpawner
 				// check if Chocobos can spawn in this Biome
 				canSpawnHere = canChocoboSpawnInBiome(world, posX + randDeltaX, posZ + randDeltaZ);
 
-				//DebugFileWriter.instance().writeLine("ChSpaw", "canChocoboSpawnInBiome(world, "+ (posX + randDeltaX) +", "+ (posZ + randDeltaZ) +") is " + Boolean.toString(canSpawnHere));
-
 				if(ChocoboBiomeHelper.isWorldHell(world))
 				{
 					canSpawnHere = true;
@@ -92,34 +90,46 @@ public final class ChocoboSpawner
 					canSpawnHere = false;
 				}
 
-				//DebugFileWriter.instance().writeLine("ChSpaw", "isOtherPlayerNear(world, "+ (posX + randDeltaX) +", "+ (posZ + randDeltaZ) +", " + (innerSpawnRadius/2) + ") is " + Boolean.toString(otherPlayerNear));
-
-				// if spawn position is found break
+				// stop looking, if spawn position is found
 				if(canSpawnHere)
 				{
-					//DebugFileWriter.instance().writeLine("ChSpaw", "found spawn location");
 					break;
 				}
 			}
 			
-			Chunk tmpChunk = world.getChunkFromBlockCoords(MathHelper.floor_double(posX + randDeltaX), MathHelper.floor_double(posZ + randDeltaZ));
-			int activeWildChocobosInChunk = ChocoboEntityHelper.countWildChocobosInChunk(world, tmpChunk);
-			if (activeWildChocobosInChunk > ModChocoCraft.spawnTotalMax)
+			if(!canSpawnHere)
 			{
-				//DebugFileWriter.instance().writeLine("ChSpaw", "activeWildChocobosInChunk(" + activeWildChocobosInChunk + ") > ModChocoCraft.spawnTotalMax(" + ModChocoCraft.spawnTotalMax + ")");
+				ModChocoCraft.spawnDbStatus = "not found";
+				return;
+			}
+			
+			int chunkPosX_0 = MathHelper.floor_double(posX + randDeltaX);
+			int chunkPosZ_0 = MathHelper.floor_double(posZ + randDeltaZ);
+			
+			int wildInChunks = countWildInChunkRadius(world, chunkPosX_0, chunkPosZ_0, ModChocoCraft.spawnLimitChunkRadius);
+			
+			if (wildInChunks > ModChocoCraft.spawnTotalMax)
+			{
+				ModChocoCraft.spawnDbStatus = "to many (" + wildInChunks + ")";
+				return;
+			}
+			
+			int distanceNextWild = distanceToNextWild(world, chunkPosX_0, chunkPosZ_0);
+			if (distanceNextWild < ModChocoCraft.spawnDistanceNextWild)
+			{
+				ModChocoCraft.spawnDbStatus = "to close (" + distanceNextWild + ")";
 				return;
 			}
 
 			int spawnedChocobos = 0;
 
+			int randomGroupSize = ModChocoCraft.spawnGroupMin;
 			int groupSizeDelta = ModChocoCraft.spawnGroupMax - ModChocoCraft.spawnGroupMin;
-			if(groupSizeDelta < 0)
+			
+			if(groupSizeDelta > 0)
 			{
-				groupSizeDelta = 0;
+				randomGroupSize += world.rand.nextInt(groupSizeDelta);
 			}
-			int randomGroupSize = ModChocoCraft.spawnGroupMin + world.rand.nextInt(groupSizeDelta);
-
-			//DebugFileWriter.instance().writeLine("ChSpaw", "randomGroupSize: " + randomGroupSize);			
 
 			for (int i = 0; i < maxTries; i++)
 			{
@@ -144,8 +154,6 @@ public final class ChocoboSpawner
 				// check if Chocobos can spawn at spawn-point...
 				Boolean canSpawnLoc = canChocoboSpawnAtLocation(world, chocoPosX, chocoPosY, chocoPosZ);
 
-				//DebugFileWriter.instance().writeLine("ChSpaw", "canChocoboSpawnAtLocation(world, " + chocoPosX + ", " + chocoPosY + ", " + chocoPosZ + ") is " + Boolean.toString(canSpawnLoc));
-
 				// create the entity to be spawn if it can spawn
 				if(canSpawnLoc && canSpawnHere)
 				{
@@ -154,7 +162,6 @@ public final class ChocoboSpawner
 					newChocobo.setLocationAndAngles(chocoPosX, chocoPosY, chocoPosZ, chocoRotYawn, 0.0F);
 
 					// and finally spawn the entity ...
-					//DebugFileWriter.instance().writeLine("ChSpaw", "spawn a Chocobo!!!");
 					world.spawnEntityInWorld(newChocobo);
 					spawnedChocobos++;
 					if(spawnedChocobos >= randomGroupSize)
@@ -163,8 +170,41 @@ public final class ChocoboSpawner
 					}
 				}
 			}
+			ModChocoCraft.spawnDbStatus = spawnedChocobos + " spawned";
 		}
-		return;
+	}
+
+	private static int countWildInChunkRadius(World world, int posX_0, int posZ_0, int chunkRadius)
+	{
+		int amount = 0;
+		
+		ArrayList<Chunk> targetChunks = new ArrayList<Chunk>();
+		
+		for(int posX = posX_0 - chunkRadius; posX <= posX_0 + chunkRadius; posX++)
+		{
+			for(int posZ = posZ_0 - chunkRadius; posZ <= posZ_0 + chunkRadius; posZ++)
+			{
+				Chunk tmpChunk = world.getChunkFromBlockCoords(posX, posZ);
+				targetChunks.add(tmpChunk);
+			}
+		}
+		
+		for(int i = 0; i < world.loadedEntityList.size(); i++)
+		{
+			Entity entity = (Entity)world.loadedEntityList.get(i);
+			if(entity instanceof EntityChocobo)
+			{
+				if(!((EntityChocobo)entity).isTamed())
+				{
+					Chunk entityChunk = world.getChunkFromBlockCoords(MathHelper.floor_double(entity.posX), MathHelper.floor_double(entity.posZ));
+					if(targetChunks.contains(entityChunk))
+					{
+						amount++;
+					}
+				}
+			}
+		}
+		return amount;
 	}
 
 	private static boolean isOtherPlayerNear(World world, double posX, double posZ, int distance)
@@ -221,5 +261,30 @@ public final class ChocoboSpawner
 			return true;
 		}
 		return false;
+	}
+	
+	private static int distanceToNextWild(World world, double posX, double posZ)
+	{
+		double distance = 10000.0;
+
+		for(int i = 0; i < world.loadedEntityList.size(); i++)
+		{
+			Entity entity = (Entity)world.loadedEntityList.get(i);
+			if(entity instanceof EntityChocobo)
+			{
+				EntityChocobo chocobo = (EntityChocobo)entity;
+				if(!chocobo.isTamed())
+				{
+					double sqDistX = (posX - chocobo.posX) * (posX - chocobo.posX);
+					double sqDistZ = (posZ - chocobo.posZ) * (posZ - chocobo.posZ);					
+					double tmpDistance = Math.sqrt(sqDistX + sqDistZ);
+					if(tmpDistance < distance)
+					{
+						distance = tmpDistance;
+					}
+				}
+			}
+		}
+		return MathHelper.floor_double(distance);
 	}
 }

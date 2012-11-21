@@ -20,9 +20,10 @@ import net.minecraft.src.Item;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.World;
 
-public class ChocoboItem extends Item {
-
-	public ChocoboItem(int itemId) {
+public class ChocoboItem extends Item
+{
+	public ChocoboItem(int itemId)
+	{
 		super(itemId);
 		this.setTextureFile(Constants.CHOCOBO_ITEM_TEXTURES);
 	}

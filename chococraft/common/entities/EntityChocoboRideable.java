@@ -41,8 +41,8 @@ import chococraft.common.network.serverSide.PacketChocoboDropGear;
 import chococraft.common.network.serverSide.PacketChocoboMount;
 
 
-public abstract class EntityChocoboRideable extends EntityAnimalChocobo {
-
+public abstract class EntityChocoboRideable extends EntityAnimalChocobo
+{
 	protected double prevMotionX;
 	protected double prevMotionZ;
 	protected boolean shouldSteer;    
@@ -51,7 +51,8 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo {
 
 	protected ChocoBagInventory bagsInventory;    
 
-	public EntityChocoboRideable(World world) {
+	public EntityChocoboRideable(World world)
+	{
 		super(world);
 		this.ignoreFrustumCheck = true;
 	}
@@ -127,6 +128,7 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo {
 					}
 				}
 			}
+			this.setRiderAbilities(true);
 		}
 		super.onLivingUpdate();
 	}
@@ -288,6 +290,8 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo {
 	/**
 	 * Tries to moves the entity by the passed in displacement. Args: x, y, z
 	 */
+	
+	// TODO: water movement
 	public void moveEntity(double moveX, double moveY, double moveZ)
 	{
 		if (this.riddenByEntity != null)
@@ -308,6 +312,11 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo {
 				{
 					this.motionX = this.riddenByEntity.motionX * this.airbornSpeedFactor;
 					this.motionZ = this.riddenByEntity.motionZ * this.airbornSpeedFactor;
+				}
+				else if (this.inWater)
+				{
+					this.motionX = this.riddenByEntity.motionX * this.waterSpeedFactor;
+					this.motionZ = this.riddenByEntity.motionZ * this.waterSpeedFactor;					
 				}
 				else
 				{
@@ -335,9 +344,18 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo {
 							this.isHighJumping = true;
 						}
 					}
-					if (entityplayer.isSneaking() && this.canFly)
+					
+					if (entityplayer.isSneaking())
 					{
-						this.motionY -= 0.15D;
+						if(this.canFly)
+						{
+							this.motionY -= 0.15D;
+						}
+						
+						if(this.inWater && this.canBreatheUnderwater())
+						{
+							this.motionY -= 0.15D;
+						}
 					}
 				}
 
@@ -531,7 +549,7 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo {
 		return super.canDespawn() && !isSaddled();
 	}
 
-	protected void mountChocobo(EntityPlayer entityplayer)
+	public void mountChocobo(EntityPlayer entityplayer)
 	{
 		this.setStepHeight(true);
 		this.setJumpHigh(true);
@@ -539,7 +557,7 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo {
 		entityplayer.mountEntity(this);
 	}
 
-	protected void dismountChocobo(EntityPlayer entityplayer)
+	public void dismountChocobo(EntityPlayer entityplayer)
 	{
 		this.isJumping = false;
 		this.setStepHeight(false);
@@ -547,8 +565,8 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo {
 		this.setLandMovementFactor(false);
 		entityplayer.mountEntity(null);
 	}
-
-	protected void sendMountUpdate()
+	
+	public void sendMountUpdate()
 	{
 		if(Side.CLIENT == FMLCommonHandler.instance().getEffectiveSide())
 		{

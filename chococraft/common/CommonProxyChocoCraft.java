@@ -38,4 +38,9 @@ public class CommonProxyChocoCraft
     {
         return null;
     }
+    
+    public int addArmor(String armor)
+    {
+        return 0;
+    }
 }

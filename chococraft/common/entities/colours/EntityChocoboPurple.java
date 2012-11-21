@@ -23,22 +23,29 @@ import chococraft.common.entities.EntityAnimalChocobo;
 import chococraft.common.entities.EntityChicobo;
 import chococraft.common.entities.EntityChocobo;
 import net.minecraft.src.EntityAgeable;
+import net.minecraft.src.EntityPlayer;
 import net.minecraft.src.NBTTagCompound;
+import net.minecraft.src.PotionEffect;
 import net.minecraft.src.World;
 
 public class EntityChocoboPurple extends EntityChocobo
 {
+	
+	//public final chocoboColor color = chocoboColor.PURPLE;	
+
 	public EntityChocoboPurple(World world)
 	{
 		super(world);
-		this.flyingMovementFactor = Constants.CHOCOBO_BLACK_FLYMOVEFACT;
+		this.setEntityHealth(this.getMaxHealth());
 		this.landMovementFactor = Constants.CHOCOBO_DEFAULT_LANDMOVEFACT;
+		this.flyingMovementFactor = Constants.CHOCOBO_PURPLE_FLYMOVEFACT;
 		this.canClimb = true;
 		this.canCrossWater = false;
-		this.canFly = true;
 		this.canJumpHigh = false;
+		this.canFly = true;
 		this.isImmuneToFire = true;
 		this.landSpeedFactor = Constants.CHOCOBO_PURPLE_LANDSPEEDFACT;
+		this.waterSpeedFactor = Constants.CHOCOBO_PURPLE_WATERSPEEDFACT;
 		this.airbornSpeedFactor = Constants.CHOCOBO_PURPLE_AIRSPEEDFACT;
 	}
 
@@ -87,11 +94,16 @@ public class EntityChocoboPurple extends EntityChocobo
 		}
 	}
 	
+    public boolean handleLavaMovement()
+    {
+        return false;
+    }
+	
 	public void setLandMovementFactor(boolean mounted)
 	{
 		if (mounted)
 		{
-			this.landMovementFactor = Constants.CHOCOBO_BLACK_LANDMOVEFACT;
+			this.landMovementFactor = Constants.CHOCOBO_PURPLE_LANDMOVEFACT;
 		}
 		else
 		{
@@ -109,6 +121,36 @@ public class EntityChocoboPurple extends EntityChocobo
 		{
 			this.canJumpHigh = false;
 		}
+	}
+
+	public void setRiderAbilities(boolean mounted)
+	{
+		if(this.riddenByEntity instanceof EntityPlayer)
+		{
+			EntityPlayer rider = (EntityPlayer)this.riddenByEntity;			
+			rider.addPotionEffect(new PotionEffect(12, 100, -1, true));
+			rider.extinguish();
+		}
+		
+//		Class<? extends Entity> riddenByEntityClass = this.riddenByEntity.getClass();
+//		java.lang.reflect.Field isImmuneToFireField;
+//		try
+//		{
+//			isImmuneToFireField = riddenByEntityClass.getField("isImmuneToFire");
+//			isImmuneToFireField.set(this.riddenByEntity, mounted);
+//		}
+//		catch (SecurityException e)
+//		{
+//		}
+//		catch (NoSuchFieldException e)
+//		{
+//		}
+//		catch (IllegalArgumentException e)
+//		{
+//		}
+//		catch (IllegalAccessException e)
+//		{
+//		}
 	}
 
 	@Override
@@ -170,7 +212,8 @@ public class EntityChocoboPurple extends EntityChocobo
 		this.entityToAttack = null;
 		otherParent.entityToAttack = null;
 
-		dropItem(ModChocoCraft.netherChocoboEggItem.shiftedIndex, 1);
+		//TODO: implement netherChocoboboEggItem
+		//dropItem(ModChocoCraft.netherChocoboEggItem.shiftedIndex, 1);
 	}
 
 	public EntityChicobo spawnBabyAnimal(EntityAnimalChocobo entityanimalchoco)

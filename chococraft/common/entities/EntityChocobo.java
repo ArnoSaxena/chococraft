@@ -18,16 +18,6 @@ package chococraft.common.entities;
 import java.util.List;
 import java.util.Random;
 
-import com.google.common.io.ByteArrayDataInput;
-import com.google.common.io.ByteArrayDataOutput;
-
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.Side;
-
-import chococraft.common.Constants;
-import chococraft.common.ModChocoCraft;
-import chococraft.common.entities.colours.EntityChocoboPurple;
-import chococraft.common.helper.ChocoboParticleHelper;
 import net.minecraft.src.AxisAlignedBB;
 import net.minecraft.src.Block;
 import net.minecraft.src.DamageSource;
@@ -41,6 +31,16 @@ import net.minecraft.src.Material;
 import net.minecraft.src.MathHelper;
 import net.minecraft.src.NBTTagCompound;
 import net.minecraft.src.World;
+import chococraft.common.Constants;
+import chococraft.common.ModChocoCraft;
+import chococraft.common.entities.colours.EntityChocoboPurple;
+import chococraft.common.helper.ChocoboParticleHelper;
+
+import com.google.common.io.ByteArrayDataInput;
+import com.google.common.io.ByteArrayDataOutput;
+
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.Side;
 
 public abstract class EntityChocobo extends EntityChocoboRideable
 {	
@@ -209,6 +209,11 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 				this.motionX *= 0.8D;
 				this.motionY *= 0.8D;
 				this.motionZ *= 0.8D;
+				
+				if (this.isCollidedHorizontally && this.isOffsetPositionInLiquid(this.motionX, ((this.motionY + 0.6D) - this.posY) + this.posY, this.motionZ))
+				{
+					this.motionY = 0.3D;
+				}
 			}
 			else
 			{
@@ -520,13 +525,20 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 
 	public void updateEntityActionState()
 	{
+		if(this instanceof EntityChocoboPurple)
+		{
+			this.extinguish();
+			this.fireResistance = 100;
+		}
+		
 		if (!worldObj.playerEntities.isEmpty())
 		{
 			if (this.riddenByEntity != null && (this.riddenByEntity instanceof EntityLiving))
 			{
 				if(this instanceof EntityChocoboPurple)
-				{
+				{					
 					this.riddenByEntity.extinguish();
+					this.riddenByEntity.fireResistance = 100;
 				}
 				prevRotationYaw = rotationYaw = riddenByEntity.rotationYaw;
 				prevRotationPitch = rotationPitch = 0.0F;

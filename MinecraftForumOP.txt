@@ -1,8 +1,8 @@
 [img]http://www.arno-saxena.de/pictures/chococraft/banner_title.png[/img]
 
-UPDATED FOR MINECRAFT 1.4.4
-Version 2.2.2
-Requires: [url="http://www.minecraftforge.net/"]Forge[/url] [url="http://files.minecraftforge.net/"]6.3.0.372+[/url]
+UPDATED FOR MINECRAFT 1.4.5
+Version 2.3.2
+Requires: [url="http://www.minecraftforge.net/"]Forge[/url] [url="http://files.minecraftforge.net/"]6.4.0.394+[/url]
 
 This Mod is the continuation of [url="http://www.minecraftforum.net/user/1051245-eddiev/"]EddieV's[/url] mod. The original thread can be found [url="http://www.minecraftforum.net/topic/952372-chococraft-12-mc-11-chocobos-now-fly/"]here[/url]. I've officially taken over the helm with Eddie's kind blessings.
 
@@ -17,12 +17,13 @@ As of version 2.0.4 this mod is in working condition for SMP.
 [color=#ff0000][b]ACHTUNG! CAUTION! ¡CUIDADO! चेतावनी! ATTENZIONE! береги́сь!
 This version of Chococraft is not compatible to versions pre 2.0.0 (pre mc 1.3.2). It will destroy your saved world if old Chocobos are included. Thus, if you want to use an old world with the new version of this mod, you should first start minecraft without the Chococraft mod, enter and save your world, thus removing all traces of older versions of Chococraft and only then start minecraft with the new version of Chococraft and tame new Chocobos.[/b][/color]
 
-Download: [url="http://www.arno-saxena.de/minecraft/Chococraft_2.2.2.zip"]Torojimas ChocoCraft 2.2.2[/url]
+Download: [url="http://www.arno-saxena.de/minecraft/Chococraft_2.3.2.zip"]Torojimas ChocoCraft 2.3.2[/url]
 
 Downloads so far: [img]http://www.arno-saxena.de/minecraft/chocoboDownloads.png[/img]
 
 Old versions:
 [spoiler]
+[url="http://www.arno-saxena.de/minecraft/Chococraft_2.2.3.zip"]minecraft 1.4.4: ChocoCraft 2.2.3[/url]
 [url="http://www.arno-saxena.de/minecraft/Chococraft_2.1.3.zip"]minecraft 1.4.2: ChocoCraft 2.1.3[/url]
 [url="http://www.arno-saxena.de/minecraft/Chococraft_2.0.5.zip"]minecraft 1.3.2: ChocoCraft 2.0.5[/url]
 [url="http://www.arno-saxena.de/minecraft/Chococraft_1.6.10.zip"]minecraft 1.2.5: ChocoCraft 1.6.10[/url]
@@ -66,6 +67,18 @@ Thanks to InTheLittleWood[/spoiler][/spoiler]
 
 CHANGELOG:
 [spoiler]
+v.2.3.2 by Torojima
+   1. added water speed factor
+   2. added rider abilities
+   3. enabled purple chocobo (but not spawning)
+   4. fixed server crash
+
+v.2.3.1 by Torojima
+   1. Updated for mc 1.4.5
+
+v.2.2.3 by Torojima
+   1. Added proximity threshold and chunk radius total threshold to custom spawning.
+
 v.2.2.2 by Torojima
    1. fixed server crash
    2. fixed Chocobo mounting crash
@@ -580,6 +593,15 @@ How to Install server version:
 4. run the server again. Now Clients with Chococraft_x.x.x.zip installed can connect to the server and enjoy riding Chocobos through the landscape.
 [/spoiler]
 
+compatible mods:
+[spoiler]These mods have been tested with ChocoCraft for mc 1.4.4, either by me or by another player
+- Forge
+- Rei Minimap
+- ToManyItems
+- FamiliarsAPI
+- MobSpawnControls
+[/spoiler]
+
 Acknowledgments:
 [spoiler]
 1. Chococraft has been created by [url="http://www.minecraftforum.net/user/1051245-eddiev/"]EddieV[/url]
@@ -595,8 +617,7 @@ Banner/Sig:
 [code][url="http://www.minecraftforum.net/topic/1119809-124-eddievs-chococraft-150u-torojimas-unofficial-update/"][img]http://www.arno-saxena.de/pictures/chococraft/banner_signature.png[/img][/url][/code]
 
 Copyright:
-[spoiler]
-TERMS AND CONDITIONS
+[spoiler]TERMS AND CONDITIONS
 0. USED TERMS
 MOD - modification, plugin, a piece of software that interfaces with the Minecraft client to extend, add, change or remove original capabilities.
 MOJANG - Mojang AB

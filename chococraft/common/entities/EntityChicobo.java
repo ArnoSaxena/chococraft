@@ -418,6 +418,8 @@ public class EntityChicobo extends EntityAnimalChocobo
 		this.canJumpHigh = false;
 	}
 
+	public void setRiderAbilities(boolean mounted){}
+	
 	public boolean canMateWith(EntityAnimal entityAnimal)
 	{
 		return false;

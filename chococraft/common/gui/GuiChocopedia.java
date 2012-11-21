@@ -24,6 +24,7 @@ import org.lwjgl.input.Keyboard;
 
 import cpw.mods.fml.client.FMLClientHandler;
 
+import chococraft.common.ModChocoCraft;
 import chococraft.common.entities.EntityAnimalChocobo;
 import chococraft.common.entities.EntityChocoboRideable;
 import chococraft.common.helper.ChocoboEntityHelper;
@@ -188,6 +189,11 @@ public class GuiChocopedia extends GuiScreen
 			String chocoAmountString = (new StringBuilder()).append("Chocos: ").append(amountChocobos).append(" wild: ").append(amountWildChocobos).toString();			
 			this.drawString(this.fontRenderer, chocoAmountString,   posX, (posY += 15), debugFontColour);
 			this.drawString(this.fontRenderer, biomeDisplayString,   posX, (posY += 15), debugFontColour);
+			this.drawString(this.fontRenderer, "Spawn: " + ModChocoCraft.spawnDbStatus,   posX, (posY += 15), debugFontColour);
+			
+			long spawnTimeDelay = this.chocobo.worldObj.getTotalWorldTime() - ModChocoCraft.spawnDbTimeDelay;
+			String spawnTimeDelayString = (new StringBuilder()).append("Spawn Time: ").append(spawnTimeDelay).toString();
+			this.drawString(this.fontRenderer, spawnTimeDelayString,   posX, (posY += 15), debugFontColour);
 		}		
 		super.drawScreen(i, j, f);
 	}

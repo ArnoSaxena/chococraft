@@ -42,11 +42,13 @@ public class ChocoboConfig
 	static String CFG_KEY_SHOW_CHOCO_NAMES = "showChocoboNames";
 	
 	static String CFG_KEY_SPAWN_BIOMES = "spawnBiomes";
-	static String CFG_KEY_SPAWN_WEIGHTED_PROB = "spawnWeightedProb";
+	static String CFG_KEY_SPAWN_TIME_DELAY = "spawnTimeDelay";
 	static String CFG_KEY_SPAWN_GROUP_MIN = "spawnGroupMin";
 	static String CFG_KEY_SPAWN_GROUP_MAX = "spawnGroupMax";
 	static String CFG_KEY_SPAWN_TOTAL_MAX = "spawnTotalMax";
 	static String CFG_KEY_SPAWN_PROBABILITY = "spawnProbability";
+	static String CFG_KEY_SPAWN_LIMIT_CHUNK_RADIUS = "spawnLimitChunkRadius";
+	static String CFG_KEY_SPAWN_DIST_NEXT_WILD = "distanceNextWild";
 	
 	static String CFG_KEY_CHOCOBO_WING_FLUTTER = "chocoboWingFlutter";
 	static String CFG_TOKEN_ALL = "all";
@@ -88,7 +90,6 @@ public class ChocoboConfig
 							// now parse the key/value
 							try
 							{
-
 								if(key.equalsIgnoreCase(CFG_KEY_SHOW_CHOCO_NAMES))
 								{
 									ModChocoCraft.showChocoboNames = Boolean.parseBoolean(value);
@@ -97,20 +98,16 @@ public class ChocoboConfig
 								{
 									ModChocoCraft.spawnBiomes = getBiomeGenBaseArray(value);
 								}
-								else if(key.equalsIgnoreCase(CFG_KEY_SPAWN_WEIGHTED_PROB))
+								else if(key.equalsIgnoreCase(CFG_KEY_SPAWN_TIME_DELAY))
 								{
-									int tmpProb = Integer.parseInt(value);
-									if(tmpProb > 200)
+									int tmpstd = Integer.parseInt(value);
+									if(tmpstd < 50)
 									{
-										ModChocoCraft.spawnWeightedProb = 200;
-									}
-									else if(tmpProb < 1)
-									{
-										ModChocoCraft.spawnWeightedProb = 1;
+										ModChocoCraft.spawnTimeDelay = 50;
 									}
 									else
 									{
-										ModChocoCraft.spawnWeightedProb = tmpProb;
+										ModChocoCraft.spawnTimeDelay = tmpstd;
 									}
 								}
 								else if(key.equalsIgnoreCase(CFG_KEY_SPAWN_PROBABILITY))
@@ -163,6 +160,30 @@ public class ChocoboConfig
 									else
 									{
 										ModChocoCraft.spawnTotalMax = tmpsmaxg;	
+									}
+								}
+								else if(key.equalsIgnoreCase(CFG_KEY_SPAWN_LIMIT_CHUNK_RADIUS))
+								{
+									int tmpslcr = Integer.parseInt(value);
+									if(tmpslcr < 1)
+									{
+										ModChocoCraft.spawnLimitChunkRadius = 1;
+									}
+									else
+									{
+										ModChocoCraft.spawnLimitChunkRadius = tmpslcr;	
+									}
+								}
+								else if(key.equalsIgnoreCase(CFG_KEY_SPAWN_DIST_NEXT_WILD))
+								{
+									int tmpdnw = Integer.parseInt(value);
+									if(tmpdnw < 60)
+									{
+										ModChocoCraft.spawnDistanceNextWild = 60;
+									}
+									else
+									{
+										ModChocoCraft.spawnDistanceNextWild = tmpdnw;	
 									}
 								}
 								else if(key.equalsIgnoreCase(CFG_KEY_CHOCOBO_WING_FLUTTER))
@@ -349,12 +370,14 @@ public class ChocoboConfig
 			writer.write("\n");
 			writer.write(getCommentLine("A group of " + CFG_KEY_SPAWN_GROUP_MIN + " to " + CFG_KEY_SPAWN_GROUP_MAX + " Yellow Chocobos will spawn with the"));
 			writer.write(getCommentLine("probability of " + CFG_KEY_SPAWN_PROBABILITY + " around every player. There will be no additional"));
-			writer.write(getCommentLine("spawning if " + CFG_KEY_SPAWN_TOTAL_MAX + " wild Chocobos are active in the chunk."));
-			//writer.write(getConfigLine(CFG_KEY_SPAWN_WEIGHTED_PROB, Integer.toString(ModChocoCraft.spawnWeightedProb)));
+			writer.write(getCommentLine("spawning if " + CFG_KEY_SPAWN_TOTAL_MAX + " wild Chocobos are active in an area with the radius of " + CFG_KEY_SPAWN_LIMIT_CHUNK_RADIUS + " chunks."));
+			writer.write(getConfigLine(CFG_KEY_SPAWN_TIME_DELAY, Integer.toString(ModChocoCraft.spawnTimeDelay)));
 			writer.write(getConfigLine(CFG_KEY_SPAWN_PROBABILITY, Integer.toString(ModChocoCraft.spawnProbability)));
 			writer.write(getConfigLine(CFG_KEY_SPAWN_GROUP_MIN, Integer.toString(ModChocoCraft.spawnGroupMin)));
 			writer.write(getConfigLine(CFG_KEY_SPAWN_GROUP_MAX, Integer.toString(ModChocoCraft.spawnGroupMax)));
 			writer.write(getConfigLine(CFG_KEY_SPAWN_TOTAL_MAX, Integer.toString(ModChocoCraft.spawnTotalMax)));
+			writer.write(getConfigLine(CFG_KEY_SPAWN_LIMIT_CHUNK_RADIUS, Integer.toString(ModChocoCraft.spawnLimitChunkRadius)));
+			writer.write(getConfigLine(CFG_KEY_SPAWN_DIST_NEXT_WILD, Integer.toString(ModChocoCraft.spawnDistanceNextWild)));
 			
 			writer.write("\n");
 			writer.write(getCommentLine("tamed chocobos have a chance of "+ CFG_KEY_FEATHER_DROP_CHANCE +" in 100 to drop a feather every"));

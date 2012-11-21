@@ -18,7 +18,9 @@ import com.google.common.io.ByteArrayDataInput;
 import com.google.common.io.ByteArrayDataOutput;
 
 import net.minecraft.src.EntityAgeable;
+import net.minecraft.src.EntityPlayer;
 import net.minecraft.src.NBTTagCompound;
+import net.minecraft.src.PotionEffect;
 import net.minecraft.src.World;
 import chococraft.common.Constants;
 import chococraft.common.entities.EntityChocobo;
@@ -37,6 +39,7 @@ public class EntityChocoboBlack extends EntityChocobo
 		this.canFly = false;
 		this.isImmuneToFire = false;
 		this.landSpeedFactor = Constants.CHOCOBO_BLACK_LANDSPEEDFACT;
+		this.waterSpeedFactor = Constants.CHOCOBO_BLACK_WATERSPEEDFACT;
 		this.airbornSpeedFactor = Constants.CHOCOBO_BLACK_AIRSPEEDFACT;
 	}
 
@@ -106,6 +109,15 @@ public class EntityChocoboBlack extends EntityChocobo
 		else
 		{
 			this.canJumpHigh = false;
+		}
+	}
+	
+	public void setRiderAbilities(boolean mounted)
+	{
+		if(this.riddenByEntity instanceof EntityPlayer)
+		{
+			EntityPlayer rider = (EntityPlayer)this.riddenByEntity;			
+			rider.addPotionEffect(new PotionEffect(16, 25, -1, true));	
 		}
 	}
 

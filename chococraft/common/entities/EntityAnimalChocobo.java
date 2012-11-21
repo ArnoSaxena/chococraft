@@ -78,6 +78,7 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
 	public boolean canJumpHigh;
 	public boolean canFly;
     public double landSpeedFactor;
+    public double waterSpeedFactor;
     public double airbornSpeedFactor;
 	
 	public EntityAnimalChocobo(World world)
@@ -150,6 +151,7 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
 	abstract public String getEntityTexture();
 	abstract public void setStepHeight(boolean mounting);
 	abstract public void setLandMovementFactor(boolean mounted);
+	abstract public void setRiderAbilities(boolean mounted);
 	abstract public int getMaxHealth();
 	abstract public void setJumpHigh(boolean mounting);
 	

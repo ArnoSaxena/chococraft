@@ -31,6 +31,8 @@ public class ClientProxyChocoCraft extends CommonProxyChocoCraft
     public void registerRenderThings()
     {
     	MinecraftForgeClient.preloadTexture(Constants.CHOCOBO_ITEM_TEXTURES);
+        MinecraftForgeClient.preloadTexture(Constants.CHOCOBO_ARMOUR_TEXTURES_1);
+        MinecraftForgeClient.preloadTexture(Constants.CHOCOBO_ARMOUR_TEXTURES_2);
     }
     
     public static void registerRenderInformation()
@@ -44,6 +46,12 @@ public class ClientProxyChocoCraft extends CommonProxyChocoCraft
         RenderingRegistry.registerEntityRenderingHandler(EntityChocoboPink.class, new RenderChocobo(new ModelChocobo(), 0.5F));
         RenderingRegistry.registerEntityRenderingHandler(EntityChocoboRed.class, new RenderChocobo(new ModelChocobo(), 0.5F));
         RenderingRegistry.registerEntityRenderingHandler(EntityChocoboPurple.class, new RenderChocobo(new ModelChocobo(), 0.5F));
-        RenderingRegistry.registerEntityRenderingHandler(EntityChicobo.class, new RenderChicobo(new ModelChicobo(), 0.5F));
+        RenderingRegistry.registerEntityRenderingHandler(EntityChicobo.class, new RenderChicobo(new ModelChicobo(), 0.5F));        
+    }
+    
+    @Override
+    public int addArmor(String armor)
+    {
+        return RenderingRegistry.addNewArmourRendererPrefix(armor);
     }
 }

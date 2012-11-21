@@ -16,13 +16,6 @@ package chococraft.common;
 
 import java.io.File;
 
-import chococraft.client.ClientProxyChocoCraft;
-import chococraft.common.entities.EntityChicobo;
-import chococraft.common.entities.colours.*;
-import chococraft.common.gui.ChocoboGuiHandler;
-import chococraft.common.items.*;
-import chococraft.common.network.ChocoboPacketHandler;
-import chococraft.common.tick.ServerSpawnTickHandler;
 import net.minecraft.src.BiomeGenBase;
 import net.minecraft.src.Block;
 import net.minecraft.src.CreativeTabs;
@@ -34,20 +27,45 @@ import net.minecraft.src.ItemStack;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.Property;
+import chococraft.client.ClientProxyChocoCraft;
+import chococraft.common.entities.EntityChicobo;
+import chococraft.common.entities.colours.EntityChocoboBlack;
+import chococraft.common.entities.colours.EntityChocoboBlue;
+import chococraft.common.entities.colours.EntityChocoboGold;
+import chococraft.common.entities.colours.EntityChocoboGreen;
+import chococraft.common.entities.colours.EntityChocoboPink;
+import chococraft.common.entities.colours.EntityChocoboPurple;
+import chococraft.common.entities.colours.EntityChocoboRed;
+import chococraft.common.entities.colours.EntityChocoboWhite;
+import chococraft.common.entities.colours.EntityChocoboYellow;
+import chococraft.common.gui.ChocoboCreativeTab;
+import chococraft.common.gui.ChocoboGuiHandler;
+import chococraft.common.items.BlockGysahlGreen;
+import chococraft.common.items.BlockGysahlStem;
+import chococraft.common.items.ChocoboArmourMaterial;
+import chococraft.common.items.ChocoboItem;
+import chococraft.common.items.ChocoboItemDisguise;
+import chococraft.common.network.ChocoboPacketHandler;
+import chococraft.common.tick.ServerSpawnTickHandler;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.Mod.Init;
+import cpw.mods.fml.common.Mod.Instance;
+import cpw.mods.fml.common.Mod.PostInit;
+import cpw.mods.fml.common.Mod.PreInit;
 import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.SidedProxy;
-import cpw.mods.fml.common.Mod.*;
-import cpw.mods.fml.common.event.*;
+import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPostInitializationEvent;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
+import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
-import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.TickRegistry;
 
-@Mod(modid="ChocoCraft", name="Torojimas ChocoCraft", version="2.2.2")
+@Mod(modid="ChocoCraft", name="Torojimas ChocoCraft", version="2.3.2")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false, 
 		channels = { Constants.PCHAN_CHOCOBO },
 		packetHandler = ChocoboPacketHandler.class)
@@ -55,6 +73,8 @@ public class ModChocoCraft
 {	
 	public static Configuration mainConfiguration;
 
+	public static final CreativeTabs ChocoboCreativeItems = new ChocoboCreativeTab("Chocobo Items");
+	
 	public static Property chocoboSaddleId;	
 	public static Property gysahlSeedsId;    
 	public static Property gysahlLoverlyId;
@@ -111,16 +131,24 @@ public class ModChocoCraft
 	public static int featherDelayStatic;
 	
 	// spawn setup
-	public static int spawnWeightedProb;
+	public static int spawnTimeDelay;
 	public static int spawnGroupMin;
 	public static int spawnGroupMax;
 	public static int spawnTotalMax;
 	public static int spawnProbability;
+	public static int spawnLimitChunkRadius;
+	public static int spawnDistanceNextWild;
+	
+	// spawn debug
+	public static long spawnDbTimeDelay;
+	public static String spawnDbStatus;
+	
 	
 	public static double renderNameHeight;
 	public static int livingSoundProb;
 
-	public static BiomeGenBase[] spawnBiomes = {
+	public static BiomeGenBase[] spawnBiomes =
+	{
 		BiomeGenBase.extremeHills,
 		BiomeGenBase.extremeHillsEdge,
 		BiomeGenBase.forest,
@@ -145,7 +173,8 @@ public class ModChocoCraft
 		
 	};
 
-	public static BiomeGenBase[] chocoboPurpleSpawnBiomes = {
+	public static BiomeGenBase[] chocoboPurpleSpawnBiomes =
+	{
 		BiomeGenBase.hell
 	};
 
@@ -205,6 +234,7 @@ public class ModChocoCraft
 		chocoboWhistleId = mainConfiguration.get(Configuration.CATEGORY_ITEM, "chocoboWhistleItem.id", Constants.CHOCOBO_WHISTLE_ID);
 		chocopediaId = mainConfiguration.get(Configuration.CATEGORY_ITEM, "chocopediaItem.id", Constants.CHOCOPEDIA_ID);
 		netherChocoboEggId = mainConfiguration.get(Configuration.CATEGORY_ITEM, "netherChocoboEggItem.id", Constants.NETHER_CHOCOBO_EGG_ID);
+
 		chocoDisguiseHelmetId = mainConfiguration.get(Configuration.CATEGORY_ITEM, "chocoDisguiseHelmetItem.id", Constants.CHOCO_DISGUISE_HELMET_ID);
 		chocoDisguisePlateId = mainConfiguration.get(Configuration.CATEGORY_ITEM, "chocoDisguisePlateItem.id", Constants.CHOCO_DISGUISE_PLATE_ID);
 		chocoDisguiseLegsId = mainConfiguration.get(Configuration.CATEGORY_ITEM, "chocoDisguiseLegsItem.id", Constants.CHOCO_DISGUISE_LEGS_ID);
@@ -220,11 +250,15 @@ public class ModChocoCraft
 		featherDelayRandom = Constants.DEFAULT_FEATHER_DELAY_RANDOM;
 		featherDelayStatic = Constants.DEFAULT_FEATHER_DELAY_STATIC;
 
-		spawnWeightedProb = Constants.DEFAULT_SPAWN_WEIGHTED_PROB;
+		spawnTimeDelay = Constants.DEFAULT_SPAWN_TIME_DELAY;
 		spawnGroupMin = Constants.DEFAULT_SPAWN_GROUP_MIN;
 		spawnGroupMax = Constants.DEFAULT_SPAWN_GROUP_MAX;
 		spawnTotalMax = Constants.DEFAULT_SPAWN_TOTAL_MAX;
 		spawnProbability = Constants.DEFAULT_SPAWN_PROBABILITY;
+		spawnLimitChunkRadius = Constants.DEFAULT_SPAWN_LIMIT_CHUNK_RADIUS;
+		spawnDistanceNextWild = Constants.DEFAULT_SPAWN_DIST_NEXT_WILD;
+		spawnDbTimeDelay = 0;
+		spawnDbStatus = "";
 		
 		renderNameHeight = Constants.DEFAULT_RENDER_NAME_HEIGHT;
 		livingSoundProb = Constants.DEFAULT_LIVING_SOUND_PROB;
@@ -244,7 +278,7 @@ public class ModChocoCraft
 		// chocobo saddle
 		chocoboSaddleItem = (new ChocoboItem(Integer.parseInt(chocoboSaddleId.value))).setItemName("chocoboSaddle").setMaxStackSize(5);
 		chocoboSaddleItem.setIconIndex(0);
-		LanguageRegistry.addName(chocoboSaddleItem, "Chocobo Saddle");		
+		LanguageRegistry.addName(chocoboSaddleItem, "Chocobo Saddle");
 		chocoboSaddleItem.setCreativeTab(CreativeTabs.tabTransport);
 
 		// Gysahl seeds
@@ -327,29 +361,29 @@ public class ModChocoCraft
 		//        netherChocoboEggItem.setTabToDisplayOn(CreativeTabs.tabMisc);
 
 		// Armour
-		// Cocodisguise Helmet
-		chocoDisguiseHelmetItem = (new ChocoboItem(Integer.parseInt(chocoDisguiseHelmetId.value))).setItemName("chocoDisguiseHelmet").setMaxStackSize(1);
+		// Chocodisguise Helmet
+		chocoDisguiseHelmetItem = (new ChocoboItemDisguise(Integer.parseInt(chocoDisguiseHelmetId.value), ChocoboArmourMaterial.CHOCOFEATHER, proxy.addArmor("chocoDisguise"), 0));
 		chocoDisguiseHelmetItem.setIconIndex(17);
+		chocoDisguiseHelmetItem.setItemName("chocoDisguiseHelmet");
 		LanguageRegistry.addName(chocoDisguiseHelmetItem, "Chocodisguise Helmet");
-		chocoDisguiseHelmetItem.setCreativeTab(CreativeTabs.tabTools);
 
 		// Chocodisguise Plate
-		chocoDisguisePlateItem = (new ChocoboItem(Integer.parseInt(chocoDisguisePlateId.value))).setItemName("chocoDisguisePlate").setMaxStackSize(1);
+		chocoDisguisePlateItem = (new ChocoboItemDisguise(Integer.parseInt(chocoDisguisePlateId.value), ChocoboArmourMaterial.CHOCOFEATHER, proxy.addArmor("chocoDisguise"), 1));
 		chocoDisguisePlateItem.setIconIndex(18);
-		LanguageRegistry.addName(chocoDisguisePlateItem, "Chocodisguise Plate");
-		chocoDisguisePlateItem.setCreativeTab(CreativeTabs.tabTools);
+		chocoDisguisePlateItem.setItemName("chocoDisguisePlate");
+		LanguageRegistry.addName(chocoDisguisePlateItem, "Chocodisguise Body");
 
 		// Chocodisguise Legs
-		chocoDisguiseLegsItem = (new ChocoboItem(Integer.parseInt(chocoDisguiseLegsId.value))).setItemName("chocoDisguiseLegs").setMaxStackSize(1);
+		chocoDisguiseLegsItem = (new ChocoboItemDisguise(Integer.parseInt(chocoDisguiseLegsId.value), ChocoboArmourMaterial.CHOCOFEATHER, proxy.addArmor("chocoDisguise"), 2));
 		chocoDisguiseLegsItem.setIconIndex(19);
+		chocoDisguiseLegsItem.setItemName("chocoDisguiseLegs");
 		LanguageRegistry.addName(chocoDisguiseLegsItem, "Chocodisguise Legs");
-		chocoDisguiseLegsItem.setCreativeTab(CreativeTabs.tabTools);
 
 		// Chocodisguise Boots
-		chocoDisguiseBootsItem = (new ChocoboItem(Integer.parseInt(chocoDisguiseBootsId.value))).setItemName("chocoDisguiseBoots").setMaxStackSize(1);    	
+		chocoDisguiseBootsItem = (new ChocoboItemDisguise(Integer.parseInt(chocoDisguiseBootsId.value), ChocoboArmourMaterial.CHOCOFEATHER, proxy.addArmor("chocoDisguise"), 3));
 		chocoDisguiseBootsItem.setIconIndex(20);
+		chocoDisguiseBootsItem.setItemName("chocoDisguiseBoots");
 		LanguageRegistry.addName(chocoDisguiseBootsItem, "Chocodisguise Boots");
-		chocoDisguiseBootsItem.setCreativeTab(CreativeTabs.tabTools);
 
 		// food items
 		// Raw Chocobo Leg
@@ -552,7 +586,7 @@ public class ModChocoCraft
 		this.registerChocoboEntityClass(EntityChocoboGold.class, "ChocoboGold", this.getRGBInt(250, 130, 70), this.getRGBInt(111, 90, 33), "Gold Chocobo");
 		this.registerChocoboEntityClass(EntityChocoboPink.class, "ChocoboPink", this.getRGBInt(222, 20, 222), this.getRGBInt(250, 200, 250), "Pink Chocobo");
 		this.registerChocoboEntityClass(EntityChocoboRed.class, "ChocoboRed", this.getRGBInt(250, 20, 20), this.getRGBInt(100, 20, 20), "Red Chocobo");
-		//this.registerChocoboEntityClass(EntityChocoboPurple.class, "ChocoboPurple", this.getRGBInt(170, 70, 160), this.getRGBInt(60, 50, 111), "Purple Chocobo");
+		this.registerChocoboEntityClass(EntityChocoboPurple.class, "ChocoboPurple", this.getRGBInt(170, 70, 160), this.getRGBInt(60, 50, 111), "Purple Chocobo");
 	}
 
 	private void registerChocoboEntityClass(Class <? extends Entity> entityClass, String entityName, int eggColor, int eggDotsColor, String visibleName)

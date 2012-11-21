@@ -3,6 +3,7 @@ package chococraft.common.tick;
 import java.util.EnumSet;
 import java.util.Iterator;
 
+import chococraft.common.ModChocoCraft;
 import chococraft.common.entities.spawner.ChocoboSpawner;
 
 import net.minecraft.server.MinecraftServer;
@@ -16,15 +17,12 @@ public class ServerSpawnTickHandler implements IScheduledTickHandler
 	@Override
 	public void tickStart(EnumSet<TickType> type, Object... tickData)
 	{
-		//DebugFileWriter.instance().writeEmptyLine();
-		//DebugFileWriter.instance().writeLine("ChSTiH", "tick ...");
-		
         Iterator<?> playerIter = MinecraftServer.getServer().getConfigurationManager().playerEntityList.iterator();
         while (playerIter.hasNext())
         {
             EntityPlayerMP player = (EntityPlayerMP)playerIter.next();
-            //DebugFileWriter.instance().writeLine("ChSTiH", "spawn for player " + player.username);
             ChocoboSpawner.doChocoboSpawning(player.worldObj, player.posX, player.posY, player.posZ);
+            ModChocoCraft.spawnDbTimeDelay = player.worldObj.getTotalWorldTime();
         }
 	}
 
@@ -46,7 +44,7 @@ public class ServerSpawnTickHandler implements IScheduledTickHandler
 	@Override
 	public int nextTickSpacing()
 	{
-		return 200;
+		return ModChocoCraft.spawnTimeDelay;
 	}
 
 }

@@ -36,6 +36,7 @@ public class EntityChocoboGreen extends EntityChocobo
 		this.canFly = false;
 		this.isImmuneToFire = false;
 		this.landSpeedFactor = Constants.CHOCOBO_GREEN_LANDSPEEDFACT;
+		this.waterSpeedFactor = Constants.CHOCOBO_GREEN_WATERSPEEDFACT;
 		this.airbornSpeedFactor = Constants.CHOCOBO_GREEN_AIRSPEEDFACT;
 	}
 
@@ -109,6 +110,8 @@ public class EntityChocoboGreen extends EntityChocobo
 			this.canJumpHigh = false;
 		}
 	}
+	
+	public void setRiderAbilities(boolean mounted){}
 
 	@Override
 	public int getMaxHealth()
