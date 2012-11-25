@@ -38,7 +38,6 @@ import net.minecraft.src.DamageSource;
 import net.minecraft.src.Entity;
 import net.minecraft.src.EntityPlayer;
 import net.minecraft.src.EntityTameable;
-import net.minecraft.src.EntityWolf;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.MathHelper;
 import net.minecraft.src.NBTTagCompound;
@@ -297,8 +296,11 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
 		}
 		
 		this.showAmountHeartsOrSmokeFx(this.isFollowing(), 7);
-	}    
-    public EntityPlayer getOwner()
+	}
+	
+	// TODO: superclass method is returning EntityLiving ... thus not really the superclass
+	// method, but otherwise the complete same as this method. this should be fixed ...
+	public EntityPlayer getOwner()
     {
     	return this.worldObj.getPlayerEntityByName(this.getOwnerName());
     }
@@ -491,16 +493,23 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
         
         if(this.isTamed())
         {
-        	if(damageSource.getEntity() instanceof EntityWolf)
-        	{
-        		EntityWolf attackingWolf = (EntityWolf)damageSource.getEntity();
-        		if(attackingWolf.isTamed())
-        		{
-        			attackingWolf.getOwner().setLastAttackingEntity(attackingWolf);
-        			attackingWolf.setAttackTarget(null);
-        			return false;
-        		}
-        	}
+//        	if(damageSource.getEntity() instanceof EntityWolf)
+//        	{
+//        		EntityWolf attackingWolf = (EntityWolf)damageSource.getEntity();
+//        		if(attackingWolf.isTamed())
+//        		{
+//        			if(attackingWolf.getOwner() instanceof EntityPlayer)
+//        			{
+//        				EntityPlayer wolfOwner = (EntityPlayer)attackingWolf.getOwner();
+//        				if(this.getOwner().equals(wolfOwner))
+//        				{
+//        					attackingWolf.getOwner().setLastAttackingEntity(attackingWolf);
+//        					attackingWolf.setAttackTarget(null);
+//        					return false;
+//        				}
+//        			}
+//        		}
+//        	}
         	
         	if(damageSource.getEntity() instanceof EntityPlayer)
         	{

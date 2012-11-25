@@ -26,7 +26,6 @@ import net.minecraft.src.Entity;
 import net.minecraft.src.IInventory;
 import net.minecraft.src.IMob;
 import net.minecraft.src.EntityPlayer;
-import net.minecraft.src.Item;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.NBTTagCompound;
 import net.minecraft.src.NBTTagList;
@@ -279,29 +278,31 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo
 	{
 		if (this.riddenByEntity != null && this.riddenByEntity instanceof EntityPlayer)
 		{
-			this.rotationPitch = 0.0F;
-			EntityPlayer rider = (EntityPlayer)this.riddenByEntity;
-			this.rotationYaw = rider.rotationYaw;
-			this.prevRotationYaw = rider.rotationYaw;
-			this.setRotation(this.rotationYaw, this.rotationPitch);
+//			if(Side.SERVER == FMLCommonHandler.instance().getEffectiveSide())
+//			{
+				this.rotationPitch = 0.0F;
+				EntityPlayer rider = (EntityPlayer)this.riddenByEntity;
+				this.rotationYaw = rider.rotationYaw;
+				this.prevRotationYaw = rider.rotationYaw;
+				this.setRotation(this.rotationYaw, this.rotationPitch);
+//			}
 		}
 	}
 
 	/**
 	 * Tries to moves the entity by the passed in displacement. Args: x, y, z
 	 */
-	
-	// TODO: water movement
 	public void moveEntity(double moveX, double moveY, double moveZ)
 	{
 		if (this.riddenByEntity != null)
 		{
 			this.sendRiderJumpUpdate();
 
-			if (!this.isRiderUsingBow())
+			this.setRotationYawAndPitch();
+			
+			if(Side.SERVER == FMLCommonHandler.instance().getEffectiveSide())
 			{
-				this.setRotationYawAndPitch();
-
+				
 				if (this.onGround)
 				{
 					this.motionX = this.riddenByEntity.motionX * this.landSpeedFactor;
@@ -325,48 +326,42 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo
 				}
 
 				this.prevMotionX = this.motionX;
-				this.prevMotionZ = this.motionZ;                
+				this.prevMotionZ = this.motionZ;
+			}
 
-				if(this.riddenByEntity instanceof EntityPlayer)
-				{    				
-					EntityPlayer entityplayer = (EntityPlayer)this.riddenByEntity;
+			if(this.riddenByEntity instanceof EntityPlayer)
+			{    				
+				EntityPlayer entityplayer = (EntityPlayer)this.riddenByEntity;
 
-					if (entityplayer.isJumping)
+				if (entityplayer.isJumping)
+				{
+					if (this.canFly)
 					{
-						if (this.canFly)
-						{
-							this.motionY += 0.1D;
-							this.setFlying(true);
-						}
-						else if (this.canJumpHigh && !this.isHighJumping)
-						{
-							this.motionY += 0.4D;
-							this.isHighJumping = true;
-						}
+						this.motionY += 0.1D;
+						this.setFlying(true);
 					}
-					
-					if (entityplayer.isSneaking())
+					else if (this.canJumpHigh && !this.isHighJumping)
 					{
-						if(this.canFly)
-						{
-							this.motionY -= 0.15D;
-						}
-						
-						if(this.inWater && this.canBreatheUnderwater())
-						{
-							this.motionY -= 0.15D;
-						}
+						this.motionY += 0.4D;
+						this.isHighJumping = true;
 					}
 				}
 
-				super.moveEntity(this.motionX, this.motionY, this.motionZ);
+				if (entityplayer.isSneaking())
+				{
+					if(this.canFly)
+					{
+						this.motionY -= 0.15D;
+					}
+
+					if(this.inWater && this.canBreatheUnderwater())
+					{
+						this.motionY -= 0.15D;
+					}
+				}
 			}
-			else
-			{
-				this.motionX = this.prevMotionX;
-				this.motionZ = this.prevMotionZ;
-				super.moveEntity(this.motionX, this.motionY, this.motionZ);
-			}
+
+			super.moveEntity(this.motionX, this.motionY, this.motionZ);
 		}
 		else
 		{
@@ -377,7 +372,6 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo
 	public void onUpdate()
 	{
 		super.onUpdate();
-
 	}
 
 	public void setFlying(Boolean flying)
@@ -439,24 +433,8 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo
 		}
 	}
 
-	public boolean isRiderUsingBow()
-	{
-		EntityPlayer entityplayer = (EntityPlayer)this.riddenByEntity;
-		if (entityplayer != null)
-		{
-			ItemStack itemstack = entityplayer.getCurrentEquippedItem();
-			if (itemstack != null && itemstack.itemID == Item.bow.shiftedIndex && entityplayer.isUsingItem())
-			{
-				return true;
-			}
-		}
-		return false;
-	}
-
 	public double getMountedYOffset()
 	{
-		//return 1.1D; //current 2.0.0 player to deep
-		//return 0.5D; //player to deep
 		return 1.4D;
 	}
 

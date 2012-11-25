@@ -118,10 +118,6 @@ public class EntityChocoboBlue extends EntityChocobo
 		{
 			EntityPlayer rider = (EntityPlayer)this.riddenByEntity;			
 			rider.addPotionEffect(new PotionEffect(13, 100, -1, true));
-//			if(this.inWater)
-//			{
-//				rider.addPotionEffect(new PotionEffect(16, 25, -1, true));	
-//			}
 		}
 	}
 	

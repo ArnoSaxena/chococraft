@@ -1,7 +1,8 @@
 package chococraft.common.gui;
 
+import chococraft.common.ModChocoCraft;
 import net.minecraft.src.CreativeTabs;
-import net.minecraft.src.StringTranslate;
+import net.minecraft.src.ItemStack;
 
 public class ChocoboCreativeTab extends CreativeTabs
 {
@@ -10,13 +11,9 @@ public class ChocoboCreativeTab extends CreativeTabs
 		super(label);
 	}
 
-	public String c()
+	@Override
+	public ItemStack getIconItemStack()
 	{
-		return StringTranslate.getInstance().translateKey("" + this.getTabLabel());
-	}
-
-	public String getTabLabel()
-	{
-		return "Chocobo Items";
+	    return new ItemStack(ModChocoCraft.chocoboFeatherItem);
 	}
 }

@@ -117,7 +117,7 @@ public class EntityChocoboBlack extends EntityChocobo
 		if(this.riddenByEntity instanceof EntityPlayer)
 		{
 			EntityPlayer rider = (EntityPlayer)this.riddenByEntity;			
-			rider.addPotionEffect(new PotionEffect(16, 25, -1, true));	
+			rider.addPotionEffect(new PotionEffect(16, 100, -1, true));	
 		}
 	}
 

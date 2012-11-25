@@ -15,9 +15,15 @@
 package chococraft.common.helper;
 
 import chococraft.common.entities.EntityChocobo;
+import net.minecraft.src.ActiveRenderInfo;
+import net.minecraft.src.Block;
 import net.minecraft.src.Chunk;
+import net.minecraft.src.ChunkPosition;
 import net.minecraft.src.Entity;
+import net.minecraft.src.EntityLiving;
+import net.minecraft.src.Material;
 import net.minecraft.src.MathHelper;
+import net.minecraft.src.Vec3;
 import net.minecraft.src.World;
 
 public class ChocoboEntityHelper
@@ -73,5 +79,27 @@ public class ChocoboEntityHelper
 			}
 		}
 		return amountEntities;
-	}	   
+	}
+	
+    public static boolean isEntityViewingUnderWater(World world, EntityLiving entity)
+    {
+    	Vec3 vector = ActiveRenderInfo.projectViewFromEntity(entity, 90.0F);
+        ChunkPosition chunkPos = new ChunkPosition(vector);
+        int blockFrontId = world.getBlockId(chunkPos.x, chunkPos.y, chunkPos.z);
+        int blockAboveId = world.getBlockId(chunkPos.x, chunkPos.y + 1, chunkPos.z);
+        if(0 == blockFrontId || 0 == blockAboveId)
+        {
+        	return false;
+        }
+        boolean frontWater = Block.blocksList[blockFrontId].blockMaterial == Material.water;
+        boolean aboveWater = Block.blocksList[blockAboveId].blockMaterial == Material.water;
+        if(frontWater && aboveWater)
+        {
+        	return true;
+        }
+        else
+        {
+        	return false;
+        }
+    }
 }
