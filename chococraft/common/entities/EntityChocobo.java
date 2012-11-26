@@ -26,6 +26,7 @@ import net.minecraft.src.EntityAgeable;
 import net.minecraft.src.EntityAnimal;
 import net.minecraft.src.EntityLiving;
 import net.minecraft.src.EntityPlayer;
+import net.minecraft.src.Item;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.Material;
 import net.minecraft.src.MathHelper;
@@ -365,8 +366,8 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 		{
 			if(--this.timeUntilNextFeather <= 0)
 			{
-				int i = this.rand.nextInt(100);
-				if (i < ModChocoCraft.featherDropChance)
+				int d100 = this.rand.nextInt(100);
+				if (d100 < ModChocoCraft.featherDropChance)
 				{
 					this.dropFeather();
 				}
@@ -433,6 +434,11 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 					this.onFeatherUse(entityplayer);
 					interacted = true;
 				}
+				else if (itemstack.itemID == Item.silk.shiftedIndex)
+				{
+					this.onSilkUse(entityplayer);
+					interacted = true;
+				}
 			}
 		}
 		
@@ -487,7 +493,19 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 	{
 		if (this.isTamed())
 		{
-			this.toggleFollow();
+			this.toggleFollowWanderStay();
+		}
+		else
+		{
+			this.showAmountHeartsOrSmokeFx(false, 7);
+		}
+	}
+	
+	public void onSilkUse(EntityPlayer entityPlayer)
+	{
+		if(this.isTamed())
+		{
+			this.toggleFollowStay();
 		}
 		else
 		{

@@ -16,7 +16,9 @@ package chococraft.common;
 
 public class Constants
 {
-	public static String TCC_VERSION = "2.3.3";	
+	public final static String TCC_VERSION = "2.3.4";
+	public final static String TCC_MODID = "ChocoCraft";
+	public final static String TCC_NAME = "Torojimas ChocoCraft";
 
 	// default item id's (reserved 22601-22650)
 	public static int CHOCOBO_SADDLE_ID          = 22601;
@@ -26,7 +28,7 @@ public class Constants
 	public static int GYSAHL_PINK_ID             = 22605;
 	public static int GYSAHL_RED_ID              = 22606;
 	public static int GYSAHL_CHIBI_ID            = 22607;
-	public static int CHOCOBO_CAKE_ID            = 22608;
+	public static int GYSAHL_CAKE_ID             = 22608;
 	public static int CHOCOBO_LEG_RAW_ID         = 22609;
 	public static int CHOCOBO_LEG_COOKED_ID      = 22610;
 	public static int CHOCOBO_FEATHER_ID         = 22611;
@@ -40,9 +42,10 @@ public class Constants
 	public static int CHOCO_DISGUISE_LEGS_ID     = 22619;
 	public static int CHOCO_DISGUISE_BOOTS_ID    = 22620;
 	
-	// default (flower) block id's (reserved 1551 and 1552)
+	// default (flower) block id's (reserved 1551 to 1555)
 	public static int GYSAHL_GREEN_BLOCK_ID      = 1551;
 	public static int GYSAHL_STEM_BLOCK_ID       = 1552;
+	public static int STRAW_BLOCK_ID             = 1553;
 	
 	// resource folder
 	public static String CHOCOBO_RESOURCES_FOLDER = "/resources";
@@ -76,6 +79,9 @@ public class Constants
 	public static int DEFAULT_FEATHER_DELAY_RANDOM = 600;
 	public static int DEFAULT_FEATHER_DELAY_STATIC = 600;
 	public static int DEFAULT_GHYSAL_SPAWN_RATE = 100;
+	public static int DEFAULT_PEN_HEAL_PROBABILITY = 20;
+	public static int DEFAULT_PEN_HEAL_CAULDRON_RANGE = 6;
+
 	
 	public static int DEFAULT_SPAWN_TIME_DELAY = 200;
 	public static int DEFAULT_SPAWN_GROUP_MIN = 2;

@@ -30,6 +30,7 @@ import chococraft.common.*;
 import chococraft.common.gui.GuiStarter;
 import chococraft.common.helper.ChocoboParticleHelper;
 import chococraft.common.network.clientSide.PacketChocoboHealth;
+import chococraft.common.network.clientSide.PacketChocoboParticles;
 import chococraft.common.network.clientSide.PacketChocoboTamed;
 import chococraft.common.network.serverSide.PacketChocoboAttribute;
 import chococraft.common.network.serverSide.PacketChocoboRiderJump;
@@ -277,7 +278,7 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
         return false;
     }
 
-	public void toggleFollow()
+	public void toggleFollowWanderStay()
 	{
 		if(this.isFollowing() && !this.isWander())
 		{
@@ -298,6 +299,22 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
 		this.showAmountHeartsOrSmokeFx(this.isFollowing(), 7);
 	}
 	
+	public void toggleFollowStay()
+	{
+		if(!this.isFollowing() && !this.isWander())
+		{
+			this.setFollowing(true);
+			this.setWander(false);
+		}
+		else
+		{
+			this.setFollowing(false);
+			this.setWander(false);
+		}
+		
+		this.showAmountHeartsOrSmokeFx(this.isFollowing(), 7);
+	}
+	
 	// TODO: superclass method is returning EntityLiving ... thus not really the superclass
 	// method, but otherwise the complete same as this method. this should be fixed ...
 	public EntityPlayer getOwner()
@@ -305,12 +322,95 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
     	return this.worldObj.getPlayerEntityByName(this.getOwnerName());
     }
 
-    public void onLivingUpdate()
-    {
-        super.onLivingUpdate();
-    }
-    
-    public boolean isInLove()
+	public void onLivingUpdate()
+	{
+		super.onLivingUpdate();
+
+		this.doStrawHealing();
+	}
+	
+	private void doStrawHealing()
+	{		
+		if (Side.SERVER == FMLCommonHandler.instance().getEffectiveSide())
+		{
+			if(this.isTamed() && this.getHealth() < this.getMaxHealth())
+			{
+				if(this.worldObj.getWorldTime() % 40 == 0)
+				{
+					int d100 = this.rand.nextInt(100);
+					if(d100 < ModChocoCraft.penHealProbability)
+					{
+						int blockBelowId = this.worldObj.getBlockId(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.boundingBox.minY), MathHelper.floor_double(this.posZ));
+						if(blockBelowId == ModChocoCraft.strawBlock.blockID)
+						{
+							int range = ModChocoCraft.penHealCauldronRange;
+							if(this.isFilledCauldronNear(this.posX, this.posY, this.posZ, range, 2, range))
+							{
+								this.heal(this.rand.nextInt(3) + 1);
+								this.sendHealthUpdate();
+								this.sendParticleUpdate("heart");
+								// TODO: send heart particle update to client
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	private boolean isFilledCauldronNear(double posX, double posY, double posZ, int rangeX, int rangeY, int rangeZ)
+	{
+		int iPosX = MathHelper.floor_double(posX);
+		int iPosY = MathHelper.floor_double(posY);
+		int iPosZ = MathHelper.floor_double(posZ);
+		
+		// first, check the most obvious level of y
+		if(this.isFilledCauldronNearAtYLevel(iPosX, iPosY + 1, iPosZ, rangeX, rangeZ))
+		{
+			return true;
+		}
+		
+		// next all above
+		for(int y = iPosY + 2; y <= iPosY + rangeY; y++)
+		{
+			if(this.isFilledCauldronNearAtYLevel(iPosX, y, iPosZ, rangeX, rangeZ))
+			{
+				return true;
+			}			
+		}
+		
+		// last all below
+		for(int y = iPosY; y >= iPosY - rangeY; y--)
+		{
+			if(this.isFilledCauldronNearAtYLevel(iPosX, y, iPosZ, rangeX, rangeZ))
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	private boolean isFilledCauldronNearAtYLevel(int posX, int posY, int posZ, int rangeX,int rangeZ)
+	{
+		for(int x = posX - rangeX; x <= posX + rangeX; x++)
+		{
+			for(int z = posZ - rangeZ; z <= posZ + rangeZ; z++)
+			{
+				int blockId = this.worldObj.getBlockId(x, posY, z);
+				if(blockId == Block.cauldron.blockID)
+				{
+		            int fillStatus = this.worldObj.getBlockMetadata(x, posY, z);
+		            if(fillStatus > 0)
+		            {
+		            	return true;
+		            }
+				}
+			}
+		}
+		return false;
+	}
+
+	public boolean isInLove()
     {
     	return this.inLove == 1;
     }
@@ -395,14 +495,15 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
     		this.texture = this.getEntityTexture();
     		this.showAmountHeartsOrSmokeFx(this.isTamed(), 7);
     	}
-    	else if (this.health < getMaxHealth())
+    	else if (this.getHealth() < this.getMaxHealth())
     	{
-    		if(Side.CLIENT == FMLCommonHandler.instance().getEffectiveSide())
+			this.useItem(entityplayer);
+    		if(Side.SERVER == FMLCommonHandler.instance().getEffectiveSide())
     		{
-    			this.useItem(entityplayer);
     			this.heal(10);
-    			this.showAmountHeartsOrSmokeFx(true, 7);
+    			this.sendHealthUpdate();
     		}
+			this.showAmountHeartsOrSmokeFx(true, 7);
     	}
     }
 
@@ -913,4 +1014,16 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
 			}
 		}		
 	}
+	
+	protected void sendParticleUpdate(String particleName)
+	{
+		if (Side.SERVER == FMLCommonHandler.instance().getEffectiveSide())
+		{
+			PacketChocoboParticles packet = new PacketChocoboParticles(this, particleName);
+			int dimension = this.worldObj.getWorldInfo().getDimension();
+			PacketDispatcher.sendPacketToAllAround(this.lastTickPosX, this.lastTickPosY, this.lastTickPosZ, 16*5, dimension, packet.getPacket());
+		}		
+	}
+
+
 }

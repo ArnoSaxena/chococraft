@@ -27,6 +27,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
 import chococraft.common.helper.ChocoboBiomeHelper;
+import chococraft.common.helper.ChocoboMathHelper;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Side;
 
@@ -56,6 +57,10 @@ public class ChocoboConfig
 	static String CFG_KEY_FEATHER_DELAY_STATIC = "featherDelayStatic";
 	static String CFG_KEY_FEATHER_DROP_CHANCE = "featherDropChance";
 	static String CFG_KEY_RENDER_NAME_HEIGHT = "renderNameHeight";
+	
+	static String CFG_KEY_PEN_HEAL_PROBABILITY = "penHealProbability";
+	static String CFG_KEY_PEN_HEAL_CAULDRON_RANGE = "penHealCauldronRange";
+	
 	static String CFG_KEY_LIVING_SOUND_PROB = "livingSoundProbability";
 
 	public static void readConfigFile()
@@ -245,15 +250,15 @@ public class ChocoboConfig
 								}
 								else if(key.equalsIgnoreCase(CFG_KEY_LIVING_SOUND_PROB))
 								{
-									int tmplsp = Integer.parseInt(value);
-									if(tmplsp < 0 || tmplsp > 100)
-									{
-										ModChocoCraft.livingSoundProb = 100;
-									}
-									else
-									{
-										ModChocoCraft.livingSoundProb = tmplsp;
-									}
+									ModChocoCraft.livingSoundProb = ChocoboMathHelper.clamp(Integer.parseInt(value), 0, 100);
+								}
+								else if(key.equalsIgnoreCase(CFG_KEY_PEN_HEAL_PROBABILITY))
+								{
+									ModChocoCraft.penHealProbability = ChocoboMathHelper.clamp(Integer.parseInt(value), 0, 100);
+								}
+								else if(key.equalsIgnoreCase(CFG_KEY_PEN_HEAL_CAULDRON_RANGE))
+								{
+									ModChocoCraft.penHealCauldronRange = ChocoboMathHelper.clamp(Integer.parseInt(value), 1, 15);
 								}
 							}
 							catch (NumberFormatException e)
@@ -357,6 +362,12 @@ public class ChocoboConfig
 			writer.write(getCommentLine("Thus if it is set to 50 only every second 'Kweh' will be heared. If set to 1 only "));
 			writer.write(getCommentLine("every 100th etc..."));
 			writer.write(getConfigLine(CFG_KEY_LIVING_SOUND_PROB, Integer.toString(Constants.DEFAULT_LIVING_SOUND_PROB)));
+			
+			writer.write("\n");
+			writer.write(getCommentLine("Whenever a hurt Chocobo is standing on straw less than " + CFG_KEY_PEN_HEAL_CAULDRON_RANGE + " blocks away from"));
+			writer.write(getCommentLine("a filled cauldron, it has a" + CFG_KEY_PEN_HEAL_PROBABILITY +" chance every 5 seconds to heal one health point."));
+			writer.write(getConfigLine(CFG_KEY_PEN_HEAL_PROBABILITY, Integer.toString(Constants.DEFAULT_PEN_HEAL_PROBABILITY)));
+			writer.write(getConfigLine(CFG_KEY_PEN_HEAL_CAULDRON_RANGE, Integer.toString(Constants.DEFAULT_PEN_HEAL_CAULDRON_RANGE)));
 			
 			writer.write("\n");
 			writer.write(getCommentLine("add any name of the following list as comma separated values to"));

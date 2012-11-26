@@ -278,14 +278,14 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo
 	{
 		if (this.riddenByEntity != null && this.riddenByEntity instanceof EntityPlayer)
 		{
-//			if(Side.SERVER == FMLCommonHandler.instance().getEffectiveSide())
-//			{
+			if(Side.SERVER == FMLCommonHandler.instance().getEffectiveSide())
+			{
 				this.rotationPitch = 0.0F;
 				EntityPlayer rider = (EntityPlayer)this.riddenByEntity;
 				this.rotationYaw = rider.rotationYaw;
 				this.prevRotationYaw = rider.rotationYaw;
 				this.setRotation(this.rotationYaw, this.rotationPitch);
-//			}
+			}
 		}
 	}
 

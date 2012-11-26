@@ -126,7 +126,7 @@ public class GuiChocopedia extends GuiScreen
 		}
 		else if (guibutton.id == 3)
 		{
-			this.chocobo.toggleFollow();
+			this.chocobo.toggleFollowWanderStay();
 			//followingButton.displayString = (chocobo.isFollowing()) ? "Following" : "Not Following";
 			this.followingButton.displayString = this.getFollowStatus();
 		}

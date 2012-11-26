@@ -56,7 +56,8 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.common.registry.TickRegistry;
 
 
-@Mod(modid="ChocoCraft", name="Torojimas ChocoCraft", version="2.3.3")
+//@Mod(modid="ChocoCraft", name="Torojimas ChocoCraft", version="2.3.4")
+@Mod(modid=Constants.TCC_MODID, name=Constants.TCC_NAME, version=Constants.TCC_VERSION)
 @NetworkMod(clientSideRequired = true, serverSideRequired = false, 
 		channels = { Constants.PCHAN_CHOCOBO },
 		packetHandler = ChocoboPacketHandler.class)
@@ -73,7 +74,7 @@ public class ModChocoCraft
 	public static Property gysahlPinkId;
 	public static Property gysahlRedId;
 	public static Property gysahlChibiId;
-	public static Property chocoboCakeId;
+	public static Property gysahlCakeId;
 	public static Property chocoboLegRawId;
 	public static Property chocoboLegCookedId;
 	public static Property chocoboFeatherId;
@@ -88,6 +89,7 @@ public class ModChocoCraft
 	public static Property chocoDisguiseBootsId;	
 	public static Property gysahlGreenBlockId;
 	public static Property gysahlStemBlockId;
+	public static Property strawBlockId;
 
 	public static Item chocoboSaddleItem;
 	public static Item gysahlSeedsItem;
@@ -96,7 +98,7 @@ public class ModChocoCraft
 	public static Item gysahlPinkItem;
 	public static Item gysahlRedItem;
 	public static Item gysahlChibiItem;
-	public static Item chocoboCakeItem;
+	public static Item gysahlCakeItem;
 	public static Item chocoboLegRawItem;
 	public static Item chocoboLegCookedItem;
 	public static Item chocoboFeatherItem;
@@ -112,14 +114,21 @@ public class ModChocoCraft
 
 	public static Block gysahlStemBlock;
 	public static Block gysahlGreenBlock;
+	public static Block strawBlock;
 
 	// setup
 	public static boolean chocoboWingFlutter;
 	public static int genderMaleChance;
 	public static boolean showChocoboNames;
+	
+	// feather drop setup
 	public static int featherDropChance;
 	public static int featherDelayRandom;
 	public static int featherDelayStatic;
+	
+	// pen heal setup
+	public static int penHealProbability;
+	public static int penHealCauldronRange;
 	
 	// spawn setup
 	public static int spawnTimeDelay;
@@ -218,7 +227,7 @@ public class ModChocoCraft
 		gysahlPinkId = mainConfiguration.get(Configuration.CATEGORY_ITEM, "gysahlPinkItem.id", Constants.GYSAHL_PINK_ID);
 		gysahlRedId = mainConfiguration.get(Configuration.CATEGORY_ITEM, "gysahlRedItem.id", Constants.GYSAHL_RED_ID);
 		gysahlChibiId = mainConfiguration.get(Configuration.CATEGORY_ITEM, "gysahlChibiItem.id", Constants.GYSAHL_CHIBI_ID);
-		chocoboCakeId = mainConfiguration.get(Configuration.CATEGORY_ITEM, "chocoboCakeItem.id", Constants.CHOCOBO_CAKE_ID);
+		gysahlCakeId = mainConfiguration.get(Configuration.CATEGORY_ITEM, "gysahlCakeItem.id", Constants.GYSAHL_CAKE_ID);
 		chocoboLegRawId = mainConfiguration.get(Configuration.CATEGORY_ITEM, "chocoboLegRawItem.id", Constants.CHOCOBO_LEG_RAW_ID);
 		chocoboLegCookedId = mainConfiguration.get(Configuration.CATEGORY_ITEM, "chocoboLegCookedItem.id", Constants.CHOCOBO_LEG_COOKED_ID);
 		chocoboFeatherId = mainConfiguration.get(Configuration.CATEGORY_ITEM, "chocoboFeatherItem.id", Constants.CHOCOBO_FEATHER_ID);
@@ -235,6 +244,7 @@ public class ModChocoCraft
 
 		gysahlGreenBlockId = mainConfiguration.getBlock("gysahlGreenBlock.id", Constants.GYSAHL_GREEN_BLOCK_ID);
 		gysahlStemBlockId = mainConfiguration.getBlock("gysahlStemBlock.id", Constants.GYSAHL_STEM_BLOCK_ID);
+		strawBlockId = mainConfiguration.getBlock("strawBlock.id", Constants.STRAW_BLOCK_ID);
 
 		chocoboWingFlutter = Constants.DEFAULT_CHOCOBO_WING_FLUTTER;
 		genderMaleChance = Constants.DEFAULT_GENDER_MALE_CHANCE;
@@ -242,6 +252,8 @@ public class ModChocoCraft
 		featherDropChance = Constants.DEFAULT_FEATHER_DROP_CHANCE;
 		featherDelayRandom = Constants.DEFAULT_FEATHER_DELAY_RANDOM;
 		featherDelayStatic = Constants.DEFAULT_FEATHER_DELAY_STATIC;
+		penHealProbability = Constants.DEFAULT_PEN_HEAL_PROBABILITY;
+		penHealCauldronRange = Constants.DEFAULT_PEN_HEAL_CAULDRON_RANGE;
 
 		spawnTimeDelay = Constants.DEFAULT_SPAWN_TIME_DELAY;
 		spawnGroupMin = Constants.DEFAULT_SPAWN_GROUP_MIN;
@@ -354,12 +366,12 @@ public class ModChocoCraft
 		gysahlChibiItem.setCreativeTab(CreativeTabs.tabMisc);
 		//gysahlChibiItem.setCreativeTab(chocoboCreativeItems);
 
-		// Chocobo Cake
-		chocoboCakeItem = (new ChocoboItem(Integer.parseInt(chocoboCakeId.value))).setItemName("chocoboCake").setMaxStackSize(8);
-		chocoboCakeItem.setIconIndex(7);
-		LanguageRegistry.addName(chocoboCakeItem, "Chocobo Cake");
-		chocoboCakeItem.setCreativeTab(CreativeTabs.tabMisc);
-		//chocoboCakeItem.setCreativeTab(chocoboCreativeItems);
+		// Gysahl Cake
+		gysahlCakeItem = (new ChocoboItem(Integer.parseInt(gysahlCakeId.value))).setItemName("gysahlCake").setMaxStackSize(8);
+		gysahlCakeItem.setIconIndex(7);
+		LanguageRegistry.addName(gysahlCakeItem, "Gysahl Cake");
+		gysahlCakeItem.setCreativeTab(CreativeTabs.tabMisc);
+		//gysahlCakeItem.setCreativeTab(chocoboCreativeItems);
 
 		// Chocob Whistle
 		chocoboWhistleItem = (new ChocoboItem(Integer.parseInt(chocoboWhistleId.value))).setItemName("chocoboWhistle").setMaxStackSize(64);
@@ -420,8 +432,12 @@ public class ModChocoCraft
 		LanguageRegistry.addName(gysahlStemBlock, "Gysahl Stem");
 
 		gysahlGreenBlock = new BlockGysahlGreen(Integer.parseInt(gysahlGreenBlockId.value), 36).setStepSound(Block.soundGrassFootstep).setHardness(0.0F).setBlockName("gysahlGreenBlock");
-		GameRegistry.registerBlock(gysahlGreenBlock);        
+		GameRegistry.registerBlock(gysahlGreenBlock);
 		LanguageRegistry.addName(gysahlGreenBlock, "Gysahl Green");
+		
+		strawBlock = new BlockStraw(Integer.parseInt(strawBlockId.value), 21).setStepSound(Block.soundGrassFootstep).setHardness(0.0F).setBlockName("strawBlock");
+		GameRegistry.registerBlock(strawBlock);
+		LanguageRegistry.addName(strawBlock, "Straw");
 	}
 
 	private void addSmeltings()
@@ -463,7 +479,7 @@ public class ModChocoCraft
 			Character.valueOf('-'), Item.silk
 		});
 
-		// loverly ghysal
+		// loverly gysahl
 		GameRegistry.addRecipe(new ItemStack(gysahlLoverlyItem, 1), new Object[]
 		{
 			"RY", 
@@ -473,7 +489,7 @@ public class ModChocoCraft
 			Character.valueOf('R'), Block.plantRed
 		});
 
-		// golden ghysal
+		// golden gysahl
 		GameRegistry.addRecipe(new ItemStack(gysahlGoldenItem, 1), new Object[]
 		{
 			"FGF", 
@@ -484,7 +500,7 @@ public class ModChocoCraft
 			Character.valueOf('G'), Item.goldNugget
 		});
 
-		// chibi ghysal
+		// chibi gysahl
 		GameRegistry.addRecipe(new ItemStack(gysahlChibiItem, 1), new Object[]
 		{
 			" R ", 
@@ -514,14 +530,14 @@ public class ModChocoCraft
 			new ItemStack(Item.ingotGold, 1)
 		});
 
-		// ghysal seeds
+		// gysahl seeds
 		GameRegistry.addShapelessRecipe(new ItemStack(gysahlSeedsItem, 3), new Object[]
 		{
 			new ItemStack(gysahlGreenBlock, 1)
 		});
 
-		// chocobo cake
-		GameRegistry.addRecipe(new ItemStack(chocoboCakeItem, 1), new Object[]
+		// gysahl cake
+		GameRegistry.addRecipe(new ItemStack(gysahlCakeItem, 1), new Object[]
 		{
 			"MGM", 
 			"SES", 
@@ -533,14 +549,14 @@ public class ModChocoCraft
 			Character.valueOf('E'), Item.egg
 		});
 
-		// pink ghysal
+		// pink gysahl
 		GameRegistry.addShapelessRecipe(new ItemStack(gysahlPinkItem, 1), new Object[]
 		{
 			new ItemStack(gysahlGreenBlock, 1), 
 			new ItemStack(Item.dyePowder, 1, 9)
 		});
 
-		// red ghysal
+		// red gysahl
 		GameRegistry.addShapelessRecipe(new ItemStack(gysahlRedItem, 1), new Object[]
 		{
 			new ItemStack(gysahlGreenBlock, 1), 
@@ -587,6 +603,13 @@ public class ModChocoCraft
 			Character.valueOf('S'), Item.stick, 
 			Character.valueOf('Y'), chocoboFeatherItem
 		});
+		
+		GameRegistry.addShapelessRecipe(new ItemStack(strawBlock, 4), new Object[]
+		{
+			new ItemStack(Item.wheat, 1)
+		});
+		                                                        		
+		
 	}
 
 	private void registerChocobos()

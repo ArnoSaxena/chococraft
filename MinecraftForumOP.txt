@@ -1,7 +1,7 @@
 [img]http://www.arno-saxena.de/pictures/chococraft/banner_title.png[/img]
 
 UPDATED FOR MINECRAFT 1.4.5
-Version 2.3.2
+Version 2.3.4
 Requires: [url="http://www.minecraftforge.net/"]Forge[/url] [url="http://files.minecraftforge.net/"]6.4.0.394+[/url]
 
 This Mod is the continuation of [url="http://www.minecraftforum.net/user/1051245-eddiev/"]EddieV's[/url] mod. The original thread can be found [url="http://www.minecraftforum.net/topic/952372-chococraft-12-mc-11-chocobos-now-fly/"]here[/url]. I've officially taken over the helm with Eddie's kind blessings.
@@ -17,7 +17,7 @@ As of version 2.0.4 this mod is in working condition for SMP.
 [color=#ff0000][b]ACHTUNG! CAUTION! ¡CUIDADO! चेतावनी! ATTENZIONE! береги́сь!
 This version of Chococraft is not compatible to versions pre 2.0.0 (pre mc 1.3.2). It will destroy your saved world if old Chocobos are included. Thus, if you want to use an old world with the new version of this mod, you should first start minecraft without the Chococraft mod, enter and save your world, thus removing all traces of older versions of Chococraft and only then start minecraft with the new version of Chococraft and tame new Chocobos.[/b][/color]
 
-Download: [url="http://www.arno-saxena.de/minecraft/Chococraft_2.3.2.zip"]Torojimas ChocoCraft 2.3.2[/url]
+Download: [url="http://www.arno-saxena.de/minecraft/Chococraft_2.3.4.zip"]Torojimas ChocoCraft 2.3.4[/url]
 
 Downloads so far: [img]http://www.arno-saxena.de/minecraft/chocoboDownloads.png[/img]
 
@@ -67,6 +67,14 @@ Thanks to InTheLittleWood[/spoiler][/spoiler]
 
 CHANGELOG:
 [spoiler]
+v.2.3.4 by Torojima
+   1. Chocobo pen healing Chocobos
+   2. right click with silk for follow/stay toggle
+   3. changed name of Chocobo Cake to Gysahl Cake
+
+v.2.3.3 by Torojima
+   1. fixed mounting movement twitching
+   
 v.2.3.2 by Torojima
    1. added water speed factor
    2. added rider abilities
@@ -301,8 +309,7 @@ There are also rumors of there being 3 secret types.  [img]http://static.minecra
 Screenshot by [url="http://www.minecraftforum.net/user/524192-uncletravis/"]uncletravis[/url][/spoiler][/spoiler]
 
 What's the difference between each type of Chocobo?
-[spoiler]
-   1. Yellow Chocobos are the average chocobos and have no clear abilities.
+[spoiler]   1. Yellow Chocobos are the average chocobos and have no clear abilities.
    2. Green Chocobos have the ability to climb, which means that they don't need to jump in order to go up a block that is one step higher.
    3. Blue Chocobos have the ability to cross water, which means that they don't won't sink in water and will travel fast in water.
    4. White Chocobos have the ability to climb and cross water, and are faster than the previous ones.
@@ -328,18 +335,22 @@ How do I tame a Chocobo?
 [/spoiler]
 
 What happens when a Chocobo is tamed?
-[spoiler]
-   1. you can use the Chocopedia on it
+[spoiler]   1. you can use the Chocopedia on it
    2. the Chocobo can be saddled using a Chocobo Saddle.
-   3. can be made to follow its owner with help of the Chocopedia or a right click with a feather. (Default after taming is not following)
-   4. can be healed using Gysahl Greens
-   (5. can be equipted with a transport pack)
-
+   3. can be equipped with a transport pack.
+   4. can be healed using Gysahl Greens.
+   5. will heal while resting in a Chocobo pen.
+   6. can be made to follow its owner with help of the Chocopedia or a right click with a feather. (Default after taming is not following)
 [/spoiler]
 
+How to build a Chocobo pen?
+[spoiler]   Every area covered with straw and equipped with a water filled cauldron will count as a Chocobo pen. If a hurt Chocobo will stand on the straw near the cauldron it will automatically heal over time.
+
+[img]http://www.arno-saxena.de/pictures/chococraft/pic_straw_in_pen.png[/img]
+Screenshot by [url="http://www.minecraftforum.net/user/173045-torojima/"]Torojima[/url][/spoiler]
+
 What happens when a Chocobo is saddled?
-[spoiler]
-[img]http://www.arno-saxena.de/pictures/chococraft/pic_saddled.png[/img]
+[spoiler][img]http://www.arno-saxena.de/pictures/chococraft/pic_saddled.png[/img]
 Screenshot by [url="http://www.minecraftforum.net/user/173045-torojima/"]Torojima[/url]
 
    1. the Chocobo will stay where left (will follow again if set in Chocopedia)
@@ -348,24 +359,21 @@ Screenshot by [url="http://www.minecraftforum.net/user/173045-torojima/"]Torojim
    4. can drop its saddle by clicking on "drop gear" in Chocopedia
 
 [img]http://www.arno-saxena.de/pictures/chococraft/pic_chocobo_riding.png[/img]
-Screenshot by [url="http://www.minecraftforum.net/user/1099767-poloniumradon/"]PoloniumRadon[/url]
-[/spoiler]
+Screenshot by [url="http://www.minecraftforum.net/user/1099767-poloniumradon/"]PoloniumRadon[/url][/spoiler]
 
 What happens when a Chocobo is equipted with saddle bags?
-[spoiler]
-    1. the Chocobo can store and transport up to 36 item stacks. Saddle bags can be accessed by shift-right-click.
+[spoiler]    1. the Chocobo can store and transport up to 36 item stacks. Saddle bags can be accessed by shift-right-click.
     2. can drop saddle and saddle bags by clicking on "drop gear" in Chocopedia
 [/spoiler]
 
-(What happens when a Chocobo is equipted with a transport pack?)
-[spoiler]
-   (1. the Chocobo can store and transport up to 54 item stacks (but can no longer be equipted with a saddle). Transport bags can be accessed by shift-right-click.) currently disabled!
+What happens when a Chocobo is equipted with a transport pack?
+[spoiler]   1. the Chocobo can store and transport up to 54 item stacks (but can no longer be equipped with a saddle). Transport bags can be accessed by shift-right-click.
    2. can drop the pack bag by clicking on "drop gear" in Chocopedia
 [/spoiler]
 
 What happens when a Chocobo dies?
 [spoiler]
-   1. the Chocobo will sometimes drop a Raw Chocobo Leg which can be cooked (and is yummy)
+   1. the Chocobo will drop a Raw Chocobo Leg which can be cooked (and is yummy)
 [/spoiler]
 
 How can I obtain a Chocobo Feather?
@@ -394,8 +402,7 @@ When will a Chicobo grow into a Chocobo?
 How can I get the other types of Chocobos?
 [spoiler]I'll put a new spoiler tag on this, since these are the exact breeding instructions to get the other types. So be warned! If you want to experiment and find out about how to get the other types DO NOT READ THIS. You've been warned.
 
-[spoiler]
-   1. Yellow + Yellow = Green or Blue
+[spoiler]   1. Yellow + Yellow = Green or Blue
    2. Green + Blue = White
    3. Yellow + White = Black
    4. Black + White =(Golden Gysahls REQUIRED)= Gold
@@ -414,8 +421,7 @@ Screenshot by [url="http://www.minecraftforum.net/user/524192-uncletravis/"]uncl
 Screenshot by [url="http://www.minecraftforum.net/user/1099767-poloniumradon/"]PoloniumRadon[/url][/spoiler][/spoiler]
 
 Items and Blocks:
-[spoiler]
-   1. [img]http://www.arno-saxena.de/pictures/chococraft/item_gysahl_green.png[/img] Gysahl Greens - Gysahl Greens are the most important block in ChocoCraft. They are used to tame Chocobos and to create various other greens. Just like flowers, Gysahl Greens will grow randomly across the map and can be collected and even planted again.
+[spoiler]   1. [img]http://www.arno-saxena.de/pictures/chococraft/item_gysahl_green.png[/img] Gysahl Greens - Gysahl Greens are the most important block in ChocoCraft. They are used to tame Chocobos and to create various other greens. Just like flowers, Gysahl Greens will grow randomly across the map and can be collected and even planted again.
    2. [img]http://www.arno-saxena.de/pictures/chococraft/item_choco_leg_raw.png[/img] Raw Chocobo Leg - This piece of meat is dropped by the most unfortunate Chocobos. Just like regular chicken legs, they can be cooked on a furnace.
    3. [img]http://www.arno-saxena.de/pictures/chococraft/item_choco_leg_cooked.png[/img] Cooked Chocobo Leg - By eating this yummy chocobo leg, you'll reduce your famine. A Chocobo Leg reduces famine even more than a cooked chicken leg, healing just as much as a cooked pork chop.
    4. [img]http://www.arno-saxena.de/pictures/chococraft/item_choco_feather.png[/img]Chocobo Feather - Chocobo Feathers are very attractive items to Chocobos. They can be used to build saddles, whistles, and even special types of gysahls. Tamed chocobos will occasionaly drop these.
@@ -431,11 +437,10 @@ Items and Blocks:
 14. [img]http://www.arno-saxena.de/pictures/chococraft/item_gysahl_seed.png[/img] Gysahl Seeds - Seeds made from Gysahl Greens. Can be planted to build a Gysahl Green farm and can be fertilized with Chocobo Fertilizer.
 15. [img]http://www.arno-saxena.de/pictures/chococraft/item_gysahl_chibi.png[/img] Chibi Gysahl - Bitter gysahl empowered with Redstone to prevent a Chicobo to grow up.
 16. [img]http://www.arno-saxena.de/pictures/chococraft/item_chocopedia.png[/img] Chocopedia - Notebook that keeps information about the Chocobos. Allows player to name their chocobo, check on information about health and breeing status and even give orders.
-[/spoiler]
+17. [img]http://www.arno-saxena.de/pictures/chococraft/item_straw.png[/img] Straw - Straw cover for a Chocobo pen.[/spoiler]
 
 Recipes:
-[spoiler]
-   1. [img]http://www.arno-saxena.de/pictures/chococraft/item_saddle.png[/img] Chocobo Saddle = 1 Leather, 2 Strings, 1 Chocobo Feather
+[spoiler]   1. [img]http://www.arno-saxena.de/pictures/chococraft/item_saddle.png[/img] Chocobo Saddle = 1 Leather, 2 Strings, 1 Chocobo Feather
 
       [img]http://www.arno-saxena.de/pictures/chococraft/crafting_saddle.png[/img]
 
@@ -479,6 +484,9 @@ Recipes:
 
       [img]http://www.arno-saxena.de/pictures/chococraft/crafting_arrow.png[/img]
 
+  12. [img]http://www.arno-saxena.de/pictures/chococraft/item_straw.png[/img] Straw = 4 Wheat
+
+      [img]http://www.arno-saxena.de/pictures/chococraft/crafting_straw.png[/img]
 [/spoiler]
 
 Screenshots:
@@ -519,11 +527,14 @@ Chocopedia:
 [img]http://www.arno-saxena.de/pictures/chococraft/pic_chocobo_gui.png[/img]
 Screenshot by [url="http://www.minecraftforum.net/user/1099767-poloniumradon/"]PoloniumRadon[/url][/spoiler]
 
+Straw in pen:
+[img]http://www.arno-saxena.de/pictures/chococraft/pic_straw_in_pen.png[/img]
+Screenshot by [url="http://www.minecraftforum.net/user/173045-torojima/"]Torojima[/url]
+
 NOTES:
 
 Known Issues and Bugs:
-[spoiler]
-   1. Chocobos love to stare in the face of people. It's not as much dangerous as it is creepy.
+[spoiler]   1. Chocobos love to stare in the face of people. It's not as much dangerous as it is creepy.
    2. Inventory not working yet.
    3. While traveling on Chocobo, Chocobo model will twitch left and right.
 If you happen to find any more bug or issue, please report it on this thread and I'll look into it ASAP [img]http://static.minecraftforum.net//public/style_emoticons/default/smile.png[/img] [/spoiler]
@@ -533,37 +544,56 @@ Config File:
 For example, you can change item IDs to solve conflicts, change the maximum number of Chocobos and choose whether to hide or show the name of the chocobos above their head.
 Here's how to do it:
    1. You can find the config file in your main minecraft folder and it's called "chocobo_config.txt".
-   2. Open it with Notepad or any other text editor
+   2. Open it with Notepad(yuck) or any other text editor
    3. Lines that start with "//" are comment lines.
    4. Change any entry according to the description in the config file.
-
-For any other mod developer, or people that want to change other mod's ids and not these, here are the IDs that I use:
-1551 for the block of Gysahl Greens
-1552 for the Gysahl crops
-22601-22620 for the items
 [/spoiler]
 
+Current default Id's:
+[spoiler]Chocobo saddle 22601
+Gysahl seeds 22602
+Loverly Gysahl 22603
+Golden Gysahl 22604
+Pink Gysahl 22605
+Red Gysahl 22606
+Chibi Gysahl 22607
+Gysahl Cake 22608
+Raw Chocobo leg 22609
+Cooked Chocobo leg 22610
+Chocobo Feather 22611
+Chocobo saddle bags 22612
+Chocobo pack bags 22613
+Chocobo Whistle 22614
+Chocopedia 22615
+(Nether Chocobo egg 22616) disabled
+Chocobo disguise helmet 22617
+Chocobo disguise body 22618
+Chocobo disguise legs 22619
+Chocobo disguise boots 22620
+	
+Gysahl green (block) 1551
+Gysahl stem (block) 1552
+Straw (block) 1553
+
+These id's probably will be moved by Forge.[/spoiler]
+
 Ideas for Future Development:
-[spoiler]
-  1. Special Gui when riding Chocobo that will show his current health and name
+[spoiler]  1. Special Gui when riding Chocobo that will show his current health and name
   2. Chocobos to attack enemies of the owner, much like wolves do
   3. Chocobo music when riding
-  4. Randomize Chocobo heights
-  5. Yellow Chocobo spawn eggs
-  6. FFX hot & cold
-  7. dynamic abilities (???)
-  8. idle animation for saddled and waiting Chocobos
-  9. make genders disable-able from config-file
- 10. maybe: item to increase spawn rate when equipped or Chocobo-seeker item
- 11. maybe: double wide chocobo fence doors
- 12. maybe: eat grass for time to be able to breed bonus
+  4. Yellow Chocobo spawn eggs
+  5. FFX hot & cold
+  6. dynamic abilities (???)
+  7. idle animation for saddled and waiting Chocobos
+  9. maybe: item to increase spawn rate when equipped or Chocobo-seeker item
+ 10. maybe: double wide chocobo fence doors
+ 11. maybe: eat grass for time to be able to breed bonus
 If you have any more suggestions, comments or ideas, keep 'em coming [img]http://static.minecraftforum.net//public/style_emoticons/default/smile.png[/img][/spoiler]
 
 How to Install:
-[spoiler]
-1. Install Forge v4.1.4.297 or newer by following the instructions on the corresponding pages. The link to both can be found above the link to this mod.
-2. With Forge installed, put this mod's .zip file in your minecraft "mods" folder.
-3. Extract the mod zip in a different folder and get the file choco_kweh.ogg from /resources/sounds and put it into the folder minecraft/resources/mod/. (The other extracted files from the zip won't be needed anymore and can be deleted. Do not delete the zip in the minecraft/mods folder, or if you have extracted the files into the minecraft/mods folder delete them after extracting the sound file. In the minecraft/mods folder only the chococraft_x.x.x_zip file should stay.)
+[spoiler]1. Install the latest Forge by following the instructions found on the Forge page. The link can be found above the link to this mod near the top of this page.
+2. With Forge installed, put the ChocoCraft .zip file in your minecraft "mods" folder (in zipped form, not extracted!).
+3. Extract the zip into a different folder and get the file choco_kweh.ogg from /resources/sounds and put it into the folder minecraft/resources/mod/. (The other extracted files from the zip won't be needed anymore and can be deleted. Do not delete the zip in the minecraft/mods folder, or if you have extracted the files into the minecraft/mods folder delete them after extracting the sound file. In the minecraft/mods folder only the chococraft_x.x.x_zip file should stay.)
 
 controlling mod loading sequence:
 [spoiler]Certain mods can interact with ChocoCraft, but you have to make sure they are loaded in the mod loading sequence before ChocoCraft. For example Chocobos can spawn in the biomes provided by the [url="http://www.minecraftforum.net/topic/1090288-142-extrabiomesxl-330/page__hl__%20xlbiomes"]extrabiomesxl[/url] mod, if the respective names are added in the chocobo config file. But for that to work, the biomesxl mod has to be loaded before ChocoCraft by the Forge modloader.

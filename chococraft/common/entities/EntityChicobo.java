@@ -278,7 +278,7 @@ public class EntityChicobo extends EntityAnimalChocobo
 			ItemStack itemstack = entityplayer.inventory.getCurrentItem();
 			if(itemstack != null)
 			{
-				if (itemstack.itemID == ModChocoCraft.chocoboCakeItem.shiftedIndex)
+				if (itemstack.itemID == ModChocoCraft.gysahlCakeItem.shiftedIndex)
 				{
 					this.onGysahlCakeUse(entityplayer);
 					interacted = true;
@@ -337,7 +337,7 @@ public class EntityChicobo extends EntityAnimalChocobo
 	{
 		if (this.isTamed())
 		{
-			this.toggleFollow();
+			this.toggleFollowWanderStay();
 		}
 		else
 		{

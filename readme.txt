@@ -1,4 +1,4 @@
-This is the official version of Torojimas Chococraft v2.3.2 for usage with minecraft 1.4.5. Chococraft has been originally created by EddieV and is now refactored and officially maintained by Torojima.
+This is the official version of Torojimas Chococraft v2.3.4 for usage with minecraft 1.4.5. Chococraft has been originally created by EddieV and is now refactored and officially maintained by Torojima.
 
 This mod adds a mob called Chocobo to the game. This includes different coloured mob types with different attributes in their grown-up and juvenile form.
 
@@ -10,12 +10,11 @@ ACHTUNG! CAUTION! ¡CUIDADO! चेतावनी! ATTENZIONE! береги́с
 This version of Chococraft is not compatible to versions pre 1.3.2. It will destroy your saved world if old Chocobos are included. Thus, if you want to use an old world with the new version of this mod, you should first start minecraft without the Chococraft mod, enter and save your world, thus removing all traces of older versions of Chococraft and only then start minecraft with the new version of Chococraft and tame new Chocobos.
 
 Changelog:
-1. added water speed factor
-2. added rider abilities
-3. enabled purple chocobo (but not spawning)
-4. fixed server crash
+1. Chocobo pen healing Chocobos
+2. right click with silk for follow/stay toggle
+3. changed name of Chocobo Cake to Gysahl Cake
 
 see the minecraft forums for further informations
-http://www.minecraftforum.net/topic/1119809-132forge-torojimas-chococraft-200-former-eddievs-chococraft/
+http://www.minecraftforum.net/topic/1119809-145sspsmpforge-torojimas-chococraft-233-explore-your-worlds-riding-chocobos/
 
 Torojima

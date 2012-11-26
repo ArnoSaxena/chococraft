@@ -19,6 +19,7 @@ import java.io.DataInputStream;
 
 import chococraft.common.network.clientSide.PacketChicoboCanGrowUp;
 import chococraft.common.network.clientSide.PacketChocoboHealth;
+import chococraft.common.network.clientSide.PacketChocoboParticles;
 import chococraft.common.network.clientSide.PacketChocoboTamed;
 import chococraft.common.network.serverSide.PacketChocoboAttribute;
 import chococraft.common.network.serverSide.PacketChocoboDropGear;
@@ -70,6 +71,10 @@ public class ChocoboPacketHandler implements IPacketHandler
 			else if(packetId == PacketChocobo.PID_CHIGROWUP)
 			{
 				PacketChicoboCanGrowUp.handleUpdate(data, player);
+			}
+			else if(packetId == PacketChocobo.PID_PARTICLES)
+			{
+				PacketChocoboParticles.handleUpdate(data, player);
 			}
 		}
 		catch (Exception ex)
