@@ -68,7 +68,11 @@ Thanks to InTheLittleWood[/spoiler][/spoiler]
 CHANGELOG:
 [spoiler]
 v.2.3.4 by Torojima
-
+   1. Chicobos can swim
+   2. Chocobo items as dungeon loot
+   3. "random love rush" bug fixed
+   4. straw will break if supporting block is removed
+   5. hearts particles show on straw healing
 
 v.2.3.4 by Torojima
    1. Chocobo pen healing Chocobos
