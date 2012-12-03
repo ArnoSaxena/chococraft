@@ -27,6 +27,7 @@ public abstract class PacketChocobo
 	public static int PID_TAMED      = 5;
 	public static int PID_CHIGROWUP  = 6;
 	public static int PID_PARTICLES  = 7;
+	public static int PID_SETINLOVE  = 8;
 	
 	protected Packet250CustomPayload packet = null;
 	

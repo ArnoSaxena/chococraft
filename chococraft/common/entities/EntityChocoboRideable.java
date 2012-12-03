@@ -471,7 +471,10 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo
 
 	public void injectInventory(ChocoBagInventory inventory)
 	{
-		this.bagsInventory = inventory;
+		if(inventory != null)
+		{
+			this.bagsInventory = inventory;
+		}
 	}	
 	
 	public Boolean isSaddleBagged()

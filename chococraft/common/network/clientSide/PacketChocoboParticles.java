@@ -22,7 +22,7 @@ public class PacketChocoboParticles extends PacketChocoboClient
 		try
 		{
 			outputStream.writeInt(PID_PARTICLES);
-			outputStream.write(chocobo.entityId);
+			outputStream.writeInt(chocobo.entityId);
 			outputStream.writeUTF(particleName);
 			outputStream.writeInt(chocobo.worldObj.getWorldInfo().getDimension());
 		}
@@ -46,6 +46,7 @@ public class PacketChocoboParticles extends PacketChocoboClient
 				String particleName = inputStream.readUTF();
 				int dimension = inputStream.readInt();
 				EntityAnimalChocobo chocobo = getChocoboByID(entityId, dimension);
+				
 				if(null != chocobo)
 				{
 					ChocoboParticleHelper.showParticleAroundEntityFx(particleName, chocobo);

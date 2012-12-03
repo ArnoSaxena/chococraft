@@ -62,24 +62,43 @@ public class BlockStraw extends Block
         this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, var6, 1.0F);
     }
 
+    
+    public void onNeighborBlockChange(World world, int posX, int posY, int posZ, int par5)
+    {
+        this.canStrawStay(world, posX, posY, posZ);
+    }
+    
+    private boolean canStrawStay(World world, int posX, int posY, int posZ)
+    {
+        if (!this.canPlaceBlockAt(world, posX, posY, posZ))
+        {
+            world.setBlockWithNotify(posX, posY, posZ, 0);
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+    
     /**
      * Checks to see if its valid to put this block at the specified coordinates. Args: world, x, y, z
      */
-    public boolean canPlaceBlockAt(World par1World, int par2, int par3, int par4)
+    public boolean canPlaceBlockAt(World world, int posX, int posY, int posZ)
     {
-        int var5 = par1World.getBlockId(par2, par3 - 1, par4);
-        Block block = Block.blocksList[var5];
-        return block != null && (block.isLeaves(par1World, par2, par3 - 1, par4) || Block.blocksList[var5].isOpaqueCube()) ? par1World.getBlockMaterial(par2, par3 - 1, par4).blocksMovement() : false;
+        int atBlockId = world.getBlockId(posX, posY - 1, posZ);
+        Block block = Block.blocksList[atBlockId];
+        return block != null && (Block.blocksList[atBlockId].isOpaqueCube()) ? world.getBlockMaterial(posX, posY - 1, posZ).blocksMovement() : false;
     }
 
     /**
      * Called when the player destroys a block with an item that can harvest it. (i, j, k) are the coordinates of the
      * block and l is the block's subtype/damage.
      */
-    public void harvestBlock(World par1World, EntityPlayer par2EntityPlayer, int par3, int par4, int par5, int par6)
+    public void harvestBlock(World world, EntityPlayer player, int posX, int posY, int posZ, int blockDamage)
     {
-        super.harvestBlock(par1World, par2EntityPlayer, par3, par4, par5, par6);
-        par1World.setBlockWithNotify(par3, par4, par5, 0);
+        super.harvestBlock(world, player, posX, posY, posZ, blockDamage);
+        world.setBlockWithNotify(posX, posY, posZ, 0);
     }
 
     /**

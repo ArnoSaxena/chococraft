@@ -48,7 +48,19 @@ public class EntityChicobo extends EntityAnimalChocobo
 		this.canFly = false;
 		this.canClimb = false;
 		this.setGrowingAge(this.getTimeUntilAdult());
+		
+//        this.tasks.addTask(this.taskNumber++, new EntityAISwimming(this));
+//        this.tasks.addTask(this.taskNumber++, new EntityAIChocoboFollowOwner(this, 64.0F));
+//        this.tasks.addTask(this.taskNumber++, new EntityAIPanic(this, 0.38F));
+//        this.tasks.addTask(this.taskNumber++, new EntityAIWander(this, 0.25F));
+//        this.tasks.addTask(this.taskNumber++, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
+//        this.tasks.addTask(this.taskNumber++, new EntityAILookIdle(this));
 	}
+	
+    public boolean isAIEnabled()
+    {
+        return false;
+    }
 
 	public void setColor(chocoboColor color)
 	{
@@ -226,15 +238,13 @@ public class EntityChicobo extends EntityAnimalChocobo
 				this.lastTickPosX = this.posX;
 				this.lastTickPosY = this.posY;
 				this.lastTickPosZ = this.posZ;
-				EntityChocobo entitychocobo = FactoryEntityChocobo.createChocobo(this.worldObj, this.color, this.getName(), this.getOwnerName(), this.isHidename(), this.isTamed(), this.isFollowing(), this.isMale());
-				entitychocobo.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, 0.0F);
-				entitychocobo.setGrowingAge(6000);
-				this.worldObj.spawnEntityInWorld(entitychocobo);
-				// TODO: send particle order to clients
-//				for (int i = 0; i < 20; i++)
-//				{
-//					ChocoboClientHelper.showParticleAroundEntityFx("explode", this);
-//				}
+				EntityChocobo grownUpChocobo = FactoryEntityChocobo.createChocobo(this.worldObj, this.color, this.getName(), this.getOwnerName(), this.isHidename(), this.isTamed(), this.isFollowing(), this.isMale());
+				grownUpChocobo.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, 0.0F);
+				grownUpChocobo.setGrowingAge(6000);
+				grownUpChocobo.setFollowing(this.isFollowing());
+				grownUpChocobo.setWander(this.isWander());
+				this.worldObj.spawnEntityInWorld(grownUpChocobo);
+				this.sendParticleUpdate("explode", grownUpChocobo);
 				this.setEntityHealth(0);
 				this.setDead();
 				this.growUp = false;
@@ -352,36 +362,45 @@ public class EntityChicobo extends EntityAnimalChocobo
 
 	public void updateEntityActionState()
 	{
-		if (!this.worldObj.playerEntities.isEmpty())
+		if (!this.hasPath() && this.isFollowing() && this.isTamed())
 		{
-			EntityPlayer entityplayer = (EntityPlayer)this.worldObj.playerEntities.get(0);
-			if (!this.hasPath() && this.isTamed() && this.isFollowing())
+			EntityPlayer owner = this.getOwner();
+
+			if (owner != null)
 			{
-				if (entityplayer != null)
+				if (owner.isDead)
 				{
-					if (entityplayer.isDead)
+					this.setFollowing(false);
+					this.setWander(false);
+					this.setStepHeight(false);
+					return;
+				}
+				float distanceToOwner = owner.getDistanceToEntity(this);
+				if (distanceToOwner > 10F)
+				{
+					this.getPathOrWalkableBlock(owner, distanceToOwner);
+				}
+				else
+				{
+					super.updateEntityActionState();
+					if(this.isInWater())
 					{
-						this.setFollowing(false);
-						this.setWander(false);
-						return;
+						this.motionY = 0.1D;
+						this.setJumping(true);
 					}
-					float distance = entityplayer.getDistanceToEntity(this);
-					if (distance > 4F)
-					{
-						this.getPathOrWalkableBlock(entityplayer, distance);
-					}
-					else
-					{
-						super.updateEntityActionState();
-						return;
-					}
+					return;
 				}
 			}
-			else
+		}
+		else
+		{
+			super.updateEntityActionState();
+			if(this.isInWater())
 			{
-				super.updateEntityActionState();
-				return;
+				this.motionY = 0.1D;
+				this.setJumping(true);
 			}
+			return;
 		}
 	}
 

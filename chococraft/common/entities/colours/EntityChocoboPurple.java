@@ -17,6 +17,9 @@ package chococraft.common.entities.colours;
 import com.google.common.io.ByteArrayDataInput;
 import com.google.common.io.ByteArrayDataOutput;
 
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.Side;
+
 import chococraft.common.Constants;
 import chococraft.common.ModChocoCraft;
 import chococraft.common.entities.EntityAnimalChocobo;
@@ -203,17 +206,20 @@ public class EntityChocoboPurple extends EntityChocobo
 	// purple special
 	public void procreate(EntityAnimalChocobo otherParent)
 	{
-		this.setGrowingAge(9000);
-		otherParent.setGrowingAge(9000);
-		this.setInLove(false);
-		otherParent.setInLove(false);
-		this.breeding = 0;
-		otherParent.breeding = 0;
-		this.entityToAttack = null;
-		otherParent.entityToAttack = null;
+		if(Side.SERVER == FMLCommonHandler.instance().getEffectiveSide())
+		{
+			this.setGrowingAge(9000);
+			otherParent.setGrowingAge(9000);
+			this.setInLove(false);
+			otherParent.setInLove(false);
+			this.breeding = 0;
+			otherParent.breeding = 0;
+			this.entityToAttack = null;
+			otherParent.entityToAttack = null;
 
-		//TODO: implement netherChocoboboEggItem
-		//dropItem(ModChocoCraft.netherChocoboEggItem.shiftedIndex, 1);
+			//TODO: implement netherChocoboboEggItem
+			//dropItem(ModChocoCraft.netherChocoboEggItem.shiftedIndex, 1);
+		}
 	}
 
 	public EntityChicobo spawnBabyAnimal(EntityAnimalChocobo entityanimalchoco)

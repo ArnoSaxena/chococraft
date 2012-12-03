@@ -365,7 +365,7 @@ public class ChocoboConfig
 			
 			writer.write("\n");
 			writer.write(getCommentLine("Whenever a hurt Chocobo is standing on straw less than " + CFG_KEY_PEN_HEAL_CAULDRON_RANGE + " blocks away from"));
-			writer.write(getCommentLine("a filled cauldron, it has a" + CFG_KEY_PEN_HEAL_PROBABILITY +" chance every 5 seconds to heal one health point."));
+			writer.write(getCommentLine("a filled cauldron, it has a" + CFG_KEY_PEN_HEAL_PROBABILITY +" chance every 2 seconds to heal one health point."));
 			writer.write(getConfigLine(CFG_KEY_PEN_HEAL_PROBABILITY, Integer.toString(Constants.DEFAULT_PEN_HEAL_PROBABILITY)));
 			writer.write(getConfigLine(CFG_KEY_PEN_HEAL_CAULDRON_RANGE, Integer.toString(Constants.DEFAULT_PEN_HEAL_CAULDRON_RANGE)));
 			

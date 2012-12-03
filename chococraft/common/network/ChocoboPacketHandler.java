@@ -17,14 +17,8 @@ package chococraft.common.network;
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 
-import chococraft.common.network.clientSide.PacketChicoboCanGrowUp;
-import chococraft.common.network.clientSide.PacketChocoboHealth;
-import chococraft.common.network.clientSide.PacketChocoboParticles;
-import chococraft.common.network.clientSide.PacketChocoboTamed;
-import chococraft.common.network.serverSide.PacketChocoboAttribute;
-import chococraft.common.network.serverSide.PacketChocoboDropGear;
-import chococraft.common.network.serverSide.PacketChocoboMount;
-import chococraft.common.network.serverSide.PacketChocoboRiderJump;
+import chococraft.common.network.clientSide.*;
+import chococraft.common.network.serverSide.*;
 import net.minecraft.src.INetworkManager;
 import net.minecraft.src.Packet250CustomPayload;
 import cpw.mods.fml.common.network.IPacketHandler;
@@ -75,6 +69,10 @@ public class ChocoboPacketHandler implements IPacketHandler
 			else if(packetId == PacketChocobo.PID_PARTICLES)
 			{
 				PacketChocoboParticles.handleUpdate(data, player);
+			}
+			else if(packetId == PacketChocobo.PID_SETINLOVE)
+			{
+				PacketChocoboSetInLove.handleUpdate(data, player);
 			}
 		}
 		catch (Exception ex)

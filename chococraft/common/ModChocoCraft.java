@@ -26,6 +26,7 @@ import net.minecraft.src.ItemSeeds;
 import net.minecraft.src.ItemStack;
 
 import net.minecraftforge.common.Configuration;
+import net.minecraftforge.common.DungeonHooks;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.Property;
 
@@ -207,7 +208,7 @@ public class ModChocoCraft
 		this.addChocoboSpawns();
 
 		GameRegistry.registerWorldGenerator(new WorldGenGysahls());
-
+		
 		proxy.registerRenderThings();
 
 		NetworkRegistry.instance().registerGuiHandler(this, new ChocoboGuiHandler());
@@ -292,6 +293,7 @@ public class ModChocoCraft
 		LanguageRegistry.addName(chocopediaItem, "Chocopedia");
 		chocopediaItem.setCreativeTab(CreativeTabs.tabTools);
 		//chocopediaItem.setCreativeTab(chocoboCreativeItems);
+		DungeonHooks.addDungeonLoot(new ItemStack(chocopediaItem), 1, 1, 1);
 
 		// Chocobo Feather
 		chocoboFeatherItem = (new ChocoboItem(Integer.parseInt(chocoboFeatherId.value))).setItemName("chocoboFeather").setMaxStackSize(64);
@@ -299,7 +301,9 @@ public class ModChocoCraft
 		LanguageRegistry.addName(chocoboFeatherItem, "Chocobo Feather");
 		chocoboFeatherItem.setCreativeTab(CreativeTabs.tabMaterials);
 		//chocoboFeatherItem.setCreativeTab(chocoboCreativeItems);
+		DungeonHooks.addDungeonLoot(new ItemStack(chocoboFeatherItem), 10, 5, 15);
 
+		
 		// riding gear
 		// Chocobo Saddle
 		chocoboSaddleItem = (new ChocoboItem(Integer.parseInt(chocoboSaddleId.value))).setItemName("chocoboSaddle").setMaxStackSize(5);
@@ -344,6 +348,7 @@ public class ModChocoCraft
 		LanguageRegistry.addName(gysahlGoldenItem, "Golden Gysahl");
 		gysahlGoldenItem.setCreativeTab(CreativeTabs.tabMisc);
 		//gysahlGoldenItem.setCreativeTab(chocoboCreativeItems);
+		DungeonHooks.addDungeonLoot(new ItemStack(gysahlGoldenItem), 1, 2, 8);
 
 		// Pink Gysahl
 		gysahlPinkItem = (new ChocoboItem(Integer.parseInt(gysahlPinkId.value))).setItemName("gysahlPink").setMaxStackSize(64);

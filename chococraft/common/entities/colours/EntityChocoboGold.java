@@ -189,7 +189,9 @@ public class EntityChocoboGold extends EntityChocobo
 			entitychocobo.setSaddled(this.isSaddled());
 			entitychocobo.setSaddleBagged(this.isSaddleBagged());
 			entitychocobo.setPackBagged(this.isPackBagged());
-			//entitychocobo.injectInventory(this.bagsInventory);
+			entitychocobo.setWander(this.isWander());
+			entitychocobo.setFollowing(this.isFollowing());
+			entitychocobo.injectInventory(this.bagsInventory);
 			worldObj.spawnEntityInWorld(entitychocobo);
 			health = 0;
 			this.setDead();

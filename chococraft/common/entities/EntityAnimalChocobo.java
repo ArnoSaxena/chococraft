@@ -28,12 +28,14 @@ import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
 
 import chococraft.common.*;
 import chococraft.common.gui.GuiStarter;
+import chococraft.common.helper.ChocoboMathHelper;
 import chococraft.common.helper.ChocoboParticleHelper;
 import chococraft.common.network.clientSide.PacketChocoboHealth;
 import chococraft.common.network.clientSide.PacketChocoboParticles;
 import chococraft.common.network.clientSide.PacketChocoboTamed;
 import chococraft.common.network.serverSide.PacketChocoboAttribute;
 import chococraft.common.network.serverSide.PacketChocoboRiderJump;
+import chococraft.common.network.serverSide.PacketChocoboSetInLove;
 import net.minecraft.src.Block;
 import net.minecraft.src.DamageSource;
 import net.minecraft.src.Entity;
@@ -115,7 +117,6 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
 		super.writeEntityToNBT(nbttagcompound);
 		nbttagcompound.setString("Name", this.getName());
 		nbttagcompound.setInteger("Age", this.getGrowingAge());
-		nbttagcompound.setInteger("InLove", this.inLove);
 		nbttagcompound.setBoolean("isMale", this.isMale());
 		nbttagcompound.setBoolean("Follow", this.isFollowing());
 		nbttagcompound.setBoolean("hidename", this.isHidename());
@@ -128,7 +129,6 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
         this.setName(nbttagcompound.getString("Name"));
         this.setGrowingAge(nbttagcompound.getInteger("Age"));
         this.setHidename(nbttagcompound.getBoolean("hidename"));
-        this.inLove = nbttagcompound.getInteger("InLove");
         this.setFollowing(nbttagcompound.getBoolean("Follow"));
         this.setIsMale(nbttagcompound.getBoolean("isMale"));
         this.setTamed(nbttagcompound.getBoolean("tamed"));
@@ -181,6 +181,27 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
         	this.dataWatcher.updateObject(Constants.DW_ID_EAC_NAME, name);
     	}
     	return name;
+    }
+    
+
+	public boolean isInLove()
+    {
+        return (this.dataWatcher.getWatchableObjectByte(Constants.DW_ID_EAC_FLAGS) & Constants.DW_VAL_EAC_INLOVE_ON) != 0;
+    }
+    
+    public void setInLove(boolean inLove)
+    {
+        byte eacFlags = this.dataWatcher.getWatchableObjectByte(Constants.DW_ID_EAC_FLAGS);
+
+        if (inLove)
+        {
+            this.dataWatcher.updateObject(Constants.DW_ID_EAC_FLAGS, Byte.valueOf((byte)(eacFlags | Constants.DW_VAL_EAC_INLOVE_ON)));
+        }
+        else
+        {
+            this.dataWatcher.updateObject(Constants.DW_ID_EAC_FLAGS, Byte.valueOf((byte)(eacFlags & Constants.DW_VAL_EAC_INLOVE_OFF)));
+        }
+        this.sendSetInLoveUpdate();
     }
     
     public boolean isMale()
@@ -348,8 +369,7 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
 							{
 								this.heal(this.rand.nextInt(3) + 1);
 								this.sendHealthUpdate();
-								this.sendParticleUpdate("heart");
-								// TODO: send heart particle update to client
+								this.sendParticleUpdate("heart", this);
 							}
 						}
 					}
@@ -409,23 +429,6 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
 		}
 		return false;
 	}
-
-	public boolean isInLove()
-    {
-    	return this.inLove == 1;
-    }
-    
-    public void setInLove(boolean inLove)
-    {
-    	if(inLove)
-    	{
-    		this.inLove = 1;
-    	}
-    	else
-    	{
-    		this.inLove = 0;
-    	}
-    }
 
     public boolean interact(EntityPlayer entityplayer)
     {
@@ -572,8 +575,8 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
     			babyChicobo.setLocationAndAngles(posX, posY, posZ, rotationYaw, rotationPitch);
     			this.worldObj.spawnEntityInWorld(babyChicobo);
 
-    			this.setGrowingAge(9000);
-    			otherParent.setGrowingAge(9000);
+    			this.setGrowingAge(this.isMale() ? 3000 : 9000);
+    			otherParent.setGrowingAge(otherParent.isMale() ? 3000 : 9000);
     			this.entityToAttack = null;
     			otherParent.entityToAttack = null;
     			this.breeding = 0;
@@ -650,7 +653,7 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
             return null;
         }
         
-        if (this.isInLove() || getGrowingAge() > 0)
+        if (this.isInLove() && !this.isChild())
         {
             List list = this.worldObj.getEntitiesWithinAABB(EntityChocobo.class, this.boundingBox.expand(8F, 8F, 8F));
             for (int i = 0; i < list.size(); i++)
@@ -661,8 +664,7 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
                 {
                 	boolean canMate = otherChoco.isInLove() && otherChoco.isMale() != this.isMale();
                 	
-                	// what's with the otherChoco.getGrowingAge stuff???
-                	if(canMate || otherChoco.getGrowingAge() < 0)
+                	if(canMate && !otherChoco.isChild())
                 	{
                 		return otherChoco;
                 	}
@@ -680,11 +682,54 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
     
     public boolean getCanSpawnHere()
     {
-        int x = MathHelper.floor_double(posX);
-        int y = MathHelper.floor_double(boundingBox.minY);
-        int z = MathHelper.floor_double(posZ);        
+        int x = MathHelper.floor_double(this.posX);
+        int y = MathHelper.floor_double(this.boundingBox.minY);
+        int z = MathHelper.floor_double(this.posZ);        
         Boolean isPosPathWeight = getBlockPathWeight(x, y, z) >= 0.0F;
         return  isPosPathWeight && super.getCanSpawnHere();
+    }
+    
+    public boolean canTeleportToLoc(int x, int y, int z)
+    {
+    	boolean belowIsSolid    = this.worldObj.doesBlockHaveSolidTopSurface(x, y - 1, z);
+    	boolean blockIsEmpty    = !this.worldObj.isBlockNormalCube(x, y, z);
+    	boolean aboveIsEmpty    = !this.worldObj.isBlockNormalCube(x, y + 1, z);
+    	boolean twoAboveIsEmpty = !this.worldObj.isBlockNormalCube(x, y + 2, z);
+    	return belowIsSolid && blockIsEmpty && aboveIsEmpty && twoAboveIsEmpty;
+    }
+    
+    public boolean teleportToOwner()
+    {
+    	if(this.getOwner() != null)
+    	{
+    		int ownerPosX = MathHelper.floor_double(this.getOwner().posX) - 2;
+    		int ownerPosZ = MathHelper.floor_double(this.getOwner().posZ) - 2;
+    		int ownerPosY = MathHelper.floor_double(this.getOwner().boundingBox.minY);
+
+    		for (int xOffset = 0; xOffset <= 4; ++xOffset)
+    		{
+    			for (int yOffset = 0; yOffset <= 4; ++yOffset)
+    			{
+    				if ((xOffset < 1 || yOffset < 1 || xOffset > 3 || yOffset > 3))
+    				{
+    					int xTele = ownerPosX + xOffset;
+    					int yTele = ownerPosY;
+    					int zTele = ownerPosZ + yOffset;
+    					
+    					if(this.canTeleportToLoc(xTele, yTele, zTele))
+    					{
+    						double finXTele = (double)xTele + 0.5D;
+    						double finYTele = (double)yTele;
+    						double finZTele = (double)zTele + 0.5D;    						
+    						this.setLocationAndAngles(finXTele, finYTele, finZTele, this.rotationYaw, this.rotationPitch);
+    						this.getNavigator().clearPathEntity();
+    						return true;
+    					}
+    				}		
+    			}
+    		}
+    	}
+    	return false;
     }
 
     public int getTalkInterval()
@@ -720,7 +765,7 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
 
 	public boolean isChild()
     {
-        return getGrowingAge() < 0;
+		return this instanceof EntityChicobo;
     }
     
     protected void fall(float fallHeight)
@@ -894,14 +939,9 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
             this.moveForward = this.moveSpeed;
             for (; f3 < -180F; f3 += 360F) { }
             for (; f3 >= 180F; f3 -= 360F) { }
-            if (f3 > 30F)
-            {
-                f3 = 30F;
-            }
-            if (f3 < -30F)
-            {
-                f3 = -30F;
-            }
+            
+            ChocoboMathHelper.clamp(f3, -30F, 30F);
+            
             this.rotationYaw += f3;
             if (this.hasAttacked && this.entityToAttack != null)
             {
@@ -918,14 +958,17 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
             	this.isJumping = true;
             }
         }
+
         if (this.entityToAttack != null)
         {
         	this.faceEntity(this.entityToAttack, 30F, 30F);
         }
+        
         if (this.isCollidedHorizontally && !this.hasPath())
         {
         	this.isJumping = true;
         }
+        
         if (this.rand.nextFloat() < 0.8F && (this.isInWater() || this.handleLavaMovement()))
         {
         	this.isJumping = true;
@@ -1015,15 +1058,22 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
 		}		
 	}
 	
-	protected void sendParticleUpdate(String particleName)
+	protected void sendParticleUpdate(String particleName, EntityAnimalChocobo chocobo)
 	{
 		if (Side.SERVER == FMLCommonHandler.instance().getEffectiveSide())
 		{
-			PacketChocoboParticles packet = new PacketChocoboParticles(this, particleName);
-			int dimension = this.worldObj.getWorldInfo().getDimension();
-			PacketDispatcher.sendPacketToAllAround(this.lastTickPosX, this.lastTickPosY, this.lastTickPosZ, 16*5, dimension, packet.getPacket());
+			PacketChocoboParticles packet = new PacketChocoboParticles(chocobo, particleName);
+			int dimension = chocobo.worldObj.getWorldInfo().getDimension();
+			PacketDispatcher.sendPacketToAllAround(chocobo.lastTickPosX, chocobo.lastTickPosY, chocobo.lastTickPosZ, 16*5, dimension, packet.getPacket());
 		}		
 	}
-
-
+	
+	protected void sendSetInLoveUpdate()
+	{
+		if(Side.CLIENT == FMLCommonHandler.instance().getEffectiveSide())
+		{
+			PacketChocoboSetInLove packet = new PacketChocoboSetInLove(this);
+			PacketDispatcher.sendPacketToServer(packet.getPacket());			
+		}
+	}
 }

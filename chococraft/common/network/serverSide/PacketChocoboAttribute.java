@@ -67,10 +67,10 @@ public class PacketChocoboAttribute extends PacketChocoboServer
 				EntityAnimalChocobo chocobo = getChocoboByID(chocoboId, dimension);
 				if(null != chocobo)
 				{
-					chocobo.setName(chocoboName);
 					chocobo.setHidename(hidename);
 					chocobo.setFollowing(following);
 					chocobo.setWander(wander);
+					chocobo.setName(chocoboName);
 				}
 			}
 			catch(IOException e)

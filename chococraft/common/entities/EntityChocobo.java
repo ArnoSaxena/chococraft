@@ -325,8 +325,7 @@ public abstract class EntityChocobo extends EntityChocoboRideable
             // do we have an attack entity?
             if (this.entityToAttack != null)
             {
-        		Side side = FMLCommonHandler.instance().getEffectiveSide();
-        		if (side == Side.CLIENT)
+        		if (Side.CLIENT == FMLCommonHandler.instance().getEffectiveSide())
         		{
         			ChocoboParticleHelper.showParticleAroundEntityFx("heart", this);
         		}

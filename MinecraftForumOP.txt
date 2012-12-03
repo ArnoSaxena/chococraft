@@ -1,7 +1,7 @@
 [img]http://www.arno-saxena.de/pictures/chococraft/banner_title.png[/img]
 
 UPDATED FOR MINECRAFT 1.4.5
-Version 2.3.4
+Version 2.3.5
 Requires: [url="http://www.minecraftforge.net/"]Forge[/url] [url="http://files.minecraftforge.net/"]6.4.0.394+[/url]
 
 This Mod is the continuation of [url="http://www.minecraftforum.net/user/1051245-eddiev/"]EddieV's[/url] mod. The original thread can be found [url="http://www.minecraftforum.net/topic/952372-chococraft-12-mc-11-chocobos-now-fly/"]here[/url]. I've officially taken over the helm with Eddie's kind blessings.
@@ -17,7 +17,7 @@ As of version 2.0.4 this mod is in working condition for SMP.
 [color=#ff0000][b]ACHTUNG! CAUTION! ¡CUIDADO! चेतावनी! ATTENZIONE! береги́сь!
 This version of Chococraft is not compatible to versions pre 2.0.0 (pre mc 1.3.2). It will destroy your saved world if old Chocobos are included. Thus, if you want to use an old world with the new version of this mod, you should first start minecraft without the Chococraft mod, enter and save your world, thus removing all traces of older versions of Chococraft and only then start minecraft with the new version of Chococraft and tame new Chocobos.[/b][/color]
 
-Download: [url="http://www.arno-saxena.de/minecraft/Chococraft_2.3.4.zip"]Torojimas ChocoCraft 2.3.4[/url]
+Download: [url="http://www.arno-saxena.de/minecraft/Chococraft_2.3.5.zip"]Torojimas ChocoCraft 2.3.5[/url]
 
 Downloads so far: [img]http://www.arno-saxena.de/minecraft/chocoboDownloads.png[/img]
 
@@ -67,6 +67,9 @@ Thanks to InTheLittleWood[/spoiler][/spoiler]
 
 CHANGELOG:
 [spoiler]
+v.2.3.4 by Torojima
+
+
 v.2.3.4 by Torojima
    1. Chocobo pen healing Chocobos
    2. right click with silk for follow/stay toggle
@@ -354,7 +357,7 @@ What happens when a Chocobo is saddled?
 Screenshot by [url="http://www.minecraftforum.net/user/173045-torojima/"]Torojima[/url]
 
    1. the Chocobo will stay where left (will follow again if set in Chocopedia)
-   2. can be ridden by right-clicking on it
+   2. can be ridden by right-clicking on it (hold shift for slower manoeuvring fast Chocobos.)
    3. can be equipted with saddle bags by left-clicking with one
    4. can drop its saddle by clicking on "drop gear" in Chocopedia
 
@@ -480,11 +483,11 @@ Recipes:
 
       [img]http://www.arno-saxena.de/pictures/chococraft/crafting_chocopedia.png[/img]
 
-  11. [img]http://www.arno-saxena.de/pictures/chococraft/item_arrow.png[/img] Arrow = 1 Flint, 1 Stick and 1 Chocobo Feather
+  11. [img]http://www.arno-saxena.de/pictures/chococraft/item_arrow.png[/img] 4 Arrows = 1 Flint, 1 Stick and 1 Chocobo Feather
 
       [img]http://www.arno-saxena.de/pictures/chococraft/crafting_arrow.png[/img]
 
-  12. [img]http://www.arno-saxena.de/pictures/chococraft/item_straw.png[/img] Straw = 4 Wheat
+  12. [img]http://www.arno-saxena.de/pictures/chococraft/item_straw.png[/img] 4 Straw = 1 Wheat
 
       [img]http://www.arno-saxena.de/pictures/chococraft/crafting_straw.png[/img]
 [/spoiler]
@@ -525,13 +528,11 @@ Chocobo Names:
 
 Chocopedia:
 [img]http://www.arno-saxena.de/pictures/chococraft/pic_chocobo_gui.png[/img]
-Screenshot by [url="http://www.minecraftforum.net/user/1099767-poloniumradon/"]PoloniumRadon[/url][/spoiler]
+Screenshot by [url="http://www.minecraftforum.net/user/1099767-poloniumradon/"]PoloniumRadon[/url]
 
 Straw in pen:
 [img]http://www.arno-saxena.de/pictures/chococraft/pic_straw_in_pen.png[/img]
-Screenshot by [url="http://www.minecraftforum.net/user/173045-torojima/"]Torojima[/url]
-
-NOTES:
+Screenshot by [url="http://www.minecraftforum.net/user/173045-torojima/"]Torojima[/url][/spoiler]
 
 Known Issues and Bugs:
 [spoiler]   1. Chocobos love to stare in the face of people. It's not as much dangerous as it is creepy.
