@@ -15,6 +15,7 @@
 package chococraft.common.entities;
 
 import java.util.List;
+
 import com.google.common.io.ByteArrayDataInput;
 import com.google.common.io.ByteArrayDataOutput;
 
@@ -49,11 +50,13 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo
 	protected boolean isHighJumping;
 
 	protected ChocoBagInventory bagsInventory;    
+	protected ChocoboRiderList riderList;
 
 	public EntityChocoboRideable(World world)
 	{
 		super(world);
 		this.ignoreFrustumCheck = true;
+		this.riderList = new ChocoboRiderList();
 	}
 
 	protected void entityInit()
@@ -77,6 +80,10 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo
 		{
 			nbttagcompound.setTag("SaddleBagInventory", this.bagsInventory.writeToNBT(new NBTTagList()));
 		}
+		if(null != this.riderList)
+		{
+			nbttagcompound.setTag("riderList", this.riderList.writeToNBT(new NBTTagList()));
+		}
 	}
 
 	public void readEntityFromNBT(NBTTagCompound nbttagcompound)
@@ -89,6 +96,10 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo
 		if(nbttagcompound.hasKey("SaddleBagInventory") && null != this.bagsInventory)
 		{
 			this.bagsInventory.readFromNBT(nbttagcompound.getTagList("SaddleBagInventory"));
+		}
+		if(nbttagcompound.hasKey("riderList") && null != this.riderList)
+		{
+			this.riderList.readFromNBT(nbttagcompound.getTagList("riderList"));
 		}
 	}    
 
