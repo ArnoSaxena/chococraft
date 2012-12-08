@@ -27,81 +27,81 @@ import chococraft.common.entities.EntityChicobo;
 
 public class GuiNameChocobo extends GuiScreen
 {
-    private GuiTextField theGuiTextField;
-    private final EntityAnimalChocobo chocobo;
-    private GuiScreen parentGuiScreen;
+	private GuiTextField theGuiTextField;
+	private final EntityAnimalChocobo chocobo;
+	private GuiScreen parentGuiScreen;
 
-    public GuiNameChocobo(GuiScreen guiscreen, EntityAnimalChocobo entitychocobo)
-    {
-        chocobo = entitychocobo;
-        parentGuiScreen = guiscreen;
-    }
+	public GuiNameChocobo(GuiScreen guiscreen, EntityAnimalChocobo entitychocobo)
+	{
+		this.chocobo = entitychocobo;
+		this.parentGuiScreen = guiscreen;
+	}
 
-    public void updateScreen()
-    {
-        theGuiTextField.updateCursorCounter();
-    }
+	public void updateScreen()
+	{
+		this.theGuiTextField.updateCursorCounter();
+	}
 
-    @SuppressWarnings("unchecked")
+	@SuppressWarnings("unchecked")
 	public void initGui()
-    {
-        StringTranslate stringtranslate = StringTranslate.getInstance();
-        Keyboard.enableRepeatEvents(true);
-        controlList.clear();
-        controlList.add(new GuiButton(0, width / 2 - 100, height / 4 + 96 + 12, stringtranslate.translateKey("Accept")));
-        controlList.add(new GuiButton(1, width / 2 - 100, height / 4 + 120 + 12, stringtranslate.translateKey("gui.cancel")));
-        theGuiTextField = new GuiTextField(fontRenderer, width / 2 - 100, 60, 200, 20);
-        theGuiTextField.setText(chocobo.getName());
-        theGuiTextField.setFocused(true);
-        theGuiTextField.setMaxStringLength(20);
-    }
+	{
+		StringTranslate stringtranslate = StringTranslate.getInstance();
+		Keyboard.enableRepeatEvents(true);
+		this.controlList.clear();
+		this.controlList.add(new GuiButton(0, this.width / 2 - 100, this.height / 4 + 96 + 12, stringtranslate.translateKey("Accept")));
+		this.controlList.add(new GuiButton(1, this.width / 2 - 100, this.height / 4 + 120 + 12, stringtranslate.translateKey("gui.cancel")));
+		this.theGuiTextField = new GuiTextField(this.fontRenderer, this.width / 2 - 100, 60, 200, 20);
+		this.theGuiTextField.setText(this.chocobo.getName());
+		this.theGuiTextField.setFocused(true);
+		this.theGuiTextField.setMaxStringLength(20);
+	}
 
-    public void onGuiClosed()
-    {
-        Keyboard.enableRepeatEvents(false);
-    }
+	public void onGuiClosed()
+	{
+		Keyboard.enableRepeatEvents(false);
+	}
 
-    protected void actionPerformed(GuiButton guibutton)
-    {
-        if (!guibutton.enabled)
-        {
-            return;
-        }
-        if (guibutton.id == 1)
-        {
-            mc.displayGuiScreen(parentGuiScreen);
-        }
-        else if (guibutton.id == 0)
-        {
-        	chocobo.setName(theGuiTextField.getText());
-            mc.displayGuiScreen(parentGuiScreen);
-        }
-    }
+	protected void actionPerformed(GuiButton guibutton)
+	{
+		if (!guibutton.enabled)
+		{
+			return;
+		}
+		if (guibutton.id == 1)
+		{
+			this.mc.displayGuiScreen(this.parentGuiScreen);
+		}
+		else if (guibutton.id == 0)
+		{
+			this.chocobo.setName(this.theGuiTextField.getText());
+			this.mc.displayGuiScreen(this.parentGuiScreen);
+		}
+	}
 
-    protected void keyTyped(char c, int i)
-    {
-        theGuiTextField.textboxKeyTyped(c, i);
-        ((GuiButton)controlList.get(0)).enabled = theGuiTextField.getText().trim().length() > 0;
-        if (c == '\r')
-        {
-            actionPerformed((GuiButton)controlList.get(0));
-        }
-    }
+	protected void keyTyped(char c, int i)
+	{
+		this.theGuiTextField.textboxKeyTyped(c, i);
+		((GuiButton)this.controlList.get(0)).enabled = this.theGuiTextField.getText().trim().length() > 0;
+		if (c == '\r')
+		{
+			this.actionPerformed((GuiButton)this.controlList.get(0));
+		}
+	}
 
-    protected void mouseClicked(int i, int j, int k)
-    {
-        super.mouseClicked(i, j, k);
-        theGuiTextField.mouseClicked(i, j, k);
-    }
+	protected void mouseClicked(int i, int j, int k)
+	{
+		super.mouseClicked(i, j, k);
+		theGuiTextField.mouseClicked(i, j, k);
+	}
 
-    public void drawScreen(int i, int j, float f)
-    {
-        StringTranslate stringtranslate = StringTranslate.getInstance();
-        drawDefaultBackground();
-        String s = (chocobo instanceof EntityChicobo) ? "Chicobo" : "Chocobo";
-        drawCenteredString(fontRenderer, stringtranslate.translateKey((new StringBuilder()).append("Name your ").append(s).toString()), width / 2, (height / 4 - 60) + 20, 0xffffff);
-        drawString(fontRenderer, stringtranslate.translateKey("New name:"), width / 2 - 100, 47, 0xa0a0a0);
-        theGuiTextField.drawTextBox();
-        super.drawScreen(i, j, f);
-    }
+	public void drawScreen(int i, int j, float f)
+	{
+		StringTranslate stringtranslate = StringTranslate.getInstance();
+		this.drawDefaultBackground();
+		String s = (this.chocobo instanceof EntityChicobo) ? "Chicobo" : "Chocobo";
+		this.drawCenteredString(this.fontRenderer, stringtranslate.translateKey((new StringBuilder()).append("Name your ").append(s).toString()), this.width / 2, (this.height / 4 - 60) + 20, 0xffffff);
+		this.drawString(this.fontRenderer, stringtranslate.translateKey("New name:"), this.width / 2 - 100, 47, 0xa0a0a0);
+		this.theGuiTextField.drawTextBox();
+		super.drawScreen(i, j, f);
+	}
 }
