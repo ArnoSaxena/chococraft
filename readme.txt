@@ -1,4 +1,4 @@
-This is the official version of Torojimas Chococraft v2.3.5 for usage with minecraft 1.4.5. Chococraft has been originally created by EddieV and is now refactored and officially maintained by Torojima.
+This is the official version of Torojimas Chococraft v2.3.6 for usage with minecraft 1.4.5. Chococraft has been originally created by EddieV and is now refactored and officially maintained by Torojima.
 
 This mod adds a mob called Chocobo to the game. This includes different coloured mob types with different attributes in their grown-up and juvenile form.
 
@@ -10,11 +10,10 @@ ACHTUNG! CAUTION! ¡CUIDADO! चेतावनी! ATTENZIONE! береги́с
 This version of Chococraft is not compatible to versions pre 1.3.2. It will destroy your saved world if old Chocobos are included. Thus, if you want to use an old world with the new version of this mod, you should first start minecraft without the Chococraft mod, enter and save your world, thus removing all traces of older versions of Chococraft and only then start minecraft with the new version of Chococraft and tame new Chocobos.
 
 Changelog:
-1. Chicobos can swim
-2. Chocobo items as dungeon loot
-3. "random love rush" bug fixed
-4. straw will break if supporting block is removed
-5. hearts particles show on straw healing
+1. Different-Dimension-Chocobo-Mounting-Issue fixed, now Chocobos can be mounted in different dimensions than the surface one.
+2. Two Purple Chocobos will produce a purple Chocobo egg when breed. A purple Chocobo egg will spawn a Chocobo on right click.
+3. Chibi Gysahl disabled
+4. feather and silk right click only possible for owner
 
 see the minecraft forums for further informations
 http://www.minecraftforum.net/topic/1119809-145sspsmpforge-torojimas-chococraft-233-explore-your-worlds-riding-chocobos/
