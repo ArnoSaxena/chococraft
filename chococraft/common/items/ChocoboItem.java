@@ -30,19 +30,7 @@ public class ChocoboItem extends Item
 
 	public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player)
 	{
-		super.onItemRightClick(itemStack, world, player);
-		
-		/// testing
-		
-//		Random rand = new Random();
-//		int colourIdx = rand.nextInt((chocoboColor.values()).length);
-//		EntityChicobo ec = FactoryEntityChocobo.createNewChicobo(world, chocoboColor.values()[colourIdx]);		
-//		ec.setLocationAndAngles(player.posX, player.posY, player.posZ, 0.0F, 0.0F);
-//		world.spawnEntityInWorld(ec);
-		
-		/// end testing
-		
-		
+		super.onItemRightClick(itemStack, world, player);		
 		return itemStack;
 	}
 }
