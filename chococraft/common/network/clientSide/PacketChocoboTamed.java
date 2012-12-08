@@ -38,7 +38,7 @@ public class PacketChocoboTamed extends PacketChocoboClient
 			outputStream.writeInt(chocobo.entityId);
 			outputStream.writeBoolean(chocobo.isTamed());
 			outputStream.writeUTF(chocobo.getOwnerName());
-			outputStream.writeInt(chocobo.worldObj.getWorldInfo().getDimension());
+			outputStream.writeInt(chocobo.worldObj.provider.dimensionId);
 		}
 		catch (Exception ex)
 		{

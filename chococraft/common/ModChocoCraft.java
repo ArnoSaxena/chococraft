@@ -67,6 +67,8 @@ public class ModChocoCraft
 	public static Configuration mainConfiguration;
 
 	//public static CreativeTabs chocoboCreativeItems;
+
+	public static boolean debugMode = false;
 	
 	public static Property chocoboSaddleId;	
 	public static Property gysahlSeedsId;    
@@ -83,7 +85,7 @@ public class ModChocoCraft
 	public static Property chocoboPackBagsId;
 	public static Property chocoboWhistleId;
 	public static Property chocopediaId;
-	public static Property netherChocoboEggId;
+	public static Property purpleChocoboEggId;
 	public static Property chocoDisguiseHelmetId;
 	public static Property chocoDisguisePlateId;
 	public static Property chocoDisguiseLegsId;
@@ -107,7 +109,7 @@ public class ModChocoCraft
 	public static Item chocoboPackBagsItem;
 	public static Item chocoboWhistleItem;
 	public static Item chocopediaItem;
-	public static Item netherChocoboEggItem;
+	public static Item purpleChocoboEggItem;
 	public static Item chocoDisguiseHelmetItem;
 	public static Item chocoDisguisePlateItem;
 	public static Item chocoDisguiseLegsItem;
@@ -236,7 +238,7 @@ public class ModChocoCraft
 		chocoboPackBagsId = mainConfiguration.get(Configuration.CATEGORY_ITEM, "chocoboPackBagsItem.id", Constants.CHOCOBO_PACK_BAGS_ID);
 		chocoboWhistleId = mainConfiguration.get(Configuration.CATEGORY_ITEM, "chocoboWhistleItem.id", Constants.CHOCOBO_WHISTLE_ID);
 		chocopediaId = mainConfiguration.get(Configuration.CATEGORY_ITEM, "chocopediaItem.id", Constants.CHOCOPEDIA_ID);
-		netherChocoboEggId = mainConfiguration.get(Configuration.CATEGORY_ITEM, "netherChocoboEggItem.id", Constants.NETHER_CHOCOBO_EGG_ID);
+		purpleChocoboEggId = mainConfiguration.get(Configuration.CATEGORY_ITEM, "purpleChocoboEggItem.id", Constants.PURPLE_CHOCOBO_EGG_ID);
 
 		chocoDisguiseHelmetId = mainConfiguration.get(Configuration.CATEGORY_ITEM, "chocoDisguiseHelmetItem.id", Constants.CHOCO_DISGUISE_HELMET_ID);
 		chocoDisguisePlateId = mainConfiguration.get(Configuration.CATEGORY_ITEM, "chocoDisguisePlateItem.id", Constants.CHOCO_DISGUISE_PLATE_ID);
@@ -364,12 +366,12 @@ public class ModChocoCraft
 		gysahlRedItem.setCreativeTab(CreativeTabs.tabMisc);
 		//gysahlRedItem.setCreativeTab(chocoboCreativeItems);
 
-		// Chibi Gysahl
-		gysahlChibiItem = (new ChocoboItem(Integer.parseInt(gysahlChibiId.value))).setItemName("gysahlChibi").setMaxStackSize(64);
-		gysahlChibiItem.setIconIndex(6);
-		LanguageRegistry.addName(gysahlChibiItem, "Chibi Gysahl");
-		gysahlChibiItem.setCreativeTab(CreativeTabs.tabMisc);
-		//gysahlChibiItem.setCreativeTab(chocoboCreativeItems);
+//		// Chibi Gysahl
+//		gysahlChibiItem = (new ChocoboItem(Integer.parseInt(gysahlChibiId.value))).setItemName("gysahlChibi").setMaxStackSize(64);
+//		gysahlChibiItem.setIconIndex(6);
+//		LanguageRegistry.addName(gysahlChibiItem, "Chibi Gysahl");
+//		gysahlChibiItem.setCreativeTab(CreativeTabs.tabMisc);
+//		//gysahlChibiItem.setCreativeTab(chocoboCreativeItems);
 
 		// Gysahl Cake
 		gysahlCakeItem = (new ChocoboItem(Integer.parseInt(gysahlCakeId.value))).setItemName("gysahlCake").setMaxStackSize(8);
@@ -385,11 +387,11 @@ public class ModChocoCraft
 		chocoboWhistleItem.setCreativeTab(CreativeTabs.tabTools);
 		//chocoboWhistleItem.setCreativeTab(chocoboCreativeItems);
 
-		//        // Nether Chocobo Egg
-		//        netherChocoboEggItem = (new ChocoboItem(Integer.parseInt(netherChocoboEggId.value))).setItemName("netherChocoboEgg").setMaxStackSize(8);
-		//    	netherChocoboEggItem.setIconIndex(15);
-		//        LanguageRegistry.addName(netherChocoboEggItem, "Nether Chocobo Egg");
-		//        netherChocoboEggItem.setTabToDisplayOn(CreativeTabs.tabMisc);
+		// Nether Chocobo Egg
+		purpleChocoboEggItem = (new ItemPurpleChocoboEgg(Integer.parseInt(purpleChocoboEggId.value))).setItemName("purpleChocoboEgg").setMaxStackSize(64);
+		purpleChocoboEggItem.setIconIndex(15);
+		LanguageRegistry.addName(purpleChocoboEggItem, "Purple Chocobo Egg");
+		purpleChocoboEggItem.setCreativeTab(CreativeTabs.tabMisc);
 
 		// Armour
 		// Chocodisguise Helmet
@@ -505,15 +507,15 @@ public class ModChocoCraft
 			Character.valueOf('G'), Item.goldNugget
 		});
 
-		// chibi gysahl
-		GameRegistry.addRecipe(new ItemStack(gysahlChibiItem, 1), new Object[]
-		{
-			" R ", 
-			"RGR", 
-			" R ", 
-			Character.valueOf('R'), Item.redstone, 
-			Character.valueOf('G'), gysahlGreenBlock
-		});
+//		// chibi gysahl
+//		GameRegistry.addRecipe(new ItemStack(gysahlChibiItem, 1), new Object[]
+//		{
+//			" R ", 
+//			"RGR", 
+//			" R ", 
+//			Character.valueOf('R'), Item.redstone, 
+//			Character.valueOf('G'), gysahlGreenBlock
+//		});
 
 		// chocopedia
 		GameRegistry.addRecipe(new ItemStack(chocopediaItem, 1), new Object[]

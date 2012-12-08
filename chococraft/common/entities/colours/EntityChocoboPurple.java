@@ -204,21 +204,21 @@ public class EntityChocoboPurple extends EntityChocobo
 	}
 
 	// purple special
+	@Override
 	public void procreate(EntityAnimalChocobo otherParent)
 	{
 		if(Side.SERVER == FMLCommonHandler.instance().getEffectiveSide())
 		{
-			this.setGrowingAge(9000);
-			otherParent.setGrowingAge(9000);
+			this.setGrowingAge(this.isMale() ? 3000 : 9000);
+			otherParent.setGrowingAge(otherParent.isMale() ? 3000 : 9000);
 			this.setInLove(false);
 			otherParent.setInLove(false);
 			this.breeding = 0;
 			otherParent.breeding = 0;
 			this.entityToAttack = null;
 			otherParent.entityToAttack = null;
-
-			//TODO: implement netherChocoboboEggItem
-			//dropItem(ModChocoCraft.netherChocoboEggItem.shiftedIndex, 1);
+			int eggAmount = this.rand.nextInt(10) == 0 ? 3 : 1;
+			this.dropItem(ModChocoCraft.purpleChocoboEggItem.shiftedIndex, eggAmount);
 		}
 	}
 

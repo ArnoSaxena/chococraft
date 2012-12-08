@@ -42,7 +42,7 @@ public class PacketChocoboRiderJump extends PacketChocoboServer
 			outputStream.writeUTF(riderEntity.username);
 			outputStream.writeBoolean(riderEntity.isJumping);
 			outputStream.writeBoolean(riderEntity.isSneaking());
-			outputStream.writeInt(chocobo.worldObj.getWorldInfo().getDimension());
+			outputStream.writeInt(chocobo.worldObj.provider.dimensionId);
 		}
 		catch (Exception ex)
 		{

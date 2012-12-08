@@ -329,7 +329,7 @@ public class EntityChicobo extends EntityAnimalChocobo
 	{
 		if (Side.SERVER == FMLCommonHandler.instance().getEffectiveSide())
 		{
-			if (this.isTamed())
+			if (this.isTamed() && entityplayer.equals(this.getOwner()))
 			{
 				this.useItem(entityplayer);
 				this.setCanGrowUp(true);
@@ -345,7 +345,7 @@ public class EntityChicobo extends EntityAnimalChocobo
 	
 	public void onFeatherUse(EntityPlayer entityplayer)
 	{
-		if (this.isTamed())
+		if (this.isTamed() && entityplayer.equals(this.getOwner()))
 		{
 			this.toggleFollowWanderStay();
 		}

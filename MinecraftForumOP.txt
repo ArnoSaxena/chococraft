@@ -21,6 +21,9 @@ Download: [url="http://www.arno-saxena.de/minecraft/Chococraft_2.3.5.zip"]Toroji
 
 Downloads so far: [img]http://www.arno-saxena.de/minecraft/chocoboDownloads.png[/img]
 
+crackedEggs parachute mod:
+[spoiler]When flying a Chocobo, I would like to recommend the use of [url="http://www.minecraftforum.net/user/77049-crackedegg/"]crackedEggs[/url] [url="http://www.minecraftforum.net/topic/585469-145forge-crackedeggs-mods-reptiles-parachute/"]parachute mod[/url] (version 410 or newer). Especially if you are using this mod on a server. On a connection failure while flying on high altitude, you will automatically dismount and fall to your death. One of crackedEggs parachutes in any spot in your inventory will auto-deploy if you're falling and thus prevent any harm from falling damage. (has to be switched on in the respective config file).[/spoiler]
+
 Old versions:
 [spoiler]
 [url="http://www.arno-saxena.de/minecraft/Chococraft_2.2.3.zip"]minecraft 1.4.4: ChocoCraft 2.2.3[/url]
@@ -67,12 +70,15 @@ Thanks to InTheLittleWood[/spoiler][/spoiler]
 
 CHANGELOG:
 [spoiler]
-v.2.3.4 by Torojima
+v.2.3.5 by Torojima
    1. Chicobos can swim
    2. Chocobo items as dungeon loot
    3. "random love rush" bug fixed
    4. straw will break if supporting block is removed
    5. hearts particles show on straw healing
+   6. Chicobos follow player zero bug fixed
+   7. growing Chicobos loos status bug fixed
+   8. shorter breeding delay for male Chocobos
 
 v.2.3.4 by Torojima
    1. Chocobo pen healing Chocobos

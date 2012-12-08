@@ -488,9 +488,9 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 	}
 
     // TODO: goes to EntityAnimalChocobo
-	public void onFeatherUse(EntityPlayer entityplayer)
+	public void onFeatherUse(EntityPlayer player)
 	{
-		if (this.isTamed())
+		if (this.isTamed() && player.equals(this.getOwner()))
 		{
 			this.toggleFollowWanderStay();
 		}
@@ -500,9 +500,9 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 		}
 	}
 	
-	public void onSilkUse(EntityPlayer entityPlayer)
+	public void onSilkUse(EntityPlayer player)
 	{
-		if(this.isTamed())
+		if(this.isTamed() && player.equals(this.getOwner()))
 		{
 			this.toggleFollowStay();
 		}

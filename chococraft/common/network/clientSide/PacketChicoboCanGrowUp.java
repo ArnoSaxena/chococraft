@@ -25,7 +25,7 @@ public class PacketChicoboCanGrowUp extends PacketChocoboClient
 			outputStream.writeInt(chicobo.entityId);
 			outputStream.writeBoolean(chicobo.isCanGrowUp());
 			outputStream.writeBoolean(chicobo.growUp);
-			outputStream.writeInt(chicobo.worldObj.getWorldInfo().getDimension());
+			outputStream.writeInt(chicobo.worldObj.provider.dimensionId);
 		}
 		catch (Exception ex)
 		{

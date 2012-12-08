@@ -22,7 +22,7 @@ public class PacketChocoboSetInLove extends PacketChocoboServer
 			outputStream.writeInt(PID_SETINLOVE);
 			outputStream.writeInt(chocobo.entityId);
 			outputStream.writeBoolean(chocobo.isInLove());
-			outputStream.writeInt(chocobo.worldObj.getWorldInfo().getDimension());
+			outputStream.writeInt(chocobo.worldObj.provider.dimensionId);
 		}
 		catch (Exception ex)
 		{

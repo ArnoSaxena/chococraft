@@ -62,6 +62,8 @@ public class ChocoboConfig
 	static String CFG_KEY_PEN_HEAL_CAULDRON_RANGE = "penHealCauldronRange";
 	
 	static String CFG_KEY_LIVING_SOUND_PROB = "livingSoundProbability";
+	
+	static String CFG_KEY_DEBUG_MODE = "debugMode";
 
 	public static void readConfigFile()
 	{
@@ -259,6 +261,10 @@ public class ChocoboConfig
 								else if(key.equalsIgnoreCase(CFG_KEY_PEN_HEAL_CAULDRON_RANGE))
 								{
 									ModChocoCraft.penHealCauldronRange = ChocoboMathHelper.clamp(Integer.parseInt(value), 1, 15);
+								}
+								else if(key.equalsIgnoreCase(CFG_KEY_DEBUG_MODE))
+								{
+									ModChocoCraft.debugMode = Boolean.parseBoolean(value);
 								}
 							}
 							catch (NumberFormatException e)

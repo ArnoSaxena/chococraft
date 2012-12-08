@@ -40,7 +40,7 @@ public class PacketChocoboAttribute extends PacketChocoboServer
 			outputStream.writeBoolean(chocobo.isHidename());
 			outputStream.writeBoolean(chocobo.isFollowing());
 			outputStream.writeBoolean(chocobo.isWander());
-			outputStream.writeInt(chocobo.worldObj.getWorldInfo().getDimension());
+			outputStream.writeInt(chocobo.worldObj.provider.dimensionId);
 		}
 		catch (Exception ex)
 		{

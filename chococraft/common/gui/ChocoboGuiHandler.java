@@ -26,7 +26,7 @@ public class ChocoboGuiHandler implements IGuiHandler
 	@Override
 	public Object getServerGuiElement(int id, EntityPlayer player, World world, int chocoboId, int saddleOrPack, int dummy)
 	{
-		EntityChocobo chocobo = this.getChocoboById(world, chocoboId, world.getWorldInfo().getDimension());
+		EntityChocobo chocobo = this.getChocoboById(world, chocoboId, world.provider.dimensionId);
 		if(null != chocobo)
 		{
 			return new ChocoBagContainer(player.inventory, chocobo.getChocoBagInventory());
@@ -37,7 +37,7 @@ public class ChocoboGuiHandler implements IGuiHandler
 	@Override
 	public Object getClientGuiElement(int id, EntityPlayer player, World world, int chocoboId, int saddleOrPack, int dummy)
 	{
-		EntityChocobo chocobo = this.getChocoboById(world, chocoboId, world.getWorldInfo().getDimension());
+		EntityChocobo chocobo = this.getChocoboById(world, chocoboId, world.provider.dimensionId);
 		if(null != chocobo)
 		{
 			return new GuiChocoboBag(player.inventory, chocobo.getChocoBagInventory());

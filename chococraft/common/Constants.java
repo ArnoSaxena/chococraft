@@ -36,7 +36,7 @@ public class Constants
 	public static int CHOCOBO_PACK_BAGS_ID       = 22613;
 	public static int CHOCOBO_WHISTLE_ID         = 22614;
 	public static int CHOCOPEDIA_ID              = 22615;
-	public static int NETHER_CHOCOBO_EGG_ID      = 22616;
+	public static int PURPLE_CHOCOBO_EGG_ID      = 22616;
 	public static int CHOCO_DISGUISE_HELMET_ID   = 22617;
 	public static int CHOCO_DISGUISE_PLATE_ID    = 22618;
 	public static int CHOCO_DISGUISE_LEGS_ID     = 22619;

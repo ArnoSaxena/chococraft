@@ -39,6 +39,7 @@ public class GuiChocopedia extends GuiScreen
 	private GuiButton removeSaddleButton;
 	private GuiButton renameButton;
 	private GuiButton confirmButton;
+	private GuiButton changeOwnerButton;
 
 	public GuiChocopedia(GuiScreen guiscreen, EntityAnimalChocobo entitychocobo, EntityPlayer thePlayer)
 	{
@@ -84,6 +85,14 @@ public class GuiChocopedia extends GuiScreen
 		this.confirmButton = this.createGuiButton(1, xPos, (yPos += 24), stringtranslate.translateKey("Confirm"));
 		this.checkButtonOwner(this.player, this.chocobo.getOwner(), this.confirmButton);
 		this.controlList.add(this.confirmButton);
+
+		// change owner button
+		if(ModChocoCraft.debugMode)
+		{
+			this.changeOwnerButton = this.createGuiButton(5, xPos, yPos += 30, stringtranslate.translateKey("change owner"));
+			this.checkButtonOwner(this.player, this.chocobo.getOwner(), this.changeOwnerButton);
+			this.controlList.add(this.changeOwnerButton);
+		}
 		
 		// remove saddle button
 		if(this.chocobo instanceof EntityChocoboRideable  && null == this.chocobo.riddenByEntity)
@@ -92,7 +101,7 @@ public class GuiChocopedia extends GuiScreen
 			if(chocoboRideable.isSaddled() || chocoboRideable.isPackBagged())
 			{
 				String lblRemoveSaddle = "Drop Gear";
-				this.removeSaddleButton = this.createGuiButton(4, xPos, (yPos += 30), stringtranslate.translateKey(lblRemoveSaddle));
+				this.removeSaddleButton = this.createGuiButton(4, xPos, (yPos += 24), stringtranslate.translateKey(lblRemoveSaddle));
 				this.checkButtonOwner(this.player, this.chocobo.getOwner(), this.removeSaddleButton);
 				this.controlList.add(this.removeSaddleButton);
 			}
@@ -127,7 +136,6 @@ public class GuiChocopedia extends GuiScreen
 		else if (guibutton.id == 3)
 		{
 			this.chocobo.toggleFollowWanderStay();
-			//followingButton.displayString = (chocobo.isFollowing()) ? "Following" : "Not Following";
 			this.followingButton.displayString = this.getFollowStatus();
 		}
 		else if (guibutton.id == 0)
@@ -141,6 +149,10 @@ public class GuiChocopedia extends GuiScreen
 				((EntityChocoboRideable)this.chocobo).sendDropSaddleAndBags();
 			}
 			this.mc.displayGuiScreen(this.parentGuiScreen);
+		}
+		else if (guibutton.id == 5 && ModChocoCraft.debugMode)
+		{
+			FMLClientHandler.instance().getClient().displayGuiScreen(new GuiSelectNewOwner(this, this.chocobo));
 		}
 	}
 	

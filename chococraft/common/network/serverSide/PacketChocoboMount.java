@@ -42,7 +42,7 @@ public class PacketChocoboMount extends PacketChocoboServer
 			outputStream.writeInt(PID_MOUNT);
 			outputStream.writeInt(chocobo.entityId);
 			outputStream.writeUTF(playerName);
-			outputStream.writeInt(chocobo.worldObj.getWorldInfo().getDimension());
+			outputStream.writeInt(chocobo.worldObj.provider.dimensionId);
 		}
 		catch (Exception ex)
 		{

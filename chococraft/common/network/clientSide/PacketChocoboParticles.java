@@ -24,7 +24,7 @@ public class PacketChocoboParticles extends PacketChocoboClient
 			outputStream.writeInt(PID_PARTICLES);
 			outputStream.writeInt(chocobo.entityId);
 			outputStream.writeUTF(particleName);
-			outputStream.writeInt(chocobo.worldObj.getWorldInfo().getDimension());
+			outputStream.writeInt(chocobo.worldObj.provider.dimensionId);
 		}
 		catch (Exception ex)
 		{

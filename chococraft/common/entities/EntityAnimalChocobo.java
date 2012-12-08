@@ -934,7 +934,7 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
             double d1 = vector.xCoord - this.posX;
             double d2 = vector.zCoord - this.posZ;
             double d3 = vector.yCoord - (double)i;
-            float f2 = (float)((Math.atan2(d2, d1) * 180D) / 3.1415927410125732D) - 90F;
+            float f2 = (float)((Math.atan2(d2, d1) * 180D) / Math.PI) - 90F;
             float f3 = f2 - this.rotationYaw;
             this.moveForward = this.moveSpeed;
             for (; f3 < -180F; f3 += 360F) { }
@@ -1019,7 +1019,7 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
 		if (Side.SERVER == FMLCommonHandler.instance().getEffectiveSide())
 		{
 			PacketChocoboTamed packet = new PacketChocoboTamed(this);
-			int dimension = this.worldObj.getWorldInfo().getDimension();
+			int dimension = this.worldObj.provider.dimensionId;
 			PacketDispatcher.sendPacketToAllAround(this.lastTickPosX, this.lastTickPosY, this.lastTickPosZ, 16*5, dimension, packet.getPacket());
 		}
 	}
@@ -1038,7 +1038,7 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
 		if (Side.SERVER == FMLCommonHandler.instance().getEffectiveSide())
 		{
 			PacketChocoboHealth packet = new PacketChocoboHealth(this);
-			int dimension = this.worldObj.getWorldInfo().getDimension();
+			int dimension = this.worldObj.provider.dimensionId;
 			PacketDispatcher.sendPacketToAllAround(this.lastTickPosX, this.lastTickPosY, this.lastTickPosZ, 16*5, dimension, packet.getPacket());
 		}
 	}
@@ -1063,7 +1063,7 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
 		if (Side.SERVER == FMLCommonHandler.instance().getEffectiveSide())
 		{
 			PacketChocoboParticles packet = new PacketChocoboParticles(chocobo, particleName);
-			int dimension = chocobo.worldObj.getWorldInfo().getDimension();
+			int dimension = chocobo.worldObj.provider.dimensionId;
 			PacketDispatcher.sendPacketToAllAround(chocobo.lastTickPosX, chocobo.lastTickPosY, chocobo.lastTickPosZ, 16*5, dimension, packet.getPacket());
 		}		
 	}
