@@ -1,7 +1,7 @@
 [img]http://www.arno-saxena.de/pictures/chococraft/banner_title.png[/img]
 
 UPDATED FOR MINECRAFT 1.4.5
-Version 2.3.5
+Version 2.3.6
 Requires: [url="http://www.minecraftforge.net/"]Forge[/url] [url="http://files.minecraftforge.net/"]6.4.0.394+[/url]
 
 This Mod is the continuation of [url="http://www.minecraftforum.net/user/1051245-eddiev/"]EddieV's[/url] mod. The original thread can be found [url="http://www.minecraftforum.net/topic/952372-chococraft-12-mc-11-chocobos-now-fly/"]here[/url]. I've officially taken over the helm with Eddie's kind blessings.
@@ -17,7 +17,7 @@ As of version 2.0.4 this mod is in working condition for SMP.
 [color=#ff0000][b]ACHTUNG! CAUTION! ¡CUIDADO! चेतावनी! ATTENZIONE! береги́сь!
 This version of Chococraft is not compatible to versions pre 2.0.0 (pre mc 1.3.2). It will destroy your saved world if old Chocobos are included. Thus, if you want to use an old world with the new version of this mod, you should first start minecraft without the Chococraft mod, enter and save your world, thus removing all traces of older versions of Chococraft and only then start minecraft with the new version of Chococraft and tame new Chocobos.[/b][/color]
 
-Download: [url="http://www.arno-saxena.de/minecraft/Chococraft_2.3.5.zip"]Torojimas ChocoCraft 2.3.5[/url]
+Download: [url="http://www.arno-saxena.de/minecraft/Chococraft_2.3.6.zip"]Torojimas ChocoCraft 2.3.6[/url]
 
 Downloads so far: [img]http://www.arno-saxena.de/minecraft/chocoboDownloads.png[/img]
 
@@ -29,9 +29,11 @@ Old versions:
 [url="http://www.arno-saxena.de/minecraft/Chococraft_2.2.3.zip"]minecraft 1.4.4: ChocoCraft 2.2.3[/url]
 [url="http://www.arno-saxena.de/minecraft/Chococraft_2.1.3.zip"]minecraft 1.4.2: ChocoCraft 2.1.3[/url]
 [url="http://www.arno-saxena.de/minecraft/Chococraft_2.0.5.zip"]minecraft 1.3.2: ChocoCraft 2.0.5[/url]
-[url="http://www.arno-saxena.de/minecraft/Chococraft_1.6.10.zip"]minecraft 1.2.5: ChocoCraft 1.6.10[/url]
-[url="http://www.arno-saxena.de/minecraft/Chococraft_1.5.2.zip"]minecraft 1.2.4: ChocoCraft 1.5.2[/url]
-[url="http://www.arno-saxena.de/minecraft/Chococraft_1.4.1u.zip"]minecraft 1.2.3: ChocoCraft 1.4.1u[/url]
+
+if somebody is in need of even older versions, please send me a note and I can provide a copy of the following versions:
+minecraft 1.2.5: ChocoCraft 1.6.10
+minecraft 1.2.4: ChocoCraft 1.5.2
+minecraft 1.2.3: ChocoCraft 1.4.1u
 
 Post in the original thread for [url="http://www.minecraftforum.net/user/490126-haploc/"]haploc's[/url] server version (mc 1.2.3) can be found [url="http://www.minecraftforum.net/topic/952372-chococraft-12-mc-11-chocobos-now-fly/page__view__findpost__p__13661196"]here[/url]
 [/spoiler]
@@ -70,6 +72,13 @@ Thanks to InTheLittleWood[/spoiler][/spoiler]
 
 CHANGELOG:
 [spoiler]
+v.2.3.6 by Torojima
+   1. Different-Dimension-Chocobo-Mounting-Issue fixed, now Chocobos can be mounted in different dimensions than the surface one.
+   2. Two Purple Chocobos will produce a purple Chocobo egg when breed
+   3. Re-Introduced the purple Chocobo egg. It will spawn a Chocobo on right click.
+   4. Chibi Gysahl disabled
+   5. feather and silk right click only possible for owner
+
 v.2.3.5 by Torojima
    1. Chicobos can swim
    2. Chocobo items as dungeon loot
@@ -97,6 +106,8 @@ v.2.3.2 by Torojima
 v.2.3.1 by Torojima
    1. Updated for mc 1.4.5
 
+older changelogs:
+[spoiler]
 v.2.2.3 by Torojima
    1. Added proximity threshold and chunk radius total threshold to custom spawning.
 
@@ -304,6 +315,7 @@ v1.0: by EddieV
    1. Fixed an issue where you weren't able to get a Pink Chocobo.
    2. White/Black Chocobos are now faster than the previous ones, but still slower than Gold.
    3. Fixed the spawning rate of Chocobo packs.
+[/spoiler]
 [/spoiler]
 
 Chocobos and their behaviour:
