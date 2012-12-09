@@ -16,7 +16,7 @@ package chococraft.common;
 
 public class Constants
 {
-	public final static String TCC_VERSION = "2.3.5";
+	public final static String TCC_VERSION = "2.3.7";
 	public final static String TCC_MODID = "ChocoCraft";
 	public final static String TCC_NAME = "Torojimas ChocoCraft";
 
