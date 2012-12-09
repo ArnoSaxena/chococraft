@@ -293,11 +293,11 @@ public class EntityChicobo extends EntityAnimalChocobo
 					this.onGysahlCakeUse(entityplayer);
 					interacted = true;
 				} 
-				else if (itemstack.itemID == ModChocoCraft.gysahlChibiItem.shiftedIndex)
-				{
-					this.onGysahlChibiUse(entityplayer);
-					interacted = true;
-				}
+//				else if (itemstack.itemID == ModChocoCraft.gysahlChibiItem.shiftedIndex)
+//				{
+//					this.onGysahlChibiUse(entityplayer);
+//					interacted = true;
+//				}
 				else if (itemstack.itemID == ModChocoCraft.chocoboFeatherItem.shiftedIndex)
 				{
 					this.onFeatherUse(entityplayer);
