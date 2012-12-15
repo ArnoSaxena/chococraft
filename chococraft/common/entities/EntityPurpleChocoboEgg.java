@@ -14,9 +14,9 @@
 
 package chococraft.common.entities;
 
+import chococraft.common.ModChocoCraft;
 import chococraft.common.entities.EntityAnimalChocobo.chocoboColor;
 import chococraft.common.network.clientSide.PacketChocoboParticles;
-import chococraft.debugger.DebugFileWriter;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.network.PacketDispatcher;
@@ -46,8 +46,6 @@ public class EntityPurpleChocoboEgg extends EntityThrowable
 	@Override
 	protected void onImpact(MovingObjectPosition mObjPos)
 	{
-		DebugFileWriter.instance().writeLine("EPChEg", "onImpact");
-		
 		if(Side.SERVER == FMLCommonHandler.instance().getEffectiveSide())
 		{
 			if (mObjPos.entityHit != null)
@@ -58,24 +56,24 @@ public class EntityPurpleChocoboEgg extends EntityThrowable
 			EntityChicobo babyChicobo = FactoryEntityChocobo.createNewChicobo(worldObj, chocoboColor.PURPLE);
 			if (babyChicobo != null)
 			{
-				babyChicobo.setTimeUntilAdult(rand.nextInt(2000) + 27000);
+				babyChicobo.setTimeUntilAdult(rand.nextInt(ModChocoCraft.growupDelayRandom) + ModChocoCraft.growupDelayStatic);
 				babyChicobo.setGrowingAge(babyChicobo.getTimeUntilAdult());
 				babyChicobo.setLocationAndAngles(posX, posY, posZ, rotationYaw, rotationPitch);
 				this.worldObj.spawnEntityInWorld(babyChicobo);
 				for (int i = 0; i < 8; i++)
 				{
-					this.sendParticleUpdate("snowballpoof", babyChicobo);
+					this.sendParticleUpdate("snowballpoof", babyChicobo, 7);
 				}
 			}
 			this.setDead();
 		}
 	}
 
-	protected void sendParticleUpdate(String particleName, EntityAnimalChocobo chocobo)
+	protected void sendParticleUpdate(String particleName, EntityAnimalChocobo chocobo, int amount)
 	{
 		if (Side.SERVER == FMLCommonHandler.instance().getEffectiveSide())
 		{
-			PacketChocoboParticles packet = new PacketChocoboParticles(chocobo, particleName);
+			PacketChocoboParticles packet = new PacketChocoboParticles(chocobo, particleName, amount);
 			int dimension = chocobo.worldObj.provider.dimensionId;
 			PacketDispatcher.sendPacketToAllAround(chocobo.lastTickPosX, chocobo.lastTickPosY, chocobo.lastTickPosZ, 16*5, dimension, packet.getPacket());
 		}		

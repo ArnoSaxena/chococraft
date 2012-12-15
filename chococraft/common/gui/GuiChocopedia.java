@@ -87,7 +87,7 @@ public class GuiChocopedia extends GuiScreen
 		this.controlList.add(this.confirmButton);
 
 		// change owner button
-		if(ModChocoCraft.debugMode)
+		if(ModChocoCraft.isRemoteClient)
 		{
 			this.changeOwnerButton = this.createGuiButton(5, xPos, yPos += 30, stringtranslate.translateKey("change owner"));
 			this.checkButtonOwner(this.player, this.chocobo.getOwner(), this.changeOwnerButton);
@@ -168,7 +168,8 @@ public class GuiChocopedia extends GuiScreen
 		String breedStatus = "";
 		String gender = this.chocobo.getGender();
 		String ownerName = (new StringBuilder()).append("owner: ").append(this.chocobo.getOwnerName()).toString();
-		String health = (new StringBuilder()).append("health: ").append(chocobo.getHealth()).append("/").append(chocobo.getMaxHealth()).toString();
+		String hungry = chocobo.isHungry() ? " (hungry)" : "";
+		String health = (new StringBuilder()).append("health: ").append(chocobo.getHealth()).append("/").append(chocobo.getMaxHealth()).append(hungry).toString();
 
 		if (this.chocobo.getGrowingAge() > 0 || this.chocobo.isChild())
 		{

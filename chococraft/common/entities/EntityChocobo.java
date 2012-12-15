@@ -465,12 +465,12 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 		return interacted;
 	}
 	
-	public void onBreedGysahlUse(EntityPlayer entityplayer, boolean fedGold)
-	{		
-		if (this.isTamed() && this.getGrowingAge() == 0)
+	public void onBreedGysahlUse(EntityPlayer player, boolean fedGold)
+	{
+		if (this.isTamed() && this.getGrowingAge() == 0 && this.isOwner(player))
 		{
 			this.fedGold = fedGold;
-			this.useItem(entityplayer);
+			this.useItem(player);
 			this.setInLove(true);
 			this.entityToAttack = null;
 
@@ -490,7 +490,7 @@ public abstract class EntityChocobo extends EntityChocoboRideable
     // TODO: goes to EntityAnimalChocobo
 	public void onFeatherUse(EntityPlayer player)
 	{
-		if (this.isTamed() && player.equals(this.getOwner()))
+		if (this.isTamed() && this.isOwner(player))
 		{
 			this.toggleFollowWanderStay();
 		}
@@ -502,7 +502,7 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 	
 	public void onSilkUse(EntityPlayer player)
 	{
-		if(this.isTamed() && player.equals(this.getOwner()))
+		if(this.isTamed() && this.isOwner(player))
 		{
 			this.toggleFollowStay();
 		}

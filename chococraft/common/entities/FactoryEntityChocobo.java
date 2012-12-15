@@ -69,16 +69,30 @@ public class FactoryEntityChocobo
 	}
 	
 	public static EntityChocobo createChocobo(World world, chocoboColor color, String name,
-			String owner, boolean hidename, boolean tamed, Boolean following, boolean male)
+			String owner, boolean hidename, boolean tamed, boolean following, boolean wander, boolean male)
 	{
-		EntityChocobo entityChocobo = FactoryEntityChocobo.createNewChocobo(world, color);
-		entityChocobo.setName(name);
-		entityChocobo.setOwner(owner);
-		entityChocobo.setHidename(hidename);
-		entityChocobo.setTamed(tamed);
-		entityChocobo.setFollowing(following);
-		entityChocobo.setIsMale(male);
-		return entityChocobo;
+		EntityChocobo chocobo = FactoryEntityChocobo.createNewChocobo(world, color);
+		chocobo.setName(name);
+		chocobo.setOwner(owner);
+		chocobo.setHidename(hidename);
+		chocobo.setTamed(tamed);
+		chocobo.setFollowing(following);
+		chocobo.setWander(wander);
+		chocobo.setIsMale(male);
+		return chocobo;
+	}
+	
+	public static EntityChocobo createChocoboFromChocobo(World world, EntityAnimalChocobo sourceChocobo)
+	{
+		EntityChocobo chocobo = FactoryEntityChocobo.createNewChocobo(world, sourceChocobo.color);
+		chocobo.setName(sourceChocobo.getName());
+		chocobo.setOwner(sourceChocobo.getOwnerName());
+		chocobo.setHidename(sourceChocobo.isHidename());
+		chocobo.setTamed(sourceChocobo.isTamed());
+		chocobo.setFollowing(sourceChocobo.isFollowing());
+		chocobo.setWander(sourceChocobo.isWander());
+		chocobo.setIsMale(sourceChocobo.isMale());
+		return chocobo;		
 	}
 	
 	public static EntityChicobo createNewChicobo(World world, chocoboColor color)

@@ -26,14 +26,14 @@ import chococraft.common.entities.EntityChicobo;
 
 public class GuiChangeOwner extends GuiScreen
 {
-	private String newOnwer;
+	private String newOwner;
 	private final EntityAnimalChocobo chocobo;
 	private GuiScreen pGuiScreen;
 	private GuiScreen ppGuiScreen;
 
 	public GuiChangeOwner(GuiScreen pScreen, GuiScreen ppScreen, EntityAnimalChocobo chocobo, String newOwner)
 	{
-		this.newOnwer = newOwner;
+		this.newOwner = newOwner;
 		this.chocobo = chocobo;
 		this.pGuiScreen = pScreen;
 		this.ppGuiScreen = ppScreen;
@@ -70,9 +70,9 @@ public class GuiChangeOwner extends GuiScreen
 		}
 		else if (guibutton.id == 0)
 		{
-			if(this.isInPlayerList(this.newOnwer))
+			if(this.isInPlayerList(this.newOwner))
 			{
-				this.chocobo.setOwner(this.newOnwer);
+				this.chocobo.changeOwner(this.newOwner);
 			}
 			else
 			{
@@ -97,7 +97,7 @@ public class GuiChangeOwner extends GuiScreen
 		messageSB.append("Give your ");
 		messageSB.append((this.chocobo instanceof EntityChicobo) ? "Chicobo" : "Chocobo");
 		messageSB.append(" to ");
-		messageSB.append(this.newOnwer);
+		messageSB.append(this.newOwner);
 		messageSB.append("?");		
 		String message = stringtranslate.translateKey(messageSB.toString());
 		

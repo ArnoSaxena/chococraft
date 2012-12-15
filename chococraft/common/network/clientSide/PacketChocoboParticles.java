@@ -1,3 +1,17 @@
+// <copyright file="PacketChocoboParticles.java">
+// Copyright (c) 2012 All Right Reserved, http://chococraft.arno-saxena.de/
+//
+// THIS CODE AND INFORMATION ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY 
+// KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
+// PARTICULAR PURPOSE.
+//
+// </copyright>
+// <author>Arno Saxena</author>
+// <email>al-s@gmx.de</email>
+// <date>2012-10-25</date>
+// <summary>Network Packet wrapper for distributing a Particle spawn event to the clients</summary>
+
 package chococraft.common.network.clientSide;
 
 import java.io.ByteArrayOutputStream;
@@ -14,7 +28,7 @@ import chococraft.common.helper.ChocoboParticleHelper;
 
 public class PacketChocoboParticles extends PacketChocoboClient
 {
-	public PacketChocoboParticles(EntityAnimalChocobo chocobo, String particleName)
+	public PacketChocoboParticles(EntityAnimalChocobo chocobo, String particleName, int amount)
 	{
 		super();	
 		ByteArrayOutputStream bos = new ByteArrayOutputStream(8);
@@ -24,6 +38,7 @@ public class PacketChocoboParticles extends PacketChocoboClient
 			outputStream.writeInt(PID_PARTICLES);
 			outputStream.writeInt(chocobo.entityId);
 			outputStream.writeUTF(particleName);
+			outputStream.writeInt(amount);
 			outputStream.writeInt(chocobo.worldObj.provider.dimensionId);
 		}
 		catch (Exception ex)
@@ -44,12 +59,13 @@ public class PacketChocoboParticles extends PacketChocoboClient
 			{
 				int entityId = inputStream.readInt();
 				String particleName = inputStream.readUTF();
+				int amount = inputStream.readInt();
 				int dimension = inputStream.readInt();
 				EntityAnimalChocobo chocobo = getChocoboByID(entityId, dimension);
 				
 				if(null != chocobo)
 				{
-					ChocoboParticleHelper.showParticleAroundEntityFx(particleName, chocobo);
+					ChocoboParticleHelper.showParticleAroundEntityFx(particleName, chocobo, amount);
 				}
 			}
 			catch(IOException e)

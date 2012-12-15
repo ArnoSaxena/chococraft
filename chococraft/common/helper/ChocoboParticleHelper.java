@@ -9,10 +9,10 @@ import cpw.mods.fml.common.Side;
 public class ChocoboParticleHelper
 {
 	// "bubble", "suspended", "depthsuspend", "townaura", "crit", "magicCrit",
-	// "smoke", "mobSpell", "spell", "instantSpell", "note", "portal", 
+	// "smoke", "mobSpell", "mobSpellAmbient", "spell", "instantSpell", "witchMagic", "note", "portal", 
 	// "enchantmenttable", "explode", "flame", "lava", "footstep", "splash",
 	// "largesmoke", "cloud", "reddust", "snowballpoof", "dripWater", "dripLava",
-	// "snowshovel", "slime", "heart"
+	// "snowshovel", "slime", "heart", "angryVillager", "happyVillager"
     public static void showParticleAroundEntityFx(String particleName, Entity entity)
     {
     	if(Side.CLIENT == FMLCommonHandler.instance().getEffectiveSide())
@@ -26,6 +26,14 @@ public class ChocoboParticleHelper
     		double partVelY = rand.nextGaussian() * 0.02D;
     		double partVelZ = rand.nextGaussian() * 0.02D;
     		entity.worldObj.spawnParticle(particleName, partPosX, partPosY, partPosZ, partVelX, partVelY, partVelZ);
+    	}
+    }
+    
+    public static void showParticleAroundEntityFx(String particleName, Entity entity, int amount)
+    {
+    	for(int i = 0; i < amount; i++)
+    	{
+    		showParticleAroundEntityFx(particleName, entity);
     	}
     }
     

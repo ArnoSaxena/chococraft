@@ -238,13 +238,13 @@ public class EntityChicobo extends EntityAnimalChocobo
 				this.lastTickPosX = this.posX;
 				this.lastTickPosY = this.posY;
 				this.lastTickPosZ = this.posZ;
-				EntityChocobo grownUpChocobo = FactoryEntityChocobo.createChocobo(this.worldObj, this.color, this.getName(), this.getOwnerName(), this.isHidename(), this.isTamed(), this.isFollowing(), this.isMale());
+				EntityChocobo grownUpChocobo = FactoryEntityChocobo.createChocoboFromChocobo(this.worldObj, this);
 				grownUpChocobo.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, 0.0F);
 				grownUpChocobo.setGrowingAge(6000);
 				grownUpChocobo.setFollowing(this.isFollowing());
 				grownUpChocobo.setWander(this.isWander());
 				this.worldObj.spawnEntityInWorld(grownUpChocobo);
-				this.sendParticleUpdate("explode", grownUpChocobo);
+				this.sendParticleUpdate("explode", grownUpChocobo, 7);
 				this.setEntityHealth(0);
 				this.setDead();
 				this.growUp = false;
@@ -325,13 +325,13 @@ public class EntityChicobo extends EntityAnimalChocobo
 		}
 	}
 
-	protected void onGysahlCakeUse(EntityPlayer entityplayer)
+	protected void onGysahlCakeUse(EntityPlayer player)
 	{
 		if (Side.SERVER == FMLCommonHandler.instance().getEffectiveSide())
 		{
-			if (this.isTamed() && entityplayer.equals(this.getOwner()))
+			if (this.isTamed() && this.isOwner(player))
 			{
-				this.useItem(entityplayer);
+				this.useItem(player);
 				this.setCanGrowUp(true);
 				this.growUp = true;
 				this.sendCanGrowUpUpdate();
@@ -343,9 +343,9 @@ public class EntityChicobo extends EntityAnimalChocobo
 		}
 	}
 	
-	public void onFeatherUse(EntityPlayer entityplayer)
+	public void onFeatherUse(EntityPlayer player)
 	{
-		if (this.isTamed() && entityplayer.equals(this.getOwner()))
+		if (this.isTamed() && this.isOwner(player))
 		{
 			this.toggleFollowWanderStay();
 		}

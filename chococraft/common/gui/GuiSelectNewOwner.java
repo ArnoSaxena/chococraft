@@ -30,14 +30,15 @@ import chococraft.common.helper.ChocoboMathHelper;
 
 public class GuiSelectNewOwner extends GuiScreen
 {
-	private GuiTextField tfNewOnwer;
-	private GuiTextField tfPlayerList;
-	private final EntityAnimalChocobo chocobo;
-	private GuiScreen pGuiScreen;
+	private final int plViewListSize = 5;
+	private ArrayList<GuiClickTextField> tfArPlayerList;
 	private ArrayList<String> currentSelPlayers;
 	private int selPlListIdx;
-	private final int plViewListSize = 5;
-
+	
+	private GuiTextField tfNewOnwer;
+	private final EntityAnimalChocobo chocobo;
+	private GuiScreen pGuiScreen;
+	
 	public GuiSelectNewOwner(GuiScreen guiscreen, EntityAnimalChocobo entitychocobo)
 	{
 		this.chocobo = entitychocobo;
@@ -55,23 +56,56 @@ public class GuiSelectNewOwner extends GuiScreen
 		StringTranslate stringtranslate = StringTranslate.getInstance();
 		Keyboard.enableRepeatEvents(true);
 		this.controlList.clear();		
-		this.controlList.add(new GuiButton(0, this.width / 2 - 100, this.height / 4 + 96 + 12, stringtranslate.translateKey("Accept")));
-		this.controlList.add(new GuiButton(1, this.width / 2 - 100, this.height / 4 + 120 + 12, stringtranslate.translateKey("gui.cancel")));
+		this.controlList.add(new GuiButton(0, this.width / 2 - 100, this.height / 4 + 120 + 12, 80, 20, stringtranslate.translateKey("Accept")));
+		this.controlList.add(new GuiButton(1, this.width / 2, this.height / 4 + 120 + 12, 80, 20, stringtranslate.translateKey("gui.cancel")));
 
-		this.controlList.add(new GuiButton(2, this.width / 2 + 100, this.height / 2 + 20, 20, 20, stringtranslate.translateKey("v")));
-		this.controlList.add(new GuiButton(3, this.width / 2 + 100, this.height / 2 - 20, 20, 20, stringtranslate.translateKey("^")));
+		this.controlList.add(new GuiButton(2, this.width / 2 + 90, this.height / 2 - 50, 40, 20, stringtranslate.translateKey("last")));
+		this.controlList.add(new GuiButton(3, this.width / 2 + 90, this.height / 2 - 20, 40, 20, stringtranslate.translateKey("next")));
 
-		// add empty text field ...
-		this.tfPlayerList = new GuiTextField(this.fontRenderer, this.width/2 - 110, 60, 170, 60);
-		this.tfPlayerList.setText("");
-		this.tfPlayerList.setFocused(false);		
-
-		this.tfNewOnwer = new GuiTextField(this.fontRenderer, this.width / 2 - 110, this.height / 4 + 72 + 12, 190, 20);
+		this.tfNewOnwer = new GuiTextField(this.fontRenderer, this.width / 2 - 100, this.height / 4 + 96 + 12, 180, 20);
 		this.tfNewOnwer.setText("");
 		this.tfNewOnwer.setFocused(true);
 		this.tfNewOnwer.setCanLoseFocus(false);
 		this.tfNewOnwer.setMaxStringLength(20);
-		this.currentSelPlayers = new ArrayList<String>();
+		
+		this.tfArPlayerList = this.createPlayerListTextFields(this.width/2 - 100, 55);
+		this.currentSelPlayers = this.findAllPlayerNames();
+		this.selPlListIdx = 0;
+		this.showPlayerListAtCurrentIndex();		
+	}
+	
+	private ArrayList<GuiClickTextField> createPlayerListTextFields(int x, int y)
+	{
+		ArrayList<GuiClickTextField> gtfAr = new ArrayList<GuiClickTextField>();
+		for(int i = 0; i < this.plViewListSize; i++)
+		{
+			gtfAr.add(this.createPlayerListTextField(x, y + i * 21));
+		}
+		return gtfAr;
+	}
+
+	private GuiClickTextField createPlayerListTextField(int x, int y)
+	{
+		GuiClickTextField gctf = new GuiClickTextField(this.fontRenderer, x, y, 180, 20);
+		gctf.setReceiver(this);
+		gctf.setFocused(false);
+		return gctf;
+	}
+	
+	private void showPlayerListAtCurrentIndex()
+	{
+		for(int i = 0; i < this.plViewListSize; i++)
+		{
+			if(this.currentSelPlayers.size() > this.selPlListIdx + i)
+			{
+				String nameAtIdx = this.currentSelPlayers.get(this.selPlListIdx + i);
+				this.tfArPlayerList.get(i).setText(nameAtIdx);
+			}
+			else
+			{
+				this.tfArPlayerList.get(i).setText("");
+			}
+		}
 	}
 
 	public void onGuiClosed()
@@ -97,13 +131,13 @@ public class GuiSelectNewOwner extends GuiScreen
 		}
 		else if(guibutton.id == 2)
 		{
-			this.selectedPlayerListMove(this.plViewListSize);
-			// TODO update currentSelPlayer view
+			this.selectedPlayerListMove(-this.plViewListSize);
+			this.showPlayerListAtCurrentIndex();
 		}
 		else if(guibutton.id == 3)
 		{
-			this.selectedPlayerListMove(-this.plViewListSize);
-			// TODO update currentSelPlayer view
+			this.selectedPlayerListMove(this.plViewListSize);
+			this.showPlayerListAtCurrentIndex();
 		}
 	}
 
@@ -125,7 +159,16 @@ public class GuiSelectNewOwner extends GuiScreen
 		if(this.tfNewOnwer.getText().trim().length() > 0)
 		{
 			((GuiButton)this.controlList.get(0)).enabled = true;
-			this.currentSelPlayers = this.findFirstPlayerNamesStartingWith(this.tfNewOnwer.getText().trim());
+			String startNameNewOwner = this.tfNewOnwer.getText().trim();
+			
+			if(startNameNewOwner.equals(""))
+			{
+				this.currentSelPlayers = this.findAllPlayerNames();
+			}
+			else
+			{
+				this.currentSelPlayers = this.findPlayerNamesStartingWith(startNameNewOwner);
+			}
 
 			if (c == '\r')
 			{
@@ -133,28 +176,34 @@ public class GuiSelectNewOwner extends GuiScreen
 			}
 			else
 			{
-				String playerListText = "";
-				for(int j = this.selPlListIdx; j < this.selPlListIdx + this.plViewListSize; j++)
-				{
-					if(j < this.currentSelPlayers.size())
-					{
-						playerListText += this.currentSelPlayers.get(j) + "\n";
-					}
-				}
-				this.tfPlayerList.setText(playerListText);
+				this.selPlListIdx = 0;
+				this.showPlayerListAtCurrentIndex();
 			}
 		}
 		else
 		{
 			((GuiButton)this.controlList.get(0)).enabled = false;
-
 		}
 	}
-
-	protected void mouseClicked(int i, int j, int k)
+	
+	public void fillNameIntoNewOwnerTf(String name)
 	{
-		super.mouseClicked(i, j, k);
-		tfNewOnwer.mouseClicked(i, j, k);
+		this.tfNewOnwer.setText(name);
+		this.tfNewOnwer.drawTextBox();
+		((GuiButton)this.controlList.get(0)).enabled = !this.tfNewOnwer.getText().isEmpty();
+	}
+	
+	protected void mouseClicked(int x, int y, int k)
+	{
+		super.mouseClicked(x, y, k);
+		tfNewOnwer.mouseClicked(x, y, k);
+		for(int i = 0; i < this.plViewListSize; i++)
+		{
+			if(i < this.tfArPlayerList.size())
+			{
+				this.tfArPlayerList.get(i).mouseClicked(x, y, k);
+			}
+		}
 	}
 
 	public void drawScreen(int i, int j, float f)
@@ -167,13 +216,21 @@ public class GuiSelectNewOwner extends GuiScreen
 		messageSB.append((this.chocobo instanceof EntityChicobo) ? "Chicobo" : "Chocobo");
 		String message = stringtranslate.translateKey(messageSB.toString());
 		this.drawCenteredString(this.fontRenderer, message, this.width / 2, (this.height / 4 - 60) + 20, 0xffffff);		
-		this.drawString(this.fontRenderer, stringtranslate.translateKey("to new owner:"), this.width / 2 - 100, 47, 0xa0a0a0);		
+		this.drawString(this.fontRenderer, stringtranslate.translateKey("to new owner:"), this.width / 2 - 100, 30, 0xa0a0a0);		
 		this.tfNewOnwer.drawTextBox();
-		this.tfPlayerList.drawTextBox();
+		for(GuiTextField gtf : this.tfArPlayerList)
+		{
+			gtf.drawTextBox();
+		}
 		super.drawScreen(i, j, f);
 	}
+	
+	private ArrayList<String> findAllPlayerNames()
+	{
+		return findPlayerNamesStartingWith(null);
+	}
 
-	private ArrayList<String> findFirstPlayerNamesStartingWith(String nameStart)
+	private ArrayList<String> findPlayerNamesStartingWith(String nameStart)
 	{
 		ArrayList<String> playerNames = new ArrayList<String>();
 
@@ -182,9 +239,12 @@ public class GuiSelectNewOwner extends GuiScreen
 			if(playerObj instanceof EntityPlayer)
 			{
 				EntityPlayer player = (EntityPlayer)playerObj;
-				if(player.username.startsWith(nameStart))
+				if(nameStart == null || player.username.startsWith(nameStart))
 				{
-					playerNames.add(player.username);					
+					//if(!player.equals(this.chocobo.getOwner()))
+					{
+						playerNames.add(player.username);
+					}
 				}
 			}
 		}

@@ -31,9 +31,11 @@ import chococraft.common.gui.GuiStarter;
 import chococraft.common.helper.ChocoboMathHelper;
 import chococraft.common.helper.ChocoboParticleHelper;
 import chococraft.common.network.clientSide.PacketChocoboHealth;
+import chococraft.common.network.clientSide.PacketChocoboHunger;
 import chococraft.common.network.clientSide.PacketChocoboParticles;
 import chococraft.common.network.clientSide.PacketChocoboTamed;
 import chococraft.common.network.serverSide.PacketChocoboAttribute;
+import chococraft.common.network.serverSide.PacketChocoboChangeOwner;
 import chococraft.common.network.serverSide.PacketChocoboRiderJump;
 import chococraft.common.network.serverSide.PacketChocoboSetInLove;
 import net.minecraft.src.Block;
@@ -109,7 +111,8 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
     {
 		super.entityInit();
 		this.dataWatcher.addObject(Constants.DW_ID_EAC_NAME, "");
-		this.dataWatcher.addObject(Constants.DW_ID_EAC_FLAGS, Byte.valueOf((byte)0));
+		this.dataWatcher.addObject(Constants.DW_ID_EAC_FLAGS, Byte.valueOf((byte)0));		
+		this.dataWatcher.addObject(Constants.DW_ID_EAC_TIME_UNTIL_HUNGER, new Integer(0));
     }
 	
 	public void writeEntityToNBT(NBTTagCompound nbttagcompound)
@@ -121,6 +124,7 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
 		nbttagcompound.setBoolean("Follow", this.isFollowing());
 		nbttagcompound.setBoolean("hidename", this.isHidename());
 		nbttagcompound.setBoolean("tamed", this.isTamed());
+		nbttagcompound.setInteger("timeUntilHunger", this.getTimeUntilHunger());
 	}
 
     public void readEntityFromNBT(NBTTagCompound nbttagcompound)
@@ -132,6 +136,7 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
         this.setFollowing(nbttagcompound.getBoolean("Follow"));
         this.setIsMale(nbttagcompound.getBoolean("isMale"));
         this.setTamed(nbttagcompound.getBoolean("tamed"));
+        this.setTimeUntilHunger(nbttagcompound.getInteger("timeUntilHunger"));
     }
     
     public void writeSpawnData(ByteArrayDataOutput data)
@@ -183,7 +188,46 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
     	return name;
     }
     
+    public int getTimeUntilHunger()
+    {
+		return this.dataWatcher.getWatchableObjectInt(Constants.DW_ID_EAC_TIME_UNTIL_HUNGER);
+    }
 
+    public void setTimeUntilHunger(int timeUntilHunger)
+    {
+    	if(timeUntilHunger > 0)
+    	{
+    		this.dataWatcher.updateObject(Constants.DW_ID_EAC_TIME_UNTIL_HUNGER, timeUntilHunger);
+    	}
+    	else
+    	{
+    		this.dataWatcher.updateObject(Constants.DW_ID_EAC_TIME_UNTIL_HUNGER, 0);
+    	}
+
+    }
+    
+    public boolean isHungry()
+    {
+    	boolean hungry = this.getTimeUntilHunger() <= 0;    	
+    	return hungry && ModChocoCraft.hungerEnabled;
+    }
+    
+    public void feeding()
+    {
+    	int timeUntilHunger = this.isChild() ? ModChocoCraft.hungerDelayChicobo : ModChocoCraft.hungerDelayChocobo;
+    	this.setTimeUntilHunger(timeUntilHunger);
+    	this.sendParticleUpdate("mobSpell", this, 7);
+    }
+    
+    @Override
+    public void setGrowingAge(int growingAge)
+    {
+    	if(!this.isHungry())
+    	{
+    		super.setGrowingAge(growingAge);
+    	}
+    }
+    
 	public boolean isInLove()
     {
         return (this.dataWatcher.getWatchableObjectByte(Constants.DW_ID_EAC_FLAGS) & Constants.DW_VAL_EAC_INLOVE_ON) != 0;
@@ -336,16 +380,43 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
 		this.showAmountHeartsOrSmokeFx(this.isFollowing(), 7);
 	}
 	
-	// TODO: superclass method is returning EntityLiving ... thus not really the superclass
-	// method, but otherwise the complete same as this method. this should be fixed ...
 	public EntityPlayer getOwner()
     {
-    	return this.worldObj.getPlayerEntityByName(this.getOwnerName());
+		if(ModChocoCraft.isRemoteClient)
+		{
+			return this.worldObj.getPlayerEntityByName(this.getOwnerName());
+		}
+		else
+		{
+			if(this.worldObj.playerEntities.size() > 0)
+			{
+				Object playerObj = this.worldObj.playerEntities.get(0);
+				if(playerObj instanceof EntityPlayer)
+				{
+					return (EntityPlayer) playerObj;
+				}
+			}
+		}
+		return null;
     }
-
+	
+	public boolean isOwner(EntityPlayer player)
+	{
+		if(ModChocoCraft.isRemoteClient)
+		{
+			return player.equals(this.getOwner());
+		}
+		else
+		{
+			return true;
+		}
+	}
+	
 	public void onLivingUpdate()
 	{
 		super.onLivingUpdate();
+
+		this.setTimeUntilHunger(this.getTimeUntilHunger() -1);
 
 		this.doStrawHealing();
 	}
@@ -369,7 +440,7 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
 							{
 								this.heal(this.rand.nextInt(3) + 1);
 								this.sendHealthUpdate();
-								this.sendParticleUpdate("heart", this);
+								this.sendParticleUpdate("heart", this, 1);
 							}
 						}
 					}
@@ -508,6 +579,16 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
     		}
 			this.showAmountHeartsOrSmokeFx(true, 7);
     	}
+    	else if (this.isHungry())
+    	{
+    		this.useItem(entityplayer);
+    		if(Side.SERVER == FMLCommonHandler.instance().getEffectiveSide())
+    		{
+    			this.feeding();
+    			this.sendHungerUpdate();
+    		}
+    		
+    	}
     }
 
 	protected void attackEntity(Entity entity, float targetDistance)
@@ -570,13 +651,13 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
 
     		if (babyChicobo != null)
     		{
-    			babyChicobo.setTimeUntilAdult(rand.nextInt(2000) + 27000);
+    			babyChicobo.setTimeUntilAdult(rand.nextInt(ModChocoCraft.growupDelayRandom) + ModChocoCraft.growupDelayStatic);
     			babyChicobo.setGrowingAge(babyChicobo.getTimeUntilAdult());
     			babyChicobo.setLocationAndAngles(posX, posY, posZ, rotationYaw, rotationPitch);
     			this.worldObj.spawnEntityInWorld(babyChicobo);
 
-    			this.setGrowingAge(this.isMale() ? 3000 : 9000);
-    			otherParent.setGrowingAge(otherParent.isMale() ? 3000 : 9000);
+    			this.setGrowingAge(this.isMale() ? ModChocoCraft.breedingDelayMale : ModChocoCraft.breedingDelayFemale);
+    			otherParent.setGrowingAge(otherParent.isMale() ? ModChocoCraft.breedingDelayMale : ModChocoCraft.breedingDelayFemale);
     			this.entityToAttack = null;
     			otherParent.entityToAttack = null;
     			this.breeding = 0;
@@ -584,7 +665,7 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
     			this.setInLove(false);
     			otherParent.setInLove(false);
 
-    			this.showAmountHeartsOrSmokeFx(true, 7);
+    			this.sendParticleUpdate("heart", this, 7);
     		}
     	}
     }
@@ -620,7 +701,7 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
         		EntityPlayer entityPlayer = (EntityPlayer)damageSource.getEntity();        		
         		if(null != entityPlayer)
         		{
-        			if(null != this.getOwner() && this.getOwner().equals(entityPlayer))
+        			if(null != this.getOwner() && this.isOwner(entityPlayer))
         			{
         				if(entityPlayer.isSneaking())
         				{
@@ -731,6 +812,12 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
     	}
     	return false;
     }
+    
+    public void changeOwner(String newOwner)
+    {
+    	this.setOwner(newOwner);
+    	this.sendChangeOwnerUpdate();
+    }
 
     public int getTalkInterval()
     {
@@ -740,7 +827,6 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
 	protected boolean canDespawn()
 	{
 		return false;
-		//return !this.isTamed();
 	}    
 
     protected boolean isLoverlyGysahl(ItemStack itemstack)
@@ -1014,6 +1100,15 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
 				&& !this.isHidename() && !this.getName().isEmpty();
 	}
 	
+	protected void sendChangeOwnerUpdate()
+	{
+		if(Side.CLIENT == FMLCommonHandler.instance().getEffectiveSide())
+		{
+			PacketChocoboChangeOwner packet = new PacketChocoboChangeOwner(this);
+			PacketDispatcher.sendPacketToServer(packet.getPacket());
+		}
+	}
+	
     protected void sendTamedUpdate()
     {
 		if (Side.SERVER == FMLCommonHandler.instance().getEffectiveSide())
@@ -1032,6 +1127,16 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
 			PacketDispatcher.sendPacketToServer(packet.getPacket());
 		}
 	}
+    
+    protected void sendHungerUpdate()
+    {
+		if (Side.SERVER == FMLCommonHandler.instance().getEffectiveSide())
+		{
+			PacketChocoboHunger packet = new PacketChocoboHunger(this);
+			int dimension = this.worldObj.provider.dimensionId;
+			PacketDispatcher.sendPacketToAllAround(this.lastTickPosX, this.lastTickPosY, this.lastTickPosZ, 16*5, dimension, packet.getPacket());
+		}
+    }
     
 	protected void sendHealthUpdate()
 	{
@@ -1058,11 +1163,11 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
 		}		
 	}
 	
-	protected void sendParticleUpdate(String particleName, EntityAnimalChocobo chocobo)
+	protected void sendParticleUpdate(String particleName, EntityAnimalChocobo chocobo, int amount)
 	{
 		if (Side.SERVER == FMLCommonHandler.instance().getEffectiveSide())
 		{
-			PacketChocoboParticles packet = new PacketChocoboParticles(chocobo, particleName);
+			PacketChocoboParticles packet = new PacketChocoboParticles(chocobo, particleName, amount);
 			int dimension = chocobo.worldObj.provider.dimensionId;
 			PacketDispatcher.sendPacketToAllAround(chocobo.lastTickPosX, chocobo.lastTickPosY, chocobo.lastTickPosZ, 16*5, dimension, packet.getPacket());
 		}		
