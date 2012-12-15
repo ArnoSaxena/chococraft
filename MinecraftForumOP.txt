@@ -40,6 +40,11 @@ Post in the original thread for [url="http://www.minecraftforum.net/user/490126-
 
 VIDEOS:
 [spoiler]Spotlights:
+[url="http://www.minecraftforum.net/user/1213426-robplaysminecraft/"]robplaysminecraft[/url] has done a video using the 2.3.7 version. Tho there are some glitches in the documentation:
+  - Packbags go on [b]unsaddled[/b] Chocobos! (why does nobody get that, it's described in the behaviour paragraph, isn't it??)
+  - only different gender Chocobos can be breed, the gender is indicated by the plume!
+[media]http://www.youtube.com/watch?v=WSIZVuQ3MJk[/media]
+
 [url="http://www.minecraftforum.net/user/1723035-shiftthemine/"]ShiftTheMine[/url] has done a video using the 2.1.2 version
 [media]http://www.youtube.com/watch?v=6aRs1iAmgzk[/media]
 
@@ -343,7 +348,7 @@ What's the difference between each type of Chocobo?
    4. White Chocobos have the ability to climb and cross water, and are faster than the previous ones.
    5. Black Chocobos have the ability to jump high, climb and cross water, and are as fast as the white ones.
    6. Gold/Pink/Red Chocobos have the ability to fly, climb and cross water, don't take fall damage, and are the fastest chocobos.
-   7. (Purple Chocobos have the ability to fly, climb and cross lava, don't take fall damage, are as fast as white and black chocobos, and are immune to fire. They will be found only in The Nether.) Not available at the moment.
+   7. Purple Chocobos have the ability to fly, climb and cross lava, don't take fall damage, are as fast as white and black chocobos, and are immune to fire. They will be found only in The Nether or End.
 [/spoiler]
 
 Where can I find Gysahl Greens?
