@@ -19,6 +19,14 @@ public class ChocoCraftEvent
     }
     
 //    @ForgeSubscribe
+//    public void onUserConnect(PlayerEvent event)
+//    {
+//    	if(event.entity instanceof EntityPlayer)
+//    	{
+//    	}
+//    }
+    
+//    @ForgeSubscribe
 //    public void onSound(SoundLoadEvent event)
 //    {
 //        try
