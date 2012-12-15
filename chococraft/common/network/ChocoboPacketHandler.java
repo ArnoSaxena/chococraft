@@ -74,6 +74,18 @@ public class ChocoboPacketHandler implements IPacketHandler
 			{
 				PacketChocoboSetInLove.handleUpdate(data, player);
 			}
+			else if(packetId == PacketChocobo.PID_CHOWN)
+			{
+				PacketChocoboChangeOwner.handleUpdate(data, player);
+			}
+			else if(packetId == PacketChocobo.PID_HUNGER)
+			{
+				PacketChocoboHunger.handleUpdate(data, player);
+			}
+			else if(packetId == PacketChocobo.PID_SETUP)
+			{
+				PacketChocoboSetupUpdate.handleUpdate(data, player);
+			}
 		}
 		catch (Exception ex)
 		{
