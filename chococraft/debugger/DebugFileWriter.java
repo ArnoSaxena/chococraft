@@ -7,7 +7,9 @@ import java.io.IOException;
 import java.util.logging.Logger;
 
 import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.Side;
 import net.minecraft.client.Minecraft;
+import net.minecraft.server.MinecraftServer;
 
 public class DebugFileWriter
 {
@@ -20,7 +22,14 @@ public class DebugFileWriter
 	{
 		String fileName = "mods/chocoboDebug.txt";
 		
-		file = new File(Minecraft.getMinecraftDir(), fileName);
+		if(Side.CLIENT == FMLCommonHandler.instance().getEffectiveSide())
+		{
+			file = new File(Minecraft.getMinecraftDir(), fileName);
+		}
+		else if (Side.SERVER == FMLCommonHandler.instance().getEffectiveSide())
+		{
+			file = new File(MinecraftServer.getServer().getFolderName(), fileName);
+		}
 		
 		if(!file.exists())
 		{
