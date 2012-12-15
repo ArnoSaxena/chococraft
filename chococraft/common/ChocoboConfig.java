@@ -51,15 +51,24 @@ public class ChocoboConfig
 	static String CFG_KEY_SPAWN_LIMIT_CHUNK_RADIUS = "spawnLimitChunkRadius";
 	static String CFG_KEY_SPAWN_DIST_NEXT_WILD = "distanceNextWild";
 	
-	static String CFG_KEY_CHOCOBO_WING_FLUTTER = "chocoboWingFlutter";
-	static String CFG_TOKEN_ALL = "all";
-	static String CFG_KEY_FEATHER_DELAY_RANDOM = "featherDelayRandom";
-	static String CFG_KEY_FEATHER_DELAY_STATIC = "featherDelayStatic";
-	static String CFG_KEY_FEATHER_DROP_CHANCE = "featherDropChance";
-	static String CFG_KEY_RENDER_NAME_HEIGHT = "renderNameHeight";
+	static String CFG_KEY_CHOCOBO_WING_FLUTTER  = "chocoboWingFlutter";
+	static String CFG_KEY_HUNGER_ENABLED        = "hungerEnabled";
+	static String CFG_TOKEN_ALL                 = "all";
+	static String CFG_KEY_FEATHER_DELAY_RANDOM  = "featherDelayRandom";
+	static String CFG_KEY_FEATHER_DELAY_STATIC  = "featherDelayStatic";
+	static String CFG_KEY_FEATHER_DROP_CHANCE   = "featherDropChance";
+	static String CFG_KEY_RENDER_NAME_HEIGHT    = "renderNameHeight";
 	
 	static String CFG_KEY_PEN_HEAL_PROBABILITY = "penHealProbability";
 	static String CFG_KEY_PEN_HEAL_CAULDRON_RANGE = "penHealCauldronRange";
+	
+	static String CFG_KEY_BREEDING_DELAY_MALE = "breedingDelayMale";
+	static String CFG_KEY_BREEDING_DELAY_FEMALE = "breedingDelayFemale";
+	static String CFG_KEY_GROWUP_DELAY_STATIC = "growUpDelayStatic";
+	static String CFG_KEY_GROWUP_DELAY_RANDOM = "growUpDelayRandom";
+	
+	static String CFG_KEY_HUNGER_DELAY_CHOCOBO = "hungerDelayChocobo";
+	static String CFG_KEY_HUNGER_DELAY_CHICOBO = "hungerDelayChicobo";
 	
 	static String CFG_KEY_LIVING_SOUND_PROB = "livingSoundProbability";
 	
@@ -107,132 +116,51 @@ public class ChocoboConfig
 								}
 								else if(key.equalsIgnoreCase(CFG_KEY_SPAWN_TIME_DELAY))
 								{
-									int tmpstd = Integer.parseInt(value);
-									if(tmpstd < 50)
-									{
-										ModChocoCraft.spawnTimeDelay = 50;
-									}
-									else
-									{
-										ModChocoCraft.spawnTimeDelay = tmpstd;
-									}
+									ModChocoCraft.spawnTimeDelay = ChocoboMathHelper.minLimit(Integer.parseInt(value), 50);
 								}
 								else if(key.equalsIgnoreCase(CFG_KEY_SPAWN_PROBABILITY))
 								{
-									int tmpProb = Integer.parseInt(value);
-									if(tmpProb > 100)
-									{
-										ModChocoCraft.spawnProbability = 100;
-									}
-									else if(tmpProb < 1)
-									{
-										ModChocoCraft.spawnProbability = 1;
-									}
-									else
-									{
-										ModChocoCraft.spawnProbability = tmpProb;
-									}
+									ModChocoCraft.spawnProbability = ChocoboMathHelper.clamp(Integer.parseInt(value), 1, 100);
 								}
 								else if(key.equalsIgnoreCase(CFG_KEY_SPAWN_GROUP_MIN))
 								{
-									int tmpsming = Integer.parseInt(value);
-									if(tmpsming < 1)
-									{
-										ModChocoCraft.spawnGroupMin = 1;
-									}
-									else
-									{
-										ModChocoCraft.spawnGroupMin = tmpsming;	
-									}
+									ModChocoCraft.spawnGroupMin = ChocoboMathHelper.minLimit(Integer.parseInt(value), 1);
 								}
 								else if(key.equalsIgnoreCase(CFG_KEY_SPAWN_GROUP_MAX))
 								{
-									int tmpsmaxg = Integer.parseInt(value);
-									if(tmpsmaxg < 1)
-									{
-										ModChocoCraft.spawnGroupMax = 1;
-									}
-									else
-									{
-										ModChocoCraft.spawnGroupMax = tmpsmaxg;	
-									}
+									ModChocoCraft.spawnGroupMax = ChocoboMathHelper.minLimit(Integer.parseInt(value), 1);
 								}
 								else if(key.equalsIgnoreCase(CFG_KEY_SPAWN_TOTAL_MAX))
 								{
-									int tmpsmaxg = Integer.parseInt(value);
-									if(tmpsmaxg < 1)
-									{
-										ModChocoCraft.spawnTotalMax = 1;
-									}
-									else
-									{
-										ModChocoCraft.spawnTotalMax = tmpsmaxg;	
-									}
+									ModChocoCraft.spawnTotalMax = ChocoboMathHelper.minLimit(Integer.parseInt(value), 1);
 								}
 								else if(key.equalsIgnoreCase(CFG_KEY_SPAWN_LIMIT_CHUNK_RADIUS))
 								{
-									int tmpslcr = Integer.parseInt(value);
-									if(tmpslcr < 1)
-									{
-										ModChocoCraft.spawnLimitChunkRadius = 1;
-									}
-									else
-									{
-										ModChocoCraft.spawnLimitChunkRadius = tmpslcr;	
-									}
+									ModChocoCraft.spawnLimitChunkRadius = ChocoboMathHelper.minLimit(Integer.parseInt(value), 1);
 								}
 								else if(key.equalsIgnoreCase(CFG_KEY_SPAWN_DIST_NEXT_WILD))
 								{
-									int tmpdnw = Integer.parseInt(value);
-									if(tmpdnw < 60)
-									{
-										ModChocoCraft.spawnDistanceNextWild = 60;
-									}
-									else
-									{
-										ModChocoCraft.spawnDistanceNextWild = tmpdnw;	
-									}
+									ModChocoCraft.spawnDistanceNextWild = ChocoboMathHelper.minLimit(Integer.parseInt(value), 60);
 								}
 								else if(key.equalsIgnoreCase(CFG_KEY_CHOCOBO_WING_FLUTTER))
 								{
 									ModChocoCraft.chocoboWingFlutter = Boolean.parseBoolean(value);
 								}
-
+								else if(key.equalsIgnoreCase(CFG_KEY_HUNGER_ENABLED))
+								{
+									ModChocoCraft.hungerEnabled = Boolean.parseBoolean(value);
+								}
 								else if(key.equalsIgnoreCase(CFG_KEY_FEATHER_DELAY_RANDOM))
 								{
-									int tmpfdr = Integer.parseInt(value);
-									if(tmpfdr < 60)
-									{
-										ModChocoCraft.featherDelayRandom = 60;
-									}
-									else
-									{
-										ModChocoCraft.featherDelayRandom = tmpfdr;	
-									}
+									ModChocoCraft.featherDelayRandom = ChocoboMathHelper.minLimit(Integer.parseInt(value), 60);
 								}
 								else if(key.equalsIgnoreCase(CFG_KEY_FEATHER_DELAY_STATIC))
 								{
-									int tmpfdr = Integer.parseInt(value);
-									if(tmpfdr < 60)
-									{
-										ModChocoCraft.featherDelayStatic = 60;
-									}
-									else
-									{
-										ModChocoCraft.featherDelayStatic = tmpfdr;	
-									}
+									ModChocoCraft.featherDelayStatic = ChocoboMathHelper.minLimit(Integer.parseInt(value), 60);
 								}
 								else if(key.equalsIgnoreCase(CFG_KEY_FEATHER_DROP_CHANCE))
 								{
-									int tmpfdr = Integer.parseInt(value);
-									if(tmpfdr < 1)
-									{
-										ModChocoCraft.featherDropChance = 1;
-									}
-									else
-									{
-										ModChocoCraft.featherDropChance = tmpfdr;	
-									}
+									ModChocoCraft.featherDropChance = ChocoboMathHelper.minLimit(Integer.parseInt(value), 1);
 								}
 								else if(key.equalsIgnoreCase(CFG_KEY_RENDER_NAME_HEIGHT))
 								{
@@ -262,6 +190,32 @@ public class ChocoboConfig
 								{
 									ModChocoCraft.penHealCauldronRange = ChocoboMathHelper.clamp(Integer.parseInt(value), 1, 15);
 								}
+								else if(key.equalsIgnoreCase(CFG_KEY_BREEDING_DELAY_MALE))
+								{
+									ModChocoCraft.breedingDelayMale = ChocoboMathHelper.minLimit(Integer.parseInt(value), 20);
+								}
+								else if(key.equalsIgnoreCase(CFG_KEY_BREEDING_DELAY_FEMALE))
+								{
+									ModChocoCraft.breedingDelayFemale = ChocoboMathHelper.minLimit(Integer.parseInt(value), 20);
+								}
+								else if(key.equals(CFG_KEY_GROWUP_DELAY_RANDOM))
+								{
+									ModChocoCraft.growupDelayRandom = ChocoboMathHelper.minLimit(Integer.parseInt(value), 20);
+								}
+								else if(key.equals(CFG_KEY_GROWUP_DELAY_STATIC))
+								{
+									ModChocoCraft.growupDelayStatic = ChocoboMathHelper.minLimit(Integer.parseInt(value), 20);
+								}
+								else if(key.equals(CFG_KEY_HUNGER_DELAY_CHICOBO))
+								{
+									ModChocoCraft.hungerDelayChicobo = ChocoboMathHelper.minLimit(Integer.parseInt(value), 20);
+								}
+								else if(key.equals(CFG_KEY_HUNGER_DELAY_CHOCOBO))
+								{
+									ModChocoCraft.hungerDelayChocobo = ChocoboMathHelper.minLimit(Integer.parseInt(value), 20);
+								}
+								
+								// debug mode
 								else if(key.equalsIgnoreCase(CFG_KEY_DEBUG_MODE))
 								{
 									ModChocoCraft.debugMode = Boolean.parseBoolean(value);
@@ -355,6 +309,7 @@ public class ChocoboConfig
 			writer.write("\n");
 			writer.write(getConfigLine(CFG_KEY_SHOW_CHOCO_NAMES, Boolean.toString(Constants.DEFAULT_SHOW_CHOCOBO_NAMES)));
 			writer.write(getConfigLine(CFG_KEY_CHOCOBO_WING_FLUTTER, Boolean.toString(Constants.DEFAULT_CHOCOBO_WING_FLUTTER)));
+			writer.write(getConfigLine(CFG_KEY_HUNGER_ENABLED, Boolean.toString(Constants.DEFAULT_HUNGER_ENABLED)));
 			
 			writer.write("\n");
 			writer.write(getCommentLine("The default name height is 2.3 blocks from the ground. You can add height"));			
@@ -368,6 +323,22 @@ public class ChocoboConfig
 			writer.write(getCommentLine("Thus if it is set to 50 only every second 'Kweh' will be heared. If set to 1 only "));
 			writer.write(getCommentLine("every 100th etc..."));
 			writer.write(getConfigLine(CFG_KEY_LIVING_SOUND_PROB, Integer.toString(Constants.DEFAULT_LIVING_SOUND_PROB)));
+			
+			writer.write("\n");
+			writer.write(getCommentLine("Cool down phase between breeding"));
+			writer.write(getConfigLine(CFG_KEY_BREEDING_DELAY_FEMALE, Integer.toString(Constants.DEFAULT_BREEDING_DELAY_FEMALE)));
+			writer.write(getConfigLine(CFG_KEY_BREEDING_DELAY_MALE, Integer.toString(Constants.DEFAULT_BREEDING_DELAY_MALE)));
+			
+			writer.write("\n");
+			writer.write(getCommentLine("Chicobos will grow up into Chocobos after " + CFG_KEY_GROWUP_DELAY_STATIC + " plus"));
+			writer.write(getCommentLine("0 - " + CFG_KEY_GROWUP_DELAY_RANDOM + " ticks."));
+			writer.write(getConfigLine(CFG_KEY_GROWUP_DELAY_STATIC, Integer.toString(Constants.DEFAULT_GROWUP_DELAY_STATIC)));
+			writer.write(getConfigLine(CFG_KEY_GROWUP_DELAY_RANDOM, Integer.toString(Constants.DEFAULT_GROWUP_DELAY_RANDOM)));
+			
+			writer.write("\n");
+			writer.write(getCommentLine("Time after which Chicobos and Chocobos will get hungry again"));
+			writer.write(getConfigLine(CFG_KEY_HUNGER_DELAY_CHICOBO, Integer.toString(Constants.DEFAULT_HUNGER_DELAY_CHICOBO)));
+			writer.write(getConfigLine(CFG_KEY_HUNGER_DELAY_CHOCOBO, Integer.toString(Constants.DEFAULT_HUNGER_DELAY_CHOCOBO)));			
 			
 			writer.write("\n");
 			writer.write(getCommentLine("Whenever a hurt Chocobo is standing on straw less than " + CFG_KEY_PEN_HEAL_CAULDRON_RANGE + " blocks away from"));

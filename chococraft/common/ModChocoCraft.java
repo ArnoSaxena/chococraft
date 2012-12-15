@@ -37,7 +37,6 @@ import chococraft.common.gui.ChocoboGuiHandler;
 import chococraft.common.items.*;
 import chococraft.common.network.ChocoboPacketHandler;
 import chococraft.common.tick.ServerSpawnTickHandler;
-
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
@@ -123,6 +122,7 @@ public class ModChocoCraft
 	public static boolean chocoboWingFlutter;
 	public static int genderMaleChance;
 	public static boolean showChocoboNames;
+	public static boolean hungerEnabled;
 	
 	// feather drop setup
 	public static int featherDropChance;
@@ -142,6 +142,16 @@ public class ModChocoCraft
 	public static int spawnLimitChunkRadius;
 	public static int spawnDistanceNextWild;
 	
+	// procreate setup
+	public static int breedingDelayMale;
+	public static int breedingDelayFemale;
+	public static int growupDelayStatic;
+	public static int growupDelayRandom;
+	
+	// hunger setup
+	public static int hungerDelayChocobo;
+	public static int hungerDelayChicobo;
+	
 	// spawn debug
 	public static long spawnDbTimeDelay;
 	public static String spawnDbStatus;
@@ -149,6 +159,8 @@ public class ModChocoCraft
 	
 	public static double renderNameHeight;
 	public static int livingSoundProb;
+	
+	public static boolean isRemoteClient = false;
 
 	public static BiomeGenBase[] spawnBiomes =
 	{
@@ -210,7 +222,8 @@ public class ModChocoCraft
 		this.addChocoboSpawns();
 
 		GameRegistry.registerWorldGenerator(new WorldGenGysahls());
-		
+		GameRegistry.registerPlayerTracker(new ChocoboPlayerTracker());
+				
 		proxy.registerRenderThings();
 
 		NetworkRegistry.instance().registerGuiHandler(this, new ChocoboGuiHandler());
@@ -250,6 +263,7 @@ public class ModChocoCraft
 		strawBlockId = mainConfiguration.getBlock("strawBlock.id", Constants.STRAW_BLOCK_ID);
 
 		chocoboWingFlutter = Constants.DEFAULT_CHOCOBO_WING_FLUTTER;
+		hungerEnabled = Constants.DEFAULT_HUNGER_ENABLED;
 		genderMaleChance = Constants.DEFAULT_GENDER_MALE_CHANCE;
 		showChocoboNames = Constants.DEFAULT_SHOW_CHOCOBO_NAMES;
 		featherDropChance = Constants.DEFAULT_FEATHER_DROP_CHANCE;
@@ -268,6 +282,14 @@ public class ModChocoCraft
 		spawnDbTimeDelay = 0;
 		spawnDbStatus = "";
 		
+		breedingDelayMale = Constants.DEFAULT_BREEDING_DELAY_MALE;
+		breedingDelayFemale = Constants.DEFAULT_BREEDING_DELAY_FEMALE;
+		growupDelayRandom = Constants.DEFAULT_GROWUP_DELAY_RANDOM;
+		growupDelayStatic = Constants.DEFAULT_GROWUP_DELAY_STATIC;
+		
+		hungerDelayChicobo = Constants.DEFAULT_HUNGER_DELAY_CHICOBO;
+		hungerDelayChocobo = Constants.DEFAULT_HUNGER_DELAY_CHOCOBO;
+		
 		renderNameHeight = Constants.DEFAULT_RENDER_NAME_HEIGHT;
 		livingSoundProb = Constants.DEFAULT_LIVING_SOUND_PROB;
     	ChocoboConfig.readConfigFile();
@@ -276,9 +298,7 @@ public class ModChocoCraft
 	}
 
 	@PostInit
-	public void postLoadChocoCraft(FMLPostInitializationEvent postInitEvent)
-	{
-	}
+	public void postLoadChocoCraft(FMLPostInitializationEvent postInitEvent) {}
 
 //	// initialising methods
 //	private void createCreativeTab()
@@ -601,22 +621,29 @@ public class ModChocoCraft
 			Character.valueOf('Y'), chocoboFeatherItem
 		});
 		
-		GameRegistry.addRecipe(new ItemStack(Item.arrow, 4), new Object[]
-		{
-			" F ",
-			" S ",
-			" Y ",
-			Character.valueOf('F'), Item.flint, 
-			Character.valueOf('S'), Item.stick, 
-			Character.valueOf('Y'), chocoboFeatherItem
-		});
-		
 		GameRegistry.addShapelessRecipe(new ItemStack(strawBlock, 4), new Object[]
 		{
 			new ItemStack(Item.wheat, 1)
 		});
 		                                                        		
-		
+		// vanilla recipes with chocobo feathers
+		// arrows
+		GameRegistry.addRecipe(new ItemStack(Item.arrow, 4), new Object[]
+		{
+			" F ",
+		    " S ",
+		    " Y ",
+		    Character.valueOf('F'), Item.flint, 
+		    Character.valueOf('S'), Item.stick, 
+		    Character.valueOf('Y'), chocoboFeatherItem
+		});
+		                                                        		
+		GameRegistry.addShapelessRecipe(new ItemStack(Item.writableBook, 1), new Object[]
+		{
+			new ItemStack(Item.book, 1),
+			new ItemStack(Item.dyePowder, 1, 0),
+			new ItemStack(chocoboFeatherItem, 1)
+		});		
 	}
 
 	private void registerChocobos()

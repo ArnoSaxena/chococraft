@@ -16,7 +16,7 @@ package chococraft.common;
 
 public class Constants
 {
-	public final static String TCC_VERSION = "2.3.7";
+	public final static String TCC_VERSION = "2.3.8";
 	public final static String TCC_MODID = "ChocoCraft";
 	public final static String TCC_NAME = "Torojimas ChocoCraft";
 
@@ -73,26 +73,34 @@ public class Constants
 	
 	// setup
 	public static boolean DEFAULT_CHOCOBO_WING_FLUTTER = false;
-	public static boolean DEFAULT_SHOW_CHOCOBO_NAMES = true;
-	public static int DEFAULT_GENDER_MALE_CHANCE = 50;
-	public static int DEFAULT_FEATHER_DROP_CHANCE = 15;
-	public static int DEFAULT_FEATHER_DELAY_RANDOM = 600;
-	public static int DEFAULT_FEATHER_DELAY_STATIC = 600;
-	public static int DEFAULT_GHYSAL_SPAWN_RATE = 100;
-	public static int DEFAULT_PEN_HEAL_PROBABILITY = 20;
-	public static int DEFAULT_PEN_HEAL_CAULDRON_RANGE = 6;
-
+	public static boolean DEFAULT_SHOW_CHOCOBO_NAMES   = true;
+	public static boolean DEFAULT_HUNGER_ENABLED       = false;
 	
-	public static int DEFAULT_SPAWN_TIME_DELAY = 200;
-	public static int DEFAULT_SPAWN_GROUP_MIN = 2;
-	public static int DEFAULT_SPAWN_GROUP_MAX = 4;
-	public static int DEFAULT_SPAWN_TOTAL_MAX = 3;
-	public static int DEFAULT_SPAWN_PROBABILITY = 2;
+	public static int DEFAULT_GENDER_MALE_CHANCE      =  50;
+	public static int DEFAULT_FEATHER_DROP_CHANCE     =  15;
+	public static int DEFAULT_FEATHER_DELAY_RANDOM    = 600;
+	public static int DEFAULT_FEATHER_DELAY_STATIC    = 600;
+	public static int DEFAULT_GHYSAL_SPAWN_RATE       = 100;
+	public static int DEFAULT_PEN_HEAL_PROBABILITY    =  20;
+	public static int DEFAULT_PEN_HEAL_CAULDRON_RANGE =   6;
+	
+	public static int DEFAULT_BREEDING_DELAY_MALE   =  3000;
+	public static int DEFAULT_BREEDING_DELAY_FEMALE =  9000;
+	public static int DEFAULT_GROWUP_DELAY_STATIC   = 27000;
+	public static int DEFAULT_GROWUP_DELAY_RANDOM   =  2000;
+	public static int DEFAULT_HUNGER_DELAY_CHOCOBO  =  3000;
+	public static int DEFAULT_HUNGER_DELAY_CHICOBO  =  1000;
+	
+	public static int DEFAULT_SPAWN_TIME_DELAY         = 200;
+	public static int DEFAULT_SPAWN_GROUP_MIN          =   2;
+	public static int DEFAULT_SPAWN_GROUP_MAX          =   4;
+	public static int DEFAULT_SPAWN_TOTAL_MAX          =   3;
+	public static int DEFAULT_SPAWN_PROBABILITY        =   2;
 	public static int DEFAULT_SPAWN_LIMIT_CHUNK_RADIUS = 100;
-	public static int DEFAULT_SPAWN_DIST_NEXT_WILD = 300;
+	public static int DEFAULT_SPAWN_DIST_NEXT_WILD     = 300;
 	
 	public static double DEFAULT_RENDER_NAME_HEIGHT = 0.0;
-	public static int DEFAULT_LIVING_SOUND_PROB = 100;
+	public static int DEFAULT_LIVING_SOUND_PROB     = 100;
 	
 	//
 	public static float CHOCOBO_DEFAULT_LANDMOVEFACT  = 0.2F;
@@ -175,7 +183,7 @@ public class Constants
 	// EAC - EntityAnimalChocobo
 	public static int DW_ID_EAC_NAME = 18;
 	public static int DW_ID_EAC_FLAGS = 19;
-	//public static int DW_ID_EAC_HEALTH = 20;
+	public static int DW_ID_EAC_TIME_UNTIL_HUNGER = 20;
 	
 	public static int DW_VAL_EAC_ISMALE_ON = 1;
 	public static int DW_VAL_EAC_ISMALE_OFF = -2;
