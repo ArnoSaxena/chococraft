@@ -1,3 +1,18 @@
+// <copyright file="PacketChocoboSetInLove.java">
+// Copyright (c) 2012 All Right Reserved, http://chococraft.arno-saxena.de/
+//
+// THIS CODE AND INFORMATION ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY 
+// KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
+// PARTICULAR PURPOSE.
+//
+// </copyright>
+// <author>Arno Saxena</author>
+// <email>al-s@gmx.de</email>
+// <date>2012-10-25</date>
+// <summary>Network Packet wrapper for sending the setInLove status of 
+// a chocobo after an interaction from a player to the server</summary>
+
 package chococraft.common.network.serverSide;
 
 import java.io.ByteArrayOutputStream;
