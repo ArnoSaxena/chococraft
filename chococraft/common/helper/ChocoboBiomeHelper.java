@@ -69,6 +69,12 @@ public class ChocoboBiomeHelper
 		{
 			return true;
 		}
+		
+		if(chocoBgb instanceof BiomeGenEnd)
+		{
+			return true;
+		}
+		
 		return false;
 	}
 	
