@@ -96,7 +96,7 @@ public class FactoryEntityChocobo
 	}
 	
 	public static EntityChicobo createNewChicobo(World world, chocoboColor color)
-	{
+	{		
 		boolean isMale = (new Random()).nextInt(100) < ModChocoCraft.genderMaleChance ? true : false;
 		EntityChicobo chicobo = new EntityChicobo(world);
 		chicobo.setColor(color);

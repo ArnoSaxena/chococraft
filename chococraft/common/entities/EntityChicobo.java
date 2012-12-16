@@ -220,6 +220,7 @@ public class EntityChicobo extends EntityAnimalChocobo
 	public void onLivingUpdate()
 	{
 		super.onLivingUpdate();
+
 		if (!this.growUp)
 		{
 			this.setTimeUntilAdult(this.getGrowingAge());
@@ -231,6 +232,7 @@ public class EntityChicobo extends EntityAnimalChocobo
 				this.setCanGrowUp(true);
 			}
 		}
+		
 		if (this.growUp && this.isCanGrowUp())
 		{
 			if(Side.SERVER == FMLCommonHandler.instance().getEffectiveSide())

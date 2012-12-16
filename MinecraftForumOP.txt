@@ -655,12 +655,36 @@ How to Install server version:
 [/spoiler]
 
 compatible mods:
-[spoiler]These mods have been tested with ChocoCraft for mc 1.4.4, either by me or by another player
-- Forge
+[spoiler]These mods have been tested with ChocoCraft for mc 1.4.5. (This does not imply any sort of cooperation between the mods)
+Eiter by me:
+[spoiler]- Forge
 - Rei Minimap
 - ToManyItems
 - FamiliarsAPI
 - MobSpawnControls
+- Parachute
+- Thaumcraft 3
+- Backpack
+- Millénaire
+[/spoiler]
+
+and by other players:
+[spoiler]- ExtraBiomes
+ - Forgotten Nature
+ - Mo'Creatures
+ - Fishnet
+ - Easybreeding
+ - Flower Propagation
+ - Legendary Beasts
+ - McCapes
+ - Metallurgy
+ - Railcraft
+ - Watermelon Gen
+ - Weaponmod
+ - Industrialcraft 2
+ - Mystcraft
+ - Enhanced Books
+[/spoiler]
 [/spoiler]
 
 Acknowledgments:
@@ -669,9 +693,10 @@ Acknowledgments:
 2. Chocobos are creatures from Square Enix's Final Fantasy franchise, which later became main characters on their own games. As such, I do not own any right on them.
 3. The design of the new Chocobo model has been created by [url="http://www.minecraftforum.net/user/758250-firas333/"]firas333[/url].
 4. Pictures of new Chocobos made by [url="http://www.minecraftforum.net/user/524192-uncletravis/"]uncletravis[/url] and [url="http://www.minecraftforum.net/user/1099767-poloniumradon/"]PoloniumRadon[/url].
-5. The old models of the Chocobos were HIGHLY inspired by the Moa creatures in The Aether Mod. If you don't know this mod, you should. Go get it ASAP.
-6. The models of the Chicobos were HIGHLY inspired by the chicks present in Baby Animals Mod. If you don't know this mod, you should also go get it ASAP.
-7. [url="http://www.minecraftforum.net/user/21540-leonblade/"]LeonBlade[/url] for beeing part of the developer team
+5. Server testing by [url="http://www.minecraftforum.net/user/1795528-sparks314/"]sparks314[/url]
+6. The old models of the Chocobos were HIGHLY inspired by the Moa creatures in The Aether Mod. If you don't know this mod, you should. Go get it ASAP.
+7. The models of the Chicobos were HIGHLY inspired by the chicks present in Baby Animals Mod. If you don't know this mod, you should also go get it ASAP.
+8. [url="http://www.minecraftforum.net/user/21540-leonblade/"]LeonBlade[/url] for beeing part of the developer team
 [/spoiler]
 
 Banner/Sig:

@@ -148,7 +148,7 @@ public class ChocoboConfig
 								}
 								else if(key.equalsIgnoreCase(CFG_KEY_HUNGER_ENABLED))
 								{
-									ModChocoCraft.hungerEnabled = Boolean.parseBoolean(value);
+									//ModChocoCraft.hungerEnabled = Boolean.parseBoolean(value);
 								}
 								else if(key.equalsIgnoreCase(CFG_KEY_FEATHER_DELAY_RANDOM))
 								{
@@ -309,6 +309,7 @@ public class ChocoboConfig
 			writer.write("\n");
 			writer.write(getConfigLine(CFG_KEY_SHOW_CHOCO_NAMES, Boolean.toString(Constants.DEFAULT_SHOW_CHOCOBO_NAMES)));
 			writer.write(getConfigLine(CFG_KEY_CHOCOBO_WING_FLUTTER, Boolean.toString(Constants.DEFAULT_CHOCOBO_WING_FLUTTER)));
+			writer.write(getCommentLine("hunger not yet active"));			
 			writer.write(getConfigLine(CFG_KEY_HUNGER_ENABLED, Boolean.toString(Constants.DEFAULT_HUNGER_ENABLED)));
 			
 			writer.write("\n");
@@ -336,7 +337,7 @@ public class ChocoboConfig
 			writer.write(getConfigLine(CFG_KEY_GROWUP_DELAY_RANDOM, Integer.toString(Constants.DEFAULT_GROWUP_DELAY_RANDOM)));
 			
 			writer.write("\n");
-			writer.write(getCommentLine("Time after which Chicobos and Chocobos will get hungry again"));
+			writer.write(getCommentLine("Time after which Chicobos and Chocobos will get hungry again (disabled)"));
 			writer.write(getConfigLine(CFG_KEY_HUNGER_DELAY_CHICOBO, Integer.toString(Constants.DEFAULT_HUNGER_DELAY_CHICOBO)));
 			writer.write(getConfigLine(CFG_KEY_HUNGER_DELAY_CHOCOBO, Integer.toString(Constants.DEFAULT_HUNGER_DELAY_CHOCOBO)));			
 			
