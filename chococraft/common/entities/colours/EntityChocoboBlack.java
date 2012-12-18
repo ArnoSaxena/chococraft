@@ -23,6 +23,7 @@ import net.minecraft.src.NBTTagCompound;
 import net.minecraft.src.PotionEffect;
 import net.minecraft.src.World;
 import chococraft.common.Constants;
+import chococraft.common.ModChocoCraft;
 import chococraft.common.entities.EntityChocobo;
 
 public class EntityChocoboBlack extends EntityChocobo
@@ -114,7 +115,7 @@ public class EntityChocoboBlack extends EntityChocobo
 	
 	public void setRiderAbilities(boolean mounted)
 	{
-		if(this.riddenByEntity instanceof EntityPlayer)
+		if(this.riddenByEntity instanceof EntityPlayer && ModChocoCraft.riderBuffsEnabled)
 		{
 			EntityPlayer rider = (EntityPlayer)this.riddenByEntity;			
 			rider.addPotionEffect(new PotionEffect(16, 100, -1, true));	

@@ -55,8 +55,6 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.common.registry.TickRegistry;
 
-
-//@Mod(modid="ChocoCraft", name="Torojimas ChocoCraft", version="2.3.4")
 @Mod(modid=Constants.TCC_MODID, name=Constants.TCC_NAME, version=Constants.TCC_VERSION)
 @NetworkMod(clientSideRequired = true, serverSideRequired = false, 
 		channels = { Constants.PCHAN_CHOCOBO },
@@ -123,6 +121,11 @@ public class ModChocoCraft
 	public static int genderMaleChance;
 	public static boolean showChocoboNames;
 	public static boolean hungerEnabled;
+	public static boolean riderBuffsEnabled;
+	
+	// gysahl mutation setup
+	public static int gysahlGreenMutationRate;
+	public static int gysahlLoveMutationRate;
 	
 	// feather drop setup
 	public static int featherDropChance;
@@ -262,14 +265,21 @@ public class ModChocoCraft
 		gysahlStemBlockId = mainConfiguration.getBlock("gysahlStemBlock.id", Constants.GYSAHL_STEM_BLOCK_ID);
 		strawBlockId = mainConfiguration.getBlock("strawBlock.id", Constants.STRAW_BLOCK_ID);
 
-		chocoboWingFlutter = Constants.DEFAULT_CHOCOBO_WING_FLUTTER;
-		hungerEnabled = Constants.DEFAULT_HUNGER_ENABLED;
-		genderMaleChance = Constants.DEFAULT_GENDER_MALE_CHANCE;
-		showChocoboNames = Constants.DEFAULT_SHOW_CHOCOBO_NAMES;
-		featherDropChance = Constants.DEFAULT_FEATHER_DROP_CHANCE;
-		featherDelayRandom = Constants.DEFAULT_FEATHER_DELAY_RANDOM;
-		featherDelayStatic = Constants.DEFAULT_FEATHER_DELAY_STATIC;
-		penHealProbability = Constants.DEFAULT_PEN_HEAL_PROBABILITY;
+		chocoboWingFlutter   = Constants.DEFAULT_CHOCOBO_WING_FLUTTER;
+		hungerEnabled        = Constants.DEFAULT_HUNGER_ENABLED;
+		riderBuffsEnabled    = Constants.DEFAULT_RIDER_BUFFS_ENABLED;
+		showChocoboNames     = Constants.DEFAULT_SHOW_CHOCOBO_NAMES;
+		
+		genderMaleChance     = Constants.DEFAULT_GENDER_MALE_CHANCE;
+		
+		gysahlGreenMutationRate = Constants.DEFAULT_GYSAHL_GREEN_MUTATION_RATE;
+		gysahlLoveMutationRate  = Constants.DEFAULT_GYSAHL_LOVE_MUTATION_RATE;
+
+		featherDropChance    = Constants.DEFAULT_FEATHER_DROP_CHANCE;
+		featherDelayRandom   = Constants.DEFAULT_FEATHER_DELAY_RANDOM;
+		featherDelayStatic   = Constants.DEFAULT_FEATHER_DELAY_STATIC;
+		
+		penHealProbability   = Constants.DEFAULT_PEN_HEAL_PROBABILITY;
 		penHealCauldronRange = Constants.DEFAULT_PEN_HEAL_CAULDRON_RANGE;
 
 		spawnTimeDelay = Constants.DEFAULT_SPAWN_TIME_DELAY;
@@ -279,6 +289,7 @@ public class ModChocoCraft
 		spawnProbability = Constants.DEFAULT_SPAWN_PROBABILITY;
 		spawnLimitChunkRadius = Constants.DEFAULT_SPAWN_LIMIT_CHUNK_RADIUS;
 		spawnDistanceNextWild = Constants.DEFAULT_SPAWN_DIST_NEXT_WILD;
+		
 		spawnDbTimeDelay = 0;
 		spawnDbStatus = "";
 		
@@ -292,6 +303,7 @@ public class ModChocoCraft
 		
 		renderNameHeight = Constants.DEFAULT_RENDER_NAME_HEIGHT;
 		livingSoundProb = Constants.DEFAULT_LIVING_SOUND_PROB;
+		
     	ChocoboConfig.readConfigFile();
 
 		MinecraftForge.EVENT_BUS.register(new ChocoCraftEvent());
@@ -506,26 +518,26 @@ public class ModChocoCraft
 			Character.valueOf('-'), Item.silk
 		});
 
-		// loverly gysahl
-		GameRegistry.addRecipe(new ItemStack(gysahlLoverlyItem, 1), new Object[]
-		{
-			"RY", 
-			"X ", 
-			Character.valueOf('X'), gysahlGreenBlock, 
-			Character.valueOf('Y'), chocoboFeatherItem, 
-			Character.valueOf('R'), Block.plantRed
-		});
-
-		// golden gysahl
-		GameRegistry.addRecipe(new ItemStack(gysahlGoldenItem, 1), new Object[]
-		{
-			"FGF", 
-			"GXG", 
-			"FGF", 
-			Character.valueOf('X'), gysahlGreenBlock, 
-			Character.valueOf('F'), chocoboFeatherItem, 
-			Character.valueOf('G'), Item.goldNugget
-		});
+//		// loverly gysahl
+//		GameRegistry.addRecipe(new ItemStack(gysahlLoverlyItem, 1), new Object[]
+//		{
+//			"RY", 
+//			"X ", 
+//			Character.valueOf('X'), gysahlGreenBlock, 
+//			Character.valueOf('Y'), chocoboFeatherItem, 
+//			Character.valueOf('R'), Block.plantRed
+//		});
+//
+//		// golden gysahl
+//		GameRegistry.addRecipe(new ItemStack(gysahlGoldenItem, 1), new Object[]
+//		{
+//			"FGF", 
+//			"GXG", 
+//			"FGF", 
+//			Character.valueOf('X'), gysahlGreenBlock, 
+//			Character.valueOf('F'), chocoboFeatherItem, 
+//			Character.valueOf('G'), Item.goldNugget
+//		});
 
 //		// chibi gysahl
 //		GameRegistry.addRecipe(new ItemStack(gysahlChibiItem, 1), new Object[]

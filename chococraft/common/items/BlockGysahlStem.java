@@ -82,29 +82,29 @@ public class BlockGysahlStem extends BlockFlower
         boolean samePlantFrontOrBack = i == blockID || j == blockID;
         boolean samePlantAnyCorner = i1 == blockID || j1 == blockID || k1 == blockID || l1 == blockID;
 
-        for (int i2 = xPos - 1; i2 <= xPos + 1; i2++)
+        for (int xTmp = xPos - 1; xTmp <= xPos + 1; xTmp++)
         {
-            for (int j2 = zPos - 1; j2 <= zPos + 1; j2++)
+            for (int zTmp = zPos - 1; zTmp <= zPos + 1; zTmp++)
             {
-                int k2 = theWorld.getBlockId(i2, yPos - 1, j2);
-                float f1 = 0.0F;
+                int baseBlockId = theWorld.getBlockId(xTmp, yPos - 1, zTmp);
+                float tmpGrowRate = 0.0F;
 
-                if (this.canThisPlantGrowOnThisBlockID(k2))
+                if (this.canThisPlantGrowOnThisBlockID(baseBlockId))
                 {
-                    f1 = 1.0F;
+                    tmpGrowRate = 1.0F;
 
-                    if (theWorld.getBlockMetadata(i2, yPos - 1, j2) > 0)
+                    if (theWorld.getBlockMetadata(xTmp, yPos - 1, zTmp) > 0)
                     {
-                        f1 = 3F;
+                        tmpGrowRate = 3F;
                     }
                 }
 
-                if (i2 != xPos || j2 != zPos)
+                if (xTmp != xPos || zTmp != zPos)
                 {
-                    f1 /= 4F;
+                    tmpGrowRate /= 4F;
                 }
 
-                growRate += f1;
+                growRate += tmpGrowRate;
             }
         }
 
@@ -160,14 +160,28 @@ public class BlockGysahlStem extends BlockFlower
     		}
     	}
     }
-    
+
     public int idDropped(int i, Random random, int j)
     {
-        if (i == 4)
-        {
-            return ModChocoCraft.gysahlGreenBlock.blockID;
-        }
-        else
+    	if (i == 4)
+    	{
+    		if(random.nextInt(100) > ModChocoCraft.gysahlGreenMutationRate)
+    		{
+    			return ModChocoCraft.gysahlGreenBlock.blockID;
+    		}
+    		else 
+    		{
+    			if(random.nextInt(100) > ModChocoCraft.gysahlLoveMutationRate)
+    			{
+    				return ModChocoCraft.gysahlLoverlyItem.shiftedIndex;
+    			}
+    			else
+    			{
+    				return ModChocoCraft.gysahlGoldenItem.shiftedIndex;
+    			}
+    		}
+    	}
+    	else
         {
             return -1;
         }

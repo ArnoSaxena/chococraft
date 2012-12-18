@@ -76,8 +76,9 @@ public class PacketChocoboMount extends PacketChocoboServer
 					}
 					else
 					{
-						EntityPlayer riderEntity = getPlayer(riderName, dimension);
-						riderEntity.mountEntity(chocoboRideable);
+						EntityPlayer rider = getPlayer(riderName, dimension);
+						rider.setSprinting(false);
+						rider.mountEntity(chocoboRideable);
 						chocoboRideable.setStepHeight(true);
 						chocoboRideable.setLandMovementFactor(true);
 					}

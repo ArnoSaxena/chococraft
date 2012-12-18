@@ -16,7 +16,7 @@ package chococraft.common;
 
 public class Constants
 {
-	public final static String TCC_VERSION = "2.3.8";
+	public final static String TCC_VERSION = "2.3.9";
 	public final static String TCC_MODID = "ChocoCraft";
 	public final static String TCC_NAME = "Torojimas ChocoCraft";
 
@@ -75,6 +75,10 @@ public class Constants
 	public static boolean DEFAULT_CHOCOBO_WING_FLUTTER = false;
 	public static boolean DEFAULT_SHOW_CHOCOBO_NAMES   = true;
 	public static boolean DEFAULT_HUNGER_ENABLED       = false;
+	public static boolean DEFAULT_RIDER_BUFFS_ENABLED  = true;
+	
+	public static int DEFAULT_GYSAHL_GREEN_MUTATION_RATE =  10;
+	public static int DEFAULT_GYSAHL_LOVE_MUTATION_RATE  =  10;
 	
 	public static int DEFAULT_GENDER_MALE_CHANCE      =  50;
 	public static int DEFAULT_FEATHER_DROP_CHANCE     =  15;

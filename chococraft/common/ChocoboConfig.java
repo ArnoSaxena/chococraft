@@ -53,6 +53,8 @@ public class ChocoboConfig
 	
 	static String CFG_KEY_CHOCOBO_WING_FLUTTER  = "chocoboWingFlutter";
 	static String CFG_KEY_HUNGER_ENABLED        = "hungerEnabled";
+	static String CFG_KEY_RIDER_BUFFS_ENABLED   = "riderBuffsEnabled";
+	
 	static String CFG_TOKEN_ALL                 = "all";
 	static String CFG_KEY_FEATHER_DELAY_RANDOM  = "featherDelayRandom";
 	static String CFG_KEY_FEATHER_DELAY_STATIC  = "featherDelayStatic";
@@ -71,6 +73,9 @@ public class ChocoboConfig
 	static String CFG_KEY_HUNGER_DELAY_CHICOBO = "hungerDelayChicobo";
 	
 	static String CFG_KEY_LIVING_SOUND_PROB = "livingSoundProbability";
+	
+	static String CFG_KEY_GYS_GREEN_MUT_RATE = "gysahlGreenMutationRate";
+	static String CFG_KEY_GYS_LOVE_MUT_RATE  = "gysahlLoverlyMutationRate";
 	
 	static String CFG_KEY_DEBUG_MODE = "debugMode";
 
@@ -150,6 +155,10 @@ public class ChocoboConfig
 								{
 									//ModChocoCraft.hungerEnabled = Boolean.parseBoolean(value);
 								}
+								else if(key.equalsIgnoreCase(CFG_KEY_RIDER_BUFFS_ENABLED))
+								{
+									ModChocoCraft.riderBuffsEnabled = Boolean.parseBoolean(value);
+								}
 								else if(key.equalsIgnoreCase(CFG_KEY_FEATHER_DELAY_RANDOM))
 								{
 									ModChocoCraft.featherDelayRandom = ChocoboMathHelper.minLimit(Integer.parseInt(value), 60);
@@ -180,11 +189,11 @@ public class ChocoboConfig
 								}
 								else if(key.equalsIgnoreCase(CFG_KEY_LIVING_SOUND_PROB))
 								{
-									ModChocoCraft.livingSoundProb = ChocoboMathHelper.clamp(Integer.parseInt(value), 0, 100);
+									ModChocoCraft.livingSoundProb = ChocoboMathHelper.clamp(Integer.parseInt(value), 1, 100);
 								}
 								else if(key.equalsIgnoreCase(CFG_KEY_PEN_HEAL_PROBABILITY))
 								{
-									ModChocoCraft.penHealProbability = ChocoboMathHelper.clamp(Integer.parseInt(value), 0, 100);
+									ModChocoCraft.penHealProbability = ChocoboMathHelper.clamp(Integer.parseInt(value), 1, 100);
 								}
 								else if(key.equalsIgnoreCase(CFG_KEY_PEN_HEAL_CAULDRON_RANGE))
 								{
@@ -213,6 +222,14 @@ public class ChocoboConfig
 								else if(key.equals(CFG_KEY_HUNGER_DELAY_CHOCOBO))
 								{
 									ModChocoCraft.hungerDelayChocobo = ChocoboMathHelper.minLimit(Integer.parseInt(value), 20);
+								}
+								else if(key.equals(CFG_KEY_GYS_GREEN_MUT_RATE))
+								{
+									ModChocoCraft.gysahlGreenMutationRate = ChocoboMathHelper.clamp(Integer.parseInt(value), 1, 100);
+								}
+								else if(key.equals(CFG_KEY_GYS_LOVE_MUT_RATE))
+								{
+									ModChocoCraft.gysahlLoveMutationRate = ChocoboMathHelper.clamp(Integer.parseInt(value), 1, 100);
 								}
 								
 								// debug mode
@@ -311,6 +328,7 @@ public class ChocoboConfig
 			writer.write(getConfigLine(CFG_KEY_CHOCOBO_WING_FLUTTER, Boolean.toString(Constants.DEFAULT_CHOCOBO_WING_FLUTTER)));
 			writer.write(getCommentLine("hunger not yet active"));			
 			writer.write(getConfigLine(CFG_KEY_HUNGER_ENABLED, Boolean.toString(Constants.DEFAULT_HUNGER_ENABLED)));
+			writer.write(getConfigLine(CFG_KEY_RIDER_BUFFS_ENABLED, Boolean.toString(Constants.DEFAULT_RIDER_BUFFS_ENABLED)));
 			
 			writer.write("\n");
 			writer.write(getCommentLine("The default name height is 2.3 blocks from the ground. You can add height"));			
@@ -324,6 +342,13 @@ public class ChocoboConfig
 			writer.write(getCommentLine("Thus if it is set to 50 only every second 'Kweh' will be heared. If set to 1 only "));
 			writer.write(getCommentLine("every 100th etc..."));
 			writer.write(getConfigLine(CFG_KEY_LIVING_SOUND_PROB, Integer.toString(Constants.DEFAULT_LIVING_SOUND_PROB)));
+			
+			writer.write("\n");
+			writer.write(getCommentLine("Mutation rates of planted and grown gysahl greens. There is a " + CFG_KEY_GYS_GREEN_MUT_RATE + " procent chance"));
+			writer.write(getCommentLine("the gysahl plant will mutate into a breeding gysahl. If the plant has mutated into"));
+			writer.write(getCommentLine("a breeding gysahl, there is a " + CFG_KEY_GYS_LOVE_MUT_RATE + " procent change of it being a golden Gysahl."));
+			writer.write(getConfigLine(CFG_KEY_GYS_GREEN_MUT_RATE, Integer.toString(Constants.DEFAULT_GYSAHL_GREEN_MUTATION_RATE)));
+			writer.write(getConfigLine(CFG_KEY_GYS_LOVE_MUT_RATE, Integer.toString(Constants.DEFAULT_GYSAHL_LOVE_MUTATION_RATE)));
 			
 			writer.write("\n");
 			writer.write(getCommentLine("Cool down phase between breeding"));

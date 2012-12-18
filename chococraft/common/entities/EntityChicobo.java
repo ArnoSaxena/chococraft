@@ -47,6 +47,9 @@ public class EntityChicobo extends EntityAnimalChocobo
 		this.canCrossWater = false;
 		this.canFly = false;
 		this.canClimb = false;
+		this.stepHeight = 0.5F;
+		this.canJumpHigh = false;
+		this.landMovementFactor = 0.1F;
 		this.setGrowingAge(this.getTimeUntilAdult());
 		
 //        this.tasks.addTask(this.taskNumber++, new EntityAISwimming(this));
@@ -374,7 +377,6 @@ public class EntityChicobo extends EntityAnimalChocobo
 				{
 					this.setFollowing(false);
 					this.setWander(false);
-					this.setStepHeight(false);
 					return;
 				}
 				float distanceToOwner = owner.getDistanceToEntity(this);
@@ -423,24 +425,6 @@ public class EntityChicobo extends EntityAnimalChocobo
 		return null;
 	}
 
-	@Override
-	public void setStepHeight(boolean mounted)
-	{
-		this.stepHeight = 0.5F;
-	}
-
-	public void setLandMovementFactor(boolean mounted)
-	{
-		this.landMovementFactor = 0.1F;			
-	}
-
-	@Override
-	public void setJumpHigh(boolean mounting) {
-		this.canJumpHigh = false;
-	}
-
-	public void setRiderAbilities(boolean mounted){}
-	
 	public boolean canMateWith(EntityAnimal entityAnimal)
 	{
 		return false;

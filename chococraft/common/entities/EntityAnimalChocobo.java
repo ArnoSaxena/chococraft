@@ -154,11 +154,7 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
 	}
 	
 	abstract public String getEntityTexture();
-	abstract public void setStepHeight(boolean mounting);
-	abstract public void setLandMovementFactor(boolean mounted);
-	abstract public void setRiderAbilities(boolean mounted);
 	abstract public int getMaxHealth();
-	abstract public void setJumpHigh(boolean mounting);
 	
 	public void resetEntityTexture()
 	{

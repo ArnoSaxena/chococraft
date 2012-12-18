@@ -58,6 +58,12 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo
 		this.ignoreFrustumCheck = true;
 		this.riderList = new ChocoboRiderList();
 	}
+	
+	
+	abstract public void setStepHeight(boolean mounted);
+	abstract public void setLandMovementFactor(boolean mounted);
+	abstract public void setJumpHigh(boolean mounted);
+	abstract public void setRiderAbilities(boolean mounted);
 
 	protected void entityInit()
 	{
@@ -541,21 +547,22 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo
 		return super.canDespawn() && !isSaddled();
 	}
 
-	public void mountChocobo(EntityPlayer entityplayer)
+	public void mountChocobo(EntityPlayer player)
 	{
+		player.setSprinting(false);
 		this.setStepHeight(true);
 		this.setJumpHigh(true);
 		this.setLandMovementFactor(true);
-		entityplayer.mountEntity(this);
+		player.mountEntity(this);
 	}
 
-	public void dismountChocobo(EntityPlayer entityplayer)
+	public void dismountChocobo(EntityPlayer player)
 	{
 		this.isJumping = false;
 		this.setStepHeight(false);
 		this.setJumpHigh(false);
 		this.setLandMovementFactor(false);
-		entityplayer.mountEntity(null);
+		player.mountEntity(null);
 	}
 	
 	public void sendMountUpdate()

@@ -1,7 +1,7 @@
 [img]http://www.arno-saxena.de/pictures/chococraft/banner_title.png[/img]
 
 UPDATED FOR MINECRAFT 1.4.5
-Version 2.3.7
+Version 2.3.8
 Requires: [url="http://www.minecraftforge.net/"]Forge[/url] [url="http://files.minecraftforge.net/"]6.4.0.394+[/url]
 
 This Mod is the continuation of [url="http://www.minecraftforum.net/user/1051245-eddiev/"]EddieV's[/url] mod. The original thread can be found [url="http://www.minecraftforum.net/topic/952372-chococraft-12-mc-11-chocobos-now-fly/"]here[/url]. I've officially taken over the helm with Eddie's kind blessings.
@@ -17,7 +17,7 @@ As of version 2.0.4 this mod is in working condition for SMP.
 [color=#ff0000][b]ACHTUNG! CAUTION! ¡CUIDADO! चेतावनी! ATTENZIONE! береги́сь!
 This version of Chococraft is not compatible to versions pre 2.0.0 (pre mc 1.3.2). It will destroy your saved world if old Chocobos are included. Thus, if you want to use an old world with the new version of this mod, you should first start minecraft without the Chococraft mod, enter and save your world, thus removing all traces of older versions of Chococraft and only then start minecraft with the new version of Chococraft and tame new Chocobos.[/b][/color]
 
-Download: [url="http://www.arno-saxena.de/minecraft/Chococraft_2.3.7.zip"]Torojimas ChocoCraft 2.3.7[/url]
+Download: [url="http://www.arno-saxena.de/minecraft/Chococraft_2.3.8.zip"]Torojimas ChocoCraft 2.3.8[/url]
 
 Downloads so far: [img]http://www.arno-saxena.de/minecraft/chocoboDownloads.png[/img]
 
@@ -77,6 +77,12 @@ Thanks to InTheLittleWood[/spoiler][/spoiler]
 
 CHANGELOG:
 [spoiler]
+
+v.2.3.8 by Torojima
+   1. owner change in chocopedia in smp
+   2. breeding delay time in config file
+   3. grow up time in config file
+
 v.2.3.7 by Torojima
    1. removed Chicobo interaction crash
 
@@ -414,14 +420,23 @@ How can I obtain a Chocobo Feather?
    1. Chocobo Feathers are occasionally dropped by wild or tamed Chocobos.
 [/spoiler]
 
+How can I obtain Loverly or Golden Gysahls?
+[spoiler]
+   1. Obtain wild Gysahl Greens
+   2. craft Gysahl seeds from Gysahl Greens and plant them in tilted earth
+   3. wait for the Gysahl to fully grow
+   4. harvest Gysahl. Loverly and Golden Gysahls are a domestic mutation of Gysahl Greens. Thus, when harvesting your planted Gysahls, you will notice if the plant has grown into a Loverly or Golden Gysahl. Unfortunately Loverly and Golden Gysahl are infertile, thus they do not contain any seeds and can not be crafted into seeds, their only purpose is to work as an aphrodisiac for Chocobos.
+[/spoiler]
+
 How can I breed two Chocobos?
 [spoiler][img]http://www.arno-saxena.de/pictures/chococraft/pic_chocobo_hearts.png[/img]
 Screenshot by [url="http://www.minecraftforum.net/user/524192-uncletravis/"]uncletravis[/url]
 
-   1. select two tamed Chocobos of different gender to be breed. You can only choose Chocobos you own.
-   2. wait until the status in the Chocopedia changes from "can not breed" to "can breed". Chocobos need some time after breeding (and after growing up) to be ready to breed again.
-   3. both Chocobos have to be fed Loverly Gysahls or Golden Gysahls. After that, they'll procreate and a Chicobo will born. There is a certain chance of breeding a mutation, thus a different colored Chocobo will be born.
-   4. by feeding both Chocobos with Golden Gysahls, the probability of a mutation will increase noticeably.
+   1. First you have to obtain Loverly Gysahls or Golden Gysahls by farming. Both are a domestic mutation of the normal Gysahl Green.
+   2. select two tamed Chocobos of different gender to be breed. You can only choose Chocobos you own.
+   3. wait until the status in the Chocopedia changes from "can not breed" to "can breed". Chocobos need some time after breeding (and after growing up) to be ready to breed again.
+   4. both Chocobos have to be fed Loverly Gysahls or Golden Gysahls. After that, they'll procreate and a Chicobo will born. There is a certain chance of breeding a mutation, thus a different colored Chocobo will be born.
+   5. by feeding both Chocobos with Golden Gysahls, the probability of a mutation will increase noticeably.
 [/spoiler]
 
 When will a Chicobo grow into a Chocobo?
@@ -462,8 +477,8 @@ Items and Blocks:
    6. [img]http://www.arno-saxena.de/pictures/chococraft/item_saddle_bags.png[/img] Chocobo Saddle Bags - Saddled Chocobos can be equipted with one of these to give them some transport and storage capacities. Once saddle bags are fitted onto a Chocobo, they can be accessed by shift-right-clicking the Chocobo. (can be used on Chocobo, but inventories are disabled at the moment)
    7. [img]http://www.arno-saxena.de/pictures/chococraft/item_choco_pack_bags.png[/img] Chocobo Pack Bags - Tamed Chocobos can be equipted with one of these to give them some transport and storage capacities. Once pack bags are fitted onto a Chocobo, they can be accessed by right-clicking the Chocobo. (can be used on Chocobo, but inventories are disabled at the moment)
    8. [img]http://www.arno-saxena.de/pictures/chococraft/item_whistle.png[/img] Chocobo Whistle - (no function yet, will be used in future to call last ridden Chocobo to the current player position).
-   9. [img]http://www.arno-saxena.de/pictures/chococraft/item_gysahl_loverly.png[/img] Loverly Gysahl - Loverly Gysahls are a special kind of Gysahl Greens adorned with Chocobo Feathers. These herbs are used to make a Chocobo fall in love and look for a partner to procreate.
-10. [img]http://www.arno-saxena.de/pictures/chococraft/item_gysahl_golden.png[/img] Golden Gysahl - Just like Loverly Gysahls, Golden Gysahls are used to make Chocobos procreate. These romantic herbs are known to increase the chances of adquiring a new type of Chocobo.
+   9. [img]http://www.arno-saxena.de/pictures/chococraft/item_gysahl_loverly.png[/img] Loverly Gysahl - Loverly Gysahls are a special domestic mutation of Gysahl Greens. When growing Gysahl seeds in tilted earth, there is a chance the crop will grow into a Loverly Gysahl. This form of the plant does not appear in the wild. Loverly Gysahls are used to make a Chocobo fall in love and look for a partner to procreate.
+10. [img]http://www.arno-saxena.de/pictures/chococraft/item_gysahl_golden.png[/img] Golden Gysahl - Just like Loverly Gysahls, Golden Gysahls are used to make Chocobos procreate. Like Loverly Gysahls this is a domestic mutation of Gysahl Greens. These romantic herbs are known to increase the chances of adquiring a new type of Chocobo.
 11. [img]http://www.arno-saxena.de/pictures/chococraft/item_gysahl_cake.png[/img] Gysahl Cake - Chicobos just love gysahl greens and cakes, and when you join both, they're get really happy. Gysahl Cakes give joy to a Chicobo, making him grow up instantly into one big and beautiful Chocobo.
 12. [img]http://www.arno-saxena.de/pictures/chococraft/item_gysahl_pink.png[/img] Pink Gysahl - Weird synthetic gysahls are known to cause extreme effects to Chocobos. So beware.
 13. [img]http://www.arno-saxena.de/pictures/chococraft/item_gysahl_red.png[/img] Red Gysahl - Weird synthetic gysahls are known to cause extreme effects to Chocobos. So beware.
@@ -489,35 +504,23 @@ Recipes:
 
       [img]http://www.arno-saxena.de/pictures/chococraft/crafting_whistle.png[/img]
 
-   5. [img]http://www.arno-saxena.de/pictures/chococraft/item_gysahl_loverly.png[/img] Loverly Gysahl = 1 Gysahl Greens, 1 Chocobo Feather and 1 Rose
-
-      [img]http://www.arno-saxena.de/pictures/chococraft/crafting_loverly.png[/img]
-
-   6. [img]http://www.arno-saxena.de/pictures/chococraft/item_gysahl_golden.png[/img] Golden Gysahl = 1 Gysahl Greens, 4 Chocobo Feathers, 4 Gold Nuggets
-
-      [img]http://www.arno-saxena.de/pictures/chococraft/crafting_golden.png[/img]
-
-   7. [img]http://www.arno-saxena.de/pictures/chococraft/item_gysahl_cake.png[/img] Gysahl Cake = 2 Milk, 2 Wheat, 2 Sugar, 2 Gysahl Green, 1 Egg
+   5. [img]http://www.arno-saxena.de/pictures/chococraft/item_gysahl_cake.png[/img] Gysahl Cake = 2 Milk, 2 Wheat, 2 Sugar, 2 Gysahl Green, 1 Egg
 
       [img]http://www.arno-saxena.de/pictures/chococraft/crafting_cake.png[/img]
 
-   8. [img]http://www.arno-saxena.de/pictures/chococraft/item_gysahl_seed.png[/img] Gysahl Seeds = 1 Gysahl Green
+   6. [img]http://www.arno-saxena.de/pictures/chococraft/item_gysahl_seed.png[/img] Gysahl Seeds = 1 Gysahl Green
 
       [img]http://www.arno-saxena.de/pictures/chococraft/crafting_seeds.png[/img]
 
-   9. [img]http://www.arno-saxena.de/pictures/chococraft/item_gysahl_chibi.png[/img] Chibi Gysahl = 1 Gysahl Green, 4 Redstone
-
-      [img]http://www.arno-saxena.de/pictures/chococraft/crafting_chibi.png[/img]
-
-  10. [img]http://www.arno-saxena.de/pictures/chococraft/item_chocopedia.png[/img] Chocopedia = 1 Book, 2 Ink Sac, 4 Chocobo Feathers, 1 Lapis Lazuli and 1 Gold Nugget
+   7. [img]http://www.arno-saxena.de/pictures/chococraft/item_chocopedia.png[/img] Chocopedia = 1 Book, 2 Ink Sac, 4 Chocobo Feathers, 1 Lapis Lazuli and 1 Gold Nugget
 
       [img]http://www.arno-saxena.de/pictures/chococraft/crafting_chocopedia.png[/img]
 
-  11. [img]http://www.arno-saxena.de/pictures/chococraft/item_arrow.png[/img] 4 Arrows = 1 Flint, 1 Stick and 1 Chocobo Feather
+   8. [img]http://www.arno-saxena.de/pictures/chococraft/item_arrow.png[/img] 4 Arrows = 1 Flint, 1 Stick and 1 Chocobo Feather
 
       [img]http://www.arno-saxena.de/pictures/chococraft/crafting_arrow.png[/img]
 
-  12. [img]http://www.arno-saxena.de/pictures/chococraft/item_straw.png[/img] 4 Straw = 1 Wheat
+   9. [img]http://www.arno-saxena.de/pictures/chococraft/item_straw.png[/img] 4 Straw = 1 Wheat
 
       [img]http://www.arno-saxena.de/pictures/chococraft/crafting_straw.png[/img]
 [/spoiler]
@@ -587,7 +590,7 @@ Loverly Gysahl 22603
 Golden Gysahl 22604
 Pink Gysahl 22605
 Red Gysahl 22606
-Chibi Gysahl 22607
+(Chibi Gysahl 22607) disabled
 Gysahl Cake 22608
 Raw Chocobo leg 22609
 Cooked Chocobo leg 22610
@@ -596,7 +599,7 @@ Chocobo saddle bags 22612
 Chocobo pack bags 22613
 Chocobo Whistle 22614
 Chocopedia 22615
-(Nether Chocobo egg 22616) disabled
+Nether Chocobo egg 22616
 Chocobo disguise helmet 22617
 Chocobo disguise body 22618
 Chocobo disguise legs 22619
@@ -610,15 +613,11 @@ These id's probably will be moved by Forge.[/spoiler]
 
 Ideas for Future Development:
 [spoiler]  1. Special Gui when riding Chocobo that will show his current health and name
-  2. Chocobos to attack enemies of the owner, much like wolves do
-  3. Chocobo music when riding
-  4. Yellow Chocobo spawn eggs
-  5. FFX hot & cold
-  6. dynamic abilities (???)
-  7. idle animation for saddled and waiting Chocobos
-  9. maybe: item to increase spawn rate when equipped or Chocobo-seeker item
- 10. maybe: double wide chocobo fence doors
- 11. maybe: eat grass for time to be able to breed bonus
+  2. Yellow Chocobo spawn eggs
+  3. dynamic abilities (???)
+  4. idle animation for saddled and waiting Chocobos
+  5. maybe: double wide chocobo fence doors
+  6. brown chocobo (slow, but more health than the others)
 If you have any more suggestions, comments or ideas, keep 'em coming [img]http://static.minecraftforum.net//public/style_emoticons/default/smile.png[/img][/spoiler]
 
 How to Install:
@@ -685,6 +684,11 @@ and by other players:
  - Mystcraft
  - Enhanced Books
 [/spoiler]
+[/spoiler]
+
+incompatible mods:
+[spoiler]found out by me or other players. If I find the time I'll investigate if this incompatibilities can be removed.
+ - tropicraft (messing up the spawning and crashing when breeding Chocobos)
 [/spoiler]
 
 Acknowledgments:
