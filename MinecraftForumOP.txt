@@ -1,8 +1,9 @@
 [img]http://www.arno-saxena.de/pictures/chococraft/banner_title.png[/img]
 
 UPDATED FOR MINECRAFT 1.4.5
-Version 2.3.8
+Version 2.3.9
 Requires: [url="http://www.minecraftforge.net/"]Forge[/url] [url="http://files.minecraftforge.net/"]6.4.0.394+[/url]
+Tested with: [url="http://www.minecraftforge.net/"]Forge[/url] [url="http://files.minecraftforge.net/"]6.4.1.426+[/url]
 
 This Mod is the continuation of [url="http://www.minecraftforum.net/user/1051245-eddiev/"]EddieV's[/url] mod. The original thread can be found [url="http://www.minecraftforum.net/topic/952372-chococraft-12-mc-11-chocobos-now-fly/"]here[/url]. I've officially taken over the helm with Eddie's kind blessings.
 
@@ -17,7 +18,7 @@ As of version 2.0.4 this mod is in working condition for SMP.
 [color=#ff0000][b]ACHTUNG! CAUTION! ¡CUIDADO! चेतावनी! ATTENZIONE! береги́сь!
 This version of Chococraft is not compatible to versions pre 2.0.0 (pre mc 1.3.2). It will destroy your saved world if old Chocobos are included. Thus, if you want to use an old world with the new version of this mod, you should first start minecraft without the Chococraft mod, enter and save your world, thus removing all traces of older versions of Chococraft and only then start minecraft with the new version of Chococraft and tame new Chocobos.[/b][/color]
 
-Download: [url="http://www.arno-saxena.de/minecraft/Chococraft_2.3.8.zip"]Torojimas ChocoCraft 2.3.8[/url]
+Download: [url="http://www.arno-saxena.de/minecraft/Chococraft_2.3.9.zip"]Torojimas ChocoCraft 2.3.9[/url]
 
 Downloads so far: [img]http://www.arno-saxena.de/minecraft/chocoboDownloads.png[/img]
 
@@ -25,8 +26,7 @@ crackedEggs parachute mod:
 [spoiler]When flying a Chocobo, I would like to recommend the use of [url="http://www.minecraftforum.net/user/77049-crackedegg/"]crackedEggs[/url] [url="http://www.minecraftforum.net/topic/585469-145forge-crackedeggs-mods-reptiles-parachute/"]parachute mod[/url] (version 410 or newer). Especially if you are using this mod on a server. On a connection failure while flying on high altitude, you will automatically dismount and fall to your death. One of crackedEggs parachutes in any spot in your inventory will auto-deploy if you're falling and thus prevent any harm from falling damage. (has to be switched on in the respective config file).[/spoiler]
 
 Old versions:
-[spoiler]
-[url="http://www.arno-saxena.de/minecraft/Chococraft_2.2.3.zip"]minecraft 1.4.4: ChocoCraft 2.2.3[/url]
+[spoiler][url="http://www.arno-saxena.de/minecraft/Chococraft_2.2.3.zip"]minecraft 1.4.4: ChocoCraft 2.2.3[/url]
 [url="http://www.arno-saxena.de/minecraft/Chococraft_2.1.3.zip"]minecraft 1.4.2: ChocoCraft 2.1.3[/url]
 [url="http://www.arno-saxena.de/minecraft/Chococraft_2.0.5.zip"]minecraft 1.3.2: ChocoCraft 2.0.5[/url]
 
@@ -76,7 +76,10 @@ Thanks to rsmalec
 Thanks to InTheLittleWood[/spoiler][/spoiler]
 
 CHANGELOG:
-[spoiler]
+[spoiler]v.2.3.9 by Torojima
+   1. breeding gysahls not craftable anymore, but mutations of domestic growing of gysahl greens
+   2. fixed sprinting mount bug
+   3. rider buffs can be disabled in the config file
 
 v.2.3.8 by Torojima
    1. owner change in chocopedia in smp
@@ -121,8 +124,7 @@ v.2.3.1 by Torojima
    1. Updated for mc 1.4.5
 
 older changelogs:
-[spoiler]
-v.2.2.3 by Torojima
+[spoiler]v.2.2.3 by Torojima
    1. Added proximity threshold and chunk radius total threshold to custom spawning.
 
 v.2.2.2 by Torojima
@@ -411,18 +413,15 @@ What happens when a Chocobo is equipted with a transport pack?
 [/spoiler]
 
 What happens when a Chocobo dies?
-[spoiler]
-   1. the Chocobo will drop a Raw Chocobo Leg which can be cooked (and is yummy)
+[spoiler]   1. the Chocobo will drop a Raw Chocobo Leg which can be cooked (and is yummy)
 [/spoiler]
 
 How can I obtain a Chocobo Feather?
-[spoiler]
-   1. Chocobo Feathers are occasionally dropped by wild or tamed Chocobos.
+[spoiler]   1. Chocobo Feathers are occasionally dropped by wild or tamed Chocobos.
 [/spoiler]
 
 How can I obtain Loverly or Golden Gysahls?
-[spoiler]
-   1. Obtain wild Gysahl Greens
+[spoiler]   1. Obtain wild Gysahl Greens
    2. craft Gysahl seeds from Gysahl Greens and plant them in tilted earth
    3. wait for the Gysahl to fully grow
    4. harvest Gysahl. Loverly and Golden Gysahls are a domestic mutation of Gysahl Greens. Thus, when harvesting your planted Gysahls, you will notice if the plant has grown into a Loverly or Golden Gysahl. Unfortunately Loverly and Golden Gysahl are infertile, thus they do not contain any seeds and can not be crafted into seeds, their only purpose is to work as an aphrodisiac for Chocobos.
@@ -483,9 +482,8 @@ Items and Blocks:
 12. [img]http://www.arno-saxena.de/pictures/chococraft/item_gysahl_pink.png[/img] Pink Gysahl - Weird synthetic gysahls are known to cause extreme effects to Chocobos. So beware.
 13. [img]http://www.arno-saxena.de/pictures/chococraft/item_gysahl_red.png[/img] Red Gysahl - Weird synthetic gysahls are known to cause extreme effects to Chocobos. So beware.
 14. [img]http://www.arno-saxena.de/pictures/chococraft/item_gysahl_seed.png[/img] Gysahl Seeds - Seeds made from Gysahl Greens. Can be planted to build a Gysahl Green farm and can be fertilized with Chocobo Fertilizer.
-15. [img]http://www.arno-saxena.de/pictures/chococraft/item_gysahl_chibi.png[/img] Chibi Gysahl - Bitter gysahl empowered with Redstone to prevent a Chicobo to grow up.
-16. [img]http://www.arno-saxena.de/pictures/chococraft/item_chocopedia.png[/img] Chocopedia - Notebook that keeps information about the Chocobos. Allows player to name their chocobo, check on information about health and breeing status and even give orders.
-17. [img]http://www.arno-saxena.de/pictures/chococraft/item_straw.png[/img] Straw - Straw cover for a Chocobo pen.[/spoiler]
+15. [img]http://www.arno-saxena.de/pictures/chococraft/item_chocopedia.png[/img] Chocopedia - Notebook that keeps information about the Chocobos. Allows player to name their chocobo, check on information about health and breeing status and even give orders.
+16. [img]http://www.arno-saxena.de/pictures/chococraft/item_straw.png[/img] Straw - Straw cover for a Chocobo pen.[/spoiler]
 
 Recipes:
 [spoiler]   1. [img]http://www.arno-saxena.de/pictures/chococraft/item_saddle.png[/img] Chocobo Saddle = 1 Leather, 2 Strings, 1 Chocobo Feather
@@ -578,7 +576,7 @@ Config File:
 For example, you can change item IDs to solve conflicts, change the maximum number of Chocobos and choose whether to hide or show the name of the chocobos above their head.
 Here's how to do it:
    1. You can find the config file in your main minecraft folder and it's called "chocobo_config.txt".
-   2. Open it with Notepad(yuck) or any other text editor
+   2. Open it with any text editor (Notepad++ recomended)
    3. Lines that start with "//" are comment lines.
    4. Change any entry according to the description in the config file.
 [/spoiler]
@@ -692,8 +690,7 @@ incompatible mods:
 [/spoiler]
 
 Acknowledgments:
-[spoiler]
-1. Chococraft has been created by [url="http://www.minecraftforum.net/user/1051245-eddiev/"]EddieV[/url]
+[spoiler]1. Chococraft has been created by [url="http://www.minecraftforum.net/user/1051245-eddiev/"]EddieV[/url]
 2. Chocobos are creatures from Square Enix's Final Fantasy franchise, which later became main characters on their own games. As such, I do not own any right on them.
 3. The design of the new Chocobo model has been created by [url="http://www.minecraftforum.net/user/758250-firas333/"]firas333[/url].
 4. Pictures of new Chocobos made by [url="http://www.minecraftforum.net/user/524192-uncletravis/"]uncletravis[/url] and [url="http://www.minecraftforum.net/user/1099767-poloniumradon/"]PoloniumRadon[/url].
