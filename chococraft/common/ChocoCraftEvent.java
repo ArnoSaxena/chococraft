@@ -5,7 +5,6 @@ import net.minecraft.src.EntityPlayer;
 import net.minecraftforge.client.event.sound.SoundLoadEvent;
 import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
-import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.BonemealEvent;
 import chococraft.common.entities.colours.EntityChocoboPurple;
 import chococraft.common.helper.ChocoboPlayerHelper;
