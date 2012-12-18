@@ -40,6 +40,9 @@ Post in the original thread for [url="http://www.minecraftforum.net/user/490126-
 
 VIDEOS:
 [spoiler]Spotlights:
+[url="http://www.minecraftforum.net/user/18014-huskymudkipz/"]HuskyMUDKIPZ[/url] has done a very brief mod spotlight using the 2.3.8 version (so they still show the loverly and golden gysahl recipes). 
+[media]http://www.youtube.com/watch?v=uoUSLqInH38[/media]
+
 [url="http://www.minecraftforum.net/user/1213426-robplaysminecraft/"]robplaysminecraft[/url] has done a video using the 2.3.7 version. Tho there are some glitches in the documentation:
   - Packbags go on [b]unsaddled[/b] Chocobos! (why does nobody get that, it's described in the behaviour paragraph, isn't it??)
   - only different gender Chocobos can be breed, the gender is indicated by the plume!
