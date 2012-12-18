@@ -14,8 +14,6 @@
 
 package chococraft.common;
 
-import java.io.File;
-
 import net.minecraft.src.BiomeGenBase;
 import net.minecraft.src.Block;
 import net.minecraft.src.CreativeTabs;
@@ -237,7 +235,8 @@ public class ModChocoCraft
 	@PreInit
 	public void preLoadChocoCraft(FMLPreInitializationEvent preInitEvent)
 	{
-		mainConfiguration = new Configuration(new File(preInitEvent.getModConfigurationDirectory(), "chococraft/main.conf"));
+		mainConfiguration = new Configuration(preInitEvent.getSuggestedConfigurationFile());		
+		mainConfiguration.load();
 
 		chocoboSaddleId = mainConfiguration.getItem(Configuration.CATEGORY_ITEM, "chocoboSaddleItem.id", Constants.CHOCOBO_SADDLE_ID);
 		gysahlSeedsId = mainConfiguration.getItem(Configuration.CATEGORY_ITEM, "gysahlSeedsItem.id", Constants.GYSAHL_SEEDS_ID);
@@ -264,6 +263,8 @@ public class ModChocoCraft
 		gysahlGreenBlockId = mainConfiguration.getBlock("gysahlGreenBlock.id", Constants.GYSAHL_GREEN_BLOCK_ID);
 		gysahlStemBlockId = mainConfiguration.getBlock("gysahlStemBlock.id", Constants.GYSAHL_STEM_BLOCK_ID);
 		strawBlockId = mainConfiguration.getBlock("strawBlock.id", Constants.STRAW_BLOCK_ID);
+		
+		mainConfiguration.save();
 
 		chocoboWingFlutter   = Constants.DEFAULT_CHOCOBO_WING_FLUTTER;
 		hungerEnabled        = Constants.DEFAULT_HUNGER_ENABLED;
