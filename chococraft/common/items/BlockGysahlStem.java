@@ -187,8 +187,16 @@ public class BlockGysahlStem extends BlockFlower
         }
     }
 
-	public void onBonemealUse(World theWorld, int xPos, int yPos, int zPos)
+	public boolean onBonemealUse(World theWorld, int xPos, int yPos, int zPos)
 	{
-		theWorld.setBlockMetadataWithNotify(xPos, yPos, zPos, MAX_STAGE);
-	}
+		if(theWorld.getBlockMetadata(xPos, yPos, zPos) < MAX_STAGE)
+		{		
+			theWorld.setBlockMetadataWithNotify(xPos, yPos, zPos, MAX_STAGE);
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}	
 }
