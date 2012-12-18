@@ -12,6 +12,8 @@ This version of Chococraft is not compatible to versions pre 1.3.2. It will dest
 Changelog:
 1. preventing bonemeal use on fully grown Gysahl green
 2. fixing shift click on inventory slot bug
+3. sound file found from within zip file (no need for extraction anymore)
+4. ids in config/ChocoCraft.cfg file
 
 see the minecraft forums for further informations
 http://www.minecraftforum.net/topic/1119809-145sspsmpforge-torojimas-chococraft-233-explore-your-worlds-riding-chocobos/
