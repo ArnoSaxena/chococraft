@@ -621,7 +621,6 @@ If you have any more suggestions, comments or ideas, keep 'em coming [img]http:/
 How to Install:
 [spoiler]1. Install the latest Forge by following the instructions found on the Forge page. The link can be found above the link to this mod near the top of this page.
 2. With Forge installed, put the ChocoCraft .zip file in your minecraft "mods" folder (in zipped form, not extracted!).
-3. Extract the zip into a different folder and get the file choco_kweh.ogg from /resources/sounds and put it into the folder minecraft/resources/mod/. (The other extracted files from the zip won't be needed anymore and can be deleted. Do not delete the zip in the minecraft/mods folder, or if you have extracted the files into the minecraft/mods folder delete them after extracting the sound file. In the minecraft/mods folder only the chococraft_x.x.x_zip file should stay.)
 
 controlling mod loading sequence:
 [spoiler]Certain mods can interact with ChocoCraft, but you have to make sure they are loaded in the mod loading sequence before ChocoCraft. For example Chocobos can spawn in the biomes provided by the [url="http://www.minecraftforum.net/topic/1090288-142-extrabiomesxl-330/page__hl__%20xlbiomes"]extrabiomesxl[/url] mod, if the respective names are added in the chocobo config file. But for that to work, the biomesxl mod has to be loaded before ChocoCraft by the Forge modloader.
