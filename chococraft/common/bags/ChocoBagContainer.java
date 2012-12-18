@@ -52,7 +52,6 @@ public class ChocoBagContainer extends Container
 		return chocoBagInv.isUseableByPlayer(player);
 	}
 
-
 	protected void bindPlayerInventory(InventoryPlayer inventoryPlayer)
 	{
 		int offset = (this.chocoBagRows - 4) * 18;
@@ -76,37 +75,39 @@ public class ChocoBagContainer extends Container
 	}
 
 	@Override
-	public ItemStack transferStackInSlot(EntityPlayer par1EntityPlayer, int slot)
-	{
-		ItemStack stack = null;
-		Slot slotObject = (Slot) this.inventorySlots.get(slot);
+    public ItemStack transferStackInSlot(EntityPlayer player, int slot)
+    {
+        ItemStack iStackTarget = null;
+        Slot slotObj = (Slot)this.inventorySlots.get(slot);
 
-		if (slotObject != null && slotObject.getHasStack())
-		{
-			ItemStack stackInSlot = slotObject.getStack();
-			stack = stackInSlot.copy();
+        if (slotObj != null && slotObj.getHasStack())
+        {
+            ItemStack iStackSource = slotObj.getStack();
+            iStackTarget = iStackSource.copy();
 
-			if (slot == 0)
-			{
-				if (!this.mergeItemStack(stackInSlot, 1, this.inventorySlots.size(), true))
-				{
-					return null;
-				}
-			}
-			else if (!this.mergeItemStack(stackInSlot, 0, 1, false))
-			{
-				return null;
-			}
+            int nSlots = this.chocoBagInv.getSizeInventory();
+            
+            if (slot < nSlots)
+            {
+                if (!this.mergeItemStack(iStackSource, nSlots, this.inventorySlots.size(), true))
+                {
+                    return null;
+                }
+            }
+            else if (!this.mergeItemStack(iStackSource, 0, nSlots, false))
+            {
+                return null;
+            }
 
-			if (stackInSlot.stackSize == 0)
-			{
-				slotObject.putStack(null);
-			}
-			else
-			{
-				slotObject.onSlotChanged();
-			}
-		}
-		return stack;
-	}
+            if (iStackSource.stackSize == 0)
+            {
+                slotObj.putStack((ItemStack)null);
+            }
+            else
+            {
+                slotObj.onSlotChanged();
+            }
+        }
+        return iStackTarget;
+    }
 }
