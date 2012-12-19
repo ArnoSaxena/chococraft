@@ -35,6 +35,7 @@ import net.minecraft.src.World;
 import chococraft.common.Constants;
 import chococraft.common.ModChocoCraft;
 import chococraft.common.entities.colours.EntityChocoboPurple;
+import chococraft.common.helper.ChocoboMathHelper;
 import chococraft.common.helper.ChocoboParticleHelper;
 
 import com.google.common.io.ByteArrayDataInput;
@@ -58,7 +59,7 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 		this.destPos = 0.0F;
 		this.wingRotDelta = 1.0F;
 		this.texture = this.getEntityTexture();
-		this.setSize(1.0F, 2.0F);
+		this.setSize(ModChocoCraft.chocoboWidth, ModChocoCraft.chocoboHeight);
 		this.timeUntilNextFeather = this.rand.nextInt(ModChocoCraft.featherDelayRandom) + ModChocoCraft.featherDelayStatic;
 	}
 
@@ -341,19 +342,16 @@ public abstract class EntityChocobo extends EntityChocoboRideable
         if (Side.CLIENT == FMLCommonHandler.instance().getEffectiveSide())
         {
         	this.destPos += (double)(this.onGround ? -1 : 4) * 0.3D;
-        	if (this.destPos < 0.0F)
+        	
+        	this.destPos = ChocoboMathHelper.clamp(this.destPos, 0.0F, 1.0F);
+        	
+        	if (!this.onGround)
         	{
-        		this.destPos = 0.0F;
+        		this.wingRotDelta = ChocoboMathHelper.minLimit(this.wingRotDelta, 1.0F);
         	}
-        	if (this.destPos > 1.0F)
-        	{
-        		this.destPos = 1.0F;
-        	}
-        	if (!this.onGround && this.wingRotDelta < 1.0F)
-        	{
-        		this.wingRotDelta = 1.0F;
-        	}
+        	
         	this.wingRotDelta *= 0.9D;
+        	
         	if (!this.onGround && this.motionY < 0.0D)
         	{
         		this.motionY *= 0.8D;
@@ -361,6 +359,7 @@ public abstract class EntityChocobo extends EntityChocoboRideable
         	this.wingRotation += this.wingRotDelta * 2.0F;
         }
 
+        // handle drop feather
 		if (Side.SERVER == FMLCommonHandler.instance().getEffectiveSide())
 		{
 			if(--this.timeUntilNextFeather <= 0)

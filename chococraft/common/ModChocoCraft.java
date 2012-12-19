@@ -121,6 +121,10 @@ public class ModChocoCraft
 	public static boolean hungerEnabled;
 	public static boolean riderBuffsEnabled;
 	
+	// chocobo size setup
+	public static float chocoboHeight;
+	public static float chocoboWidth;
+	
 	// gysahl mutation setup
 	public static int gysahlGreenMutationRate;
 	public static int gysahlLoveMutationRate;
@@ -153,10 +157,9 @@ public class ModChocoCraft
 	public static int hungerDelayChocobo;
 	public static int hungerDelayChicobo;
 	
-	// spawn debug
+	// debug
 	public static long spawnDbTimeDelay;
-	public static String spawnDbStatus;
-	
+	public static String spawnDbStatus;	
 	
 	public static double renderNameHeight;
 	public static int livingSoundProb;
@@ -235,9 +238,12 @@ public class ModChocoCraft
 	@PreInit
 	public void preLoadChocoCraft(FMLPreInitializationEvent preInitEvent)
 	{
+		chocoboHeight = 2.2F;
+		chocoboWidth = 1.3F;
+		
 		mainConfiguration = new Configuration(preInitEvent.getSuggestedConfigurationFile());		
 		mainConfiguration.load();
-
+		
 		chocoboSaddleId = mainConfiguration.getItem(Configuration.CATEGORY_ITEM, "chocoboSaddleItem.id", Constants.CHOCOBO_SADDLE_ID);
 		gysahlSeedsId = mainConfiguration.getItem(Configuration.CATEGORY_ITEM, "gysahlSeedsItem.id", Constants.GYSAHL_SEEDS_ID);
 		gysahlLoverlyId = mainConfiguration.getItem(Configuration.CATEGORY_ITEM, "gysahlLoverlyItem.id", Constants.GYSAHL_LOVERLY_ID);

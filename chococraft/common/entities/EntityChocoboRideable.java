@@ -64,7 +64,7 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo
 	abstract public void setLandMovementFactor(boolean mounted);
 	abstract public void setJumpHigh(boolean mounted);
 	abstract public void setRiderAbilities(boolean mounted);
-
+	
 	protected void entityInit()
 	{
 		super.entityInit();

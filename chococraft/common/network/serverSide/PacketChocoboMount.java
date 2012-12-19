@@ -73,6 +73,7 @@ public class PacketChocoboMount extends PacketChocoboServer
 						chocoboRideable.isJumping = false;
 						chocoboRideable.setStepHeight(false);
 						chocoboRideable.setLandMovementFactor(false);
+						chocoboRideable.setJumpHigh(false);
 					}
 					else
 					{
@@ -81,6 +82,7 @@ public class PacketChocoboMount extends PacketChocoboServer
 						rider.mountEntity(chocoboRideable);
 						chocoboRideable.setStepHeight(true);
 						chocoboRideable.setLandMovementFactor(true);
+						chocoboRideable.setJumpHigh(true);
 					}
 				}
 			}
