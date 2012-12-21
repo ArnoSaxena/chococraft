@@ -82,7 +82,14 @@ Thanks to rsmalec
 Thanks to InTheLittleWood[/spoiler][/spoiler]
 
 CHANGELOG:
-[spoiler]v.2.3.9 by Torojima
+[spoiler]v.2.4.1 by Torojima
+   1. updated to mc 1.4.6
+   2. preventing bonemeal use on fully grown Gysahl green
+   3. fixing shift click in inventory
+   4. sound file found from within zip file (no need for extraction anymore)
+   5. ids in config/ChocoCraft.cfg file
+
+v.2.3.9 by Torojima
    1. breeding gysahls not craftable anymore, but mutations of domestic growing of gysahl greens
    2. fixed sprinting mount bug
    3. rider buffs can be disabled in the config file

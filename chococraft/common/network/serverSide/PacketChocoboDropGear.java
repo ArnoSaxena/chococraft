@@ -19,13 +19,15 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
+import net.minecraft.item.ItemStack;
+
 import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.Side;
+import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.common.network.Player;
 import chococraft.common.ModChocoCraft;
 import chococraft.common.entities.EntityAnimalChocobo;
 import chococraft.common.entities.EntityChocoboRideable;
-import net.minecraft.src.ItemStack;
+
 
 public class PacketChocoboDropGear extends PacketChocoboServer
 {

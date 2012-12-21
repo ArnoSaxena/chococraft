@@ -1,7 +1,9 @@
 package chococraft.common.gui;
 
-import net.minecraft.src.FontRenderer;
-import net.minecraft.src.GuiTextField;
+import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.gui.GuiTextField;
+
+
 
 public class GuiClickTextField extends GuiTextField
 {

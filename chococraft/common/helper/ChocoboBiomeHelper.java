@@ -2,10 +2,10 @@ package chococraft.common.helper;
 
 import java.util.ArrayList;
 
-import net.minecraft.src.BiomeGenBase;
-import net.minecraft.src.BiomeGenEnd;
-import net.minecraft.src.BiomeGenHell;
-import net.minecraft.src.World;
+import net.minecraft.world.World;
+import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.BiomeGenHell;
+import net.minecraft.world.biome.BiomeGenEnd;
 
 public class ChocoboBiomeHelper
 {

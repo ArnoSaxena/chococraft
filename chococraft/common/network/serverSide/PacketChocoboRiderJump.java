@@ -20,13 +20,14 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
+import net.minecraft.entity.player.EntityPlayer;
+
 import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.Side;
+import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.common.network.Player;
 
 import chococraft.common.entities.EntityAnimalChocobo;
 import chococraft.common.entities.EntityChocobo;
-import net.minecraft.src.EntityPlayer;
 
 public class PacketChocoboRiderJump extends PacketChocoboServer
 {

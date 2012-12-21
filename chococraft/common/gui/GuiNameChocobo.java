@@ -15,10 +15,10 @@
 
 package chococraft.common.gui;
 
-import net.minecraft.src.GuiButton;
-import net.minecraft.src.GuiScreen;
-import net.minecraft.src.GuiTextField;
-import net.minecraft.src.StringTranslate;
+import net.minecraft.client.gui.GuiButton;
+import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.gui.GuiTextField;
+import net.minecraft.util.StringTranslate;
 
 import org.lwjgl.input.Keyboard;
 

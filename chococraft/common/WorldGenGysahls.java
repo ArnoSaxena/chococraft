@@ -16,12 +16,14 @@ package chococraft.common;
 
 import java.util.Random;
 
+import net.minecraft.world.World;
+import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraft.world.gen.feature.WorldGenFlowers;
+
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.IWorldGenerator;
-import cpw.mods.fml.common.Side;
-import net.minecraft.src.IChunkProvider;
-import net.minecraft.src.World;
-import net.minecraft.src.WorldGenFlowers;
+import cpw.mods.fml.relauncher.Side;
+
 
 public class WorldGenGysahls implements IWorldGenerator
 {

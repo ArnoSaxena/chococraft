@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.logging.Logger;
 
 import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.Side;
+import cpw.mods.fml.relauncher.Side;
 import net.minecraft.client.Minecraft;
 import net.minecraft.server.MinecraftServer;
 

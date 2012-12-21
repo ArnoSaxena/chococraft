@@ -18,13 +18,26 @@ package chococraft.common.entities;
 import java.util.List;
 import java.util.Random;
 
+import net.minecraft.block.Block;
+import net.minecraft.block.StepSound;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.passive.EntityTameable;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.pathfinding.PathEntity;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.MathHelper;
+import net.minecraft.util.Vec3;
+import net.minecraft.world.World;
+
 import com.google.common.io.ByteArrayDataInput;
 import com.google.common.io.ByteArrayDataOutput;
 
-import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
+import cpw.mods.fml.relauncher.Side;
 
 import chococraft.common.*;
 import chococraft.common.gui.GuiStarter;
@@ -38,18 +51,6 @@ import chococraft.common.network.serverSide.PacketChocoboAttribute;
 import chococraft.common.network.serverSide.PacketChocoboChangeOwner;
 import chococraft.common.network.serverSide.PacketChocoboRiderJump;
 import chococraft.common.network.serverSide.PacketChocoboSetInLove;
-import net.minecraft.src.Block;
-import net.minecraft.src.DamageSource;
-import net.minecraft.src.Entity;
-import net.minecraft.src.EntityPlayer;
-import net.minecraft.src.EntityTameable;
-import net.minecraft.src.ItemStack;
-import net.minecraft.src.MathHelper;
-import net.minecraft.src.NBTTagCompound;
-import net.minecraft.src.PathEntity;
-import net.minecraft.src.StepSound;
-import net.minecraft.src.Vec3;
-import net.minecraft.src.World;
 
 public abstract class EntityAnimalChocobo extends EntityTameable implements IEntityAdditionalSpawnData
 {
@@ -1071,7 +1072,7 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
     protected EntityPlayer getNearestPlayer()
     {
         @SuppressWarnings("rawtypes")
-		List list1 = this.worldObj.getEntitiesWithinAABB(net.minecraft.src.EntityPlayer.class, boundingBox.expand(8F, 8F, 8F));
+		List list1 = this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, boundingBox.expand(8F, 8F, 8F));
         double distance = 9999;
         EntityPlayer nearestPlayer = null;
 

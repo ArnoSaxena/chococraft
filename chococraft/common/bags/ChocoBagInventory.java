@@ -14,12 +14,13 @@
 
 package chococraft.common.bags;
 
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTBase;
+import net.minecraft.nbt.NBTTagList;
 import chococraft.common.entities.EntityChocoboRideable;
-import net.minecraft.src.EntityPlayer;
-import net.minecraft.src.IInventory;
-import net.minecraft.src.ItemStack;
-import net.minecraft.src.NBTBase;
-import net.minecraft.src.NBTTagList;
+
 
 public abstract class ChocoBagInventory implements IInventory
 {

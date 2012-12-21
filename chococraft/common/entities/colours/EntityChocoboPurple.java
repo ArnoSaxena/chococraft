@@ -18,18 +18,17 @@ import com.google.common.io.ByteArrayDataInput;
 import com.google.common.io.ByteArrayDataOutput;
 
 import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.Side;
-
+import cpw.mods.fml.relauncher.Side;
 import chococraft.common.Constants;
 import chococraft.common.ModChocoCraft;
 import chococraft.common.entities.EntityAnimalChocobo;
 import chococraft.common.entities.EntityChicobo;
 import chococraft.common.entities.EntityChocobo;
-import net.minecraft.src.EntityAgeable;
-import net.minecraft.src.EntityPlayer;
-import net.minecraft.src.NBTTagCompound;
-import net.minecraft.src.PotionEffect;
-import net.minecraft.src.World;
+import net.minecraft.entity.EntityAgeable;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.potion.PotionEffect;
+import net.minecraft.world.World;
 
 public class EntityChocoboPurple extends EntityChocobo
 {

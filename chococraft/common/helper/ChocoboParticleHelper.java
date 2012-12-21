@@ -2,9 +2,10 @@ package chococraft.common.helper;
 
 import java.util.Random;
 
-import net.minecraft.src.Entity;
+import net.minecraft.entity.Entity;
+
 import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.Side;
+import cpw.mods.fml.relauncher.Side;
 
 public class ChocoboParticleHelper
 {

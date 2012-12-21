@@ -16,18 +16,20 @@ package chococraft.common.entities.spawner;
 
 import java.util.ArrayList;
 
+import net.minecraft.entity.Entity;
+import net.minecraft.util.MathHelper;
+import net.minecraft.world.World;
+import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.chunk.Chunk;
+
 import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.Side;
+import cpw.mods.fml.relauncher.Side;
 import chococraft.common.ModChocoCraft;
 import chococraft.common.entities.EntityAnimalChocobo.chocoboColor;
 import chococraft.common.entities.EntityChocobo;
 import chococraft.common.entities.FactoryEntityChocobo;
 import chococraft.common.helper.ChocoboBiomeHelper;
-import net.minecraft.src.BiomeGenBase;
-import net.minecraft.src.Chunk;
-import net.minecraft.src.Entity;
-import net.minecraft.src.MathHelper;
-import net.minecraft.src.World;
+
 
 public final class ChocoboSpawner
 {

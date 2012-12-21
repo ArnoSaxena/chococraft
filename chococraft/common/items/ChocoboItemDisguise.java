@@ -2,10 +2,10 @@ package chococraft.common.items;
 
 import chococraft.common.Constants;
 import chococraft.common.ModChocoCraft;
-import net.minecraft.src.CreativeTabs;
-import net.minecraft.src.EnumArmorMaterial;
-import net.minecraft.src.ItemArmor;
-import net.minecraft.src.ItemStack;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.EnumArmorMaterial;
+import net.minecraft.item.ItemArmor;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.IArmorTextureProvider;
 
 public class ChocoboItemDisguise extends ItemArmor implements IArmorTextureProvider

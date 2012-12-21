@@ -17,9 +17,11 @@ package chococraft.common.entities.colours;
 import com.google.common.io.ByteArrayDataInput;
 import com.google.common.io.ByteArrayDataOutput;
 
-import net.minecraft.src.EntityAgeable;
-import net.minecraft.src.NBTTagCompound;
-import net.minecraft.src.World;
+
+import net.minecraft.entity.EntityAgeable;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.world.World;
+
 import chococraft.common.Constants;
 import chococraft.common.entities.EntityChocobo;
 

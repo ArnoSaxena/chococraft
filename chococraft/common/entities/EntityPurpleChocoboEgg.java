@@ -14,17 +14,17 @@
 
 package chococraft.common.entities;
 
+import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.projectile.EntityThrowable;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.world.World;
 import chococraft.common.ModChocoCraft;
 import chococraft.common.entities.EntityAnimalChocobo.chocoboColor;
 import chococraft.common.network.clientSide.PacketChocoboParticles;
 import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.network.PacketDispatcher;
-import net.minecraft.src.DamageSource;
-import net.minecraft.src.EntityLiving;
-import net.minecraft.src.EntityThrowable;
-import net.minecraft.src.MovingObjectPosition;
-import net.minecraft.src.World;
+import cpw.mods.fml.relauncher.Side;
 
 public class EntityPurpleChocoboEgg extends EntityThrowable
 {

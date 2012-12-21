@@ -29,11 +29,11 @@ import java.util.ArrayList;
 import chococraft.common.helper.ChocoboBiomeHelper;
 import chococraft.common.helper.ChocoboMathHelper;
 import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.Side;
+import cpw.mods.fml.relauncher.Side;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.src.BiomeGenBase;
+import net.minecraft.world.biome.BiomeGenBase;
 
 public class ChocoboConfig
 {	

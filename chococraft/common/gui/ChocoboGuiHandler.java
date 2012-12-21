@@ -14,11 +14,11 @@
 
 package chococraft.common.gui;
 
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.world.World;
 import chococraft.common.bags.ChocoBagContainer;
 import chococraft.common.entities.EntityChocobo;
-import net.minecraft.src.Entity;
-import net.minecraft.src.EntityPlayer;
-import net.minecraft.src.World;
 import cpw.mods.fml.common.network.IGuiHandler;
 
 public class ChocoboGuiHandler implements IGuiHandler

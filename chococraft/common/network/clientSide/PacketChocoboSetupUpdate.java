@@ -21,11 +21,10 @@ import java.io.IOException;
 
 import chococraft.common.ModChocoCraft;
 import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.Side;
+import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.common.network.Player;
-
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.src.EntityPlayer;
 
 public class PacketChocoboSetupUpdate extends PacketChocoboClient
 {

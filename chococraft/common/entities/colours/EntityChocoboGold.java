@@ -18,11 +18,13 @@ import com.google.common.io.ByteArrayDataInput;
 import com.google.common.io.ByteArrayDataOutput;
 
 import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.Side;
-import net.minecraft.src.EntityAgeable;
-import net.minecraft.src.EntityPlayer;
-import net.minecraft.src.NBTTagCompound;
-import net.minecraft.src.World;
+import cpw.mods.fml.relauncher.Side;
+
+import net.minecraft.entity.EntityAgeable;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.world.World;
+
 import chococraft.common.Constants;
 import chococraft.common.entities.EntityChocobo;
 import chococraft.common.entities.FactoryEntityChocobo;

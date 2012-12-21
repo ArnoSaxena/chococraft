@@ -15,11 +15,10 @@
 
 package chococraft.common.entities.models;
 
-import net.minecraft.src.Entity;
-import net.minecraft.src.EntityLiving;
-import net.minecraft.src.ModelBase;
-import net.minecraft.src.RenderLiving;
-
+import net.minecraft.client.model.ModelBase;
+import net.minecraft.client.renderer.entity.RenderLiving;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
 import org.lwjgl.opengl.GL11;
 
 import chococraft.common.entities.EntityChicobo;

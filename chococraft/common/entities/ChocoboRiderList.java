@@ -2,9 +2,10 @@ package chococraft.common.entities;
 
 import java.util.ArrayList;
 
-import net.minecraft.src.NBTBase;
-import net.minecraft.src.NBTTagCompound;
-import net.minecraft.src.NBTTagList;
+import net.minecraft.nbt.NBTBase;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
+
 
 public class ChocoboRiderList
 {

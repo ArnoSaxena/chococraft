@@ -1,8 +1,7 @@
 package chococraft.common.entities.ai;
 
+import net.minecraft.entity.ai.EntityAIBase;
 import chococraft.common.entities.EntityAnimalChocobo;
-
-import net.minecraft.src.EntityAIBase;
 
 public class EntityAIChocoboFollowOwner extends EntityAIBase
 {

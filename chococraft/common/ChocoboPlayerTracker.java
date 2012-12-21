@@ -14,14 +14,14 @@
 
 package chococraft.common;
 
+import net.minecraft.entity.player.EntityPlayer;
 import chococraft.common.network.clientSide.PacketChocoboLocalSetupUpdate;
 import chococraft.common.network.clientSide.PacketChocoboSetupUpdate;
-import net.minecraft.src.EntityPlayer;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.IPlayerTracker;
-import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.common.network.Player;
+import cpw.mods.fml.relauncher.Side;
 
 
 public class ChocoboPlayerTracker implements IPlayerTracker

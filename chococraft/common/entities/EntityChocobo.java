@@ -18,20 +18,21 @@ package chococraft.common.entities;
 import java.util.List;
 import java.util.Random;
 
-import net.minecraft.src.AxisAlignedBB;
-import net.minecraft.src.Block;
-import net.minecraft.src.DamageSource;
-import net.minecraft.src.Entity;
-import net.minecraft.src.EntityAgeable;
-import net.minecraft.src.EntityAnimal;
-import net.minecraft.src.EntityLiving;
-import net.minecraft.src.EntityPlayer;
-import net.minecraft.src.Item;
-import net.minecraft.src.ItemStack;
-import net.minecraft.src.Material;
-import net.minecraft.src.MathHelper;
-import net.minecraft.src.NBTTagCompound;
-import net.minecraft.src.World;
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityAgeable;
+import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.passive.EntityAnimal;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.MathHelper;
+import net.minecraft.world.World;
+
 import chococraft.common.Constants;
 import chococraft.common.ModChocoCraft;
 import chococraft.common.entities.colours.EntityChocoboPurple;
@@ -42,7 +43,7 @@ import com.google.common.io.ByteArrayDataInput;
 import com.google.common.io.ByteArrayDataOutput;
 
 import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.Side;
+import cpw.mods.fml.relauncher.Side;
 
 public abstract class EntityChocobo extends EntityChocoboRideable
 {	
@@ -55,6 +56,7 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 	public EntityChocobo(World world)
 	{
 		super(world);
+		
 		this.wingRotation = 0.0F;
 		this.destPos = 0.0F;
 		this.wingRotDelta = 1.0F;

@@ -17,11 +17,12 @@ package chococraft.common.network.clientSide;
 import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
-import net.minecraft.src.EntityPlayer;
+
+import net.minecraft.entity.player.EntityPlayer;
 import chococraft.common.ChocoboConfig;
 import chococraft.common.ModChocoCraft;
 import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.Side;
+import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.common.network.Player;
 
 public class PacketChocoboLocalSetupUpdate extends PacketChocoboClient

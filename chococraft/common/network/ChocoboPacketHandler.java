@@ -17,10 +17,11 @@ package chococraft.common.network;
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 
+import net.minecraft.network.INetworkManager;
+import net.minecraft.network.packet.Packet250CustomPayload;
+
 import chococraft.common.network.clientSide.*;
 import chococraft.common.network.serverSide.*;
-import net.minecraft.src.INetworkManager;
-import net.minecraft.src.Packet250CustomPayload;
 import cpw.mods.fml.common.network.IPacketHandler;
 import cpw.mods.fml.common.network.Player;
 

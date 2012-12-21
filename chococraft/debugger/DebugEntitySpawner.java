@@ -2,13 +2,14 @@ package chococraft.debugger;
 
 import java.util.Random;
 
+import net.minecraft.world.World;
+
 import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.Side;
+import cpw.mods.fml.relauncher.Side;
 
 import chococraft.common.entities.EntityAnimalChocobo.chocoboColor;
 import chococraft.common.entities.EntityChicobo;
 import chococraft.common.entities.FactoryEntityChocobo;
-import net.minecraft.src.World;
 
 public class DebugEntitySpawner
 {

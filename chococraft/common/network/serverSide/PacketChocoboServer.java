@@ -14,14 +14,14 @@
 
 package chococraft.common.network.serverSide;
 
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.src.Entity;
-import net.minecraft.src.EntityPlayer;
-import net.minecraft.src.WorldServer;
+import net.minecraft.world.WorldServer;
 import chococraft.common.entities.EntityAnimalChocobo;
 import chococraft.common.network.PacketChocobo;
 import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.Side;
+import cpw.mods.fml.relauncher.Side;
 
 public abstract class PacketChocoboServer extends PacketChocobo
 {

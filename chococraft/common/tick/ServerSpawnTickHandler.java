@@ -5,10 +5,8 @@ import java.util.Iterator;
 
 import chococraft.common.ModChocoCraft;
 import chococraft.common.entities.spawner.ChocoboSpawner;
-
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.src.EntityPlayerMP;
-
 import cpw.mods.fml.common.IScheduledTickHandler;
 import cpw.mods.fml.common.TickType;
 

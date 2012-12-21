@@ -16,18 +16,18 @@ package chococraft.common.items;
 
 import java.util.Random;
 
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockFlower;
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
+
 import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.Side;
+import cpw.mods.fml.relauncher.Side;
 
 import chococraft.common.Constants;
 import chococraft.common.ModChocoCraft;
 
-import net.minecraft.src.Block;
-import net.minecraft.src.BlockFlower;
-import net.minecraft.src.EntityItem;
-import net.minecraft.src.EntityPlayer;
-import net.minecraft.src.ItemStack;
-import net.minecraft.src.World;
 
 public class BlockGysahlStem extends BlockFlower
 {
@@ -133,10 +133,11 @@ public class BlockGysahlStem extends BlockFlower
 		return j + 32;
 	}
 
+	//TODO check this
     public void dropBlockAsItemWithChance(World world, int i, int j, int k, int l, float f, int i1)
     {
     	super.dropBlockAsItemWithChance(world, i, j, k, l, f, 0);
-    	if (Side.CLIENT == FMLCommonHandler.instance().getEffectiveSide())
+    	if (Side.SERVER == FMLCommonHandler.instance().getEffectiveSide())
     	{
     		int j1 = 3 + i1;
     		for (int k1 = 0; k1 < j1; k1++)
@@ -152,11 +153,6 @@ public class BlockGysahlStem extends BlockFlower
     			EntityItem entityitem = new EntityItem(world, (float)i + f2, (float)j + f3, (float)k + f4, new ItemStack(ModChocoCraft.gysahlSeedsItem));
     			entityitem.delayBeforeCanPickup = 10;
     			world.spawnEntityInWorld(entityitem);
-    			EntityPlayer entityplayer = (EntityPlayer)world.playerEntities.get(0);
-    			if (entityplayer != null)
-    			{
-    				//entityplayer.addStat(mod_chocobo.farmGreen, 1);
-    			}
     		}
     	}
     }

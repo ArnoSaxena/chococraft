@@ -14,11 +14,12 @@
 
 package chococraft.common.bags;
 
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTBase;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import chococraft.common.entities.EntityChocoboRideable;
-import net.minecraft.src.ItemStack;
-import net.minecraft.src.NBTBase;
-import net.minecraft.src.NBTTagCompound;
-import net.minecraft.src.NBTTagList;
+
 
 public class ChocoSaddleBagInventory extends ChocoBagInventory
 {

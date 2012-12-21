@@ -14,12 +14,13 @@
 
 package chococraft.common.items;
 
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.Side;
+import cpw.mods.fml.relauncher.Side;
 import chococraft.common.entities.EntityPurpleChocoboEgg;
-import net.minecraft.src.EntityPlayer;
-import net.minecraft.src.ItemStack;
-import net.minecraft.src.World;
+
 
 public class ItemPurpleChocoboEgg extends ChocoboItem
 {

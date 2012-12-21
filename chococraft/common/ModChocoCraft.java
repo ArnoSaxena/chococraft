@@ -14,15 +14,14 @@
 
 package chococraft.common;
 
-import net.minecraft.src.BiomeGenBase;
-import net.minecraft.src.Block;
-import net.minecraft.src.CreativeTabs;
-import net.minecraft.src.Entity;
-import net.minecraft.src.Item;
-import net.minecraft.src.ItemFood;
-import net.minecraft.src.ItemSeeds;
-import net.minecraft.src.ItemStack;
-
+import net.minecraft.block.Block;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.Entity;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemFood;
+import net.minecraft.item.ItemSeeds;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.DungeonHooks;
 import net.minecraftforge.common.MinecraftForge;
@@ -41,7 +40,6 @@ import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.Mod.PostInit;
 import cpw.mods.fml.common.Mod.PreInit;
-import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
@@ -52,6 +50,7 @@ import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.common.registry.TickRegistry;
+import cpw.mods.fml.relauncher.Side;
 
 @Mod(modid=Constants.TCC_MODID, name=Constants.TCC_NAME, version=Constants.TCC_VERSION)
 @NetworkMod(clientSideRequired = true, serverSideRequired = false, 
@@ -473,16 +472,19 @@ public class ModChocoCraft
 
 	private void createBlockInstances()
 	{
-		gysahlStemBlock = new BlockGysahlStem(Integer.parseInt(gysahlStemBlockId.value), 35).setStepSound(Block.soundGrassFootstep).setHardness(0.0F).setBlockName("gysahlStemBlock");
-		GameRegistry.registerBlock(gysahlStemBlock);
+		String gysahlStemBlockName = "gysahlStemBlock";
+		gysahlStemBlock = new BlockGysahlStem(Integer.parseInt(gysahlStemBlockId.value), 35).setStepSound(Block.soundGrassFootstep).setHardness(0.0F).setBlockName(gysahlStemBlockName);
+		GameRegistry.registerBlock(gysahlStemBlock, gysahlStemBlockName);
 		LanguageRegistry.addName(gysahlStemBlock, "Gysahl Stem");
 
-		gysahlGreenBlock = new BlockGysahlGreen(Integer.parseInt(gysahlGreenBlockId.value), 36).setStepSound(Block.soundGrassFootstep).setHardness(0.0F).setBlockName("gysahlGreenBlock");
-		GameRegistry.registerBlock(gysahlGreenBlock);
+		String gysahlGreenBlockName = "gysahlGreenBlock";
+		gysahlGreenBlock = new BlockGysahlGreen(Integer.parseInt(gysahlGreenBlockId.value), 36).setStepSound(Block.soundGrassFootstep).setHardness(0.0F).setBlockName(gysahlGreenBlockName);
+		GameRegistry.registerBlock(gysahlGreenBlock, gysahlGreenBlockName);
 		LanguageRegistry.addName(gysahlGreenBlock, "Gysahl Green");
 		
-		strawBlock = new BlockStraw(Integer.parseInt(strawBlockId.value), 21).setStepSound(Block.soundGrassFootstep).setHardness(0.0F).setBlockName("strawBlock");
-		GameRegistry.registerBlock(strawBlock);
+		String strawBlockName = "strawBlock";
+		strawBlock = new BlockStraw(Integer.parseInt(strawBlockId.value), 21).setStepSound(Block.soundGrassFootstep).setHardness(0.0F).setBlockName(strawBlockName);
+		GameRegistry.registerBlock(strawBlock, strawBlockName);
 		LanguageRegistry.addName(strawBlock, "Straw");
 	}
 

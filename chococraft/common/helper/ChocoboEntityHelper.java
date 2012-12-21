@@ -14,17 +14,17 @@
 
 package chococraft.common.helper;
 
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.ActiveRenderInfo;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
+import net.minecraft.util.MathHelper;
+import net.minecraft.util.Vec3;
+import net.minecraft.world.ChunkPosition;
+import net.minecraft.world.World;
+import net.minecraft.world.chunk.Chunk;
 import chococraft.common.entities.EntityChocobo;
-import net.minecraft.src.ActiveRenderInfo;
-import net.minecraft.src.Block;
-import net.minecraft.src.Chunk;
-import net.minecraft.src.ChunkPosition;
-import net.minecraft.src.Entity;
-import net.minecraft.src.EntityLiving;
-import net.minecraft.src.Material;
-import net.minecraft.src.MathHelper;
-import net.minecraft.src.Vec3;
-import net.minecraft.src.World;
 
 public class ChocoboEntityHelper
 {	

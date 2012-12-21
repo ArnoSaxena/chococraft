@@ -16,7 +16,8 @@ package chococraft.common.entities;
 
 import java.util.Random;
 
-import net.minecraft.src.World;
+import net.minecraft.world.World;
+
 import chococraft.common.ChocoboNames;
 import chococraft.common.ModChocoCraft;
 import chococraft.common.entities.EntityAnimalChocobo.chocoboColor;

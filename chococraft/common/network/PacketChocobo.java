@@ -14,8 +14,8 @@
 
 package chococraft.common.network;
 
+import net.minecraft.network.packet.Packet250CustomPayload;
 import chococraft.common.Constants;
-import net.minecraft.src.Packet250CustomPayload;
 
 public abstract class PacketChocobo
 {
