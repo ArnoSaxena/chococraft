@@ -414,12 +414,12 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 			}
 			else
 			{
-				if (itemstack.itemID == ModChocoCraft.gysahlPinkItem.shiftedIndex)
+				if (itemstack.itemID == ModChocoCraft.gysahlPinkItem.itemID)
 				{
 					this.onPaint(entityplayer, true);
 					interacted = true;
 				}
-				else if (itemstack.itemID == ModChocoCraft.gysahlRedItem.shiftedIndex)
+				else if (itemstack.itemID == ModChocoCraft.gysahlRedItem.itemID)
 				{
 					this.onPaint(entityplayer, false);
 					interacted = true;
@@ -429,12 +429,12 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 					this.onBreedGysahlUse(entityplayer, isGoldenGysahl(itemstack));
 					interacted = true;
 				}
-				else if (itemstack.itemID == ModChocoCraft.chocoboFeatherItem.shiftedIndex)
+				else if (itemstack.itemID == ModChocoCraft.chocoboFeatherItem.itemID)
 				{
 					this.onFeatherUse(entityplayer);
 					interacted = true;
 				}
-				else if (itemstack.itemID == Item.silk.shiftedIndex)
+				else if (itemstack.itemID == Item.silk.itemID)
 				{
 					this.onSilkUse(entityplayer);
 					interacted = true;
@@ -533,11 +533,11 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 	{
 		if (isBurning())
 		{
-			return ModChocoCraft.chocoboLegCookedItem.shiftedIndex;
+			return ModChocoCraft.chocoboLegCookedItem.itemID;
 		}
 		else
 		{
-			return ModChocoCraft.chocoboLegRawItem.shiftedIndex;
+			return ModChocoCraft.chocoboLegRawItem.itemID;
 		}
 	}
 
@@ -591,7 +591,7 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 			if (!this.hasAttacked && !this.hasPath() && this.isFollowing() && this.isTamed())
 			{
 				EntityPlayer owner = this.getOwner();
-				
+
 				if (owner != null)
 				{
 					if (owner.isDead)
@@ -655,9 +655,8 @@ public abstract class EntityChocobo extends EntityChocoboRideable
     }
 	
 	public abstract chocoboColor getBabyAnimalColor(EntityAgeable otherAnimalParent);
-	//public EntityAnimal spawnBabyAnimal(EntityAnimal otherAnimalParent)
 	@Override
-	public EntityAgeable func_90011_a(EntityAgeable otherAnimalParent)
+	public EntityAgeable createChild(EntityAgeable otherAnimalParent)
 	{
 		chocoboColor chicoboColor = this.getBabyAnimalColor(otherAnimalParent);
 		EntityChicobo childChicobo = new EntityChicobo(worldObj);

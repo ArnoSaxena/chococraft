@@ -2,7 +2,6 @@ package chococraft.common;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.DamageSource;
-import net.minecraftforge.client.event.sound.SoundLoadEvent;
 import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.player.BonemealEvent;
@@ -10,7 +9,7 @@ import chococraft.common.entities.colours.EntityChocoboPurple;
 import chococraft.common.helper.ChocoboPlayerHelper;
 import chococraft.common.items.BlockGysahlStem;
 
-public class ChocoCraftEvent
+public class ChocoCraftEventCommon
 {
 	@ForgeSubscribe
 	public void onUseBonemeal(BonemealEvent event)
@@ -23,19 +22,6 @@ public class ChocoCraftEvent
 			}
 		}
 	}
-
-    @ForgeSubscribe
-    public void onSound(SoundLoadEvent event)
-    {
-        try
-        {
-            event.manager.soundPoolSounds.addSound("choco_kweh.ogg", ModChocoCraft.class.getResource(Constants.CHOCOBO_SOUND_FOLDER + "/choco_kweh.ogg"));            
-        }
-        catch (Exception e)
-        {
-            System.err.println("Failed to register one or more sounds.");
-        }
-    }
     
     @ForgeSubscribe
     public void onBurnDamage(LivingAttackEvent event)

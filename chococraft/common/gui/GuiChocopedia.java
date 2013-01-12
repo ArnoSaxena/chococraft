@@ -53,7 +53,7 @@ public class GuiChocopedia extends GuiScreen
 
 	@SuppressWarnings("unchecked")
 	public void initGui()
-	{
+	{		
 		StringTranslate stringtranslate = StringTranslate.getInstance();
 		Keyboard.enableRepeatEvents(true);
 		this.controlList.clear();
@@ -72,7 +72,7 @@ public class GuiChocopedia extends GuiScreen
 		this.hideNameButton = this.createGuiButton(2, xPos, (yPos += 24), stringtranslate.translateKey(lblNameShown));
 		this.checkButtonOwner(this.player, this.chocobo.getOwner(), this.hideNameButton);
 		this.controlList.add(this.hideNameButton);
-		
+
 		// following button
 		//String lblFollowing = (this.chocobo.isFollowing()) ? "Following" : "Not Following";
 		String lblFollowing = this.getFollowStatus();
@@ -92,7 +92,7 @@ public class GuiChocopedia extends GuiScreen
 			this.checkButtonOwner(this.player, this.chocobo.getOwner(), this.changeOwnerButton);
 			this.controlList.add(this.changeOwnerButton);
 		}
-		
+
 		// remove saddle button
 		if(this.chocobo instanceof EntityChocoboRideable  && null == this.chocobo.riddenByEntity)
 		{
@@ -106,7 +106,7 @@ public class GuiChocopedia extends GuiScreen
 			}
 		}
 	}
-	
+
 	protected GuiButton createGuiButton(int id, int xPos, int yPos, String label)
 	{
 		return new GuiButton(id, xPos, yPos, 90, 20, label);
@@ -154,7 +154,7 @@ public class GuiChocopedia extends GuiScreen
 			FMLClientHandler.instance().getClient().displayGuiScreen(new GuiSelectNewOwner(this, this.chocobo));
 		}
 	}
-	
+
 	protected void mouseClicked(int i, int j, int k)
 	{
 		super.mouseClicked(i, j, k);
@@ -162,7 +162,7 @@ public class GuiChocopedia extends GuiScreen
 
 	public void drawScreen(int i, int j, float f)
 	{
-		
+
 		drawDefaultBackground();
 		String breedStatus = "";
 		String gender = this.chocobo.getGender();
@@ -178,38 +178,43 @@ public class GuiChocopedia extends GuiScreen
 		{
 			breedStatus = "can breed";
 		}
-		
+
 		this.drawCenteredString(this.fontRenderer, this.chocobo.getName(), this.width / 2, (height / 4 - 60) + 20, 0xffffff);
-				
+
 		int posY = 24;
 		int posX = this.width / 2 + 10;
 		int fontColour = 0xa0a0a0;
-		
+
 		this.drawString(this.fontRenderer, ownerName,   posX, (posY += 24), fontColour);
 		this.drawString(this.fontRenderer, health,      posX, (posY += 24), fontColour);
 		this.drawString(this.fontRenderer, gender + " (" + breedStatus + ")",      posX, (posY += 24), fontColour);
-		
+
 		if(this.chocobo.getOwnerName().equals("Torojima"))
 		{
 			// it's me, display debug information
+			int debugLineHeight = 13;
+
 			int amountWildChocobos = ChocoboEntityHelper.countWildChocobos(this.chocobo.worldObj);
 			int amountChocobos = ChocoboEntityHelper.countEntities(EntityAnimalChocobo.class, this.chocobo.worldObj);
 			int debugFontColour = 0x11a0a0;
 			String biomeName = this.chocobo.worldObj.getBiomeGenForCoords((int)this.chocobo.posX, (int)this.chocobo.posZ).biomeName;
 			String biomeDisplayString = "Biome: " + biomeName;
-			
+
 			String chocoAmountString = (new StringBuilder()).append("Chocos: ").append(amountChocobos).append(" wild: ").append(amountWildChocobos).toString();			
-			this.drawString(this.fontRenderer, chocoAmountString,   posX, (posY += 15), debugFontColour);
-			this.drawString(this.fontRenderer, biomeDisplayString,   posX, (posY += 15), debugFontColour);
-			this.drawString(this.fontRenderer, "Spawn: " + ModChocoCraft.spawnDbStatus,   posX, (posY += 15), debugFontColour);
-			
+			this.drawString(this.fontRenderer, chocoAmountString,   posX, (posY += debugLineHeight), debugFontColour);
+			this.drawString(this.fontRenderer, biomeDisplayString,   posX, (posY += debugLineHeight), debugFontColour);
+			this.drawString(this.fontRenderer, "Spawn: " + ModChocoCraft.spawnDbStatus,   posX, (posY += debugLineHeight), debugFontColour);
+
 			long spawnTimeDelay = this.chocobo.worldObj.getTotalWorldTime() - ModChocoCraft.spawnDbTimeDelay;
 			String spawnTimeDelayString = (new StringBuilder()).append("Spawn Time: ").append(spawnTimeDelay).toString();
-			this.drawString(this.fontRenderer, spawnTimeDelayString,   posX, (posY += 15), debugFontColour);
-		}		
+			this.drawString(this.fontRenderer, spawnTimeDelayString,   posX, (posY += debugLineHeight), debugFontColour);
+
+			String statusRemoteClient = (new StringBuilder()).append("Remote Cient: ").append(Boolean.toString(ModChocoCraft.isRemoteClient)).toString();			
+			this.drawString(this.fontRenderer, statusRemoteClient,   posX, (posY += debugLineHeight), debugFontColour);
+		}
 		super.drawScreen(i, j, f);
 	}
-	
+
 	private void checkButtonOwner(EntityPlayer player, EntityPlayer owner, GuiButton button)
 	{
 		if(!player.equals(owner))
@@ -217,7 +222,7 @@ public class GuiChocopedia extends GuiScreen
 			button.enabled = false;
 		}
 	}
-	
+
 	private String getFollowStatus()
 	{
 		if(this.chocobo.isFollowing() && !this.chocobo.isWander())

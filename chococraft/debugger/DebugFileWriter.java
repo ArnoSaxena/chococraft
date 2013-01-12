@@ -20,15 +20,13 @@ public class DebugFileWriter
 	
 	public DebugFileWriter()
 	{
-		String fileName = "mods/chocoboDebug.txt";
-		
 		if(Side.CLIENT == FMLCommonHandler.instance().getEffectiveSide())
 		{
-			file = new File(Minecraft.getMinecraftDir(), fileName);
+			file = new File(Minecraft.getMinecraftDir(), "mods/chocoboDebug.txt");
 		}
 		else if (Side.SERVER == FMLCommonHandler.instance().getEffectiveSide())
 		{
-			file = new File(MinecraftServer.getServer().getFolderName(), fileName);
+			file = new File(MinecraftServer.getServer().getFolderName(), "../chocoboDebug.txt");
 		}
 		
 		if(!file.exists())

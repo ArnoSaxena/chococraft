@@ -123,6 +123,7 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
 		nbttagcompound.setInteger("Age", this.getGrowingAge());
 		nbttagcompound.setBoolean("isMale", this.isMale());
 		nbttagcompound.setBoolean("Follow", this.isFollowing());
+		nbttagcompound.setBoolean("wander", this.isWander());
 		nbttagcompound.setBoolean("hidename", this.isHidename());
 		nbttagcompound.setBoolean("tamed", this.isTamed());
 		nbttagcompound.setInteger("timeUntilHunger", this.getTimeUntilHunger());
@@ -135,6 +136,7 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
         this.setGrowingAge(nbttagcompound.getInteger("Age"));
         this.setHidename(nbttagcompound.getBoolean("hidename"));
         this.setFollowing(nbttagcompound.getBoolean("Follow"));
+        this.setWander(nbttagcompound.getBoolean("wander"));
         this.setIsMale(nbttagcompound.getBoolean("isMale"));
         this.setTamed(nbttagcompound.getBoolean("tamed"));
         this.setTimeUntilHunger(nbttagcompound.getInteger("timeUntilHunger"));
@@ -379,22 +381,37 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
 	
 	public EntityPlayer getOwner()
     {
-		if(ModChocoCraft.isRemoteClient)
+		EntityPlayer owner = this.worldObj.getPlayerEntityByName(this.getOwnerName());		
+		if(null == owner)
 		{
-			return this.worldObj.getPlayerEntityByName(this.getOwnerName());
-		}
-		else
-		{
-			if(this.worldObj.playerEntities.size() > 0)
+
+			if(this.worldObj.playerEntities.size() == 1)
 			{
-				Object playerObj = this.worldObj.playerEntities.get(0);
-				if(playerObj instanceof EntityPlayer)
+				if(this.getOwnerName().equals("Player"))
 				{
-					return (EntityPlayer) playerObj;
+					Object playerObj = this.worldObj.playerEntities.get(0);
+					if(playerObj instanceof EntityPlayer)
+					{
+						EntityPlayer updatedOwner = (EntityPlayer)playerObj;
+						this.setOwner(updatedOwner.username);
+						owner = updatedOwner;
+					}
+				}
+				else
+				{
+					Object playerObj = this.worldObj.playerEntities.get(0);
+					if(playerObj instanceof EntityPlayer)
+					{
+						EntityPlayer offlinePlayer = (EntityPlayer)playerObj;
+						if(offlinePlayer.username.equals("Player"))
+						{
+							owner = offlinePlayer;	
+						}
+					}
 				}
 			}
-		}
-		return null;
+		}		
+		return owner;
     }
 	
 	public boolean isOwner(EntityPlayer player)
@@ -504,7 +521,7 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
     	ItemStack itemstack = entityplayer.inventory.getCurrentItem();
     	if(itemstack != null)
     	{
-    		if (itemstack.itemID == ModChocoCraft.chocopediaItem.shiftedIndex)
+    		if (itemstack.itemID == ModChocoCraft.chocopediaItem.itemID)
     		{
     			this.onChocopediaUse();
     			interacted = true;
@@ -644,7 +661,7 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
     	if(Side.SERVER == FMLCommonHandler.instance().getEffectiveSide())
     	{
     		//EntityChicobo babyChicobo = (EntityChicobo) this.spawnBabyAnimal(otherParent);
-    		EntityChicobo babyChicobo = (EntityChicobo) this.func_90011_a(otherParent);
+    		EntityChicobo babyChicobo = (EntityChicobo) this.createChild(otherParent);
 
     		if (babyChicobo != null)
     		{
@@ -767,14 +784,37 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
         return  isPosPathWeight && super.getCanSpawnHere();
     }
     
-    public boolean canTeleportToLoc(int x, int y, int z)
+    public boolean canSpawnAtLoc(int x, int y, int z)
     {
-    	boolean belowIsSolid    = this.worldObj.doesBlockHaveSolidTopSurface(x, y - 1, z);
-    	boolean blockIsEmpty    = !this.worldObj.isBlockNormalCube(x, y, z);
-    	boolean aboveIsEmpty    = !this.worldObj.isBlockNormalCube(x, y + 1, z);
-    	boolean twoAboveIsEmpty = !this.worldObj.isBlockNormalCube(x, y + 2, z);
-    	return belowIsSolid && blockIsEmpty && aboveIsEmpty && twoAboveIsEmpty;
+    	if(!this.worldObj.doesBlockHaveSolidTopSurface(x, y - 1, z))
+    	{
+    		return false;
+    	}
+    	
+    	for(int i = 0; i < 3; i++)
+    	{
+    		if(isNormalCubesAround(this.worldObj, x, y + i, z))
+    		{
+    			return false;
+    		}
+    	}
+    	return true;
     }
+    
+	private static boolean isNormalCubesAround(World world, int posX, int posY, int posZ)
+	{
+		for(int x = posX -1; x <= posX +1; x++)
+		{
+			for(int z = posZ -1; z <= posZ +1; z++)
+			{
+				if(!world.isBlockNormalCube(x, posY, z))
+				{
+					return false;
+				}
+			}
+		}
+		return true;
+	}
     
     public boolean teleportToOwner()
     {
@@ -794,7 +834,7 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
     					int yTele = ownerPosY;
     					int zTele = ownerPosZ + yOffset;
     					
-    					if(this.canTeleportToLoc(xTele, yTele, zTele))
+    					if(this.canSpawnAtLoc(xTele, yTele, zTele))
     					{
     						double finXTele = (double)xTele + 0.5D;
     						double finYTele = (double)yTele;
@@ -828,12 +868,12 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
 
     protected boolean isLoverlyGysahl(ItemStack itemstack)
     {
-        return itemstack.itemID == ModChocoCraft.gysahlLoverlyItem.shiftedIndex;
+        return itemstack.itemID == ModChocoCraft.gysahlLoverlyItem.itemID;
     }
 
     protected boolean isGoldenGysahl(ItemStack itemstack)
     {
-        return itemstack.itemID == ModChocoCraft.gysahlGoldenItem.shiftedIndex;
+        return itemstack.itemID == ModChocoCraft.gysahlGoldenItem.itemID;
     }
 
 	protected void useItem(EntityPlayer entityplayer)

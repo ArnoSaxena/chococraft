@@ -20,6 +20,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 
 import chococraft.common.ModChocoCraft;
+import chococraft.debugger.DebugFileWriter;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.common.network.Player;
@@ -36,6 +37,7 @@ public class PacketChocoboSetupUpdate extends PacketChocoboClient
 		try
 		{
 			outputStream.writeInt(PID_SETUP);
+			DebugFileWriter.instance().writeLine("PChSUp", "isDedicatedServer: " + MinecraftServer.getServer().isDedicatedServer());
 			outputStream.writeBoolean(MinecraftServer.getServer().isDedicatedServer());
 			outputStream.writeBoolean(ModChocoCraft.hungerEnabled);
 		}

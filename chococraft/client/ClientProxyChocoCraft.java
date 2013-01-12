@@ -14,16 +14,14 @@
 
 package chococraft.client;
 
-import cpw.mods.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.client.MinecraftForgeClient;
+import net.minecraftforge.common.MinecraftForge;
 import chococraft.common.CommonProxyChocoCraft;
 import chococraft.common.Constants;
 import chococraft.common.entities.EntityChicobo;
 import chococraft.common.entities.colours.*;
-import chococraft.common.entities.models.ModelChicobo;
-import chococraft.common.entities.models.ModelChocobo;
-import chococraft.common.entities.models.RenderChicobo;
-import chococraft.common.entities.models.RenderChocobo;
+import chococraft.common.entities.models.*;
+import cpw.mods.fml.client.registry.RenderingRegistry;
 
 public class ClientProxyChocoCraft extends CommonProxyChocoCraft
 {
@@ -53,5 +51,11 @@ public class ClientProxyChocoCraft extends CommonProxyChocoCraft
     public int addArmor(String armor)
     {
         return RenderingRegistry.addNewArmourRendererPrefix(armor);
+    }
+    
+    @Override
+    public void registerEventListener()
+    {
+			MinecraftForge.EVENT_BUS.register(new ChocoCraftEventClient());
     }
 }

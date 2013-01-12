@@ -171,8 +171,15 @@ public final class ChocoboSpawner
 						break;
 					}
 				}
+				else
+				{
+					ModChocoCraft.spawnDbStatus = "not spawn at loc";
+				}
 			}
-			ModChocoCraft.spawnDbStatus = spawnedChocobos + " spawned";
+			if(spawnedChocobos > 0)
+			{
+				ModChocoCraft.spawnDbStatus = spawnedChocobos + " spawned";
+			}
 		}
 	}
 
@@ -236,12 +243,53 @@ public final class ChocoboSpawner
 
 	private static boolean canChocoboSpawnAtLocation(World world, int posX, int posY, int posZ)
 	{
-		Boolean normalCubeBelow = world.isBlockNormalCube(posX, posY - 1, posZ);
-		Boolean notNormalCube = !world.isBlockNormalCube(posX, posY, posZ); 
-		Boolean notLiquidCube = !world.getBlockMaterial(posX, posY, posZ).isLiquid(); 
-		Boolean notNormalAbove = !world.isBlockNormalCube(posX, posY + 1, posZ);
+		//Boolean normalCubeBelow = isNormalCubeAround(world, posX, posY - 1, posZ);
+		if(!isNormalCubesAround(world, posX, posY - 1, posZ))
+		{
+			return false;
+		}
+		
+		//Boolean notNormalCube = !isNormalCubeAround(world, posX, posY, posZ);
+		if(isNormalCubesAround(world, posX, posY, posZ))
+		{
+			return false;
+		}
+		
+		//Boolean notLiquidCube = !world.getBlockMaterial(posX, posY, posZ).isLiquid();
+		if(world.getBlockMaterial(posX, posY, posZ).isLiquid())
+		{
+			return false;
+		}
+		
+		//Boolean notNormalAbove = !isNormalCubeAround(world, posX, posY + 1, posZ);
+		if(isNormalCubesAround(world, posX, posY + 1, posZ))
+		{
+			return false;
+		}
+		
+		//Boolean notNormalTwoAbove = !isNormalCubeAround(world, posX, posY + 2, posZ);
+		if(isNormalCubesAround(world, posX, posY + 2, posZ))
+		{
+			return false;
+		}
 
-		return normalCubeBelow && notNormalCube && notLiquidCube && notNormalAbove;
+		return true;
+		//return normalCubeBelow && notNormalCube && notLiquidCube && notNormalAbove && notNormalTwoAbove;
+	}
+	
+	private static boolean isNormalCubesAround(World world, int posX, int posY, int posZ)
+	{
+		for(int x = posX -1; x <= posX +1; x++)
+		{
+			for(int z = posZ -1; z <= posZ +1; z++)
+			{
+				if(!world.isBlockNormalCube(x, posY, z))
+				{
+					return false;
+				}
+			}
+		}
+		return true;
 	}
 
 	private static boolean canChocoboSpawnInBiome(World world, double posX, double posZ)

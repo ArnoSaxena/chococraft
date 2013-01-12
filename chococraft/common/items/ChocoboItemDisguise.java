@@ -44,19 +44,19 @@ public class ChocoboItemDisguise extends ItemArmor implements IArmorTextureProvi
 	@Override
 	public String getArmorTextureFile(ItemStack itemstack)
 	{
-	    if (itemstack.itemID == ModChocoCraft.chocoDisguiseHelmetItem.shiftedIndex)
+	    if (itemstack.itemID == ModChocoCraft.chocoDisguiseHelmetItem.itemID)
 	    {
 	      return Constants.CHOCOBO_ARMOUR_TEXTURES_1;
 	    }
-	    if (itemstack.itemID == ModChocoCraft.chocoDisguisePlateItem.shiftedIndex)
+	    if (itemstack.itemID == ModChocoCraft.chocoDisguisePlateItem.itemID)
 	    {
 	      return Constants.CHOCOBO_ARMOUR_TEXTURES_1;
 	    }
-	    if (itemstack.itemID == ModChocoCraft.chocoDisguiseLegsItem.shiftedIndex)
+	    if (itemstack.itemID == ModChocoCraft.chocoDisguiseLegsItem.itemID)
 	    {
 	      return Constants.CHOCOBO_ARMOUR_TEXTURES_2;
 	    }
-	    if (itemstack.itemID == ModChocoCraft.chocoDisguiseBootsItem.shiftedIndex)
+	    if (itemstack.itemID == ModChocoCraft.chocoDisguiseBootsItem.itemID)
 	    {
 	      return Constants.CHOCOBO_ARMOUR_TEXTURES_1;
 	    }

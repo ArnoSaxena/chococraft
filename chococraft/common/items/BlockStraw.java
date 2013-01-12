@@ -23,7 +23,7 @@ public class BlockStraw extends Block
     public BlockStraw(int par1, int par2)
     {
         super(par1, par2, Material.grass);
-        this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.125F, 1.0F);
+        this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.1F, 1.0F);
         this.setCreativeTab(CreativeTabs.tabDecorations);
         this.setTextureFile(Constants.CHOCOBO_ITEM_TEXTURES);
     }

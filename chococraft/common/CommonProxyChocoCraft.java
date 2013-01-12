@@ -16,6 +16,7 @@ package chococraft.common;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
+import net.minecraftforge.common.MinecraftForge;
 
 public class CommonProxyChocoCraft
 {
@@ -42,5 +43,10 @@ public class CommonProxyChocoCraft
     public int addArmor(String armor)
     {
         return 0;
+    }
+    
+    public void registerEventListener()
+    {
+		MinecraftForge.EVENT_BUS.register(new ChocoCraftEventCommon());
     }
 }

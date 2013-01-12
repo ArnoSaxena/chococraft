@@ -156,16 +156,16 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo
 
 		if(side == Side.SERVER && this.isSaddled())
 		{
-			this.dropItem(ModChocoCraft.chocoboSaddleItem.shiftedIndex, 1);
+			this.dropItem(ModChocoCraft.chocoboSaddleItem.itemID, 1);
 		}
 		if(side == Side.SERVER && this.isSaddleBagged())
 		{
-			this.dropItem(ModChocoCraft.chocoboSaddleBagsItem.shiftedIndex, 1);
+			this.dropItem(ModChocoCraft.chocoboSaddleBagsItem.itemID, 1);
 			this.bagsInventory.dropAllItems();
 		}
 		if(side == Side.SERVER && this.isPackBagged())
 		{
-			this.dropItem(ModChocoCraft.chocoboPackBagsItem.shiftedIndex, 1);
+			this.dropItem(ModChocoCraft.chocoboPackBagsItem.itemID, 1);
 			this.bagsInventory.dropAllItems();
 		}
 		super.onDeath(damageSource);
@@ -185,22 +185,22 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo
 			ItemStack itemstack = entityplayer.inventory.getCurrentItem();
 			if(itemstack != null)
 			{
-				if (itemstack.itemID == ModChocoCraft.chocoboSaddleItem.shiftedIndex)
+				if (itemstack.itemID == ModChocoCraft.chocoboSaddleItem.itemID)
 				{
 					this.onSaddleUse(entityplayer);
 					interacted = true;
 				}
-				else if (itemstack.itemID == ModChocoCraft.chocoboSaddleBagsItem.shiftedIndex)
+				else if (itemstack.itemID == ModChocoCraft.chocoboSaddleBagsItem.itemID)
 				{
 					this.onSaddleBagsUse(entityplayer);
 					interacted = true;
 				}
-				else if (itemstack.itemID == ModChocoCraft.chocoboPackBagsItem.shiftedIndex)
+				else if (itemstack.itemID == ModChocoCraft.chocoboPackBagsItem.itemID)
 				{
 					this.onPackBagsUse(entityplayer);
 					interacted = true;
 				}
-				else if (itemstack.itemID == ModChocoCraft.chocoboWhistleItem.shiftedIndex)
+				else if (itemstack.itemID == ModChocoCraft.chocoboWhistleItem.itemID)
 				{
 					this.onWhistleUse();
 					interacted = true;

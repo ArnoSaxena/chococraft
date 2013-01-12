@@ -50,7 +50,7 @@ public class EntityPurpleChocoboEgg extends EntityThrowable
 		{
 			if (mObjPos.entityHit != null)
 			{
-				mObjPos.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.func_85052_h()), 0);
+				mObjPos.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), 0);
 			}
 			
 			EntityChicobo babyChicobo = FactoryEntityChocobo.createNewChicobo(worldObj, chocoboColor.PURPLE);

@@ -1,9 +1,10 @@
 [img]http://www.arno-saxena.de/pictures/chococraft/banner_title.png[/img]
+[size=2]banner made by [url="http://www.minecraftforum.net/user/223231-galindorf/"]galindorf[/url][/size]
 
 UPDATED FOR MINECRAFT 1.4.6
-Version 2.4.1
+Version 2.4.2
 Requires: [url="http://www.minecraftforge.net/"]Forge[/url] [url="http://files.minecraftforge.net/"]6.5.0.467+[/url]
-Tested with: [url="http://www.minecraftforge.net/"]Forge[/url] [url="http://files.minecraftforge.net/"]6.5.0.467+[/url]
+Tested with: [url="http://www.minecraftforge.net/"]Forge[/url] [url="http://files.minecraftforge.net/"]6.5.0.473+[/url]
 
 This Mod is the continuation of [url="http://www.minecraftforum.net/user/1051245-eddiev/"]EddieV's[/url] mod. The original thread can be found [url="http://www.minecraftforum.net/topic/952372-chococraft-12-mc-11-chocobos-now-fly/"]here[/url]. I've officially taken over the helm with Eddie's kind blessings.
 
@@ -18,7 +19,7 @@ As of version 2.0.4 this mod is in working condition for SMP.
 [color=#ff0000][b]ACHTUNG! CAUTION! ¡CUIDADO! चेतावनी! ATTENZIONE! береги́сь!
 This version of Chococraft is not compatible to versions pre 2.0.0 (pre mc 1.3.2). It will destroy your saved world if old Chocobos are included. Thus, if you want to use an old world with the new version of this mod, you should first start minecraft without the Chococraft mod, enter and save your world, thus removing all traces of older versions of Chococraft and only then start minecraft with the new version of Chococraft and tame new Chocobos.[/b][/color]
 
-Download: [url="http://www.arno-saxena.de/minecraft/Chococraft_2.4.1.zip"]Torojimas ChocoCraft 2.4.1[/url]
+Download: [url="http://www.arno-saxena.de/minecraft/Chococraft_2.4.2.zip"]Torojimas ChocoCraft 2.4.2[/url]
 
 Downloads so far: [img]http://www.arno-saxena.de/minecraft/chocoboDownloads.png[/img]
 
@@ -41,6 +42,9 @@ Post in the original thread for [url="http://www.minecraftforum.net/user/490126-
 
 VIDEOS:
 [spoiler]Spotlights:
+[url="http://www.minecraftforum.net/user/1831208-rainnero/"]RainNero[/url] has done a very good mod spotlight using the 2.4.2 version. Great as an introduction to everybody new to ChocoCraft. 
+[media]http://www.youtube.com/watch?v=mX6JmEi-iqI[/media]
+
 [url="http://www.minecraftforum.net/user/18014-huskymudkipz/"]HuskyMUDKIPZ[/url] has done a very brief mod spotlight using the 2.3.8 version (so they still show the loverly and golden gysahl recipes). 
 [media]http://www.youtube.com/watch?v=uoUSLqInH38[/media]
 
@@ -83,7 +87,10 @@ Thanks to rsmalec
 Thanks to InTheLittleWood[/spoiler][/spoiler]
 
 CHANGELOG:
-[spoiler]v.2.4.1 by Torojima
+[spoiler]v.2.4.2 by Torojima
+   1. fixed dedicated server crash
+
+v.2.4.1 by Torojima
    1. updated to mc 1.4.6
    2. preventing bonemeal use on fully grown Gysahl green
    3. fixing shift click in inventory
@@ -665,8 +672,8 @@ How to Install server version:
 [/spoiler]
 
 compatible mods:
-[spoiler]These mods have been tested with ChocoCraft for mc 1.4.5. (This does not imply any sort of cooperation between the mods)
-Eiter by me:
+[spoiler]These mods have been tested with ChocoCraft for mc 1.4.6. (This does not imply any sort of cooperation between the mods)
+Eiter by me all :
 [spoiler]- Forge
 - Rei Minimap
 - ToManyItems
@@ -678,22 +685,33 @@ Eiter by me:
 - Millénaire
 [/spoiler]
 
-and by other players:
-[spoiler]- ExtraBiomes
- - Forgotten Nature
- - Mo'Creatures
- - Fishnet
- - Easybreeding
- - Flower Propagation
- - Legendary Beasts
- - McCapes
- - Metallurgy
- - Railcraft
- - Watermelon Gen
- - Weaponmod
- - Industrialcraft 2
- - Mystcraft
- - Enhanced Books
+and by other players for the mc version in brackets:
+[spoiler]- ExtraBiomes (1.4.6)
+ - Forgotten Nature (1.4.6)
+ - Mo'Creatures (1.4.6)
+ - Fishnet (1.4.6)
+ - Easybreeding (1.4.6)
+ - Flower Propagation (1.4.6)
+ - Legendary Beasts (1.4.6)
+ - McCapes (1.4.6)
+ - Metallurgy (1.4.6)
+ - Railcraft (1.4.6)
+ - Watermelon Gen (1.4.6)
+ - Weaponmod (1.4.6)
+ - Industrialcraft 2 (1.4.6)
+ - Mystcraft (1.4.6)
+ - Enhanced Books (1.4.6)
+ - Divine RPG (1.4.6)
+ - Simpleores (1.4.6)
+ - Netherocks (1.4.6)
+ - Buildcraft (1.4.6)
+ - Soul Shards (1.4.6)
+ - Ellian's MaterialDetector v1.39  (1.4.6)
+ - Davidee's Toggle Sprint/Sneak V1.4.6.0  (1.4.6)
+ - TreeCapitator 1.4.6.r01  (1.4.6)
+ - What's My Light Level 1.4.6/1.4.7[pre] (1.4.6)
+ - iChun's Portal Gun 1.4.6v2 (1.4.6)
+ - Dynamic Lights 1.4.6  (1.4.6)
 [/spoiler]
 [/spoiler]
 
@@ -705,12 +723,13 @@ incompatible mods:
 Acknowledgments:
 [spoiler]1. Chococraft has been created by [url="http://www.minecraftforum.net/user/1051245-eddiev/"]EddieV[/url]
 2. Chocobos are creatures from Square Enix's Final Fantasy franchise, which later became main characters on their own games. As such, I do not own any right on them.
-3. The design of the new Chocobo model has been created by [url="http://www.minecraftforum.net/user/758250-firas333/"]firas333[/url].
-4. Pictures of new Chocobos made by [url="http://www.minecraftforum.net/user/524192-uncletravis/"]uncletravis[/url] and [url="http://www.minecraftforum.net/user/1099767-poloniumradon/"]PoloniumRadon[/url].
-5. Server testing by [url="http://www.minecraftforum.net/user/1795528-sparks314/"]sparks314[/url]
-6. The old models of the Chocobos were HIGHLY inspired by the Moa creatures in The Aether Mod. If you don't know this mod, you should. Go get it ASAP.
-7. The models of the Chicobos were HIGHLY inspired by the chicks present in Baby Animals Mod. If you don't know this mod, you should also go get it ASAP.
-8. [url="http://www.minecraftforum.net/user/21540-leonblade/"]LeonBlade[/url] for beeing part of the developer team
+3. The banner has been created by [url="http://www.minecraftforum.net/user/223231-galindorf/"]galindorf[/url]
+4. The design of the new Chocobo model has been created by [url="http://www.minecraftforum.net/user/758250-firas333/"]firas333[/url].
+5. Pictures of new Chocobos made by [url="http://www.minecraftforum.net/user/524192-uncletravis/"]uncletravis[/url] and [url="http://www.minecraftforum.net/user/1099767-poloniumradon/"]PoloniumRadon[/url].
+6. Server testing by [url="http://www.minecraftforum.net/user/1795528-sparks314/"]sparks314[/url]
+7. The old models of the Chocobos were HIGHLY inspired by the Moa creatures in The Aether Mod. If you don't know this mod, you should. Go get it ASAP.
+8. The models of the Chicobos were HIGHLY inspired by the chicks present in Baby Animals Mod. If you don't know this mod, you should also go get it ASAP.
+9. [url="http://www.minecraftforum.net/user/21540-leonblade/"]LeonBlade[/url] for beeing part of the developer team
 [/spoiler]
 
 Banner/Sig:

@@ -23,8 +23,6 @@ import net.minecraft.item.ItemSeeds;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.Configuration;
-import net.minecraftforge.common.DungeonHooks;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.Property;
 
 import chococraft.client.ClientProxyChocoCraft;
@@ -158,7 +156,7 @@ public class ModChocoCraft
 	
 	// debug
 	public static long spawnDbTimeDelay;
-	public static String spawnDbStatus;	
+	public static String spawnDbStatus;
 	
 	public static double renderNameHeight;
 	public static int livingSoundProb;
@@ -237,7 +235,7 @@ public class ModChocoCraft
 	@PreInit
 	public void preLoadChocoCraft(FMLPreInitializationEvent preInitEvent)
 	{
-		chocoboHeight = 2.2F;
+		chocoboHeight = 1.9F;
 		chocoboWidth = 1.3F;
 		
 		mainConfiguration = new Configuration(preInitEvent.getSuggestedConfigurationFile());		
@@ -311,8 +309,8 @@ public class ModChocoCraft
 		livingSoundProb = Constants.DEFAULT_LIVING_SOUND_PROB;
 		
     	ChocoboConfig.readConfigFile();
-
-		MinecraftForge.EVENT_BUS.register(new ChocoCraftEvent());
+    	
+    	proxy.registerEventListener();
 	}
 
 	@PostInit
@@ -333,7 +331,7 @@ public class ModChocoCraft
 		LanguageRegistry.addName(chocopediaItem, "Chocopedia");
 		chocopediaItem.setCreativeTab(CreativeTabs.tabTools);
 		//chocopediaItem.setCreativeTab(chocoboCreativeItems);
-		DungeonHooks.addDungeonLoot(new ItemStack(chocopediaItem), 1, 1, 1);
+		//DungeonHooks.addDungeonLoot(new ItemStack(chocopediaItem), 1, 1, 1);
 
 		// Chocobo Feather
 		chocoboFeatherItem = (new ChocoboItem(Integer.parseInt(chocoboFeatherId.value))).setItemName("chocoboFeather").setMaxStackSize(64);
@@ -341,7 +339,7 @@ public class ModChocoCraft
 		LanguageRegistry.addName(chocoboFeatherItem, "Chocobo Feather");
 		chocoboFeatherItem.setCreativeTab(CreativeTabs.tabMaterials);
 		//chocoboFeatherItem.setCreativeTab(chocoboCreativeItems);
-		DungeonHooks.addDungeonLoot(new ItemStack(chocoboFeatherItem), 10, 5, 15);
+		//DungeonHooks.addDungeonLoot(new ItemStack(chocoboFeatherItem), 10, 5, 15);
 
 		
 		// riding gear
@@ -388,7 +386,7 @@ public class ModChocoCraft
 		LanguageRegistry.addName(gysahlGoldenItem, "Golden Gysahl");
 		gysahlGoldenItem.setCreativeTab(CreativeTabs.tabMisc);
 		//gysahlGoldenItem.setCreativeTab(chocoboCreativeItems);
-		DungeonHooks.addDungeonLoot(new ItemStack(gysahlGoldenItem), 1, 2, 8);
+		//DungeonHooks.addDungeonLoot(new ItemStack(gysahlGoldenItem), 1, 2, 8);
 
 		// Pink Gysahl
 		gysahlPinkItem = (new ChocoboItem(Integer.parseInt(gysahlPinkId.value))).setItemName("gysahlPink").setMaxStackSize(64);
@@ -490,7 +488,7 @@ public class ModChocoCraft
 
 	private void addSmeltings()
 	{
-		GameRegistry.addSmelting(chocoboLegRawItem.shiftedIndex, new ItemStack(chocoboLegCookedItem), 0.1F);
+		GameRegistry.addSmelting(chocoboLegRawItem.itemID, new ItemStack(chocoboLegCookedItem), 0.1F);
 	}
 
 	private void addRecipes()

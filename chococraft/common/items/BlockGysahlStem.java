@@ -169,11 +169,11 @@ public class BlockGysahlStem extends BlockFlower
     		{
     			if(random.nextInt(100) > ModChocoCraft.gysahlLoveMutationRate)
     			{
-    				return ModChocoCraft.gysahlLoverlyItem.shiftedIndex;
+    				return ModChocoCraft.gysahlLoverlyItem.itemID;
     			}
     			else
     			{
-    				return ModChocoCraft.gysahlGoldenItem.shiftedIndex;
+    				return ModChocoCraft.gysahlGoldenItem.itemID;
     			}
     		}
     	}

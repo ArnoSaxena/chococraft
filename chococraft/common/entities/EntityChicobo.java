@@ -16,11 +16,20 @@
 package chococraft.common.entities;
 
 import net.minecraft.entity.EntityAgeable;
+import net.minecraft.entity.ai.EntityAILookIdle;
+import net.minecraft.entity.ai.EntityAIPanic;
+import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
+import chococraft.common.Constants;
+import chococraft.common.ModChocoCraft;
+import chococraft.common.entities.ai.ChocoboAIFollowOwner;
+import chococraft.common.entities.ai.ChocoboAISwimming;
+import chococraft.common.entities.ai.ChocoboAIWander;
+import chococraft.common.network.clientSide.PacketChicoboCanGrowUp;
 
 import com.google.common.io.ByteArrayDataInput;
 import com.google.common.io.ByteArrayDataOutput;
@@ -28,8 +37,6 @@ import com.google.common.io.ByteArrayDataOutput;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.relauncher.Side;
-import chococraft.common.*;
-import chococraft.common.network.clientSide.PacketChicoboCanGrowUp;
 
 
 public class EntityChicobo extends EntityAnimalChocobo
@@ -54,17 +61,17 @@ public class EntityChicobo extends EntityAnimalChocobo
 		this.landMovementFactor = 0.1F;
 		this.setGrowingAge(this.getTimeUntilAdult());
 		
-//        this.tasks.addTask(this.taskNumber++, new EntityAISwimming(this));
-//        this.tasks.addTask(this.taskNumber++, new EntityAIChocoboFollowOwner(this, 64.0F));
-//        this.tasks.addTask(this.taskNumber++, new EntityAIPanic(this, 0.38F));
-//        this.tasks.addTask(this.taskNumber++, new EntityAIWander(this, 0.25F));
-//        this.tasks.addTask(this.taskNumber++, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
-//        this.tasks.addTask(this.taskNumber++, new EntityAILookIdle(this));
+        this.tasks.addTask(this.taskNumber++, new ChocoboAIFollowOwner(this, this.moveSpeed, 3.0F, 20.0F));
+        this.tasks.addTask(this.taskNumber++, new ChocoboAISwimming(this));
+        this.tasks.addTask(this.taskNumber++, new EntityAIPanic(this, 0.38F));
+        this.tasks.addTask(this.taskNumber++, new ChocoboAIWander(this, 0.25F));
+        this.tasks.addTask(this.taskNumber++, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
+        this.tasks.addTask(this.taskNumber++, new EntityAILookIdle(this));
 	}
 	
     public boolean isAIEnabled()
     {
-        return false;
+        return true;
     }
 
 	public void setColor(chocoboColor color)
@@ -295,7 +302,7 @@ public class EntityChicobo extends EntityAnimalChocobo
 			ItemStack itemstack = entityplayer.inventory.getCurrentItem();
 			if(itemstack != null)
 			{
-				if (itemstack.itemID == ModChocoCraft.gysahlCakeItem.shiftedIndex)
+				if (itemstack.itemID == ModChocoCraft.gysahlCakeItem.itemID)
 				{
 					this.onGysahlCakeUse(entityplayer);
 					interacted = true;
@@ -305,7 +312,7 @@ public class EntityChicobo extends EntityAnimalChocobo
 //					this.onGysahlChibiUse(entityplayer);
 //					interacted = true;
 //				}
-				else if (itemstack.itemID == ModChocoCraft.chocoboFeatherItem.shiftedIndex)
+				else if (itemstack.itemID == ModChocoCraft.chocoboFeatherItem.itemID)
 				{
 					this.onFeatherUse(entityplayer);
 					interacted = true;
@@ -367,6 +374,7 @@ public class EntityChicobo extends EntityAnimalChocobo
 		return -1;
 	}
 
+	@Deprecated
 	public void updateEntityActionState()
 	{
 		if (!this.hasPath() && this.isFollowing() && this.isTamed())
@@ -421,8 +429,7 @@ public class EntityChicobo extends EntityAnimalChocobo
 	}
 
 	@Override
-	//public EntityAnimal spawnBabyAnimal(EntityAnimal dummy)
-	public EntityAgeable func_90011_a(EntityAgeable var1)
+	public EntityAgeable createChild(EntityAgeable var1)
 	{
 		return null;
 	}

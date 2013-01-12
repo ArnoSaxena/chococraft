@@ -199,7 +199,7 @@ public class EntityChocoboPurple extends EntityChocobo
 
 	protected int getDropItemId()
 	{
-		return ModChocoCraft.chocoboLegRawItem.shiftedIndex;
+		return ModChocoCraft.chocoboLegRawItem.itemID;
 	}
 
 	// purple special
@@ -217,7 +217,7 @@ public class EntityChocoboPurple extends EntityChocobo
 			this.entityToAttack = null;
 			otherParent.entityToAttack = null;
 			int eggAmount = this.rand.nextInt(10) == 0 ? 3 : 1;
-			this.dropItem(ModChocoCraft.purpleChocoboEggItem.shiftedIndex, eggAmount);
+			this.dropItem(ModChocoCraft.purpleChocoboEggItem.itemID, eggAmount);
 		}
 	}
 
