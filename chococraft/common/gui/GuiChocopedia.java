@@ -149,7 +149,7 @@ public class GuiChocopedia extends GuiScreen
 			}
 			this.mc.displayGuiScreen(this.parentGuiScreen);
 		}
-		else if (guibutton.id == 5 && ModChocoCraft.debugMode)
+		else if (guibutton.id == 5)
 		{
 			FMLClientHandler.instance().getClient().displayGuiScreen(new GuiSelectNewOwner(this, this.chocobo));
 		}
