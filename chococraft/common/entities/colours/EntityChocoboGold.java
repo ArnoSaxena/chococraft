@@ -41,7 +41,7 @@ public class EntityChocoboGold extends EntityChocobo
 		this.canClimb = true;
 		this.canCrossWater = true;
 		this.canFly = true;
-		this.canJumpHigh = false;
+		this.canJumpHigh = Constants.CHOCOBO_GOLD_CANJUMPHIGH;
 		this.isImmuneToFire = false;
 		this.landSpeedFactor = Constants.CHOCOBO_GOLD_LANDSPEEDFACT;
 		this.waterSpeedFactor = Constants.CHOCOBO_GOLD_WATERSPEEDFACT;

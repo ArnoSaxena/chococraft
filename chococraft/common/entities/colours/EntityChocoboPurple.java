@@ -43,7 +43,7 @@ public class EntityChocoboPurple extends EntityChocobo
 		this.flyingMovementFactor = Constants.CHOCOBO_PURPLE_FLYMOVEFACT;
 		this.canClimb = true;
 		this.canCrossWater = false;
-		this.canJumpHigh = false;
+		this.canJumpHigh = Constants.CHOCOBO_PURPLE_CANJUMPHIGH;
 		this.canFly = true;
 		this.isImmuneToFire = true;
 		this.landSpeedFactor = Constants.CHOCOBO_PURPLE_LANDSPEEDFACT;
