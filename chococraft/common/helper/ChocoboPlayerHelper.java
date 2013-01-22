@@ -8,10 +8,13 @@ public class ChocoboPlayerHelper
 	public static void useCurrentItem(EntityPlayer player)
 	{
 		ItemStack stack = player.inventory.getCurrentItem();
-		stack.stackSize--;
-		if (stack.stackSize <= 0)
+		if (null != stack)
 		{
-			player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
+			stack.stackSize--;
+			if (stack.stackSize <= 0)
+			{
+				player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
+			}
 		}
 	}
 }
