@@ -146,14 +146,18 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
     {
     	data.writeUTF(this.getName());
     	data.writeBoolean(this.isMale());
+    	data.writeBoolean(this.isHidename());
+    	data.writeBoolean(this.isWander());
+    	data.writeBoolean(this.isFollowing());
 	}
 
 	public void readSpawnData(ByteArrayDataInput data)
 	{
-    	String name = data.readUTF();
-    	boolean isMale = data.readBoolean();
-		this.setName(name);
-		this.setIsMale(isMale);
+		this.setName(data.readUTF());
+		this.setIsMale(data.readBoolean());
+		this.setHidename(data.readBoolean());
+		this.setWander(data.readBoolean());
+		this.setFollowing(data.readBoolean());
 	}
 	
 	abstract public String getEntityTexture();
