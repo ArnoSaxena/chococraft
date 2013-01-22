@@ -1,10 +1,10 @@
 [img]http://www.arno-saxena.de/pictures/chococraft/banner_title.png[/img]
 [size=2]banner made by [url="http://www.minecraftforum.net/user/223231-galindorf/"]galindorf[/url][/size]
 
-UPDATED FOR MINECRAFT 1.4.6
-Version 2.4.2
-Requires: [url="http://www.minecraftforge.net/"]Forge[/url] [url="http://files.minecraftforge.net/"]6.5.0.467+[/url]
-Tested with: [url="http://www.minecraftforge.net/"]Forge[/url] [url="http://files.minecraftforge.net/"]6.5.0.473+[/url]
+UPDATED FOR MINECRAFT 1.4.7
+Version 2.5.2
+Requires: [url="http://www.minecraftforge.net/"]Forge[/url] [url="http://files.minecraftforge.net/"]6.6.0.497+[/url]
+Tested with: [url="http://www.minecraftforge.net/"]Forge[/url] [url="http://files.minecraftforge.net/"]6.6.0.497+[/url]
 
 This Mod is the continuation of [url="http://www.minecraftforum.net/user/1051245-eddiev/"]EddieV's[/url] mod. The original thread can be found [url="http://www.minecraftforum.net/topic/952372-chococraft-12-mc-11-chocobos-now-fly/"]here[/url]. I've officially taken over the helm with Eddie's kind blessings.
 
@@ -19,7 +19,7 @@ As of version 2.0.4 this mod is in working condition for SMP.
 [color=#ff0000][b]ACHTUNG! CAUTION! ¡CUIDADO! चेतावनी! ATTENZIONE! береги́сь!
 This version of Chococraft is not compatible to versions pre 2.0.0 (pre mc 1.3.2). It will destroy your saved world if old Chocobos are included. Thus, if you want to use an old world with the new version of this mod, you should first start minecraft without the Chococraft mod, enter and save your world, thus removing all traces of older versions of Chococraft and only then start minecraft with the new version of Chococraft and tame new Chocobos.[/b][/color]
 
-Download: [url="http://www.arno-saxena.de/minecraft/Chococraft_2.4.2.zip"]Torojimas ChocoCraft 2.4.2[/url]
+Download: [url="http://www.arno-saxena.de/minecraft/Chococraft_2.5.2.zip"]Torojimas ChocoCraft 2.5.2[/url]
 
 Downloads so far: [img]http://www.arno-saxena.de/minecraft/chocoboDownloads.png[/img]
 
@@ -27,7 +27,8 @@ crackedEggs parachute mod:
 [spoiler]When flying a Chocobo, I would like to recommend the use of [url="http://www.minecraftforum.net/user/77049-crackedegg/"]crackedEggs[/url] [url="http://www.minecraftforum.net/topic/585469-145forge-crackedeggs-mods-reptiles-parachute/"]parachute mod[/url] (version 410 or newer). Especially if you are using this mod on a server. On a connection failure while flying on high altitude, you will automatically dismount and fall to your death. One of crackedEggs parachutes in any spot in your inventory will auto-deploy if you're falling and thus prevent any harm from falling damage. (has to be switched on in the respective config file).[/spoiler]
 
 Old versions:
-[spoiler][url="http://www.arno-saxena.de/minecraft/Chococraft_2.3.9.zip"]minecraft 1.4.5 ChocoCraft 2.3.9[/url]
+[spoiler][url="http://www.arno-saxena.de/minecraft/Chococraft_2.4.2.zip"]minecraft 1.4.6 ChocoCraft 2.4.2[/url]
+[url="http://www.arno-saxena.de/minecraft/Chococraft_2.3.9.zip"]minecraft 1.4.5 ChocoCraft 2.3.9[/url]
 [url="http://www.arno-saxena.de/minecraft/Chococraft_2.2.3.zip"]minecraft 1.4.4: ChocoCraft 2.2.3[/url]
 [url="http://www.arno-saxena.de/minecraft/Chococraft_2.1.3.zip"]minecraft 1.4.2: ChocoCraft 2.1.3[/url]
 
@@ -87,7 +88,18 @@ Thanks to rsmalec
 Thanks to InTheLittleWood[/spoiler][/spoiler]
 
 CHANGELOG:
-[spoiler]v.2.4.2 by Torojima
+[spoiler]v.2.5.2 by Torojima
+   1. enabled change player feature in smp
+   2. fixed switch to wander on save or grow up
+   3. fixed black and white can't jump high (now they can)
+   4. moved config file into config folder
+   5. added saddled can wander flag to config file
+
+v.2.5.1 by Torojima
+   1. updated to mc 1.4.7
+   2. fixed chicobo teleport to player zero on server
+
+v.2.4.2 by Torojima
    1. fixed dedicated server crash
 
 v.2.4.1 by Torojima
@@ -672,52 +684,111 @@ How to Install server version:
 [/spoiler]
 
 compatible mods:
-[spoiler]These mods have been tested with ChocoCraft for mc 1.4.6. (This does not imply any sort of cooperation between the mods)
+[spoiler]These mods have been tested with ChocoCraft for for the version indicated in brackets. (This does not imply any sort of cooperation between the mods)
 Eiter by me all :
 [spoiler]- Forge
-- Rei Minimap
-- ToManyItems
-- FamiliarsAPI
-- MobSpawnControls
-- Parachute
-- Thaumcraft 3
-- Backpack
-- Millénaire
-[/spoiler]
+- Rei Minimap (1.4.7)
+- ToManyItems (1.4.7)
+- FamiliarsAPI (1.4.6)
+- MobSpawnControls (1.4.6)
+- Parachute (1.4.7)
+- Thaumcraft 3 (1.4.7)
+- Backpack (1.4.7)
+- Millénaire (1.4.7)
+- More Village Biomes (1.4.7)
+- CraftGuide (1.4.7)
+- thx helicopter (1.4.7)
+- Steamship (1.4.7)
+- XP Books (1.4.7)[/spoiler]
 
-and by other players for the mc version in brackets:
-[spoiler]- ExtraBiomes (1.4.6)
- - Forgotten Nature (1.4.6)
- - Mo'Creatures (1.4.6)
- - Fishnet (1.4.6)
+and by other players (again for the mc version in brackets. Normally this indicates a compatibility with the current version too, please give me a note if you discover it otherwise):
+[spoiler] - BC3.* (1.4.7, don't know if really all, but many)
+ - better first person (1.4.7)
+ - BuildCraft (1.4.7)
+ - Chest Transporter (1.4.7)
+ - Chicken Chunkloader (1.4.7)
+ - ChickenBones Core (1.4.7)
+ - Wireless Redstone by ChickenBones (1.4.7)
+ - CJB Measure and Moreinfo (1.4.7)
+ - Coloured Beds Mod (1.4.7)
+ - Condensed Blocks (1.4.7)
+ - Creepers no Creeping (1.4.7)
+ - Damage Indicators (1.4.7)
+ - Davidee's Toggle Sprint/Sneak V1.4.6.0  (1.4.6)
+ - denLib (1.4.7)
+ - Diamond Buckets Plus (1.4.7)
+ - Dimensional Anchor by Immibis (1.4.7)
+ - Dynamic Lights 1.4.6  (1.4.6)
  - Easybreeding (1.4.6)
+ - Ellian's MaterialDetector v1.39  (1.4.6)
+ - Enchanting Plus (1.4.7)
+ - Ender Storage (1.4.7)
+ - Enhanced Books (1.4.6)
+ - Extended Workbench (1.4.7)
+ - ExtraBiomes (1.4.6)
+ - Factorization (1.4.7)
+ - Fancy Fences (1.4.7)
+ - Fishnet (1.4.6)
+ - Flan's Mod (WWII) (1.4.7)
+ - Flat Bedrock (1.4.7)
  - Flower Propagation (1.4.6)
+ - Flowercraft (1.4.7)
+ - Forestry (1.4.7)
+ - Forgotten Nature (1.4.6)
+ - Haycraft (1.4.7)
+ - iChun's Portal Gun 1.4.6v2 (1.4.6)
+ - Immibis Core (1.4.7)
+ - Industrialcraft 2 (1.4.6)
+ - IC2.* (1.4.7, don't know if really all, but many)
+ - InGame Mod List (1.4.7)
+ - Inventory Tweaks (1.4.7)
+ - Iron Chest (1.4.7)
+ - Jammy's Furniture (1.4.7)
+ - Lava Fix (1.4.7)
  - Legendary Beasts (1.4.6)
  - McCapes (1.4.6)
  - Metallurgy (1.4.6)
- - Railcraft (1.4.6)
+ - Minefactory Reloaded 2 (1.4.7)
+ - Mo'Creatures (1.4.6)
+ - More Bows (1.4.7)
+ - More Pistons (1.4.7)
+ - Mystcraft (1.4.7)
+ - Netherocks (1.4.6)
+ - NotEnoughItems (1.4.7)
+ - NEI Plugins (1.4.7)
+ - NEI Red Power Plugin (1.4.7)
+ - OmniTools (1.4.7)
+ - Optifine (1.4.7)
+ - Plugins for Forestry (1.4.7)
+ - PortalGun (1.4.7)
+ - Power Converters 2 (1.4.7)
+ - Power Crystal's Core (1.4.7)
+ - Railcraft (1.4.7)
+ - Red Power 2 (1.4.7)
+ - Shibby's Fly ModPack (1.4.7)
+ - Simpleores (1.4.6)
+ - Slabcraft (1.4.7)
+ - Soul Shards (1.4.6)
+ - Special Armor (1.4.7)
+ - Staircraft (1.4.7)
+ - Steves Carts (1.4.7)
+ - Thermal Expansion (1.4.7)
+ - Traincraft (1.4.7)
+ - TreeCapitator (1.4.7)
+ - Tubestuff by Immibis (1.4.7)
+ - Twilight Forest (1.4.7)
+ - Useful Food (1.4.7)
  - Watermelon Gen (1.4.6)
  - Weaponmod (1.4.6)
- - Industrialcraft 2 (1.4.6)
- - Mystcraft (1.4.6)
- - Enhanced Books (1.4.6)
- - Divine RPG (1.4.6)
- - Simpleores (1.4.6)
- - Netherocks (1.4.6)
- - Buildcraft (1.4.6)
- - Soul Shards (1.4.6)
- - Ellian's MaterialDetector v1.39  (1.4.6)
- - Davidee's Toggle Sprint/Sneak V1.4.6.0  (1.4.6)
- - TreeCapitator 1.4.6.r01  (1.4.6)
  - What's My Light Level 1.4.6/1.4.7[pre] (1.4.6)
- - iChun's Portal Gun 1.4.6v2 (1.4.6)
- - Dynamic Lights 1.4.6  (1.4.6)
 [/spoiler]
 [/spoiler]
 
 incompatible mods:
 [spoiler]found out by me or other players. If I find the time I'll investigate if this incompatibilities can be removed.
- - tropicraft (messing up the spawning and crashing when breeding Chocobos)
+ - tropicraft (messing up the spawning and crashing when breeding Chocobos, 1.4.7)
+ - Divine RPG (messing up forge mob id assignment 1.4.7)
+ - Ars Magica (using multiple *bonemeal* events for the effect of growing multiple plants without actually using *bonemeal*, this will screw up the usage of the active player item 1.4.7)
 [/spoiler]
 
 Acknowledgments:
@@ -729,7 +800,8 @@ Acknowledgments:
 6. Server testing by [url="http://www.minecraftforum.net/user/1795528-sparks314/"]sparks314[/url]
 7. The old models of the Chocobos were HIGHLY inspired by the Moa creatures in The Aether Mod. If you don't know this mod, you should. Go get it ASAP.
 8. The models of the Chicobos were HIGHLY inspired by the chicks present in Baby Animals Mod. If you don't know this mod, you should also go get it ASAP.
-9. [url="http://www.minecraftforum.net/user/21540-leonblade/"]LeonBlade[/url] for beeing part of the developer team
+9. [url="http://www.minecraftforum.net/user/525357-weltallofid/"]weltallofid[/url] for making a symmetric saddled skin.
+10. [url="http://www.minecraftforum.net/user/21540-leonblade/"]LeonBlade[/url] for beeing part of the developer team
 [/spoiler]
 
 Banner/Sig:
