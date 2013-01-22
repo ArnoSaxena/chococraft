@@ -28,11 +28,6 @@ import java.util.ArrayList;
 
 import chococraft.common.helper.ChocoboBiomeHelper;
 import chococraft.common.helper.ChocoboMathHelper;
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.relauncher.Side;
-
-import net.minecraft.client.Minecraft;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.biome.BiomeGenBase;
 
 public class ChocoboConfig
@@ -76,6 +71,8 @@ public class ChocoboConfig
 	
 	static String CFG_KEY_GYS_GREEN_MUT_RATE = "gysahlGreenMutationRate";
 	static String CFG_KEY_GYS_LOVE_MUT_RATE  = "gysahlLoverlyMutationRate";
+	
+	static String CFG_KEY_SADDLED_CAN_WANDER = "saddledCanWander";
 	
 	static String CFG_KEY_DEBUG_MODE = "debugMode";
 
@@ -231,6 +228,10 @@ public class ChocoboConfig
 								{
 									ModChocoCraft.gysahlLoveMutationRate = ChocoboMathHelper.clamp(Integer.parseInt(value), 1, 100);
 								}
+								else if(key.equalsIgnoreCase(CFG_KEY_SADDLED_CAN_WANDER))
+								{
+									ModChocoCraft.saddledCanWander = Boolean.parseBoolean(value);
+								}
 								
 								// debug mode
 								else if(key.equalsIgnoreCase(CFG_KEY_DEBUG_MODE))
@@ -329,6 +330,7 @@ public class ChocoboConfig
 			writer.write(getCommentLine("hunger not yet active"));			
 			writer.write(getConfigLine(CFG_KEY_HUNGER_ENABLED, Boolean.toString(Constants.DEFAULT_HUNGER_ENABLED)));
 			writer.write(getConfigLine(CFG_KEY_RIDER_BUFFS_ENABLED, Boolean.toString(Constants.DEFAULT_RIDER_BUFFS_ENABLED)));
+			writer.write(getConfigLine(CFG_KEY_SADDLED_CAN_WANDER, Boolean.toString(Constants.DEFAULT_SADDLED_CAN_WANDER)));
 			
 			writer.write("\n");
 			writer.write(getCommentLine("The default name height is 2.3 blocks from the ground. You can add height"));			
@@ -498,20 +500,14 @@ public class ChocoboConfig
 	
 	private static File getConfigFile()
 	{
-		File file = null;
-		String fileName = getConfigFileName();
-		Side side = FMLCommonHandler.instance().getEffectiveSide();
-		if (side == Side.SERVER)
-		{
-			file = new File(MinecraftServer.getServer().getFolderName(), fileName);
-		}
-    	else if (side == Side.CLIENT)
-		{
-    		file = new File(Minecraft.getMinecraftDir(), fileName);
-		}
-		return file;		
+		return new File(getConfigFolderName(), getConfigFileName());
 	}
-
+	
+	public static String getConfigFolderName()
+	{
+		return ModChocoCraft.configFolder.toString();
+	}
+	
 	public static String getConfigFileName()
 	{
 		return CONFIG_FILE_NAME;

@@ -475,7 +475,21 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo
 		}
 		this.texture = this.getEntityTexture();
 	}
+	
+	@Override
+	public void toggleFollowWanderStay()
+	{
+		if(!ModChocoCraft.saddledCanWander && (this.isSaddled() || this.isPackBagged()))
+		{
+			this.toggleFollowStay();
+		}
+		else
+		{
+			super.toggleFollowWanderStay();
+		}
+	}
 
+	
 	// Chocobo as inventory
 	public IInventory getIInventory()
 	{

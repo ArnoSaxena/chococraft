@@ -16,7 +16,7 @@ package chococraft.common;
 
 public class Constants
 {
-	public final static String TCC_VERSION = "2.5.1";
+	public final static String TCC_VERSION = "2.5.2";
 	public final static String TCC_MODID = "ChocoCraft";
 	public final static String TCC_NAME = "Torojimas ChocoCraft";
 
@@ -76,6 +76,7 @@ public class Constants
 	public static boolean DEFAULT_SHOW_CHOCOBO_NAMES   = true;
 	public static boolean DEFAULT_HUNGER_ENABLED       = false;
 	public static boolean DEFAULT_RIDER_BUFFS_ENABLED  = true;
+	public static boolean DEFAULT_SADDLED_CAN_WANDER = false;
 	
 	public static int DEFAULT_GYSAHL_GREEN_MUTATION_RATE =  10;
 	public static int DEFAULT_GYSAHL_LOVE_MUTATION_RATE  =  10;
@@ -173,11 +174,11 @@ public class Constants
 	public static boolean CHOCOBO_YELLOW_CANJUMPHIGH  = false;
 	public static boolean CHOCOBO_GREEN_CANJUMPHIGH   = false;
 	public static boolean CHOCOBO_BLUE_CANJUMPHIGH    = false;
-	public static boolean CHOCOBO_WHITE_CANJUMPHIGH   = false;
+	public static boolean CHOCOBO_WHITE_CANJUMPHIGH   = true;
 	public static boolean CHOCOBO_BLACK_CANJUMPHIGH   = true;
-	public static boolean CHOCOBO_GOLD_CANJUMPHIGH    = true;
-	public static boolean CHOCOBO_PINK_CANJUMPHIGH    = true;
-	public static boolean CHOCOBO_RED_CANJUMPHIGH     = true;
+	public static boolean CHOCOBO_GOLD_CANJUMPHIGH    = false;
+	public static boolean CHOCOBO_PINK_CANJUMPHIGH    = false;
+	public static boolean CHOCOBO_RED_CANJUMPHIGH     = false;
 	public static boolean CHOCOBO_PURPLE_CANJUMPHIGH  = false;
 	
 	// max length of channel name is 16                     "xxxxxxxxxxxxxxxx"

@@ -14,6 +14,8 @@
 
 package chococraft.common;
 
+import java.io.File;
+
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
@@ -112,6 +114,7 @@ public class ModChocoCraft
 	public static Block strawBlock;
 
 	// setup
+	public static File configFolder;
 	public static boolean chocoboWingFlutter;
 	public static int genderMaleChance;
 	public static boolean showChocoboNames;
@@ -153,6 +156,9 @@ public class ModChocoCraft
 	// hunger setup
 	public static int hungerDelayChocobo;
 	public static int hungerDelayChicobo;
+	
+	// movement setup
+	public static boolean saddledCanWander;
 	
 	// debug
 	public static long spawnDbTimeDelay;
@@ -238,7 +244,8 @@ public class ModChocoCraft
 		chocoboHeight = 1.9F;
 		chocoboWidth = 1.3F;
 		
-		mainConfiguration = new Configuration(preInitEvent.getSuggestedConfigurationFile());		
+		mainConfiguration = new Configuration(preInitEvent.getSuggestedConfigurationFile());
+		configFolder = preInitEvent.getModConfigurationDirectory();
 		mainConfiguration.load();
 		
 		chocoboSaddleId = mainConfiguration.getItem(Configuration.CATEGORY_ITEM, "chocoboSaddleItem.id", Constants.CHOCOBO_SADDLE_ID);
@@ -307,6 +314,8 @@ public class ModChocoCraft
 		
 		renderNameHeight = Constants.DEFAULT_RENDER_NAME_HEIGHT;
 		livingSoundProb = Constants.DEFAULT_LIVING_SOUND_PROB;
+		
+		saddledCanWander = Constants.DEFAULT_SADDLED_CAN_WANDER;
 		
     	ChocoboConfig.readConfigFile();
     	
