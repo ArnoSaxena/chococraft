@@ -89,10 +89,11 @@ public class EntityChicobo extends EntityAnimalChocobo
 	public void writeSpawnData(ByteArrayDataOutput data)
 	{
 		super.writeSpawnData(data);
+
 		data.writeInt(this.color.ordinal());
-		data.writeBoolean(this.isTamed());
-		data.writeBoolean(this.isFollowing());
-		data.writeInt(this.getHealth());
+		//data.writeBoolean(this.isTamed());
+		//data.writeInt(this.getHealth());
+		
 		data.writeBoolean(this.growUp);
 		data.writeBoolean(this.isCanGrowUp());
 		data.writeInt(this.getTimeUntilAdult());
@@ -100,13 +101,17 @@ public class EntityChicobo extends EntityAnimalChocobo
 
 	public void readSpawnData(ByteArrayDataInput data)
 	{
+		
 		super.readSpawnData(data);
+		
 		this.setColor(chocoboColor.values()[data.readInt()]);
-		this.setTamed(data.readBoolean());
-		this.setFollowing(data.readBoolean());
-		this.health = data.readInt();
+		//this.setTamed(data.readBoolean());
+		//this.health = data.readInt();
+		
 		this.growUp = data.readBoolean();
+		this.setCanGrowUp(data.readBoolean());
 		this.setTimeUntilAdult(data.readInt());
+
 		this.texture = this.getEntityTexture();
 	}
 
