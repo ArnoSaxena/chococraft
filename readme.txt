@@ -1,4 +1,4 @@
-This is the official version of Torojimas Chococraft v2.5.2 for usage with minecraft 1.4.7. Chococraft has been originally created by EddieV and is now refactored and officially maintained by Torojima.
+This is the official version of Torojimas Chococraft v2.5.3 for usage with minecraft 1.4.7. Chococraft has been originally created by EddieV and is now refactored and officially maintained by Torojima.
 
 This mod adds a mob called Chocobo to the game. This includes different coloured mob types with different attributes in their grown-up and juvenile form.
 
@@ -10,11 +10,8 @@ ACHTUNG! CAUTION! ¡CUIDADO! चेतावनी! ATTENZIONE! береги́с
 This version of Chococraft is not compatible to versions pre 1.3.2. It will destroy your saved world if old Chocobos are included. Thus, if you want to use an old world with the new version of this mod, you should first start minecraft without the Chococraft mod, enter and save your world, thus removing all traces of older versions of Chococraft and only then start minecraft with the new version of Chococraft and tame new Chocobos.
 
 Changelog:
-1. enabled change player feature in smp
-2. fixed switch to wander on save or grow up
-3. fixed black and white can't jump high (now they can)
-4. moved config file into config folder
-5. added saddled can wander flag to config file
+1. fixed an error in the read spawn data routine of Chicobos, probably causing problems on the server side ...
+2. omit damage from suffocating in walls
 
 see the minecraft forums for further informations
 http://www.minecraftforum.net/topic/1119809-146sspsmpforge-torojimas-chococraft-241-explore-your-worlds-riding-chocobos/
