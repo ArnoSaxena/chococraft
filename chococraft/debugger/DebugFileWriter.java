@@ -6,10 +6,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.logging.Logger;
 
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.relauncher.Side;
 import net.minecraft.client.Minecraft;
 import net.minecraft.server.MinecraftServer;
+import chococraft.common.ModChocoCraft;
+import cpw.mods.fml.common.FMLCommonHandler;
 
 public class DebugFileWriter
 {
@@ -20,14 +20,15 @@ public class DebugFileWriter
 	
 	public DebugFileWriter()
 	{
-		if(Side.CLIENT == FMLCommonHandler.instance().getEffectiveSide())
-		{
-			file = new File(Minecraft.getMinecraftDir(), "mods/chocoboDebug.txt");
-		}
-		else if (Side.SERVER == FMLCommonHandler.instance().getEffectiveSide())
+		if (ModChocoCraft.isRemoteClient)
 		{
 			file = new File(MinecraftServer.getServer().getFolderName(), "../chocoboDebug.txt");
 		}
+		else
+		{
+			file = new File(Minecraft.getMinecraftDir(), "mods/chocoboDebug.txt");
+		}
+			
 		
 		if(!file.exists())
 		{
