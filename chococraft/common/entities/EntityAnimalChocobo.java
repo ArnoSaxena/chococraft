@@ -696,23 +696,11 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
         
         if(this.isTamed())
         {
-//        	if(damageSource.getEntity() instanceof EntityWolf)
-//        	{
-//        		EntityWolf attackingWolf = (EntityWolf)damageSource.getEntity();
-//        		if(attackingWolf.isTamed())
-//        		{
-//        			if(attackingWolf.getOwner() instanceof EntityPlayer)
-//        			{
-//        				EntityPlayer wolfOwner = (EntityPlayer)attackingWolf.getOwner();
-//        				if(this.getOwner().equals(wolfOwner))
-//        				{
-//        					attackingWolf.getOwner().setLastAttackingEntity(attackingWolf);
-//        					attackingWolf.setAttackTarget(null);
-//        					return false;
-//        				}
-//        			}
-//        		}
-//        	}
+        	// do not suffocate in walls workaround
+        	if(damageSource.getDamageType().equals(DamageSource.inWall))
+        	{
+        		return false;
+        	}
         	
         	if(damageSource.getEntity() instanceof EntityPlayer)
         	{
