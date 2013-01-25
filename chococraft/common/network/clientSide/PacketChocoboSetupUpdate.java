@@ -19,13 +19,12 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-import chococraft.common.ModChocoCraft;
-import chococraft.debugger.DebugFileWriter;
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.common.network.Player;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.server.MinecraftServer;
+import chococraft.common.ModChocoCraft;
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.network.Player;
+import cpw.mods.fml.relauncher.Side;
 
 public class PacketChocoboSetupUpdate extends PacketChocoboClient
 {
@@ -37,7 +36,6 @@ public class PacketChocoboSetupUpdate extends PacketChocoboClient
 		try
 		{
 			outputStream.writeInt(PID_SETUP);
-			DebugFileWriter.instance().writeLine("PChSUp", "isDedicatedServer: " + MinecraftServer.getServer().isDedicatedServer());
 			outputStream.writeBoolean(MinecraftServer.getServer().isDedicatedServer());
 			outputStream.writeBoolean(ModChocoCraft.hungerEnabled);
 		}
