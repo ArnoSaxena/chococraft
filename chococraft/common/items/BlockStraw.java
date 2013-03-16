@@ -61,9 +61,9 @@ public class BlockStraw extends Block
      */
     public void setBlockBoundsBasedOnState(IBlockAccess par1IBlockAccess, int par2, int par3, int par4)
     {
-        int var5 = par1IBlockAccess.getBlockMetadata(par2, par3, par4) & 7;
-        float var6 = (float)(2 * (1 + var5)) / 16.0F;
-        this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, var6, 1.0F);
+        //int var5 = par1IBlockAccess.getBlockMetadata(par2, par3, par4) & 7;
+        //float var6 = (float)(2 * (1 + var5)) / 16.0F;
+        this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.1F, 1.0F);
     }
 
     
