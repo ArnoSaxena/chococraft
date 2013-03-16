@@ -19,14 +19,14 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.StringTranslate;
-import org.lwjgl.input.Keyboard;
 
-import cpw.mods.fml.client.FMLClientHandler;
+import org.lwjgl.input.Keyboard;
 
 import chococraft.common.ModChocoCraft;
 import chococraft.common.entities.EntityAnimalChocobo;
 import chococraft.common.entities.EntityChocoboRideable;
 import chococraft.common.helper.ChocoboEntityHelper;
+import cpw.mods.fml.client.FMLClientHandler;
 
 public class GuiChocopedia extends GuiScreen
 {

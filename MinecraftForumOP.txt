@@ -2,7 +2,7 @@
 [size=2]banner made by [url="http://www.minecraftforum.net/user/223231-galindorf/"]galindorf[/url][/size]
 
 UPDATED FOR MINECRAFT 1.4.7
-Version 2.5.2
+Version 2.5.4
 Requires: [url="http://www.minecraftforge.net/"]Forge[/url] [url="http://files.minecraftforge.net/"]6.6.0.497+[/url]
 Tested with: [url="http://www.minecraftforge.net/"]Forge[/url] [url="http://files.minecraftforge.net/"]6.6.0.497+[/url]
 
@@ -19,7 +19,7 @@ As of version 2.0.4 this mod is in working condition for SMP.
 [color=#ff0000][b]ACHTUNG! CAUTION! ¡CUIDADO! चेतावनी! ATTENZIONE! береги́сь!
 This version of Chococraft is not compatible to versions pre 2.0.0 (pre mc 1.3.2). It will destroy your saved world if old Chocobos are included. Thus, if you want to use an old world with the new version of this mod, you should first start minecraft without the Chococraft mod, enter and save your world, thus removing all traces of older versions of Chococraft and only then start minecraft with the new version of Chococraft and tame new Chocobos.[/b][/color]
 
-Download: [url="http://www.arno-saxena.de/minecraft/Chococraft_2.5.2.zip"]Torojimas ChocoCraft 2.5.2[/url]
+Download: [url="http://www.arno-saxena.de/minecraft/Chococraft_2.5.4.zip"]Torojimas ChocoCraft 2.5.4[/url]
 
 Downloads so far: [img]http://www.arno-saxena.de/minecraft/chocoboDownloads.png[/img]
 
@@ -88,7 +88,16 @@ Thanks to rsmalec
 Thanks to InTheLittleWood[/spoiler][/spoiler]
 
 CHANGELOG:
-[spoiler]v.2.5.2 by Torojima
+[spoiler]v.2.5.4 by Torojima
+   1. Fixing Server crash when world filled with Chicobos created by older versions of ChocoCraft is loaded.
+   2. Changed purple(nether) Chocobo skins to ShadoxLunik's version.
+   3. added shapeless recipe vanilla saddle plus chocobo feather will craft a chocobo saddle.
+
+v.2.5.3 by Torojima
+   1. Chicobo read spawn data error fixed
+   2. omit damage from suffocating in walls
+
+v.2.5.2 by Torojima
    1. enabled change player feature in smp
    2. fixed switch to wander on save or grow up
    3. fixed black and white can't jump high (now they can)
@@ -476,7 +485,6 @@ When will a Chicobo grow into a Chocobo?
 
    1. Chicobos are young Chocobos, so after some time they will eventually grow up
    2. Chicobos can also be fed a Gysahl Cake to grow up instantly, but only after they have been tamed.
-   3. Chicobos can also be fed a Chibi Gysahl to remain as Chicobos. After this, a Chicobo will only grow up when fed a Gysahl Cake.
 [/spoiler]
 
 How can I get the other types of Chocobos?
@@ -604,14 +612,28 @@ Known Issues and Bugs:
    3. While traveling on Chocobo, Chocobo model will twitch left and right.
 If you happen to find any more bug or issue, please report it on this thread and I'll look into it ASAP [img]http://static.minecraftforum.net//public/style_emoticons/default/smile.png[/img] [/spoiler]
 
-Config File:
+Config Files:
 [spoiler] As of 1.4.1u, ChocoCraft allows you to customize the mod by editing the config file.
-For example, you can change item IDs to solve conflicts, change the maximum number of Chocobos and choose whether to hide or show the name of the chocobos above their head.
-Here's how to do it:
-   1. You can find the config file in your main minecraft folder and it's called "chocobo_config.txt".
-   2. Open it with any text editor (Notepad++ recomended)
-   3. Lines that start with "//" are comment lines.
-   4. Change any entry according to the description in the config file.
+
+There are two config files, both located in the config folder in the main minecraft folder. One is called "chocobo_config.txt", the other one "ChocoCraft.cfg".
+
+"ChocoCraft.cfg" will host the default values for item and block ids.
+
+"chocobo_config.txt" will host all flags and settings regarding everything else of the ChocoCraft mod.
+
+There are comments to describe the meaning and usage of the settings in "chocobo_config.txt" in the file itself. You can add your own comments by starting the respective line in the text with "//".
+
+To reset the values and the comments, in case the config file has been updated by me or you have edited it beyond recognition, just delete the file and run minecraft once with the ChocoCraft mod active.
+
+Since the entries involved with the Chocobo spawning are the most obscure, here a more detailed explanation to make it clear:
+[list]
+[*][b]spawnTimeDelay[/b] Default is 200, this is the time in minecraft-ticks between two attempts of the ChocoboSpawner to spawn wild Chocobos into the world.
+[*][b]spawnProbability[/b] Default is 2, this is the probability out of 100 for each spawn attempt the ChocoboSpawner will actually try to spawn wild Chocobos into the world. So as default only 2% of the times a spawn attempt will be started.
+[*][b]spawnGroupMin[/b] and [b]spawnGroupMax[/b] Default is 2 and 4. This limits the size of Chocobo flocks spawn in one attempt into the world.
+[*][b]spawnTotalMax[/b] Default is 3, this is the max amount of active wild Chocobos, so if in the currently loaded Chunks three active wild Chocobos are around, there will be no further wild Chocobo spawning.
+[*][b]spawnLimitChunkRadius[/b] Default is 100, this is the radius of blocks the Chocobos for the [b]spawnTotalMax [/b]limit are searched in.
+[*][b]distanceNextWild[/b] Defaults to 300, this is the minimum distance between two wild Chocobo flocks. If a flock of Chocobos is less then 300 clicks away, there will be no further spawning.
+[/list]
 [/spoiler]
 
 Current default Id's:
@@ -800,7 +822,8 @@ Acknowledgments:
 6. Server testing by [url="http://www.minecraftforum.net/user/1795528-sparks314/"]sparks314[/url]
 7. The old models of the Chocobos were HIGHLY inspired by the Moa creatures in The Aether Mod. If you don't know this mod, you should. Go get it ASAP.
 8. The models of the Chicobos were HIGHLY inspired by the chicks present in Baby Animals Mod. If you don't know this mod, you should also go get it ASAP.
-9. [url="http://www.minecraftforum.net/user/525357-weltallofid/"]weltallofid[/url] for making a symmetric saddled skin.
+9. [url="http://www.minecraftforum.net/user/1200917-shadoxlunik/"]ShadoxLunik[/url] for the new purple/nether Chocobo skin
+10. [url="http://www.minecraftforum.net/user/525357-weltallofid/"]weltallofid[/url] for making a symmetric saddled skin.
 10. [url="http://www.minecraftforum.net/user/21540-leonblade/"]LeonBlade[/url] for beeing part of the developer team
 [/spoiler]
 
