@@ -32,7 +32,7 @@ public class ItemPurpleChocoboEgg extends ChocoboItem
     {
         super(itemIndex);
         this.maxStackSize = 64;
-        this.setUnlocalizedName("purpleChocoboEgg");
+        this.setUnlocalizedName(Constants.KEY_EGG_PURPLE);
 		this.setCreativeTab(CreativeTabs.tabMisc);
     }
     

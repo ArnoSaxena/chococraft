@@ -61,11 +61,12 @@ public class Constants
 	//public static String CHOCOBO_ITEM_TEXTURES = CHOCOBO_RESOURCES_FOLDER + "/chocoboItemTextures.png";
 	
 	public static String KEY_CHOCOPEDIA     = "chocopedia";
-	public static String KEY_DISGUISE_BODY  = "chocoboDisguiseBody";
-	public static String KEY_DISGUISE_BOOTS = "chocoboDisguiseBoots";
-	public static String KEY_DISGUISE_HEAD  = "chocoboDisguiseHead";
-	public static String KEY_DISGUISE_LEGS  = "chocoboDisguiseLegs";
-	public static String KEY_EGG_PURPLE     = "egg_purple";
+	public static String KEY_DISGUISE       = "chocoDisguise";
+	public static String KEY_DISGUISE_HEAD  = "disguiseHead";
+	public static String KEY_DISGUISE_BODY  = "disguiseBody";
+	public static String KEY_DISGUISE_LEGS  = "disguiseLegs";
+	public static String KEY_DISGUISE_BOOTS = "disguiseBoots";
+	public static String KEY_EGG_PURPLE     = "eggPurple";
 	public static String KEY_FEATHER        = "feather";
 	public static String KEY_GY_CAKE        = "gysahl_cake";
 	public static String KEY_GY_CHIBI       = "gysahl_chibi";
@@ -74,8 +75,8 @@ public class Constants
 	public static String KEY_GY_PINK        = "gysahl_pink";
 	public static String KEY_GY_RED         = "gysahl_red";
 	public static String KEY_GY_SEEDS       = "gysahl_seeds";
-	public static String KEY_LEG_COOKED     = "leg_cooked";
-	public static String KEY_LEG_RAW        = "leg_raw";
+	public static String KEY_LEG_COOKED     = "legCooked";
+	public static String KEY_LEG_RAW        = "legRaw";
 	public static String KEY_PACKBAG        = "packbag";
 	public static String KEY_SADDLE         = "saddle";
 	public static String KEY_SADDLEBAG      = "saddlebag";

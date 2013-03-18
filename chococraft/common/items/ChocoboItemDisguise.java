@@ -1,15 +1,15 @@
 package chococraft.common.items;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import chococraft.common.Constants;
-import chococraft.common.ModChocoCraft;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.EnumArmorMaterial;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.IArmorTextureProvider;
+import chococraft.common.Constants;
+import chococraft.common.ModChocoCraft;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ChocoboItemDisguise extends ItemArmor implements IArmorTextureProvider
 {
@@ -38,19 +38,19 @@ public class ChocoboItemDisguise extends ItemArmor implements IArmorTextureProvi
 	public void func_94581_a(IconRegister iconRegister)
 	{
 		String name = this.getUnlocalizedName();
-		if(name.equals("item.chocoDisguiseHelmet"))
+		if(name.equals("item." + Constants.KEY_DISGUISE_HEAD))
 		{
 			this.iconIndex = iconRegister.func_94245_a(Constants.TCC_MODID + ":" + Constants.KEY_DISGUISE_HEAD);
 		}
-		else if(name.equals("item.chocoDisguisePlate"))
+		else if(name.equals("item." + Constants.KEY_DISGUISE_BODY))
 		{
 			this.iconIndex = iconRegister.func_94245_a(Constants.TCC_MODID + ":" + Constants.KEY_DISGUISE_BODY);
 		}
-		else if(name.equals("item.chocoDisguiseLegs"))
+		else if(name.equals("item." + Constants.KEY_DISGUISE_LEGS))
 		{
 			this.iconIndex = iconRegister.func_94245_a(Constants.TCC_MODID + ":" + Constants.KEY_DISGUISE_LEGS);
 		}
-		else if(name.equals("item.chocoDisguiseBoots"))
+		else if(name.equals("item." + Constants.KEY_DISGUISE_BOOTS))
 		{
 			this.iconIndex = iconRegister.func_94245_a(Constants.TCC_MODID + ":" + Constants.KEY_DISGUISE_BOOTS);
 		}

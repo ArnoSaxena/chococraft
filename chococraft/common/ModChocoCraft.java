@@ -431,37 +431,39 @@ public class ModChocoCraft
 		//chocoboWhistleItem.setCreativeTab(chocoboCreativeItems);
 
 		// Nether Chocobo Egg
-		purpleChocoboEggItem = (new ItemPurpleChocoboEgg(purpleChocoboEggId.getInt()));
+		purpleChocoboEggItem = new ItemPurpleChocoboEgg(purpleChocoboEggId.getInt());
 		LanguageRegistry.addName(purpleChocoboEggItem, "Purple Chocobo Egg");
 
 		// Armour
 		// Chocodisguise Helmet
-		chocoDisguiseHelmetItem = new ChocoboItemDisguise(chocoDisguiseHelmetId.getInt(), ChocoboArmourMaterial.CHOCOFEATHER, proxy.addArmor("chocoDisguise"), 0);
-		chocoDisguiseHelmetItem.setUnlocalizedName("item.chocoDisguiseHelmet");
+		chocoDisguiseHelmetItem = new ChocoboItemDisguise(chocoDisguiseHelmetId.getInt(), ChocoboArmourMaterial.CHOCOFEATHER, proxy.addArmor(Constants.KEY_DISGUISE), 0);
+		chocoDisguiseHelmetItem.setUnlocalizedName(Constants.KEY_DISGUISE_HEAD);
 		LanguageRegistry.addName(chocoDisguiseHelmetItem, "Chocodisguise Helmet");
 
 		// Chocodisguise Plate
-		chocoDisguisePlateItem = new ChocoboItemDisguise(chocoDisguisePlateId.getInt(), ChocoboArmourMaterial.CHOCOFEATHER, proxy.addArmor("chocoDisguise"), 1);
-		chocoDisguisePlateItem.setUnlocalizedName("item.chocoDisguisePlate");
+		chocoDisguisePlateItem = new ChocoboItemDisguise(chocoDisguisePlateId.getInt(), ChocoboArmourMaterial.CHOCOFEATHER, proxy.addArmor(Constants.KEY_DISGUISE), 1);
+		chocoDisguisePlateItem.setUnlocalizedName(Constants.KEY_DISGUISE_BODY);
 		LanguageRegistry.addName(chocoDisguisePlateItem, "Chocodisguise Body");
 
 		// Chocodisguise Legs
-		chocoDisguiseLegsItem = new ChocoboItemDisguise(chocoDisguiseLegsId.getInt(), ChocoboArmourMaterial.CHOCOFEATHER, proxy.addArmor("chocoDisguise"), 2);
-		chocoDisguiseLegsItem.setUnlocalizedName("item.chocoDisguiseLegs");
+		chocoDisguiseLegsItem = new ChocoboItemDisguise(chocoDisguiseLegsId.getInt(), ChocoboArmourMaterial.CHOCOFEATHER, proxy.addArmor(Constants.KEY_DISGUISE), 2);
+		chocoDisguiseLegsItem.setUnlocalizedName(Constants.KEY_DISGUISE_LEGS);
 		LanguageRegistry.addName(chocoDisguiseLegsItem, "Chocodisguise Legs");
 
 		// Chocodisguise Boots
-		chocoDisguiseBootsItem = new ChocoboItemDisguise(chocoDisguiseBootsId.getInt(), ChocoboArmourMaterial.CHOCOFEATHER, proxy.addArmor("chocoDisguise"), 3);
-		chocoDisguiseBootsItem.setUnlocalizedName("item.chocoDisguiseBoots");
+		chocoDisguiseBootsItem = new ChocoboItemDisguise(chocoDisguiseBootsId.getInt(), ChocoboArmourMaterial.CHOCOFEATHER, proxy.addArmor(Constants.KEY_DISGUISE), 3);
+		chocoDisguiseBootsItem.setUnlocalizedName(Constants.KEY_DISGUISE_BOOTS);
 		LanguageRegistry.addName(chocoDisguiseBootsItem, "Chocodisguise Boots");
 
 		// food items
 		// Raw Chocobo Leg
-		chocoboLegRawItem = new ChocoboItemFood(chocoboLegRawId.getInt(), 4, true).setUnlocalizedName("item.chocoboLegRaw");
+		chocoboLegRawItem = new ChocoboItemFood(chocoboLegRawId.getInt(), 4, true);
+		chocoboLegRawItem.setUnlocalizedName(Constants.KEY_LEG_RAW);
 		LanguageRegistry.addName(chocoboLegRawItem, "Raw Chocobo Leg");
 
 		// Cooked Chocobo Leg
-		chocoboLegCookedItem = (new ChocoboItemFood(chocoboLegCookedId.getInt(), 8, false)).setUnlocalizedName("item.chocoboLegCooked");
+		chocoboLegCookedItem = new ChocoboItemFood(chocoboLegCookedId.getInt(), 8, false);
+		chocoboLegCookedItem.setUnlocalizedName(Constants.KEY_LEG_COOKED);
 		LanguageRegistry.addName(chocoboLegCookedItem, "Cooked Chocobo Leg");
 	}
 
