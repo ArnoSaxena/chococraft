@@ -56,7 +56,7 @@ public class GuiChocopedia extends GuiScreen
 	{		
 		StringTranslate stringtranslate = StringTranslate.getInstance();
 		Keyboard.enableRepeatEvents(true);
-		this.controlList.clear();
+		this.buttonList.clear();
 
 		//int yPos = 48;
 		int yPos = 24;
@@ -65,32 +65,32 @@ public class GuiChocopedia extends GuiScreen
 		// rename button
 		this.renameButton = this.createGuiButton(0, xPos, (yPos += 24), stringtranslate.translateKey("Rename"));
 		this.checkButtonOwner(this.player, this.chocobo.getOwner(), this.renameButton);
-		this.controlList.add(this.renameButton);
+		this.buttonList.add(this.renameButton);
 
 		// hide name button
 		String lblNameShown = (this.chocobo.isHidename()) ? "Name Hidden" : "Name Shown";
 		this.hideNameButton = this.createGuiButton(2, xPos, (yPos += 24), stringtranslate.translateKey(lblNameShown));
 		this.checkButtonOwner(this.player, this.chocobo.getOwner(), this.hideNameButton);
-		this.controlList.add(this.hideNameButton);
+		this.buttonList.add(this.hideNameButton);
 
 		// following button
 		//String lblFollowing = (this.chocobo.isFollowing()) ? "Following" : "Not Following";
 		String lblFollowing = this.getFollowStatus();
 		this.followingButton = this.createGuiButton(3, xPos, (yPos += 24), stringtranslate.translateKey(lblFollowing));
 		this.checkButtonOwner(this.player, this.chocobo.getOwner(), this.followingButton);
-		this.controlList.add(this.followingButton);
+		this.buttonList.add(this.followingButton);
 
 		// confirm button
 		this.confirmButton = this.createGuiButton(1, xPos, (yPos += 24), stringtranslate.translateKey("Confirm"));
 		this.checkButtonOwner(this.player, this.chocobo.getOwner(), this.confirmButton);
-		this.controlList.add(this.confirmButton);
+		this.buttonList.add(this.confirmButton);
 
 		// change owner button
 		if(ModChocoCraft.isRemoteClient)
 		{
 			this.changeOwnerButton = this.createGuiButton(5, xPos, yPos += 30, stringtranslate.translateKey("change owner"));
 			this.checkButtonOwner(this.player, this.chocobo.getOwner(), this.changeOwnerButton);
-			this.controlList.add(this.changeOwnerButton);
+			this.buttonList.add(this.changeOwnerButton);
 		}
 
 		// remove saddle button
@@ -102,7 +102,7 @@ public class GuiChocopedia extends GuiScreen
 				String lblRemoveSaddle = "Drop Gear";
 				this.removeSaddleButton = this.createGuiButton(4, xPos, (yPos += 24), stringtranslate.translateKey(lblRemoveSaddle));
 				this.checkButtonOwner(this.player, this.chocobo.getOwner(), this.removeSaddleButton);
-				this.controlList.add(this.removeSaddleButton);
+				this.buttonList.add(this.removeSaddleButton);
 			}
 		}
 	}

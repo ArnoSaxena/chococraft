@@ -16,9 +16,10 @@ package chococraft.common;
 
 public class Constants
 {
-	public final static String TCC_VERSION = "2.5.3";
-	public final static String TCC_MODID = "ChocoCraft";
+	public final static String TCC_VERSION = "2.6.1";
+	public final static String TCC_MODID = "chococraft";
 	public final static String TCC_NAME = "Torojimas ChocoCraft";
+	//public final static String TCC_NAME = "torojimas_chococraft";
 
 	// default item id's (reserved 22601-22650)
 	public static int CHOCOBO_SADDLE_ID          = 22601;
@@ -57,7 +58,38 @@ public class Constants
 	public static String CHOCOBO_ARMOUR_FOLDER = CHOCOBO_RESOURCES_FOLDER + "/armor";	
 
 	// texture files
-	public static String CHOCOBO_ITEM_TEXTURES = CHOCOBO_RESOURCES_FOLDER + "/chocoboItemTextures.png";
+	//public static String CHOCOBO_ITEM_TEXTURES = CHOCOBO_RESOURCES_FOLDER + "/chocoboItemTextures.png";
+	
+	public static String KEY_CHOCOPEDIA     = "chocopedia";
+	public static String KEY_DISGUISE_BODY  = "chocoboDisguiseBody";
+	public static String KEY_DISGUISE_BOOTS = "chocoboDisguiseBoots";
+	public static String KEY_DISGUISE_HEAD  = "chocoboDisguiseHead";
+	public static String KEY_DISGUISE_LEGS  = "chocoboDisguiseLegs";
+	public static String KEY_EGG_PURPLE     = "egg_purple";
+	public static String KEY_FEATHER        = "feather";
+	public static String KEY_GY_CAKE        = "gysahl_cake";
+	public static String KEY_GY_CHIBI       = "gysahl_chibi";
+	public static String KEY_GY_GOLDEN      = "gysahl_golden";
+	public static String KEY_GY_LOVERLY     = "gysahl_loverly";
+	public static String KEY_GY_PINK        = "gysahl_pink";
+	public static String KEY_GY_RED         = "gysahl_red";
+	public static String KEY_GY_SEEDS       = "gysahl_seeds";
+	public static String KEY_LEG_COOKED     = "leg_cooked";
+	public static String KEY_LEG_RAW        = "leg_raw";
+	public static String KEY_PACKBAG        = "packbag";
+	public static String KEY_SADDLE         = "saddle";
+	public static String KEY_SADDLEBAG      = "saddlebag";
+	public static String KEY_WHISTLE        = "whistle";
+	
+	public static String KEY_STRAW           = "chocoboStraw";
+	public static String KEY_GY_STEM         = "gysahlStem";
+	public static String KEY_GY_STEM01       = "gysahl_stem01";
+	public static String KEY_GY_STEM02       = "gysahl_stem02";
+	public static String KEY_GY_STEM03       = "gysahl_stem03";
+	public static String KEY_GY_STEM04       = "gysahl_stem04";
+	public static String KEY_GY_STEM05       = "gysahl_stem05";
+	public static String KEY_GY_GREEN        = "gysahl_green";
+	
 	public static String CHOCOBO_ARMOUR_TEXTURES_1 = CHOCOBO_ARMOUR_FOLDER + "/chocoDisguise_1.png";
 	public static String CHOCOBO_ARMOUR_TEXTURES_2 = CHOCOBO_ARMOUR_FOLDER + "/chocoDisguise_2.png";
 	public static String CHOCOBO_ENTITY_TEXTURES = CHOCOBO_RESOURCES_FOLDER + "/Chocobos";

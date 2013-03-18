@@ -47,9 +47,9 @@ public class GuiNameChocobo extends GuiScreen
 	{
 		StringTranslate stringtranslate = StringTranslate.getInstance();
 		Keyboard.enableRepeatEvents(true);
-		this.controlList.clear();
-		this.controlList.add(new GuiButton(0, this.width / 2 - 100, this.height / 4 + 96 + 12, stringtranslate.translateKey("Accept")));
-		this.controlList.add(new GuiButton(1, this.width / 2 - 100, this.height / 4 + 120 + 12, stringtranslate.translateKey("gui.cancel")));
+		this.buttonList.clear();
+		this.buttonList.add(new GuiButton(0, this.width / 2 - 100, this.height / 4 + 96 + 12, stringtranslate.translateKey("Accept")));
+		this.buttonList.add(new GuiButton(1, this.width / 2 - 100, this.height / 4 + 120 + 12, stringtranslate.translateKey("gui.cancel")));
 		this.theGuiTextField = new GuiTextField(this.fontRenderer, this.width / 2 - 100, 60, 200, 20);
 		this.theGuiTextField.setText(this.chocobo.getName());
 		this.theGuiTextField.setFocused(true);
@@ -81,10 +81,10 @@ public class GuiNameChocobo extends GuiScreen
 	protected void keyTyped(char c, int i)
 	{
 		this.theGuiTextField.textboxKeyTyped(c, i);
-		((GuiButton)this.controlList.get(0)).enabled = this.theGuiTextField.getText().trim().length() > 0;
+		((GuiButton)this.buttonList.get(0)).enabled = this.theGuiTextField.getText().trim().length() > 0;
 		if (c == '\r')
 		{
-			this.actionPerformed((GuiButton)this.controlList.get(0));
+			this.actionPerformed((GuiButton)this.buttonList.get(0));
 		}
 	}
 

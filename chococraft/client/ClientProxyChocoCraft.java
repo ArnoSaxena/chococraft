@@ -28,7 +28,7 @@ public class ClientProxyChocoCraft extends CommonProxyChocoCraft
     @Override
     public void registerRenderThings()
     {
-    	MinecraftForgeClient.preloadTexture(Constants.CHOCOBO_ITEM_TEXTURES);
+    	//MinecraftForgeClient.preloadTexture(Constants.CHOCOBO_ITEM_TEXTURES);
         MinecraftForgeClient.preloadTexture(Constants.CHOCOBO_ARMOUR_TEXTURES_1);
         MinecraftForgeClient.preloadTexture(Constants.CHOCOBO_ARMOUR_TEXTURES_2);
     }

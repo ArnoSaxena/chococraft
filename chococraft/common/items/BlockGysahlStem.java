@@ -14,36 +14,57 @@
 
 package chococraft.common.items;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFlower;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.Icon;
 import net.minecraft.world.World;
-
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.relauncher.Side;
-
 import chococraft.common.Constants;
 import chococraft.common.ModChocoCraft;
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 
 public class BlockGysahlStem extends BlockFlower
 {
 	static final int MAX_STAGE = 4; 
+	private ArrayList<Icon> icons;
 	
-	public BlockGysahlStem(int blockId, int textureId)
+	public BlockGysahlStem(int blockId)
     {
-        super(blockId, textureId);
-        blockIndexInTexture = textureId;
-        setTickRandomly(true);
+        super(blockId);
+        this.setTickRandomly(true);
         float f = 0.5F;
-        setBlockBounds(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, 0.25F, 0.5F + f);
+        this.setBlockBounds(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, 0.25F, 0.5F + f);
         this.setCreativeTab(null);
         this.disableStats();
-        this.setRequiresSelfNotify();
-        this.setTextureFile(Constants.CHOCOBO_ITEM_TEXTURES);
+        this.setStepSound(soundGrassFootstep);
+    }
+
+    @SideOnly(Side.CLIENT)
+    public Icon getBlockTextureFromSideAndMetadata(int i, int j)
+	{
+    	if(j < this.icons.size())
+    	{
+        	return this.icons.get(j);    		
+    	}
+    	return this.icons.get(4);
+	}
+    
+    public void func_94332_a(IconRegister iconRegister)
+    {
+    	this.icons = new ArrayList<Icon>();
+    	this.icons.add(0, iconRegister.func_94245_a(Constants.TCC_MODID + ":" + Constants.KEY_GY_STEM01));
+    	this.icons.add(1, iconRegister.func_94245_a(Constants.TCC_MODID + ":" + Constants.KEY_GY_STEM02));
+    	this.icons.add(2, iconRegister.func_94245_a(Constants.TCC_MODID + ":" + Constants.KEY_GY_STEM03));
+    	this.icons.add(3, iconRegister.func_94245_a(Constants.TCC_MODID + ":" + Constants.KEY_GY_STEM04));
+    	this.icons.add(4, iconRegister.func_94245_a(Constants.TCC_MODID + ":" + Constants.KEY_GY_STEM05));
     }
 	
 	public void updateTick(World theWorld, int xPos, int yPos, int zPos, Random randInts)
@@ -61,7 +82,7 @@ public class BlockGysahlStem extends BlockFlower
                 if (randInts.nextInt((int)(25F / f) + 1) == 0)
                 {
                     gysahlStage++;
-                    theWorld.setBlockMetadataWithNotify(xPos, yPos, zPos, gysahlStage);
+                    theWorld.setBlockMetadataWithNotify(xPos, yPos, zPos, gysahlStage, 2);
                 }
             }
         }
@@ -126,13 +147,7 @@ public class BlockGysahlStem extends BlockFlower
 		}
         return canGrow;
     }
-	
-
-	public int getBlockTextureFromSideAndMetadata(int i, int j)
-	{
-		return j + 32;
-	}
-
+    
 	//TODO check this
     public void dropBlockAsItemWithChance(World world, int i, int j, int k, int l, float f, int i1)
     {
@@ -187,7 +202,7 @@ public class BlockGysahlStem extends BlockFlower
 	{
 		if(theWorld.getBlockMetadata(xPos, yPos, zPos) < MAX_STAGE)
 		{		
-			theWorld.setBlockMetadataWithNotify(xPos, yPos, zPos, MAX_STAGE);
+			theWorld.setBlockMetadataWithNotify(xPos, yPos, zPos, MAX_STAGE, 2);
 			return true;
 		}
 		else

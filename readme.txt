@@ -1,4 +1,4 @@
-This is the official version of Torojimas Chococraft v2.5.4 for usage with minecraft 1.4.7. Chococraft has been originally created by EddieV and is now refactored and officially maintained by Torojima.
+This is the official version of Torojimas Chococraft v2.6.1 for usage with minecraft 1.5. Chococraft has been originally created by EddieV and is now refactored and officially maintained by Torojima.
 
 This mod adds a mob called Chocobo to the game. This includes different coloured mob types with different attributes in their grown-up and juvenile form.
 
@@ -10,9 +10,7 @@ ACHTUNG! CAUTION! ¡CUIDADO! चेतावनी! ATTENZIONE! береги́с
 This version of Chococraft is not compatible to versions pre 1.3.2. It will destroy your saved world if old Chocobos are included. Thus, if you want to use an old world with the new version of this mod, you should first start minecraft without the Chococraft mod, enter and save your world, thus removing all traces of older versions of Chococraft and only then start minecraft with the new version of Chococraft and tame new Chocobos.
 
 Changelog:
-1. Fixing Server crash when world filled with Chicobos created by older versions of ChocoCraft is loaded.
-2. Changed purple(nether) Chocobo skins to ShadoxLunik's version.
-3. added shapeless recipe vanilla saddle plus chocobo feather will craft a chocobo saddle.
+1. updated for minecraft v1.5
 
 see the minecraft forums for further informations
 http://www.minecraftforum.net/topic/1119809-146sspsmpforge-torojimas-chococraft-241-explore-your-worlds-riding-chocobos/

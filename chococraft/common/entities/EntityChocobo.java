@@ -307,7 +307,7 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 			this.motionX *= f3;
 			this.motionZ *= f3;
 		}
-		this.prevLegYaw = this.legYaw;
+		this.prevLimbYaw = this.limbYaw;
 		double diffX = posX - prevPosX;
 		double diffZ = posZ - prevPosZ;
 		float moveDistance = MathHelper.sqrt_double(diffX * diffX + diffZ * diffZ) * 4F;
@@ -315,8 +315,8 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 		{
 			moveDistance = 1.0F;
 		}
-		this.legYaw += (moveDistance - this.legYaw) * 0.4F;
-		this.legSwing += this.legYaw;
+		this.limbYaw += (moveDistance - this.limbYaw) * 0.4F;
+		this.limbSwing += this.limbYaw;
 	}
 
 	public void onLivingUpdate()

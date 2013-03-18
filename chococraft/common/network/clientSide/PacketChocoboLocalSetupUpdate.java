@@ -51,7 +51,7 @@ public class PacketChocoboLocalSetupUpdate extends PacketChocoboClient
 		if (Side.CLIENT == FMLCommonHandler.instance().getEffectiveSide())
 		{
 			ModChocoCraft.isRemoteClient = false;
-			ChocoboConfig.readConfigFile();
+			ChocoboConfig.readConfigFilePreInit();
 		}		
 	}
 }

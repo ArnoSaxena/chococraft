@@ -2,30 +2,41 @@ package chococraft.common.items;
 
 import java.util.Random;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import chococraft.common.Constants;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.Icon;
 import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-
-import chococraft.common.Constants;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 
 
 public class BlockStraw extends Block
 {
-    public BlockStraw(int par1, int par2)
+    public BlockStraw(int par1)
     {
-        super(par1, par2, Material.grass);
-        this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.1F, 1.0F);
+        super(par1, Material.circuits);
+        this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.0625F, 1.0F);
         this.setCreativeTab(CreativeTabs.tabDecorations);
-        this.setTextureFile(Constants.CHOCOBO_ITEM_TEXTURES);
+    }
+    
+    @SideOnly(Side.CLIENT)
+    public Icon getBlockTextureFromSideAndMetadata(int i, int j)
+	{
+    	return this.field_94336_cN;
+	}
+    
+    public void func_94332_a(IconRegister iconRegister)
+    {
+    	this.field_94336_cN = iconRegister.func_94245_a(Constants.TCC_MODID + ":" + Constants.KEY_STRAW);
     }
 
     /**
@@ -34,8 +45,6 @@ public class BlockStraw extends Block
      */
     public AxisAlignedBB getCollisionBoundingBoxFromPool(World par1World, int par2, int par3, int par4)
     {
-//        int var5 = par1World.getBlockMetadata(par2, par3, par4) & 7;
-//        return var5 >= 3 ? AxisAlignedBB.getAABBPool().addOrModifyAABBInPool((double)par2 + this.minX, (double)par3 + this.minY, (double)par4 + this.minZ, (double)par2 + this.maxX, (double)((float)par3 + 0.5F), (double)par4 + this.maxZ) : null;
     	return null;
     }
 
@@ -61,9 +70,7 @@ public class BlockStraw extends Block
      */
     public void setBlockBoundsBasedOnState(IBlockAccess par1IBlockAccess, int par2, int par3, int par4)
     {
-        //int var5 = par1IBlockAccess.getBlockMetadata(par2, par3, par4) & 7;
-        //float var6 = (float)(2 * (1 + var5)) / 16.0F;
-        this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.1F, 1.0F);
+        this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.0625F, 1.0F);
     }
 
     
@@ -76,7 +83,7 @@ public class BlockStraw extends Block
     {
         if (!this.canPlaceBlockAt(world, posX, posY, posZ))
         {
-            world.setBlockWithNotify(posX, posY, posZ, 0);
+            world.setBlockAndMetadataWithNotify(posX, posY, posZ, this.blockID, 0, 2);
             return false;
         }
         else
@@ -102,7 +109,7 @@ public class BlockStraw extends Block
     public void harvestBlock(World world, EntityPlayer player, int posX, int posY, int posZ, int blockDamage)
     {
         super.harvestBlock(world, player, posX, posY, posZ, blockDamage);
-        world.setBlockWithNotify(posX, posY, posZ, 0);
+        world.setBlockAndMetadataWithNotify(posX, posY, posZ, this.blockID, 0, 2);
     }
 
     /**
@@ -124,11 +131,11 @@ public class BlockStraw extends Block
     /**
      * Ticks the block if it's been scheduled
      */
-    public void updateTick(World par1World, int par2, int par3, int par4, Random par5Random)
+    public void updateTick(World world, int posX, int posY, int posZ, Random random)
     {
-        if (par1World.getSavedLightValue(EnumSkyBlock.Block, par2, par3, par4) > 11)
+        if (world.getSavedLightValue(EnumSkyBlock.Block, posX, posY, posZ) > 11)
         {
-            par1World.setBlockWithNotify(par2, par3, par4, 0);
+            world.setBlockAndMetadataWithNotify(posX, posY, posZ, this.blockID, 0, 2);
         }
     }
 

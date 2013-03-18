@@ -158,4 +158,17 @@ public abstract class ChocoBagInventory implements IInventory
 	abstract public NBTBase writeToNBT(NBTTagList nbtTagList);
 	
 	abstract public String getInvName();
+	
+	@Override
+	public boolean func_94042_c() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean func_94041_b(int i, ItemStack itemstack) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

@@ -16,29 +16,36 @@ package chococraft.common.items;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFlower;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.util.Icon;
 import chococraft.common.Constants;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 
 public class BlockGysahlGreen extends BlockFlower
 {
-	public BlockGysahlGreen(int blockId, int textureId)
+	public BlockGysahlGreen(int blockId)
     {
-        super(blockId, textureId);
-        blockIndexInTexture = textureId;
+        super(blockId);
         setTickRandomly(true);
         float f = 0.5F;
         setBlockBounds(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, 0.25F, 0.5F + f);
         this.setCreativeTab(CreativeTabs.tabDecorations);
         this.disableStats();
-        this.setRequiresSelfNotify();
-        this.setTextureFile(Constants.CHOCOBO_ITEM_TEXTURES);
     }
 
-	public int getBlockTextureFromSideAndMetadata(int i, int j)
+    @SideOnly(Side.CLIENT)
+    public Icon getBlockTextureFromSideAndMetadata(int i, int j)
 	{
-		return 36;
+    	return this.field_94336_cN;
 	}
+    
+    public void func_94332_a(IconRegister iconRegister)
+    {
+    	this.field_94336_cN = iconRegister.func_94245_a(Constants.TCC_MODID + ":" + Constants.KEY_GY_GREEN);
+    }
 	
 	protected boolean canThisPlantGrowOnThisBlockID(int blockId)
     {

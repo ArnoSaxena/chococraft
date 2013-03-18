@@ -57,12 +57,12 @@ public class GuiSelectNewOwner extends GuiScreen
 	{
 		StringTranslate stringtranslate = StringTranslate.getInstance();
 		Keyboard.enableRepeatEvents(true);
-		this.controlList.clear();		
-		this.controlList.add(new GuiButton(0, this.width / 2 - 100, this.height / 4 + 120 + 12, 80, 20, stringtranslate.translateKey("Accept")));
-		this.controlList.add(new GuiButton(1, this.width / 2, this.height / 4 + 120 + 12, 80, 20, stringtranslate.translateKey("gui.cancel")));
+		this.buttonList.clear();		
+		this.buttonList.add(new GuiButton(0, this.width / 2 - 100, this.height / 4 + 120 + 12, 80, 20, stringtranslate.translateKey("Accept")));
+		this.buttonList.add(new GuiButton(1, this.width / 2, this.height / 4 + 120 + 12, 80, 20, stringtranslate.translateKey("gui.cancel")));
 
-		this.controlList.add(new GuiButton(2, this.width / 2 + 90, this.height / 2 - 50, 40, 20, stringtranslate.translateKey("last")));
-		this.controlList.add(new GuiButton(3, this.width / 2 + 90, this.height / 2 - 20, 40, 20, stringtranslate.translateKey("next")));
+		this.buttonList.add(new GuiButton(2, this.width / 2 + 90, this.height / 2 - 50, 40, 20, stringtranslate.translateKey("last")));
+		this.buttonList.add(new GuiButton(3, this.width / 2 + 90, this.height / 2 - 20, 40, 20, stringtranslate.translateKey("next")));
 
 		this.tfNewOnwer = new GuiTextField(this.fontRenderer, this.width / 2 - 100, this.height / 4 + 96 + 12, 180, 20);
 		this.tfNewOnwer.setText("");
@@ -160,7 +160,7 @@ public class GuiSelectNewOwner extends GuiScreen
 
 		if(this.tfNewOnwer.getText().trim().length() > 0)
 		{
-			((GuiButton)this.controlList.get(0)).enabled = true;
+			((GuiButton)this.buttonList.get(0)).enabled = true;
 			String startNameNewOwner = this.tfNewOnwer.getText().trim();
 			
 			if(startNameNewOwner.equals(""))
@@ -174,7 +174,7 @@ public class GuiSelectNewOwner extends GuiScreen
 
 			if (c == '\r')
 			{
-				this.actionPerformed((GuiButton)this.controlList.get(0));
+				this.actionPerformed((GuiButton)this.buttonList.get(0));
 			}
 			else
 			{
@@ -184,7 +184,7 @@ public class GuiSelectNewOwner extends GuiScreen
 		}
 		else
 		{
-			((GuiButton)this.controlList.get(0)).enabled = false;
+			((GuiButton)this.buttonList.get(0)).enabled = false;
 		}
 	}
 	
@@ -192,7 +192,7 @@ public class GuiSelectNewOwner extends GuiScreen
 	{
 		this.tfNewOnwer.setText(name);
 		this.tfNewOnwer.drawTextBox();
-		((GuiButton)this.controlList.get(0)).enabled = !this.tfNewOnwer.getText().isEmpty();
+		((GuiButton)this.buttonList.get(0)).enabled = !this.tfNewOnwer.getText().isEmpty();
 	}
 	
 	protected void mouseClicked(int x, int y, int k)

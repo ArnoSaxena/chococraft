@@ -76,7 +76,56 @@ public class ChocoboConfig
 	
 	static String CFG_KEY_DEBUG_MODE = "debugMode";
 
-	public static void readConfigFile()
+	public static void readConfigFileInit()
+	{
+		try
+		{
+			BufferedReader reader = getConfigReader();
+			String line;
+			
+			while (null != (line = reader.readLine()))
+			{
+				if (0 < (line.trim().length()) && (!line.trim().startsWith(CFG_TOKEN_COMMENT)))
+				{
+					String[] temp = line.split("=");
+					if (2 == temp.length)
+					{
+						String key = temp[0].trim();
+						String value = temp[1].trim();
+
+						if(key.isEmpty())
+						{
+							//throw new Exception("Empty key in Chocobo config file!");
+							// better: error log entry ...
+						}
+						else if (value.isEmpty())
+						{
+							//throw new Exception("Empty value in Chocobo config file!");
+							// better: error log entry ...
+						}
+						else
+						{
+							if(key.equalsIgnoreCase(CFG_KEY_SPAWN_BIOMES))
+							{
+								ModChocoCraft.spawnBiomes = getBiomeGenBaseArray(value);
+							}	
+						}
+					}
+				}
+			}
+			reader.close();
+		}
+		catch (FileNotFoundException fnfe)
+		{
+			fnfe.printStackTrace();
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	public static void readConfigFilePreInit()
 	{
 		try
 		{
@@ -112,10 +161,12 @@ public class ChocoboConfig
 								{
 									ModChocoCraft.showChocoboNames = Boolean.parseBoolean(value);
 								}
+								
 								else if(key.equalsIgnoreCase(CFG_KEY_SPAWN_BIOMES))
 								{
 									ModChocoCraft.spawnBiomes = getBiomeGenBaseArray(value);
 								}
+								
 								else if(key.equalsIgnoreCase(CFG_KEY_SPAWN_TIME_DELAY))
 								{
 									ModChocoCraft.spawnTimeDelay = ChocoboMathHelper.minLimit(Integer.parseInt(value), 50);
