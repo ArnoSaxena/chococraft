@@ -12,7 +12,7 @@
 // <date>2012-09-10</date>
 // <summary>Class for everything name related</summary>
 
-package chococraft.common;
+package chococraft.common.entities;
 
 import java.util.Random;
 
