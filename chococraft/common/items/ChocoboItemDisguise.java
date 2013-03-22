@@ -35,25 +35,10 @@ public class ChocoboItemDisguise extends ItemArmor implements IArmorTextureProvi
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public void func_94581_a(IconRegister iconRegister)
+	public void updateIcons(IconRegister iconRegister)
 	{
-		String name = this.getUnlocalizedName();
-		if(name.equals("item." + Constants.KEY_DISGUISE_HEAD))
-		{
-			this.iconIndex = iconRegister.func_94245_a(Constants.TCC_MODID + ":" + Constants.KEY_DISGUISE_HEAD);
-		}
-		else if(name.equals("item." + Constants.KEY_DISGUISE_BODY))
-		{
-			this.iconIndex = iconRegister.func_94245_a(Constants.TCC_MODID + ":" + Constants.KEY_DISGUISE_BODY);
-		}
-		else if(name.equals("item." + Constants.KEY_DISGUISE_LEGS))
-		{
-			this.iconIndex = iconRegister.func_94245_a(Constants.TCC_MODID + ":" + Constants.KEY_DISGUISE_LEGS);
-		}
-		else if(name.equals("item." + Constants.KEY_DISGUISE_BOOTS))
-		{
-			this.iconIndex = iconRegister.func_94245_a(Constants.TCC_MODID + ":" + Constants.KEY_DISGUISE_BOOTS);
-		}
+		String name = this.getUnlocalizedName().substring(5);
+		this.iconIndex = iconRegister.registerIcon(Constants.TCC_MODID + ":" + name);
 	}
 	
     public int getItemEnchantability()

@@ -77,7 +77,7 @@ public class GuiChocoboBag extends GuiContainer
 		}
 
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);		
-		this.mc.renderEngine.func_98187_b("/gui/container.png");
+		this.mc.renderEngine.bindTexture("/gui/container.png");
 		int j = (width - xSize) / 2;
 		int k = (height - ySize) / 2 + yPosOffset;
 		this.drawTexturedModalRect(j, k, 0, 0, this.xSize, chocoInvRows * 18 + 17);

@@ -13,14 +13,13 @@ public class ItemGysahlSeeds extends ItemSeeds
 	{
 		super(itemId, blockType, soilBlockID);
 		this.setCreativeTab(CreativeTabs.tabMaterials);
-		this.setUnlocalizedName("item.gysahlSeeds");
-		//this.setCreativeTab(chocoboCreativeItems);
+		this.setUnlocalizedName(Constants.KEY_GY_SEEDS);
 	}
 	
 	@SideOnly(Side.CLIENT)
 	@Override
-	public void func_94581_a(IconRegister iconRegister)
+	public void updateIcons(IconRegister iconRegister)
 	{
-		this.iconIndex = iconRegister.func_94245_a(Constants.TCC_MODID + ":" + Constants.KEY_GY_SEEDS);
+		this.iconIndex = iconRegister.registerIcon(Constants.TCC_MODID + ":" + Constants.KEY_GY_SEEDS);
 	}
 }

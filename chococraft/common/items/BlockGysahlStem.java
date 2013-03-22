@@ -60,11 +60,11 @@ public class BlockGysahlStem extends BlockFlower
     public void func_94332_a(IconRegister iconRegister)
     {
     	this.icons = new ArrayList<Icon>();
-    	this.icons.add(0, iconRegister.func_94245_a(Constants.TCC_MODID + ":" + Constants.KEY_GY_STEM01));
-    	this.icons.add(1, iconRegister.func_94245_a(Constants.TCC_MODID + ":" + Constants.KEY_GY_STEM02));
-    	this.icons.add(2, iconRegister.func_94245_a(Constants.TCC_MODID + ":" + Constants.KEY_GY_STEM03));
-    	this.icons.add(3, iconRegister.func_94245_a(Constants.TCC_MODID + ":" + Constants.KEY_GY_STEM04));
-    	this.icons.add(4, iconRegister.func_94245_a(Constants.TCC_MODID + ":" + Constants.KEY_GY_STEM05));
+    	this.icons.add(0, iconRegister.registerIcon(Constants.TCC_MODID + ":" + Constants.KEY_GY_STEM01));
+    	this.icons.add(1, iconRegister.registerIcon(Constants.TCC_MODID + ":" + Constants.KEY_GY_STEM02));
+    	this.icons.add(2, iconRegister.registerIcon(Constants.TCC_MODID + ":" + Constants.KEY_GY_STEM03));
+    	this.icons.add(3, iconRegister.registerIcon(Constants.TCC_MODID + ":" + Constants.KEY_GY_STEM04));
+    	this.icons.add(4, iconRegister.registerIcon(Constants.TCC_MODID + ":" + Constants.KEY_GY_STEM05));
     }
 	
 	public void updateTick(World theWorld, int xPos, int yPos, int zPos, Random randInts)

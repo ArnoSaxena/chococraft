@@ -16,16 +16,9 @@ public class ChocoboItemFood extends ItemFood
 	
 	@SideOnly(Side.CLIENT)
 	@Override
-	public void func_94581_a(IconRegister iconRegister)
+	public void updateIcons(IconRegister iconRegister)
 	{
-		String name = this.getUnlocalizedName();
-		if(name.equals("item." + Constants.KEY_LEG_RAW))
-		{
-			this.iconIndex = iconRegister.func_94245_a(Constants.TCC_MODID + ":" + Constants.KEY_LEG_RAW);
-		}
-		else if(name.equals("item." + Constants.KEY_LEG_COOKED))
-		{
-			this.iconIndex = iconRegister.func_94245_a(Constants.TCC_MODID + ":" + Constants.KEY_LEG_COOKED);
-		}
+		String name = this.getUnlocalizedName().substring(5);
+		this.iconIndex = iconRegister.registerIcon(Constants.TCC_MODID + ":" + name);
 	}
 }

@@ -14,16 +14,14 @@
 
 package chococraft.common.items;
 
-import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import chococraft.common.Constants;
 import chococraft.common.entities.EntityPurpleChocoboEgg;
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.relauncher.Side;
 
 
 public class ItemPurpleChocoboEgg extends ChocoboItem
@@ -35,13 +33,6 @@ public class ItemPurpleChocoboEgg extends ChocoboItem
         this.setUnlocalizedName(Constants.KEY_EGG_PURPLE);
 		this.setCreativeTab(CreativeTabs.tabMisc);
     }
-    
-	@SideOnly(Side.CLIENT)
-	@Override
-	public void func_94581_a(IconRegister iconRegister)
-	{
-		iconIndex = iconRegister.func_94245_a(Constants.TCC_MODID + ":" + Constants.KEY_EGG_PURPLE);
-	}
 
     @Override
     public ItemStack onItemRightClick(ItemStack itemstack, World world, EntityPlayer player)

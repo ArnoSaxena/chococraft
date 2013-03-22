@@ -31,12 +31,12 @@ public class BlockStraw extends Block
     @SideOnly(Side.CLIENT)
     public Icon getBlockTextureFromSideAndMetadata(int i, int j)
 	{
-    	return this.field_94336_cN;
+    	return this.blockIcon;
 	}
     
     public void func_94332_a(IconRegister iconRegister)
     {
-    	this.field_94336_cN = iconRegister.func_94245_a(Constants.TCC_MODID + ":" + Constants.KEY_STRAW);
+    	this.blockIcon = iconRegister.registerIcon(Constants.TCC_MODID + ":" + Constants.KEY_STRAW);
     }
 
     /**
@@ -83,7 +83,7 @@ public class BlockStraw extends Block
     {
         if (!this.canPlaceBlockAt(world, posX, posY, posZ))
         {
-            world.setBlockAndMetadataWithNotify(posX, posY, posZ, this.blockID, 0, 2);
+            world.setBlock(posX, posY, posZ, this.blockID, 0, 2);
             return false;
         }
         else
@@ -109,7 +109,7 @@ public class BlockStraw extends Block
     public void harvestBlock(World world, EntityPlayer player, int posX, int posY, int posZ, int blockDamage)
     {
         super.harvestBlock(world, player, posX, posY, posZ, blockDamage);
-        world.setBlockAndMetadataWithNotify(posX, posY, posZ, this.blockID, 0, 2);
+        world.setBlock(posX, posY, posZ, this.blockID, 0, 2);
     }
 
     /**
@@ -135,7 +135,7 @@ public class BlockStraw extends Block
     {
         if (world.getSavedLightValue(EnumSkyBlock.Block, posX, posY, posZ) > 11)
         {
-            world.setBlockAndMetadataWithNotify(posX, posY, posZ, this.blockID, 0, 2);
+            world.setBlock(posX, posY, posZ, this.blockID, 0, 2);
         }
     }
 

@@ -16,10 +16,9 @@ package chococraft.common;
 
 public class Constants
 {
-	public final static String TCC_VERSION = "2.6.1";
+	public final static String TCC_VERSION = "2.7.1";
 	public final static String TCC_MODID = "chococraft";
 	public final static String TCC_NAME = "Torojimas ChocoCraft";
-	//public final static String TCC_NAME = "torojimas_chococraft";
 
 	// default item id's (reserved 22601-22650)
 	public static int CHOCOBO_SADDLE_ID          = 22601;
@@ -57,9 +56,6 @@ public class Constants
 	// armour folder
 	public static String CHOCOBO_ARMOUR_FOLDER = CHOCOBO_RESOURCES_FOLDER + "/armor";	
 
-	// texture files
-	//public static String CHOCOBO_ITEM_TEXTURES = CHOCOBO_RESOURCES_FOLDER + "/chocoboItemTextures.png";
-	
 	public static String KEY_CHOCOPEDIA     = "chocopedia";
 	public static String KEY_DISGUISE       = "chocoDisguise";
 	public static String KEY_DISGUISE_HEAD  = "disguiseHead";

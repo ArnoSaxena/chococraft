@@ -1,10 +1,10 @@
 [img]http://www.arno-saxena.de/pictures/chococraft/banner_title.png[/img]
 [size=2]banner made by [url="http://www.minecraftforum.net/user/223231-galindorf/"]galindorf[/url][/size]
 
-UPDATED FOR MINECRAFT 1.5
-Version 2.6.1
-Requires: [url="http://www.minecraftforge.net/"]Forge[/url] [url="http://files.minecraftforge.net/"]7.7.0.583+[/url]
-Tested with: [url="http://www.minecraftforge.net/"]Forge[/url] [url="http://files.minecraftforge.net/"]7.7.0.583+[/url]
+UPDATED FOR MINECRAFT 1.5.1
+Version 2.7.1
+Requires: [url="http://www.minecraftforge.net/"]Forge[/url] [url="http://files.minecraftforge.net/"]7.7.0.600+[/url]
+Tested with: [url="http://www.minecraftforge.net/"]Forge[/url] [url="http://files.minecraftforge.net/"]7.7.0.600[/url]
 
 This Mod is the continuation of [url="http://www.minecraftforum.net/user/1051245-eddiev/"]EddieV's[/url] mod. The original thread can be found [url="http://www.minecraftforum.net/topic/952372-chococraft-12-mc-11-chocobos-now-fly/"]here[/url]. I've officially taken over the helm with Eddie's kind blessings.
 
@@ -19,7 +19,7 @@ As of version 2.0.4 this mod is in working condition for SMP.
 [color=#ff0000][b]ACHTUNG! CAUTION! ¡CUIDADO! चेतावनी! ATTENZIONE! береги́сь!
 This version of Chococraft is not compatible to versions pre 2.0.0 (pre mc 1.3.2). It will destroy your saved world if old Chocobos are included. Thus, if you want to use an old world with the new version of this mod, you should first start minecraft without the Chococraft mod, enter and save your world, thus removing all traces of older versions of Chococraft and only then start minecraft with the new version of Chococraft and tame new Chocobos.[/b][/color]
 
-Download: [url="http://www.arno-saxena.de/minecraft/Chococraft_2.6.1.zip"]Torojimas ChocoCraft 2.6.1[/url]
+Download: [url="http://www.arno-saxena.de/minecraft/Chococraft_2.7.1.zip"]Torojimas ChocoCraft 2.7.1[/url]
 
 Downloads so far: [img]http://www.arno-saxena.de/minecraft/chocoboDownloads.png[/img]
 
@@ -88,13 +88,17 @@ Thanks to rsmalec
 Thanks to InTheLittleWood[/spoiler][/spoiler]
 
 CHANGELOG:
-[spoiler]v.2.6.1 by Torojima
-   1. updated to mc 1.5
+[spoiler]v.2.7.1 by Torojima
+   1. updated to mc 1.5.1
 
-v.2.5.4 by Torojima
-   1. Fixing Server crash when world filled with Chicobos created by older versions of ChocoCraft is loaded.
-   2. Changed purple(nether) Chocobo skins to ShadoxLunik's version.
-   3. added shapeless recipe vanilla saddle plus chocobo feather will craft a chocobo saddle.
+v.2.6.2 by Torojima
+   1. icon debugging
+
+v.2.6.1 by Torojima
+   1. updated to mc 1.5
+   2. Fixing Server crash when world filled with Chicobos created by older versions of ChocoCraft is loaded.
+   3. Changed purple(nether) Chocobo skins to ShadoxLunik's version.
+   4. added shapeless recipe vanilla saddle plus chocobo feather will craft a chocobo saddle.
 
 v.2.5.3 by Torojima
    1. Chicobo read spawn data error fixed

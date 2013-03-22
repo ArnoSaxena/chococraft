@@ -349,14 +349,14 @@ public class ModChocoCraft
 	private void createItemInstances()
 	{
 		// Chocopedia
-		chocopediaItem = (new ChocoboItem(chocopediaId.getInt())).setUnlocalizedName("chocopedia").setMaxStackSize(1);
+		chocopediaItem = (new ChocoboItem(chocopediaId.getInt())).setUnlocalizedName(Constants.KEY_CHOCOPEDIA).setMaxStackSize(1);
 		LanguageRegistry.addName(chocopediaItem, "Chocopedia");
 		chocopediaItem.setCreativeTab(CreativeTabs.tabTools);
 		//chocopediaItem.setCreativeTab(chocoboCreativeItems);
 		//DungeonHooks.addDungeonLoot(new ItemStack(chocopediaItem), 1, 1, 1);
 
 		// Chocobo Feather
-		chocoboFeatherItem = (new ChocoboItem(chocoboFeatherId.getInt())).setUnlocalizedName("chocoboFeather").setMaxStackSize(64);
+		chocoboFeatherItem = (new ChocoboItem(chocoboFeatherId.getInt())).setUnlocalizedName(Constants.KEY_FEATHER).setMaxStackSize(64);
 		LanguageRegistry.addName(chocoboFeatherItem, "Chocobo Feather");
 		chocoboFeatherItem.setCreativeTab(CreativeTabs.tabMaterials);
 		//chocoboFeatherItem.setCreativeTab(chocoboCreativeItems);
@@ -365,19 +365,19 @@ public class ModChocoCraft
 		
 		// riding gear
 		// Chocobo Saddle
-		chocoboSaddleItem = (new ChocoboItem(chocoboSaddleId.getInt())).setUnlocalizedName("chocoboSaddle").setMaxStackSize(5);
+		chocoboSaddleItem = (new ChocoboItem(chocoboSaddleId.getInt())).setUnlocalizedName(Constants.KEY_SADDLE).setMaxStackSize(5);
 		LanguageRegistry.addName(chocoboSaddleItem, "Chocobo Saddle");
 		chocoboSaddleItem.setCreativeTab(CreativeTabs.tabTransport);
 		//chocoboSaddleItem.setCreativeTab(chocoboCreativeItems);
 
 		// Chocobo Saddle Bags
-		chocoboSaddleBagsItem = (new ChocoboItem(chocoboSaddleBagsId.getInt())).setUnlocalizedName("chocoboSaddleBags").setMaxStackSize(8);
+		chocoboSaddleBagsItem = (new ChocoboItem(chocoboSaddleBagsId.getInt())).setUnlocalizedName(Constants.KEY_SADDLEBAG).setMaxStackSize(8);
 		LanguageRegistry.addName(chocoboSaddleBagsItem, "Chocobo Saddle Bags");
 		chocoboSaddleBagsItem.setCreativeTab(CreativeTabs.tabTransport);
 		//chocoboSaddleBagsItem.setCreativeTab(chocoboCreativeItems);
 
 		// Chocobo Pack Bags
-		chocoboPackBagsItem = (new ChocoboItem(chocoboPackBagsId.getInt())).setUnlocalizedName("chocoboPackBags").setMaxStackSize(8);
+		chocoboPackBagsItem = (new ChocoboItem(chocoboPackBagsId.getInt())).setUnlocalizedName(Constants.KEY_PACKBAG).setMaxStackSize(8);
 		LanguageRegistry.addName(chocoboPackBagsItem, "Chocobo Pack Bags");
 		chocoboPackBagsItem.setCreativeTab(CreativeTabs.tabTransport);
 		//chocoboPackBagsItem.setCreativeTab(chocoboCreativeItems);
@@ -388,44 +388,38 @@ public class ModChocoCraft
 		LanguageRegistry.addName(gysahlSeedsItem, "Gysahl Seeds");
 
 		// Loverly Gysahl
-		gysahlLoverlyItem = (new ChocoboItem(gysahlLoverlyId.getInt())).setUnlocalizedName("gysahlLoverly").setMaxStackSize(64);
+		gysahlLoverlyItem = (new ChocoboItem(gysahlLoverlyId.getInt())).setUnlocalizedName(Constants.KEY_GY_LOVERLY).setMaxStackSize(64);
 		LanguageRegistry.addName(gysahlLoverlyItem, "Loverly Gysahl");
 		gysahlLoverlyItem.setCreativeTab(CreativeTabs.tabMisc);
 		//gysahlLoverlyItem.setCreativeTab(chocoboCreativeItems);
 
 		// Golden Gysahl
-		gysahlGoldenItem = (new ChocoboItem(gysahlGoldenId.getInt())).setUnlocalizedName("gysahlGolden").setMaxStackSize(64);
+		gysahlGoldenItem = (new ChocoboItem(gysahlGoldenId.getInt())).setUnlocalizedName(Constants.KEY_GY_GOLDEN).setMaxStackSize(64);
 		LanguageRegistry.addName(gysahlGoldenItem, "Golden Gysahl");
 		gysahlGoldenItem.setCreativeTab(CreativeTabs.tabMisc);
 		//gysahlGoldenItem.setCreativeTab(chocoboCreativeItems);
 		//DungeonHooks.addDungeonLoot(new ItemStack(gysahlGoldenItem), 1, 2, 8);
 
 		// Pink Gysahl
-		gysahlPinkItem = (new ChocoboItem(gysahlPinkId.getInt())).setUnlocalizedName("gysahlPink").setMaxStackSize(64);
+		gysahlPinkItem = (new ChocoboItem(gysahlPinkId.getInt())).setUnlocalizedName(Constants.KEY_GY_PINK).setMaxStackSize(64);
 		LanguageRegistry.addName(gysahlPinkItem, "Pink Gysahl");
 		gysahlPinkItem.setCreativeTab(CreativeTabs.tabMisc);
 		//gysahlPinkItem.setCreativeTab(chocoboCreativeItems);
 
 		// Red Gysahl
-		gysahlRedItem = (new ChocoboItem(gysahlRedId.getInt())).setUnlocalizedName("gysahlRed").setMaxStackSize(64);
+		gysahlRedItem = (new ChocoboItem(gysahlRedId.getInt())).setUnlocalizedName(Constants.KEY_GY_RED).setMaxStackSize(64);
 		LanguageRegistry.addName(gysahlRedItem, "Red Gysahl");
 		gysahlRedItem.setCreativeTab(CreativeTabs.tabMisc);
 		//gysahlRedItem.setCreativeTab(chocoboCreativeItems);
 
-//		// Chibi Gysahl
-//		gysahlChibiItem = (new ChocoboItem(Integer.parseInt(gysahlChibiId.value))).setItemName("gysahlChibi").setMaxStackSize(64);
-//		LanguageRegistry.addName(gysahlChibiItem, "Chibi Gysahl");
-//		gysahlChibiItem.setCreativeTab(CreativeTabs.tabMisc);
-//		//gysahlChibiItem.setCreativeTab(chocoboCreativeItems);
-
 		// Gysahl Cake
-		gysahlCakeItem = (new ChocoboItem(gysahlCakeId.getInt())).setUnlocalizedName("gysahlCake").setMaxStackSize(8);
+		gysahlCakeItem = (new ChocoboItem(gysahlCakeId.getInt())).setUnlocalizedName(Constants.KEY_GY_CAKE).setMaxStackSize(8);
 		LanguageRegistry.addName(gysahlCakeItem, "Gysahl Cake");
 		gysahlCakeItem.setCreativeTab(CreativeTabs.tabMisc);
 		//gysahlCakeItem.setCreativeTab(chocoboCreativeItems);
 
 		// Chocob Whistle
-		chocoboWhistleItem = (new ChocoboItem(chocoboWhistleId.getInt())).setUnlocalizedName("chocoboWhistle").setMaxStackSize(64);
+		chocoboWhistleItem = (new ChocoboItem(chocoboWhistleId.getInt())).setUnlocalizedName(Constants.KEY_WHISTLE).setMaxStackSize(64);
 		LanguageRegistry.addName(chocoboWhistleItem, "Chocobo Whistle");
 		chocoboWhistleItem.setCreativeTab(CreativeTabs.tabTools);
 		//chocoboWhistleItem.setCreativeTab(chocoboCreativeItems);
@@ -539,37 +533,6 @@ public class ModChocoCraft
 			Character.valueOf('Y'), chocoboFeatherItem,
 			Character.valueOf('-'), Item.silk
 		});
-
-//		// loverly gysahl
-//		GameRegistry.addRecipe(new ItemStack(gysahlLoverlyItem, 1), new Object[]
-//		{
-//			"RY", 
-//			"X ", 
-//			Character.valueOf('X'), gysahlGreenBlock, 
-//			Character.valueOf('Y'), chocoboFeatherItem, 
-//			Character.valueOf('R'), Block.plantRed
-//		});
-//
-//		// golden gysahl
-//		GameRegistry.addRecipe(new ItemStack(gysahlGoldenItem, 1), new Object[]
-//		{
-//			"FGF", 
-//			"GXG", 
-//			"FGF", 
-//			Character.valueOf('X'), gysahlGreenBlock, 
-//			Character.valueOf('F'), chocoboFeatherItem, 
-//			Character.valueOf('G'), Item.goldNugget
-//		});
-
-//		// chibi gysahl
-//		GameRegistry.addRecipe(new ItemStack(gysahlChibiItem, 1), new Object[]
-//		{
-//			" R ", 
-//			"RGR", 
-//			" R ", 
-//			Character.valueOf('R'), Item.redstone, 
-//			Character.valueOf('G'), gysahlGreenBlock
-//		});
 
 		// chocopedia
 		GameRegistry.addRecipe(new ItemStack(chocopediaItem, 1), new Object[]
