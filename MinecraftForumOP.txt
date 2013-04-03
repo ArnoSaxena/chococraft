@@ -2,7 +2,7 @@
 [size=2]banner made by [url="http://www.minecraftforum.net/user/223231-galindorf/"]galindorf[/url][/size]
 
 UPDATED FOR MINECRAFT 1.5.1
-Version 2.7.1
+Version 2.7.2
 Requires: [url="http://www.minecraftforge.net/"]Forge[/url] [url="http://files.minecraftforge.net/"]7.7.0.600+[/url]
 Tested with: [url="http://www.minecraftforge.net/"]Forge[/url] [url="http://files.minecraftforge.net/"]7.7.0.600[/url]
 
@@ -19,7 +19,9 @@ As of version 2.0.4 this mod is in working condition for SMP.
 [color=#ff0000][b]ACHTUNG! CAUTION! ¡CUIDADO! चेतावनी! ATTENZIONE! береги́сь!
 This version of Chococraft is not compatible to versions pre 2.0.0 (pre mc 1.3.2). It will destroy your saved world if old Chocobos are included. Thus, if you want to use an old world with the new version of this mod, you should first start minecraft without the Chococraft mod, enter and save your world, thus removing all traces of older versions of Chococraft and only then start minecraft with the new version of Chococraft and tame new Chocobos.[/b][/color]
 
-Download: [url="http://www.arno-saxena.de/minecraft/Chococraft_2.7.1.zip"]Torojimas ChocoCraft 2.7.1[/url]
+Download: [url="http://www.arno-saxena.de/minecraft/Chococraft_2.7.2.zip"]Torojimas ChocoCraft 2.7.2[/url]
+
+[url="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=3RZTLRHB5GZUL&lc=BE&item_name=Torojima%27s%20ChocoCraft&item_number=0003&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted"][img]https://www.paypalobjects.com/en_US/BE/i/btn/btn_donateCC_LG.gif[/img][/url]
 
 Downloads so far: [img]http://www.arno-saxena.de/minecraft/chocoboDownloads.png[/img]
 
@@ -88,7 +90,13 @@ Thanks to rsmalec
 Thanks to InTheLittleWood[/spoiler][/spoiler]
 
 CHANGELOG:
-[spoiler]v.2.7.1 by Torojima
+[spoiler]v.2.7.2 by Torojima
+   1. fixed straw harvest bug
+   2. new Chocopedia icon
+   3. fixed vanilla feather and vanilla saddle hijack
+   4. added gysahl pickles
+
+v.2.7.1 by Torojima
    1. updated to mc 1.5.1
 
 v.2.6.2 by Torojima
@@ -527,11 +535,13 @@ Items and Blocks:
    9. [img]http://www.arno-saxena.de/pictures/chococraft/item_gysahl_loverly.png[/img] Loverly Gysahl - Loverly Gysahls are a special domestic mutation of Gysahl Greens. When growing Gysahl seeds in tilted earth, there is a chance the crop will grow into a Loverly Gysahl. This form of the plant does not appear in the wild. Loverly Gysahls are used to make a Chocobo fall in love and look for a partner to procreate.
 10. [img]http://www.arno-saxena.de/pictures/chococraft/item_gysahl_golden.png[/img] Golden Gysahl - Just like Loverly Gysahls, Golden Gysahls are used to make Chocobos procreate. Like Loverly Gysahls this is a domestic mutation of Gysahl Greens. These romantic herbs are known to increase the chances of adquiring a new type of Chocobo.
 11. [img]http://www.arno-saxena.de/pictures/chococraft/item_gysahl_cake.png[/img] Gysahl Cake - Chicobos just love gysahl greens and cakes, and when you join both, they're get really happy. Gysahl Cakes give joy to a Chicobo, making him grow up instantly into one big and beautiful Chocobo.
-12. [img]http://www.arno-saxena.de/pictures/chococraft/item_gysahl_pink.png[/img] Pink Gysahl - Weird synthetic gysahls are known to cause extreme effects to Chocobos. So beware.
-13. [img]http://www.arno-saxena.de/pictures/chococraft/item_gysahl_red.png[/img] Red Gysahl - Weird synthetic gysahls are known to cause extreme effects to Chocobos. So beware.
-14. [img]http://www.arno-saxena.de/pictures/chococraft/item_gysahl_seed.png[/img] Gysahl Seeds - Seeds made from Gysahl Greens. Can be planted to build a Gysahl Green farm and can be fertilized with Chocobo Fertilizer.
-15. [img]http://www.arno-saxena.de/pictures/chococraft/item_chocopedia.png[/img] Chocopedia - Notebook that keeps information about the Chocobos. Allows player to name their chocobo, check on information about health and breeing status and even give orders.
-16. [img]http://www.arno-saxena.de/pictures/chococraft/item_straw.png[/img] Straw - Straw cover for a Chocobo pen.[/spoiler]
+12. [img]http://www.arno-saxena.de/pictures/chococraft/item_gysahl_rawpickles.png[/img] Raw Gysahl Pickles - First step towards some tasty cooked Gysahl pickles.
+13. [img]http://www.arno-saxena.de/pictures/chococraft/item_gysahl_pickles.png[/img] After cooking raw Gysahl pickles you will receive this tasty Gysahl pickles. It will not only taste marvelous, but also reduce your famine a little.
+14. [img]http://www.arno-saxena.de/pictures/chococraft/item_gysahl_pink.png[/img] Pink Gysahl - Weird synthetic gysahls are known to cause extreme effects to Chocobos. So beware.
+15. [img]http://www.arno-saxena.de/pictures/chococraft/item_gysahl_red.png[/img] Red Gysahl - Weird synthetic gysahls are known to cause extreme effects to Chocobos. So beware.
+16. [img]http://www.arno-saxena.de/pictures/chococraft/item_gysahl_seed.png[/img] Gysahl Seeds - Seeds made from Gysahl Greens. Can be planted to build a Gysahl Green farm and can be fertilized with Chocobo Fertilizer.
+17. [img]http://www.arno-saxena.de/pictures/chococraft/item_chocopedia.png[/img] Chocopedia - Notebook that keeps information about the Chocobos. Allows player to name their chocobo, check on information about health and breeing status and even give orders.
+18. [img]http://www.arno-saxena.de/pictures/chococraft/item_straw.png[/img] Straw - Straw cover for a Chocobo pen.[/spoiler]
 
 Recipes:
 [spoiler]   1. [img]http://www.arno-saxena.de/pictures/chococraft/item_saddle.png[/img] Chocobo Saddle = 1 Leather, 2 Strings, 1 Chocobo Feather
@@ -550,23 +560,27 @@ Recipes:
 
       [img]http://www.arno-saxena.de/pictures/chococraft/crafting_whistle.png[/img]
 
-   5. [img]http://www.arno-saxena.de/pictures/chococraft/item_gysahl_cake.png[/img] Gysahl Cake = 2 Milk, 2 Wheat, 2 Sugar, 2 Gysahl Green, 1 Egg
-
-      [img]http://www.arno-saxena.de/pictures/chococraft/crafting_cake.png[/img]
-
-   6. [img]http://www.arno-saxena.de/pictures/chococraft/item_gysahl_seed.png[/img] Gysahl Seeds = 1 Gysahl Green
+   5. [img]http://www.arno-saxena.de/pictures/chococraft/item_gysahl_seed.png[/img] Gysahl Seeds = 1 Gysahl Green
 
       [img]http://www.arno-saxena.de/pictures/chococraft/crafting_seeds.png[/img]
 
-   7. [img]http://www.arno-saxena.de/pictures/chococraft/item_chocopedia.png[/img] Chocopedia = 1 Book, 2 Ink Sac, 4 Chocobo Feathers, 1 Lapis Lazuli and 1 Gold Nugget
+   6. [img]http://www.arno-saxena.de/pictures/chococraft/item_gysahl_cake.png[/img] Gysahl Cake = 2 Milk, 2 Wheat, 2 Sugar, 2 Gysahl Green, 1 Egg
+
+      [img]http://www.arno-saxena.de/pictures/chococraft/crafting_cake.png[/img]
+
+   7. [img]http://www.arno-saxena.de/pictures/chococraft/item_gysahl_rawpickles.png[/img] Raw Gysahl Pickles = 1 Gysahl Green, 1 Sugar
+
+      [img]http://www.arno-saxena.de/pictures/chococraft/crafting_pickles_raw.png[/img]
+
+   8. [img]http://www.arno-saxena.de/pictures/chococraft/item_chocopedia.png[/img] Chocopedia = 1 Book, 2 Ink Sac, 4 Chocobo Feathers, 1 Lapis Lazuli and 1 Gold Nugget
 
       [img]http://www.arno-saxena.de/pictures/chococraft/crafting_chocopedia.png[/img]
 
-   8. [img]http://www.arno-saxena.de/pictures/chococraft/item_arrow.png[/img] 4 Arrows = 1 Flint, 1 Stick and 1 Chocobo Feather
+   9. [img]http://www.arno-saxena.de/pictures/chococraft/item_arrow.png[/img] 4 Arrows = 1 Flint, 1 Stick and 1 Chocobo Feather
 
       [img]http://www.arno-saxena.de/pictures/chococraft/crafting_arrow.png[/img]
 
-   9. [img]http://www.arno-saxena.de/pictures/chococraft/item_straw.png[/img] 4 Straw = 1 Wheat
+  10. [img]http://www.arno-saxena.de/pictures/chococraft/item_straw.png[/img] 4 Straw = 1 Wheat
 
       [img]http://www.arno-saxena.de/pictures/chococraft/crafting_straw.png[/img]
 [/spoiler]
@@ -615,8 +629,6 @@ Screenshot by [url="http://www.minecraftforum.net/user/173045-torojima/"]Torojim
 
 Known Issues and Bugs:
 [spoiler]   1. Chocobos love to stare in the face of people. It's not as much dangerous as it is creepy.
-   2. Inventory not working yet.
-   3. While traveling on Chocobo, Chocobo model will twitch left and right.
 If you happen to find any more bug or issue, please report it on this thread and I'll look into it ASAP [img]http://static.minecraftforum.net//public/style_emoticons/default/smile.png[/img] [/spoiler]
 
 Config Files:
@@ -832,6 +844,16 @@ Acknowledgments:
 9. [url="http://www.minecraftforum.net/user/1200917-shadoxlunik/"]ShadoxLunik[/url] for the new purple/nether Chocobo skin
 10. [url="http://www.minecraftforum.net/user/525357-weltallofid/"]weltallofid[/url] for making a symmetric saddled skin.
 10. [url="http://www.minecraftforum.net/user/21540-leonblade/"]LeonBlade[/url] for beeing part of the developer team
+[/spoiler]
+
+Modpacks:
+[spoiler]Since I have been asked a few times for permission to add my mod to a mod-pack, here my general terms. If they are meet, you can send me a message asking for permission. If they are not meet, dont bother ...
+
+- no money will be made from the download of the mod-pack (URL-shortener, click-counter etc...)
+- Link to the ChocoCraft OP on www.minecraftforum.net will be provided in a text file included with the mod-pack (text file of mods list is sufficient)
+- Link to the ChocoCraft OP will be provided on your community/server web page if available
+- Modpack users will be informed about the latest version of ChocoCraft, thus I don't want to hear every to often about bugs fixed in the current official version, but not in the pack version.
+- I can revoke my permission any time (which I don't intend to do unprovoked without the modpacker doing anything objectionable)
 [/spoiler]
 
 Banner/Sig:
