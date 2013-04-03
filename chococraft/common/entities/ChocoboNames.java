@@ -31,7 +31,8 @@ public class ChocoboNames
         "Torobo", "Leon", "Firas", "Travis", "Indigo", "Montoya", "Cobalt", "Jinx", "Komet", "Beau", "Bone",
         "Claw", "Duke", "Easy", "Fire", "Fury", "Idol", "Iron", "Jack", "Mars", "Noir", "Snow", "Star", "Zero",
         "Ace", "Air", "Ice", "Max", "Neo", "Ray", "Alpha", "Arrow", "Avian", "Black", "Blade", "Blaze", "Blitz",
-        "Chaos", "Dandy", "Jolly", "Omega", "Pluto", "Point", "Quake", "Titan", "Hope", "Ifrit", "Shiva"
+        "Chaos", "Dandy", "Jolly", "Omega", "Pluto", "Point", "Quake", "Titan", "Hope", "Ifrit", "Shiva", "Polonium",
+        "Radon", "Sparks", "Lunik"
 
     };
 	
@@ -45,7 +46,7 @@ public class ChocoboNames
         "Face", "Fire", "Fury", "Iris", "Jade", "Joli", "Kiku", "Lady", "Miel", "Momo", "Moon", "Nana",
         "Noir", "Nova", "Rain", "Rose", "Ruby", "Star", "Vega", "Air", "Aki", "Ayu", "Fee", "Sky", "Sun",
         "Amber", "Angel", "Azure", "Belle", "Clair", "Ebony", "Ember", "Fairy", "Flare", "Glory", "Jaune", 
-        "Jeune", "Jolly", "Lucky", "Olive", "Orange", "Venus", "Lightning"
+        "Jeune", "Jolly", "Lucky", "Olive", "Orange", "Venus", "Lightning", "Galindorf"
     };
     
     public static String getRandomName(boolean isMale)
