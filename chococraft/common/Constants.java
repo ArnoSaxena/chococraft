@@ -16,7 +16,7 @@ package chococraft.common;
 
 public class Constants
 {
-	public final static String TCC_VERSION = "2.7.1";
+	public final static String TCC_VERSION = "2.7.2";
 	public final static String TCC_MODID = "chococraft";
 	public final static String TCC_NAME = "Torojimas ChocoCraft";
 
@@ -27,20 +27,21 @@ public class Constants
 	public static int GYSAHL_GOLDEN_ID           = 22604;
 	public static int GYSAHL_PINK_ID             = 22605;
 	public static int GYSAHL_RED_ID              = 22606;
-	public static int GYSAHL_CHIBI_ID            = 22607;
-	public static int GYSAHL_CAKE_ID             = 22608;
-	public static int CHOCOBO_LEG_RAW_ID         = 22609;
-	public static int CHOCOBO_LEG_COOKED_ID      = 22610;
-	public static int CHOCOBO_FEATHER_ID         = 22611;
-	public static int CHOCOBO_SADDLE_BAGS_ID     = 22612;
-	public static int CHOCOBO_PACK_BAGS_ID       = 22613;
-	public static int CHOCOBO_WHISTLE_ID         = 22614;
-	public static int CHOCOPEDIA_ID              = 22615;
-	public static int PURPLE_CHOCOBO_EGG_ID      = 22616;
-	public static int CHOCO_DISGUISE_HELMET_ID   = 22617;
-	public static int CHOCO_DISGUISE_PLATE_ID    = 22618;
-	public static int CHOCO_DISGUISE_LEGS_ID     = 22619;
-	public static int CHOCO_DISGUISE_BOOTS_ID    = 22620;
+	public static int GYSAHL_PICKLES_ID          = 22607;
+	public static int GYSAHL_PICKLES_RAW_ID      = 22608;
+	public static int GYSAHL_CAKE_ID             = 22609;
+	public static int CHOCOBO_LEG_RAW_ID         = 22610;
+	public static int CHOCOBO_LEG_COOKED_ID      = 22611;
+	public static int CHOCOBO_FEATHER_ID         = 22612;
+	public static int CHOCOBO_SADDLE_BAGS_ID     = 22613;
+	public static int CHOCOBO_PACK_BAGS_ID       = 22614;
+	public static int CHOCOBO_WHISTLE_ID         = 22615;
+	public static int CHOCOPEDIA_ID              = 22616;
+	public static int PURPLE_CHOCOBO_EGG_ID      = 22617;
+	public static int CHOCO_DISGUISE_HELMET_ID   = 22618;
+	public static int CHOCO_DISGUISE_PLATE_ID    = 22619;
+	public static int CHOCO_DISGUISE_LEGS_ID     = 22620;
+	public static int CHOCO_DISGUISE_BOOTS_ID    = 22621;
 	
 	// default (flower) block id's (reserved 1551 to 1555)
 	public static int GYSAHL_GREEN_BLOCK_ID      = 1551;
@@ -63,9 +64,10 @@ public class Constants
 	public static String KEY_DISGUISE_LEGS  = "disguiseLegs";
 	public static String KEY_DISGUISE_BOOTS = "disguiseBoots";
 	public static String KEY_EGG_PURPLE     = "eggPurple";
-	public static String KEY_FEATHER        = "feather";
+	public static String KEY_FEATHER        = "chocoboFeather";
 	public static String KEY_GY_CAKE        = "gysahl_cake";
-	public static String KEY_GY_CHIBI       = "gysahl_chibi";
+	public static String KEY_GY_PICKLES     = "gysahl_pickles";
+	public static String KEY_GY_PICKLES_RAW = "gysahl_rawpickles";
 	public static String KEY_GY_GOLDEN      = "gysahl_golden";
 	public static String KEY_GY_LOVERLY     = "gysahl_loverly";
 	public static String KEY_GY_PINK        = "gysahl_pink";
@@ -74,7 +76,7 @@ public class Constants
 	public static String KEY_LEG_COOKED     = "legCooked";
 	public static String KEY_LEG_RAW        = "legRaw";
 	public static String KEY_PACKBAG        = "packbag";
-	public static String KEY_SADDLE         = "saddle";
+	public static String KEY_SADDLE         = "chocoboSaddle";
 	public static String KEY_SADDLEBAG      = "saddlebag";
 	public static String KEY_WHISTLE        = "whistle";
 	

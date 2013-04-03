@@ -439,15 +439,21 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo
 	 */
 	public boolean attackEntityFrom(DamageSource damagesource, int i)
 	{
-		Entity entity = damagesource.getEntity();
-
-		if (entity != null && entity == this.riddenByEntity)
+		if(null != damagesource)
 		{
-			return false;
+			Entity entity = damagesource.getEntity();
+			if (entity != null && entity == this.riddenByEntity)
+			{
+				return false;
+			}
+			else
+			{
+				return super.attackEntityFrom(damagesource, i);
+			}
 		}
 		else
 		{
-			return super.attackEntityFrom(damagesource, i);
+			return false;
 		}
 	}
 

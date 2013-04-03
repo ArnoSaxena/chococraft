@@ -323,6 +323,7 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 	{
 		super.onLivingUpdate();
 		
+		// handle mating behaviour
 		if (this.isInLove())
         {
             // do we have an attack entity?
@@ -332,11 +333,17 @@ public abstract class EntityChocobo extends EntityChocoboRideable
         		{
         			ChocoboParticleHelper.showParticleAroundEntityFx("heart", this);
         		}
-            	// are they not in love anymore?
-            	if (!((EntityAnimalChocobo)this.entityToAttack).isInLove())
-            	{
-            		this.entityToAttack = null;
-            	}
+        		
+            	// are they still in love?
+        		if(this.entityToAttack instanceof EntityAnimalChocobo)
+        		{
+        			EntityAnimalChocobo otherChoco = (EntityAnimalChocobo)this.entityToAttack;
+        			if(!otherChoco.isInLove())
+        			{
+                		this.entityToAttack = null;
+                		this.hasMate = false;        				
+        			}
+        		}        		
             }
         }
         

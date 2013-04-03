@@ -71,6 +71,7 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
 	
 
     protected int inLove;
+	protected boolean hasMate;
     public int breeding;
     protected PathEntity pathToEntity;
     public Entity entityToAttack;
@@ -99,6 +100,7 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
         this.setFollowing(false);
         this.setIsMale(this.getRandomIsMale());
         this.getNavigator().setAvoidsWater(true);
+		this.hasMate = false;
         
 //        tasks.addTask(this.taskNumber++, new EntityAISwimming(this));
 //        tasks.addTask(this.taskNumber++, new EntityAIChocoboPanic(this, 0.38F));
@@ -733,6 +735,7 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
     }
 
     @SuppressWarnings("rawtypes")
+    @Override
     protected Entity findPlayerToAttack()
     {
         if (this.fleeingTick > 0)
@@ -740,12 +743,12 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
             return null;
         }
         
-        if (this.isInLove() && !this.isChild())
+        if (this.isInLove())
         {
             List list = this.worldObj.getEntitiesWithinAABB(EntityChocobo.class, this.boundingBox.expand(8F, 8F, 8F));
             for (int i = 0; i < list.size(); i++)
             {
-                EntityAnimalChocobo otherChoco = (EntityAnimalChocobo)list.get(i);
+                EntityChocobo otherChoco = (EntityChocobo)list.get(i);
                 
                 if(otherChoco != this)
                 {
@@ -753,6 +756,8 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
                 	
                 	if(canMate && !otherChoco.isChild())
                 	{
+                		this.hasMate = true;
+                		otherChoco.hasMate = true;
                 		return otherChoco;
                 	}
                 }
@@ -991,7 +996,9 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
         }
         
         this.hasAttacked = this.isMovementCeased();
+        
         float f = 16F;
+        
         if (this.entityToAttack == null)
         {
         	this.entityToAttack = this.findPlayerToAttack();
@@ -1012,6 +1019,8 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
                 this.attackEntity(this.entityToAttack, distToAttackEntity);
             }
         }
+        
+        
         if (!this.hasAttacked && this.entityToAttack != null && (this.pathToEntity == null || this.rand.nextInt(20) == 0))
         {
         	this.pathToEntity = this.worldObj.getPathEntityToEntity(this, this.entityToAttack, f, false, false, false, false);
@@ -1020,15 +1029,20 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
         {
             this.updateWanderPath();
         }
+        
+        
         int i = MathHelper.floor_double(boundingBox.minY + 0.5D);
         this.rotationPitch = 0.0F;
+        
         if (this.pathToEntity == null || this.rand.nextInt(100) == 0)
         {
             super.updateEntityActionState();
             this.pathToEntity = null;
             return;
         }
+        
         Vec3 vector = this.pathToEntity.getPosition(this);
+        
         for (double d = this.width * 2.0F; vector != null && vector.squareDistanceTo(posX, vector.yCoord, posZ) < d * d;)
         {
             this.pathToEntity.incrementPathIndex();

@@ -85,6 +85,8 @@ public class ModChocoCraft
 	public static Property gysahlRedId;
 	public static Property gysahlChibiId;
 	public static Property gysahlCakeId;
+	public static Property gysahlPicklesId;
+	public static Property gysahlPicklesRawId;
 	public static Property chocoboLegRawId;
 	public static Property chocoboLegCookedId;
 	public static Property chocoboFeatherId;
@@ -109,6 +111,8 @@ public class ModChocoCraft
 	public static Item gysahlRedItem;
 	public static Item gysahlChibiItem;
 	public static Item gysahlCakeItem;
+	public static Item gysahlPicklesItem;
+	public static Item gysahlPicklesRawItem;
 	public static Item chocoboLegRawItem;
 	public static Item chocoboLegCookedItem;
 	public static Item chocoboFeatherItem;
@@ -268,8 +272,9 @@ public class ModChocoCraft
 		gysahlGoldenId = mainConfiguration.getItem(Configuration.CATEGORY_ITEM, "gysahlGoldenItem.id", Constants.GYSAHL_GOLDEN_ID);
 		gysahlPinkId = mainConfiguration.getItem(Configuration.CATEGORY_ITEM, "gysahlPinkItem.id", Constants.GYSAHL_PINK_ID);
 		gysahlRedId = mainConfiguration.getItem(Configuration.CATEGORY_ITEM, "gysahlRedItem.id", Constants.GYSAHL_RED_ID);
-		gysahlChibiId = mainConfiguration.getItem(Configuration.CATEGORY_ITEM, "gysahlChibiItem.id", Constants.GYSAHL_CHIBI_ID);
 		gysahlCakeId = mainConfiguration.getItem(Configuration.CATEGORY_ITEM, "gysahlCakeItem.id", Constants.GYSAHL_CAKE_ID);
+		gysahlPicklesId = mainConfiguration.getItem(Configuration.CATEGORY_ITEM, "gysahlPicklesItem.id", Constants.GYSAHL_PICKLES_ID);
+		gysahlPicklesRawId = mainConfiguration.getItem(Configuration.CATEGORY_ITEM, "gysahlPicklesRawItem.id", Constants.GYSAHL_PICKLES_RAW_ID);
 		chocoboLegRawId = mainConfiguration.getItem(Configuration.CATEGORY_ITEM, "chocoboLegRawItem.id", Constants.CHOCOBO_LEG_RAW_ID);
 		chocoboLegCookedId = mainConfiguration.getItem(Configuration.CATEGORY_ITEM, "chocoboLegCookedItem.id", Constants.CHOCOBO_LEG_COOKED_ID);
 		chocoboFeatherId = mainConfiguration.getItem(Configuration.CATEGORY_ITEM, "chocoboFeatherItem.id", Constants.CHOCOBO_FEATHER_ID);
@@ -417,6 +422,17 @@ public class ModChocoCraft
 		LanguageRegistry.addName(gysahlCakeItem, "Gysahl Cake");
 		gysahlCakeItem.setCreativeTab(CreativeTabs.tabMisc);
 		//gysahlCakeItem.setCreativeTab(chocoboCreativeItems);
+		
+		// Gysahl Pickles
+		gysahlPicklesRawItem = (new ChocoboItem(gysahlPicklesRawId.getInt()));
+		gysahlPicklesRawItem.setUnlocalizedName(Constants.KEY_GY_PICKLES_RAW).setMaxStackSize(64);
+		LanguageRegistry.addName(gysahlPicklesRawItem, "Gysahl Raw Pickles");
+		gysahlPicklesRawItem.setCreativeTab(CreativeTabs.tabMisc);
+
+		gysahlPicklesItem = new ChocoboItemFood(gysahlPicklesId.getInt(), 2, false);
+		gysahlPicklesItem.setUnlocalizedName(Constants.KEY_GY_PICKLES);
+		LanguageRegistry.addName(gysahlPicklesItem, "Gysahl Pickles");
+		gysahlPicklesItem.setCreativeTab(CreativeTabs.tabMisc);
 
 		// Chocob Whistle
 		chocoboWhistleItem = (new ChocoboItem(chocoboWhistleId.getInt())).setUnlocalizedName(Constants.KEY_WHISTLE).setMaxStackSize(64);
@@ -482,6 +498,7 @@ public class ModChocoCraft
 	private void addSmeltings()
 	{
 		GameRegistry.addSmelting(chocoboLegRawItem.itemID, new ItemStack(chocoboLegCookedItem), 0.1F);
+		GameRegistry.addSmelting(gysahlPicklesRawItem.itemID, new ItemStack(gysahlPicklesItem), 0.1F);
 	}
 
 	private void addRecipes()
@@ -571,6 +588,13 @@ public class ModChocoCraft
 			Character.valueOf('S'), Item.sugar, 
 			Character.valueOf('W'), Item.wheat,
 			Character.valueOf('E'), Item.egg
+		});
+		
+		// gysahl pickles
+		GameRegistry.addShapelessRecipe(new ItemStack(gysahlPicklesRawItem, 2), new Object[]
+		{
+			new ItemStack(gysahlGreenBlock, 1),
+			new ItemStack(Item.sugar, 1)
 		});
 
 		// pink gysahl
