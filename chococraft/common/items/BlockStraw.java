@@ -29,6 +29,7 @@ public class BlockStraw extends Block
     }
     
     @SideOnly(Side.CLIENT)
+    @Override
     public Icon getBlockTextureFromSideAndMetadata(int i, int j)
 	{
     	return this.blockIcon;
@@ -43,6 +44,7 @@ public class BlockStraw extends Block
      * Returns a bounding box from the pool of bounding boxes (this means this box can change after the pool has been
      * cleared to be reused)
      */
+    @Override
     public AxisAlignedBB getCollisionBoundingBoxFromPool(World par1World, int par2, int par3, int par4)
     {
     	return null;
@@ -52,6 +54,7 @@ public class BlockStraw extends Block
      * Is this block (a) opaque and (b) a full 1m cube?  This determines whether or not to render the shared face of two
      * adjacent blocks and also whether the player can attach torches, redstone wire, etc to this block.
      */
+    @Override
     public boolean isOpaqueCube()
     {
         return false;
@@ -60,6 +63,7 @@ public class BlockStraw extends Block
     /**
      * If this block doesn't render as an ordinary block it will return False (examples: signs, buttons, stairs, etc)
      */
+    @Override
     public boolean renderAsNormalBlock()
     {
         return false;
@@ -68,12 +72,13 @@ public class BlockStraw extends Block
     /**
      * Updates the blocks bounds based on its current state. Args: world, x, y, z
      */
+    @Override
     public void setBlockBoundsBasedOnState(IBlockAccess par1IBlockAccess, int par2, int par3, int par4)
     {
         this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.0625F, 1.0F);
     }
 
-    
+    @Override
     public void onNeighborBlockChange(World world, int posX, int posY, int posZ, int par5)
     {
         this.canStrawStay(world, posX, posY, posZ);
@@ -95,6 +100,7 @@ public class BlockStraw extends Block
     /**
      * Checks to see if its valid to put this block at the specified coordinates. Args: world, x, y, z
      */
+    @Override
     public boolean canPlaceBlockAt(World world, int posX, int posY, int posZ)
     {
         int atBlockId = world.getBlockId(posX, posY - 1, posZ);
@@ -106,15 +112,18 @@ public class BlockStraw extends Block
      * Called when the player destroys a block with an item that can harvest it. (i, j, k) are the coordinates of the
      * block and l is the block's subtype/damage.
      */
+    @Override
     public void harvestBlock(World world, EntityPlayer player, int posX, int posY, int posZ, int blockDamage)
     {
         super.harvestBlock(world, player, posX, posY, posZ, blockDamage);
-        world.setBlock(posX, posY, posZ, this.blockID, 0, 2);
+        world.setBlockToAir(posX, posY, posZ);
+        //world.setBlock(posX, posY, posZ, this.blockID, 0, 2);
     }
 
     /**
      * Returns the ID of the items to drop on destruction.
      */
+    @Override
     public int idDropped(int par1, Random par2Random, int par3)
     {
         return this.blockID;
@@ -123,14 +132,22 @@ public class BlockStraw extends Block
     /**
      * Returns the quantity of items to drop on block destruction.
      */
+    @Override
     public int quantityDropped(Random par1Random)
     {
         return 1;
+    }
+    
+    @Override
+    public int quantityDropped(int meta, int fortune, Random random)
+    {
+        return (meta & 7) + 1;
     }
 
     /**
      * Ticks the block if it's been scheduled
      */
+    @Override
     public void updateTick(World world, int posX, int posY, int posZ, Random random)
     {
         if (world.getSavedLightValue(EnumSkyBlock.Block, posX, posY, posZ) > 11)
@@ -144,6 +161,7 @@ public class BlockStraw extends Block
      * coordinates.  Args: blockAccess, x, y, z, side
      */
     @SideOnly(Side.CLIENT)
+    @Override
     public boolean shouldSideBeRendered(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5)
     {
         return par5 == 1 ? true : super.shouldSideBeRendered(par1IBlockAccess, par2, par3, par4, par5);
