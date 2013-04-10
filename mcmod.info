@@ -1,0 +1,20 @@
+[
+{
+  "modid": "chococraft",
+  "name": "Torojima's ChocoCraft",
+  "description": "Adds a mountable, breedable mob and supporting items.",
+  "version": "2.7.3",
+  "credits": "",
+  "logoFile": "/resources/chococraft_icon.png",
+  "mcversion": "1.5.1",
+  "url": "http://www.minecraftforum.net/topic/1119809-15sspsmpforge-torojimas-chococraft-261-explore-your-worlds-riding-chocobos/",
+  "updateUrl": "",
+  "authors": ["Torojima <al-s@gmx.de>"],
+  "parent": "",
+  "screenshots": [],
+  "dependencies": [
+     "mod_MinecraftForge"
+  ],
+  "useDependencyInformation": "true"
+}
+]
