@@ -45,6 +45,9 @@ minecraft 1.2.3: ChocoCraft 1.4.1u
 
 VIDEOS:
 [spoiler]Spotlights:
+[url="http://www.minecraftforum.net/user/1520892-thediamondminecart/"]TheDiamondMinecart[/url] has done a nice review, using the 2.7.1 version.
+[media]http://www.youtube.com/watch?v=u2tMN5QEXig[/media]
+
 [url="http://www.minecraftforum.net/user/1831208-rainnero/"]RainNero[/url] has done a very good mod spotlight using the 2.4.2 version. Great as an introduction to everybody new to ChocoCraft. 
 [media]http://www.youtube.com/watch?v=mX6JmEi-iqI[/media]
 
