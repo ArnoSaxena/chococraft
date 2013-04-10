@@ -2,11 +2,11 @@ package chococraft.common;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.DamageSource;
+import net.minecraftforge.event.Event.Result;
 import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.player.BonemealEvent;
 import chococraft.common.entities.colours.EntityChocoboPurple;
-import chococraft.common.helper.ChocoboPlayerHelper;
 import chococraft.common.items.BlockGysahlStem;
 
 public class ChocoCraftEventCommon
@@ -18,7 +18,7 @@ public class ChocoCraftEventCommon
 		{
 			if (((BlockGysahlStem)ModChocoCraft.gysahlStemBlock).onBonemealUse(event.world, event.X, event.Y, event.Z))
 			{
-				ChocoboPlayerHelper.useCurrentItem(event.entityPlayer);
+				event.setResult(Result.ALLOW);
 			}
 		}
 	}
