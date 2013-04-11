@@ -75,39 +75,46 @@ public class ChocoBagContainer extends Container
 	}
 
 	@Override
-    public ItemStack transferStackInSlot(EntityPlayer player, int slot)
+    public ItemStack transferStackInSlot(EntityPlayer player, int sourceSlotIdx)
     {
-        ItemStack iStackTarget = null;
-        Slot slotObj = (Slot)this.inventorySlots.get(slot);
+        ItemStack targetItemStack = null;
+        Slot sourceSlot = (Slot)this.inventorySlots.get(sourceSlotIdx);
 
-        if (slotObj != null && slotObj.getHasStack())
+        if (sourceSlot != null && sourceSlot.getHasStack())
         {
-            ItemStack iStackSource = slotObj.getStack();
-            iStackTarget = iStackSource.copy();
+            ItemStack sourceItemStack = sourceSlot.getStack();
+            targetItemStack = sourceItemStack.copy();
 
             int nSlots = this.chocoBagInv.getSizeInventory();
             
-            if (slot < nSlots)
+            if (sourceSlotIdx < nSlots)
             {
-                if (!this.mergeItemStack(iStackSource, nSlots, this.inventorySlots.size(), true))
+                if (!this.mergeItemStack(sourceItemStack, nSlots, this.inventorySlots.size(), true))
                 {
                     return null;
                 }
             }
-            else if (!this.mergeItemStack(iStackSource, 0, nSlots, false))
+            else if (!this.mergeItemStack(sourceItemStack, 0, nSlots, false))
             {
                 return null;
             }
 
-            if (iStackSource.stackSize == 0)
+    		if (sourceItemStack.stackSize == 0)
             {
-                slotObj.putStack((ItemStack)null);
+                sourceSlot.putStack((ItemStack)null);
             }
             else
             {
-                slotObj.onSlotChanged();
+                sourceSlot.onSlotChanged();
             }
         }
-        return iStackTarget;
+        return targetItemStack;
+    }
+	
+	@Override
+    public ItemStack slotClick(int slotIdx, int par2, int par3, EntityPlayer player)
+    {
+		// mean hack ... not very nice ...
+    	return super.slotClick(slotIdx, par2, par3 == 4 ? 1 : par3, player);
     }
 }
