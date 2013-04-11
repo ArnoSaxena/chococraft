@@ -11,8 +11,11 @@ This version of Chococraft is not compatible to versions pre 1.3.2. It will dest
 
 Changelog:
 1. fixed bonemeal bug
+2. fixed inventory-drop-from-shift-click-on-action-bar-bug
 
 see the minecraft forums for further informations
 http://www.minecraftforum.net/topic/1119809-15sspsmpforge-torojimas-chococraft-261-explore-your-worlds-riding-chocobos/
+
+or follow me on twitter https://twitter.com/Torojima
 
 Torojima
