@@ -14,13 +14,22 @@
 
 package chococraft.client;
 
-import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
 import chococraft.common.CommonProxyChocoCraft;
-import chococraft.common.Constants;
 import chococraft.common.entities.EntityChicobo;
-import chococraft.common.entities.colours.*;
-import chococraft.common.entities.models.*;
+import chococraft.common.entities.colours.EntityChocoboBlack;
+import chococraft.common.entities.colours.EntityChocoboBlue;
+import chococraft.common.entities.colours.EntityChocoboGold;
+import chococraft.common.entities.colours.EntityChocoboGreen;
+import chococraft.common.entities.colours.EntityChocoboPink;
+import chococraft.common.entities.colours.EntityChocoboPurple;
+import chococraft.common.entities.colours.EntityChocoboRed;
+import chococraft.common.entities.colours.EntityChocoboWhite;
+import chococraft.common.entities.colours.EntityChocoboYellow;
+import chococraft.common.entities.models.ModelChicobo;
+import chococraft.common.entities.models.ModelChocobo;
+import chococraft.common.entities.models.RenderChicobo;
+import chococraft.common.entities.models.RenderChocobo;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 
 public class ClientProxyChocoCraft extends CommonProxyChocoCraft
@@ -29,8 +38,8 @@ public class ClientProxyChocoCraft extends CommonProxyChocoCraft
     public void registerRenderThings()
     {
     	//MinecraftForgeClient.preloadTexture(Constants.CHOCOBO_ITEM_TEXTURES);
-        MinecraftForgeClient.preloadTexture(Constants.CHOCOBO_ARMOUR_TEXTURES_1);
-        MinecraftForgeClient.preloadTexture(Constants.CHOCOBO_ARMOUR_TEXTURES_2);
+        //MinecraftForgeClient.preloadTexture(Constants.CHOCOBO_ARMOUR_TEXTURES_1);
+        //MinecraftForgeClient.preloadTexture(Constants.CHOCOBO_ARMOUR_TEXTURES_2);
     }
     
     public static void registerRenderInformation()

@@ -4,7 +4,7 @@
 UPDATED FOR MINECRAFT 1.5.1
 Version 2.7.3
 Requires: [url="http://www.minecraftforge.net/"]Forge[/url] [url="http://files.minecraftforge.net/"]7.7.0.600+[/url]
-Tested with: [url="http://www.minecraftforge.net/"]Forge[/url] [url="http://files.minecraftforge.net/"]7.7.1.645[/url]
+Tested with: [url="http://www.minecraftforge.net/"]Forge[/url] [url="http://files.minecraftforge.net/"]7.7.1.666[/url]
 
 This Mod is the continuation of [url="http://www.minecraftforum.net/user/1051245-eddiev/"]EddieV's[/url] mod. The original thread can be found [url="http://www.minecraftforum.net/topic/952372-chococraft-12-mc-11-chocobos-now-fly/"]here[/url]. I've officially taken over the helm with Eddie's kind blessings.
 
@@ -405,7 +405,7 @@ Chocobos and their behaviour:
 [spoiler]There are currently 9 types of Chocobos:
 Yellow, Green, Blue, Black, White, Gold, Pink, Red and Purple
 
-[img]http://www.arno-saxena.de/pictures/chococraft/chocobo_colours.png[/img]
+[img]http://www.arno-saxena.de/pictures/chococraft/chocobo_colours_org.png[/img]
 Picture by [url="http://www.minecraftforum.net/user/524192-uncletravis/"]uncletravis[/url]
 
 The average Chocobos are yellow, so all the wild ones you'll encounter will be of this type. Chocobos can be found in forests, plains and mountains (including snowy forests and mountains).
@@ -596,7 +596,7 @@ Recipes:
 
 Screenshots:
 [spoiler]Different types of Chocobos:
-[img]http://www.arno-saxena.de/pictures/chococraft/chocobo_colours.png[/img]
+[img]http://www.arno-saxena.de/pictures/chococraft/chocobo_colours_org.png[/img]
 Screenshot by [url="http://www.minecraftforum.net/user/524192-uncletravis/"]uncletravis[/url]
 
 Okay, maybe there are more than 6:
@@ -852,7 +852,7 @@ Acknowledgments:
 8. The models of the Chicobos were HIGHLY inspired by the chicks present in Baby Animals Mod. If you don't know this mod, you should also go get it ASAP.
 9. [url="http://www.minecraftforum.net/user/1200917-shadoxlunik/"]ShadoxLunik[/url] for the new purple/nether Chocobo skin
 10. [url="http://www.minecraftforum.net/user/525357-weltallofid/"]weltallofid[/url] for making a symmetric saddled skin.
-10. [url="http://www.minecraftforum.net/user/21540-leonblade/"]LeonBlade[/url] for beeing part of the developer team
+11. [url="http://www.minecraftforum.net/user/21540-leonblade/"]LeonBlade[/url] for helping with v.1.6.10.
 [/spoiler]
 
 Modpacks:

@@ -1,0 +1,25 @@
+[img]http://www.arno-saxena.de/pictures/chococraft/banner_title.png[/img]
+[size=2]banner made by [url="http://www.minecraftforum.net/user/223231-galindorf/"]galindorf[/url][/size]
+
+UPDATED FOR MINECRAFT 1.5.1
+Version 2.7.3
+Requires: [url="http://www.minecraftforge.net/"]Forge[/url] [url="http://files.minecraftforge.net/"]7.7.0.600+[/url]
+Tested with: [url="http://www.minecraftforge.net/"]Forge[/url] [url="http://files.minecraftforge.net/"]7.7.1.645[/url]
+
+This Mod is the continuation of [url="http://www.minecraftforum.net/user/1051245-eddiev/"]EddieV's[/url] mod. The original thread can be found [url="http://www.minecraftforum.net/topic/952372-chococraft-12-mc-11-chocobos-now-fly/"]here[/url]. I've officially taken over the helm with Eddie's kind blessings.
+
+This mod adds a mob called Chocobo to the game. This includes different coloured mob types with different attributes in their grown-up and juvenile form.
+
+The most basic type can be found in the wild and can be tamed by using "Gysahl Greens" on them. Gysahl Greens is a plant found in the wild, but also can be planted by sowing Gysahl Seeds. Gysahl Seeds can be received by crafting from Gysahl Greens or by harvesting planted Gysahl Greens.
+
+Chocobos can be breed and procreate. The offspring will be a Chicobo, the juvenile form of a Chocobo. After a while a Chicobo will grow into a Chocobo. Chicobos will be born wild and have to be tamed. Chicobos will inherit the type from one of their parents or mutate into new types. Thus by repeatedly breeding Chocobos all normal types of Chocobos can be acquired from tamed wild Chocobos. There are a few special Chocobo types though, which can only be acquired by special means.
+
+[url="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=3RZTLRHB5GZUL&lc=BE&item_name=Torojima%27s%20ChocoCraft&item_number=0003&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted"][img]https://www.paypalobjects.com/en_US/BE/i/btn/btn_donateCC_LG.gif[/img][/url]
+
+Follow me on Twitter: [url=https://twitter.com/Torojima]Torojima[/url]
+
+Download: [url="http://www.minecraftforum.net/topic/1119809-151sspsmpforge-torojimas-chococraft-273-explore-your-worlds-riding-chocobos/"]Torojimas ChocoCraft 2.7.3 in the minecraft forum[/url]
+
+Banner/Sig:
+[code][url="http://www.minecraftforum.net/topic/1119809-151sspsmpforge-torojimas-chococraft-273-explore-your-worlds-riding-chocobos/"][img]http://www.arno-saxena.de/pictures/chococraft/banner_signature.png[/img][/url][/code]
+

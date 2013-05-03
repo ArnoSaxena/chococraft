@@ -681,12 +681,15 @@ public class ModChocoCraft
 		this.registerChocoboEntityClass(EntityChocoboPurple.class, "ChocoboPurple", this.getRGBInt(170, 70, 160), this.getRGBInt(60, 50, 111), "Purple Chocobo");
 	}
 
+	//@SuppressWarnings("unchecked")
 	private void registerChocoboEntityClass(Class <? extends Entity> entityClass, String entityName, int eggColor, int eggDotsColor, String visibleName)
 	{
 		int entityID = EntityRegistry.findGlobalUniqueEntityId();
 		LanguageRegistry.instance().addStringLocalization("entity." + entityName  + ".name", "en_US", visibleName);
 		EntityRegistry.registerGlobalEntityID(entityClass, entityName, entityID, eggColor, eggDotsColor);
-		EntityRegistry.registerModEntity(entityClass, entityName, entityID, instance, 128, 1, true);
+		EntityRegistry.registerModEntity(entityClass, entityName, entityID, instance, 128, 1, true);		
+		//EntityList.IDtoClassMapping.put(entityID, entityClass);
+		//EntityList.entityEggs.put(entityID, new EntityEggInfo(entityID, eggColor, eggDotsColor));
 	}
 
 	private int getRGBInt(int rInt, int gInt, int bInt)

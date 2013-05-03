@@ -2,16 +2,17 @@ package chococraft.common.items;
 
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.Entity;
 import net.minecraft.item.EnumArmorMaterial;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.common.IArmorTextureProvider;
 import chococraft.common.Constants;
 import chococraft.common.ModChocoCraft;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class ChocoboItemDisguise extends ItemArmor implements IArmorTextureProvider
+//public class ChocoboItemDisguise extends ItemArmor implements IArmorTextureProvider
+public class ChocoboItemDisguise extends ItemArmor
 {
 	
     private static final int maxDamageArray[] =
@@ -35,10 +36,10 @@ public class ChocoboItemDisguise extends ItemArmor implements IArmorTextureProvi
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public void updateIcons(IconRegister iconRegister)
+	public void registerIcons(IconRegister iconRegister)
 	{
 		String name = this.getUnlocalizedName().substring(5);
-		this.iconIndex = iconRegister.registerIcon(Constants.TCC_MODID + ":" + name);
+		this.itemIcon = iconRegister.registerIcon(Constants.TCC_MODID + ":" + name);
 	}
 	
     public int getItemEnchantability()
@@ -52,7 +53,8 @@ public class ChocoboItemDisguise extends ItemArmor implements IArmorTextureProvi
     }
 
 	@Override
-	public String getArmorTextureFile(ItemStack itemstack)
+	//public String getArmorTextureFile(ItemStack itemstack)
+    public String getArmorTexture(ItemStack itemstack, Entity entity, int slot, int layer)
 	{
 	    if (itemstack.itemID == ModChocoCraft.chocoDisguiseHelmetItem.itemID)
 	    {

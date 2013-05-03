@@ -18,8 +18,8 @@ public class ItemGysahlSeeds extends ItemSeeds
 	
 	@SideOnly(Side.CLIENT)
 	@Override
-	public void updateIcons(IconRegister iconRegister)
+	public void registerIcons(IconRegister iconRegister)
 	{
-		this.iconIndex = iconRegister.registerIcon(Constants.TCC_MODID + ":" + Constants.KEY_GY_SEEDS);
+		this.itemIcon = iconRegister.registerIcon(Constants.TCC_MODID + ":" + Constants.KEY_GY_SEEDS);
 	}
 }

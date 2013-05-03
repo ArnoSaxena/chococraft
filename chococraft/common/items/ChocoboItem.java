@@ -39,9 +39,9 @@ public class ChocoboItem extends Item
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public void updateIcons(IconRegister iconRegister)
+	public void registerIcons(IconRegister iconRegister)
 	{
 		String name = this.getUnlocalizedName().substring(5);
-		this.iconIndex = iconRegister.registerIcon(Constants.TCC_MODID + ":" + name);
+		this.itemIcon = iconRegister.registerIcon(Constants.TCC_MODID + ":" + name);
 	}	
 }
