@@ -37,16 +37,19 @@ public class BlockGysahlGreen extends BlockFlower
     }
 
     @SideOnly(Side.CLIENT)
-    public Icon getBlockTextureFromSideAndMetadata(int i, int j)
+    @Override
+    public Icon getIcon(int i, int j)
 	{
     	return this.blockIcon;
 	}
     
-    public void func_94332_a(IconRegister iconRegister)
+    @Override
+    public void registerIcons(IconRegister iconRegister)
     {
     	this.blockIcon = iconRegister.registerIcon(Constants.TCC_MODID + ":" + Constants.KEY_GY_GREEN);
     }
 	
+    @Override
 	protected boolean canThisPlantGrowOnThisBlockID(int blockId)
     {
 		boolean canGrow = false;

@@ -860,6 +860,10 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
 
 	protected boolean canDespawn()
 	{
+		if(ModChocoCraft.wildCanDespawn && !this.isTamed())
+		{
+			return true;
+		}
 		return false;
 	}    
 

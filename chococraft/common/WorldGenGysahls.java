@@ -35,7 +35,7 @@ public class WorldGenGysahls implements IWorldGenerator
 		{
 			if(world.provider.isSurfaceWorld())
 			{
-				if(random.nextInt(6) == 0)
+				if(random.nextInt(1000) <= ModChocoCraft.gysahlWorldGenRate)
 				{
 					int randPosX = chunkX*16 + random.nextInt(16);
 					int randPosZ = chunkZ*16 + random.nextInt(16);

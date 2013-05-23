@@ -1,10 +1,10 @@
 [img]http://www.arno-saxena.de/pictures/chococraft/banner_title.png[/img]
 [size=2]banner made by [url="http://www.minecraftforum.net/user/223231-galindorf/"]galindorf[/url][/size]
 
-UPDATED FOR MINECRAFT 1.5.1
-Version 2.7.3
-Requires: [url="http://www.minecraftforge.net/"]Forge[/url] [url="http://files.minecraftforge.net/"]7.7.0.600+[/url]
-Tested with: [url="http://www.minecraftforge.net/"]Forge[/url] [url="http://files.minecraftforge.net/"]7.7.1.666[/url]
+UPDATED FOR MINECRAFT 1.5.2
+Version 2.8.3
+Requires: [url="http://www.minecraftforge.net/"]Forge[/url] [url="http://files.minecraftforge.net/"]7.8.0.684+[/url]
+Tested with: [url="http://www.minecraftforge.net/"]Forge[/url] [url="http://files.minecraftforge.net/"]7.8.0.684[/url]
 
 This Mod is the continuation of [url="http://www.minecraftforum.net/user/1051245-eddiev/"]EddieV's[/url] mod. The original thread can be found [url="http://www.minecraftforum.net/topic/952372-chococraft-12-mc-11-chocobos-now-fly/"]here[/url]. I've officially taken over the helm with Eddie's kind blessings.
 
@@ -19,7 +19,7 @@ As of version 2.0.4 this mod is in working condition for SMP.
 [color=#ff0000][b]ACHTUNG! CAUTION! ¡CUIDADO! चेतावनी! ATTENZIONE! береги́сь!
 This version of Chococraft is not compatible to versions pre 2.0.0 (pre mc 1.3.2). It will destroy your saved world if old Chocobos are included. Thus, if you want to use an old world with the new version of this mod, you should first start minecraft without the Chococraft mod, enter and save your world, thus removing all traces of older versions of Chococraft and only then start minecraft with the new version of Chococraft and tame new Chocobos.[/b][/color]
 
-Download: [url="http://www.arno-saxena.de/minecraft/Chococraft_2.7.3.zip"]Torojimas ChocoCraft 2.7.3[/url]
+Download: [url="http://www.arno-saxena.de/minecraft/Chococraft_2.8.3.zip"]Torojimas ChocoCraft 2.8.3[/url]
 
 [url="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=3RZTLRHB5GZUL&lc=BE&item_name=Torojima%27s%20ChocoCraft&item_number=0003&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted"][img]https://www.paypalobjects.com/en_US/BE/i/btn/btn_donateCC_LG.gif[/img][/url]
 
@@ -31,14 +31,15 @@ crackedEggs parachute mod:
 [spoiler]When flying a Chocobo, I would like to recommend the use of [url="http://www.minecraftforum.net/user/77049-crackedegg/"]crackedEggs[/url] [url="http://www.minecraftforum.net/topic/585469-145forge-crackedeggs-mods-reptiles-parachute/"]parachute mod[/url] (version 410 or newer). Especially if you are using this mod on a server. On a connection failure while flying on high altitude, you will automatically dismount and fall to your death. One of crackedEggs parachutes in any spot in your inventory will auto-deploy if you're falling and thus prevent any harm from falling damage. (has to be switched on in the respective config file).[/spoiler]
 
 Old versions:
-[spoiler][url="http://www.arno-saxena.de/minecraft/Chococraft_2.5.3.zip"]minecraft 1.4.7 ChocoCraft 2.5.3[/url]
+[spoiler][url="http://www.arno-saxena.de/minecraft/Chococraft_2.7.3.zip"]minecraft 1.5.1 ChocoCraft 2.7.3[/url]
+[url="http://www.arno-saxena.de/minecraft/Chococraft_2.5.3.zip"]minecraft 1.4.7 ChocoCraft 2.5.3[/url]
 [url="http://www.arno-saxena.de/minecraft/Chococraft_2.4.2.zip"]minecraft 1.4.6 ChocoCraft 2.4.2[/url]
 [url="http://www.arno-saxena.de/minecraft/Chococraft_2.3.9.zip"]minecraft 1.4.5 ChocoCraft 2.3.9[/url]
-[url="http://www.arno-saxena.de/minecraft/Chococraft_2.2.3.zip"]minecraft 1.4.4: ChocoCraft 2.2.3[/url]
-[url="http://www.arno-saxena.de/minecraft/Chococraft_2.1.3.zip"]minecraft 1.4.2: ChocoCraft 2.1.3[/url]
 
 
 if somebody is in need of even older versions, please send me a note and I can provide a copy of the following versions:
+minecraft 1.4.4: ChocoCraft 2.2.3
+minecraft 1.4.2: ChocoCraft 2.1.3
 minecraft 1.3.2: ChocoCraft 2.0.5
 minecraft 1.2.5: ChocoCraft 1.6.10
 minecraft 1.2.4: ChocoCraft 1.5.2
@@ -95,7 +96,17 @@ Thanks to rsmalec
 Thanks to InTheLittleWood[/spoiler][/spoiler]
 
 CHANGELOG:
-[spoiler]v.2.7.3 by Torojima
+[spoiler]v.2.8.3
+   1. wild chocobo can despawn, switchable from config file
+   2. wild gysahl green generation rate settable from config file
+
+v.2.8.2 by Torojima
+   1. missing Gysahl texture bug fixed
+
+v.2.8.1 by Torojima
+   1. updated to mc 1.5.2
+   
+v.2.7.3 by Torojima
    1. fixed bonemeal bug
    2. fixed inventory-drop-from-shift-click-on-action-bar-bug
 
@@ -888,3 +899,6 @@ This MOD may only be distributed where uploaded, mirrored, or otherwise linked t
 4. DERIVATIVE WORKS/MODIFICATION
 This mod is provided freely and may be decompiled and modified for private use, either with a decompiler or a bytecode editor. Public distribution of modified versions of this MOD require advance written permission of the OWNER and may be subject to certain terms.
 [/spoiler]
+
+Check out my other mod:
+[url=http://www.minecraftforum.net/topic/1803250-][img]http://www.arno-saxena.de/pictures/buildhelper/buildhelper_icon.png[/img][/url]

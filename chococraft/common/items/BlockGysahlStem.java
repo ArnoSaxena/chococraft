@@ -48,7 +48,8 @@ public class BlockGysahlStem extends BlockFlower
     }
 
     @SideOnly(Side.CLIENT)
-    public Icon getBlockTextureFromSideAndMetadata(int i, int j)
+    @Override
+    public Icon getIcon(int i, int j)
 	{
     	if(j < this.icons.size())
     	{
@@ -57,7 +58,8 @@ public class BlockGysahlStem extends BlockFlower
     	return this.icons.get(4);
 	}
     
-    public void func_94332_a(IconRegister iconRegister)
+    @Override
+    public void registerIcons(IconRegister iconRegister)
     {
     	this.icons = new ArrayList<Icon>();
     	this.icons.add(0, iconRegister.registerIcon(Constants.TCC_MODID + ":" + Constants.KEY_GY_STEM01));
@@ -67,6 +69,7 @@ public class BlockGysahlStem extends BlockFlower
     	this.icons.add(4, iconRegister.registerIcon(Constants.TCC_MODID + ":" + Constants.KEY_GY_STEM05));
     }
 	
+    @Override
 	public void updateTick(World theWorld, int xPos, int yPos, int zPos, Random randInts)
     {
         super.updateTick(theWorld, xPos, yPos, zPos, randInts);
@@ -137,6 +140,7 @@ public class BlockGysahlStem extends BlockFlower
         return growRate;
     }
 	
+    @Override
 	protected boolean canThisPlantGrowOnThisBlockID(int blockId)
     {
 		boolean canGrow = false;
@@ -149,6 +153,7 @@ public class BlockGysahlStem extends BlockFlower
     }
     
 	//TODO check this
+    @Override
     public void dropBlockAsItemWithChance(World world, int i, int j, int k, int l, float f, int i1)
     {
     	super.dropBlockAsItemWithChance(world, i, j, k, l, f, 0);
@@ -172,6 +177,7 @@ public class BlockGysahlStem extends BlockFlower
     	}
     }
 
+    @Override
     public int idDropped(int i, Random random, int j)
     {
     	if (i == 4)

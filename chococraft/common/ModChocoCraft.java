@@ -137,6 +137,7 @@ public class ModChocoCraft
 	public static boolean showChocoboNames;
 	public static boolean hungerEnabled;
 	public static boolean riderBuffsEnabled;
+	public static boolean wildCanDespawn;
 	
 	// chocobo size setup
 	public static float chocoboHeight;
@@ -145,6 +146,9 @@ public class ModChocoCraft
 	// gysahl mutation setup
 	public static int gysahlGreenMutationRate;
 	public static int gysahlLoveMutationRate;
+	
+	// gysahl world generation setup
+	public static int gysahlWorldGenRate;
 	
 	// feather drop setup
 	public static int featherDropChance;
@@ -299,11 +303,14 @@ public class ModChocoCraft
 		hungerEnabled        = Constants.DEFAULT_HUNGER_ENABLED;
 		riderBuffsEnabled    = Constants.DEFAULT_RIDER_BUFFS_ENABLED;
 		showChocoboNames     = Constants.DEFAULT_SHOW_CHOCOBO_NAMES;
+		wildCanDespawn       = Constants.DEFAULT_WILD_CAN_DESPAWN;
 		
 		genderMaleChance     = Constants.DEFAULT_GENDER_MALE_CHANCE;
 		
 		gysahlGreenMutationRate = Constants.DEFAULT_GYSAHL_GREEN_MUTATION_RATE;
 		gysahlLoveMutationRate  = Constants.DEFAULT_GYSAHL_LOVE_MUTATION_RATE;
+
+		gysahlWorldGenRate   = Constants.DEFAULT_GYSAHL_WORLD_GEN_RATE;
 
 		featherDropChance    = Constants.DEFAULT_FEATHER_DROP_CHANCE;
 		featherDelayRandom   = Constants.DEFAULT_FEATHER_DELAY_RANDOM;
@@ -335,7 +342,7 @@ public class ModChocoCraft
 		livingSoundProb = Constants.DEFAULT_LIVING_SOUND_PROB;
 		
 		saddledCanWander = Constants.DEFAULT_SADDLED_CAN_WANDER;
-		
+				
     	ChocoboConfig.readConfigFilePreInit();
     	
     	proxy.registerEventListener();

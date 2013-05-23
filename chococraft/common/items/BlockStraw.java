@@ -35,7 +35,8 @@ public class BlockStraw extends Block
     	return this.blockIcon;
 	}
     
-    public void func_94332_a(IconRegister iconRegister)
+    @Override
+    public void registerIcons(IconRegister iconRegister)
     {
     	this.blockIcon = iconRegister.registerIcon(Constants.TCC_MODID + ":" + Constants.KEY_STRAW);
     }

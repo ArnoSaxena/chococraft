@@ -47,6 +47,7 @@ public class ChocoboConfig
 	static String CFG_KEY_SPAWN_DIST_NEXT_WILD = "distanceNextWild";
 	
 	static String CFG_KEY_CHOCOBO_WING_FLUTTER  = "chocoboWingFlutter";
+	static String CFG_KEY_WILD_CAN_DESPAWN      = "wildCanDespawn";
 	static String CFG_KEY_HUNGER_ENABLED        = "hungerEnabled";
 	static String CFG_KEY_RIDER_BUFFS_ENABLED   = "riderBuffsEnabled";
 	
@@ -71,6 +72,8 @@ public class ChocoboConfig
 	
 	static String CFG_KEY_GYS_GREEN_MUT_RATE = "gysahlGreenMutationRate";
 	static String CFG_KEY_GYS_LOVE_MUT_RATE  = "gysahlLoverlyMutationRate";
+	
+	static String CFG_KEY_GYS_WORLD_GEN_RATE = "gysahlGreenWorldGenerationRate";
 	
 	static String CFG_KEY_SADDLED_CAN_WANDER = "saddledCanWander";
 	
@@ -199,6 +202,10 @@ public class ChocoboConfig
 								{
 									ModChocoCraft.chocoboWingFlutter = Boolean.parseBoolean(value);
 								}
+								else if(key.equalsIgnoreCase(CFG_KEY_WILD_CAN_DESPAWN))
+								{
+									ModChocoCraft.wildCanDespawn = Boolean.parseBoolean(value);
+								}
 								else if(key.equalsIgnoreCase(CFG_KEY_HUNGER_ENABLED))
 								{
 									//ModChocoCraft.hungerEnabled = Boolean.parseBoolean(value);
@@ -278,6 +285,10 @@ public class ChocoboConfig
 								else if(key.equals(CFG_KEY_GYS_LOVE_MUT_RATE))
 								{
 									ModChocoCraft.gysahlLoveMutationRate = ChocoboMathHelper.clamp(Integer.parseInt(value), 1, 100);
+								}
+								else if(key.equals(CFG_KEY_GYS_WORLD_GEN_RATE))
+								{
+									ModChocoCraft.gysahlWorldGenRate = ChocoboMathHelper.clamp(Integer.parseInt(value), 1, 999);
 								}
 								else if(key.equalsIgnoreCase(CFG_KEY_SADDLED_CAN_WANDER))
 								{
@@ -404,6 +415,10 @@ public class ChocoboConfig
 			writer.write(getConfigLine(CFG_KEY_GYS_LOVE_MUT_RATE, Integer.toString(Constants.DEFAULT_GYSAHL_LOVE_MUTATION_RATE)));
 			
 			writer.write("\n");
+			writer.write(getCommentLine("value between 1 and 999, with 1 for very few wild gysahl and 999 very many."));
+			writer.write(getConfigLine(CFG_KEY_GYS_WORLD_GEN_RATE, Integer.toString(Constants.DEFAULT_GYSAHL_WORLD_GEN_RATE)));			
+			
+			writer.write("\n");
 			writer.write(getCommentLine("Cool down phase between breeding"));
 			writer.write(getConfigLine(CFG_KEY_BREEDING_DELAY_FEMALE, Integer.toString(Constants.DEFAULT_BREEDING_DELAY_FEMALE)));
 			writer.write(getConfigLine(CFG_KEY_BREEDING_DELAY_MALE, Integer.toString(Constants.DEFAULT_BREEDING_DELAY_MALE)));
@@ -424,6 +439,10 @@ public class ChocoboConfig
 			writer.write(getCommentLine("a filled cauldron, it has a" + CFG_KEY_PEN_HEAL_PROBABILITY +" chance every 2 seconds to heal one health point."));
 			writer.write(getConfigLine(CFG_KEY_PEN_HEAL_PROBABILITY, Integer.toString(Constants.DEFAULT_PEN_HEAL_PROBABILITY)));
 			writer.write(getConfigLine(CFG_KEY_PEN_HEAL_CAULDRON_RANGE, Integer.toString(Constants.DEFAULT_PEN_HEAL_CAULDRON_RANGE)));
+			
+			writer.write("\n");
+			writer.write(getCommentLine("Whenever or not wild Chocobos will be able to despawn if no player is around"));
+			writer.write(getConfigLine(CFG_KEY_WILD_CAN_DESPAWN, Boolean.toString(Constants.DEFAULT_WILD_CAN_DESPAWN)));			
 			
 			writer.write("\n");
 			writer.write(getCommentLine("add any name of the following list as comma separated values to"));
