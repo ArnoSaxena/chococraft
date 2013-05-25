@@ -178,7 +178,9 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
     public void setName(String name)
     {
     	this.dataWatcher.updateObject(Constants.DW_ID_EAC_NAME, name);
-    	this.sendAttributeUpdate();
+
+        if (this.worldObj.isRemote)
+            this.sendAttributeUpdate();
     }
     
     public String getName()
@@ -294,8 +296,9 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
         {
             this.dataWatcher.updateObject(Constants.DW_ID_EAC_FLAGS, Byte.valueOf((byte)(eacFlags & Constants.DW_VAL_EAC_HIDENAME_OFF)));
         }
-        
-    	this.sendAttributeUpdate();
+
+        if (this.worldObj.isRemote)
+            this.sendAttributeUpdate();
     }
     
     public boolean isWander()
@@ -315,7 +318,9 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
         {
             this.dataWatcher.updateObject(Constants.DW_ID_EAC_FLAGS, Byte.valueOf((byte)(eacFlags & Constants.DW_VAL_EAC_WANDER_OFF)));
         }
-    	this.sendAttributeUpdate();
+
+        if (this.worldObj.isRemote)
+            this.sendAttributeUpdate();
     }
 
     public Boolean isFollowing()
@@ -335,7 +340,9 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
         {
             this.dataWatcher.updateObject(Constants.DW_ID_EAC_FLAGS, Byte.valueOf((byte)(eacFlags & Constants.DW_VAL_EAC_FOLLOWING_OFF)));
         }
-    	this.sendAttributeUpdate();
+
+        if (this.worldObj.isRemote)
+            this.sendAttributeUpdate();
     }
     
     public String getGender()
