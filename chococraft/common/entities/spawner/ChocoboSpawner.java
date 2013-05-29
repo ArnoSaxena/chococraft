@@ -21,9 +21,6 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.chunk.Chunk;
-
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.relauncher.Side;
 import chococraft.common.ModChocoCraft;
 import chococraft.common.entities.EntityAnimalChocobo.chocoboColor;
 import chococraft.common.entities.EntityChocobo;
@@ -35,7 +32,7 @@ public final class ChocoboSpawner
 {
 	public static void doChocoboSpawning(World world, double posX, double posY, double posZ)
 	{
-		if(Side.SERVER == FMLCommonHandler.instance().getEffectiveSide())
+		if(!world.isRemote)
 		{
 			int maxTries = 20;
 

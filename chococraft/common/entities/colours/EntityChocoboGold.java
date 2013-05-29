@@ -14,21 +14,17 @@
 
 package chococraft.common.entities.colours;
 
-import com.google.common.io.ByteArrayDataInput;
-import com.google.common.io.ByteArrayDataOutput;
-
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.relauncher.Side;
-
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
-
 import chococraft.common.Constants;
 import chococraft.common.entities.EntityChocobo;
 import chococraft.common.entities.FactoryEntityChocobo;
 import chococraft.common.helper.ChocoboParticleHelper;
+
+import com.google.common.io.ByteArrayDataInput;
+import com.google.common.io.ByteArrayDataOutput;
 
 public class EntityChocoboGold extends EntityChocobo
 {
@@ -183,7 +179,7 @@ public class EntityChocoboGold extends EntityChocobo
 		lastTickPosY = posY;
 		lastTickPosZ = posZ;
 
-		if (Side.SERVER == FMLCommonHandler.instance().getEffectiveSide())
+		if (this.isServer())
 		{
 			EntityChocobo entitychocobo = FactoryEntityChocobo.createChocobo(this.worldObj, isPink ? chocoboColor.PINK : chocoboColor.RED, this.getName(), this.getOwnerName(), this.isHidename(), this.isTamed(), this.isFollowing(), this.isWander(), this.isMale());
 			entitychocobo.setLocationAndAngles(posX, posY, posZ, rotationYaw, 0.0F);
@@ -194,15 +190,15 @@ public class EntityChocoboGold extends EntityChocobo
 			entitychocobo.setWander(this.isWander());
 			entitychocobo.setFollowing(this.isFollowing());
 			entitychocobo.injectInventory(this.bagsInventory);
-			worldObj.spawnEntityInWorld(entitychocobo);
-			health = 0;
+			this.worldObj.spawnEntityInWorld(entitychocobo);
+			this.health = 0;
 			this.setDead();
 		}
 		else
 		{
 			for (int i = 0; i < 20; i++)
 			{
-				ChocoboParticleHelper.showParticleAroundEntityFx("explode", this);
+				ChocoboParticleHelper.showParticleAroundEntityFx(Constants.PARTICLE_EXPLODE, this);
 			}
 		}
 		this.useItem(entityplayer);

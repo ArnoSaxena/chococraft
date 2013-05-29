@@ -429,17 +429,6 @@ public class ModChocoCraft
 		LanguageRegistry.addName(gysahlCakeItem, "Gysahl Cake");
 		gysahlCakeItem.setCreativeTab(CreativeTabs.tabMisc);
 		//gysahlCakeItem.setCreativeTab(chocoboCreativeItems);
-		
-		// Gysahl Pickles
-		gysahlPicklesRawItem = (new ChocoboItem(gysahlPicklesRawId.getInt()));
-		gysahlPicklesRawItem.setUnlocalizedName(Constants.KEY_GY_PICKLES_RAW).setMaxStackSize(64);
-		LanguageRegistry.addName(gysahlPicklesRawItem, "Gysahl Raw Pickles");
-		gysahlPicklesRawItem.setCreativeTab(CreativeTabs.tabMisc);
-
-		gysahlPicklesItem = new ChocoboItemFood(gysahlPicklesId.getInt(), 2, false);
-		gysahlPicklesItem.setUnlocalizedName(Constants.KEY_GY_PICKLES);
-		LanguageRegistry.addName(gysahlPicklesItem, "Gysahl Pickles");
-		gysahlPicklesItem.setCreativeTab(CreativeTabs.tabMisc);
 
 		// Chocob Whistle
 		chocoboWhistleItem = (new ChocoboItem(chocoboWhistleId.getInt())).setUnlocalizedName(Constants.KEY_WHISTLE).setMaxStackSize(64);
@@ -482,6 +471,17 @@ public class ModChocoCraft
 		chocoboLegCookedItem = new ChocoboItemFood(chocoboLegCookedId.getInt(), 8, false);
 		chocoboLegCookedItem.setUnlocalizedName(Constants.KEY_LEG_COOKED);
 		LanguageRegistry.addName(chocoboLegCookedItem, "Cooked Chocobo Leg");
+		
+		// Gysahl Pickles
+		gysahlPicklesRawItem = (new ChocoboItem(gysahlPicklesRawId.getInt()));
+		gysahlPicklesRawItem.setUnlocalizedName(Constants.KEY_GY_PICKLES_RAW).setMaxStackSize(64);
+		LanguageRegistry.addName(gysahlPicklesRawItem, "Gysahl Raw Pickles");
+		gysahlPicklesRawItem.setCreativeTab(CreativeTabs.tabMisc);
+
+		gysahlPicklesItem = new ChocoboItemFood(gysahlPicklesId.getInt(), 2, false);
+		gysahlPicklesItem.setUnlocalizedName(Constants.KEY_GY_PICKLES);
+		LanguageRegistry.addName(gysahlPicklesItem, "Gysahl Pickles");
+		gysahlPicklesItem.setCreativeTab(CreativeTabs.tabMisc);
 	}
 
 	private void createBlockInstances()

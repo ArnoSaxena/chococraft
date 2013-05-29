@@ -19,10 +19,7 @@ import java.util.Random;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenFlowers;
-
-import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.IWorldGenerator;
-import cpw.mods.fml.relauncher.Side;
 
 
 public class WorldGenGysahls implements IWorldGenerator
@@ -31,17 +28,14 @@ public class WorldGenGysahls implements IWorldGenerator
 	public void generate(Random random, int chunkX, int chunkZ, World world,
 			IChunkProvider chunkGenerator, IChunkProvider chunkProvider)
 	{
-		if(Side.SERVER == FMLCommonHandler.instance().getEffectiveSide())
+		if(!world.isRemote && world.provider.isSurfaceWorld())
 		{
-			if(world.provider.isSurfaceWorld())
+			if(random.nextInt(1000) <= ModChocoCraft.gysahlWorldGenRate)
 			{
-				if(random.nextInt(1000) <= ModChocoCraft.gysahlWorldGenRate)
-				{
-					int randPosX = chunkX*16 + random.nextInt(16);
-					int randPosZ = chunkZ*16 + random.nextInt(16);
-					int randPosY = world.getTopSolidOrLiquidBlock(randPosX, randPosX);
-					new WorldGenFlowers(ModChocoCraft.gysahlGreenBlock.blockID).generate(world, random, randPosX, randPosY, randPosZ);
-				}
+				int randPosX = chunkX*16 + random.nextInt(16);
+				int randPosZ = chunkZ*16 + random.nextInt(16);
+				int randPosY = world.getTopSolidOrLiquidBlock(randPosX, randPosX);
+				new WorldGenFlowers(ModChocoCraft.gysahlGreenBlock.blockID).generate(world, random, randPosX, randPosY, randPosZ);
 			}
 		}
 	}

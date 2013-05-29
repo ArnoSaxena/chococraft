@@ -25,14 +25,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
-
-import com.google.common.io.ByteArrayDataInput;
-import com.google.common.io.ByteArrayDataOutput;
-
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.network.PacketDispatcher;
-import cpw.mods.fml.relauncher.Side;
-
 import chococraft.common.Constants;
 import chococraft.common.ModChocoCraft;
 import chococraft.common.bags.ChocoBagInventory;
@@ -40,6 +32,11 @@ import chococraft.common.bags.ChocoPackBagInventory;
 import chococraft.common.bags.ChocoSaddleBagInventory;
 import chococraft.common.network.serverSide.PacketChocoboDropGear;
 import chococraft.common.network.serverSide.PacketChocoboMount;
+
+import com.google.common.io.ByteArrayDataInput;
+import com.google.common.io.ByteArrayDataOutput;
+
+import cpw.mods.fml.common.network.PacketDispatcher;
 
 
 public abstract class EntityChocoboRideable extends EntityAnimalChocobo
@@ -152,21 +149,24 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo
 
 	public void onDeath(DamageSource damageSource)
 	{
-		Side side = FMLCommonHandler.instance().getEffectiveSide();
-
-		if(side == Side.SERVER && this.isSaddled())
+		if(this.isServer())
 		{
-			this.dropItem(ModChocoCraft.chocoboSaddleItem.itemID, 1);
-		}
-		if(side == Side.SERVER && this.isSaddleBagged())
-		{
-			this.dropItem(ModChocoCraft.chocoboSaddleBagsItem.itemID, 1);
-			this.bagsInventory.dropAllItems();
-		}
-		if(side == Side.SERVER && this.isPackBagged())
-		{
-			this.dropItem(ModChocoCraft.chocoboPackBagsItem.itemID, 1);
-			this.bagsInventory.dropAllItems();
+			if(this.isSaddled())
+			{
+				this.dropItem(ModChocoCraft.chocoboSaddleItem.itemID, 1);
+			}
+			
+			if(this.isSaddleBagged())
+			{
+				this.dropItem(ModChocoCraft.chocoboSaddleBagsItem.itemID, 1);
+				this.bagsInventory.dropAllItems();
+			}
+			
+			if(this.isPackBagged())
+			{
+				this.dropItem(ModChocoCraft.chocoboPackBagsItem.itemID, 1);
+				this.bagsInventory.dropAllItems();
+			}
 		}
 		super.onDeath(damageSource);
 	}
@@ -273,7 +273,7 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo
 		{
 			if (this.riddenByEntity == null || this.riddenByEntity == entityplayer)
 			{
-				if(Side.CLIENT == FMLCommonHandler.instance().getEffectiveSide())
+				if(this.isClient())
 				{
 					this.sendMountUpdate();
 					if (this.riddenByEntity == null)
@@ -296,7 +296,7 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo
 	{
 		if (this.riddenByEntity != null && this.riddenByEntity instanceof EntityPlayer)
 		{
-			if(Side.SERVER == FMLCommonHandler.instance().getEffectiveSide())
+			if(this.isServer())
 			{
 				this.rotationPitch = 0.0F;
 				EntityPlayer rider = (EntityPlayer)this.riddenByEntity;
@@ -318,7 +318,7 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo
 
 			this.setRotationYawAndPitch();
 			
-			if(Side.SERVER == FMLCommonHandler.instance().getEffectiveSide())
+			if(this.isServer())
 			{
 				
 				if (this.onGround)
@@ -588,7 +588,7 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo
 	
 	public void sendMountUpdate()
 	{
-		if(Side.CLIENT == FMLCommonHandler.instance().getEffectiveSide())
+		if(this.isClient())
 		{
 			PacketChocoboMount packet = new PacketChocoboMount(this);
 			PacketDispatcher.sendPacketToServer(packet.getPacket());
@@ -597,7 +597,7 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo
 	
 	public void sendDropSaddleAndBags()
 	{
-		if(Side.CLIENT == FMLCommonHandler.instance().getEffectiveSide())
+		if(this.isClient())
 		{
 			PacketChocoboDropGear packet = new PacketChocoboDropGear(this);
 			PacketDispatcher.sendPacketToServer(packet.getPacket());

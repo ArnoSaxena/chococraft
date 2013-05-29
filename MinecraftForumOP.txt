@@ -2,7 +2,7 @@
 [size=2]banner made by [url="http://www.minecraftforum.net/user/223231-galindorf/"]galindorf[/url][/size]
 
 UPDATED FOR MINECRAFT 1.5.2
-Version 2.8.3
+Version 2.8.4
 Requires: [url="http://www.minecraftforge.net/"]Forge[/url] [url="http://files.minecraftforge.net/"]7.8.0.684+[/url]
 Tested with: [url="http://www.minecraftforge.net/"]Forge[/url] [url="http://files.minecraftforge.net/"]7.8.0.684[/url]
 
@@ -19,7 +19,7 @@ As of version 2.0.4 this mod is in working condition for SMP.
 [color=#ff0000][b]ACHTUNG! CAUTION! ¡CUIDADO! चेतावनी! ATTENZIONE! береги́сь!
 This version of Chococraft is not compatible to versions pre 2.0.0 (pre mc 1.3.2). It will destroy your saved world if old Chocobos are included. Thus, if you want to use an old world with the new version of this mod, you should first start minecraft without the Chococraft mod, enter and save your world, thus removing all traces of older versions of Chococraft and only then start minecraft with the new version of Chococraft and tame new Chocobos.[/b][/color]
 
-Download: [url="http://www.arno-saxena.de/minecraft/Chococraft_2.8.3.zip"]Torojimas ChocoCraft 2.8.3[/url]
+Download: [url="http://www.arno-saxena.de/minecraft/Chococraft_2.8.4.zip"]Torojimas ChocoCraft 2.8.4[/url]
 
 [url="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=3RZTLRHB5GZUL&lc=BE&item_name=Torojima%27s%20ChocoCraft&item_number=0003&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted"][img]https://www.paypalobjects.com/en_US/BE/i/btn/btn_donateCC_LG.gif[/img][/url]
 
@@ -47,7 +47,10 @@ minecraft 1.2.3: ChocoCraft 1.4.1u
 [/spoiler]
 
 VIDEOS:
-[spoiler]Spotlights:
+[spoiler]
+[url="http://www.minecraftforum.net/user/26535-arkenor/"]Arkenore[/url] is in the middle of a great "lets play" series, eventually with Chocobos mostly with Ars Magica, Mo'Creatures and a few other mods, they seem to be compatible.
+[media]http://www.youtube.com/watch?v=JSL4r3vOtGc[/media]
+
 [url="http://www.minecraftforum.net/user/1520892-thediamondminecart/"]TheDiamondMinecart[/url] has done a nice review, using the 2.7.1 version.
 [media]http://www.youtube.com/watch?v=u2tMN5QEXig[/media]
 
@@ -96,7 +99,12 @@ Thanks to rsmalec
 Thanks to InTheLittleWood[/spoiler][/spoiler]
 
 CHANGELOG:
-[spoiler]v.2.8.3
+[spoiler]v.2.8.4
+   1. compatibility bug with MoC fixed
+   2. additional compatibility with mc 1.5.1
+   3. chocobos can only die if player is around (third party despawn countered)
+
+v.2.8.3
    1. wild chocobo can despawn, switchable from config file
    2. wild gysahl green generation rate settable from config file
 
@@ -863,7 +871,8 @@ Acknowledgments:
 8. The models of the Chicobos were HIGHLY inspired by the chicks present in Baby Animals Mod. If you don't know this mod, you should also go get it ASAP.
 9. [url="http://www.minecraftforum.net/user/1200917-shadoxlunik/"]ShadoxLunik[/url] for the new purple/nether Chocobo skin
 10. [url="http://www.minecraftforum.net/user/525357-weltallofid/"]weltallofid[/url] for making a symmetric saddled skin.
-11. [url="http://www.minecraftforum.net/user/21540-leonblade/"]LeonBlade[/url] for helping with v.1.6.10.
+11. [url="http://www.minecraftforum.net/user/26535-arkenor/"]Arkenore[/url] for the brilliant title phrase :D
+12. [url="http://www.minecraftforum.net/user/21540-leonblade/"]LeonBlade[/url] for helping with v.1.6.10.
 [/spoiler]
 
 Modpacks:

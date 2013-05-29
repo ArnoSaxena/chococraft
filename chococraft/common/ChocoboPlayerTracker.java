@@ -17,11 +17,9 @@ package chococraft.common;
 import net.minecraft.entity.player.EntityPlayer;
 import chococraft.common.network.clientSide.PacketChocoboLocalSetupUpdate;
 import chococraft.common.network.clientSide.PacketChocoboSetupUpdate;
-import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.IPlayerTracker;
 import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.common.network.Player;
-import cpw.mods.fml.relauncher.Side;
 
 
 public class ChocoboPlayerTracker implements IPlayerTracker
@@ -48,7 +46,7 @@ public class ChocoboPlayerTracker implements IPlayerTracker
 	
 	protected void sendSetupUpdate(EntityPlayer player)
 	{
-		if (Side.SERVER == FMLCommonHandler.instance().getEffectiveSide())
+		if (!player.worldObj.isRemote)
 		{
 			PacketChocoboSetupUpdate packet = new PacketChocoboSetupUpdate(player);
 			PacketDispatcher.sendPacketToPlayer(packet.getPacket(), (Player)player);
@@ -57,7 +55,7 @@ public class ChocoboPlayerTracker implements IPlayerTracker
 	
 	protected void sendLocalSetupUpdate(EntityPlayer player)
 	{
-		if (Side.SERVER == FMLCommonHandler.instance().getEffectiveSide())
+		if (!player.worldObj.isRemote)
 		{
 			PacketChocoboLocalSetupUpdate packet = new PacketChocoboLocalSetupUpdate(player);
 			PacketDispatcher.sendPacketToPlayer(packet.getPacket(), (Player)player);

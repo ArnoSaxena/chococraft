@@ -34,9 +34,7 @@ import chococraft.common.network.clientSide.PacketChicoboCanGrowUp;
 import com.google.common.io.ByteArrayDataInput;
 import com.google.common.io.ByteArrayDataOutput;
 
-import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.network.PacketDispatcher;
-import cpw.mods.fml.relauncher.Side;
 
 
 public class EntityChicobo extends EntityAnimalChocobo
@@ -250,22 +248,19 @@ public class EntityChicobo extends EntityAnimalChocobo
 			}
 		}
 		
-		if (this.growUp && this.isCanGrowUp())
+		if (this.isServer() && this.growUp && this.isCanGrowUp())
 		{
-			if(Side.SERVER == FMLCommonHandler.instance().getEffectiveSide())
-			{
-				this.lastTickPosX = this.posX;
-				this.lastTickPosY = this.posY;
-				this.lastTickPosZ = this.posZ;
-				EntityChocobo grownUpChocobo = FactoryEntityChocobo.createChocoboFromChocobo(this.worldObj, this);
-				grownUpChocobo.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, 0.0F);
-				grownUpChocobo.setGrowingAge(6000);
-				this.worldObj.spawnEntityInWorld(grownUpChocobo);
-				this.sendParticleUpdate("explode", grownUpChocobo, 7);
-				this.setEntityHealth(0);
-				this.setDead();
-				this.growUp = false;
-			}
+			this.lastTickPosX = this.posX;
+			this.lastTickPosY = this.posY;
+			this.lastTickPosZ = this.posZ;
+			EntityChocobo grownUpChocobo = FactoryEntityChocobo.createChocoboFromChocobo(this.worldObj, this);
+			grownUpChocobo.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, 0.0F);
+			grownUpChocobo.setGrowingAge(6000);
+			this.worldObj.spawnEntityInWorld(grownUpChocobo);
+			this.sendParticleUpdate("explode", grownUpChocobo, 7);
+			this.setEntityHealth(0);
+			this.setDead();
+			this.growUp = false;
 		}
 	}
 
@@ -325,26 +320,9 @@ public class EntityChicobo extends EntityAnimalChocobo
 		return interacted;
 	}
 
-	protected void onGysahlChibiUse(EntityPlayer entityplayer)
-	{
-		if (Side.SERVER == FMLCommonHandler.instance().getEffectiveSide())
-		{
-			if (this.isTamed())
-			{
-				this.useItem(entityplayer);
-				this.setCanGrowUp(false);
-				this.sendCanGrowUpUpdate();
-			}
-			else
-			{
-				this.showAmountHeartsOrSmokeFx(false, 7);
-			}
-		}
-	}
-
 	protected void onGysahlCakeUse(EntityPlayer player)
 	{
-		if (Side.SERVER == FMLCommonHandler.instance().getEffectiveSide())
+		if (this.isServer())
 		{
 			if (this.isTamed() && this.isOwner(player))
 			{
@@ -421,11 +399,13 @@ public class EntityChicobo extends EntityAnimalChocobo
 		}
 	}
 
+	@Override
 	protected boolean canDespawn()
 	{
 		return false;
 	}
 
+	@Override
 	public boolean canRenderName()
 	{
 		return super.canRenderName() && this.getName() != "";
@@ -444,7 +424,7 @@ public class EntityChicobo extends EntityAnimalChocobo
 	
 	protected void sendCanGrowUpUpdate()
 	{
-		if(Side.CLIENT == FMLCommonHandler.instance().getEffectiveSide())
+		if(this.isClient())
 		{
 			PacketChicoboCanGrowUp packet = new PacketChicoboCanGrowUp(this);
 			PacketDispatcher.sendPacketToServer(packet.getPacket());

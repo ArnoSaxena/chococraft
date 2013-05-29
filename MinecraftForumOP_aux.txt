@@ -1,24 +1,39 @@
-Torojima's ChocoCraft - explore your worlds riding Chocobos
+So, I don't know if this Forum has been started because of my suggestion, but since I've done so, I'll start with the introducing :d
 
-[img]http://www.arno-saxena.de/pictures/chococraft/banner_title.png[/img]
+I'm a flower-power 1968 born offspring of an Austrian mother and an Indian Father, thrown together in the melting pot of cold war Frankfurt, Germany(1). I am a citizen of India, like my father, but haven't spend much time in India(2). Anyhow, while studying and blessed with the needed time, I've visited my paternal kin regularly about once a year. With halve of them active in the armed forces and the other halve in academics, they are spread all over the world and keep contact only with the blessings of Mark Zuckerberg :)
 
-[size=2]banner made by [url=http://www.minecraftforum.net/user/223231-galindorf/]galindorf[/url][/size]
+I've spend my childhood in a little village around 20 km from Frankfurt, which included running around cows and playing whatnot in the woods(3). Early youth and adolescence I spend spot on in the middle of Frankfurt, my dad had a store at that time and decided it would be better to live near it. So my live went from the slow pace of the green countryside to the high pitched culture and crime filled city gallimaufry.
 
-UPDATED FOR MINECRAFT 1.5.2
-Version 2.8.2
-Requires: [url=http://www.minecraftforge.net/]Forge[/url] [url=http://files.minecraftforge.net/]7.8.0.684+[/url]
-Tested with: [url=http://www.minecraftforge.net/]Forge[/url] [url=http://files.minecraftforge.net/]7.8.0.684[/url]
+A few years later, when I finished my secondary-school and got feed up with the big-city hijinks, I left Frankfurt and went to Aachen to enrol at the University and start my studies of Space-Aviation-Engineering ... correct, I've been on my way to be a rocket-scientist :d, but somewhere in the middle I decided different, quitted the rocket-business and enrolled in computer-sciences. Got my degree and started to work as an Software-Developer.
 
-This Mod is the continuation of [url=http://www.minecraftforum.net/user/1051245-eddiev/]EddieV's[/url] mod. The original thread can be found [url=http://www.minecraftforum.net/topic/952372-chococraft-12-mc-11-chocobos-now-fly/]here[/url]. I've officially taken over the helm with Eddie's kind blessings.
+Sometime in 2002 I lost my job and had to look elsewhere for employment. Times had been rough for software developers at that time and place, since nobody was spending much money on software projects. With nothing else to do I joined a local theatre company and spend some time acting on stage. At that time I meet my later wife.
 
-This mod adds a mob called Chocobo to the game. This includes different coloured mob types with different attributes in their grown-up and juvenile form.
+My wife is Belgian and I found myself spending more and more time in that little country(4). There are three official communities with their own language in Belgium. Most of you might know the French and Dutch speaking communities(5). But there is a tiny little strip of land on the Belgian eastern border to Germany, about 850 square kilometres in a strip from the Netherlands to Luxembourg, with German as the main official language, hence the German speaking community of Belgium. Here they have a problem, since the main language is German, but they have only about 70.000 people living here, from witch not many are willing to become teachers, there is a very high demand in the occupational category of German speaking maths-teachers. So in spite of me having no idea about teaching at all, but with a degree in mathematics, obviously fluent in German and the need for a real job, I applied and got installed as a teacher. Battling this little brats for four years on a day to day basis earned my respect for every teacher out there :)
 
-The most basic type can be found in the wild and can be tamed by using "Gysahl Greens" on them. Gysahl Greens is a plant found in the wild, but also can be planted by sowing Gysahl Seeds. Gysahl Seeds can be received by crafting from Gysahl Greens or by harvesting planted Gysahl Greens.
+In that time I permanently settled in Belgium, got married, build a house again in the countryside, about 15 km from Aachen and got a beautiful little daughter. After spending some time in the Belgian educational service, I left teaching and went back to Software-Development. First in a little internet company which went belly up a year later. Later, with my footings back into the scene, I got my current job as Software-Developer in the ivory-tower that is the RWTH-Aachen university. Today I'm creating software tools for the computer-aided calculation of industrial sized distillation columns, mostly in java, c# and c.
 
-Chocobos can be breed and procreate. The offspring will be a Chicobo, the juvenile form of a Chocobo. After a while a Chicobo will grow into a Chocobo. Chicobos will be born wild and have to be tamed. Chicobos will inherit the type from one of their parents or mutate into new types. Thus by repeatedly breeding Chocobos all normal types of Chocobos can be acquired from tamed wild Chocobos. There are a few special Chocobo types though, which can only be acquired by special means.
+Spending much time getting annoyed by the authorities, because they just could not cope with a citizen of India(6) working in Germany, but not living in said country, I applied for Belgian citizenship and so, nowadays I possess a Belgian and Indian citizenship(7)(8).
 
-Donations: payPal link int the [url=http://www.minecraftforum.net/topic/1119809-]minecraft forum[/url]
+Whenever I left with a bit of time next to my daughter, wife, house(9), job and running a pbem game called Atlantis every Sunday(10), I like to waste it either with the products of Terry Pratchett, Anthony Colin Bruce Chapman and of course Markus Persson :)
 
-Follow me on Twitter: [url=https://twitter.com/Torojima]Torojima[/url]
 
-Download latest version of the mod: [url=http://www.minecraftforum.net/topic/1119809-]Torojimas ChocoCraft in the minecraft forum[/url]
+
+(1) West at that time and with the largest US-Airbase in Europe at that time
+
+(2) NRI, some say Non-Residential-Indian, some say Not-Required-Indian, the streetwise term would be Desi I've been told.
+
+(3) that's the area with lots of brown long thingies with the green fluffy tops, yes, that stuff is not only happening in minecraft.
+
+(4) little even for folks from Germany, so I can imagine what US-Americans must think of it :d
+
+(5) maybe you don't know about the two main communities of Belgium, but if you don't you surely don't know the little third one.
+
+(6) non-European Community country
+
+(7) both part of the Allies, so I never joined the Axis :d
+
+(8) thus I'm in the European Community and the Commonwealth without being British :d
+
+(9) big garden, lots of work to do and I hate mowing the lawn :p
+
+(10) sometimes even playing 

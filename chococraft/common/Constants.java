@@ -16,7 +16,7 @@ package chococraft.common;
 
 public class Constants
 {
-	public final static String TCC_VERSION = "2.8.3";
+	public final static String TCC_VERSION = "2.8.4";
 	public final static String TCC_MODID = "chococraft";
 	public final static String TCC_NAME = "Torojimas ChocoCraft";
 
@@ -214,6 +214,11 @@ public class Constants
 	public static boolean CHOCOBO_PINK_CANJUMPHIGH    = false;
 	public static boolean CHOCOBO_RED_CANJUMPHIGH     = false;
 	public static boolean CHOCOBO_PURPLE_CANJUMPHIGH  = false;
+	
+	public static String PARTICLE_HEART        = "heart";
+	public static String PARTICLE_SMOKE        = "smoke";
+	public static String PARTICLE_EXPLODE      = "explode";
+	public static String PARTICLE_SNOWBALLPOOF = "snowballpoof";
 	
 	// max length of channel name is 16                     "xxxxxxxxxxxxxxxx"
 	public static final String PCHAN_CHOCOBO              = "ChocoCraftPChan";

@@ -19,12 +19,11 @@ import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
+import chococraft.common.Constants;
 import chococraft.common.ModChocoCraft;
 import chococraft.common.entities.EntityAnimalChocobo.chocoboColor;
 import chococraft.common.network.clientSide.PacketChocoboParticles;
-import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.network.PacketDispatcher;
-import cpw.mods.fml.relauncher.Side;
 
 public class EntityPurpleChocoboEgg extends EntityThrowable
 {
@@ -46,7 +45,7 @@ public class EntityPurpleChocoboEgg extends EntityThrowable
 	@Override
 	protected void onImpact(MovingObjectPosition mObjPos)
 	{
-		if(Side.SERVER == FMLCommonHandler.instance().getEffectiveSide())
+		if(!this.worldObj.isRemote)
 		{
 			if (mObjPos.entityHit != null)
 			{
@@ -62,7 +61,7 @@ public class EntityPurpleChocoboEgg extends EntityThrowable
 				this.worldObj.spawnEntityInWorld(babyChicobo);
 				for (int i = 0; i < 8; i++)
 				{
-					this.sendParticleUpdate("snowballpoof", babyChicobo, 7);
+					this.sendParticleUpdate(Constants.PARTICLE_SNOWBALLPOOF, babyChicobo, 7);
 				}
 			}
 			this.setDead();
@@ -71,7 +70,7 @@ public class EntityPurpleChocoboEgg extends EntityThrowable
 
 	protected void sendParticleUpdate(String particleName, EntityAnimalChocobo chocobo, int amount)
 	{
-		if (Side.SERVER == FMLCommonHandler.instance().getEffectiveSide())
+		if (!this.worldObj.isRemote)
 		{
 			PacketChocoboParticles packet = new PacketChocoboParticles(chocobo, particleName, amount);
 			int dimension = chocobo.worldObj.provider.dimensionId;

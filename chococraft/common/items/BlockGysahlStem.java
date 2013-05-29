@@ -26,7 +26,6 @@ import net.minecraft.util.Icon;
 import net.minecraft.world.World;
 import chococraft.common.Constants;
 import chococraft.common.ModChocoCraft;
-import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -157,7 +156,7 @@ public class BlockGysahlStem extends BlockFlower
     public void dropBlockAsItemWithChance(World world, int i, int j, int k, int l, float f, int i1)
     {
     	super.dropBlockAsItemWithChance(world, i, j, k, l, f, 0);
-    	if (Side.SERVER == FMLCommonHandler.instance().getEffectiveSide())
+    	if (!world.isRemote)
     	{
     		int j1 = 3 + i1;
     		for (int k1 = 0; k1 < j1; k1++)

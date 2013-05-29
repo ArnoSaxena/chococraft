@@ -32,7 +32,6 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-
 import chococraft.common.Constants;
 import chococraft.common.ModChocoCraft;
 import chococraft.common.entities.colours.EntityChocoboPurple;
@@ -41,9 +40,6 @@ import chococraft.common.helper.ChocoboParticleHelper;
 
 import com.google.common.io.ByteArrayDataInput;
 import com.google.common.io.ByteArrayDataOutput;
-
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.relauncher.Side;
 
 public abstract class EntityChocobo extends EntityChocoboRideable
 {	
@@ -71,26 +67,31 @@ public abstract class EntityChocobo extends EntityChocoboRideable
         this.dataWatcher.addObject(Constants.DW_ID_CHOC_FLAGS, Byte.valueOf((byte)0));
 	}
 	
+	@Override
 	public void writeSpawnData(ByteArrayDataOutput data)
 	{
 		super.writeSpawnData(data);
 	}
 
+	@Override
 	public void readSpawnData(ByteArrayDataInput data)
 	{
 		super.readSpawnData(data);
 	}
 
+	@Override
 	public void writeEntityToNBT(NBTTagCompound nbttagcompound)
 	{
 		super.writeEntityToNBT(nbttagcompound);
 	}
 
+	@Override
 	public void readEntityFromNBT(NBTTagCompound nbttagcompound)
 	{
 		super.readEntityFromNBT(nbttagcompound);
 	}
 	
+	@Override
 	protected void fall(float fallHeight)
 	{
 		super.fall(fallHeight);
@@ -329,9 +330,9 @@ public abstract class EntityChocobo extends EntityChocoboRideable
             // do we have an attack entity?
             if (this.entityToAttack != null)
             {
-        		if (Side.CLIENT == FMLCommonHandler.instance().getEffectiveSide())
+        		if (this.isClient())
         		{
-        			ChocoboParticleHelper.showParticleAroundEntityFx("heart", this);
+        			ChocoboParticleHelper.showParticleAroundEntityFx(Constants.PARTICLE_HEART, this);
         		}
         		
             	// are they still in love?
@@ -348,7 +349,7 @@ public abstract class EntityChocobo extends EntityChocoboRideable
         }
         
 		// handle wing rotation
-        if (Side.CLIENT == FMLCommonHandler.instance().getEffectiveSide())
+        if (this.isClient())
         {
         	this.destPos += (double)(this.onGround ? -1 : 4) * 0.3D;
         	
@@ -369,7 +370,7 @@ public abstract class EntityChocobo extends EntityChocoboRideable
         }
 
         // handle drop feather
-		if (Side.SERVER == FMLCommonHandler.instance().getEffectiveSide())
+		if (this.isServer())
 		{
 			if(--this.timeUntilNextFeather <= 0)
 			{
@@ -522,7 +523,7 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 
 	public void dropFeather()
 	{
-    	if (Side.SERVER == FMLCommonHandler.instance().getEffectiveSide())
+    	if (this.isServer())
     	{
     		this.entityDropItem(new ItemStack(ModChocoCraft.chocoboFeatherItem, 1), 0.0F);
     	}
@@ -530,7 +531,7 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 
 	protected void dropFewItems(boolean par1, int par2)
 	{
-		if (Side.SERVER == FMLCommonHandler.instance().getEffectiveSide())
+		if (this.isServer())
 		{
 			super.dropFewItems(par1, par2);
 		}

@@ -14,27 +14,22 @@
 
 package chococraft.common.entities.colours;
 
-import com.google.common.io.ByteArrayDataInput;
-import com.google.common.io.ByteArrayDataOutput;
-
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.relauncher.Side;
-import chococraft.common.Constants;
-import chococraft.common.ModChocoCraft;
-import chococraft.common.entities.EntityAnimalChocobo;
-import chococraft.common.entities.EntityChicobo;
-import chococraft.common.entities.EntityChocobo;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
+import chococraft.common.Constants;
+import chococraft.common.ModChocoCraft;
+import chococraft.common.entities.EntityAnimalChocobo;
+import chococraft.common.entities.EntityChicobo;
+import chococraft.common.entities.EntityChocobo;
+
+import com.google.common.io.ByteArrayDataInput;
+import com.google.common.io.ByteArrayDataOutput;
 
 public class EntityChocoboPurple extends EntityChocobo
-{
-	
-	//public final chocoboColor color = chocoboColor.PURPLE;	
-
+{	
 	public EntityChocoboPurple(World world)
 	{
 		super(world);
@@ -57,21 +52,25 @@ public class EntityChocoboPurple extends EntityChocobo
 		super.entityInit();
 	}
 	
+	@Override
 	public void writeSpawnData(ByteArrayDataOutput data)
 	{
 		super.writeSpawnData(data);
 	}
 
+	@Override
 	public void readSpawnData(ByteArrayDataInput data)
 	{
 		super.readSpawnData(data);
 	}
 
+	@Override
 	public void writeEntityToNBT(NBTTagCompound nbttagcompound)
 	{
 		super.writeEntityToNBT(nbttagcompound);
 	}
 
+	@Override
 	public void readEntityFromNBT(NBTTagCompound nbttagcompound)
 	{
 		super.readEntityFromNBT(nbttagcompound);
@@ -127,32 +126,12 @@ public class EntityChocoboPurple extends EntityChocobo
 
 	public void setRiderAbilities(boolean mounted)
 	{
-		if(this.riddenByEntity instanceof EntityPlayer  && ModChocoCraft.riderBuffsEnabled)
+		if(this.riddenByEntity instanceof EntityPlayer && ModChocoCraft.riderBuffsEnabled)
 		{
-			EntityPlayer rider = (EntityPlayer)this.riddenByEntity;			
+			EntityPlayer rider = (EntityPlayer)this.riddenByEntity;
 			rider.addPotionEffect(new PotionEffect(12, 100, -1, true));
 			rider.extinguish();
 		}
-		
-//		Class<? extends Entity> riddenByEntityClass = this.riddenByEntity.getClass();
-//		java.lang.reflect.Field isImmuneToFireField;
-//		try
-//		{
-//			isImmuneToFireField = riddenByEntityClass.getField("isImmuneToFire");
-//			isImmuneToFireField.set(this.riddenByEntity, mounted);
-//		}
-//		catch (SecurityException e)
-//		{
-//		}
-//		catch (NoSuchFieldException e)
-//		{
-//		}
-//		catch (IllegalArgumentException e)
-//		{
-//		}
-//		catch (IllegalAccessException e)
-//		{
-//		}
 	}
 
 	@Override
@@ -161,6 +140,7 @@ public class EntityChocoboPurple extends EntityChocobo
 		return 50;
 	}
 
+	@Override
 	protected void fall(float fallHeight)
 	{
 		return;
@@ -197,6 +177,7 @@ public class EntityChocoboPurple extends EntityChocobo
 		}
 	}
 
+	@Override
 	protected int getDropItemId()
 	{
 		return ModChocoCraft.chocoboLegRawItem.itemID;
@@ -206,7 +187,7 @@ public class EntityChocoboPurple extends EntityChocobo
 	@Override
 	public void procreate(EntityAnimalChocobo otherParent)
 	{
-		if(Side.SERVER == FMLCommonHandler.instance().getEffectiveSide())
+		if(this.isServer())
 		{
 			this.setGrowingAge(this.isMale() ? 3000 : 9000);
 			otherParent.setGrowingAge(otherParent.isMale() ? 3000 : 9000);
@@ -226,6 +207,7 @@ public class EntityChocoboPurple extends EntityChocobo
 		return null;
 	}
 
+	@Override
 	public boolean isBurning()
 	{
 		return false;

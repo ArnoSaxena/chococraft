@@ -27,9 +27,7 @@ public abstract class PacketChocoboClient extends PacketChocobo
 	protected static EntityAnimalChocobo getChocoboByID(int entityId, int dimension)
 	{
 		Entity targetEntity = null;
-
-		Side side = FMLCommonHandler.instance().getEffectiveSide();
-		if (side == Side.CLIENT)
+		if (Side.CLIENT == FMLCommonHandler.instance().getEffectiveSide())
 		{
 			targetEntity = (Entity)FMLClientHandler.instance().getClient().theWorld.getEntityByID(entityId);
 		}
@@ -46,8 +44,7 @@ public abstract class PacketChocoboClient extends PacketChocobo
 	
 	protected static EntityPlayer getPlayer(String name, int dimension)
 	{
-		Side side = FMLCommonHandler.instance().getEffectiveSide();
-		if (side == Side.CLIENT)
+		if (Side.CLIENT == FMLCommonHandler.instance().getEffectiveSide())
 		{
     		return  FMLClientHandler.instance().getClient().theWorld.getPlayerEntityByName(name);
 		}

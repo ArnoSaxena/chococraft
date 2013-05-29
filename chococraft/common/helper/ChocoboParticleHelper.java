@@ -4,9 +4,6 @@ import java.util.Random;
 
 import net.minecraft.entity.Entity;
 
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.relauncher.Side;
-
 public class ChocoboParticleHelper
 {
 	// "bubble", "suspended", "depthsuspend", "townaura", "crit", "magicCrit",
@@ -16,7 +13,7 @@ public class ChocoboParticleHelper
 	// "snowshovel", "slime", "heart", "angryVillager", "happyVillager"
     public static void showParticleAroundEntityFx(String particleName, Entity entity)
     {
-    	if(Side.CLIENT == FMLCommonHandler.instance().getEffectiveSide())
+    	if(entity.worldObj.isRemote)
     	{
     		Random rand = new Random();
 

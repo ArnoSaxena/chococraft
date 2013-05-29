@@ -20,8 +20,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import chococraft.common.Constants;
 import chococraft.common.entities.EntityPurpleChocoboEgg;
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.relauncher.Side;
 
 
 public class ItemPurpleChocoboEgg extends ChocoboItem
@@ -44,7 +42,7 @@ public class ItemPurpleChocoboEgg extends ChocoboItem
             itemstack.stackSize--;
         }
         world.playSoundAtEntity(player, "random.bow", 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
-		if(Side.SERVER == FMLCommonHandler.instance().getEffectiveSide())
+		if(!world.isRemote)
 		{
 			world.spawnEntityInWorld(new EntityPurpleChocoboEgg(world, player));
         }
