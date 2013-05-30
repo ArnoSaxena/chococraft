@@ -16,7 +16,7 @@ package chococraft.common;
 
 public class Constants
 {
-	public final static String TCC_VERSION = "2.8.4";
+	public final static String TCC_VERSION = "2.8.5";
 	public final static String TCC_MODID = "chococraft";
 	public final static String TCC_NAME = "Torojimas ChocoCraft";
 
@@ -47,6 +47,18 @@ public class Constants
 	public static int GYSAHL_GREEN_BLOCK_ID      = 1551;
 	public static int GYSAHL_STEM_BLOCK_ID       = 1552;
 	public static int STRAW_BLOCK_ID             = 1553;
+	
+	// default entity id's
+	public static int CHOCOBO_YELLOW_ID  = 600;
+	public static int CHOCOBO_GREEN_ID   = 601;
+	public static int CHOCOBO_BLUE_ID    = 602;
+	public static int CHOCOBO_WHITE_ID   = 603;
+	public static int CHOCOBO_BLACK_ID   = 604;
+	public static int CHOCOBO_GOLD_ID    = 605;
+	public static int CHOCOBO_RED_ID     = 606;
+	public static int CHOCOBO_PINK_ID    = 607;
+	public static int CHOCOBO_PURPLE_ID  = 608;
+	public static int CHOCOBO_CHICOBO_ID = 609;
 	
 	// resource folder
 	public static String CHOCOBO_RESOURCES_FOLDER = "/resources";

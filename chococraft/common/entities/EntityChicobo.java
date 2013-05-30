@@ -257,7 +257,7 @@ public class EntityChicobo extends EntityAnimalChocobo
 			grownUpChocobo.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, 0.0F);
 			grownUpChocobo.setGrowingAge(6000);
 			this.worldObj.spawnEntityInWorld(grownUpChocobo);
-			this.sendParticleUpdate("explode", grownUpChocobo, 7);
+			this.sendParticleUpdate(Constants.PARTICLE_EXPLODE, grownUpChocobo, 7);
 			this.setEntityHealth(0);
 			this.setDead();
 			this.growUp = false;

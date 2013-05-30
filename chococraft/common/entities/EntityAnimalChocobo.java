@@ -899,28 +899,34 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
     @Override
     public void setDead()
     {
-    	if(this.isTamed() || !ModChocoCraft.wildCanDespawn)
-    	{
-    		if(this.getAge() > 600)
-    		{
-    			if(this.playerInRange(1000.0))
-    			{
-    				this.isDead = true;
-    			}
-    		}
-    		else
-    		{
-    			if(this.playerInRange(16000.0))
-    			{
-    				this.isDead = true;
-    			}
-    		}
-    	}
-    	else
-    	{
-        	this.isDead = true;
-    	}
+    	this.isDead = true;
     }
+    
+//    @Override
+//    public void setDead()
+//    {
+//    	if(this.isTamed() || !ModChocoCraft.wildCanDespawn)
+//    	{
+//    		if(this.getAge() > 600)
+//    		{
+//    			if(this.playerInRange(1000.0))
+//    			{
+//    				this.isDead = true;
+//    			}
+//    		}
+//    		else
+//    		{
+//    			if(this.playerInRange(16000.0))
+//    			{
+//    				this.isDead = true;
+//    			}
+//    		}
+//    	}
+//    	else
+//    	{
+//        	this.isDead = true;
+//    	}
+//    }
     
     boolean playerInRange(double range)
     {
