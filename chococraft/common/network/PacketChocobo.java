@@ -31,6 +31,7 @@ public abstract class PacketChocobo
 	public static int PID_CHOWN      =  9;
 	public static int PID_HUNGER     = 10;
 	public static int PID_SETUP      = 11;
+	public static int PID_SPAWN_ITEM = 12;
 	
 	protected Packet250CustomPayload packet = null;
 	

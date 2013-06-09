@@ -87,6 +87,10 @@ public class ChocoboPacketHandler implements IPacketHandler
 			{
 				PacketChocoboSetupUpdate.handleUpdate(data, player);
 			}
+			else if(packetId == PacketChocobo.PID_SPAWN_ITEM)
+			{
+				PacketChocoboSpawnItem.handleUpdate(data, player);
+			}
 		}
 		catch (Exception ex)
 		{

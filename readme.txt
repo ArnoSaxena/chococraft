@@ -1,4 +1,4 @@
-This is the official version of Torojimas Chococraft v2.8.5 for usage with minecraft 1.5.2. Chococraft has been originally created by EddieV and is now refactored and officially maintained by Torojima.
+This is the official version of Torojimas Chococraft v2.8.6 for usage with minecraft 1.5.2. Chococraft has been originally created by EddieV and is now refactored and officially maintained by Torojima.
 
 This mod adds a mob called Chocobo to the game. This includes different coloured mob types with different attributes in their grown-up and juvenile form.
 
@@ -9,9 +9,13 @@ Chocobos can be breed and procreate. The offspring will be a Chicobo, the juveni
 ACHTUNG! CAUTION! ¡CUIDADO! चेतावनी! ATTENZIONE! береги́сь!
 This version of Chococraft is not compatible to versions pre 1.3.2. It will destroy your saved world if old Chocobos are included. Thus, if you want to use an old world with the new version of this mod, you should first start minecraft without the Chococraft mod, enter and save your world, thus removing all traces of older versions of Chococraft and only then start minecraft with the new version of Chococraft and tame new Chocobos.
 
+This version of Chococraft will remove all Chocobos from worlds pre 2.8.5.  Items in the Chocobo saddlebag and packbag inventories will be lost. ChocoCraft items stored in normal chests or player inventories are not affected.
+
 Changelog:
-1. removed third party despawn workaround
-2. changed entity id's from global to mod-specific (this will destroy all present Chocobos, sorry)
+1. changed gysahl mutation rate from procent to permille. (default values are äquivalent to the values before)
+2. changed the straw recipe from shapeless one wheat to four straw mats to two wheat next to each other for eight straw mats.
+3. added Chocopedia creation through use of Chocobo feather on bookshelf.
+4. added Chocopedia creation through use of writable book on chocobo;
 
 see the minecraft forums for further informations
 http://www.minecraftforum.net/topic/1119809-15sspsmpforge-torojimas-chococraft-261-explore-your-worlds-riding-chocobos/

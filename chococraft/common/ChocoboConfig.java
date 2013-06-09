@@ -280,11 +280,11 @@ public class ChocoboConfig
 								}
 								else if(key.equals(CFG_KEY_GYS_GREEN_MUT_RATE))
 								{
-									ModChocoCraft.gysahlGreenMutationRate = ChocoboMathHelper.clamp(Integer.parseInt(value), 1, 100);
+									ModChocoCraft.gysahlGreenMutationRate = ChocoboMathHelper.clamp(Integer.parseInt(value), 1, 1000);
 								}
 								else if(key.equals(CFG_KEY_GYS_LOVE_MUT_RATE))
 								{
-									ModChocoCraft.gysahlLoveMutationRate = ChocoboMathHelper.clamp(Integer.parseInt(value), 1, 100);
+									ModChocoCraft.gysahlLoveMutationRate = ChocoboMathHelper.clamp(Integer.parseInt(value), 1, 1000);
 								}
 								else if(key.equals(CFG_KEY_GYS_WORLD_GEN_RATE))
 								{
@@ -408,9 +408,9 @@ public class ChocoboConfig
 			writer.write(getConfigLine(CFG_KEY_LIVING_SOUND_PROB, Integer.toString(Constants.DEFAULT_LIVING_SOUND_PROB)));
 			
 			writer.write("\n");
-			writer.write(getCommentLine("Mutation rates of planted and grown gysahl greens. There is a " + CFG_KEY_GYS_GREEN_MUT_RATE + " procent chance"));
+			writer.write(getCommentLine("Mutation rates of planted and grown gysahl greens. There is a " + CFG_KEY_GYS_GREEN_MUT_RATE + " permille chance"));
 			writer.write(getCommentLine("the gysahl plant will mutate into a breeding gysahl. If the plant has mutated into"));
-			writer.write(getCommentLine("a breeding gysahl, there is a " + CFG_KEY_GYS_LOVE_MUT_RATE + " procent change of it being a golden Gysahl."));
+			writer.write(getCommentLine("a breeding gysahl, there is a " + CFG_KEY_GYS_LOVE_MUT_RATE + " permille change of it being a golden Gysahl."));
 			writer.write(getConfigLine(CFG_KEY_GYS_GREEN_MUT_RATE, Integer.toString(Constants.DEFAULT_GYSAHL_GREEN_MUTATION_RATE)));
 			writer.write(getConfigLine(CFG_KEY_GYS_LOVE_MUT_RATE, Integer.toString(Constants.DEFAULT_GYSAHL_LOVE_MUTATION_RATE)));
 			

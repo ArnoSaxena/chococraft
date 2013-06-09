@@ -181,13 +181,13 @@ public class BlockGysahlStem extends BlockFlower
     {
     	if (i == 4)
     	{
-    		if(random.nextInt(100) > ModChocoCraft.gysahlGreenMutationRate)
+    		if(random.nextInt(1000) > ModChocoCraft.gysahlGreenMutationRate)
     		{
     			return ModChocoCraft.gysahlGreenBlock.blockID;
     		}
     		else 
     		{
-    			if(random.nextInt(100) > ModChocoCraft.gysahlLoveMutationRate)
+    			if(random.nextInt(1000) > ModChocoCraft.gysahlLoveMutationRate)
     			{
     				return ModChocoCraft.gysahlLoverlyItem.itemID;
     			}

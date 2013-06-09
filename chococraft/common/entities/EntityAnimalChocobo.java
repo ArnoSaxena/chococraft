@@ -23,6 +23,7 @@ import net.minecraft.block.StepSound;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.passive.EntityTameable;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.pathfinding.PathEntity;
@@ -561,6 +562,11 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
     			this.onGysahlGreenUse(entityplayer);
     			interacted = true;
     		}
+    		else if(itemstack.itemID == Item.writableBook.itemID)
+    		{
+    			this.onWritableBookUse(entityplayer);
+    			interacted = true;
+    		}
     	}
     	
     	return interacted;
@@ -585,6 +591,12 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
     			this.showAmountHeartsOrSmokeFx(false, 7);
     		}
     	}
+    }
+    
+    protected void onWritableBookUse(EntityPlayer player)
+    {
+    	ItemStack currentItem = player.getCurrentEquippedItem();
+    	currentItem.itemID = ModChocoCraft.chocopediaItem.itemID;
     }
 
     protected void onGysahlGreenUse(EntityPlayer entityplayer)

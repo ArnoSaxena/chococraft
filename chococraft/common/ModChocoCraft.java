@@ -205,7 +205,8 @@ public class ModChocoCraft
 		BiomeGenBase.taiga,
 		BiomeGenBase.taigaHills,
 		BiomeGenBase.iceMountains,
-		BiomeGenBase.icePlains
+		BiomeGenBase.icePlains,
+		BiomeGenBase.hell
 	};
 	
 	public static BiomeGenBase[] onlyYellowSpawnBiomes =
@@ -260,6 +261,7 @@ public class ModChocoCraft
 		NetworkRegistry.instance().registerGuiHandler(this, new ChocoboGuiHandler());
 		
 		TickRegistry.registerScheduledTickHandler(new ServerSpawnTickHandler(), Side.SERVER);
+		
 	}
 
 	@PreInit
@@ -372,7 +374,7 @@ public class ModChocoCraft
 		// Chocobo Feather
 		chocoboFeatherItem = (new ChocoboItem(chocoboFeatherId.getInt())).setUnlocalizedName(Constants.KEY_FEATHER).setMaxStackSize(64);
 		LanguageRegistry.addName(chocoboFeatherItem, "Chocobo Feather");
-		chocoboFeatherItem.setCreativeTab(CreativeTabs.tabMaterials);
+		//chocoboFeatherItem.setCreativeTab(CreativeTabs.tabMaterials);
 		//chocoboFeatherItem.setCreativeTab(chocoboCreativeItems);
 		//DungeonHooks.addDungeonLoot(new ItemStack(chocoboFeatherItem), 10, 5, 15);
 
@@ -651,9 +653,10 @@ public class ModChocoCraft
 			Character.valueOf('Y'), chocoboFeatherItem
 		});
 		
-		GameRegistry.addShapelessRecipe(new ItemStack(strawBlock, 4), new Object[]
+		GameRegistry.addRecipe(new ItemStack(strawBlock, 8), new Object[]
 		{
-			new ItemStack(Item.wheat, 1)
+			"WW",
+			Character.valueOf('W'), Item.wheat
 		});
 		                                                        		
 		// recipes for vanilla items with chocobo feathers
