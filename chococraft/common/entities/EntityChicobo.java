@@ -29,6 +29,7 @@ import chococraft.common.ModChocoCraft;
 import chococraft.common.entities.ai.ChocoboAIFollowOwner;
 import chococraft.common.entities.ai.ChocoboAISwimming;
 import chococraft.common.entities.ai.ChocoboAIWander;
+import chococraft.common.helper.ChocoboEntityHelper;
 import chococraft.common.network.clientSide.PacketChicoboCanGrowUp;
 
 import com.google.common.io.ByteArrayDataInput;
@@ -247,20 +248,28 @@ public class EntityChicobo extends EntityAnimalChocobo
 				this.setCanGrowUp(true);
 			}
 		}
-		
+
+		this.doGrowUp();
+}
+	
+	protected void doGrowUp()
+	{
 		if (this.isServer() && this.growUp && this.isCanGrowUp())
 		{
-			this.lastTickPosX = this.posX;
-			this.lastTickPosY = this.posY;
-			this.lastTickPosZ = this.posZ;
-			EntityChocobo grownUpChocobo = FactoryEntityChocobo.createChocoboFromChocobo(this.worldObj, this);
-			grownUpChocobo.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, 0.0F);
-			grownUpChocobo.setGrowingAge(6000);
-			this.worldObj.spawnEntityInWorld(grownUpChocobo);
-			this.sendParticleUpdate(Constants.PARTICLE_EXPLODE, grownUpChocobo, 7);
-			this.setEntityHealth(0);
-			this.setDead();
-			this.growUp = false;
+			if(ChocoboEntityHelper.isSpaceAroundFree(this.worldObj, this, 1, 3, 1))
+			{
+				this.lastTickPosX = this.posX;
+				this.lastTickPosY = this.posY;
+				this.lastTickPosZ = this.posZ;
+				EntityChocobo grownUpChocobo = FactoryEntityChocobo.createChocoboFromChocobo(this.worldObj, this);
+				grownUpChocobo.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, 0.0F);
+				grownUpChocobo.setGrowingAge(6000);
+				this.worldObj.spawnEntityInWorld(grownUpChocobo);
+				this.sendParticleUpdate(Constants.PARTICLE_EXPLODE, grownUpChocobo, 7);
+				this.setEntityHealth(0);
+				this.setDead();
+				this.growUp = false;
+			}
 		}
 	}
 

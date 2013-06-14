@@ -102,4 +102,29 @@ public class ChocoboEntityHelper
         	return false;
         }
     }
+    
+    public static boolean isSpaceAroundFree(World world, EntityLiving entity, int radX, int spcY, int radZ)
+    {
+    	int sPosX = (int)entity.posX - radX;
+    	int sPosY = (int)entity.posY + 1;
+    	int sPosZ = (int)entity.posZ - radZ;
+    	int ePosX = (int)entity.posX + radX;
+    	int ePosY = (int)entity.posY + spcY;
+    	int ePosZ = (int)entity.posZ + radZ;
+    	
+		for(int x = sPosX; x <= ePosX; x++)
+		{
+			for(int y = sPosY; y <= ePosY; y++)
+			{
+				for(int z = sPosZ; z <= ePosZ; z++)
+				{
+			    	if(!world.isAirBlock(x, y, z))
+			    	{
+			    		return false;
+			    	}
+				}
+			}
+		}
+    	return true;
+    }
 }

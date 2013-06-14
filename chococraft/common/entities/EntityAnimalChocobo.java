@@ -495,9 +495,9 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
 	
 	private boolean isFilledCauldronNear(double posX, double posY, double posZ, int rangeX, int rangeY, int rangeZ)
 	{
-		int iPosX = MathHelper.floor_double(posX);
-		int iPosY = MathHelper.floor_double(posY);
-		int iPosZ = MathHelper.floor_double(posZ);
+		int iPosX = (int)posX;
+		int iPosY = (int)posY;
+		int iPosZ = (int)posZ;
 		
 		// first, check the most obvious level of y
 		if(this.isFilledCauldronNearAtYLevel(iPosX, iPosY + 1, iPosZ, rangeX, rangeZ))
