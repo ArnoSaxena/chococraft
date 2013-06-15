@@ -1,10 +1,10 @@
 [img]http://www.arno-saxena.de/pictures/chococraft/banner_title.png[/img]
 [size=2]banner made by [url="http://www.minecraftforum.net/user/223231-galindorf/"]galindorf[/url][/size]
 
-UPDATED FOR MINECRAFT 1.5.2
-Version 2.8.5
+UPDATED FOR MINECRAFT 1.5.2 (1.5.1)
+Version 2.8.6
 Requires: [url="http://www.minecraftforge.net/"]Forge[/url] [url="http://files.minecraftforge.net/"]7.8.0.684+[/url]
-Tested with: [url="http://www.minecraftforge.net/"]Forge[/url] [url="http://files.minecraftforge.net/"]7.8.0.684[/url]
+Tested with: [url="http://www.minecraftforge.net/"]Forge[/url] [url="http://files.minecraftforge.net/"]7.8.0.733[/url]
 
 This Mod is the continuation of [url="http://www.minecraftforum.net/user/1051245-eddiev/"]EddieV's[/url] mod. The original thread can be found [url="http://www.minecraftforum.net/topic/952372-chococraft-12-mc-11-chocobos-now-fly/"]here[/url]. I've officially taken over the helm with Eddie's kind blessings.
 
@@ -21,9 +21,11 @@ This version of Chococraft is not compatible to versions pre 2.0.0 (pre mc 1.3.2
 
 [color=#ff0000][b]This version of Chococraft will remove all Chocobos from worlds pre 2.8.5.  Items in the Chocobo saddlebag and packbag inventories will be lost. ChocoCraft items stored in normal chests or player inventories are not affected.[/b][/color]
 
-Download: [url="http://www.arno-saxena.de/minecraft/Chococraft_2.8.5.zip"]Torojimas ChocoCraft 2.8.5[/url]
+Download: [url="http://www.arno-saxena.de/minecraft/Chococraft_2.8.6.zip"]Torojimas ChocoCraft 2.8.6[/url]
 
 [url="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=3RZTLRHB5GZUL&lc=BE&item_name=Torojima%27s%20ChocoCraft&item_number=0003&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted"][img]https://www.paypalobjects.com/en_US/BE/i/btn/btn_donateCC_LG.gif[/img][/url]
+
+[url="http://flattr.com/thing/1456257/Torojimas-ChocoCraft"]Donate on Flattr[/url]
 
 Follow me on Twitter: [twitter]Torojima[/twitter]
 
@@ -101,7 +103,13 @@ Thanks to rsmalec
 Thanks to InTheLittleWood[/spoiler][/spoiler]
 
 CHANGELOG:
-[spoiler]v.2.8.5
+[spoiler]v.2.8.6
+   1. changed gysahl mutation rate from procent to permille. (default values are equivalent to the values before)
+   2. changed the straw recipe from shapeless one wheat to four straw mats to two wheat next to each other for eight straw mats.
+   3. added Chocopedia creation through use of Chocobo feather on bookshelf.
+   4. added Chocopedia creation through use of writable book on chocobo.
+
+v.2.8.5
    1. removed third party despawn workaround
    2. changed entity id's from global to mod-specific (this will destroy all present Chocobos, sorry)
 
@@ -458,6 +466,12 @@ Where can I find Gysahl Greens?
    3. For the seeds to grow instantly, you can use Chocobo Fertilizer
 [/spoiler]
 
+How to obtain a Chocopedia?
+[spoiler]1. you can craft a Chocopedia using the recipe given in the recipes list.
+2. you can right click a bookshelf with a chocobo feather. This will consume a chocobo feather and the bookshelf and produce a Chocopedia at it's place.
+3. you can right click a Chocobo with a writable book, this will transform the writable book into a Chocopedia.
+[/spoiler]
+
 How do I tame a Chocobo?
 [spoiler][img]http://www.arno-saxena.de/pictures/chococraft/pic_choco_in_wild.png[/img]
 
@@ -573,7 +587,7 @@ Items and Blocks:
 13. [img]http://www.arno-saxena.de/pictures/chococraft/item_gysahl_pickles.png[/img] After cooking raw Gysahl pickles you will receive this tasty Gysahl pickles. It will not only taste marvelous, but also reduce your famine a little.
 14. [img]http://www.arno-saxena.de/pictures/chococraft/item_gysahl_pink.png[/img] Pink Gysahl - Weird synthetic gysahls are known to cause extreme effects to Chocobos. So beware.
 15. [img]http://www.arno-saxena.de/pictures/chococraft/item_gysahl_red.png[/img] Red Gysahl - Weird synthetic gysahls are known to cause extreme effects to Chocobos. So beware.
-16. [img]http://www.arno-saxena.de/pictures/chococraft/item_gysahl_seed.png[/img] Gysahl Seeds - Seeds made from Gysahl Greens. Can be planted to build a Gysahl Green farm and can be fertilized with Chocobo Fertilizer.
+16. [img]http://www.arno-saxena.de/pictures/chococraft/item_gysahl_seed.png[/img] Gysahl Seeds - Seeds made from Gysahl Greens. Can be planted to build a Gysahl Green farm and can be fertilized with bone meal.
 17. [img]http://www.arno-saxena.de/pictures/chococraft/item_chocopedia.png[/img] Chocopedia - Notebook that keeps information about the Chocobos. Allows player to name their chocobo, check on information about health and breeing status and even give orders.
 18. [img]http://www.arno-saxena.de/pictures/chococraft/item_straw.png[/img] Straw - Straw cover for a Chocobo pen.[/spoiler]
 
@@ -614,7 +628,7 @@ Recipes:
 
       [img]http://www.arno-saxena.de/pictures/chococraft/crafting_arrow.png[/img]
 
-  10. [img]http://www.arno-saxena.de/pictures/chococraft/item_straw.png[/img] 4 Straw = 1 Wheat
+  10. [img]http://www.arno-saxena.de/pictures/chococraft/item_straw.png[/img] 8 Straw = 2 Wheat
 
       [img]http://www.arno-saxena.de/pictures/chococraft/crafting_straw.png[/img]
 [/spoiler]
@@ -715,7 +729,18 @@ Gysahl green (block) 1551
 Gysahl stem (block) 1552
 Straw (block) 1553
 
-These id's probably will be moved by Forge.[/spoiler]
+Entity Ids:
+Yellow Chocobo 600
+Green Chocobo 601
+Blue Chocobo 602
+White Chocobo 603
+Black Chocobo 604
+Gold Chocobo 605
+Red Chocobo 606
+Ping Chocobo 607
+Purple Chocobo 608
+Chicobo (any colour) 609
+[/spoiler]
 
 Ideas for Future Development:
 [spoiler]  1. Special Gui when riding Chocobo that will show his current health and name

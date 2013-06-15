@@ -12,10 +12,10 @@ This version of Chococraft is not compatible to versions pre 1.3.2. It will dest
 This version of Chococraft will remove all Chocobos from worlds pre 2.8.5.  Items in the Chocobo saddlebag and packbag inventories will be lost. ChocoCraft items stored in normal chests or player inventories are not affected.
 
 Changelog:
-1. changed gysahl mutation rate from procent to permille. (default values are äquivalent to the values before)
+1. changed gysahl mutation rate from procent to permille. (default values are equivalent to the values before)
 2. changed the straw recipe from shapeless one wheat to four straw mats to two wheat next to each other for eight straw mats.
 3. added Chocopedia creation through use of Chocobo feather on bookshelf.
-4. added Chocopedia creation through use of writable book on chocobo;
+4. added Chocopedia creation through use of writable book on chocobo.
 
 see the minecraft forums for further informations
 http://www.minecraftforum.net/topic/1119809-15sspsmpforge-torojimas-chococraft-261-explore-your-worlds-riding-chocobos/
