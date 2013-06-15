@@ -16,7 +16,7 @@ package chococraft.common;
 
 public class Constants
 {
-	public final static String TCC_VERSION = "2.8.5";
+	public final static String TCC_VERSION = "2.8.7";
 	public final static String TCC_MODID = "chococraft";
 	public final static String TCC_NAME = "Torojimas ChocoCraft";
 
@@ -121,6 +121,12 @@ public class Constants
 	public static boolean DEFAULT_RIDER_BUFFS_ENABLED  = true;
 	public static boolean DEFAULT_SADDLED_CAN_WANDER   = false;
 	public static boolean DEFAULT_WILD_CAN_DESPAWN     = false;
+	
+	public static int CHOCOPEDIA_DUNGEON_WEIGHT = 2;
+	public static int CHOCOPEDIA_DUNGEON_MIN = 1;
+	public static int CHOCOPEDIA_DUNGEON_MAX = 1;
+	public static int CHOCOPEDIA_MOB_DROP_RATE = 5;
+	public static boolean DEFAULT_CHOCOPEDIA_IN_DUNGEONS = true;
 	
 	public static int DEFAULT_GYSAHL_GREEN_MUTATION_RATE =  100;
 	public static int DEFAULT_GYSAHL_LOVE_MUTATION_RATE  =  100;

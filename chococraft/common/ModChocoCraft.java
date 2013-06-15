@@ -23,7 +23,9 @@ import net.minecraft.entity.EntityEggInfo;
 import net.minecraft.entity.EntityList;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraftforge.common.ChestGenHooks;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.Property;
 import chococraft.client.ClientProxyChocoCraft;
@@ -183,6 +185,9 @@ public class ModChocoCraft
 	// movement setup
 	public static boolean saddledCanWander;
 	
+	// chocopedia setup
+	public static boolean chocopediaInDungeons;
+	
 	// debug
 	public static long spawnDbTimeDelay;
 	public static String spawnDbStatus;
@@ -240,6 +245,8 @@ public class ModChocoCraft
 
 		this.createBlockInstances();
 
+		this.addDungeonChestHooks();
+		
 		this.addSmeltings();
 
 		this.addRecipes();
@@ -252,7 +259,7 @@ public class ModChocoCraft
 		this.registerChocobos();
 
 		this.addChocoboSpawns();
-
+		
 		GameRegistry.registerWorldGenerator(new WorldGenGysahls());
 		GameRegistry.registerPlayerTracker(new ChocoboPlayerTracker());
 				
@@ -261,7 +268,6 @@ public class ModChocoCraft
 		NetworkRegistry.instance().registerGuiHandler(this, new ChocoboGuiHandler());
 		
 		TickRegistry.registerScheduledTickHandler(new ServerSpawnTickHandler(), Side.SERVER);
-		
 	}
 
 	@PreInit
@@ -346,6 +352,8 @@ public class ModChocoCraft
 		livingSoundProb = Constants.DEFAULT_LIVING_SOUND_PROB;
 		
 		saddledCanWander = Constants.DEFAULT_SADDLED_CAN_WANDER;
+		
+		chocopediaInDungeons = Constants.DEFAULT_CHOCOPEDIA_IN_DUNGEONS;
 				
     	ChocoboConfig.readConfigFilePreInit();
     	
@@ -368,77 +376,63 @@ public class ModChocoCraft
 		chocopediaItem = (new ChocoboItem(chocopediaId.getInt())).setUnlocalizedName(Constants.KEY_CHOCOPEDIA).setMaxStackSize(1);
 		LanguageRegistry.addName(chocopediaItem, "Chocopedia");
 		chocopediaItem.setCreativeTab(CreativeTabs.tabTools);
-		//chocopediaItem.setCreativeTab(chocoboCreativeItems);
-		//DungeonHooks.addDungeonLoot(new ItemStack(chocopediaItem), 1, 1, 1);
 
 		// Chocobo Feather
 		chocoboFeatherItem = (new ChocoboItem(chocoboFeatherId.getInt())).setUnlocalizedName(Constants.KEY_FEATHER).setMaxStackSize(64);
 		LanguageRegistry.addName(chocoboFeatherItem, "Chocobo Feather");
-		//chocoboFeatherItem.setCreativeTab(CreativeTabs.tabMaterials);
-		//chocoboFeatherItem.setCreativeTab(chocoboCreativeItems);
-		//DungeonHooks.addDungeonLoot(new ItemStack(chocoboFeatherItem), 10, 5, 15);
-
+		chocoboFeatherItem.setCreativeTab(CreativeTabs.tabMaterials);
 		
 		// riding gear
 		// Chocobo Saddle
 		chocoboSaddleItem = (new ChocoboItem(chocoboSaddleId.getInt())).setUnlocalizedName(Constants.KEY_SADDLE).setMaxStackSize(5);
 		LanguageRegistry.addName(chocoboSaddleItem, "Chocobo Saddle");
 		chocoboSaddleItem.setCreativeTab(CreativeTabs.tabTransport);
-		//chocoboSaddleItem.setCreativeTab(chocoboCreativeItems);
 
 		// Chocobo Saddle Bags
 		chocoboSaddleBagsItem = (new ChocoboItem(chocoboSaddleBagsId.getInt())).setUnlocalizedName(Constants.KEY_SADDLEBAG).setMaxStackSize(8);
 		LanguageRegistry.addName(chocoboSaddleBagsItem, "Chocobo Saddle Bags");
 		chocoboSaddleBagsItem.setCreativeTab(CreativeTabs.tabTransport);
-		//chocoboSaddleBagsItem.setCreativeTab(chocoboCreativeItems);
 
 		// Chocobo Pack Bags
 		chocoboPackBagsItem = (new ChocoboItem(chocoboPackBagsId.getInt())).setUnlocalizedName(Constants.KEY_PACKBAG).setMaxStackSize(8);
 		LanguageRegistry.addName(chocoboPackBagsItem, "Chocobo Pack Bags");
 		chocoboPackBagsItem.setCreativeTab(CreativeTabs.tabTransport);
-		//chocoboPackBagsItem.setCreativeTab(chocoboCreativeItems);
 
 		// Gysahls
 		// Gysahl seeds
 		gysahlSeedsItem = (new ItemGysahlSeeds(gysahlSeedsId.getInt(), gysahlStemBlockId.getInt(), Block.tilledField.blockID));
 		LanguageRegistry.addName(gysahlSeedsItem, "Gysahl Seeds");
+		//gysahlSeedsItem.setCreativeTab(chocoboCreativeItems);
 
 		// Loverly Gysahl
 		gysahlLoverlyItem = (new ChocoboItem(gysahlLoverlyId.getInt())).setUnlocalizedName(Constants.KEY_GY_LOVERLY).setMaxStackSize(64);
 		LanguageRegistry.addName(gysahlLoverlyItem, "Loverly Gysahl");
 		gysahlLoverlyItem.setCreativeTab(CreativeTabs.tabMisc);
-		//gysahlLoverlyItem.setCreativeTab(chocoboCreativeItems);
 
 		// Golden Gysahl
 		gysahlGoldenItem = (new ChocoboItem(gysahlGoldenId.getInt())).setUnlocalizedName(Constants.KEY_GY_GOLDEN).setMaxStackSize(64);
 		LanguageRegistry.addName(gysahlGoldenItem, "Golden Gysahl");
 		gysahlGoldenItem.setCreativeTab(CreativeTabs.tabMisc);
-		//gysahlGoldenItem.setCreativeTab(chocoboCreativeItems);
-		//DungeonHooks.addDungeonLoot(new ItemStack(gysahlGoldenItem), 1, 2, 8);
 
 		// Pink Gysahl
 		gysahlPinkItem = (new ChocoboItem(gysahlPinkId.getInt())).setUnlocalizedName(Constants.KEY_GY_PINK).setMaxStackSize(64);
 		LanguageRegistry.addName(gysahlPinkItem, "Pink Gysahl");
 		gysahlPinkItem.setCreativeTab(CreativeTabs.tabMisc);
-		//gysahlPinkItem.setCreativeTab(chocoboCreativeItems);
 
 		// Red Gysahl
 		gysahlRedItem = (new ChocoboItem(gysahlRedId.getInt())).setUnlocalizedName(Constants.KEY_GY_RED).setMaxStackSize(64);
 		LanguageRegistry.addName(gysahlRedItem, "Red Gysahl");
 		gysahlRedItem.setCreativeTab(CreativeTabs.tabMisc);
-		//gysahlRedItem.setCreativeTab(chocoboCreativeItems);
 
 		// Gysahl Cake
 		gysahlCakeItem = (new ChocoboItem(gysahlCakeId.getInt())).setUnlocalizedName(Constants.KEY_GY_CAKE).setMaxStackSize(8);
 		LanguageRegistry.addName(gysahlCakeItem, "Gysahl Cake");
 		gysahlCakeItem.setCreativeTab(CreativeTabs.tabMisc);
-		//gysahlCakeItem.setCreativeTab(chocoboCreativeItems);
 
 		// Chocob Whistle
 		chocoboWhistleItem = (new ChocoboItem(chocoboWhistleId.getInt())).setUnlocalizedName(Constants.KEY_WHISTLE).setMaxStackSize(64);
 		LanguageRegistry.addName(chocoboWhistleItem, "Chocobo Whistle");
 		chocoboWhistleItem.setCreativeTab(CreativeTabs.tabTools);
-		//chocoboWhistleItem.setCreativeTab(chocoboCreativeItems);
 
 		// Nether Chocobo Egg
 		purpleChocoboEggItem = new ItemPurpleChocoboEgg(purpleChocoboEggId.getInt());
@@ -711,5 +705,19 @@ public class ModChocoCraft
 	{
 		//EntityRegistry.addSpawn(EntityChocoboYellow.class, spawnWeightedProb, spawnGroupMin, spawnGroupMax, EnumCreatureType.creature, spawnBiomes);
 		//EntityRegistry.addSpawn(EntityChocoboPurple.class, 5, 5, 8, EnumCreatureType.creature, chocoboPurpleSpawnBiomes);
+	}
+	
+	private void addDungeonChestHooks()
+	{
+		if(chocopediaInDungeons)
+		{
+			ChestGenHooks.getInfo(ChestGenHooks.DUNGEON_CHEST).addItem(new WeightedRandomChestContent(new ItemStack(chocopediaItem),Constants.CHOCOPEDIA_DUNGEON_MIN,Constants.CHOCOPEDIA_DUNGEON_MAX,Constants.CHOCOPEDIA_DUNGEON_WEIGHT));
+			ChestGenHooks.getInfo(ChestGenHooks.MINESHAFT_CORRIDOR).addItem(new WeightedRandomChestContent(new ItemStack(chocopediaItem),Constants.CHOCOPEDIA_DUNGEON_MIN,Constants.CHOCOPEDIA_DUNGEON_MAX,Constants.CHOCOPEDIA_DUNGEON_WEIGHT));
+			ChestGenHooks.getInfo(ChestGenHooks.PYRAMID_DESERT_CHEST).addItem(new WeightedRandomChestContent(new ItemStack(chocopediaItem),Constants.CHOCOPEDIA_DUNGEON_MIN,Constants.CHOCOPEDIA_DUNGEON_MAX,Constants.CHOCOPEDIA_DUNGEON_WEIGHT));
+			ChestGenHooks.getInfo(ChestGenHooks.PYRAMID_JUNGLE_CHEST).addItem(new WeightedRandomChestContent(new ItemStack(chocopediaItem),Constants.CHOCOPEDIA_DUNGEON_MIN,Constants.CHOCOPEDIA_DUNGEON_MAX,Constants.CHOCOPEDIA_DUNGEON_WEIGHT));
+			ChestGenHooks.getInfo(ChestGenHooks.STRONGHOLD_CORRIDOR).addItem(new WeightedRandomChestContent(new ItemStack(chocopediaItem),Constants.CHOCOPEDIA_DUNGEON_MIN,Constants.CHOCOPEDIA_DUNGEON_MAX,Constants.CHOCOPEDIA_DUNGEON_WEIGHT));
+			ChestGenHooks.getInfo(ChestGenHooks.STRONGHOLD_CROSSING).addItem(new WeightedRandomChestContent(new ItemStack(chocopediaItem),Constants.CHOCOPEDIA_DUNGEON_MIN,Constants.CHOCOPEDIA_DUNGEON_MAX,Constants.CHOCOPEDIA_DUNGEON_WEIGHT));
+			ChestGenHooks.getInfo(ChestGenHooks.STRONGHOLD_LIBRARY).addItem(new WeightedRandomChestContent(new ItemStack(chocopediaItem),Constants.CHOCOPEDIA_DUNGEON_MIN,Constants.CHOCOPEDIA_DUNGEON_MAX,Constants.CHOCOPEDIA_DUNGEON_WEIGHT));
+		}
 	}
 }

@@ -77,6 +77,8 @@ public class ChocoboConfig
 	
 	static String CFG_KEY_SADDLED_CAN_WANDER = "saddledCanWander";
 	
+	static String CFG_KEY_CHOCOPEDIA_IN_DUNGEONS = "chocopediaInDungeons";
+	
 	static String CFG_KEY_DEBUG_MODE = "debugMode";
 
 	public static void readConfigFileInit()
@@ -294,6 +296,10 @@ public class ChocoboConfig
 								{
 									ModChocoCraft.saddledCanWander = Boolean.parseBoolean(value);
 								}
+								else if(key.equalsIgnoreCase(CFG_KEY_CHOCOPEDIA_IN_DUNGEONS))
+								{
+									ModChocoCraft.chocopediaInDungeons = Boolean.parseBoolean(value);
+								}
 								
 								// debug mode
 								else if(key.equalsIgnoreCase(CFG_KEY_DEBUG_MODE))
@@ -443,6 +449,10 @@ public class ChocoboConfig
 			writer.write("\n");
 			writer.write(getCommentLine("Whenever or not wild Chocobos will be able to despawn if no player is around"));
 			writer.write(getConfigLine(CFG_KEY_WILD_CAN_DESPAWN, Boolean.toString(Constants.DEFAULT_WILD_CAN_DESPAWN)));			
+			
+			writer.write("\n");
+			writer.write(getCommentLine("Whenever or not the Chocopedia can be found in dungeon, jungle and desert pyramid, stronghold and mine chests"));
+			writer.write(getConfigLine(CFG_KEY_CHOCOPEDIA_IN_DUNGEONS, Boolean.toString(Constants.DEFAULT_CHOCOPEDIA_IN_DUNGEONS)));
 			
 			writer.write("\n");
 			writer.write(getCommentLine("add any name of the following list as comma separated values to"));

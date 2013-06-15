@@ -29,6 +29,7 @@ public class ChocoboItem extends Item
 	public ChocoboItem(int itemId)
 	{
 		super(itemId);
+		//this.setCreativeTab(ModChocoCraft.chocoboCreativeItems);
 	}
 
 	public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player)
