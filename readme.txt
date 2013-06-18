@@ -18,7 +18,7 @@ Changelog:
 4. Chocopedia available as Zombie, Skeleton, Witch and Villager drop
 
 see the minecraft forums for further informations
-http://www.minecraftforum.net/topic/1119809-15sspsmpforge-torojimas-chococraft-261-explore-your-worlds-riding-chocobos/
+http://www.minecraftforum.net/topic/1119809-
 
 or follow me on twitter https://twitter.com/Torojima
 
