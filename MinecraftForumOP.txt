@@ -2,7 +2,7 @@
 [size=2]banner made by [url="http://www.minecraftforum.net/user/223231-galindorf/"]galindorf[/url][/size]
 
 UPDATED FOR MINECRAFT 1.5.2 (1.5.1)
-Version 2.8.6
+Version 2.8.7
 Requires: [url="http://www.minecraftforge.net/"]Forge[/url] [url="http://files.minecraftforge.net/"]7.8.0.684+[/url]
 Tested with: [url="http://www.minecraftforge.net/"]Forge[/url] [url="http://files.minecraftforge.net/"]7.8.0.733[/url]
 
@@ -21,7 +21,7 @@ This version of Chococraft is not compatible to versions pre 2.0.0 (pre mc 1.3.2
 
 [color=#ff0000][b]This version of Chococraft will remove all Chocobos from worlds pre 2.8.5.  Items in the Chocobo saddlebag and packbag inventories will be lost. ChocoCraft items stored in normal chests or player inventories are not affected.[/b][/color]
 
-Download: [url="http://www.arno-saxena.de/minecraft/Chococraft_2.8.6.zip"]Torojimas ChocoCraft 2.8.6[/url]
+Download: [url="http://www.arno-saxena.de/minecraft/Chococraft_2.8.7.zip"]Torojimas ChocoCraft 2.8.7[/url]
 
 [url="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=3RZTLRHB5GZUL&lc=BE&item_name=Torojima%27s%20ChocoCraft&item_number=0003&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted"][img]https://www.paypalobjects.com/en_US/BE/i/btn/btn_donateCC_LG.gif[/img][/url]
 
@@ -103,7 +103,13 @@ Thanks to rsmalec
 Thanks to InTheLittleWood[/spoiler][/spoiler]
 
 CHANGELOG:
-[spoiler]v.2.8.6
+[spoiler]v.2.8.7
+   1. Chocopedia now available in dungeon loot.
+   2. Chicobos need 3x3x3 area to grow into Chocobos
+   3. Chocopedia readable book
+   4. Chocopedia available as Zombie, Skeleton, Witch and Villager drop
+
+v.2.8.6
    1. changed gysahl mutation rate from procent to permille. (default values are equivalent to the values before)
    2. changed the straw recipe from shapeless one wheat to four straw mats to two wheat next to each other for eight straw mats.
    3. added Chocopedia creation through use of Chocobo feather on bookshelf.

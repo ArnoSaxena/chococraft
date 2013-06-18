@@ -125,13 +125,14 @@ public class Constants
 	public static int CHOCOPEDIA_DUNGEON_WEIGHT = 2;
 	public static int CHOCOPEDIA_DUNGEON_MIN = 1;
 	public static int CHOCOPEDIA_DUNGEON_MAX = 1;
-	public static int CHOCOPEDIA_MOB_DROP_RATE = 5;
+	public static int CHOCOPEDIA_MOB_DROP_RATE = 3;
 	public static boolean DEFAULT_CHOCOPEDIA_IN_DUNGEONS = true;
 	
 	public static int DEFAULT_GYSAHL_GREEN_MUTATION_RATE =  100;
 	public static int DEFAULT_GYSAHL_LOVE_MUTATION_RATE  =  100;
 	
 	public static int DEFAULT_GYSAHL_WORLD_GEN_RATE   = 160;
+	public static int DEFAULT_GYSAHL_SEED_GRASS_DROP_WEIGHT = 3;
 	
 	public static int DEFAULT_GENDER_MALE_CHANCE      =  50;
 	public static int DEFAULT_FEATHER_DROP_CHANCE     =  15;

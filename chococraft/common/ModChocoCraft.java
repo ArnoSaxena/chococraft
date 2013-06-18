@@ -27,6 +27,7 @@ import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.ChestGenHooks;
 import net.minecraftforge.common.Configuration;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.Property;
 import chococraft.client.ClientProxyChocoCraft;
 import chococraft.common.entities.EntityChicobo;
@@ -153,6 +154,7 @@ public class ModChocoCraft
 	
 	// gysahl world generation setup
 	public static int gysahlWorldGenRate;
+	public static int gysahlSeedGrassDropWeight;
 	
 	// feather drop setup
 	public static int featherDropChance;
@@ -250,6 +252,8 @@ public class ModChocoCraft
 		this.addSmeltings();
 
 		this.addRecipes();
+		
+		this.addGrassDrops();
 
 		if(Side.CLIENT == FMLCommonHandler.instance().getEffectiveSide())
 		{
@@ -321,6 +325,7 @@ public class ModChocoCraft
 		gysahlLoveMutationRate  = Constants.DEFAULT_GYSAHL_LOVE_MUTATION_RATE;
 
 		gysahlWorldGenRate   = Constants.DEFAULT_GYSAHL_WORLD_GEN_RATE;
+		gysahlSeedGrassDropWeight = Constants.DEFAULT_GYSAHL_SEED_GRASS_DROP_WEIGHT;
 
 		featherDropChance    = Constants.DEFAULT_FEATHER_DROP_CHANCE;
 		featherDelayRandom   = Constants.DEFAULT_FEATHER_DELAY_RANDOM;
@@ -671,6 +676,11 @@ public class ModChocoCraft
 			new ItemStack(Item.dyePowder, 1, 0),
 			new ItemStack(chocoboFeatherItem, 1)
 		});		
+	}
+	
+	private void addGrassDrops()
+	{
+		MinecraftForge.addGrassSeed(new ItemStack(gysahlSeedsItem), gysahlSeedGrassDropWeight);
 	}
 
 	private void registerChocobos()
