@@ -523,15 +523,6 @@ public class ModChocoCraft
 			Character.valueOf('-'), Item.silk
 		});
 
-		// chocobo saddle recipe from vanilla saddle
-		GameRegistry.addRecipe(new ItemStack(chocoboSaddleItem, 1), new Object[]
-		{
-			" X ", 
-			" Y ", 
-			Character.valueOf('X'), Item.leather, 
-			Character.valueOf('Y'), chocoboFeatherItem
-		});
-		
 		// transforming vanilla saddle into chocobo saddle
 		GameRegistry.addShapelessRecipe(new ItemStack(chocoboSaddleItem, 1), new Object[]
 		{
