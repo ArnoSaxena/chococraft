@@ -255,8 +255,9 @@ public class ChocopediaPages
 				"near the cauldron it will automatically heal over time.");
 		this.nPages++;
 		this.chocopediaPages.add(
-				"VII. Chocobo Cake\n\nChocoob Cakes can be used to have Chicobos instantly grow up " +
-				"into Chocobos.");
+				"VII. Chocobo Cake\n\nChocobo Cakes can be used to have Chicobos instantly grow up " +
+				"into Chocobos.\n\nRecipe:\nTake an egg, mix it with two units of sugar, two buckets " +
+				"of milk and two bundles of grain. Finally garnish it with two Gysahl Greens.\nEnjoy.");
 		this.nPages++;
 	}
 	
