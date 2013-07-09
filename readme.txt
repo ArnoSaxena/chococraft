@@ -1,4 +1,4 @@
-This is the official version of Torojimas Chococraft v2.8.7 for usage with minecraft 1.5.2. Chococraft has been originally created by EddieV and is now refactored and officially maintained by Torojima.
+This is the official version of Torojimas Chococraft v2.8.8 for usage with minecraft 1.5.2. Chococraft has been originally created by EddieV and is now refactored and officially maintained by Torojima.
 
 This mod adds a mob called Chocobo to the game. This includes different coloured mob types with different attributes in their grown-up and juvenile form.
 
@@ -12,10 +12,10 @@ This version of Chococraft is not compatible to versions pre 1.3.2. It will dest
 This version of Chococraft will remove all Chocobos from worlds pre 2.8.5.  Items in the Chocobo saddlebag and packbag inventories will be lost. ChocoCraft items stored in normal chests or player inventories are not affected.
 
 Changelog:
-1. Chocopedia now available in dungeon loot.
-2. Chicobos need 3x3x3 area to grow into Chocobos
-3. Chocopedia readable book
-4. Chocopedia available as Zombie, Skeleton, Witch and Villager drop
+1. Chocobo check space suitable before teleport to player
+2. Removed wrong saddle recipe
+3. Corrected typo on Chocopedia
+
 
 see the minecraft forums for further informations
 http://www.minecraftforum.net/topic/1119809-

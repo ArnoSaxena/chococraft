@@ -2,9 +2,9 @@
 [size=2]banner made by [url="http://www.minecraftforum.net/user/223231-galindorf/"]galindorf[/url][/size]
 
 UPDATED FOR MINECRAFT 1.5.2 (1.5.1)
-Version 2.8.7
+Version 2.8.8
 Requires: [url="http://www.minecraftforge.net/"]Forge[/url] [url="http://files.minecraftforge.net/"]7.8.0.684+[/url]
-Tested with: [url="http://www.minecraftforge.net/"]Forge[/url] [url="http://files.minecraftforge.net/"]7.8.0.733[/url]
+Tested with: [url="http://www.minecraftforge.net/"]Forge[/url] [url="http://files.minecraftforge.net/"]7.8.1.737[/url]
 
 This Mod is the continuation of [url="http://www.minecraftforum.net/user/1051245-eddiev/"]EddieV's[/url] mod. The original thread can be found [url="http://www.minecraftforum.net/topic/952372-chococraft-12-mc-11-chocobos-now-fly/"]here[/url]. I've officially taken over the helm with Eddie's kind blessings.
 
@@ -21,7 +21,7 @@ This version of Chococraft is not compatible to versions pre 2.0.0 (pre mc 1.3.2
 
 [color=#ff0000][b]This version of Chococraft will remove all Chocobos from worlds pre 2.8.5.  Items in the Chocobo saddlebag and packbag inventories will be lost. ChocoCraft items stored in normal chests or player inventories are not affected.[/b][/color]
 
-Download: [url="http://www.arno-saxena.de/minecraft/Chococraft_2.8.7.zip"]Torojimas ChocoCraft 2.8.7[/url]
+Download: [url="http://www.arno-saxena.de/minecraft/Chococraft_2.8.8.zip"]Torojimas ChocoCraft 2.8.8 for minecraft 1.5.2[/url]
 
 [url="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=3RZTLRHB5GZUL&lc=BE&item_name=Torojima%27s%20ChocoCraft&item_number=0003&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted"][img]https://www.paypalobjects.com/en_US/BE/i/btn/btn_donateCC_LG.gif[/img][/url]
 
@@ -51,7 +51,9 @@ minecraft 1.2.3: ChocoCraft 1.4.1u
 [/spoiler]
 
 VIDEOS:
-[spoiler]
+[spoiler][url="http://www.minecraftforum.net/user/2279620-supersaijinkyle/"]Supersaijinkyle[/url] has done a statistical analysis on breeding Chocobos. If you're planing to breed Chocobos, this one is a must!
+[media]http://www.youtube.com/watch?v=8MzRn5nR_DI[/media]
+
 [url="http://www.minecraftforum.net/user/26535-arkenor/"]Arkenore[/url] is in the middle of a great "lets play" series, eventually with Chocobos mostly with Ars Magica, Mo'Creatures and a few other mods, they seem to be compatible.
 [media]http://www.youtube.com/watch?v=JSL4r3vOtGc[/media]
 
@@ -103,7 +105,12 @@ Thanks to rsmalec
 Thanks to InTheLittleWood[/spoiler][/spoiler]
 
 CHANGELOG:
-[spoiler]v.2.8.7
+[spoiler]v.2.8.8 mc 1.5.2
+   1. Chocobo check space suitable before teleport to player
+   2. Removed wrong saddle recipe
+   3. Corrected typo on Chocopedia
+
+v.2.8.7 mc 1.5.2
    1. Chocopedia now available in dungeon loot.
    2. Chicobos need 3x3x3 area to grow into Chocobos
    3. Chocopedia readable book
@@ -581,7 +588,7 @@ Items and Blocks:
 [spoiler]   1. [img]http://www.arno-saxena.de/pictures/chococraft/item_gysahl_green.png[/img] Gysahl Greens - Gysahl Greens are the most important block in ChocoCraft. They are used to tame Chocobos and to create various other greens. Just like flowers, Gysahl Greens will grow randomly across the map and can be collected and even planted again.
    2. [img]http://www.arno-saxena.de/pictures/chococraft/item_choco_leg_raw.png[/img] Raw Chocobo Leg - This piece of meat is dropped by the most unfortunate Chocobos. Just like regular chicken legs, they can be cooked on a furnace.
    3. [img]http://www.arno-saxena.de/pictures/chococraft/item_choco_leg_cooked.png[/img] Cooked Chocobo Leg - By eating this yummy chocobo leg, you'll reduce your famine. A Chocobo Leg reduces famine even more than a cooked chicken leg, healing just as much as a cooked pork chop.
-   4. [img]http://www.arno-saxena.de/pictures/chococraft/item_choco_feather.png[/img]Chocobo Feather - Chocobo Feathers are very attractive items to Chocobos. They can be used to build saddles, whistles, and even special types of gysahls. Tamed chocobos will occasionaly drop these.
+   4. [img]http://www.arno-saxena.de/pictures/chococraft/item_choco_feather.png[/img]Chocobo Feather - Chocobo Feathers are very attractive items to Chocobos. They can be used to build saddles, whistles, and even special types of gysahls. Tamed and wild Chocobos will occasionaly drop these.
    5. [img]http://www.arno-saxena.de/pictures/chococraft/item_saddle.png[/img] Chocobo Saddle - Tamed Chocobos can only be ridden once they are saddled with these special saddles.
    6. [img]http://www.arno-saxena.de/pictures/chococraft/item_saddle_bags.png[/img] Chocobo Saddle Bags - Saddled Chocobos can be equipted with one of these to give them some transport and storage capacities. Once saddle bags are fitted onto a Chocobo, they can be accessed by shift-right-clicking the Chocobo. (can be used on Chocobo, but inventories are disabled at the moment)
    7. [img]http://www.arno-saxena.de/pictures/chococraft/item_choco_pack_bags.png[/img] Chocobo Pack Bags - Tamed Chocobos can be equipted with one of these to give them some transport and storage capacities. Once pack bags are fitted onto a Chocobo, they can be accessed by right-clicking the Chocobo. (can be used on Chocobo, but inventories are disabled at the moment)
@@ -904,8 +911,8 @@ Acknowledgments:
 4. The design of the new Chocobo model has been created by [url="http://www.minecraftforum.net/user/758250-firas333/"]firas333[/url].
 5. Pictures of new Chocobos made by [url="http://www.minecraftforum.net/user/524192-uncletravis/"]uncletravis[/url] and [url="http://www.minecraftforum.net/user/1099767-poloniumradon/"]PoloniumRadon[/url].
 6. Server testing by [url="http://www.minecraftforum.net/user/1795528-sparks314/"]sparks314[/url]
-7. The old models of the Chocobos were HIGHLY inspired by the Moa creatures in The Aether Mod. If you don't know this mod, you should. Go get it ASAP.
-8. The models of the Chicobos were HIGHLY inspired by the chicks present in Baby Animals Mod. If you don't know this mod, you should also go get it ASAP.
+7. The old models of the Chocobos were HIGHLY inspired by the Moa creatures in The Aether Mod.
+8. The models of the Chicobos were HIGHLY inspired by the chicks present in Baby Animals Mod.
 9. [url="http://www.minecraftforum.net/user/1200917-shadoxlunik/"]ShadoxLunik[/url] for the new purple/nether Chocobo skin
 10. [url="http://www.minecraftforum.net/user/525357-weltallofid/"]weltallofid[/url] for making a symmetric saddled skin.
 11. [url="http://www.minecraftforum.net/user/26535-arkenor/"]Arkenore[/url] for the brilliant title phrase :D
