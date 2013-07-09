@@ -63,17 +63,20 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo
 	abstract public void setJumpHigh(boolean mounted);
 	abstract public void setRiderAbilities(boolean mounted);
 	
+    @Override
 	protected void entityInit()
 	{
 		super.entityInit();
 		this.dataWatcher.addObject(Constants.DW_ID_ECR_FLAGS, Byte.valueOf((byte)0));
 	}
 
+    @Override
 	public boolean isAIEnabled()
 	{
 		return false;
 	}
 
+    @Override
 	public void writeEntityToNBT(NBTTagCompound nbttagcompound)
 	{
 		super.writeEntityToNBT(nbttagcompound);
@@ -90,6 +93,7 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo
 		}
 	}
 
+    @Override
 	public void readEntityFromNBT(NBTTagCompound nbttagcompound)
 	{
 		super.readEntityFromNBT(nbttagcompound);
@@ -107,6 +111,7 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo
 		}
 	}    
 
+    @Override
 	public void writeSpawnData(ByteArrayDataOutput data)
 	{
 		super.writeSpawnData(data);
@@ -115,6 +120,7 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo
 		data.writeBoolean(this.isPackBagged());
 	}
 
+    @Override
 	public void readSpawnData(ByteArrayDataInput data)
 	{
 		super.readSpawnData(data);
@@ -123,6 +129,7 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo
 		this.setPackBagged(data.readBoolean());
 	}
 
+    @Override
 	public void onLivingUpdate()
 	{
 		if (this.riddenByEntity != null)
@@ -147,6 +154,7 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo
 		super.onLivingUpdate();
 	}
 
+    @Override
 	public void onDeath(DamageSource damageSource)
 	{
 		if(this.isServer())
@@ -171,6 +179,7 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo
 		super.onDeath(damageSource);
 	}
 
+    @Override
 	public boolean interact(EntityPlayer entityplayer)
 	{
 		boolean interacted = false;
@@ -310,6 +319,7 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo
 	/**
 	 * Tries to moves the entity by the passed in displacement. Args: x, y, z
 	 */
+	@Override
 	public void moveEntity(double moveX, double moveY, double moveZ)
 	{
 		if (this.riddenByEntity != null)
@@ -387,6 +397,7 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo
 		}
 	}
 
+    @Override
 	public void onUpdate()
 	{
 		super.onUpdate();
@@ -402,6 +413,7 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo
 		return this.flying;
 	}
 
+	@Override
 	public void updateRiderPosition()
 	{
 		if (this.riddenByEntity != null)
@@ -437,6 +449,7 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo
 	/**
 	 * Called when the entity is attacked.
 	 */
+    @Override
 	public boolean attackEntityFrom(DamageSource damagesource, int i)
 	{
 		if(null != damagesource)
@@ -457,6 +470,7 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo
 		}
 	}
 
+    @Override
 	public double getMountedYOffset()
 	{
 		return 1.4D;
@@ -563,6 +577,7 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo
 		}
 	}
 
+    @Override
 	protected boolean canDespawn()
 	{
 		return super.canDespawn() && !isSaddled();
