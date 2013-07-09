@@ -34,6 +34,7 @@ import net.minecraft.world.World;
 import chococraft.common.Constants;
 import chococraft.common.ModChocoCraft;
 import chococraft.common.gui.GuiStarter;
+import chococraft.common.helper.ChocoboEntityHelper;
 import chococraft.common.helper.ChocoboMathHelper;
 import chococraft.common.helper.ChocoboParticleHelper;
 import chococraft.common.network.clientSide.PacketChocoboHealth;
@@ -827,30 +828,12 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
     		return false;
     	}
     	
-    	for(int i = 0; i < 3; i++)
+    	if(!ChocoboEntityHelper.isSpaceAroundLocationFree(this.worldObj, x, y, z, 1, 3, 1))
     	{
-    		if(isNormalCubesAround(this.worldObj, x, y + i, z))
-    		{
-    			return false;
-    		}
+    		return false;
     	}
     	return true;
     }
-    
-	private static boolean isNormalCubesAround(World world, int posX, int posY, int posZ)
-	{
-		for(int x = posX -1; x <= posX +1; x++)
-		{
-			for(int z = posZ -1; z <= posZ +1; z++)
-			{
-				if(!world.isBlockNormalCube(x, posY, z))
-				{
-					return false;
-				}
-			}
-		}
-		return true;
-	}
     
     public boolean teleportToOwner()
     {
@@ -914,33 +897,7 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
     	this.isDead = true;
     }
     
-//    @Override
-//    public void setDead()
-//    {
-//    	if(this.isTamed() || !ModChocoCraft.wildCanDespawn)
-//    	{
-//    		if(this.getAge() > 600)
-//    		{
-//    			if(this.playerInRange(1000.0))
-//    			{
-//    				this.isDead = true;
-//    			}
-//    		}
-//    		else
-//    		{
-//    			if(this.playerInRange(16000.0))
-//    			{
-//    				this.isDead = true;
-//    			}
-//    		}
-//    	}
-//    	else
-//    	{
-//        	this.isDead = true;
-//    	}
-//    }
-    
-    boolean playerInRange(double range)
+    public boolean playerInRange(double range)
     {
     	EntityPlayer player = this.worldObj.getClosestPlayerToEntity(this, -1);
     	if(null != player)
@@ -1033,8 +990,11 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
 						float gPosX = (float)(entityPosX + i) + 0.5F;
 						float gPosY = entityPosY;
 						float gPosZ = (float)(entityPosZ + j) + 0.5F;
-						this.setLocationAndAngles(gPosX, gPosY, gPosZ, this.rotationYaw, this.rotationPitch);
-						return;
+						if(ChocoboEntityHelper.isSpaceAroundLocationFree(this.worldObj, entityPosX + i, entityPosY, entityPosZ + j, 1, 3, 1));
+						{
+							this.setLocationAndAngles(gPosX, gPosY, gPosZ, this.rotationYaw, this.rotationPitch);
+							return;
+						}
 					}
 				}
 			}
