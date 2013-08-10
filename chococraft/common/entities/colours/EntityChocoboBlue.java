@@ -14,18 +14,17 @@
 
 package chococraft.common.entities.colours;
 
-import com.google.common.io.ByteArrayDataInput;
-import com.google.common.io.ByteArrayDataOutput;
-
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
-
 import chococraft.common.Constants;
 import chococraft.common.ModChocoCraft;
 import chococraft.common.entities.EntityChocobo;
+
+import com.google.common.io.ByteArrayDataInput;
+import com.google.common.io.ByteArrayDataOutput;
 
 public class EntityChocoboBlue extends EntityChocobo
 {
@@ -160,34 +159,55 @@ public class EntityChocoboBlue extends EntityChocobo
 					chicoboColor = chocoboColor.YELLOW;
 				}
 				break;
-			case GREEN:
-				if(randColor > 75 || (randColor > 50 && bothFedGold))
+			case BLUE:
+				if(bothFedGold)
 				{
-					chicoboColor = chocoboColor.WHITE;
+					if(randColor > 60)
+					{
+						chicoboColor = chocoboColor.WHITE;
+					}
+					else if(randColor > 30)
+					{
+						chicoboColor = chocoboColor.BLUE;
+					}
 				}
-				else if ((randColor > 25 && !bothFedGold) || randColor < 25)
+				else
 				{
-					chicoboColor = chocoboColor.GREEN;
+					if(randColor > 80)
+					{
+						chicoboColor = chocoboColor.WHITE;
+					}
+					else if(randColor > 40)
+					{
+						chicoboColor = chocoboColor.BLUE;
+					}
 				}
 				break;
 			case BLACK:
 			case WHITE:
-				if(randColor > 75 || (randColor > 50 && bothFedGold))
+				if(bothFedGold)
 				{
-					chicoboColor = otherParent.color;
+					if(randColor > 70)
+					{
+						chicoboColor = chocoboColor.YELLOW;
+					}
+					else if (randColor > 35)
+					{
+						chicoboColor = otherParent.color;
+					}					
 				}
-				else if ((randColor > 25 && !bothFedGold) || randColor < 25)
+				else
 				{
-					chicoboColor = chocoboColor.YELLOW;
+					if(randColor > 90)
+					{
+						chicoboColor = chocoboColor.YELLOW;
+					}
+					else if (randColor > 45)
+					{
+						chicoboColor = otherParent.color;
+					}
 				}
 				break;
-			case GOLD:
-			case PINK:
-			case RED:
-				if(randColor > 75 && bothFedGold)
-				{
-					chicoboColor = chocoboColor.GOLD;
-				}
 			}
 			return chicoboColor;
 		}

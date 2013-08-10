@@ -14,15 +14,14 @@
 
 package chococraft.common.entities.colours;
 
-import com.google.common.io.ByteArrayDataInput;
-import com.google.common.io.ByteArrayDataOutput;
-
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
-
 import chococraft.common.Constants;
 import chococraft.common.entities.EntityChocobo;
+
+import com.google.common.io.ByteArrayDataInput;
+import com.google.common.io.ByteArrayDataOutput;
 
 public class EntityChocoboPink extends EntityChocobo
 {
@@ -140,29 +139,23 @@ public class EntityChocoboPink extends EntityChocobo
 			switch(otherParent.color)
 			{
 			case YELLOW:
-				chicoboColor = chocoboColor.YELLOW;
-				break;
 			case GREEN:
 			case BLUE:
 			case WHITE:
 			case BLACK:
-				if(randColor < 75 || !bothFedGold)
-				{
-					chicoboColor = otherParent.color;
-				}
+			case PURPLE:
+				chicoboColor = otherParent.color;
 				break;
 			case GOLD:
 			case PINK:
 			case RED:
-				if(!bothFedGold)
+				if(!bothFedGold || randColor > 20)
 				{
 					chicoboColor = chocoboColor.YELLOW;
 				}
 				break;
-			case PURPLE:
-				chicoboColor = chocoboColor.PURPLE;
-				break;
 			}
+
 			return chicoboColor;
 		}
 		else

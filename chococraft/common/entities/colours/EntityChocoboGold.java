@@ -142,27 +142,20 @@ public class EntityChocoboGold extends EntityChocobo
 			switch(otherParent.color)
 			{
 			case YELLOW:
-				chicoboColor = chocoboColor.YELLOW;
-				break;
 			case GREEN:
 			case BLUE:
 			case WHITE:
 			case BLACK:
-				if(randColor < 75 || !bothFedGold)
-				{
-					chicoboColor = otherParent.color;
-				}
+			case PURPLE:
+				chicoboColor = otherParent.color;
 				break;
 			case GOLD:
 			case PINK:
 			case RED:
-				if(!bothFedGold)
+				if(!bothFedGold || randColor > 20)
 				{
 					chicoboColor = chocoboColor.YELLOW;
 				}
-				break;
-			case PURPLE:
-				chicoboColor = chocoboColor.PURPLE;
 				break;
 			}
 			return chicoboColor;

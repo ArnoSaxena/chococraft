@@ -19,13 +19,12 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
-
-import com.google.common.io.ByteArrayDataInput;
-import com.google.common.io.ByteArrayDataOutput;
-
 import chococraft.common.Constants;
 import chococraft.common.ModChocoCraft;
 import chococraft.common.entities.EntityChocobo;
+
+import com.google.common.io.ByteArrayDataInput;
+import com.google.common.io.ByteArrayDataOutput;
 
 public class EntityChocoboBlack extends EntityChocobo
 {
@@ -148,31 +147,11 @@ public class EntityChocoboBlack extends EntityChocobo
 			switch(otherParent.color)
 			{
 			case YELLOW:
-				if(randColor < 50)
-				{
-					chicoboColor = chocoboColor.YELLOW;
-				}
-				break;
 			case GREEN:
 			case BLUE:
-				if(randColor < 75)
+				if(randColor < 50)
 				{
-					if (randColor > 50)
-					{
-						chicoboColor = bothFedGold ? chocoboColor.BLACK : otherParent.color;
-					}
-					if (randColor > 38)
-					{
-						chicoboColor = otherParent.color;
-					}
-					else if (randColor >= 25)
-					{
-						chicoboColor = bothFedGold ? otherParent.color : chocoboColor.YELLOW;
-					}
-					else if (randColor < 25)
-					{
-						chicoboColor = chocoboColor.YELLOW;
-					}
+					chicoboColor = otherParent.color;
 				}
 				break;
 			case WHITE:
@@ -182,29 +161,26 @@ public class EntityChocoboBlack extends EntityChocobo
 					{
 						chicoboColor = chocoboColor.GOLD;
 					}
-					else if (randColor < 25)
+					else if (randColor > 25)
 					{
 						chicoboColor = chocoboColor.WHITE;
 					}
 				}
 				else
 				{
-					if(randColor < 50)
+					if(randColor > 75)
 					{
-						if (randColor > 25)
-						{
-							chicoboColor = chocoboColor.WHITE;
-						}
-						else
-						{
-							chicoboColor = chocoboColor.YELLOW;
-						}
+						chicoboColor = chocoboColor.YELLOW;
+					}
+					else if (randColor > 38)
+					{
+						chicoboColor = chocoboColor.WHITE;
 					}
 				}
 			case GOLD:
 			case PINK:
 			case RED:
-				if(randColor > 75 && bothFedGold)
+				if(randColor > 90 && bothFedGold)
 				{
 					chicoboColor = chocoboColor.GOLD;
 				}

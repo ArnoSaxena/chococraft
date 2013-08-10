@@ -14,15 +14,14 @@
 
 package chococraft.common.entities.colours;
 
-import com.google.common.io.ByteArrayDataInput;
-import com.google.common.io.ByteArrayDataOutput;
-
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
-
 import chococraft.common.Constants;
 import chococraft.common.entities.EntityChocobo;
+
+import com.google.common.io.ByteArrayDataInput;
+import com.google.common.io.ByteArrayDataOutput;
 
 
 public class EntityChocoboWhite extends EntityChocobo
@@ -139,30 +138,51 @@ public class EntityChocoboWhite extends EntityChocobo
 			switch(otherParent.color)
 			{
 			case YELLOW:
-				if(randColor > 75 || (randColor > 50 && bothFedGold))
+				if(bothFedGold)
 				{
-					chicoboColor = chocoboColor.BLACK;
+					if(randColor > 60)
+					{
+						chicoboColor = chocoboColor.BLACK;
+					}
+					else if(randColor > 30)
+					{
+						chicoboColor = chocoboColor.YELLOW;
+					}
 				}
-				else if ((randColor > 25 && !bothFedGold) || randColor < 25)
+				else
 				{
-					chicoboColor = chocoboColor.YELLOW;
+					if(randColor > 80)
+					{
+						chicoboColor = chocoboColor.BLACK;
+					}
+					else if(randColor > 40)
+					{
+						chicoboColor = chocoboColor.YELLOW;
+					}
 				}
 				break;
 			case GREEN:
 			case BLUE:
-				if(randColor < 75)
+				if(bothFedGold)
 				{
-					if ((randColor > 50 && !bothFedGold) || randColor > 38)
-					{
-						chicoboColor = otherParent.color;
-					}
-					else if (randColor > 25)
-					{
-						chicoboColor = bothFedGold ? otherParent.color : chocoboColor.YELLOW;
-					}
-					else
+					if(randColor > 70)
 					{
 						chicoboColor = chocoboColor.YELLOW;
+					}
+					else if (randColor > 35)
+					{
+						chicoboColor = otherParent.color;
+					}					
+				}
+				else
+				{
+					if(randColor > 90)
+					{
+						chicoboColor = chocoboColor.YELLOW;
+					}
+					else if (randColor > 45)
+					{
+						chicoboColor = otherParent.color;
 					}
 				}
 				break;
@@ -182,18 +202,18 @@ public class EntityChocoboWhite extends EntityChocobo
 				{
 					if(randColor > 75)
 					{
-						chicoboColor = chocoboColor.BLACK;
-					}
-					else if (randColor < 25)
-					{
 						chicoboColor = chocoboColor.YELLOW;
+					}
+					else if (randColor > 38)
+					{
+						chicoboColor = chocoboColor.BLACK;
 					}
 				}
 				break;
 			case GOLD:
 			case PINK:
 			case RED:
-				if(randColor > 75 && bothFedGold)
+				if(randColor > 70 && bothFedGold)
 				{
 					chicoboColor = chocoboColor.GOLD;
 				}

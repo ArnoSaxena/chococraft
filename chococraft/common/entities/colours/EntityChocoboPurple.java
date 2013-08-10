@@ -163,11 +163,6 @@ public class EntityChocoboPurple extends EntityChocobo
 			case BLACK:
 				chicoboColor = otherParent.color;
 				break;
-			case GOLD:
-			case PINK:
-			case RED:
-				chicoboColor = chocoboColor.PURPLE;
-				break;
 			}
 			return chicoboColor;
 		}

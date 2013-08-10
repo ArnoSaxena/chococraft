@@ -14,9 +14,6 @@
 
 package chococraft.common.entities.colours;
 
-import com.google.common.io.ByteArrayDataInput;
-import com.google.common.io.ByteArrayDataOutput;
-
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
@@ -24,6 +21,9 @@ import chococraft.common.Constants;
 import chococraft.common.ModChocoCraft;
 import chococraft.common.entities.EntityChocobo;
 import chococraft.common.helper.ChocoboEntityHelper;
+
+import com.google.common.io.ByteArrayDataInput;
+import com.google.common.io.ByteArrayDataOutput;
 
 public class EntityChocoboYellow extends EntityChocobo
 {
@@ -156,17 +156,27 @@ public class EntityChocoboYellow extends EntityChocobo
 			switch(otherParent.color)
 			{
 			case YELLOW:
-				if(randColor > 88)
+				if(bothFedGold)
 				{
-					chicoboColor = chocoboColor.BLUE;
+					if(randColor > 80)
+					{
+						chicoboColor = chocoboColor.BLUE;
+					}
+					else if(randColor > 60)
+					{
+						chicoboColor = chocoboColor.GREEN;
+					}
 				}
-				else if (randColor > 75)
+				else
 				{
-					chicoboColor = bothFedGold ? chocoboColor.BLUE : chocoboColor.GREEN;
-				}
-				else if (randColor > 50 && bothFedGold)
-				{
-					chicoboColor = chocoboColor.GREEN;
+					if(randColor > 60)
+					{
+						chicoboColor = chocoboColor.BLUE;
+					}
+					else if(randColor > 20)
+					{
+						chicoboColor = chocoboColor.GREEN;
+					}
 				}
 				break;
 			case GREEN:
@@ -178,17 +188,27 @@ public class EntityChocoboYellow extends EntityChocobo
 				}
 				break;
 			case WHITE:
-				if(randColor > 75)
+				if(bothFedGold)
 				{
-					chicoboColor = chocoboColor.BLACK;
+					if(randColor > 60)
+					{
+						chicoboColor = chocoboColor.BLACK;
+					}
+					else if(randColor > 30)
+					{
+						chicoboColor = chocoboColor.WHITE;
+					}
 				}
-				if(randColor > 50)
+				else
 				{
-					chicoboColor = bothFedGold ? chocoboColor.BLACK : chocoboColor.WHITE;
-				}
-				if(randColor > 38 || (randColor > 25 && bothFedGold))
-				{
-					chicoboColor = chocoboColor.WHITE;
+					if(randColor > 80)
+					{
+						chicoboColor = chocoboColor.BLACK;
+					}
+					else if(randColor > 40)
+					{
+						chicoboColor = chocoboColor.WHITE;
+					}
 				}
 				break;
 			}
