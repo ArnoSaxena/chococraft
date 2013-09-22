@@ -22,7 +22,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -56,11 +55,18 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 		this.wingRotation = 0.0F;
 		this.destPos = 0.0F;
 		this.wingRotDelta = 1.0F;
-		this.texture = this.getEntityTexture();
 		this.setSize(ModChocoCraft.chocoboWidth, ModChocoCraft.chocoboHeight);
 		this.timeUntilNextFeather = this.rand.nextInt(ModChocoCraft.featherDelayRandom) + ModChocoCraft.featherDelayStatic;
+        
+//      tasks.addTask(this.taskNumber++, new EntityAISwimming(this));
+//      tasks.addTask(this.taskNumber++, new EntityAIChocoboPanic(this, 0.38F));
+//      tasks.addTask(this.taskNumber++, new EntityAIChocoboWander(this, 0.25F));
+//      tasks.addTask(this.taskNumber++, new EntityAIChocoboWatchClosest(this, EntityPlayer.class, 6F));
+//      tasks.addTask(this.taskNumber++, new EntityAIChocoboLookIdle(this));
+//      tasks.addTask(this.taskNumber++, new EntityAIChocoboFollowOwner(this, 5F));
 	}
 
+	@Override
 	protected void entityInit()
 	{
 		super.entityInit();
@@ -133,7 +139,9 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 			s = (new StringBuilder()).append(s).append(Constants.CHOCOBO_ETXT_FEMALE).toString();
 		}
 
-		return (new StringBuilder()).append(s).append(this.getEntityColourTexture()).toString();
+		s = (new StringBuilder()).append(s).append(this.getEntityColourTexture()).toString();
+		
+		return s;
 	}
 
 	public void onUpdate()
@@ -192,7 +200,7 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 			float landMovement = 0.02F;
 			if (this.canCrossWater)
 			{
-				landMovement = this.landMovementFactor * 0.3F;
+				landMovement = (float)this.landSpeedFactor/100 * 0.3F;
 			}
 			this.moveFlying(strafe, forward, landMovement);
 			this.moveEntity(this.motionX, this.motionY, this.motionZ);
@@ -209,7 +217,7 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 		{
 			if(this instanceof EntityChocoboPurple)
 			{
-				this.moveFlying(strafe, forward, this.landMovementFactor * 2.0F);
+				this.moveFlying(strafe, forward, (float)this.landSpeedFactor/100 * 2.0F);
 				this.moveEntity(motionX, motionY, motionZ);
 				this.motionX *= 0.8D;
 				this.motionY *= 0.8D;
@@ -257,7 +265,7 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 				}
 			}
 			float f4 = 0.1627714F / (f3 * f3 * f3);
-			float f6 = this.onGround ? this.landMovementFactor * f4 : this.jumpMovementFactor;
+			float f6 = this.onGround ? (float)this.landSpeedFactor/100 * f4 : this.jumpMovementFactor;
 			this.moveFlying(strafe, forward, f6);
 			f3 = 0.91F;
 			if (this.onGround)
@@ -559,7 +567,7 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 		
 		if (!worldObj.playerEntities.isEmpty())
 		{
-			if (this.riddenByEntity != null && (this.riddenByEntity instanceof EntityLiving))
+			if (this.riddenByEntity != null && (this.riddenByEntity instanceof EntityPlayer))
 			{
 				if(this instanceof EntityChocoboPurple)
 				{					
@@ -568,8 +576,8 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 				}
 				prevRotationYaw = rotationYaw = riddenByEntity.rotationYaw;
 				prevRotationPitch = rotationPitch = 0.0F;
-				EntityLiving entityliving = (EntityLiving)riddenByEntity;
-				isJumping = entityliving.isJumping;
+				this.setJumping(this.riderActionState.jump);
+				
 				double d = Math.abs(Math.sqrt(motionX * motionX + motionZ * motionZ));
 				if (d > 0.375D)
 				{

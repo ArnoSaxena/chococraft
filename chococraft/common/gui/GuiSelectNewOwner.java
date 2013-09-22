@@ -16,13 +16,10 @@ package chococraft.common.gui;
 
 import java.util.ArrayList;
 
-
-
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.GuiTextField;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.StringTranslate;
 
 import org.lwjgl.input.Keyboard;
 
@@ -55,14 +52,20 @@ public class GuiSelectNewOwner extends GuiScreen
 	@SuppressWarnings("unchecked")
 	public void initGui()
 	{
-		StringTranslate stringtranslate = StringTranslate.getInstance();
+		//StringTranslate stringtranslate = StringTranslate.getInstance();
 		Keyboard.enableRepeatEvents(true);
 		this.buttonList.clear();		
-		this.buttonList.add(new GuiButton(0, this.width / 2 - 100, this.height / 4 + 120 + 12, 80, 20, stringtranslate.translateKey("Accept")));
-		this.buttonList.add(new GuiButton(1, this.width / 2, this.height / 4 + 120 + 12, 80, 20, stringtranslate.translateKey("gui.cancel")));
+//		this.buttonList.add(new GuiButton(0, this.width / 2 - 100, this.height / 4 + 120 + 12, 80, 20, stringtranslate.translateKey("Accept")));
+//		this.buttonList.add(new GuiButton(1, this.width / 2, this.height / 4 + 120 + 12, 80, 20, stringtranslate.translateKey("gui.cancel")));
+//
+//		this.buttonList.add(new GuiButton(2, this.width / 2 + 90, this.height / 2 - 50, 40, 20, stringtranslate.translateKey("last")));
+//		this.buttonList.add(new GuiButton(3, this.width / 2 + 90, this.height / 2 - 20, 40, 20, stringtranslate.translateKey("next")));
 
-		this.buttonList.add(new GuiButton(2, this.width / 2 + 90, this.height / 2 - 50, 40, 20, stringtranslate.translateKey("last")));
-		this.buttonList.add(new GuiButton(3, this.width / 2 + 90, this.height / 2 - 20, 40, 20, stringtranslate.translateKey("next")));
+		this.buttonList.add(new GuiButton(0, this.width / 2 - 100, this.height / 4 + 120 + 12, 80, 20, "Accept"));
+		this.buttonList.add(new GuiButton(1, this.width / 2, this.height / 4 + 120 + 12, 80, 20, "Cancel"));
+
+		this.buttonList.add(new GuiButton(2, this.width / 2 + 90, this.height / 2 - 50, 40, 20, "last"));
+		this.buttonList.add(new GuiButton(3, this.width / 2 + 90, this.height / 2 - 20, 40, 20, "next"));
 
 		this.tfNewOnwer = new GuiTextField(this.fontRenderer, this.width / 2 - 100, this.height / 4 + 96 + 12, 180, 20);
 		this.tfNewOnwer.setText("");
@@ -210,15 +213,17 @@ public class GuiSelectNewOwner extends GuiScreen
 
 	public void drawScreen(int i, int j, float f)
 	{
-		StringTranslate stringtranslate = StringTranslate.getInstance();
+		//StringTranslate stringtranslate = StringTranslate.getInstance();
 		this.drawDefaultBackground();
 
 		StringBuilder messageSB = new StringBuilder();
 		messageSB.append("Give your ");
 		messageSB.append((this.chocobo instanceof EntityChicobo) ? "Chicobo" : "Chocobo");
-		String message = stringtranslate.translateKey(messageSB.toString());
+		//String message = stringtranslate.translateKey(messageSB.toString());
+		String message = messageSB.toString();
 		this.drawCenteredString(this.fontRenderer, message, this.width / 2, (this.height / 4 - 60) + 20, 0xffffff);		
-		this.drawString(this.fontRenderer, stringtranslate.translateKey("to new owner:"), this.width / 2 - 100, 30, 0xa0a0a0);		
+		//this.drawString(this.fontRenderer, stringtranslate.translateKey("to new owner:"), this.width / 2 - 100, 30, 0xa0a0a0);		
+		this.drawString(this.fontRenderer, "to new owner:", this.width / 2 - 100, 30, 0xa0a0a0);		
 		this.tfNewOnwer.drawTextBox();
 		for(GuiTextField gtf : this.tfArPlayerList)
 		{

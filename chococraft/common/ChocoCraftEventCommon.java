@@ -15,7 +15,7 @@
 package chococraft.common;
 
 import net.minecraft.block.Block;
-import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.EntityPigZombie;
 import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.entity.monster.EntityWitch;
@@ -29,9 +29,11 @@ import net.minecraftforge.event.Event.Result;
 import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.BonemealEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.Action;
+import chococraft.common.entities.EntityChocobo;
 import chococraft.common.entities.colours.EntityChocoboPurple;
 import chococraft.common.gui.GuiStarter;
 import chococraft.common.helper.ChocoboPlayerHelper;
@@ -70,6 +72,68 @@ public class ChocoCraftEventCommon
     				event.setCanceled(true);
     			}
     		}
+    	}
+    }
+    
+    @ForgeSubscribe
+    public void onPlayerAttackMount(LivingAttackEvent event)
+    {
+    	if(event.entity instanceof EntityChocobo)
+    	{
+    		EntityChocobo chocobo = (EntityChocobo)event.entity;
+    		
+    		if(null != chocobo.riddenByEntity && chocobo.riddenByEntity instanceof EntityPlayer)
+    		{
+    			EntityPlayer player = (EntityPlayer)chocobo.riddenByEntity;
+
+        		if(event.source.equals(DamageSource.causePlayerDamage(player)))
+        		{
+        			event.setCanceled(true);
+        		}
+    		}
+    	}
+    }
+    
+    @ForgeSubscribe
+    public void onPlayerAttackInventory(LivingAttackEvent event)
+    {
+    	if(event.entity instanceof EntityChocobo)
+    	{
+    		EntityChocobo chocobo = (EntityChocobo)event.entity;
+    		if(chocobo.isTamed())
+    		{
+    			if(event.source.getEntity() instanceof EntityPlayer)
+    			{
+    				EntityPlayer player = (EntityPlayer)event.source.getEntity();
+
+    				if(player.isSneaking())
+    				{
+    					event.setCanceled(true);
+    				}
+    			}    		
+    		}
+    	}
+    }
+    
+    @ForgeSubscribe
+    public void onChocoboSuffocateInWall(LivingAttackEvent event)
+    {
+    	if(event.entity instanceof EntityChocobo)
+    	{
+    		if(event.source.getDamageType().equals(DamageSource.inWall))
+    		{
+    			event.setCanceled(true);        		
+    		}
+    	}
+    }
+    
+    @ForgeSubscribe
+    public void chocoboDamageHandling(LivingHurtEvent event)
+    {
+    	if(event.entity instanceof EntityChocobo)
+    	{
+    		EntityChocobo chocobo = (EntityChocobo)event.entity;
+    		chocobo.damageHandling();
     	}
     }
     
@@ -145,7 +209,7 @@ public class ChocoCraftEventCommon
 		}
 	}
 	
-	protected boolean isChocopediaDropEntity(EntityLiving entity)
+	protected boolean isChocopediaDropEntity(EntityLivingBase entity)
 	{
 		if(entity instanceof EntityZombie
 				|| entity instanceof EntitySkeleton

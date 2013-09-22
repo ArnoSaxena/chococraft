@@ -16,7 +16,7 @@ package chococraft.common;
 
 public class Constants
 {
-	public final static String TCC_VERSION = "2.8.8";
+	public final static String TCC_VERSION = "2.9.1";
 	public final static String TCC_MODID = "chococraft";
 	public final static String TCC_NAME = "Torojimas ChocoCraft";
 
@@ -61,13 +61,14 @@ public class Constants
 	public static int CHOCOBO_CHICOBO_ID = 609;
 	
 	// resource folder
-	public static String CHOCOBO_RESOURCES_FOLDER = "/resources";
+	//public static String CHOCOBO_RESOURCES_FOLDER = "/resources";
+	public static String CHOCOBO_RESOURCES_FOLDER = "textures/entities/";
 
 	// sound folder
 	public static String CHOCOBO_SOUND_FOLDER = CHOCOBO_RESOURCES_FOLDER + "/sounds";
 	
 	// armour folder
-	public static String CHOCOBO_ARMOUR_FOLDER = CHOCOBO_RESOURCES_FOLDER + "/armor";	
+	public static String CHOCOBO_ARMOUR_FOLDER = CHOCOBO_RESOURCES_FOLDER + "textures/armor/";	
 
 	public static String KEY_CHOCOPEDIA     = "chocopedia";
 	public static String KEY_DISGUISE       = "chocoDisguise";
@@ -103,15 +104,16 @@ public class Constants
 	
 	public static String CHOCOBO_ARMOUR_TEXTURES_1 = CHOCOBO_ARMOUR_FOLDER + "/chocoDisguise_1.png";
 	public static String CHOCOBO_ARMOUR_TEXTURES_2 = CHOCOBO_ARMOUR_FOLDER + "/chocoDisguise_2.png";
-	public static String CHOCOBO_ENTITY_TEXTURES = CHOCOBO_RESOURCES_FOLDER + "/Chocobos";
-	public static String CHICOBO_ENTITY_TEXTURES = CHOCOBO_RESOURCES_FOLDER + "/Chicobos";
-	public static String CHOCOBO_ETXT_UNTAMED = "/Untamed";
-	public static String CHOCOBO_ETXT_TAMED = "/Tamed";
-	public static String CHOCOBO_ETXT_SADDLED = "/Saddled";
-	public static String CHOCOBO_ETXT_SADDLEBAGGED = "/SaddleBagged";
-	public static String CHOCOBO_ETXT_PACKBAGGED = "/PackBagged";
-	public static String CHOCOBO_ETXT_MALE = "/Male";
-	public static String CHOCOBO_ETXT_FEMALE = "/Female";
+	public static String CHOCOBO_ENTITY_TEXTURES = CHOCOBO_RESOURCES_FOLDER + "Chocobos/";
+	public static String CHICOBO_ENTITY_TEXTURES = CHOCOBO_RESOURCES_FOLDER + "Chicobos/";
+	public static String CHOCOBO_ETXT_UNTAMED = "Untamed/";
+	public static String CHOCOBO_ETXT_TAMED = "Tamed/";
+	public static String CHOCOBO_ETXT_SADDLED = "Saddled/";
+	public static String CHOCOBO_ETXT_SADDLEBAGGED = "SaddleBagged/";
+	public static String CHOCOBO_ETXT_PACKBAGGED = "PackBagged/";
+	public static String CHOCOBO_ETXT_MALE = "Male/";
+	public static String CHOCOBO_ETXT_FEMALE = "Female/";
+
 	public static String CHICOBO_ETXT_TAMED = CHOCOBO_ETXT_TAMED;
 	
 	// setup
@@ -161,78 +163,82 @@ public class Constants
 	public static int DEFAULT_LIVING_SOUND_PROB     = 100;
 	
 	//
-	public static float CHOCOBO_DEFAULT_LANDMOVEFACT  = 0.2F;
-	public static float CHOCOBO_YELLOW_LANDMOVEFACT   = 0.2F;
-	public static float CHOCOBO_GREEN_LANDMOVEFACT    = 0.25F;
-	public static float CHOCOBO_BLUE_LANDMOVEFACT     = 0.25F;
-	public static float CHOCOBO_WHITE_LANDMOVEFACT    = 0.35F;
-	public static float CHOCOBO_BLACK_LANDMOVEFACT    = 0.35F;
-	public static float CHOCOBO_GOLD_LANDMOVEFACT     = 0.45F;
-	public static float CHOCOBO_PINK_LANDMOVEFACT     = 0.45F;
-	public static float CHOCOBO_RED_LANDMOVEFACT      = 0.45F;
-	public static float CHOCOBO_PURPLE_LANDMOVEFACT   = 0.4F;
+//	public static float CHOCOBO_DEFAULT_LANDMOVEFACT  = 0.2F;
+//	public static float CHOCOBO_YELLOW_LANDMOVEFACT   = 0.2F;
+//	public static float CHOCOBO_GREEN_LANDMOVEFACT    = 0.25F;
+//	public static float CHOCOBO_BLUE_LANDMOVEFACT     = 0.25F;
+//	public static float CHOCOBO_WHITE_LANDMOVEFACT    = 0.35F;
+//	public static float CHOCOBO_BLACK_LANDMOVEFACT    = 0.35F;
+//	public static float CHOCOBO_GOLD_LANDMOVEFACT     = 0.45F;
+//	public static float CHOCOBO_PINK_LANDMOVEFACT     = 0.45F;
+//	public static float CHOCOBO_RED_LANDMOVEFACT      = 0.45F;
+//	public static float CHOCOBO_PURPLE_LANDMOVEFACT   = 0.4F;
+//	
+//	public static float CHOCOBO_DEFAULT_WATERMOVEFACT  = 0.1F;
+//	public static float CHOCOBO_YELLOW_WATERMOVEFACT   = 0.1F;
+//	public static float CHOCOBO_GREEN_WATERMOVEFACT    = 0.1F;
+//	public static float CHOCOBO_BLUE_WATERMOVEFACT     = 0.45F;
+//	public static float CHOCOBO_WHITE_WATERMOVEFACT    = 0.40F;
+//	public static float CHOCOBO_BLACK_WATERMOVEFACT    = 0.2F;
+//	public static float CHOCOBO_GOLD_WATERMOVEFACT     = 0.2F;
+//	public static float CHOCOBO_PINK_WATERMOVEFACT     = 0.2F;
+//	public static float CHOCOBO_RED_WATERMOVEFACT      = 0.2F;
+//	public static float CHOCOBO_PURPLE_WATERMOVEFACT   = 0.1F;
+//	
+//	public static float CHOCOBO_DEFAULT_FLYMOVEFACT   = 0.0F;
+//	public static float CHOCOBO_YELLOW_FLYMOVEFACT    = 0.0F;
+//	public static float CHOCOBO_GREEN_FLYMOVEFACT     = 0.0F;
+//	public static float CHOCOBO_BLUE_FLYMOVEFACT      = 0.0F;
+//	public static float CHOCOBO_WHITE_FLYMOVEFACT     = 0.0F;
+//	public static float CHOCOBO_BLACK_FLYMOVEFACT     = 0.0F;
+//	public static float CHOCOBO_GOLD_FLYMOVEFACT      = 0.25F;
+//	public static float CHOCOBO_PINK_FLYMOVEFACT      = 0.25F;
+//	public static float CHOCOBO_RED_FLYMOVEFACT       = 0.25F;
+//	public static float CHOCOBO_PURPLE_FLYMOVEFACT    = 0.25F;
 	
-	public static float CHOCOBO_DEFAULT_WATERMOVEFACT  = 0.1F;
-	public static float CHOCOBO_YELLOW_WATERMOVEFACT   = 0.1F;
-	public static float CHOCOBO_GREEN_WATERMOVEFACT    = 0.1F;
-	public static float CHOCOBO_BLUE_WATERMOVEFACT     = 0.45F;
-	public static float CHOCOBO_WHITE_WATERMOVEFACT    = 0.40F;
-	public static float CHOCOBO_BLACK_WATERMOVEFACT    = 0.2F;
-	public static float CHOCOBO_GOLD_WATERMOVEFACT     = 0.2F;
-	public static float CHOCOBO_PINK_WATERMOVEFACT     = 0.2F;
-	public static float CHOCOBO_RED_WATERMOVEFACT      = 0.2F;
-	public static float CHOCOBO_PURPLE_WATERMOVEFACT   = 0.1F;
+	public static double CHOCOBO_DEFAULT_LANDSPEEDFACT  = 20;
+	public static double CHOCOBO_YELLOW_LANDSPEEDFACT   = 20;
+	public static double CHOCOBO_GREEN_LANDSPEEDFACT    = 27;
+	public static double CHOCOBO_BLUE_LANDSPEEDFACT     = 27;
+	public static double CHOCOBO_WHITE_LANDSPEEDFACT    = 35;
+	public static double CHOCOBO_BLACK_LANDSPEEDFACT    = 40;
+	public static double CHOCOBO_GOLD_LANDSPEEDFACT     = 50;
+	public static double CHOCOBO_PINK_LANDSPEEDFACT     = 55;
+	public static double CHOCOBO_RED_LANDSPEEDFACT      = 55;
+	public static double CHOCOBO_PURPLE_LANDSPEEDFACT   = 40;
 	
-	public static float CHOCOBO_DEFAULT_FLYMOVEFACT   = 0.0F;
-	public static float CHOCOBO_YELLOW_FLYMOVEFACT    = 0.0F;
-	public static float CHOCOBO_GREEN_FLYMOVEFACT     = 0.0F;
-	public static float CHOCOBO_BLUE_FLYMOVEFACT      = 0.0F;
-	public static float CHOCOBO_WHITE_FLYMOVEFACT     = 0.0F;
-	public static float CHOCOBO_BLACK_FLYMOVEFACT     = 0.0F;
-	public static float CHOCOBO_GOLD_FLYMOVEFACT      = 0.25F;
-	public static float CHOCOBO_PINK_FLYMOVEFACT      = 0.25F;
-	public static float CHOCOBO_RED_FLYMOVEFACT       = 0.25F;
-	public static float CHOCOBO_PURPLE_FLYMOVEFACT    = 0.25F;
+	public static double CHOCOBO_DEFAULT_WATERSPEEDFACT = 10;
+	public static double CHOCOBO_YELLOW_WATERSPEEDFACT  = 10;
+	public static double CHOCOBO_GREEN_WATERSPEEDFACT   = 10;
+	public static double CHOCOBO_BLUE_WATERSPEEDFACT    = 55;
+	public static double CHOCOBO_WHITE_WATERSPEEDFACT   = 45;
+	public static double CHOCOBO_BLACK_WATERSPEEDFACT   = 20;
+	public static double CHOCOBO_GOLD_WATERSPEEDFACT    = 20;
+	public static double CHOCOBO_PINK_WATERSPEEDFACT    = 25;
+	public static double CHOCOBO_RED_WATERSPEEDFACT     = 25;
+	public static double CHOCOBO_PURPLE_WATERSPEEDFACT  = 10;
 	
-	public static double CHOCOBO_YELLOW_LANDSPEEDFACT = 20;
-	public static double CHOCOBO_GREEN_LANDSPEEDFACT  = 27;
-	public static double CHOCOBO_BLUE_LANDSPEEDFACT   = 27;
-	public static double CHOCOBO_WHITE_LANDSPEEDFACT  = 35;
-	public static double CHOCOBO_BLACK_LANDSPEEDFACT  = 40;
-	public static double CHOCOBO_GOLD_LANDSPEEDFACT   = 50;
-	public static double CHOCOBO_PINK_LANDSPEEDFACT   = 55;
-	public static double CHOCOBO_RED_LANDSPEEDFACT    = 55;
-	public static double CHOCOBO_PURPLE_LANDSPEEDFACT = 40;
+	public static double CHOCOBO_DEFAULT_AIRSPEEDFACT   =  0;
+	public static double CHOCOBO_YELLOW_AIRSPEEDFACT    =  0;
+	public static double CHOCOBO_GREEN_AIRSPEEDFACT     =  0;
+	public static double CHOCOBO_BLUE_AIRSPEEDFACT      =  0;
+	public static double CHOCOBO_WHITE_AIRSPEEDFACT     =  0;
+	public static double CHOCOBO_BLACK_AIRSPEEDFACT     =  0;
+	public static double CHOCOBO_GOLD_AIRSPEEDFACT      = 55;
+	public static double CHOCOBO_PINK_AIRSPEEDFACT      = 60;
+	public static double CHOCOBO_RED_AIRSPEEDFACT       = 60;
+	public static double CHOCOBO_PURPLE_AIRSPEEDFACT    = 55;
 	
-	public static double CHOCOBO_YELLOW_WATERSPEEDFACT = 10;
-	public static double CHOCOBO_GREEN_WATERSPEEDFACT  = 10;
-	public static double CHOCOBO_BLUE_WATERSPEEDFACT   = 55;
-	public static double CHOCOBO_WHITE_WATERSPEEDFACT  = 45;
-	public static double CHOCOBO_BLACK_WATERSPEEDFACT  = 20;
-	public static double CHOCOBO_GOLD_WATERSPEEDFACT   = 20;
-	public static double CHOCOBO_PINK_WATERSPEEDFACT   = 25;
-	public static double CHOCOBO_RED_WATERSPEEDFACT    = 25;
-	public static double CHOCOBO_PURPLE_WATERSPEEDFACT = 10;
-	
-	public static double CHOCOBO_YELLOW_AIRSPEEDFACT  =  0;
-	public static double CHOCOBO_GREEN_AIRSPEEDFACT   =  0;
-	public static double CHOCOBO_BLUE_AIRSPEEDFACT    =  0;
-	public static double CHOCOBO_WHITE_AIRSPEEDFACT   =  0;
-	public static double CHOCOBO_BLACK_AIRSPEEDFACT   =  0;
-	public static double CHOCOBO_GOLD_AIRSPEEDFACT    = 55;
-	public static double CHOCOBO_PINK_AIRSPEEDFACT    = 60;
-	public static double CHOCOBO_RED_AIRSPEEDFACT     = 60;
-	public static double CHOCOBO_PURPLE_AIRSPEEDFACT  = 55;
-	
-	public static boolean CHOCOBO_YELLOW_CANJUMPHIGH  = false;
-	public static boolean CHOCOBO_GREEN_CANJUMPHIGH   = false;
-	public static boolean CHOCOBO_BLUE_CANJUMPHIGH    = false;
-	public static boolean CHOCOBO_WHITE_CANJUMPHIGH   = true;
-	public static boolean CHOCOBO_BLACK_CANJUMPHIGH   = true;
-	public static boolean CHOCOBO_GOLD_CANJUMPHIGH    = false;
-	public static boolean CHOCOBO_PINK_CANJUMPHIGH    = false;
-	public static boolean CHOCOBO_RED_CANJUMPHIGH     = false;
-	public static boolean CHOCOBO_PURPLE_CANJUMPHIGH  = false;
+	public static boolean CHOCOBO_DEFAULT_CANJUMPHIGH   = false;
+	public static boolean CHOCOBO_YELLOW_CANJUMPHIGH    = false;
+	public static boolean CHOCOBO_GREEN_CANJUMPHIGH     = false;
+	public static boolean CHOCOBO_BLUE_CANJUMPHIGH      = false;
+	public static boolean CHOCOBO_WHITE_CANJUMPHIGH     = true;
+	public static boolean CHOCOBO_BLACK_CANJUMPHIGH     = true;
+	public static boolean CHOCOBO_GOLD_CANJUMPHIGH      = false;
+	public static boolean CHOCOBO_PINK_CANJUMPHIGH      = false;
+	public static boolean CHOCOBO_RED_CANJUMPHIGH       = false;
+	public static boolean CHOCOBO_PURPLE_CANJUMPHIGH    = false;
 	
 	public static String PARTICLE_HEART        = "heart";
 	public static String PARTICLE_SMOKE        = "smoke";

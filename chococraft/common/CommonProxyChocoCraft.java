@@ -14,6 +14,9 @@
 
 package chococraft.common;
 
+import chococraft.common.entities.EntityChocoboRideable;
+import chococraft.common.entities.RiderActionState;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
@@ -49,4 +52,13 @@ public class CommonProxyChocoCraft
     {
 		MinecraftForge.EVENT_BUS.register(new ChocoCraftEventCommon());
     }
+    
+    public void updateRiderActionState(EntityChocoboRideable chocobo, Entity entity)
+    {
+    }
+
+	public RiderActionState getRiderActionState(Entity rider)
+	{
+		return null;
+	}
 }

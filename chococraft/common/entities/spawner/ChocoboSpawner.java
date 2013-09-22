@@ -312,7 +312,7 @@ public final class ChocoboSpawner
 	
 	private static int distanceToNextWild(World world, double posX, double posZ)
 	{
-		double distanceSq = 10000.0 * 10000.0;
+		double distance = 10000.0;
 
 		for(int i = 0; i < world.loadedEntityList.size(); i++)
 		{
@@ -324,14 +324,14 @@ public final class ChocoboSpawner
 				{
 					double sqDistX = (posX - chocobo.posX) * (posX - chocobo.posX);
 					double sqDistZ = (posZ - chocobo.posZ) * (posZ - chocobo.posZ);					
-					double tmpDistanceSq = sqDistX + sqDistZ;
-					if(tmpDistanceSq < distanceSq)
+					double tmpDistance = Math.sqrt(sqDistX + sqDistZ);
+					if(tmpDistance < distance)
 					{
-						distanceSq = tmpDistanceSq;
+						distance = tmpDistance;
 					}
 				}
 			}
 		}
-		return MathHelper.floor_double(Math.sqrt(distanceSq));
+		return MathHelper.floor_double(distance);
 	}
 }

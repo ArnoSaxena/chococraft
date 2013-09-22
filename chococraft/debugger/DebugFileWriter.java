@@ -8,7 +8,6 @@ import java.util.logging.Logger;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.server.MinecraftServer;
-import chococraft.common.ModChocoCraft;
 import cpw.mods.fml.common.FMLCommonHandler;
 
 public class DebugFileWriter
@@ -20,13 +19,13 @@ public class DebugFileWriter
 	
 	public DebugFileWriter()
 	{
-		if (ModChocoCraft.isRemoteClient)
+		if (MinecraftServer.getServer().isDedicatedServer())
 		{
 			file = new File(MinecraftServer.getServer().getFolderName(), "../chocoboDebug.txt");
 		}
 		else
 		{
-			file = new File(Minecraft.getMinecraftDir(), "mods/chocoboDebug.txt");
+			file = new File(Minecraft.getMinecraft().mcDataDir, "mods/chocoboDebug.txt");
 		}
 			
 		

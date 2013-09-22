@@ -17,7 +17,7 @@ package chococraft.common.gui;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.StringTranslate;
+
 import org.lwjgl.input.Keyboard;
 
 import chococraft.common.entities.EntityAnimalChocobo;
@@ -45,11 +45,13 @@ public class GuiChangeOwner extends GuiScreen
 	@SuppressWarnings("unchecked")
 	public void initGui()
 	{
-		StringTranslate stringtranslate = StringTranslate.getInstance();
+		//StringTranslate stringtranslate = StringTranslate.getInstance();
 		Keyboard.enableRepeatEvents(true);
 		this.buttonList.clear();
-		this.buttonList.add(new GuiButton(0, this.width / 2 - 100, this.height / 4 + 96 + 12, stringtranslate.translateKey("Accept")));
-		this.buttonList.add(new GuiButton(1, this.width / 2 - 100, this.height / 4 + 120 + 12, stringtranslate.translateKey("gui.cancel")));
+		//this.buttonList.add(new GuiButton(0, this.width / 2 - 100, this.height / 4 + 96 + 12, stringtranslate.translateKey("Accept")));
+		//this.buttonList.add(new GuiButton(1, this.width / 2 - 100, this.height / 4 + 120 + 12, stringtranslate.translateKey("gui.cancel")));
+		this.buttonList.add(new GuiButton(0, this.width / 2 - 100, this.height / 4 + 96 + 12, "Accept"));
+		this.buttonList.add(new GuiButton(1, this.width / 2 - 100, this.height / 4 + 120 + 12, "Cancel"));
 	}
 
 	public void onGuiClosed()
@@ -89,7 +91,7 @@ public class GuiChangeOwner extends GuiScreen
 
 	public void drawScreen(int scrX, int scrY, float f)
 	{
-		StringTranslate stringtranslate = StringTranslate.getInstance();
+		//StringTranslate stringtranslate = StringTranslate.getInstance();
 		this.drawDefaultBackground();
 		
 		StringBuilder messageSB = new StringBuilder();
@@ -98,9 +100,9 @@ public class GuiChangeOwner extends GuiScreen
 		messageSB.append(" to ");
 		messageSB.append(this.newOwner);
 		messageSB.append("?");		
-		String message = stringtranslate.translateKey(messageSB.toString());
+		//String message = stringtranslate.translateKey(messageSB.toString());
 		
-		this.drawCenteredString(this.fontRenderer, message, this.width / 2, (this.height / 4 - 60) + 20, 0xffffff);
+		this.drawCenteredString(this.fontRenderer, messageSB.toString(), this.width / 2, (this.height / 4 - 60) + 20, 0xffffff);
 		super.drawScreen(scrX, scrY, f);
 	}
 	

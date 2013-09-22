@@ -41,7 +41,7 @@ public class PacketChocoboRiderJump extends PacketChocoboServer
 			outputStream.writeInt(PID_RIDERJUMP);
 			outputStream.writeInt(chocobo.entityId);
 			outputStream.writeUTF(riderEntity.username);
-			outputStream.writeBoolean(riderEntity.isJumping);
+			outputStream.writeBoolean(chocobo.riderActionState.jump);
 			outputStream.writeBoolean(riderEntity.isSneaking());
 			outputStream.writeInt(chocobo.worldObj.provider.dimensionId);
 		}
@@ -75,7 +75,7 @@ public class PacketChocoboRiderJump extends PacketChocoboServer
 				if(riderEntity != null && chocobo != null && chocobo.riddenByEntity != null
 						&& chocobo.riddenByEntity.equals(riderEntity))
 				{
-					riderEntity.isJumping = riderJumping;
+					riderEntity.setJumping(riderJumping);
 					riderEntity.setSneaking(riderSneaking);
 				}
 				

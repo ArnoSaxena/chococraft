@@ -14,9 +14,13 @@
 
 package chococraft.client;
 
+import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.entity.Entity;
 import net.minecraftforge.common.MinecraftForge;
 import chococraft.common.CommonProxyChocoCraft;
 import chococraft.common.entities.EntityChicobo;
+import chococraft.common.entities.EntityChocoboRideable;
+import chococraft.common.entities.RiderActionState;
 import chococraft.common.entities.colours.EntityChocoboBlack;
 import chococraft.common.entities.colours.EntityChocoboBlue;
 import chococraft.common.entities.colours.EntityChocoboGold;
@@ -30,7 +34,9 @@ import chococraft.common.entities.models.ModelChicobo;
 import chococraft.common.entities.models.ModelChocobo;
 import chococraft.common.entities.models.RenderChicobo;
 import chococraft.common.entities.models.RenderChocobo;
+import chococraft.common.network.serverSide.PacketChocoboUpdateRiderActionState;
 import cpw.mods.fml.client.registry.RenderingRegistry;
+import cpw.mods.fml.common.network.PacketDispatcher;
 
 public class ClientProxyChocoCraft extends CommonProxyChocoCraft
 {
@@ -67,4 +73,36 @@ public class ClientProxyChocoCraft extends CommonProxyChocoCraft
     {
 			MinecraftForge.EVENT_BUS.register(new ChocoCraftEventClient());
     }
+    
+    @Override
+    public void updateRiderActionState(EntityChocoboRideable chocobo, Entity entity)
+    {
+    	PacketChocoboUpdateRiderActionState packet = new PacketChocoboUpdateRiderActionState(chocobo, entity);
+    	PacketDispatcher.sendPacketToServer(packet.getPacket());
+    	chocobo.setRiderActionState(this.getRiderActionState(entity));
+    }
+    
+    @Override
+	public RiderActionState getRiderActionState(Entity rider)
+	{
+    	RiderActionState ras = new RiderActionState();
+    	if(rider instanceof EntityPlayerSP)
+    	{
+    		EntityPlayerSP riderSP = (EntityPlayerSP)rider;
+    		ras.moveForward = riderSP.movementInput.moveForward;
+    		ras.moveStrafe = riderSP.movementInput.moveStrafe;
+    		ras.jump = riderSP.movementInput.jump;
+    		ras.sneak = riderSP.movementInput.sneak;
+    	}
+//    	else if (rider instanceof EntityPlayerMP)
+//    	{
+//    		EntityPlayerMP riderMP = (EntityPlayerMP)rider;
+//    		ras.moveForward = riderMP.moveForward;
+//    		ras.moveStrafe = riderMP.moveStrafing;
+//    		ras.jump = riderMP.
+//    		
+//    	}
+		return ras;
+	}
+
 }

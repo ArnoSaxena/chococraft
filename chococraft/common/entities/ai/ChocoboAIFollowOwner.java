@@ -7,19 +7,17 @@ public class ChocoboAIFollowOwner extends EntityAIBase
 {
 	private EntityAnimalChocobo chocobo;
 	private float teleportDistance;
-	private float followDistance;
 	private float moveSpeed;
     private int followDelay;
     private boolean chocoboAvoidsWater;
 	private float originalStepHight;
 
 
-	public ChocoboAIFollowOwner(EntityAnimalChocobo chocobo, float moveSpeed, float followDistance, float teleportDistance)
+	public ChocoboAIFollowOwner(EntityAnimalChocobo chocobo, float moveSpeed, float teleportDistance)
 	{
         this.setMutexBits(1);
 		this.chocobo = chocobo;
 		this.teleportDistance = teleportDistance;
-		this.followDistance = followDistance;
 		this.moveSpeed = moveSpeed;
 	}
 
@@ -37,7 +35,7 @@ public class ChocoboAIFollowOwner extends EntityAIBase
 		{
 			return false;
 		}
-		else if (this.chocobo.getDistanceSqToEntity(this.chocobo.getOwner()) < (this.followDistance * this.followDistance))
+		else if (this.chocobo.getDistanceSqToEntity(this.chocobo.getOwner()) < (this.teleportDistance * this.teleportDistance))
 		{
 			return false;
 		}
@@ -61,7 +59,7 @@ public class ChocoboAIFollowOwner extends EntityAIBase
 			return false;
 		}
 
-		if (this.chocobo.getDistanceSqToEntity(this.chocobo.getOwner()) < (this.followDistance * this.followDistance))
+		if (this.chocobo.getDistanceSqToEntity(this.chocobo.getOwner()) < (this.teleportDistance * this.teleportDistance))
 		{
 			return false;
 		}		

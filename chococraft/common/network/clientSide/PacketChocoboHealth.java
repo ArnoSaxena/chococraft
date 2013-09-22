@@ -36,7 +36,7 @@ public class PacketChocoboHealth extends PacketChocoboClient
 		{
 			outputStream.writeInt(PID_HEALTH);
 			outputStream.writeInt(chocobo.entityId);
-			outputStream.writeInt(chocobo.getHealth());
+			outputStream.writeInt((int)chocobo.getHealth());
 			outputStream.writeInt(chocobo.worldObj.provider.dimensionId);
 		}
 		catch (Exception ex)

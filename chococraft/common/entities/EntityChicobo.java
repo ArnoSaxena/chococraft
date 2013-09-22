@@ -16,9 +16,6 @@
 package chococraft.common.entities;
 
 import net.minecraft.entity.EntityAgeable;
-import net.minecraft.entity.ai.EntityAILookIdle;
-import net.minecraft.entity.ai.EntityAIPanic;
-import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -26,9 +23,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import chococraft.common.Constants;
 import chococraft.common.ModChocoCraft;
-import chococraft.common.entities.ai.ChocoboAIFollowOwner;
-import chococraft.common.entities.ai.ChocoboAISwimming;
-import chococraft.common.entities.ai.ChocoboAIWander;
 import chococraft.common.helper.ChocoboEntityHelper;
 import chococraft.common.network.clientSide.PacketChicoboCanGrowUp;
 
@@ -57,17 +51,18 @@ public class EntityChicobo extends EntityAnimalChocobo
 		this.canClimb = false;
 		this.stepHeight = 0.5F;
 		this.canJumpHigh = false;
-		this.landMovementFactor = 0.1F;
+		//this.landMovementFactor = 0.1F;
 		this.setGrowingAge(this.getTimeUntilAdult());
 		
-        this.tasks.addTask(this.taskNumber++, new ChocoboAIFollowOwner(this, this.moveSpeed, 3.0F, 20.0F));
-        this.tasks.addTask(this.taskNumber++, new ChocoboAISwimming(this));
-        this.tasks.addTask(this.taskNumber++, new EntityAIPanic(this, 0.38F));
-        this.tasks.addTask(this.taskNumber++, new ChocoboAIWander(this, 0.25F));
-        this.tasks.addTask(this.taskNumber++, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
-        this.tasks.addTask(this.taskNumber++, new EntityAILookIdle(this));
+        //this.tasks.addTask(this.taskNumber++, new ChocoboAIFollowOwner(this, (float)this.getMoveHelper().getSpeed(), 20.0F));
+        //this.tasks.addTask(this.taskNumber++, new ChocoboAISwimming(this));
+        //this.tasks.addTask(this.taskNumber++, new EntityAIPanic(this, 0.38F));
+        //this.tasks.addTask(this.taskNumber++, new ChocoboAIWander(this, 0.25F));
+        //this.tasks.addTask(this.taskNumber++, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
+        //this.tasks.addTask(this.taskNumber++, new EntityAILookIdle(this));
 	}
 	
+	@Override
     public boolean isAIEnabled()
     {
         return true;
@@ -76,7 +71,7 @@ public class EntityChicobo extends EntityAnimalChocobo
 	public void setColor(chocoboColor color)
 	{
 		this.color = color;
-		this.texture = this.getEntityTexture();
+		//this.texture = this.getEntityTexture();
 		this.setMaxHealth(this.getColorMaxHealth());
 		this.setEntityHealth(this.getColorMaxHealth());
 		if (color == chocoboColor.PURPLE)
@@ -85,6 +80,7 @@ public class EntityChicobo extends EntityAnimalChocobo
 		}
 	}    
 
+	@Override
 	public void writeSpawnData(ByteArrayDataOutput data)
 	{
 		super.writeSpawnData(data);
@@ -95,6 +91,7 @@ public class EntityChicobo extends EntityAnimalChocobo
 		data.writeInt(this.getTimeUntilAdult());
 	}
 
+	@Override
 	public void readSpawnData(ByteArrayDataInput data)
 	{
 		super.readSpawnData(data);
@@ -111,9 +108,10 @@ public class EntityChicobo extends EntityAnimalChocobo
 			this.setDead();
 		}
 
-		this.texture = this.getEntityTexture();
+		//this.texture = this.getEntityTexture();
 	}
 
+	@Override
 	public void writeEntityToNBT(NBTTagCompound nbttagcompound)
 	{
 		super.writeEntityToNBT(nbttagcompound);
@@ -122,6 +120,7 @@ public class EntityChicobo extends EntityAnimalChocobo
 		nbttagcompound.setBoolean("CanGrow", this.isCanGrowUp());
 	}
 
+	@Override
 	public void readEntityFromNBT(NBTTagCompound nbttagcompound)
 	{
 		super.readEntityFromNBT(nbttagcompound);
@@ -132,39 +131,42 @@ public class EntityChicobo extends EntityAnimalChocobo
 	}
 
 	//@SideOnly(Side.CLIENT)
+	@Override
 	public String getEntityTexture()
 	{
 		String s = new String(Constants.CHICOBO_ENTITY_TEXTURES);
+		
 		if (this.isTamed())
 		{
 			s = (new StringBuilder()).append(s).append(Constants.CHICOBO_ETXT_TAMED).toString();
 		}
+		
 		switch(this.color)
 		{
 		case YELLOW:
-			return (new StringBuilder()).append(s).append("/chocobo.png").toString();
+			return (new StringBuilder()).append(s).append("chocobo.png").toString();
 		case GREEN:
-			return (new StringBuilder()).append(s).append("/greenchocobo.png").toString();
+			return (new StringBuilder()).append(s).append("greenchocobo.png").toString();
 		case BLUE:
-			return (new StringBuilder()).append(s).append("/bluechocobo.png").toString();
+			return (new StringBuilder()).append(s).append("bluechocobo.png").toString();
 		case WHITE:
-			return (new StringBuilder()).append(s).append("/whitechocobo.png").toString();
+			return (new StringBuilder()).append(s).append("whitechocobo.png").toString();
 		case BLACK:
-			return (new StringBuilder()).append(s).append("/blackchocobo.png").toString();
+			return (new StringBuilder()).append(s).append("blackchocobo.png").toString();
 		case GOLD:
-			return (new StringBuilder()).append(s).append("/goldchocobo.png").toString();
+			return (new StringBuilder()).append(s).append("goldchocobo.png").toString();
 		case PINK:
-			return (new StringBuilder()).append(s).append("/pinkchocobo.png").toString();
+			return (new StringBuilder()).append(s).append("pinkchocobo.png").toString();
 		case RED:
-			return (new StringBuilder()).append(s).append("/redchocobo.png").toString();
+			return (new StringBuilder()).append(s).append("redchocobo.png").toString();
 		case PURPLE:
-			return (new StringBuilder()).append(s).append("/purplechocobo.png").toString();
+			return (new StringBuilder()).append(s).append("purplechocobo.png").toString();
 		default:
 			// todo error handling...
 			return "";
 		}
 	}
-
+	
 	public int getColorMaxHealth()
 	{
 		switch(this.color)

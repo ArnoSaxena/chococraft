@@ -17,10 +17,10 @@ package chococraft.common.gui;
 
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
-import net.minecraft.util.StringTranslate;
 
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
@@ -69,7 +69,9 @@ public class GuiChocopedia extends GuiScreen
     private GuiChocopediaButtonNextPage buttonPreviousPage;
     private GuiButton buttonDone;
     private int currPage = 0;
-	
+    private ResourceLocation resourceLocation = new ResourceLocation("textures/gui/book.png");
+
+    
 	public GuiChocopedia(GuiScreen guiscreen, EntityAnimalChocobo entitychocobo, EntityPlayer thePlayer)
 	{
 		this.chocobo = entitychocobo;
@@ -89,7 +91,7 @@ public class GuiChocopedia extends GuiScreen
 		if(null != this.chocobo)
 		{
 			// Chocobo options view			
-			StringTranslate stringtranslate = StringTranslate.getInstance();
+			//StringTranslate stringtranslate = StringTranslate.getInstance();
 			Keyboard.enableRepeatEvents(true);
 			this.buttonList.clear();
 
@@ -98,32 +100,37 @@ public class GuiChocopedia extends GuiScreen
 			int xPos = this.width / 2 - 100;
 
 			// rename button
-			this.renameButton = this.createGuiButton(BUTTON_ID_RENAME, xPos, (yPos += 24), stringtranslate.translateKey("Rename"));
+			//this.renameButton = this.createGuiButton(BUTTON_ID_RENAME, xPos, (yPos += 24), stringtranslate.translateKey("Rename"));
+			this.renameButton = this.createGuiButton(BUTTON_ID_RENAME, xPos, (yPos += 24), "Rename");
 			this.checkButtonOwner(this.player, this.chocobo.getOwner(), this.renameButton);
 			this.buttonList.add(this.renameButton);
 
 			// hide name button
 			String lblNameShown = (this.chocobo.isHidename()) ? "Name Hidden" : "Name Shown";
-			this.hideNameButton = this.createGuiButton(BUTTON_ID_HIDENAME, xPos, (yPos += 24), stringtranslate.translateKey(lblNameShown));
+			//this.hideNameButton = this.createGuiButton(BUTTON_ID_HIDENAME, xPos, (yPos += 24), stringtranslate.translateKey(lblNameShown));
+			this.hideNameButton = this.createGuiButton(BUTTON_ID_HIDENAME, xPos, (yPos += 24), lblNameShown);
 			this.checkButtonOwner(this.player, this.chocobo.getOwner(), this.hideNameButton);
 			this.buttonList.add(this.hideNameButton);
 
 			// following button
 			//String lblFollowing = (this.chocobo.isFollowing()) ? "Following" : "Not Following";
 			String lblFollowing = this.getFollowStatus();
-			this.followingButton = this.createGuiButton(BUTTON_ID_FOLLOWING, xPos, (yPos += 24), stringtranslate.translateKey(lblFollowing));
+			//this.followingButton = this.createGuiButton(BUTTON_ID_FOLLOWING, xPos, (yPos += 24), stringtranslate.translateKey(lblFollowing));
+			this.followingButton = this.createGuiButton(BUTTON_ID_FOLLOWING, xPos, (yPos += 24), lblFollowing);
 			this.checkButtonOwner(this.player, this.chocobo.getOwner(), this.followingButton);
 			this.buttonList.add(this.followingButton);
 
 			// confirm button
-			this.confirmButton = this.createGuiButton(BUTTON_ID_CONFIRM, xPos, (yPos += 24), stringtranslate.translateKey("Confirm"));
+			//this.confirmButton = this.createGuiButton(BUTTON_ID_CONFIRM, xPos, (yPos += 24), stringtranslate.translateKey("Confirm"));
+			this.confirmButton = this.createGuiButton(BUTTON_ID_CONFIRM, xPos, (yPos += 24), "Confirm");
 			this.checkButtonOwner(this.player, this.chocobo.getOwner(), this.confirmButton);
 			this.buttonList.add(this.confirmButton);
 
 			// change owner button
 			if(ModChocoCraft.isRemoteClient)
 			{
-				this.changeOwnerButton = this.createGuiButton(BUTTON_ID_CHANGEOWNER, xPos, yPos += 30, stringtranslate.translateKey("change owner"));
+				//this.changeOwnerButton = this.createGuiButton(BUTTON_ID_CHANGEOWNER, xPos, yPos += 30, stringtranslate.translateKey("change owner"));
+				this.changeOwnerButton = this.createGuiButton(BUTTON_ID_CHANGEOWNER, xPos, yPos += 30, "change owner");
 				this.checkButtonOwner(this.player, this.chocobo.getOwner(), this.changeOwnerButton);
 				this.buttonList.add(this.changeOwnerButton);
 			}
@@ -135,7 +142,8 @@ public class GuiChocopedia extends GuiScreen
 				if(chocoboRideable.isSaddled() || chocoboRideable.isPackBagged())
 				{
 					String lblRemoveSaddle = "Drop Gear";
-					this.removeSaddleButton = this.createGuiButton(BUTTON_ID_REMOVESADDLE, xPos, (yPos += 24), stringtranslate.translateKey(lblRemoveSaddle));
+					//this.removeSaddleButton = this.createGuiButton(BUTTON_ID_REMOVESADDLE, xPos, (yPos += 24), stringtranslate.translateKey(lblRemoveSaddle));
+					this.removeSaddleButton = this.createGuiButton(BUTTON_ID_REMOVESADDLE, xPos, (yPos += 24), lblRemoveSaddle);
 					this.checkButtonOwner(this.player, this.chocobo.getOwner(), this.removeSaddleButton);
 					this.buttonList.add(this.removeSaddleButton);
 				}
@@ -294,7 +302,8 @@ public class GuiChocopedia extends GuiScreen
 		{
 			// Chocopedia view
 			GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-			this.mc.renderEngine.bindTexture("/gui/book.png");
+			//this.mc.renderEngine.bindTexture("/gui/book.png");
+	        this.mc.func_110434_K().func_110577_a(this.resourceLocation);
 			int xCenter = (this.width - this.bookImageWidth) / 2;
 			this.drawTexturedModalRect(xCenter, 2, 0, 0, this.bookImageWidth, this.bookImageHeight);
 

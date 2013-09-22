@@ -17,10 +17,12 @@ package chococraft.common.entities.models;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderLiving;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import org.lwjgl.opengl.GL11;
 
+import chococraft.common.entities.EntityAnimalChocobo;
 import chococraft.common.entities.EntityChicobo;
 
 public class RenderChicobo extends RenderLiving
@@ -63,4 +65,15 @@ public class RenderChicobo extends RenderLiving
     {
         preRenderScale((EntityChicobo)entityliving, f);
     }
+
+	@Override
+	protected ResourceLocation func_110775_a(Entity entity)
+	{
+		if(entity instanceof EntityAnimalChocobo)
+		{
+			EntityAnimalChocobo eac = (EntityAnimalChocobo)entity;
+			return eac.getResourceLocation();
+		}
+		return null;
+	}
 }

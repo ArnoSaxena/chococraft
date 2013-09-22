@@ -32,8 +32,8 @@ public class EntityChocoboGold extends EntityChocobo
 	{
 		super(world);
 		this.setEntityHealth(this.getMaxHealth());
-		this.flyingMovementFactor = Constants.CHOCOBO_GOLD_FLYMOVEFACT;
-		this.landMovementFactor = Constants.CHOCOBO_DEFAULT_LANDMOVEFACT;
+//		this.flyingMovementFactor = Constants.CHOCOBO_GOLD_FLYMOVEFACT;
+//		this.landMovementFactor = Constants.CHOCOBO_DEFAULT_LANDMOVEFACT;
 		this.canClimb = true;
 		this.canCrossWater = true;
 		this.canFly = true;
@@ -73,7 +73,7 @@ public class EntityChocoboGold extends EntityChocobo
     //@SideOnly(Side.CLIENT)
 	public String getEntityColourTexture()
 	{
-		return "/goldchocobo.png";
+		return "goldchocobo.png";
 	}
 
 	@Override
@@ -91,15 +91,15 @@ public class EntityChocoboGold extends EntityChocobo
 		}
 	}
 
-	public void setLandMovementFactor(boolean mounted)
+	public void setLandSpeedFactor(boolean mounted)
 	{
 		if (mounted)
 		{
-			this.landMovementFactor = Constants.CHOCOBO_GOLD_LANDMOVEFACT;
+			this.landSpeedFactor = Constants.CHOCOBO_GOLD_LANDSPEEDFACT;
 		}
 		else
 		{
-			this.landMovementFactor = Constants.CHOCOBO_DEFAULT_LANDMOVEFACT;			
+			this.landSpeedFactor = Constants.CHOCOBO_DEFAULT_LANDSPEEDFACT;			
 		}
 	}
 
@@ -184,7 +184,7 @@ public class EntityChocoboGold extends EntityChocobo
 			entitychocobo.setFollowing(this.isFollowing());
 			entitychocobo.injectInventory(this.bagsInventory);
 			this.worldObj.spawnEntityInWorld(entitychocobo);
-			this.health = 0;
+			this.setEntityHealth(0);
 			this.setDead();
 		}
 		else

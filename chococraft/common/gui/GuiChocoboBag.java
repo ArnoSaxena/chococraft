@@ -15,6 +15,7 @@
 package chococraft.common.gui;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.StatCollector;
 import org.lwjgl.opengl.GL11;
@@ -28,6 +29,8 @@ public class GuiChocoboBag extends GuiContainer
 	private InventoryPlayer playerInv;
 	private ChocoBagInventory chocoBagInv;
 	private int invHeight;
+    private ResourceLocation resourceLocation = new ResourceLocation("textures/gui/container/inventory.png");
+
 
 	public GuiChocoboBag (InventoryPlayer playerInv, ChocoBagInventory chocoBagInv)
 	{
@@ -77,7 +80,9 @@ public class GuiChocoboBag extends GuiContainer
 		}
 
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);		
-		this.mc.renderEngine.bindTexture("/gui/container.png");
+		//this.mc.renderEngine.bindTexture("/gui/container.png");
+        this.mc.func_110434_K().func_110577_a(this.resourceLocation);
+
 		int j = (width - xSize) / 2;
 		int k = (height - ySize) / 2 + yPosOffset;
 		this.drawTexturedModalRect(j, k, 0, 0, this.xSize, chocoInvRows * 18 + 17);

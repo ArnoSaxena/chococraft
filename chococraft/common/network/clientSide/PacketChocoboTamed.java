@@ -65,7 +65,7 @@ public class PacketChocoboTamed extends PacketChocoboClient
 				{
 					chocobo.setTamed(tamed);
 					chocobo.setOwner(ownerName);
-					chocobo.resetEntityTexture();
+					//chocobo.resetEntityTexture();
 				}
 			}
 			catch(IOException e)

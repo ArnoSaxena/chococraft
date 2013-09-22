@@ -29,8 +29,8 @@ public class EntityChocoboGreen extends EntityChocobo
 	{
 		super(world);
 		this.setEntityHealth(this.getMaxHealth());
-		this.flyingMovementFactor = Constants.CHOCOBO_GREEN_FLYMOVEFACT;
-		this.landMovementFactor = Constants.CHOCOBO_DEFAULT_LANDMOVEFACT;
+//		this.flyingMovementFactor = Constants.CHOCOBO_GREEN_FLYMOVEFACT;
+//		this.landMovementFactor = Constants.CHOCOBO_DEFAULT_LANDMOVEFACT;
 		this.canCrossWater = false;
 		this.canJumpHigh = Constants.CHOCOBO_GREEN_CANJUMPHIGH;
 		this.canFly = false;
@@ -69,7 +69,7 @@ public class EntityChocoboGreen extends EntityChocobo
     //@SideOnly(Side.CLIENT)
 	public String getEntityColourTexture()
 	{
-		return "/greenchocobo.png";
+		return "greenchocobo.png";
 	}
 
 	@Override
@@ -87,15 +87,15 @@ public class EntityChocoboGreen extends EntityChocobo
 		}		
 	}
 	
-	public void setLandMovementFactor(boolean mounted)
+	public void setLandSpeedFactor(boolean mounted)
 	{
 		if (mounted)
 		{
-			this.landMovementFactor = Constants.CHOCOBO_GREEN_LANDMOVEFACT;
+			this.landSpeedFactor = Constants.CHOCOBO_GREEN_LANDSPEEDFACT;
 		}
 		else
 		{
-			this.landMovementFactor = Constants.CHOCOBO_DEFAULT_LANDMOVEFACT;			
+			this.landSpeedFactor = Constants.CHOCOBO_DEFAULT_LANDSPEEDFACT;			
 		}
 	}
 

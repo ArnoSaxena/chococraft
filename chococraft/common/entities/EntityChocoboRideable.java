@@ -46,6 +46,8 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo
 	protected boolean shouldSteer;    
 	protected boolean flying;
 	protected boolean isHighJumping;
+	
+	public RiderActionState riderActionState;
 
 	protected ChocoBagInventory bagsInventory;    
 	protected ChocoboRiderList riderList;
@@ -55,11 +57,13 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo
 		super(world);
 		this.ignoreFrustumCheck = true;
 		this.riderList = new ChocoboRiderList();
+		this.riderActionState = new RiderActionState();
 	}
 	
 	
 	abstract public void setStepHeight(boolean mounted);
-	abstract public void setLandMovementFactor(boolean mounted);
+	//abstract public void setLandMovementFactor(boolean mounted);
+	abstract public void setLandSpeedFactor(boolean mounted);
 	abstract public void setJumpHigh(boolean mounted);
 	abstract public void setRiderAbilities(boolean mounted);
 	
@@ -128,12 +132,19 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo
 		this.setSaddleBagged(data.readBoolean());
 		this.setPackBagged(data.readBoolean());
 	}
+    
+    public void setRiderActionState(RiderActionState riderActionState)
+    {
+    	this.riderActionState = riderActionState;
+    }
 
     @Override
 	public void onLivingUpdate()
 	{
 		if (this.riddenByEntity != null)
 		{
+			ModChocoCraft.proxy.updateRiderActionState(this, this.riddenByEntity);
+			
 			this.setRotationYawAndPitch();
 
 			List<?> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, boundingBox.expand(0.21D, 0.0D, 0.21D));
@@ -360,8 +371,8 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo
 			if(this.riddenByEntity instanceof EntityPlayer)
 			{    				
 				EntityPlayer entityplayer = (EntityPlayer)this.riddenByEntity;
-
-				if (entityplayer.isJumping)
+				
+				if (this.riderActionState.jump)
 				{
 					if (this.canFly)
 					{
@@ -396,12 +407,12 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo
 			super.moveEntity(moveX, moveY, moveZ);
 		}
 	}
-
-    @Override
-	public void onUpdate()
-	{
-		super.onUpdate();
-	}
+//
+//    @Override
+//	public void onUpdate()
+//	{
+//		super.onUpdate();
+//	}
 
 	public void setFlying(Boolean flying)
 	{
@@ -446,29 +457,6 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo
 	//        entity.motionZ *= vFactor;
 	//    }
 
-	/**
-	 * Called when the entity is attacked.
-	 */
-    @Override
-	public boolean attackEntityFrom(DamageSource damagesource, int i)
-	{
-		if(null != damagesource)
-		{
-			Entity entity = damagesource.getEntity();
-			if (entity != null && entity == this.riddenByEntity)
-			{
-				return false;
-			}
-			else
-			{
-				return super.attackEntityFrom(damagesource, i);
-			}
-		}
-		else
-		{
-			return false;
-		}
-	}
 
     @Override
 	public double getMountedYOffset()
@@ -493,7 +481,7 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo
 		{
 			this.dataWatcher.updateObject(Constants.DW_ID_ECR_FLAGS, Byte.valueOf((byte)(ecrFlags & Constants.DW_VAL_ECR_SADDLED_OFF)));
 		}
-		this.texture = this.getEntityTexture();
+		//this.texture = this.getEntityTexture();
 	}
 	
 	@Override
@@ -549,7 +537,7 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo
 				this.bagsInventory = null;
 				this.dataWatcher.updateObject(Constants.DW_ID_ECR_FLAGS, Byte.valueOf((byte)(ecrFlags & Constants.DW_VAL_ECR_SADDLEBAGGED_OFF)));
 			}
-			this.texture = this.getEntityTexture();
+			//this.texture = this.getEntityTexture();
 		}    	
 	}
 
@@ -573,7 +561,7 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo
 				this.bagsInventory = null;
 				this.dataWatcher.updateObject(Constants.DW_ID_ECR_FLAGS, Byte.valueOf((byte)(ecrFlags & Constants.DW_VAL_ECR_PACKBAGGED_OFF)));
 			}
-			this.texture = this.getEntityTexture();
+			//this.texture = this.getEntityTexture();
 		}
 	}
 
@@ -588,7 +576,8 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo
 		player.setSprinting(false);
 		this.setStepHeight(true);
 		this.setJumpHigh(true);
-		this.setLandMovementFactor(true);
+		//this.setLandMovementFactor(true);
+		this.setLandSpeedFactor(true);
 		player.mountEntity(this);
 	}
 
@@ -597,7 +586,8 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo
 		this.isJumping = false;
 		this.setStepHeight(false);
 		this.setJumpHigh(false);
-		this.setLandMovementFactor(false);
+		//this.setLandMovementFactor(false);
+		this.setLandSpeedFactor(false);
 		player.mountEntity(null);
 	}
 	

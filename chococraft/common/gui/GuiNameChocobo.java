@@ -18,7 +18,6 @@ package chococraft.common.gui;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.GuiTextField;
-import net.minecraft.util.StringTranslate;
 
 import org.lwjgl.input.Keyboard;
 
@@ -45,11 +44,13 @@ public class GuiNameChocobo extends GuiScreen
 	@SuppressWarnings("unchecked")
 	public void initGui()
 	{
-		StringTranslate stringtranslate = StringTranslate.getInstance();
+		//StringTranslate stringtranslate = StringTranslate.getInstance();
 		Keyboard.enableRepeatEvents(true);
 		this.buttonList.clear();
-		this.buttonList.add(new GuiButton(0, this.width / 2 - 100, this.height / 4 + 96 + 12, stringtranslate.translateKey("Accept")));
-		this.buttonList.add(new GuiButton(1, this.width / 2 - 100, this.height / 4 + 120 + 12, stringtranslate.translateKey("gui.cancel")));
+		//this.buttonList.add(new GuiButton(0, this.width / 2 - 100, this.height / 4 + 96 + 12, stringtranslate.translateKey("Accept")));
+		//this.buttonList.add(new GuiButton(1, this.width / 2 - 100, this.height / 4 + 120 + 12, stringtranslate.translateKey("gui.cancel")));
+		this.buttonList.add(new GuiButton(0, this.width / 2 - 100, this.height / 4 + 96 + 12, "Accept"));
+		this.buttonList.add(new GuiButton(1, this.width / 2 - 100, this.height / 4 + 120 + 12, "Cancel"));
 		this.theGuiTextField = new GuiTextField(this.fontRenderer, this.width / 2 - 100, 60, 200, 20);
 		this.theGuiTextField.setText(this.chocobo.getName());
 		this.theGuiTextField.setFocused(true);
@@ -96,11 +97,13 @@ public class GuiNameChocobo extends GuiScreen
 
 	public void drawScreen(int i, int j, float f)
 	{
-		StringTranslate stringtranslate = StringTranslate.getInstance();
+		//StringTranslate stringtranslate = StringTranslate.getInstance();
 		this.drawDefaultBackground();
 		String s = (this.chocobo instanceof EntityChicobo) ? "Chicobo" : "Chocobo";
-		this.drawCenteredString(this.fontRenderer, stringtranslate.translateKey((new StringBuilder()).append("Name your ").append(s).toString()), this.width / 2, (this.height / 4 - 60) + 20, 0xffffff);
-		this.drawString(this.fontRenderer, stringtranslate.translateKey("New name:"), this.width / 2 - 100, 47, 0xa0a0a0);
+		//this.drawCenteredString(this.fontRenderer, stringtranslate.translateKey((new StringBuilder()).append("Name your ").append(s).toString()), this.width / 2, (this.height / 4 - 60) + 20, 0xffffff);
+		//this.drawString(this.fontRenderer, stringtranslate.translateKey("New name:"), this.width / 2 - 100, 47, 0xa0a0a0);
+		this.drawCenteredString(this.fontRenderer, (new StringBuilder()).append("Name your ").append(s).toString(), this.width / 2, (this.height / 4 - 60) + 20, 0xffffff);
+		this.drawString(this.fontRenderer, "New name:", this.width / 2 - 100, 47, 0xa0a0a0);
 		this.theGuiTextField.drawTextBox();
 		super.drawScreen(i, j, f);
 	}

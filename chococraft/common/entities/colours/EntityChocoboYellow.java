@@ -14,6 +14,9 @@
 
 package chococraft.common.entities.colours;
 
+import com.google.common.io.ByteArrayDataInput;
+import com.google.common.io.ByteArrayDataOutput;
+
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
@@ -21,9 +24,6 @@ import chococraft.common.Constants;
 import chococraft.common.ModChocoCraft;
 import chococraft.common.entities.EntityChocobo;
 import chococraft.common.helper.ChocoboEntityHelper;
-
-import com.google.common.io.ByteArrayDataInput;
-import com.google.common.io.ByteArrayDataOutput;
 
 public class EntityChocoboYellow extends EntityChocobo
 {
@@ -34,8 +34,8 @@ public class EntityChocoboYellow extends EntityChocobo
 	{
 		super(world);
 		this.setEntityHealth(this.getMaxHealth());
-		this.landMovementFactor = Constants.CHOCOBO_DEFAULT_LANDMOVEFACT;
-		this.flyingMovementFactor = Constants.CHOCOBO_YELLOW_FLYMOVEFACT;
+//		this.landMovementFactor = Constants.CHOCOBO_DEFAULT_LANDMOVEFACT;
+//		this.flyingMovementFactor = Constants.CHOCOBO_YELLOW_FLYMOVEFACT;
 		this.canClimb = false;
 		this.canCrossWater = false;
 		this.canJumpHigh = Constants.CHOCOBO_YELLOW_CANJUMPHIGH;
@@ -75,7 +75,7 @@ public class EntityChocoboYellow extends EntityChocobo
 	//@SideOnly(Side.CLIENT)
 	public String getEntityColourTexture()
 	{
-		return "/chocobo.png";
+		return "yellowchocobo.png";
 	}
 
 	@Override
@@ -91,15 +91,15 @@ public class EntityChocoboYellow extends EntityChocobo
 		}
 	}
 
-	public void setLandMovementFactor(boolean mounted)
+	public void setLandSpeedFactor(boolean mounted)
 	{
 		if (mounted)
 		{
-			this.landMovementFactor = Constants.CHOCOBO_YELLOW_LANDMOVEFACT;
+			this.landSpeedFactor = Constants.CHOCOBO_YELLOW_LANDSPEEDFACT;
 		}
 		else
 		{
-			this.landMovementFactor = Constants.CHOCOBO_DEFAULT_LANDMOVEFACT;			
+			this.landSpeedFactor = Constants.CHOCOBO_DEFAULT_LANDSPEEDFACT;			
 		}
 	}
 

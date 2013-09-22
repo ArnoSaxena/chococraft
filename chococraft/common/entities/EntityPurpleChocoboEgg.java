@@ -14,7 +14,7 @@
 
 package chococraft.common.entities;
 
-import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MovingObjectPosition;
@@ -32,7 +32,7 @@ public class EntityPurpleChocoboEgg extends EntityThrowable
 		super(world);
 	}
 
-	public EntityPurpleChocoboEgg(World world, EntityLiving entityliving)
+	public EntityPurpleChocoboEgg(World world, EntityLivingBase entityliving)
 	{
 		super(world, entityliving);
 	}

@@ -19,19 +19,20 @@ import chococraft.common.Constants;
 
 public abstract class PacketChocobo
 {
-	public static int PID_ATTRIBUTE  =  0;
-	public static int PID_DROPSADDLE =  1;
-	public static int PID_HEALTH     =  2;
-	public static int PID_MOUNT      =  3;
-	public static int PID_RIDERJUMP  =  4;
-	public static int PID_TAMED      =  5;
-	public static int PID_CHIGROWUP  =  6;
-	public static int PID_PARTICLES  =  7;
-	public static int PID_SETINLOVE  =  8;
-	public static int PID_CHOWN      =  9;
-	public static int PID_HUNGER     = 10;
-	public static int PID_SETUP      = 11;
-	public static int PID_SPAWN_ITEM = 12;
+	public static int PID_ATTRIBUTE    =  0;
+	public static int PID_DROPSADDLE   =  1;
+	public static int PID_HEALTH       =  2;
+	public static int PID_MOUNT        =  3;
+	public static int PID_RIDERJUMP    =  4;
+	public static int PID_TAMED        =  5;
+	public static int PID_CHIGROWUP    =  6;
+	public static int PID_PARTICLES    =  7;
+	public static int PID_SETINLOVE    =  8;
+	public static int PID_CHOWN        =  9;
+	public static int PID_HUNGER       = 10;
+	public static int PID_SETUP        = 11;
+	public static int PID_SPAWN_ITEM   = 12;
+	public static int PID_RIDER_ACT_ST = 13;
 	
 	protected Packet250CustomPayload packet = null;
 	

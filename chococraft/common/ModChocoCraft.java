@@ -54,10 +54,8 @@ import chococraft.common.network.ChocoboPacketHandler;
 import chococraft.common.tick.ServerSpawnTickHandler;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.Mod.Init;
+import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
-import cpw.mods.fml.common.Mod.PostInit;
-import cpw.mods.fml.common.Mod.PreInit;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
@@ -237,44 +235,7 @@ public class ModChocoCraft
 	@SidedProxy(clientSide = "chococraft.client.ClientProxyChocoCraft", serverSide = "chococraft.common.CommonProxyChocoCraft")
 	public static CommonProxyChocoCraft proxy;
 
-	@Init
-	public void loadChocoCraft(FMLInitializationEvent loadEvent)
-	{
-		//this.createCreativeTab();
-    	ChocoboConfig.readConfigFileInit();
-		
-		this.createItemInstances();
-
-		this.createBlockInstances();
-
-		this.addDungeonChestHooks();
-		
-		this.addSmeltings();
-
-		this.addRecipes();
-		
-		this.addGrassDrops();
-
-		if(Side.CLIENT == FMLCommonHandler.instance().getEffectiveSide())
-		{
-			ClientProxyChocoCraft.registerRenderInformation();
-		}
-
-		this.registerChocobos();
-
-		this.addChocoboSpawns();
-		
-		GameRegistry.registerWorldGenerator(new WorldGenGysahls());
-		GameRegistry.registerPlayerTracker(new ChocoboPlayerTracker());
-				
-		proxy.registerRenderThings();
-
-		NetworkRegistry.instance().registerGuiHandler(this, new ChocoboGuiHandler());
-		
-		TickRegistry.registerScheduledTickHandler(new ServerSpawnTickHandler(), Side.SERVER);
-	}
-
-	@PreInit
+	@EventHandler
 	public void preLoadChocoCraft(FMLPreInitializationEvent preInitEvent)
 	{
 		chocoboHeight = 1.9F;
@@ -363,9 +324,46 @@ public class ModChocoCraft
     	ChocoboConfig.readConfigFilePreInit();
     	
     	proxy.registerEventListener();
+    	
+    	ChocoboConfig.readConfigFileInit();
+		
+		this.createItemInstances();
+
+		this.createBlockInstances();
+	}
+	
+	@EventHandler
+	public void loadChocoCraft(FMLInitializationEvent loadEvent)
+	{
+		//this.createCreativeTab();
+		this.addDungeonChestHooks();
+		
+		this.addSmeltings();
+
+		this.addRecipes();
+		
+		this.addGrassDrops();
+
+		if(Side.CLIENT == FMLCommonHandler.instance().getEffectiveSide())
+		{
+			ClientProxyChocoCraft.registerRenderInformation();
+		}
+
+		this.registerChocobos();
+
+		this.addChocoboSpawns();
+		
+		GameRegistry.registerWorldGenerator(new WorldGenGysahls());
+		GameRegistry.registerPlayerTracker(new ChocoboPlayerTracker());
+				
+		proxy.registerRenderThings();
+
+		NetworkRegistry.instance().registerGuiHandler(this, new ChocoboGuiHandler());
+		
+		TickRegistry.registerScheduledTickHandler(new ServerSpawnTickHandler(), Side.SERVER);
 	}
 
-	@PostInit
+	@EventHandler
 	public void postLoadChocoCraft(FMLPostInitializationEvent postInitEvent) {}
 
 //	// initialising methods
@@ -522,7 +520,7 @@ public class ModChocoCraft
 			Character.valueOf('Y'), chocoboFeatherItem, 
 			Character.valueOf('-'), Item.silk
 		});
-
+		
 		// transforming vanilla saddle into chocobo saddle
 		GameRegistry.addShapelessRecipe(new ItemStack(chocoboSaddleItem, 1), new Object[]
 		{

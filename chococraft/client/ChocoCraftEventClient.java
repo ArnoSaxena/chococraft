@@ -3,8 +3,6 @@ package chococraft.client;
 import net.minecraftforge.client.event.sound.SoundLoadEvent;
 import net.minecraftforge.event.ForgeSubscribe;
 import chococraft.common.ChocoCraftEventCommon;
-import chococraft.common.Constants;
-import chococraft.common.ModChocoCraft;
 
 public class ChocoCraftEventClient extends ChocoCraftEventCommon
 {
@@ -13,7 +11,8 @@ public class ChocoCraftEventClient extends ChocoCraftEventCommon
     {
         try
         {
-            event.manager.soundPoolSounds.addSound("choco_kweh.ogg", ModChocoCraft.class.getResource(Constants.CHOCOBO_SOUND_FOLDER + "/choco_kweh.ogg"));            
+            //event.manager.soundPoolSounds.addSound("choco_kweh.ogg", ModChocoCraft.class.getResource(Constants.CHOCOBO_SOUND_FOLDER + "/choco_kweh.ogg"));            
+            //event.manager.soundPoolSounds.addSound("choco_kweh.ogg");
         }
         catch (Exception e)
         {

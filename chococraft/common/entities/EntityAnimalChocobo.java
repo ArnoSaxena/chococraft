@@ -20,7 +20,9 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.StepSound;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.ai.EntityAIPanic;
 import net.minecraft.entity.passive.EntityTameable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -33,6 +35,11 @@ import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import chococraft.common.Constants;
 import chococraft.common.ModChocoCraft;
+import chococraft.common.entities.ai.ChocoboAIFollowOwner;
+import chococraft.common.entities.ai.ChocoboAILookIdle;
+import chococraft.common.entities.ai.ChocoboAISwimming;
+import chococraft.common.entities.ai.ChocoboAIWander;
+import chococraft.common.entities.ai.ChocoboAIWatchClosest;
 import chococraft.common.gui.GuiStarter;
 import chococraft.common.helper.ChocoboEntityHelper;
 import chococraft.common.helper.ChocoboMathHelper;
@@ -70,7 +77,6 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
 	}
 	
 
-    protected int inLove;
 	protected boolean hasMate;
     public int breeding;
     protected PathEntity pathToEntity;
@@ -102,12 +108,12 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
         this.getNavigator().setAvoidsWater(true);
 		this.hasMate = false;
         
-//        tasks.addTask(this.taskNumber++, new EntityAISwimming(this));
-//        tasks.addTask(this.taskNumber++, new EntityAIChocoboPanic(this, 0.38F));
-//        tasks.addTask(this.taskNumber++, new EntityAIChocoboWander(this, 0.25F));
-//        tasks.addTask(this.taskNumber++, new EntityAIChocoboWatchClosest(this, EntityPlayer.class, 6F));
-//        tasks.addTask(this.taskNumber++, new EntityAIChocoboLookIdle(this));
-//        tasks.addTask(this.taskNumber++, new EntityAIChocoboFollowOwner(this, 5F));
+		this.tasks.addTask(this.taskNumber++, new ChocoboAISwimming(this));
+		this.tasks.addTask(this.taskNumber++, new EntityAIPanic(this, 0.38F));
+		this.tasks.addTask(this.taskNumber++, new ChocoboAIWander(this, 0.25F));
+		this.tasks.addTask(this.taskNumber++, new ChocoboAIWatchClosest(this, EntityPlayer.class, 6F));
+		this.tasks.addTask(this.taskNumber++, new ChocoboAILookIdle(this));
+		this.tasks.addTask(this.taskNumber++, new ChocoboAIFollowOwner(this, (float)this.getMoveHelper().getSpeed(), 20F));
     }
 	
 	// for my sanity sake
@@ -119,6 +125,22 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
     protected boolean isServer()
     {
         return !this.worldObj.isRemote;
+    }
+    
+	public ResourceLocation getResourceLocation()
+	{
+		return new ResourceLocation(Constants.TCC_MODID, this.getEntityTexture());
+	}
+	
+	public float getHealth()
+	{
+		return this.func_110143_aJ();
+	}
+	
+	@Override
+    public boolean isAIEnabled()
+    {
+        return false;
     }
 	
     @Override
@@ -180,17 +202,6 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
 	
 	abstract public String getEntityTexture();
 	abstract public int getMaxHealth();
-	
-	public void resetEntityTexture()
-	{
-		this.texture = this.getEntityTexture();
-	}
-
-    @Override
-    public boolean isAIEnabled()
-    {
-        return false;
-    }
     
     public void setName(String name)
     {
@@ -623,7 +634,7 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
     				this.worldObj.setEntityState(this, (byte)6);
     			}
     		}
-    		this.texture = this.getEntityTexture();
+    		//this.texture = this.getEntityTexture();
     		this.showAmountHeartsOrSmokeFx(this.isTamed(), 7);
     	}
     	else if (this.getHealth() < this.getMaxHealth())
@@ -727,51 +738,13 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
     	}
     }
     
-    @Override
-    public boolean attackEntityFrom(DamageSource damageSource, int tmpNaturalArmorRating)
+    public void damageHandling()
     {
         this.fleeingTick = 60;
         this.entityToAttack = null;
-        this.setInLove(false);
-        
-        if(this.isTamed())
-        {
-        	// do not suffocate in walls workaround
-        	if(damageSource.getDamageType().equals(DamageSource.inWall))
-        	{
-        		return false;
-        	}
-        	
-        	if(damageSource.getEntity() instanceof EntityPlayer)
-        	{
-        		EntityPlayer entityPlayer = (EntityPlayer)damageSource.getEntity();        		
-        		if(null != entityPlayer)
-        		{
-        			if(null != this.getOwner() && this.isOwner(entityPlayer))
-        			{
-        				if(entityPlayer.isSneaking())
-        				{
-        					return false;
-        				}
-        			}
-
-        			if(null != this.riddenByEntity && this.riddenByEntity.equals(entityPlayer))
-        			{
-        				return false;
-        			}
-        		}
-        	}
-        }
-        
-        boolean check = super.attackEntityFrom(damageSource, tmpNaturalArmorRating);
-        
-        if(this.isServer())
-        {
-        	this.sendHealthUpdate();
-        }
-        return check;
+        this.setInLove(false);    	
     }
-
+    
     @SuppressWarnings("rawtypes")
     @Override
     protected Entity findPlayerToAttack()
@@ -1118,7 +1091,7 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
             double d3 = vector.yCoord - (double)i;
             float f2 = (float)((Math.atan2(d2, d1) * 180D) / Math.PI) - 90F;
             float f3 = f2 - this.rotationYaw;
-            this.moveForward = this.moveSpeed;
+            //this.moveForward = this.moveSpeed;
             for (; f3 < -180F; f3 += 360F) { }
             for (; f3 >= 180F; f3 -= 360F) { }
             
