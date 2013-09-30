@@ -16,6 +16,7 @@
 package chococraft.common.entities;
 
 import net.minecraft.entity.EntityAgeable;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -35,7 +36,7 @@ import cpw.mods.fml.common.network.PacketDispatcher;
 public class EntityChicobo extends EntityAnimalChocobo
 {
 	public boolean growUp;
-	protected int maxHealth;
+	//protected float maxHealth;
 
 	public EntityChicobo(World world)
 	{
@@ -43,7 +44,6 @@ public class EntityChicobo extends EntityAnimalChocobo
 		this.dataWatcher.addObject(Constants.DW_ID_CHIC_FLAGS, Byte.valueOf((byte)0));
 		this.dataWatcher.addObject(Constants.DW_ID_CHIC_TIMEUNTILADULT, new Integer(rand.nextInt(2000) + 27000));
 		this.setColor(chocoboColor.YELLOW);
-		this.setMaxHealth(10);
 		this.setSize(0.5F, 0.5F);
 		this.growUp = false;
 		this.canCrossWater = false;
@@ -71,14 +71,20 @@ public class EntityChicobo extends EntityAnimalChocobo
 	public void setColor(chocoboColor color)
 	{
 		this.color = color;
-		//this.texture = this.getEntityTexture();
-		this.setMaxHealth(this.getColorMaxHealth());
-		this.setEntityHealth(this.getColorMaxHealth());
+		this.setHealth(this.getColorMaxHealth());
 		if (color == chocoboColor.PURPLE)
 		{
 			isImmuneToFire = true;
 		}
-	}    
+	}
+	
+	@Override
+    protected void applyEntityAttributes()
+    {
+        super.applyEntityAttributes();
+        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setAttribute(this.getColorMaxHealth());
+        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setAttribute(0.25D);
+    }
 
 	@Override
 	public void writeSpawnData(ByteArrayDataOutput data)
@@ -107,8 +113,6 @@ public class EntityChicobo extends EntityAnimalChocobo
 		{
 			this.setDead();
 		}
-
-		//this.texture = this.getEntityTexture();
 	}
 
 	@Override
@@ -130,7 +134,6 @@ public class EntityChicobo extends EntityAnimalChocobo
 		this.setWander(!this.isFollowing());
 	}
 
-	//@SideOnly(Side.CLIENT)
 	@Override
 	public String getEntityTexture()
 	{
@@ -167,24 +170,24 @@ public class EntityChicobo extends EntityAnimalChocobo
 		}
 	}
 	
-	public int getColorMaxHealth()
+	public float getColorMaxHealth()
 	{
 		switch(this.color)
 		{
 		case YELLOW:
 		case GREEN:
 		case BLUE:
-			return 10;
+			return 10.0F;
 		case WHITE:
 		case BLACK:
-			return 15;
+			return 15.0F;
 		case GOLD:
 		case PINK:
 		case RED:
 		case PURPLE:
-			return 20;
+			return 20.0F;
 		default:
-			return 10;
+			return 10.0F;
 			// todo error handling
 		}
 	}
@@ -208,16 +211,6 @@ public class EntityChicobo extends EntityAnimalChocobo
 		{
 			this.dataWatcher.updateObject(Constants.DW_ID_CHIC_FLAGS, Byte.valueOf((byte)(watchedFlags & -5)));
 		}
-	}
-
-	public void setMaxHealth(int maxHealth)
-	{
-		this.maxHealth = maxHealth;
-	}
-
-	public int getMaxHealth()
-	{
-		return this.maxHealth;
 	}
 
 	public void setTimeUntilAdult(int timeUntilAdult)
@@ -268,7 +261,7 @@ public class EntityChicobo extends EntityAnimalChocobo
 				grownUpChocobo.setGrowingAge(6000);
 				this.worldObj.spawnEntityInWorld(grownUpChocobo);
 				this.sendParticleUpdate(Constants.PARTICLE_EXPLODE, grownUpChocobo, 7);
-				this.setEntityHealth(0);
+				this.setHealth(0);
 				this.setDead();
 				this.growUp = false;
 			}

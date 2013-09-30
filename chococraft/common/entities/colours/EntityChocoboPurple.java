@@ -33,7 +33,7 @@ public class EntityChocoboPurple extends EntityChocobo
 	public EntityChocoboPurple(World world)
 	{
 		super(world);
-		this.setEntityHealth(this.getMaxHealth());
+		this.setHealth(this.getMaxHealth());
 //		this.landMovementFactor = Constants.CHOCOBO_DEFAULT_LANDMOVEFACT;
 //		this.flyingMovementFactor = Constants.CHOCOBO_PURPLE_FLYMOVEFACT;
 		this.canClimb = true;
@@ -135,9 +135,9 @@ public class EntityChocoboPurple extends EntityChocobo
 	}
 
 	@Override
-	public int getMaxHealth()
+	public float getChocoboMaxHealth()
 	{
-		return 50;
+		return 50.0F;
 	}
 
 	@Override

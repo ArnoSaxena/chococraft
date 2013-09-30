@@ -132,11 +132,6 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
 		return new ResourceLocation(Constants.TCC_MODID, this.getEntityTexture());
 	}
 	
-	public float getHealth()
-	{
-		return this.func_110143_aJ();
-	}
-	
 	@Override
     public boolean isAIEnabled()
     {
@@ -201,7 +196,7 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
 	}
 	
 	abstract public String getEntityTexture();
-	abstract public int getMaxHealth();
+	//abstract public int getMaxHealth();
     
     public void setName(String name)
     {

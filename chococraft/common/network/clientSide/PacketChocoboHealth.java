@@ -60,7 +60,7 @@ public class PacketChocoboHealth extends PacketChocoboClient
 				EntityAnimalChocobo chocobo = getChocoboByID(entityId, dimension);
 				if(null != chocobo)
 				{
-					chocobo.setEntityHealth(health);
+					chocobo.setHealth(health);
 				}
 			}
 			catch(IOException e)

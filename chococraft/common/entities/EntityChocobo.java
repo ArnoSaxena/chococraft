@@ -22,6 +22,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -72,6 +73,15 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 		super.entityInit();
         this.dataWatcher.addObject(Constants.DW_ID_CHOC_FLAGS, Byte.valueOf((byte)0));
 	}
+	
+	protected abstract float getChocoboMaxHealth();
+	
+	@Override
+    protected void applyEntityAttributes()
+    {
+        super.applyEntityAttributes();
+        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setAttribute(this.getChocoboMaxHealth());
+    }
 	
 	@Override
 	public void writeSpawnData(ByteArrayDataOutput data)
@@ -316,7 +326,7 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 			this.motionX *= f3;
 			this.motionZ *= f3;
 		}
-		this.prevLimbYaw = this.limbYaw;
+		this.prevLimbSwingAmount = this.limbSwingAmount;
 		double diffX = posX - prevPosX;
 		double diffZ = posZ - prevPosZ;
 		float moveDistance = MathHelper.sqrt_double(diffX * diffX + diffZ * diffZ) * 4F;
@@ -324,8 +334,8 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 		{
 			moveDistance = 1.0F;
 		}
-		this.limbYaw += (moveDistance - this.limbYaw) * 0.4F;
-		this.limbSwing += this.limbYaw;
+		this.limbSwingAmount += (moveDistance - this.limbSwingAmount) * 0.4F;
+		this.limbSwing += this.limbSwingAmount;
 	}
 
 	public void onLivingUpdate()

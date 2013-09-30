@@ -47,7 +47,7 @@ public class GuiChocopediaButtonNextPage extends GuiButton
             boolean flag = par2 >= this.xPosition && par3 >= this.yPosition && par2 < this.xPosition + this.width && par3 < this.yPosition + this.height;
             GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
             //mc.renderEngine.bindTexture("/gui/book.png");
-	        mc.func_110434_K().func_110577_a(this.resourceLocation);
+	        mc.getTextureManager().bindTexture(this.resourceLocation);
             int k = 0;
             int l = 192;
 

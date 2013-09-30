@@ -81,7 +81,7 @@ public class GuiChocoboBag extends GuiContainer
 
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);		
 		//this.mc.renderEngine.bindTexture("/gui/container.png");
-        this.mc.func_110434_K().func_110577_a(this.resourceLocation);
+        this.mc.getTextureManager().bindTexture(this.resourceLocation);
 
 		int j = (width - xSize) / 2;
 		int k = (height - ySize) / 2 + yPosOffset;

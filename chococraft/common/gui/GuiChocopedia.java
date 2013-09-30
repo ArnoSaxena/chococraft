@@ -303,7 +303,7 @@ public class GuiChocopedia extends GuiScreen
 			// Chocopedia view
 			GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 			//this.mc.renderEngine.bindTexture("/gui/book.png");
-	        this.mc.func_110434_K().func_110577_a(this.resourceLocation);
+	        this.mc.getTextureManager().bindTexture(this.resourceLocation);
 			int xCenter = (this.width - this.bookImageWidth) / 2;
 			this.drawTexturedModalRect(xCenter, 2, 0, 0, this.bookImageWidth, this.bookImageHeight);
 

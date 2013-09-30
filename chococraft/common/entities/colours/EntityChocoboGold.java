@@ -31,7 +31,7 @@ public class EntityChocoboGold extends EntityChocobo
 	public EntityChocoboGold(World world)
 	{
 		super(world);
-		this.setEntityHealth(this.getMaxHealth());
+		this.setHealth(this.getMaxHealth());
 //		this.flyingMovementFactor = Constants.CHOCOBO_GOLD_FLYMOVEFACT;
 //		this.landMovementFactor = Constants.CHOCOBO_DEFAULT_LANDMOVEFACT;
 		this.canClimb = true;
@@ -118,9 +118,9 @@ public class EntityChocoboGold extends EntityChocobo
 	public void setRiderAbilities(boolean mounted){}
 
 	@Override
-	public int getMaxHealth()
+	public float getChocoboMaxHealth()
 	{
-		return 50;
+		return 50.0F;
 	}
 
 	protected void fall(float fallHeight)
@@ -184,7 +184,7 @@ public class EntityChocoboGold extends EntityChocobo
 			entitychocobo.setFollowing(this.isFollowing());
 			entitychocobo.injectInventory(this.bagsInventory);
 			this.worldObj.spawnEntityInWorld(entitychocobo);
-			this.setEntityHealth(0);
+			this.setHealth(0);
 			this.setDead();
 		}
 		else
