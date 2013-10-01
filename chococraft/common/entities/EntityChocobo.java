@@ -17,11 +17,10 @@ package chococraft.common.entities;
 
 import java.util.List;
 import java.util.Random;
-
-import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
@@ -30,14 +29,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import chococraft.common.Constants;
 import chococraft.common.ModChocoCraft;
 import chococraft.common.entities.colours.EntityChocoboPurple;
 import chococraft.common.helper.ChocoboMathHelper;
 import chococraft.common.helper.ChocoboParticleHelper;
-
 import com.google.common.io.ByteArrayDataInput;
 import com.google.common.io.ByteArrayDataOutput;
 
@@ -205,137 +202,35 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 
 	public void moveEntityWithHeading(float strafe, float forward)
 	{
-		if (this.isInWater())
-		{
-			float landMovement = 0.02F;
-			if (this.canCrossWater)
-			{
-				landMovement = (float)this.landSpeedFactor/100 * 0.3F;
-			}
-			this.moveFlying(strafe, forward, landMovement);
-			this.moveEntity(this.motionX, this.motionY, this.motionZ);
-			this.motionX *= 0.8D;
-			this.motionY *= 0.8D;
-			this.motionZ *= 0.8D;
-			
-			if (this.isCollidedHorizontally && this.isOffsetPositionInLiquid(this.motionX, ((this.motionY + 0.6D) - this.posY) + this.posY, this.motionZ))
-			{
-				this.motionY = 0.3D;
-			}
-		}
-		else if (this.handleLavaMovement())
-		{
-			if(this instanceof EntityChocoboPurple)
-			{
-				this.moveFlying(strafe, forward, (float)this.landSpeedFactor/100 * 2.0F);
-				this.moveEntity(motionX, motionY, motionZ);
-				this.motionX *= 0.8D;
-				this.motionY *= 0.8D;
-				this.motionZ *= 0.8D;
-				
-				if (this.isCollidedHorizontally && this.isOffsetPositionInLiquid(this.motionX, ((this.motionY + 0.6D) - this.posY) + this.posY, this.motionZ))
-				{
-					this.motionY = 0.3D;
-				}
-			}
-			else
-			{
-				this.moveFlying(strafe, forward, 0.02F);
-				this.moveEntity(this.motionX, this.motionY, this.motionZ);
-				this.motionX *= 0.5D;
-				this.motionY *= 0.5D;
-				this.motionZ *= 0.5D;
-				this.motionY -= 0.02D;
-			}
-			
-			if (this.isCollidedHorizontally && this.isOffsetPositionInLiquid(this.motionX, ((this.motionY + 0.6D) - this.posY) + this.posY, this.motionZ))
-			{
-				this.motionY = 0.3D;
-			}
-		}
-		else if (this.isFlying())
-		{
-			this.moveFlying(strafe, forward, this.flyingMovementFactor);
-			this.moveEntity(this.motionX, this.motionY, this.motionZ);
-			this.motionX *= 0.8D;
-			this.motionY *= 0.8D;
-			this.motionZ *= 0.8D;
-			this.motionY -= 0.02D;
-		}
-		else
-		{
-			float f3 = 0.91F;
-			if (this.onGround)
-			{
-				f3 = 0.5460001F;
-				int blockId = this.worldObj.getBlockId(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.boundingBox.minY) - 1, MathHelper.floor_double(this.posZ));
-				if (blockId > 0)
-				{
-					f3 = Block.blocksList[blockId].slipperiness * 0.91F;
-				}
-			}
-			float f4 = 0.1627714F / (f3 * f3 * f3);
-			float f6 = this.onGround ? (float)this.landSpeedFactor/100 * f4 : this.jumpMovementFactor;
-			this.moveFlying(strafe, forward, f6);
-			f3 = 0.91F;
-			if (this.onGround)
-			{
-				f3 = 0.5460001F;
-				int blockId = this.worldObj.getBlockId(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.boundingBox.minY) - 1, MathHelper.floor_double(this.posZ));
-				if (blockId > 0)
-				{
-					f3 = Block.blocksList[blockId].slipperiness * 0.91F;
-				}
-			}
-			if (isOnLadder())
-			{
-				float f7 = 0.15F;
-				if (this.motionX < (double)(-f7))
-				{
-					this.motionX = -f7;
-				}
-				if (this.motionX > (double)f7)
-				{
-					this.motionX = f7;
-				}
-				if (this.motionZ < (double)(-f7))
-				{
-					this.motionZ = -f7;
-				}
-				if (this.motionZ > (double)f7)
-				{
-					this.motionZ = f7;
-				}
-				this.fallDistance = 0.0F;
-				if (this.motionY < -0.15D)
-				{
-					this.motionY = -0.15D;
-				}
-				if (isSneaking() && this.motionY < 0.0D)
-				{
-					this.motionY = 0.0D;
-				}
-			}
-			this.moveEntity(this.motionX, this.motionY, this.motionZ);
-			if (this.isCollidedHorizontally && isOnLadder())
-			{
-				this.motionY = 0.2D;
-			}
-			this.motionY -= 0.08D;
-			this.motionY *= 0.98D;
-			this.motionX *= f3;
-			this.motionZ *= f3;
-		}
-		this.prevLimbSwingAmount = this.limbSwingAmount;
-		double diffX = posX - prevPosX;
-		double diffZ = posZ - prevPosZ;
-		float moveDistance = MathHelper.sqrt_double(diffX * diffX + diffZ * diffZ) * 4F;
-		if (moveDistance > 1.0F)
-		{
-			moveDistance = 1.0F;
-		}
-		this.limbSwingAmount += (moveDistance - this.limbSwingAmount) * 0.4F;
-		this.limbSwing += this.limbSwingAmount;
+	    if (this.riddenByEntity == null)
+	    {
+	        return;
+	    }
+	    
+	    strafe = ((EntityLivingBase)this.riddenByEntity).moveStrafing * 0.5F;
+	    
+	    double multiplier = 1.0F;
+	    
+	    if (this.onGround)
+	    {
+	        multiplier = this.landSpeedFactor;
+	    }
+	    else if (this.isAirBorne)
+	    {
+	        multiplier = this.airbornSpeedFactor;
+	    }
+	    else if (this.inWater)
+	    {
+	        multiplier = this.waterSpeedFactor;
+	    }
+	    
+	    forward = (float) (((EntityLivingBase)this.riddenByEntity).moveForward * multiplier);
+	    
+        if (!this.worldObj.isRemote)
+        {
+            this.setAIMoveSpeed((float)this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).getAttributeValue());
+            super.moveEntityWithHeading(strafe, forward);
+        }
 	}
 
 	public void onLivingUpdate()

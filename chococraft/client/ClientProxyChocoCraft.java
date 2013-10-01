@@ -77,9 +77,12 @@ public class ClientProxyChocoCraft extends CommonProxyChocoCraft
     @Override
     public void updateRiderActionState(EntityChocoboRideable chocobo, Entity entity)
     {
-    	PacketChocoboUpdateRiderActionState packet = new PacketChocoboUpdateRiderActionState(chocobo, entity);
-    	PacketDispatcher.sendPacketToServer(packet.getPacket());
-    	chocobo.setRiderActionState(this.getRiderActionState(entity));
+        if (chocobo.worldObj.isRemote)
+        {
+            PacketChocoboUpdateRiderActionState packet = new PacketChocoboUpdateRiderActionState(chocobo, entity);
+            PacketDispatcher.sendPacketToServer(packet.getPacket());
+            chocobo.setRiderActionState(this.getRiderActionState(entity));
+        }
     }
     
     @Override

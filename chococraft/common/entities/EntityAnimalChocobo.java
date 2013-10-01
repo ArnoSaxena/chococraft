@@ -17,10 +17,8 @@ package chococraft.common.entities;
 
 import java.util.List;
 import java.util.Random;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.StepSound;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ai.EntityAIPanic;
 import net.minecraft.entity.passive.EntityTameable;
@@ -31,6 +29,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.pathfinding.PathEntity;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import chococraft.common.Constants;
@@ -52,16 +51,14 @@ import chococraft.common.network.serverSide.PacketChocoboAttribute;
 import chococraft.common.network.serverSide.PacketChocoboChangeOwner;
 import chococraft.common.network.serverSide.PacketChocoboRiderJump;
 import chococraft.common.network.serverSide.PacketChocoboSetInLove;
-
 import com.google.common.io.ByteArrayDataInput;
 import com.google.common.io.ByteArrayDataOutput;
-
 import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
 
 public abstract class EntityAnimalChocobo extends EntityTameable implements IEntityAdditionalSpawnData
 {
-	public chocoboColor color;
+	public chocoboColor color = chocoboColor.YELLOW;
 	
 	public static enum chocoboColor
 	{
@@ -135,7 +132,7 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
 	@Override
     public boolean isAIEnabled()
     {
-        return false;
+        return true;
     }
 	
     @Override
@@ -993,6 +990,7 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
 	@Override
     protected void updateEntityActionState()
     {
+	    
         if (this.fleeingTick > 0)
         {
         	this.fleeingTick--;

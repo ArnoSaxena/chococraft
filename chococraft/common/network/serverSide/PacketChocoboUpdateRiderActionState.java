@@ -18,17 +18,14 @@ import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-
 import net.minecraft.entity.Entity;
-
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.common.network.Player;
-
 import chococraft.common.ModChocoCraft;
 import chococraft.common.entities.EntityAnimalChocobo;
 import chococraft.common.entities.EntityChocoboRideable;
 import chococraft.common.entities.RiderActionState;
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.network.Player;
+import cpw.mods.fml.relauncher.Side;
 
 public class PacketChocoboUpdateRiderActionState extends PacketChocoboServer
 {
@@ -73,6 +70,7 @@ public class PacketChocoboUpdateRiderActionState extends PacketChocoboServer
 
 	public static void handleUpdate(DataInputStream inputStream, Player player)
 	{
+	    
 		if (Side.SERVER == FMLCommonHandler.instance().getEffectiveSide())
 		{
 			try

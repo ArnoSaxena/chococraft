@@ -15,7 +15,6 @@
 package chococraft.common.entities;
 
 import java.util.List;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
@@ -32,10 +31,8 @@ import chococraft.common.bags.ChocoPackBagInventory;
 import chococraft.common.bags.ChocoSaddleBagInventory;
 import chococraft.common.network.serverSide.PacketChocoboDropGear;
 import chococraft.common.network.serverSide.PacketChocoboMount;
-
 import com.google.common.io.ByteArrayDataInput;
 import com.google.common.io.ByteArrayDataOutput;
-
 import cpw.mods.fml.common.network.PacketDispatcher;
 
 
@@ -333,86 +330,41 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo
 	@Override
 	public void moveEntity(double moveX, double moveY, double moveZ)
 	{
-		if (this.riddenByEntity != null)
-		{
-			this.sendRiderJumpUpdate();
+	    this.sendRiderJumpUpdate();
+	    this.setRotationYawAndPitch();
+	    
+	    if (this.riddenByEntity instanceof EntityPlayer)
+	    {
+	        if (this.riderActionState.jump)
+	        {
+	            if (this.canFly)
+	            {
+	                this.motionY += 0.1D;
+	                this.setFlying(true);
+	            }
+	            else if (this.canJumpHigh && !this.isHighJumping)
+	            {
+	                this.motionY += 0.4D;
+	                this.isHighJumping = true;
+	            }
+	        }
+	        
+            if (this.riddenByEntity.isSneaking())
+            {
+                if(this.canFly)
+                {
+                    this.motionY -= 0.15D;
+                }
 
-			this.setRotationYawAndPitch();
-			
-			if(this.isServer())
-			{
-				
-				if (this.onGround)
-				{
-					this.motionX = this.riddenByEntity.motionX * this.landSpeedFactor;
-					this.motionZ = this.riddenByEntity.motionZ * this.landSpeedFactor;
-					this.isInWeb = false;
-				}
-				else if (this.isAirBorne)
-				{
-					this.motionX = this.riddenByEntity.motionX * this.airbornSpeedFactor;
-					this.motionZ = this.riddenByEntity.motionZ * this.airbornSpeedFactor;
-				}
-				else if (this.inWater)
-				{
-					this.motionX = this.riddenByEntity.motionX * this.waterSpeedFactor;
-					this.motionZ = this.riddenByEntity.motionZ * this.waterSpeedFactor;					
-				}
-				else
-				{
-					this.motionX = this.riddenByEntity.motionX * this.landSpeedFactor;
-					this.motionZ = this.riddenByEntity.motionZ * this.landSpeedFactor;
-				}
-
-				this.prevMotionX = this.motionX;
-				this.prevMotionZ = this.motionZ;
-			}
-
-			if(this.riddenByEntity instanceof EntityPlayer)
-			{    				
-				EntityPlayer entityplayer = (EntityPlayer)this.riddenByEntity;
-				
-				if (this.riderActionState.jump)
-				{
-					if (this.canFly)
-					{
-						this.motionY += 0.1D;
-						this.setFlying(true);
-					}
-					else if (this.canJumpHigh && !this.isHighJumping)
-					{
-						this.motionY += 0.4D;
-						this.isHighJumping = true;
-					}
-				}
-
-				if (entityplayer.isSneaking())
-				{
-					if(this.canFly)
-					{
-						this.motionY -= 0.15D;
-					}
-
-					if(this.inWater && this.canBreatheUnderwater())
-					{
-						this.motionY -= 0.15D;
-					}
-				}
-			}
-
-			super.moveEntity(this.motionX, this.motionY, this.motionZ);
-		}
-		else
-		{
-			super.moveEntity(moveX, moveY, moveZ);
-		}
+                if(this.inWater && this.canBreatheUnderwater())
+                {
+                    this.motionY -= 0.15D;
+                }
+            }
+	    }
+	    
+	    super.moveEntity(moveX, moveY, moveZ);
 	}
-//
-//    @Override
-//	public void onUpdate()
-//	{
-//		super.onUpdate();
-//	}
 
 	public void setFlying(Boolean flying)
 	{

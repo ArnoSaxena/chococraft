@@ -91,6 +91,10 @@ public class ChocoboPacketHandler implements IPacketHandler
 			{
 				PacketChocoboSpawnItem.handleUpdate(data, player);
 			}
+            else if(packetId == PacketChocobo.PID_RIDER_ACT_ST)
+            {
+                PacketChocoboUpdateRiderActionState.handleUpdate(data, player);
+            }
 		}
 		catch (Exception ex)
 		{
