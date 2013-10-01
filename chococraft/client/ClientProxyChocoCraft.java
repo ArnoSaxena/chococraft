@@ -79,9 +79,12 @@ public class ClientProxyChocoCraft extends CommonProxyChocoCraft
     {
         if (chocobo.worldObj.isRemote)
         {
-            PacketChocoboUpdateRiderActionState packet = new PacketChocoboUpdateRiderActionState(chocobo, entity);
-            PacketDispatcher.sendPacketToServer(packet.getPacket());
-            chocobo.setRiderActionState(this.getRiderActionState(entity));
+        	if(chocobo.worldObj.getWorldTime() % 20 == 0)
+        	{
+        		PacketChocoboUpdateRiderActionState packet = new PacketChocoboUpdateRiderActionState(chocobo, entity);
+        		PacketDispatcher.sendPacketToServer(packet.getPacket());
+        		chocobo.setRiderActionState(this.getRiderActionState(entity));
+        	}
         }
     }
     
