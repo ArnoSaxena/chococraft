@@ -51,7 +51,6 @@ public class EntityChicobo extends EntityAnimalChocobo
 		this.canClimb = false;
 		this.stepHeight = 0.5F;
 		this.canJumpHigh = false;
-		//this.landMovementFactor = 0.1F;
 		this.setGrowingAge(this.getTimeUntilAdult());
 		
         //this.tasks.addTask(this.taskNumber++, new ChocoboAIFollowOwner(this, (float)this.getMoveHelper().getSpeed(), 20.0F));
@@ -71,6 +70,7 @@ public class EntityChicobo extends EntityAnimalChocobo
 	public void setColor(chocoboColor color)
 	{
 		this.color = color;
+        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setAttribute(this.getColorMaxHealth());
 		this.setHealth(this.getColorMaxHealth());
 		if (color == chocoboColor.PURPLE)
 		{
@@ -82,7 +82,7 @@ public class EntityChicobo extends EntityAnimalChocobo
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setAttribute(this.getColorMaxHealth());
+        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setAttribute(10);
         this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setAttribute(0.25D);
     }
 
@@ -359,7 +359,7 @@ public class EntityChicobo extends EntityAnimalChocobo
 		return -1;
 	}
 
-	@Deprecated
+	@Override
 	public void updateEntityActionState()
 	{
 		if (!this.hasPath() && this.isFollowing() && this.isTamed())
