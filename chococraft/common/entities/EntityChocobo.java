@@ -213,6 +213,10 @@ public abstract class EntityChocobo extends EntityChocoboRideable
                 super.moveEntityWithHeading(strafe, forward);
             }
 	    }
+	    else
+	    {
+	        super.moveEntityWithHeading(strafe, forward);
+	    }
 
         this.prevLimbSwingAmount = this.limbSwingAmount;
         double d0 = this.posX - this.prevPosX;
