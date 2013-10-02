@@ -41,7 +41,7 @@ public class PacketChocoboRiderJump extends PacketChocoboServer
 			outputStream.writeInt(PID_RIDERJUMP);
 			outputStream.writeInt(chocobo.entityId);
 			outputStream.writeUTF(riderEntity.username);
-			outputStream.writeBoolean(chocobo.riderActionState.jump);
+			outputStream.writeBoolean(chocobo.riderActionState.isJump());
 			outputStream.writeBoolean(riderEntity.isSneaking());
 			outputStream.writeInt(chocobo.worldObj.provider.dimensionId);
 		}

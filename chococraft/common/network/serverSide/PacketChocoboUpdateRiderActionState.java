@@ -43,10 +43,10 @@ public class PacketChocoboUpdateRiderActionState extends PacketChocoboServer
 		RiderActionState ras = ModChocoCraft.proxy.getRiderActionState(rider);
 		if(null != ras)
 		{
-			moveStrafe = ras.moveStrafe;
-			moveForward = ras.moveForward;
-			jump = ras.jump;
-			sneak = ras.sneak;
+			moveStrafe = ras.getMoveStrafe();
+			moveForward = ras.getMoveForward();
+			jump = ras.isJump();
+			sneak = ras.isSneak();
 		}
 		
 		try
@@ -79,10 +79,10 @@ public class PacketChocoboUpdateRiderActionState extends PacketChocoboServer
 
 				int chocoboId      = inputStream.readInt();
 				int dimension      = inputStream.readInt();				
-				ras.moveStrafe     = inputStream.readFloat();
-				ras.moveForward    = inputStream.readFloat();
-				ras.jump           = inputStream.readBoolean();
-				ras.sneak          = inputStream.readBoolean();
+				ras.setMoveStrafe(inputStream.readFloat());
+				ras.setMoveForward(inputStream.readFloat());
+				ras.setJump(inputStream.readBoolean());
+				ras.setSneak(inputStream.readBoolean());
 				
 				EntityAnimalChocobo chocobo = getChocoboByID(chocoboId, dimension);
 								

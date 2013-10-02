@@ -127,9 +127,12 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo
 		this.setPackBagged(data.readBoolean());
 	}
     
-    public void setRiderActionState(RiderActionState riderActionState)
+    public void setRiderActionState(RiderActionState ras)
     {
-    	this.riderActionState = riderActionState;
+    	this.riderActionState.setMoveStrafe(ras.getMoveStrafe());
+    	this.riderActionState.setMoveForward(ras.getMoveForward());
+    	this.riderActionState.setJump(ras.isJump());
+    	this.riderActionState.setSneak(ras.isSneak());
     }
 
     @Override
@@ -321,7 +324,7 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo
 	    
 	    if (this.riddenByEntity instanceof EntityPlayer)
 	    {
-	        if (this.riderActionState.jump)
+	        if (this.riderActionState.isJump())
 	        {
 	            if (this.canFly)
 	            {

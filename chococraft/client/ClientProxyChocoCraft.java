@@ -79,11 +79,13 @@ public class ClientProxyChocoCraft extends CommonProxyChocoCraft
     {
         if (chocobo.worldObj.isRemote)
         {
-        	if(chocobo.worldObj.getWorldTime() % 20 == 0)
+        	//if(chocobo.worldObj.getWorldTime() % 20 == 0)
+        	if(chocobo.riderActionState.isChanged())
         	{
         		PacketChocoboUpdateRiderActionState packet = new PacketChocoboUpdateRiderActionState(chocobo, entity);
         		PacketDispatcher.sendPacketToServer(packet.getPacket());
         		chocobo.setRiderActionState(this.getRiderActionState(entity));
+        		chocobo.riderActionState.resetChanged();
         	}
         }
     }
@@ -95,19 +97,11 @@ public class ClientProxyChocoCraft extends CommonProxyChocoCraft
     	if(rider instanceof EntityPlayerSP)
     	{
     		EntityPlayerSP riderSP = (EntityPlayerSP)rider;
-    		ras.moveForward = riderSP.movementInput.moveForward;
-    		ras.moveStrafe = riderSP.movementInput.moveStrafe;
-    		ras.jump = riderSP.movementInput.jump;
-    		ras.sneak = riderSP.movementInput.sneak;
+    		ras.setMoveForward(riderSP.movementInput.moveForward);
+    		ras.setMoveStrafe(riderSP.movementInput.moveStrafe);
+    		ras.setJump(riderSP.movementInput.jump);
+    		ras.setSneak(riderSP.movementInput.sneak);
     	}
-//    	else if (rider instanceof EntityPlayerMP)
-//    	{
-//    		EntityPlayerMP riderMP = (EntityPlayerMP)rider;
-//    		ras.moveForward = riderMP.moveForward;
-//    		ras.moveStrafe = riderMP.moveStrafing;
-//    		ras.jump = riderMP.
-//    		
-//    	}
 		return ras;
 	}
 

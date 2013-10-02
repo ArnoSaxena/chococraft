@@ -480,7 +480,7 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 				}
 				prevRotationYaw = rotationYaw = riddenByEntity.rotationYaw;
 				prevRotationPitch = rotationPitch = 0.0F;
-				this.setJumping(this.riderActionState.jump);
+				this.setJumping(this.riderActionState.isJump());
 				
 				double d = Math.abs(Math.sqrt(motionX * motionX + motionZ * motionZ));
 				if (d > 0.375D)
