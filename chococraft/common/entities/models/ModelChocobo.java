@@ -16,11 +16,11 @@
 
 package chococraft.common.entities.models;
 
-import chococraft.common.ModChocoCraft;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.MathHelper;
+import chococraft.common.ModChocoCraft;
 
 
 public class ModelChocobo extends ModelBase
@@ -308,11 +308,11 @@ public class ModelChocobo extends ModelBase
 		feather_2.rotateAngleY = head.rotateAngleY;
 
 		// walking animation
-		this.setRightLegXRotation(MathHelper.cos(f * 0.6662F) * 1.4F * f1);
-		this.setLeftLegXRotation(MathHelper.cos(f * 0.6662F + pi) * 1.4F * f1);
-
+		this.setRightLegXRotation(MathHelper.cos(f * 0.6662F) * 0.8F * f1);
+		this.setLeftLegXRotation(MathHelper.cos(f * 0.6662F + pi) * 0.8F * f1);
+		
 		// flying animation
-		if (f2 > 0.001F)
+		if (Math.abs(entity.motionY) > 0.1F)
 		{
 			if(ModChocoCraft.chocoboWingFlutter)
 			{

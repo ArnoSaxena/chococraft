@@ -29,6 +29,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import chococraft.common.Constants;
 import chococraft.common.ModChocoCraft;
@@ -202,35 +203,46 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 
 	public void moveEntityWithHeading(float strafe, float forward)
 	{
-	    if (this.riddenByEntity == null)
+	    if (this.riddenByEntity != null)
 	    {
-	        return;
+    	    strafe = ((EntityLivingBase)this.riddenByEntity).moveStrafing * 0.5F;
+    	    
+    	    double multiplier = 1.0F;
+    	    
+    	    if (this.onGround)
+    	    {
+    	        multiplier = this.landSpeedFactor;
+    	    }
+    	    else if (this.isAirBorne)
+    	    {
+    	        multiplier = this.airbornSpeedFactor;
+    	    }
+    	    else if (this.inWater)
+    	    {
+    	        multiplier = this.waterSpeedFactor;
+    	    }
+    	    
+    	    forward = (float) (((EntityLivingBase)this.riddenByEntity).moveForward * multiplier);
+    	    
+            if (!this.worldObj.isRemote)
+            {
+                this.setAIMoveSpeed((float)this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).getAttributeValue());
+                super.moveEntityWithHeading(strafe, forward);
+            }
 	    }
-	    
-	    strafe = ((EntityLivingBase)this.riddenByEntity).moveStrafing * 0.5F;
-	    
-	    double multiplier = 1.0F;
-	    
-	    if (this.onGround)
-	    {
-	        multiplier = this.landSpeedFactor;
-	    }
-	    else if (this.isAirBorne)
-	    {
-	        multiplier = this.airbornSpeedFactor;
-	    }
-	    else if (this.inWater)
-	    {
-	        multiplier = this.waterSpeedFactor;
-	    }
-	    
-	    forward = (float) (((EntityLivingBase)this.riddenByEntity).moveForward * multiplier);
-	    
-        if (!this.worldObj.isRemote)
+
+        this.prevLimbSwingAmount = this.limbSwingAmount;
+        double d0 = this.posX - this.prevPosX;
+        double d1 = this.posZ - this.prevPosZ;
+        float f4 = MathHelper.sqrt_double(d0 * d0 + d1 * d1) * 4.0F;
+
+        if (f4 > 1.0F)
         {
-            this.setAIMoveSpeed((float)this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).getAttributeValue());
-            super.moveEntityWithHeading(strafe, forward);
+            f4 = 1.0F;
         }
+
+        this.limbSwingAmount += (f4 - this.limbSwingAmount) * 0.4F;
+        this.limbSwing += this.limbSwingAmount;
 	}
 
 	public void onLivingUpdate()
