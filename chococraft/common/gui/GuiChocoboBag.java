@@ -29,7 +29,7 @@ public class GuiChocoboBag extends GuiContainer
 	private InventoryPlayer playerInv;
 	private ChocoBagInventory chocoBagInv;
 	private int invHeight;
-    private ResourceLocation resourceLocation = new ResourceLocation("textures/gui/container/inventory.png");
+    private ResourceLocation resourceLocation = new ResourceLocation("textures/gui/container/generic_54.png");
 
 
 	public GuiChocoboBag (InventoryPlayer playerInv, ChocoBagInventory chocoBagInv)
