@@ -33,6 +33,7 @@ import chococraft.common.network.serverSide.PacketChocoboDropGear;
 import chococraft.common.network.serverSide.PacketChocoboMount;
 import com.google.common.io.ByteArrayDataInput;
 import com.google.common.io.ByteArrayDataOutput;
+import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.network.PacketDispatcher;
 
 
@@ -292,14 +293,10 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo
 			{
 				if(this.isClient())
 				{
-					this.sendMountUpdate();
+                    this.sendMountUpdate();
 					if (this.riddenByEntity == null)
 					{
-						this.dismountChocobo(entityplayer);
-					}
-					else
-					{
-						this.mountChocobo(entityplayer);
+                        this.mountChocobo(entityplayer);
 					}
 				}
 

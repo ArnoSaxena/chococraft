@@ -17,7 +17,6 @@ package chococraft.common.entities;
 
 import java.util.List;
 import java.util.Random;
-import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityLivingBase;
@@ -27,7 +26,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
@@ -154,7 +152,9 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 
 	public void onUpdate()
 	{
+        
 		super.onUpdate();
+		
 		if (this.riddenByEntity == null && this.isFlying() && !this.onGround)
 		{
 			this.motionY -= 0.25D;
@@ -170,63 +170,46 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 			this.isHighJumping = false;
 		}
 
-		if (this.isInWater() && this.canCrossWater)
-		{
-			int i = 5;
-			double d = 0.0D;
-			for (int j = 0; j < i; j++)
-			{
-				double d2 = (this.boundingBox.minY + ((this.boundingBox.maxY - this.boundingBox.minY) * (double)(j + 0)) / (double)i) - 0.125D;
-				double d3 = (this.boundingBox.minY + ((this.boundingBox.maxY - this.boundingBox.minY) * (double)(j + 1)) / (double)i) - 0.125D;
-				AxisAlignedBB axisalignedbb = AxisAlignedBB.getBoundingBox(this.boundingBox.minX, d2, this.boundingBox.minZ, this.boundingBox.maxX, d3, this.boundingBox.maxZ);
-				if (this.worldObj.isAABBInMaterial(axisalignedbb, Material.water))
-				{
-					d += 1.0D / (double)i;
-				}
-			}
-
-			if (d < 1.0D)
-			{
-				double d1 = d * 2D - 1.0D;
-				this.motionY += 0.04D * d1;
-			}
-			else
-			{
-				if (this.motionY < 0.0D)
-				{
-					this.motionY /= 2D;
-				}
-				this.motionY += 0.007D;
-			}
-		}
+        if (this.isInWater() && this.canCrossWater)
+        {
+            this.motionY += 0.04D;
+            this.inWater = false;
+        }
 	}
+	
+	@Override
+    public float getAIMoveSpeed()
+    {
+	    if (this.riddenByEntity != null)
+	    {
+	        if (this.onGround)
+            {
+                return (float) this.landSpeedFactor / 100.0F;
+            }
+	    }
+	    
+	    return super.getAIMoveSpeed();
+    }
 
 	public void moveEntityWithHeading(float strafe, float forward)
 	{
 	    if (this.riddenByEntity != null)
 	    {
     	    strafe = ((EntityLivingBase)this.riddenByEntity).moveStrafing * 0.5F;
-    	    
-    	    double multiplier = 1.0F;
-    	    
-    	    if (this.onGround)
-    	    {
-    	        multiplier = this.landSpeedFactor;
-    	    }
-    	    else if (this.isAirBorne)
-    	    {
-    	        multiplier = this.airbornSpeedFactor;
-    	    }
-    	    else if (this.inWater)
-    	    {
-    	        multiplier = this.waterSpeedFactor;
-    	    }
-    	    
-    	    forward = (float) (((EntityLivingBase)this.riddenByEntity).moveForward * multiplier);
+    	    forward = (float) (((EntityLivingBase)this.riddenByEntity).moveForward);
     	    
             if (!this.worldObj.isRemote)
             {
-                this.setAIMoveSpeed((float)this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).getAttributeValue());
+                if (this.isAirBorne)
+                {
+                    this.jumpMovementFactor = (float) this.airbornSpeedFactor / 100.0F;
+                }
+                else if (this.isInWater())
+                {
+                    this.jumpMovementFactor = (float) this.waterSpeedFactor / 100.0F;
+                }
+                
+                this.setAIMoveSpeed(forward);
                 super.moveEntityWithHeading(strafe, forward);
             }
 	    }

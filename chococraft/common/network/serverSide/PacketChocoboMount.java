@@ -18,16 +18,13 @@ import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-
 import net.minecraft.entity.player.EntityPlayer;
-
-import cpw.mods.fml.client.FMLClientHandler;
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.common.network.Player;
-
 import chococraft.common.entities.EntityAnimalChocobo;
 import chococraft.common.entities.EntityChocoboRideable;
+import cpw.mods.fml.client.FMLClientHandler;
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.network.Player;
+import cpw.mods.fml.relauncher.Side;
 
 public class PacketChocoboMount extends PacketChocoboServer
 {
