@@ -381,8 +381,8 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo
 	{
 		if (this.riddenByEntity != null)
 		{
-			double deltaPosX = Math.cos((double)this.rotationYaw * Math.PI / 180.0D) * 0.4D;
-			double deltaPosZ = Math.sin((double)this.rotationYaw * Math.PI / 180.0D) * 0.4D;
+			double deltaPosX = Math.cos((double)(this.rotationYaw - 90) * Math.PI / 180.0D) * 0.4;
+			double deltaPosZ = Math.sin((double)(this.rotationYaw - 90) * Math.PI / 180.0D) * 0.4;
 			this.riddenByEntity.setPosition(this.posX + deltaPosX, this.posY + this.getMountedYOffset() + this.riddenByEntity.getYOffset(), this.posZ + deltaPosZ);
 		}
 	}   
@@ -413,7 +413,7 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo
     @Override
 	public double getMountedYOffset()
 	{
-		return 1.4D;
+		return 1.65D;
 	}
 
 	public boolean isSaddled()
