@@ -14,9 +14,6 @@
 
 package chococraft.common.entities;
 
-import java.util.List;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -33,7 +30,6 @@ import chococraft.common.network.serverSide.PacketChocoboDropGear;
 import chococraft.common.network.serverSide.PacketChocoboMount;
 import com.google.common.io.ByteArrayDataInput;
 import com.google.common.io.ByteArrayDataOutput;
-import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.network.PacketDispatcher;
 
 
@@ -75,7 +71,7 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo
     @Override
 	public boolean isAIEnabled()
 	{
-		return false;
+		return this.riddenByEntity == null;
 	}
 
     @Override
@@ -145,23 +141,16 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo
 			
 			this.setRotationYawAndPitch();
 
-			List<?> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, boundingBox.expand(0.21D, 0.0D, 0.21D));
-			if (list != null && list.size() > 0)
-			{
-				for (int i = 0; i < list.size(); i++)
-				{
-					Entity entity = (Entity)list.get(i);
-					if (entity instanceof IMob && entity.canBePushed() && entity != this.riddenByEntity)
-					{
-						entity.applyEntityCollision(this);
-						//this.trample(entity);
-					}
-				}
-			}
 			this.setRiderAbilities(true);
 		}
+        
 		super.onLivingUpdate();
 	}
+    
+    public boolean canBePushed()
+    {
+        return true;
+    }
 
     @Override
 	public void onDeath(DamageSource damageSource)
