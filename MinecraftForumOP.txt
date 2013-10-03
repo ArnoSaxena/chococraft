@@ -1,12 +1,19 @@
 [img]http://www.arno-saxena.de/pictures/chococraft/banner_title.png[/img]
 [size=2]banner made by [url="http://www.minecraftforum.net/user/223231-galindorf/"]galindorf[/url][/size]
 
-UPDATED FOR MINECRAFT 1.5.2 (1.5.1)
-Version 2.8.9
-Requires: [url="http://www.minecraftforge.net/"]Forge[/url] [url="http://files.minecraftforge.net/"]7.8.0.684+[/url]
+UPDATED FOR MINECRAFT 1.6.4 and 1.5.X
+
+Version 3.0.1 for mc1.6.4
+Requires: [url="http://www.minecraftforge.net/"]Forge[/url]
+[url="http://files.minecraftforge.net/"]9.11.0.884+[/url]
+Tested with: [url="http://www.minecraftforge.net/"]Forge[/url] [url="http://files.minecraftforge.net/"]9.11.1.916[/url]
+
+Version 2.8.9 for mc1.5.X
+Requires: [url="http://www.minecraftforge.net/"]Forge[/url]
+[url="http://files.minecraftforge.net/"]7.8.0.684+[/url]
 Tested with: [url="http://www.minecraftforge.net/"]Forge[/url] [url="http://files.minecraftforge.net/"]7.8.1.737[/url]
 
-This Mod is the continuation of [url="http://www.minecraftforum.net/user/1051245-eddiev/"]EddieV's[/url] mod. The original thread can be found [url="http://www.minecraftforum.net/topic/952372-chococraft-12-mc-11-chocobos-now-fly/"]here[/url]. I've officially taken over the helm with Eddie's kind blessings.
+This Mod is the continuation of [url="http://www.minecraftforum.net/user/1051245-eddiev/"]EddieV's[/url] mod. The original thread can be found [url="http://www.minecraftforum.net/topic/952372-chococraft-12-mc-11-chocobos-now-fly/"]here[/url]. I've officially taken over the helm with Eddie's kind blessings. As of version 3.0.1 [url="http://www.minecraftforum.net/user/439942-micdoodle8/"]Micdoodle[/url] has joined the developer team.
 
 This mod adds a mob called Chocobo to the game. This includes different coloured mob types with different attributes in their grown-up and juvenile form.
 
@@ -21,13 +28,17 @@ This version of Chococraft is not compatible to versions pre 2.0.0 (pre mc 1.3.2
 
 [color=#ff0000][b]This version of Chococraft will remove all Chocobos from worlds pre 2.8.5.  Items in the Chocobo saddlebag and packbag inventories will be lost. ChocoCraft items stored in normal chests or player inventories are not affected.[/b][/color]
 
-Download: [url="http://www.arno-saxena.de/minecraft/Chococraft_2.8.9.zip"]Torojimas ChocoCraft 2.8.9 for minecraft [color=#00dd00]1.5.2[/color][/url]
+Downloads:
+[url="http://www.arno-saxena.de/minecraft/Chococraft_3.0.1.zip"]Torojimas ChocoCraft 3.0.1 for minecraft [color=#00dd00]1.6.4[/color][/url]
+[url="http://www.arno-saxena.de/minecraft/Chococraft_2.8.9.zip"]Torojimas ChocoCraft 2.8.9 for minecraft [color=#00dd00]1.5.2[/color][/url]
 
+Donate to Torojima:
 [url="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=3RZTLRHB5GZUL&lc=BE&item_name=Torojima%27s%20ChocoCraft&item_number=0003&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted"][img]https://www.paypalobjects.com/en_US/BE/i/btn/btn_donateCC_LG.gif[/img][/url]
 
 [url="http://flattr.com/thing/1456257/Torojimas-ChocoCraft"]Donate on Flattr[/url]
 
-Follow me on Twitter: [twitter]Torojima[/twitter]
+Follow [twitter]Torojima[/twitter] on Twitter.
+Follow [twitter]micdoodle8[/twitter] on Twitter.
 
 Downloads so far: [img]http://www.arno-saxena.de/minecraft/chocoboDownloads.png[/img]
 
@@ -105,38 +116,42 @@ Thanks to rsmalec
 Thanks to InTheLittleWood[/spoiler][/spoiler]
 
 CHANGELOG:
-[spoiler]v.2.8.9 mc 1.5.2
+[spoiler]
+v.3.0.1 mc 1.6.4 by Torojima and Micdoodle
+   1. update to mc1.6.4
+
+v.2.8.9 mc 1.5.2 by Torojima
    1. x,x position Chunk generated bug fixed
    2. cleanup of mutation colour determination method
    3. distanceToNextWild method optimised
 
-v.2.8.8 mc 1.5.2
+v.2.8.8 mc 1.5.2 by Torojima
    1. Chocobo check space suitable before teleport to player
    2. Removed wrong saddle recipe
    3. Corrected typo on Chocopedia
 
-v.2.8.7 mc 1.5.2
+v.2.8.7 mc 1.5.2 by Torojima
    1. Chocopedia now available in dungeon loot.
    2. Chicobos need 3x3x3 area to grow into Chocobos
    3. Chocopedia readable book
    4. Chocopedia available as Zombie, Skeleton, Witch and Villager drop
 
-v.2.8.6
+v.2.8.6 by Torojima
    1. changed gysahl mutation rate from procent to permille. (default values are equivalent to the values before)
    2. changed the straw recipe from shapeless one wheat to four straw mats to two wheat next to each other for eight straw mats.
    3. added Chocopedia creation through use of Chocobo feather on bookshelf.
    4. added Chocopedia creation through use of writable book on chocobo.
 
-v.2.8.5
+v.2.8.5 by Torojima
    1. removed third party despawn workaround
    2. changed entity id's from global to mod-specific (this will destroy all present Chocobos, sorry)
 
-v.2.8.4
+v.2.8.4 by Torojima
    1. compatibility bug with MoC fixed
    2. additional compatibility with mc 1.5.1
    3. chocobos can only die if player is around (third party despawn countered)
 
-v.2.8.3
+v.2.8.3 by Torojima
    1. wild chocobo can despawn, switchable from config file
    2. wild gysahl green generation rate settable from config file
 
@@ -911,17 +926,18 @@ incompatible mods:
 
 Acknowledgments:
 [spoiler]1. Chococraft has been created by [url="http://www.minecraftforum.net/user/1051245-eddiev/"]EddieV[/url]
-2. Chocobos are creatures from Square Enix's Final Fantasy franchise, which later became main characters on their own games. As such, I do not own any right on them.
-3. The banner has been created by [url="http://www.minecraftforum.net/user/223231-galindorf/"]galindorf[/url]
-4. The design of the new Chocobo model has been created by [url="http://www.minecraftforum.net/user/758250-firas333/"]firas333[/url].
-5. Pictures of new Chocobos made by [url="http://www.minecraftforum.net/user/524192-uncletravis/"]uncletravis[/url] and [url="http://www.minecraftforum.net/user/1099767-poloniumradon/"]PoloniumRadon[/url].
-6. Server testing by [url="http://www.minecraftforum.net/user/1795528-sparks314/"]sparks314[/url]
-7. The old models of the Chocobos were HIGHLY inspired by the Moa creatures in The Aether Mod.
-8. The models of the Chicobos were HIGHLY inspired by the chicks present in Baby Animals Mod.
-9. [url="http://www.minecraftforum.net/user/1200917-shadoxlunik/"]ShadoxLunik[/url] for the new purple/nether Chocobo skin
-10. [url="http://www.minecraftforum.net/user/525357-weltallofid/"]weltallofid[/url] for making a symmetric saddled skin.
-11. [url="http://www.minecraftforum.net/user/26535-arkenor/"]Arkenore[/url] for the brilliant title phrase :D
-12. [url="http://www.minecraftforum.net/user/21540-leonblade/"]LeonBlade[/url] for helping with v.1.6.10.
+2. [url="http://www.minecraftforum.net/user/439942-micdoodle8/"]Micdoodle[/url] for joining the developing team from v.3.0.1 onwards.
+3. Chocobos are creatures from Square Enix's Final Fantasy franchise, which later became main characters on their own games. As such, I do not own any right on them.
+4. The banner has been created by [url="http://www.minecraftforum.net/user/223231-galindorf/"]galindorf[/url]
+5. The design of the new Chocobo model has been created by [url="http://www.minecraftforum.net/user/758250-firas333/"]firas333[/url].
+6. Pictures of new Chocobos made by [url="http://www.minecraftforum.net/user/524192-uncletravis/"]uncletravis[/url] and [url="http://www.minecraftforum.net/user/1099767-poloniumradon/"]PoloniumRadon[/url].
+7. Server testing by [url="http://www.minecraftforum.net/user/1795528-sparks314/"]sparks314[/url]
+8. The old models of the Chocobos were HIGHLY inspired by the Moa creatures in The Aether Mod.
+9. The models of the Chicobos were HIGHLY inspired by the chicks present in Baby Animals Mod.
+10. [url="http://www.minecraftforum.net/user/1200917-shadoxlunik/"]ShadoxLunik[/url] for the new purple/nether Chocobo skin
+11. [url="http://www.minecraftforum.net/user/525357-weltallofid/"]weltallofid[/url] for making a symmetric saddled skin.
+12. [url="http://www.minecraftforum.net/user/26535-arkenor/"]Arkenore[/url] for the brilliant title phrase :D
+13. [url="http://www.minecraftforum.net/user/21540-leonblade/"]LeonBlade[/url] for helping with v.1.6.10.
 [/spoiler]
 
 Modpacks:

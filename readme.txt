@@ -1,4 +1,4 @@
-This is the official version of Torojimas Chococraft v2.9.1 for usage with minecraft 1.6.1. Chococraft has been originally created by EddieV and is now refactored and officially maintained by Torojima.
+This is the official version of Torojimas Chococraft v3.0.1 for usage with minecraft 1.6.4. Chococraft has been originally created by EddieV and is now refactored and officially maintained by Torojima and Micdoodle.
 
 This mod adds a mob called Chocobo to the game. This includes different coloured mob types with different attributes in their grown-up and juvenile form.
 
@@ -12,11 +12,11 @@ This version of Chococraft is not compatible to versions pre 1.3.2. It will dest
 This version of Chococraft will remove all Chocobos from worlds pre 2.8.5.  Items in the Chocobo saddlebag and packbag inventories will be lost. ChocoCraft items stored in normal chests or player inventories are not affected.
 
 Changelog:
-1. Update to 1.6.1
+1. Update to 1.6.4
 
 see the minecraft forums for further informations
 http://www.minecraftforum.net/topic/1119809-
 
-or follow me on twitter https://twitter.com/Torojima
+or follow us on twitter  https://twitter.com/Torojima and https://twitter.com/micdoodle8
 
 Torojima
