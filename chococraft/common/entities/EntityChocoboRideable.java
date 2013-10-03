@@ -319,9 +319,6 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo
 	@Override
 	public void moveEntity(double moveX, double moveY, double moveZ)
 	{
-	    this.sendRiderJumpUpdate();
-	    this.setRotationYawAndPitch();
-	    
 	    if (this.riddenByEntity instanceof EntityPlayer)
 	    {
 	        if (this.riderActionState.isJump())

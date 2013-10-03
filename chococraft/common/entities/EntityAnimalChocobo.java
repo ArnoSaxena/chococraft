@@ -49,7 +49,6 @@ import chococraft.common.network.clientSide.PacketChocoboParticles;
 import chococraft.common.network.clientSide.PacketChocoboTamed;
 import chococraft.common.network.serverSide.PacketChocoboAttribute;
 import chococraft.common.network.serverSide.PacketChocoboChangeOwner;
-import chococraft.common.network.serverSide.PacketChocoboRiderJump;
 import chococraft.common.network.serverSide.PacketChocoboSetInLove;
 import com.google.common.io.ByteArrayDataInput;
 import com.google.common.io.ByteArrayDataOutput;
@@ -1208,21 +1207,6 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
 			int dimension = this.worldObj.provider.dimensionId;
 			PacketDispatcher.sendPacketToAllAround(this.lastTickPosX, this.lastTickPosY, this.lastTickPosZ, 16*5, dimension, packet.getPacket());
 		}
-	}
-	
-	protected void sendRiderJumpUpdate()
-	{
-		if(this.isClient())
-		{
-			if(null != this.riddenByEntity && this.riddenByEntity instanceof EntityPlayer)
-			{
-				if(this instanceof EntityChocobo)
-				{
-					PacketChocoboRiderJump packet = new PacketChocoboRiderJump((EntityPlayer)this.riddenByEntity, (EntityChocobo)this);
-					PacketDispatcher.sendPacketToServer(packet.getPacket());
-				}
-			}
-		}		
 	}
 	
 	protected void sendParticleUpdate(String particleName, EntityAnimalChocobo chocobo, int amount)

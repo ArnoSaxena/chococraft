@@ -16,12 +16,21 @@ package chococraft.common.network;
 
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
-
 import net.minecraft.network.INetworkManager;
 import net.minecraft.network.packet.Packet250CustomPayload;
-
-import chococraft.common.network.clientSide.*;
-import chococraft.common.network.serverSide.*;
+import chococraft.common.network.clientSide.PacketChicoboCanGrowUp;
+import chococraft.common.network.clientSide.PacketChocoboHealth;
+import chococraft.common.network.clientSide.PacketChocoboHunger;
+import chococraft.common.network.clientSide.PacketChocoboParticles;
+import chococraft.common.network.clientSide.PacketChocoboSetupUpdate;
+import chococraft.common.network.clientSide.PacketChocoboTamed;
+import chococraft.common.network.serverSide.PacketChocoboAttribute;
+import chococraft.common.network.serverSide.PacketChocoboChangeOwner;
+import chococraft.common.network.serverSide.PacketChocoboDropGear;
+import chococraft.common.network.serverSide.PacketChocoboMount;
+import chococraft.common.network.serverSide.PacketChocoboSetInLove;
+import chococraft.common.network.serverSide.PacketChocoboSpawnItem;
+import chococraft.common.network.serverSide.PacketChocoboUpdateRiderActionState;
 import cpw.mods.fml.common.network.IPacketHandler;
 import cpw.mods.fml.common.network.Player;
 
@@ -54,10 +63,6 @@ public class ChocoboPacketHandler implements IPacketHandler
 			else if(packetId == PacketChocobo.PID_ATTRIBUTE)
 			{
 				PacketChocoboAttribute.handleUpdate(data, player);
-			}
-			else if(packetId == PacketChocobo.PID_RIDERJUMP)
-			{
-				PacketChocoboRiderJump.handleUpdate(data, player);
 			}
 			else if(packetId == PacketChocobo.PID_DROPSADDLE)
 			{
