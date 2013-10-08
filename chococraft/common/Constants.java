@@ -61,11 +61,10 @@ public class Constants
 	public static int CHOCOBO_CHICOBO_ID = 609;
 	
 	// resource folder
-	//public static String CHOCOBO_RESOURCES_FOLDER = "/resources";
 	public static String CHOCOBO_RESOURCES_FOLDER = "textures/entities/";
 
 	// sound folder
-	public static String CHOCOBO_SOUND_FOLDER = CHOCOBO_RESOURCES_FOLDER + "/sounds";
+	public static String CHOCOBO_SOUND_FOLDER = CHOCOBO_RESOURCES_FOLDER + "sound/";
 	
 	// armour folder
 	public static String CHOCOBO_ARMOUR_FOLDER = CHOCOBO_RESOURCES_FOLDER + "textures/armor/";	
