@@ -302,7 +302,7 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 				&& rand.nextInt(4) == 0 
 				&& rand.nextInt(100) < ModChocoCraft.livingSoundProb)
 		{
-			return "choco_kweh";
+			return "chococraft:choco_kweh";
 		}
 		else
 		{
@@ -312,12 +312,12 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 
 	protected String getHurtSound()
 	{
-		return "choco_kweh";
+		return "chococraft:choco_kweh";
 	}
 
 	protected String getDeathSound()
 	{
-		return "choco_kweh";
+		return "chococraft:choco_kweh";
 	}
 
 	public boolean interact(EntityPlayer entityplayer)

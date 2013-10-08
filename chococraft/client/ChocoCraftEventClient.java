@@ -11,8 +11,7 @@ public class ChocoCraftEventClient extends ChocoCraftEventCommon
     {
         try
         {
-            //event.manager.soundPoolSounds.addSound("choco_kweh.ogg", ModChocoCraft.class.getResource(Constants.CHOCOBO_SOUND_FOLDER + "/choco_kweh.ogg"));            
-            //event.manager.soundPoolSounds.addSound("choco_kweh.ogg");
+            event.manager.addSound("chococraft:choco_kweh.ogg");
         }
         catch (Exception e)
         {
