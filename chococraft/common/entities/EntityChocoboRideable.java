@@ -325,7 +325,7 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo
 	        {
 	            if (this.canFly)
 	            {
-	                this.motionY += 0.1D;
+	                this.motionY = 0.5D;
 	                this.setFlying(true);
 	            }
 	            else if (this.canJumpHigh && !this.isHighJumping)
@@ -334,12 +334,16 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo
 	                this.isHighJumping = true;
 	            }
 	        }
+	        else
+	        {
+	        	this.motionY = -0.1D;
+	        }
 	        
             if (this.riddenByEntity.isSneaking())
             {
                 if(this.canFly)
                 {
-                    this.motionY -= 0.15D;
+                    this.motionY = -0.5D;
                 }
 
                 if(this.inWater && this.canBreatheUnderwater())
