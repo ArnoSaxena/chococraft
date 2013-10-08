@@ -1,19 +1,17 @@
 [img]http://www.arno-saxena.de/pictures/chococraft/banner_title.png[/img]
 [size=2]banner made by [url="http://www.minecraftforum.net/user/223231-galindorf/"]galindorf[/url][/size]
 
-UPDATED FOR MINECRAFT 1.6.4 and 1.5.X
+[b][size=5]UPDATED FOR MINECRAFT 1.6.X and 1.5.X[/size][/b]
 
-Version 3.0.1 for mc1.6.4
-Requires: [url="http://www.minecraftforge.net/"]Forge[/url]
-[url="http://files.minecraftforge.net/"]9.11.0.884+[/url]
+Version 3.0.1 for mc1.6.X
+Requires: [url="http://www.minecraftforge.net/"]Forge[/url] [url="http://files.minecraftforge.net/"]9.11.0.884+[/url]
 Tested with: [url="http://www.minecraftforge.net/"]Forge[/url] [url="http://files.minecraftforge.net/"]9.11.1.916[/url]
 
 Version 2.8.9 for mc1.5.X
-Requires: [url="http://www.minecraftforge.net/"]Forge[/url]
-[url="http://files.minecraftforge.net/"]7.8.0.684+[/url]
+Requires: [url="http://www.minecraftforge.net/"]Forge[/url] [url="http://files.minecraftforge.net/"]7.8.0.684+[/url]
 Tested with: [url="http://www.minecraftforge.net/"]Forge[/url] [url="http://files.minecraftforge.net/"]7.8.1.737[/url]
 
-This Mod is the continuation of [url="http://www.minecraftforum.net/user/1051245-eddiev/"]EddieV's[/url] mod. The original thread can be found [url="http://www.minecraftforum.net/topic/952372-chococraft-12-mc-11-chocobos-now-fly/"]here[/url]. I've officially taken over the helm with Eddie's kind blessings. As of version 3.0.1 [url="http://www.minecraftforum.net/user/439942-micdoodle8/"]Micdoodle[/url] has joined the developer team.
+This Mod is the continuation of [url="http://www.minecraftforum.net/user/1051245-eddiev/"]EddieV's[/url] mod. The original thread can be found [url="http://www.minecraftforum.net/topic/952372-"]here[/url]. I've officially taken over the helm with Eddie's kind blessings. As of version 3.0.1 [url="http://www.minecraftforum.net/topic/1687830-"]Micdoodle[/url] has joined the developer team.
 
 This mod adds a mob called Chocobo to the game. This includes different coloured mob types with different attributes in their grown-up and juvenile form.
 
@@ -28,11 +26,12 @@ This version of Chococraft is not compatible to versions pre 2.0.0 (pre mc 1.3.2
 
 [color=#ff0000][b]This version of Chococraft will remove all Chocobos from worlds pre 2.8.5.  Items in the Chocobo saddlebag and packbag inventories will be lost. ChocoCraft items stored in normal chests or player inventories are not affected.[/b][/color]
 
+[color=#ff0000][b]At the moment a hit on the left shift-key will dismount the player from the Chocobo. While the former dismount by right click on the Chocobo is not working. This will be reverted to the old behaviour as soon as we find a solution to this issue[/b][/color]
+
 Downloads:
 [url="http://www.arno-saxena.de/minecraft/Chococraft_3.0.1.zip"]Torojimas ChocoCraft 3.0.1 for minecraft [color=#00dd00]1.6.4[/color][/url]
 [url="http://www.arno-saxena.de/minecraft/Chococraft_2.8.9.zip"]Torojimas ChocoCraft 2.8.9 for minecraft [color=#00dd00]1.5.2[/color][/url]
 
-Donate to Torojima:
 [url="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=3RZTLRHB5GZUL&lc=BE&item_name=Torojima%27s%20ChocoCraft&item_number=0003&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted"][img]https://www.paypalobjects.com/en_US/BE/i/btn/btn_donateCC_LG.gif[/img][/url]
 
 [url="http://flattr.com/thing/1456257/Torojimas-ChocoCraft"]Donate on Flattr[/url]
@@ -43,7 +42,7 @@ Follow [twitter]micdoodle8[/twitter] on Twitter.
 Downloads so far: [img]http://www.arno-saxena.de/minecraft/chocoboDownloads.png[/img]
 
 crackedEggs parachute mod:
-[spoiler]When flying a Chocobo, I would like to recommend the use of [url="http://www.minecraftforum.net/user/77049-crackedegg/"]crackedEggs[/url] [url="http://www.minecraftforum.net/topic/585469-145forge-crackedeggs-mods-reptiles-parachute/"]parachute mod[/url] (version 410 or newer). Especially if you are using this mod on a server. On a connection failure while flying on high altitude, you will automatically dismount and fall to your death. One of crackedEggs parachutes in any spot in your inventory will auto-deploy if you're falling and thus prevent any harm from falling damage. (has to be switched on in the respective config file).[/spoiler]
+[spoiler]When flying a Chocobo, I would like to recommend the use of [url="http://www.minecraftforum.net/user/77049-crackedegg/"]crackedEggs[/url] [url="http://www.minecraftforum.net/topic/585469-"]parachute mod[/url] (version 410 or newer). Especially if you are using this mod on a server. On a connection failure while flying on high altitude, you will automatically dismount and fall to your death. One of crackedEggs parachutes in any spot in your inventory will auto-deploy if you're falling and thus prevent any harm from falling damage. (has to be switched on in the respective config file).[/spoiler]
 
 Old versions:
 [spoiler][url="http://www.arno-saxena.de/minecraft/Chococraft_2.7.3.zip"]minecraft 1.5.1 ChocoCraft 2.7.3[/url]
@@ -71,13 +70,13 @@ VIDEOS:
 [url="http://www.minecraftforum.net/user/1520892-thediamondminecart/"]TheDiamondMinecart[/url] has done a nice review, using the 2.7.1 version.
 [media]http://www.youtube.com/watch?v=u2tMN5QEXig[/media]
 
-[url="http://www.minecraftforum.net/user/1831208-rainnero/"]RainNero[/url] has done a very good mod spotlight using the 2.4.2 version. Great as an introduction to everybody new to ChocoCraft. 
+[url="http://www.minecraftforum.net/user/1831208-rainnero/"]RainNero[/url] has done a very good mod spotlight using the 2.4.2 version. Great as an introduction to everybody new to ChocoCraft.
 [media]http://www.youtube.com/watch?v=mX6JmEi-iqI[/media]
 
-[url="http://www.minecraftforum.net/user/18014-huskymudkipz/"]HuskyMUDKIPZ[/url] has done a very brief mod spotlight using the 2.3.8 version (so they still show the loverly and golden gysahl recipes). 
+[url="http://www.minecraftforum.net/user/18014-huskymudkipz/"]HuskyMUDKIPZ[/url] has done a very brief mod spotlight using the 2.3.8 version (so they still show the loverly and golden gysahl recipes).
 [media]http://www.youtube.com/watch?v=uoUSLqInH38[/media]
 
-jakingtonham has done a spotlight using the 2.3.8 version (I think, not much documentation here and I've found the video only by a youtube search): 
+jakingtonham has done a spotlight using the 2.3.8 version (I think, not much documentation here and I've found the video only by a youtube search):
 [media]http://www.youtube.com/watch?v=w6HWKkKAU1c[/media]
 
 [url="http://www.minecraftforum.net/user/1213426-robplaysminecraft/"]robplaysminecraft[/url] has done a video using the 2.3.7 version. Tho there are some glitches in the documentation:
@@ -116,8 +115,7 @@ Thanks to rsmalec
 Thanks to InTheLittleWood[/spoiler][/spoiler]
 
 CHANGELOG:
-[spoiler]
-v.3.0.1 mc 1.6.4 by Torojima and Micdoodle
+[spoiler]v.3.0.1 mc 1.6.4 by Torojima and Micdoodle
    1. update to mc1.6.4
 
 v.2.8.9 mc 1.5.2 by Torojima
@@ -160,7 +158,7 @@ v.2.8.2 by Torojima
 
 v.2.8.1 by Torojima
    1. updated to mc 1.5.2
-   
+
 v.2.7.3 by Torojima
    1. fixed bonemeal bug
    2. fixed inventory-drop-from-shift-click-on-action-bar-bug
@@ -245,7 +243,7 @@ v.2.3.4 by Torojima
 
 v.2.3.3 by Torojima
    1. fixed mounting movement twitching
-   
+
 v.2.3.2 by Torojima
    1. added water speed factor
    2. added rider abilities
@@ -725,8 +723,7 @@ There are comments to describe the meaning and usage of the settings in "chocobo
 
 To reset the values and the comments, in case the config file has been updated by me or you have edited it beyond recognition, just delete the file and run minecraft once with the ChocoCraft mod active.
 
-Since the entries involved with the Chocobo spawning are the most obscure, here a more detailed explanation to make it clear:
-[list]
+Since the entries involved with the Chocobo spawning are the most obscure, here a more detailed explanation to make it clear:[list]
 [*][b]spawnTimeDelay[/b] Default is 200, this is the time in minecraft-ticks between two attempts of the ChocoboSpawner to spawn wild Chocobos into the world.
 [*][b]spawnProbability[/b] Default is 2, this is the probability out of 100 for each spawn attempt the ChocoboSpawner will actually try to spawn wild Chocobos into the world. So as default only 2% of the times a spawn attempt will be started.
 [*][b]spawnGroupMin[/b] and [b]spawnGroupMax[/b] Default is 2 and 4. This limits the size of Chocobo flocks spawn in one attempt into the world.
@@ -757,7 +754,7 @@ Chocobo disguise helmet 22617
 Chocobo disguise body 22618
 Chocobo disguise legs 22619
 Chocobo disguise boots 22620
-	
+
 Gysahl green (block) 1551
 Gysahl stem (block) 1552
 Straw (block) 1553
@@ -836,97 +833,97 @@ Eiter by me all :
 
 and by other players (again for the mc version in brackets. Normally this indicates a compatibility with the current version too, please give me a note if you discover it otherwise):
 [spoiler] - BC3.* (1.4.7, don't know if really all, but many)
- - better first person (1.4.7)
- - BuildCraft (1.4.7)
- - Chest Transporter (1.4.7)
- - Chicken Chunkloader (1.4.7)
- - ChickenBones Core (1.4.7)
- - Wireless Redstone by ChickenBones (1.4.7)
- - CJB Measure and Moreinfo (1.4.7)
- - Coloured Beds Mod (1.4.7)
- - Condensed Blocks (1.4.7)
- - Creepers no Creeping (1.4.7)
- - Damage Indicators (1.4.7)
- - Davidee's Toggle Sprint/Sneak V1.4.6.0  (1.4.6)
- - denLib (1.4.7)
- - Diamond Buckets Plus (1.4.7)
- - Dimensional Anchor by Immibis (1.4.7)
- - Dynamic Lights 1.4.6  (1.4.6)
- - Easybreeding (1.4.6)
- - Ellian's MaterialDetector v1.39  (1.4.6)
- - Enchanting Plus (1.4.7)
- - Ender Storage (1.4.7)
- - Enhanced Books (1.4.6)
- - Extended Workbench (1.4.7)
- - ExtraBiomes (1.4.6)
- - Factorization (1.4.7)
- - Fancy Fences (1.4.7)
- - Fishnet (1.4.6)
- - Flan's Mod (WWII) (1.4.7)
- - Flat Bedrock (1.4.7)
- - Flower Propagation (1.4.6)
- - Flowercraft (1.4.7)
- - Forestry (1.4.7)
- - Forgotten Nature (1.4.6)
- - Haycraft (1.4.7)
- - iChun's Portal Gun 1.4.6v2 (1.4.6)
- - Immibis Core (1.4.7)
- - Industrialcraft 2 (1.4.6)
- - IC2.* (1.4.7, don't know if really all, but many)
- - InGame Mod List (1.4.7)
- - Inventory Tweaks (1.4.7)
- - Iron Chest (1.4.7)
- - Jammy's Furniture (1.4.7)
- - Lava Fix (1.4.7)
- - Legendary Beasts (1.4.6)
- - McCapes (1.4.6)
- - Metallurgy (1.4.6)
- - Minefactory Reloaded 2 (1.4.7)
- - Mo'Creatures (1.4.6)
- - More Bows (1.4.7)
- - More Pistons (1.4.7)
- - Mystcraft (1.4.7)
- - Netherocks (1.4.6)
- - NotEnoughItems (1.4.7)
- - NEI Plugins (1.4.7)
- - NEI Red Power Plugin (1.4.7)
- - OmniTools (1.4.7)
- - Optifine (1.4.7)
- - Plugins for Forestry (1.4.7)
- - PortalGun (1.4.7)
- - Power Converters 2 (1.4.7)
- - Power Crystal's Core (1.4.7)
- - Railcraft (1.4.7)
- - Red Power 2 (1.4.7)
- - Shibby's Fly ModPack (1.4.7)
- - Simpleores (1.4.6)
- - Slabcraft (1.4.7)
- - Soul Shards (1.4.6)
- - Special Armor (1.4.7)
- - Staircraft (1.4.7)
- - Steves Carts (1.4.7)
- - Thermal Expansion (1.4.7)
- - Traincraft (1.4.7)
- - TreeCapitator (1.4.7)
- - Tubestuff by Immibis (1.4.7)
- - Twilight Forest (1.4.7)
- - Useful Food (1.4.7)
- - Watermelon Gen (1.4.6)
- - Weaponmod (1.4.6)
- - What's My Light Level 1.4.6/1.4.7[pre] (1.4.6)
+- better first person (1.4.7)
+- BuildCraft (1.4.7)
+- Chest Transporter (1.4.7)
+- Chicken Chunkloader (1.4.7)
+- ChickenBones Core (1.4.7)
+- Wireless Redstone by ChickenBones (1.4.7)
+- CJB Measure and Moreinfo (1.4.7)
+- Coloured Beds Mod (1.4.7)
+- Condensed Blocks (1.4.7)
+- Creepers no Creeping (1.4.7)
+- Damage Indicators (1.4.7)
+- Davidee's Toggle Sprint/Sneak V1.4.6.0  (1.4.6)
+- denLib (1.4.7)
+- Diamond Buckets Plus (1.4.7)
+- Dimensional Anchor by Immibis (1.4.7)
+- Dynamic Lights 1.4.6  (1.4.6)
+- Easybreeding (1.4.6)
+- Ellian's MaterialDetector v1.39  (1.4.6)
+- Enchanting Plus (1.4.7)
+- Ender Storage (1.4.7)
+- Enhanced Books (1.4.6)
+- Extended Workbench (1.4.7)
+- ExtraBiomes (1.4.6)
+- Factorization (1.4.7)
+- Fancy Fences (1.4.7)
+- Fishnet (1.4.6)
+- Flan's Mod (WWII) (1.4.7)
+- Flat Bedrock (1.4.7)
+- Flower Propagation (1.4.6)
+- Flowercraft (1.4.7)
+- Forestry (1.4.7)
+- Forgotten Nature (1.4.6)
+- Haycraft (1.4.7)
+- iChun's Portal Gun 1.4.6v2 (1.4.6)
+- Immibis Core (1.4.7)
+- Industrialcraft 2 (1.4.6)
+- IC2.* (1.4.7, don't know if really all, but many)
+- InGame Mod List (1.4.7)
+- Inventory Tweaks (1.4.7)
+- Iron Chest (1.4.7)
+- Jammy's Furniture (1.4.7)
+- Lava Fix (1.4.7)
+- Legendary Beasts (1.4.6)
+- McCapes (1.4.6)
+- Metallurgy (1.4.6)
+- Minefactory Reloaded 2 (1.4.7)
+- Mo'Creatures (1.4.6)
+- More Bows (1.4.7)
+- More Pistons (1.4.7)
+- Mystcraft (1.4.7)
+- Netherocks (1.4.6)
+- NotEnoughItems (1.4.7)
+- NEI Plugins (1.4.7)
+- NEI Red Power Plugin (1.4.7)
+- OmniTools (1.4.7)
+- Optifine (1.4.7)
+- Plugins for Forestry (1.4.7)
+- PortalGun (1.4.7)
+- Power Converters 2 (1.4.7)
+- Power Crystal's Core (1.4.7)
+- Railcraft (1.4.7)
+- Red Power 2 (1.4.7)
+- Shibby's Fly ModPack (1.4.7)
+- Simpleores (1.4.6)
+- Slabcraft (1.4.7)
+- Soul Shards (1.4.6)
+- Special Armor (1.4.7)
+- Staircraft (1.4.7)
+- Steves Carts (1.4.7)
+- Thermal Expansion (1.4.7)
+- Traincraft (1.4.7)
+- TreeCapitator (1.4.7)
+- Tubestuff by Immibis (1.4.7)
+- Twilight Forest (1.4.7)
+- Useful Food (1.4.7)
+- Watermelon Gen (1.4.6)
+- Weaponmod (1.4.6)
+- What's My Light Level 1.4.6/1.4.7[pre] (1.4.6)
 [/spoiler]
 [/spoiler]
 
 incompatible mods:
 [spoiler]found out by me or other players. If I find the time I'll investigate if this incompatibilities can be removed.
- - tropicraft (messing up the spawning and crashing when breeding Chocobos, 1.4.7)
- - Divine RPG (messing up forge mob id assignment 1.4.7)
- - Ars Magica (using multiple *bonemeal* events for the effect of growing multiple plants without actually using *bonemeal*, this will screw up the usage of the active player item 1.4.7)
+- tropicraft (messing up the spawning and crashing when breeding Chocobos, 1.4.7)
+- Divine RPG (messing up forge mob id assignment 1.4.7)
+- Ars Magica (using multiple *bonemeal* events for the effect of growing multiple plants without actually using *bonemeal*, this will screw up the usage of the active player item 1.4.7)
 [/spoiler]
 
 Acknowledgments:
 [spoiler]1. Chococraft has been created by [url="http://www.minecraftforum.net/user/1051245-eddiev/"]EddieV[/url]
-2. [url="http://www.minecraftforum.net/user/439942-micdoodle8/"]Micdoodle[/url] for joining the developing team from v.3.0.1 onwards.
+2. [url="http://www.minecraftforum.net/topic/1687830-"]Micdoodle[/url] for joining the developing team from v.3.0.1 onwards.
 3. Chocobos are creatures from Square Enix's Final Fantasy franchise, which later became main characters on their own games. As such, I do not own any right on them.
 4. The banner has been created by [url="http://www.minecraftforum.net/user/223231-galindorf/"]galindorf[/url]
 5. The design of the new Chocobo model has been created by [url="http://www.minecraftforum.net/user/758250-firas333/"]firas333[/url].
@@ -958,7 +955,7 @@ Copyright:
 0. USED TERMS
 MOD - modification, plugin, a piece of software that interfaces with the Minecraft client to extend, add, change or remove original capabilities.
 MOJANG - Mojang AB
-OWNER - , Original author(s) of the MOD. Under the copyright terms accepted when purchasing Minecraft (http://www.minecraft.net/copyright.jsp) the OWNER has full rights over their MOD despite use of MOJANG code.
+OWNER - , Original author(s) of the MOD. Under the copyright terms accepted when purchasing Minecraft ([url="http://www.minecraft.net/copyright.jsp"]http://www.minecraft.net/copyright.jsp[/url]) the OWNER has full rights over their MOD despite use of MOJANG code.
 USER - End user of the mod, person installing the mod.
 
 1. LIABILITY
@@ -975,4 +972,4 @@ This mod is provided freely and may be decompiled and modified for private use, 
 [/spoiler]
 
 Check out my other mod:
-[url=http://www.minecraftforum.net/topic/1803250-][img]http://www.arno-saxena.de/pictures/buildhelper/buildhelper_icon.png[/img][/url]
+[url="http://www.minecraftforum.net/topic/1803250-"][img]http://www.arno-saxena.de/pictures/buildhelper/buildhelper_icon.png[/img][/url]
