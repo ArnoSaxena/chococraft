@@ -27,19 +27,23 @@ public class ChocoboAIFollowOwner extends EntityAIBase
 	@Override
 	public boolean shouldExecute()
 	{
-		if(this.chocobo.getOwner() == null)
+		if(this.chocobo.getOwner() == null || !this.chocobo.getOwner().isEntityAlive())
 		{
 			return false;
 		}
-		else if (!this.chocobo.isFollowing())
+		else if(!this.chocobo.isFollowing())
+		{
+			return false;
+		} 
+		else if(!this.chocobo.getNavigator().noPath())
 		{
 			return false;
 		}
-		else if (this.chocobo.getDistanceSqToEntity(this.chocobo.getOwner()) < (this.teleportDistance * this.teleportDistance))
+		else if (this.chocobo.getDistanceSqToEntity(this.chocobo.getOwner()) > (this.teleportDistance * this.teleportDistance))
 		{
 			return false;
-		}
-		return true;
+		}		
+		return true;  
 	}
 
 	/**
@@ -48,34 +52,7 @@ public class ChocoboAIFollowOwner extends EntityAIBase
 	@Override
 	public boolean continueExecuting()
 	{
-		
-		if(!this.chocobo.isFollowing())
-		{
-			return false;
-		} 
-		
-		if(!this.chocobo.getNavigator().noPath())
-		{
-			return false;
-		}
-
-		if (this.chocobo.getDistanceSqToEntity(this.chocobo.getOwner()) < (this.teleportDistance * this.teleportDistance))
-		{
-			return false;
-		}		
-		
-		if(this.chocobo.getOwner() == null)
-		{
-			return false;
-		}
-		else
-		{
-			if (!this.chocobo.getOwner().isEntityAlive())
-			{
-				return false;
-			}
-			return true;    		
-		}
+		return this.shouldExecute();
 	}
 
 	/**

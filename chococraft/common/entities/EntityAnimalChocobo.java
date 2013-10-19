@@ -17,6 +17,7 @@ package chococraft.common.entities;
 
 import java.util.List;
 import java.util.Random;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.StepSound;
 import net.minecraft.entity.Entity;
@@ -37,6 +38,7 @@ import chococraft.common.ModChocoCraft;
 import chococraft.common.entities.ai.ChocoboAIFollowOwner;
 import chococraft.common.entities.ai.ChocoboAILookIdle;
 import chococraft.common.entities.ai.ChocoboAISwimming;
+import chococraft.common.entities.ai.ChocoboAITeleportToOwner;
 import chococraft.common.entities.ai.ChocoboAIWander;
 import chococraft.common.entities.ai.ChocoboAIWatchClosest;
 import chococraft.common.gui.GuiStarter;
@@ -50,8 +52,10 @@ import chococraft.common.network.clientSide.PacketChocoboTamed;
 import chococraft.common.network.serverSide.PacketChocoboAttribute;
 import chococraft.common.network.serverSide.PacketChocoboChangeOwner;
 import chococraft.common.network.serverSide.PacketChocoboSetInLove;
+
 import com.google.common.io.ByteArrayDataInput;
 import com.google.common.io.ByteArrayDataOutput;
+
 import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
 
@@ -110,6 +114,7 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
 		this.tasks.addTask(this.taskNumber++, new ChocoboAIWatchClosest(this, EntityPlayer.class, 6F));
 		this.tasks.addTask(this.taskNumber++, new ChocoboAILookIdle(this));
 		this.tasks.addTask(this.taskNumber++, new ChocoboAIFollowOwner(this, (float)this.getMoveHelper().getSpeed(), 20F));
+		this.tasks.addTask(this.taskNumber++, new ChocoboAITeleportToOwner(this, 20F));
     }
 	
 	// for my sanity sake
@@ -705,7 +710,6 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
     {
     	if(this.isServer())
     	{
-    		//EntityChicobo babyChicobo = (EntityChicobo) this.spawnBabyAnimal(otherParent);
     		EntityChicobo babyChicobo = (EntityChicobo) this.createChild(otherParent);
 
     		if (babyChicobo != null)
@@ -1209,7 +1213,7 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
 		}
 	}
 	
-	protected void sendParticleUpdate(String particleName, EntityAnimalChocobo chocobo, int amount)
+	public void sendParticleUpdate(String particleName, EntityAnimalChocobo chocobo, int amount)
 	{
 		if (this.isServer())
 		{

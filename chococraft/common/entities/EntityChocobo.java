@@ -17,6 +17,7 @@ package chococraft.common.entities;
 
 import java.util.List;
 import java.util.Random;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityLivingBase;
@@ -31,9 +32,11 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import chococraft.common.Constants;
 import chococraft.common.ModChocoCraft;
+import chococraft.common.entities.ai.ChocoboAIMate;
 import chococraft.common.entities.colours.EntityChocoboPurple;
 import chococraft.common.helper.ChocoboMathHelper;
 import chococraft.common.helper.ChocoboParticleHelper;
+
 import com.google.common.io.ByteArrayDataInput;
 import com.google.common.io.ByteArrayDataOutput;
 
@@ -61,6 +64,7 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 //      tasks.addTask(this.taskNumber++, new EntityAIChocoboWatchClosest(this, EntityPlayer.class, 6F));
 //      tasks.addTask(this.taskNumber++, new EntityAIChocoboLookIdle(this));
 //      tasks.addTask(this.taskNumber++, new EntityAIChocoboFollowOwner(this, 5F));
+		this.tasks.addTask(this.taskNumber++, new ChocoboAIMate(this, 1.0D));
 	}
 
 	@Override
@@ -575,6 +579,7 @@ public abstract class EntityChocobo extends EntityChocoboRideable
     }
 	
 	public abstract chocoboColor getBabyAnimalColor(EntityAgeable otherAnimalParent);
+	
 	@Override
 	public EntityAgeable createChild(EntityAgeable otherAnimalParent)
 	{
