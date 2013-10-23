@@ -3,7 +3,7 @@
 
 [b][size=5]UPDATED FOR MINECRAFT 1.6.X and 1.5.X[/size][/b]
 
-Version 3.0.1 for mc1.6.X
+Version 3.0.2 for mc1.6.X
 Requires: [url="http://www.minecraftforge.net/"]Forge[/url] [url="http://files.minecraftforge.net/"]9.11.0.884+[/url]
 Tested with: [url="http://www.minecraftforge.net/"]Forge[/url] [url="http://files.minecraftforge.net/"]9.11.1.916[/url]
 
@@ -29,7 +29,7 @@ This version of Chococraft is not compatible to versions pre 2.0.0 (pre mc 1.3.2
 [color=#ff0000][b]At the moment a hit on the left shift-key will dismount the player from the Chocobo. While the former dismount by right click on the Chocobo is not working. This will be reverted to the old behaviour as soon as we find a solution to this issue[/b][/color]
 
 Downloads:
-[url="http://www.arno-saxena.de/minecraft/Chococraft_3.0.1.zip"]Torojimas ChocoCraft 3.0.1 for minecraft [color=#00dd00]1.6.4[/color][/url]
+[url="http://www.arno-saxena.de/minecraft/Chococraft_3.0.2.zip"]Torojimas ChocoCraft 3.0.2 for minecraft [color=#00dd00]1.6.4[/color][/url]
 [url="http://www.arno-saxena.de/minecraft/Chococraft_2.8.9.zip"]Torojimas ChocoCraft 2.8.9 for minecraft [color=#00dd00]1.5.2[/color][/url]
 
 [url="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=3RZTLRHB5GZUL&lc=BE&item_name=Torojima%27s%20ChocoCraft&item_number=0003&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted"][img]https://www.paypalobjects.com/en_US/BE/i/btn/btn_donateCC_LG.gif[/img][/url]
@@ -115,7 +115,13 @@ Thanks to rsmalec
 Thanks to InTheLittleWood[/spoiler][/spoiler]
 
 CHANGELOG:
-[spoiler]v.3.0.1 mc 1.6.4 by Torojima and Micdoodle
+[spoiler]v.3.0.2 mc 1.6.4 by Torojima
+   1. breeding bug fixed
+   2. alternative recipe for lead (chocobo feather instead of slime ball)
+   3. sound bug fixed
+   4. ascending and descending speed of flying chocobo tweaked
+
+v.3.0.1 mc 1.6.4 by Torojima and Micdoodle
    1. update to mc1.6.4
 
 v.2.8.9 mc 1.5.2 by Torojima
