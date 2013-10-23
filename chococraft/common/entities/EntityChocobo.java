@@ -58,12 +58,6 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 		this.setSize(ModChocoCraft.chocoboWidth, ModChocoCraft.chocoboHeight);
 		this.timeUntilNextFeather = this.rand.nextInt(ModChocoCraft.featherDelayRandom) + ModChocoCraft.featherDelayStatic;
         
-//      tasks.addTask(this.taskNumber++, new EntityAISwimming(this));
-//      tasks.addTask(this.taskNumber++, new EntityAIChocoboPanic(this, 0.38F));
-//      tasks.addTask(this.taskNumber++, new EntityAIChocoboWander(this, 0.25F));
-//      tasks.addTask(this.taskNumber++, new EntityAIChocoboWatchClosest(this, EntityPlayer.class, 6F));
-//      tasks.addTask(this.taskNumber++, new EntityAIChocoboLookIdle(this));
-//      tasks.addTask(this.taskNumber++, new EntityAIChocoboFollowOwner(this, 5F));
 		this.tasks.addTask(this.taskNumber++, new ChocoboAIMate(this, 1.0D));
 	}
 
@@ -236,6 +230,7 @@ public abstract class EntityChocobo extends EntityChocoboRideable
         this.limbSwing += this.limbSwingAmount;
 	}
 
+	@Override
 	public void onLivingUpdate()
 	{
 		super.onLivingUpdate();
