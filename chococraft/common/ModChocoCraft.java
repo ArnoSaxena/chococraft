@@ -647,7 +647,7 @@ public class ModChocoCraft
 			Character.valueOf('W'), Item.wheat
 		});
 		                                                        		
-		// recipes for vanilla items with chocobo feathers
+		// alternative recipes for vanilla items with chocobo feathers
 		// arrows
 		GameRegistry.addRecipe(new ItemStack(Item.arrow, 4), new Object[]
 		{
@@ -658,13 +658,25 @@ public class ModChocoCraft
 		    Character.valueOf('S'), Item.stick, 
 		    Character.valueOf('Y'), chocoboFeatherItem
 		});
-		                                                        		
+
+		// writable Book
 		GameRegistry.addShapelessRecipe(new ItemStack(Item.writableBook, 1), new Object[]
 		{
 			new ItemStack(Item.book, 1),
 			new ItemStack(Item.dyePowder, 1, 0),
 			new ItemStack(chocoboFeatherItem, 1)
-		});		
+		});
+
+		// leash (lead)
+		GameRegistry.addRecipe(new ItemStack(Item.leash, 2), new Object[]
+		{
+			"SS ",
+			"SF ",
+			"  S",
+			Character.valueOf('S'), Item.silk,
+			Character.valueOf('F'), chocoboFeatherItem
+		});
+		
 	}
 	
 	private void addGrassDrops()
