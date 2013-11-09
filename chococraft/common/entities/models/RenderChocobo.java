@@ -70,14 +70,15 @@ public class RenderChocobo extends RenderLiving
 
 	protected void preRenderScale(EntityChocobo entitychocobo, float f)
 	{
-		float scaleFactor = 0.8F;
+		//float scaleFactor = 0.8F; // 3 block high
+		float scaleFactor = 0.65F;
 		GL11.glScalef(scaleFactor, scaleFactor, scaleFactor);
 
 		if (entitychocobo.riddenByEntity != null)
 		{
 			//GL11.glTranslated(0.0, 0.0, -0.5); // pre 2.0.0
 			//GL11.glTranslated(0.5, 0.0, -0.5); // current 2.0.0
-			//GL11.glTranslated(0.0, 0.0, -0.5); // player to wide left
+			//GL11.glTranslated(0.0, 0.0, -0.5); // player to far left
 			//GL11.glTranslated(1.0, 0.0, 0.0); // to the front
 			GL11.glTranslated(0.5, 0.0, -0.5);
 		}
