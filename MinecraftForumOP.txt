@@ -218,7 +218,7 @@ v.2.3.9 by Torojima
    3. rider buffs can be disabled in the config file
 
 v.2.3.8 by Torojima
-   1. owner change in chocopedia in smp
+   1. owner change in Chocopedia in smp
    2. breeding delay time in config file
    3. grow up time in config file
 
@@ -374,7 +374,7 @@ v1.6.2 by Torojima
   1. Changed chocobo model
 
 v1.6.1 by Torojima
-  1. Changed recipes for loverly ghysal and chocopedia
+  1. Changed recipes for loverly ghysal and Chocopedia
 
 v1.6.0 by Torojima
   1. Patched for Minecraft version 1.2.5
@@ -627,6 +627,7 @@ Items and Blocks:
 16. [img]http://www.arno-saxena.de/pictures/chococraft/item_gysahl_seed.png[/img] Gysahl Seeds - Seeds made from Gysahl Greens. Can be planted to build a Gysahl Green farm and can be fertilized with bone meal.
 17. [img]http://www.arno-saxena.de/pictures/chococraft/item_chocopedia.png[/img] Chocopedia - Notebook that keeps information about the Chocobos. Allows player to name their chocobo, check on information about health and breeing status and even give orders.
 18. [img]http://www.arno-saxena.de/pictures/chococraft/item_straw.png[/img] Straw - Straw cover for a Chocobo pen.[/spoiler]
+19. [img]http://www.arno-saxena.de/pictures/chococraft/item_straw.png[/img] Purple Chocobo Egg - Produced by breeding purple male and female Chocobo.[/spoiler]
 
 Recipes:
 [spoiler]   1. [img]http://www.arno-saxena.de/pictures/chococraft/item_saddle.png[/img] Chocobo Saddle = 1 Leather, 2 Strings, 1 Chocobo Feather
