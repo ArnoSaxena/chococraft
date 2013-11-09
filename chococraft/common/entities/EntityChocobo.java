@@ -560,17 +560,26 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 	@Override
     public boolean canMateWith(EntityAnimal otherEntity)
     {
-		Boolean canmatewith = false;
-		
     	if(otherEntity != this)
     	{
     		if(otherEntity instanceof EntityChocobo)
     		{
     			EntityChocobo otherChocobo = (EntityChocobo)otherEntity;
-    			canmatewith = this.isInLove() && otherChocobo.isInLove();
+    			
+    			if(this.isMale() == otherChocobo.isMale())
+    			{
+    				return false;
+    			}
+    			
+    			if(!this.isInLove() || !otherChocobo.isInLove())
+    			{
+    				return false;
+    			}    			
+    			
+    			return true;
     		}
     	}
-    	return canmatewith;
+    	return false;
     }
 	
 	public abstract chocoboColor getBabyAnimalColor(EntityAgeable otherAnimalParent);
