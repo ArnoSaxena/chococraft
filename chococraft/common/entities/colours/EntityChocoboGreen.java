@@ -127,7 +127,6 @@ public class EntityChocoboGreen extends EntityChocobo
 
 			int randColor = rand.nextInt(100);
 			chocoboColor chicoboColor = chocoboColor.GREEN;
-			System.out.println("chicobo colour rand (green) " + randColor);
 			switch(otherParent.color)
 			{
 			case YELLOW:
@@ -186,7 +185,6 @@ public class EntityChocoboGreen extends EntityChocobo
 				}
 				break;
 			}
-			System.out.println("chicobo colour outcome (green) " + chicoboColor);
 			return chicoboColor;
 		}
 		else
