@@ -31,9 +31,8 @@ public class EntityChocoboBlue extends EntityChocobo
 	public EntityChocoboBlue(World world)
 	{
 		super(world);
+		this.color = chocoboColor.BLUE;
 		this.setHealth(this.getMaxHealth());
-//		this.flyingMovementFactor = Constants.CHOCOBO_BLUE_FLYMOVEFACT;
-//		this.landMovementFactor = Constants.CHOCOBO_DEFAULT_LANDMOVEFACT;
 		this.canCrossWater = true;
 		this.canClimb = false;
 		this.canJumpHigh = Constants.CHOCOBO_BLUE_CANJUMPHIGH;
@@ -42,12 +41,6 @@ public class EntityChocoboBlue extends EntityChocobo
 		this.landSpeedFactor = Constants.CHOCOBO_BLUE_LANDSPEEDFACT;
 		this.waterSpeedFactor = Constants.CHOCOBO_BLUE_WATERSPEEDFACT;
 		this.airbornSpeedFactor = Constants.CHOCOBO_BLUE_AIRSPEEDFACT;		
-	}
-
-	protected void entityInit()
-	{
-		this.color = chocoboColor.BLUE;
-		super.entityInit();
 	}
 	
 	public void writeSpawnData(ByteArrayDataOutput data)
@@ -150,7 +143,8 @@ public class EntityChocoboBlue extends EntityChocobo
 			boolean bothFedGold = this.fedGold && otherParent.fedGold;
 
 			int randColor = rand.nextInt(100);
-			chocoboColor chicoboColor = chocoboColor.BLUE;        
+			chocoboColor chicoboColor = chocoboColor.BLUE;
+			System.out.println("chicobo colour rand (blue): " + randColor);
 			switch(otherParent.color)
 			{
 			case YELLOW:
@@ -209,6 +203,7 @@ public class EntityChocoboBlue extends EntityChocobo
 				}
 				break;
 			}
+			System.out.println("chicobo colour outcome (blue) " + chicoboColor);
 			return chicoboColor;
 		}
 		else

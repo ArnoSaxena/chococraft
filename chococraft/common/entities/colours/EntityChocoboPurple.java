@@ -33,9 +33,8 @@ public class EntityChocoboPurple extends EntityChocobo
 	public EntityChocoboPurple(World world)
 	{
 		super(world);
+		this.color = chocoboColor.PURPLE;
 		this.setHealth(this.getMaxHealth());
-//		this.landMovementFactor = Constants.CHOCOBO_DEFAULT_LANDMOVEFACT;
-//		this.flyingMovementFactor = Constants.CHOCOBO_PURPLE_FLYMOVEFACT;
 		this.canClimb = true;
 		this.canCrossWater = false;
 		this.canJumpHigh = Constants.CHOCOBO_PURPLE_CANJUMPHIGH;
@@ -46,12 +45,6 @@ public class EntityChocoboPurple extends EntityChocobo
 		this.airbornSpeedFactor = Constants.CHOCOBO_PURPLE_AIRSPEEDFACT;
 	}
 
-	protected void entityInit()
-	{
-		this.color = chocoboColor.PURPLE;
-		super.entityInit();
-	}
-	
 	@Override
 	public void writeSpawnData(ByteArrayDataOutput data)
 	{
