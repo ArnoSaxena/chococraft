@@ -53,7 +53,6 @@ public class ChocoboItemDisguise extends ItemArmor
     }
 
 	@Override
-	//public String getArmorTextureFile(ItemStack itemstack)
     public String getArmorTexture(ItemStack itemstack, Entity entity, int slot, int layer)
 	{
 	    if (itemstack.itemID == ModChocoCraft.chocoDisguiseHelmetItem.itemID)
