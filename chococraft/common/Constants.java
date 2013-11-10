@@ -16,7 +16,7 @@ package chococraft.common;
 
 public class Constants
 {
-	public final static String TCC_VERSION = "3.0.2";
+	public final static String TCC_VERSION = "3.0.3";
 	public final static String TCC_MODID = "chococraft";
 	public final static String TCC_NAME = "Torojimas ChocoCraft";
 
@@ -42,6 +42,7 @@ public class Constants
 	public static int CHOCO_DISGUISE_PLATE_ID    = 22619;
 	public static int CHOCO_DISGUISE_LEGS_ID     = 22620;
 	public static int CHOCO_DISGUISE_BOOTS_ID    = 22621;
+	public static int CHOCOPEDIA_LIQUEFIED_ID    = 22622;
 	
 	// default (flower) block id's (reserved 1551 to 1555)
 	public static int GYSAHL_GREEN_BLOCK_ID      = 1551;
@@ -62,12 +63,12 @@ public class Constants
 	
 	// resource folder
 	public static String CHOCOBO_RESOURCES_FOLDER = "textures/entities/";
-
+	
 	// sound folder
 	public static String CHOCOBO_SOUND_FOLDER = CHOCOBO_RESOURCES_FOLDER + "sound/";
 	
 	// armour folder
-	public static String CHOCOBO_ARMOUR_FOLDER = CHOCOBO_RESOURCES_FOLDER + "textures/armor/";	
+	public static String CHOCOBO_ARMOUR_FOLDER = "chococraft:textures/armor";
 
 	public static String KEY_CHOCOPEDIA     = "chocopedia";
 	public static String KEY_DISGUISE       = "chocoDisguise";
@@ -91,6 +92,7 @@ public class Constants
 	public static String KEY_SADDLE         = "chocoboSaddle";
 	public static String KEY_SADDLEBAG      = "saddlebag";
 	public static String KEY_WHISTLE        = "whistle";
+	public static String KEY_LIQ_CHOCOP     = "liquefiedchocopedia";
 	
 	public static String KEY_STRAW           = "chocoboStraw";
 	public static String KEY_GY_STEM         = "gysahlStem";
