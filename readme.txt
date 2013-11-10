@@ -1,4 +1,4 @@
-This is the official version of Torojimas Chococraft v3.0.2 for usage with minecraft 1.6.4. Chococraft has been originally created by EddieV and is now refactored and officially maintained by Torojima and Micdoodle.
+This is the official version of Torojimas Chococraft v3.0.3 for usage with minecraft 1.6.4. Chococraft has been originally created by EddieV and is now refactored and officially maintained by Torojima.
 
 This mod adds a mob called Chocobo to the game. This includes different coloured mob types with different attributes in their grown-up and juvenile form.
 
@@ -12,14 +12,16 @@ This version of Chococraft is not compatible to versions pre 1.3.2. It will dest
 This version of Chococraft will remove all Chocobos from worlds pre 2.8.5.  Items in the Chocobo saddlebag and packbag inventories will be lost. ChocoCraft items stored in normal chests or player inventories are not affected.
 
 Changelog:
-1. breeding bug fixed
-2. alternative recipe for lead (chocobo feather instead of slime ball)
-3. sound bug fixed
-4. ascending and descending speed of flying chocobo tweaked
+1. hight issue solved
+2. chicobo mutation colour bug fixed
+3. same gender procreation bug fixed
+4. moved disguise skin to assets folder
+5. x,x position Chunk generated bug fixed
+
 
 see the minecraft forums for further informations
 http://www.minecraftforum.net/topic/1119809-
 
-or follow us on twitter  https://twitter.com/Torojima and https://twitter.com/micdoodle8
+or follow us on twitter  https://twitter.com/Torojima
 
 Torojima
