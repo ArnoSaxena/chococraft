@@ -21,6 +21,7 @@ import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.MathHelper;
 
 import org.lwjgl.opengl.GL11;
@@ -56,12 +57,14 @@ public class RenderChocobo extends RenderLiving
 		return getWingRotation((EntityChocobo)entityliving, f);
 	}
 
+	@Override
 	public void doRenderLiving(EntityLiving entityliving, double d, double d1, double d2,
 			float f, float f1)
 	{
 		renderChocobo((EntityChocobo)entityliving, d, d1, d2, f, f1);
 	}
 
+	@Override
 	public void doRender(Entity entity, double d, double d1, double d2,
 			float f, float f1)
 	{
@@ -70,21 +73,17 @@ public class RenderChocobo extends RenderLiving
 
 	protected void preRenderScale(EntityChocobo entitychocobo, float f)
 	{
-		//float scaleFactor = 0.8F; // 3 block high
-		float scaleFactor = 0.65F;
+		float scaleFactor = 0.8F;
 		GL11.glScalef(scaleFactor, scaleFactor, scaleFactor);
 
 		if (entitychocobo.riddenByEntity != null)
 		{
-			//GL11.glTranslated(0.0, 0.0, -0.5); // pre 2.0.0
-			//GL11.glTranslated(0.5, 0.0, -0.5); // current 2.0.0
-			//GL11.glTranslated(0.0, 0.0, -0.5); // player to far left
-			//GL11.glTranslated(1.0, 0.0, 0.0); // to the front
 			GL11.glTranslated(0.5, 0.0, -0.5);
 		}
 	}
 
-	protected void preRenderCallback(EntityLiving entityliving, float f)
+	@Override
+	protected void preRenderCallback(EntityLivingBase entityliving, float f)
 	{
 		preRenderScale((EntityChocobo)entityliving, f);
 	}
