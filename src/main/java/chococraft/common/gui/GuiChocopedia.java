@@ -62,7 +62,7 @@ public class GuiChocopedia extends GuiScreen
 
 	// Chocopedia
     private String bookTitle = "The Chocopedia";
-    private String bookAuthor = "by Torojima";
+    private String bookAuthor = "by Clienthax";
     private int bookImageWidth = 192;
     private int bookImageHeight = 192;	
     private GuiChocopediaButtonNextPage buttonNextPage;
@@ -347,7 +347,7 @@ public class GuiChocopedia extends GuiScreen
 				{
 					int indicatorCurrentPage = this.currPage -1;
 					int indicatorAmountPages = ChocopediaPages.Instance().getNPages() - 2;
-					String pageIndicator = String.format(StatCollector.translateToLocal("book.pageIndicator"), new Object[] {indicatorCurrentPage, indicatorAmountPages});
+					String pageIndicator = String.format(StatCollector.translateToLocal("book.pageIndicator"), indicatorCurrentPage, indicatorAmountPages);
 					int pageIndicatorWidth = this.mc.fontRenderer.getStringWidth(pageIndicator);
 					this.mc.fontRenderer.drawString(pageIndicator, xCenter - pageIndicatorWidth + this.bookImageWidth - 44, 2 + 16, 0);
 				}

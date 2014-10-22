@@ -138,7 +138,7 @@ public final class ChocoboSpawner
 				int chocoPosX = (int)posX + randDeltaX + world.rand.nextInt(6);
 				int chocoPosZ = (int)posZ + randDeltaZ + world.rand.nextInt(6);
 
-				int chocoPosY = 0;
+				int chocoPosY;
 				if(ChocoboBiomeHelper.isWorldHell(world))
 				{
 					//chocoPosY = world.getFirstUncoveredBlock(chocoPosX, chocoPosZ);//shouldn't work anyway, this returned block id
@@ -219,7 +219,7 @@ public final class ChocoboSpawner
 		int tmpPosX = MathHelper.floor_double(posX);
 		int tmpPosZ = MathHelper.floor_double(posZ);
 
-		int tmpPosY = 0;
+		int tmpPosY;
 		if(ChocoboBiomeHelper.isWorldHell(world))
 		{
 			//tmpPosY = world.getFirstUncoveredBlock(tmpPosX, tmpPosZ);
@@ -230,14 +230,7 @@ public final class ChocoboSpawner
 			tmpPosY = world.getTopSolidOrLiquidBlock(tmpPosX, tmpPosZ);
 		}
 
-		if(null != world.getClosestPlayer(tmpPosX, tmpPosY, tmpPosZ, distance))
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
+		return world.getClosestPlayer(tmpPosX, tmpPosY, tmpPosZ, distance) != null;
 	}
 
 	private static boolean canChocoboSpawnAtLocation(World world, int posX, int posY, int posZ)

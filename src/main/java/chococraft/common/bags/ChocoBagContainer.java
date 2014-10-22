@@ -101,7 +101,7 @@ public class ChocoBagContainer extends Container
 
     		if (sourceItemStack.stackSize == 0)
             {
-                sourceSlot.putStack((ItemStack)null);
+                sourceSlot.putStack(null);
             }
             else
             {

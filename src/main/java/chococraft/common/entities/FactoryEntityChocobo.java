@@ -26,9 +26,9 @@ public class FactoryEntityChocobo
 {
 	public static EntityChocobo createNewChocobo(World world, chocoboColor color)
 	{
-		boolean isMale = (new Random()).nextInt(100) < ModChocoCraft.genderMaleChance ? true : false;
+		boolean isMale = (new Random()).nextInt(100) < ModChocoCraft.genderMaleChance;
 		String name = ChocoboNames.getRandomName(isMale);
-		EntityChocobo entityChocobo = null;
+		EntityChocobo entityChocobo;
 		
 		switch(color)
 		{
@@ -97,7 +97,7 @@ public class FactoryEntityChocobo
 	
 	public static EntityChicobo createNewChicobo(World world, chocoboColor color)
 	{		
-		boolean isMale = (new Random()).nextInt(100) < ModChocoCraft.genderMaleChance ? true : false;
+		boolean isMale = (new Random()).nextInt(100) < ModChocoCraft.genderMaleChance;
 		EntityChicobo chicobo = new EntityChicobo(world);
 		chicobo.setColor(color);
 		chicobo.setIsMale(isMale);

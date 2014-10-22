@@ -92,14 +92,7 @@ public class EntityChocoboGreen extends EntityChocobo
 
 	public void setJumpHigh(boolean mounted)
 	{
-		if(mounted)
-		{
-			this.canJumpHigh = Constants.CHOCOBO_GREEN_CANJUMPHIGH;
-		}
-		else
-		{
-			this.canJumpHigh = false;
-		}
+		this.canJumpHigh = mounted && Constants.CHOCOBO_GREEN_CANJUMPHIGH;
 	}
 	
 	public void setRiderAbilities(boolean mounted){}

@@ -45,7 +45,6 @@ public class DebugEntitySpawner
 		{
 			// We are on the client side.
 			DebugFileWriter.instance().writeLine("DeEnSp", "called from the client side, so do *not* do the spawning");
-			return;
 		}
 	}
 }

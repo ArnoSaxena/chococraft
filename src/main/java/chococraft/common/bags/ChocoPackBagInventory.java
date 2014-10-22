@@ -44,7 +44,7 @@ public class ChocoPackBagInventory extends ChocoBagInventory
         for (int i = 0; i < nbttaglist.tagCount(); i++)
         {
 
-            NBTTagCompound nbttagcompound = (NBTTagCompound)nbttaglist.getCompoundTagAt(i);
+            NBTTagCompound nbttagcompound = nbttaglist.getCompoundTagAt(i);
             int j = nbttagcompound.getByte("Slot") & 0xff;
             ItemStack itemstack = ItemStack.loadItemStackFromNBT(nbttagcompound);
 

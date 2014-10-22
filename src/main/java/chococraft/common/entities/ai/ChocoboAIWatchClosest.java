@@ -58,7 +58,7 @@ public class ChocoboAIWatchClosest extends EntityAIBase
      */
     public boolean continueExecuting()
     {
-        return !this.closestEntity.isEntityAlive() ? false : (this.theWatcher.getDistanceSqToEntity(this.closestEntity) > (double)(this.watchDistance * this.watchDistance) ? false : this.lookTime > 0);
+        return this.closestEntity.isEntityAlive() && (this.theWatcher.getDistanceSqToEntity(this.closestEntity) <= (double) (this.watchDistance * this.watchDistance) && this.lookTime > 0);
     }
 
     /**

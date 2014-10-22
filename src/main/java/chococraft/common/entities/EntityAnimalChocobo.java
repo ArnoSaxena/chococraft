@@ -292,7 +292,7 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
     
     public boolean getRandomIsMale()
     {
-    	return (new Random()).nextInt(100) < ModChocoCraft.genderMaleChance ? true : false;
+    	return (new Random()).nextInt(100) < ModChocoCraft.genderMaleChance;
     }
     
     public boolean isHidename()
@@ -445,14 +445,7 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
 	
 	public boolean isOwner(EntityPlayer player)
 	{
-		if(ModChocoCraft.isRemoteClient)
-		{
-			return player.equals(this.getOwner());
-		}
-		else
-		{
-			return true;
-		}
+		return !ModChocoCraft.isRemoteClient || player.equals(this.getOwner());
 	}
 	
 	@Override
@@ -789,13 +782,9 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
     	{
     		return false;
     	}
-    	
-    	if(!ChocoboEntityHelper.isSpaceAroundLocationFree(this.worldObj, x, y, z, 1, 3, 1))
-    	{
-    		return false;
-    	}
-    	return true;
-    }
+
+		return ChocoboEntityHelper.isSpaceAroundLocationFree(this.worldObj, x, y, z, 1, 3, 1);
+	}
     
     public boolean teleportToOwner()
     {
@@ -846,11 +835,7 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
     @Override
 	protected boolean canDespawn()
 	{
-		if(ModChocoCraft.wildCanDespawn && !this.isTamed())
-		{
-			return true;
-		}
-		return false;
+		return ModChocoCraft.wildCanDespawn && !this.isTamed();
 	}
     
     @Override

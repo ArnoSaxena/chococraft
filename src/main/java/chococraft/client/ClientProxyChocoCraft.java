@@ -28,7 +28,6 @@ import chococraft.common.network.serverSide.ChocoboUpdateRiderActionState;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.Entity;
-import net.minecraftforge.common.MinecraftForge;
 
 public class ClientProxyChocoCraft extends CommonProxyChocoCraft
 {

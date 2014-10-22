@@ -69,13 +69,9 @@ public class ChocoboBiomeHelper
 		{
 			return true;
 		}
-		
-		if(chocoBgb instanceof BiomeGenEnd)
-		{
-			return true;
-		}
-		
-		return false;
+
+		return chocoBgb instanceof BiomeGenEnd;
+
 	}
 	
 	public static boolean isWorldHell(World world)

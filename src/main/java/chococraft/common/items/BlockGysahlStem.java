@@ -104,9 +104,9 @@ public class BlockGysahlStem extends BlockFlower
 		Block k1 = theWorld.getBlock(xPos + 1, yPos, zPos + 1);
 		Block l1 = theWorld.getBlock(xPos - 1, yPos, zPos + 1);
 
-        boolean samePlantLeftOrRight = k.equals(this) || l.equals(this);//k == blockID || l == blockID;
-        boolean samePlantFrontOrBack = i.equals(this) || j.equals(this);//i == blockID || j == blockID;
-        boolean samePlantAnyCorner = i1.equals(this) || j1.equals(this) || k1.equals(this) || l1.equals(this);;//i1 == blockID || j1 == blockID || k1 == blockID || l1 == blockID;
+        boolean samePlantLeftOrRight = k.equals(this) || l.equals(this);
+        boolean samePlantFrontOrBack = i.equals(this) || j.equals(this);
+        boolean samePlantAnyCorner = i1.equals(this) || j1.equals(this) || k1.equals(this) || l1.equals(this);
 
         for (int xTmp = xPos - 1; xTmp <= xPos + 1; xTmp++)
         {

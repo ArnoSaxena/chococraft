@@ -134,7 +134,7 @@ public class EntityChicobo extends EntityAnimalChocobo
 	@Override
 	public String getEntityTexture()
 	{
-		String s = new String(Constants.CHICOBO_ENTITY_TEXTURES);
+		String s = Constants.CHICOBO_ENTITY_TEXTURES;
 		
 		if (this.isTamed())
 		{
@@ -294,8 +294,7 @@ public class EntityChicobo extends EntityAnimalChocobo
 
 	public boolean interact(EntityPlayer entityplayer)
 	{
-		boolean interacted = false;
-		interacted = super.interact(entityplayer);
+		boolean interacted = super.interact(entityplayer);
 		if(!interacted)
 		{
 			ItemStack itemstack = entityplayer.inventory.getCurrentItem();
@@ -379,7 +378,6 @@ public class EntityChicobo extends EntityAnimalChocobo
 						this.motionY = 0.1D;
 						this.setJumping(true);
 					}
-					return;
 				}
 			}
 		}
@@ -391,7 +389,6 @@ public class EntityChicobo extends EntityAnimalChocobo
 				this.motionY = 0.1D;
 				this.setJumping(true);
 			}
-			return;
 		}
 	}
 

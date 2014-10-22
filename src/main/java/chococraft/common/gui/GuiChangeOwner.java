@@ -93,16 +93,10 @@ public class GuiChangeOwner extends GuiScreen
 	{
 		//StringTranslate stringtranslate = StringTranslate.getInstance();
 		this.drawDefaultBackground();
-		
-		StringBuilder messageSB = new StringBuilder();
-		messageSB.append("Give your ");
-		messageSB.append((this.chocobo instanceof EntityChicobo) ? "Chicobo" : "Chocobo");
-		messageSB.append(" to ");
-		messageSB.append(this.newOwner);
-		messageSB.append("?");		
+
 		//String message = stringtranslate.translateKey(messageSB.toString());
 		
-		this.drawCenteredString(this.mc.fontRenderer, messageSB.toString(), this.width / 2, (this.height / 4 - 60) + 20, 0xffffff);
+		this.drawCenteredString(this.mc.fontRenderer, "Give your " + ((this.chocobo instanceof EntityChicobo) ? "Chicobo" : "Chocobo") + " to " + this.newOwner + "?", this.width / 2, (this.height / 4 - 60) + 20, 0xffffff);
 		super.drawScreen(scrX, scrY, f);
 	}
 	

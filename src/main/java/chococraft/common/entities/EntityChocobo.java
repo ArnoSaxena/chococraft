@@ -110,7 +110,7 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 
 	public String getEntityTexture()
 	{
-		String s = new String(Constants.CHOCOBO_ENTITY_TEXTURES);
+		String s = Constants.CHOCOBO_ENTITY_TEXTURES;
 
 		if(this.isPackBagged())
 		{
@@ -193,7 +193,7 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 	    if (this.riddenByEntity != null)
 	    {
     	    strafe = ((EntityLivingBase)this.riddenByEntity).moveStrafing * 0.5F;
-    	    forward = (float) (((EntityLivingBase)this.riddenByEntity).moveForward);
+    	    forward = ((EntityLivingBase)this.riddenByEntity).moveForward;
     	    
             if (!this.worldObj.isRemote)
             {
@@ -320,8 +320,7 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 
 	public boolean interact(EntityPlayer entityplayer)
 	{
-		boolean interacted = false;
-		interacted  = super.interact(entityplayer);
+		boolean interacted  = super.interact(entityplayer);
 		
 		if(!interacted)
 		{
@@ -379,8 +378,7 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 	
 	protected boolean onEmptyHandInteraction(EntityPlayer entityplayer)
 	{
-		boolean interacted = false;
-		interacted = super.onEmptyHandInteraction(entityplayer);
+		boolean interacted = super.onEmptyHandInteraction(entityplayer);
 		return interacted;
 	}
 	
@@ -528,18 +526,15 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 					else
 					{
 						super.updateEntityActionState();
-						return;
 					}
 				}
 			}
 			else if (this.isSaddled() && !this.isFollowing() && !this.isInLove())
 			{
-				return;
 			}
 			else
 			{
 				super.updateEntityActionState();
-				return;
 			}
 		}
 	}
@@ -570,14 +565,10 @@ public abstract class EntityChocobo extends EntityChocoboRideable
     			{
     				return false;
     			}
-    			
-    			if(!this.isInLove() || !otherChocobo.isInLove())
-    			{
-    				return false;
-    			}    			
-    			
-    			return true;
-    		}
+
+				return !(!this.isInLove() || !otherChocobo.isInLove());
+
+			}
     	}
     	return false;
     }

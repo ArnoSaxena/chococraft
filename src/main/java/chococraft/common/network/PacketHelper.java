@@ -4,7 +4,6 @@ import chococraft.common.entities.EntityAnimalChocobo;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.relauncher.Side;
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.server.MinecraftServer;
@@ -17,10 +16,10 @@ public class PacketHelper {
 
 	public static EntityAnimalChocobo getChocoboByID(int entityId, int dimension)
 	{
-		Entity targetEntity = null;
+		Entity targetEntity;
 		if (Side.CLIENT == FMLCommonHandler.instance().getEffectiveSide())
 		{
-			targetEntity = (Entity) FMLClientHandler.instance().getClient().theWorld.getEntityByID(entityId);
+			targetEntity = FMLClientHandler.instance().getClient().theWorld.getEntityByID(entityId);
 		}
 		else {
 			targetEntity = MinecraftServer.getServer().worldServerForDimension(dimension).getEntityByID(entityId);

@@ -20,7 +20,7 @@ public class ChocoboRiderList
 	{
         for (int i = 0; i < nbttaglist.tagCount(); i++)
         {
-            NBTTagCompound nbttagcompound = (NBTTagCompound)nbttaglist.getCompoundTagAt(i);
+            NBTTagCompound nbttagcompound = nbttaglist.getCompoundTagAt(i);
             String rider = nbttagcompound.getString("name");
             this.riders.add(rider);
 

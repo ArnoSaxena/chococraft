@@ -26,7 +26,6 @@ import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.DamageSource;
@@ -182,8 +181,7 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo
     @Override
 	public boolean interact(EntityPlayer entityplayer)
 	{
-		boolean interacted = false;
-		interacted = super.interact(entityplayer);
+		boolean interacted = super.interact(entityplayer);
 		if(!interacted)
 		{
 			// if Chocobo has saddlebag shift-click will allways open it 
@@ -275,8 +273,7 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo
 
 	protected boolean onEmptyHandInteraction(EntityPlayer entityplayer)
 	{
-		boolean interacted = false;
-		interacted = super.onEmptyHandInteraction(entityplayer);
+		boolean interacted = super.onEmptyHandInteraction(entityplayer);
 		
 		if(this.isSaddled())
 		{
@@ -442,7 +439,7 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo
 	// Chocobo as inventory
 	public IInventory getIInventory()
 	{
-		return (IInventory)this.bagsInventory;
+		return this.bagsInventory;
 	}
 	
 	public ChocoBagInventory getChocoBagInventory()

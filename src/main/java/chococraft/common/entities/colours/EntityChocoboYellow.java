@@ -96,14 +96,7 @@ public class EntityChocoboYellow extends EntityChocobo
 
 	public void setJumpHigh(boolean mounted)
 	{
-		if(mounted)
-		{
-			this.canJumpHigh = Constants.CHOCOBO_YELLOW_CANJUMPHIGH;
-		}
-		else
-		{
-			this.canJumpHigh = false;
-		}
+		this.canJumpHigh = mounted && Constants.CHOCOBO_YELLOW_CANJUMPHIGH;
 	}
 
 	public boolean getCanSpawnHere()
@@ -112,12 +105,8 @@ public class EntityChocoboYellow extends EntityChocobo
 		{
 			return false;
 		}
-		
-		if(this.rand.nextInt(100) > ModChocoCraft.spawnProbability)
-		{
-			return false;
-		}		
-		return super.getCanSpawnHere();
+
+		return this.rand.nextInt(100) <= ModChocoCraft.spawnProbability && super.getCanSpawnHere();
 	}
 
 	public void setRiderAbilities(boolean mounted){}

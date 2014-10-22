@@ -94,14 +94,7 @@ public class ChocoboEntityHelper
         }
         boolean frontWater = blockFront.getMaterial().equals(Material.water);
         boolean aboveWater = blockAbove.getMaterial().equals(Material.water);
-        if(frontWater && aboveWater)
-        {
-        	return true;
-        }
-        else
-        {
-        	return false;
-        }
+		return frontWater && aboveWater;
     }
     
     public static boolean isSpaceAroundFree(World world, EntityLiving entity, int radX, int spcY, int radZ)

@@ -18,7 +18,7 @@ public class Constants
 {
 	public final static String TCC_VERSION = "4.0.3";
 	public final static String TCC_MODID = "chococraft";
-	public final static String TCC_NAME = "Torojimas ChocoCraft";
+	public final static String TCC_NAME = "Clienthaxs ChocoCraft";
 	
 	// default entity id's - not really needed as forge gives 255 per mod now
 	public static int CHOCOBO_YELLOW_ID  = 600;
@@ -216,9 +216,6 @@ public class Constants
 	public static String PARTICLE_SMOKE        = "smoke";
 	public static String PARTICLE_EXPLODE      = "explode";
 	public static String PARTICLE_SNOWBALLPOOF = "snowballpoof";
-	
-	// max length of channel name is 16                     "xxxxxxxxxxxxxxxx"
-	public static final String PCHAN_CHOCOBO              = "ChocoCraftPChan";
 	
 	// dataWatcher
 	// EAC - EntityAnimalChocobo

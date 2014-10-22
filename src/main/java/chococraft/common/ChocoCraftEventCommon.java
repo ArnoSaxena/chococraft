@@ -120,7 +120,7 @@ public class ChocoCraftEventCommon
     {
     	if(event.entity instanceof EntityChocobo)
     	{
-    		if(event.source.getDamageType().equals(DamageSource.inWall))
+    		if(event.source.equals(DamageSource.inWall))
     		{
     			event.setCanceled(true);        		
     		}
@@ -211,14 +211,10 @@ public class ChocoCraftEventCommon
 	
 	protected boolean isChocopediaDropEntity(EntityLivingBase entity)
 	{
-		if(entity instanceof EntityZombie
+		return entity instanceof EntityZombie
 				|| entity instanceof EntitySkeleton
 				|| entity instanceof EntityPigZombie
 				|| entity instanceof EntityWitch
-				|| entity instanceof EntityVillager)
-		{
-			return true;
-		}
-		return false;
+				|| entity instanceof EntityVillager;
 	}
 }

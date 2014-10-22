@@ -17,8 +17,6 @@ package chococraft.common;
 import chococraft.common.entities.EntityChocoboRideable;
 import chococraft.common.entities.RiderActionState;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 
 public class CommonProxyChocoCraft
@@ -31,16 +29,6 @@ public class CommonProxyChocoCraft
     public static void registerRenderInformation()
     {
         //No rendering for servers.
-    }
-   
-    public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
-    {
-        return null;
-    }
-
-    public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
-    {
-        return null;
     }
     
     public int addArmor(String armor)

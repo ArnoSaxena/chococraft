@@ -21,11 +21,7 @@ public class ChocoboAISwimming extends EntityAIBase
 	@Override
 	public boolean shouldExecute()
 	{
-		if(this.chocobo.isInWater() || this.chocobo.handleLavaMovement())
-		{
-			return true;
-		}
-		return false;
+		return this.chocobo.isInWater() || this.chocobo.handleLavaMovement();
 	}
 
 	/**

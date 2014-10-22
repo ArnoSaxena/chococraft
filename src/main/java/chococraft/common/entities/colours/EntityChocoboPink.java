@@ -93,14 +93,7 @@ public class EntityChocoboPink extends EntityChocobo
 	
 	public void setJumpHigh(boolean mounted)
 	{
-		if(mounted)
-		{
-			this.canJumpHigh = Constants.CHOCOBO_PINK_CANJUMPHIGH;
-		}
-		else
-		{
-			this.canJumpHigh = false;
-		}
+		this.canJumpHigh = mounted && Constants.CHOCOBO_PINK_CANJUMPHIGH;
 	}
 
 	public void setRiderAbilities(boolean mounted){}
@@ -113,7 +106,6 @@ public class EntityChocoboPink extends EntityChocobo
 
 	protected void fall(float fallHeight)
 	{
-		return;
 	}
 
 	@Override

@@ -216,11 +216,8 @@ public class GuiSelectNewOwner extends GuiScreen
 		//StringTranslate stringtranslate = StringTranslate.getInstance();
 		this.drawDefaultBackground();
 
-		StringBuilder messageSB = new StringBuilder();
-		messageSB.append("Give your ");
-		messageSB.append((this.chocobo instanceof EntityChicobo) ? "Chicobo" : "Chocobo");
 		//String message = stringtranslate.translateKey(messageSB.toString());
-		String message = messageSB.toString();
+		String message = "Give your " + ((this.chocobo instanceof EntityChicobo) ? "Chicobo" : "Chocobo");
 		this.drawCenteredString(this.mc.fontRenderer, message, this.width / 2, (this.height / 4 - 60) + 20, 0xffffff);
 		//this.drawString(this.fontRenderer, stringtranslate.translateKey("to new owner:"), this.width / 2 - 100, 30, 0xa0a0a0);		
 		this.drawString(this.mc.fontRenderer, "to new owner:", this.width / 2 - 100, 30, 0xa0a0a0);

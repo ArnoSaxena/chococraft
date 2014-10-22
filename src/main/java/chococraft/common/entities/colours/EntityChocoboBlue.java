@@ -94,14 +94,7 @@ public class EntityChocoboBlue extends EntityChocobo
 
 	public void setJumpHigh(boolean mounted)
 	{
-		if(mounted)
-		{
-			this.canJumpHigh = Constants.CHOCOBO_BLUE_CANJUMPHIGH;
-		}
-		else
-		{
-			this.canJumpHigh = false;
-		}
+		this.canJumpHigh = mounted && Constants.CHOCOBO_BLUE_CANJUMPHIGH;
 	}
 	
 	@Override
