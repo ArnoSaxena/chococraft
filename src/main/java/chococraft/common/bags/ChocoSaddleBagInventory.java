@@ -43,9 +43,8 @@ public class ChocoSaddleBagInventory extends ChocoBagInventory
         mainInventory = new ItemStack[INV_SIZE_SMALL];
 
         for (int i = 0; i < nbttaglist.tagCount(); i++)
-        {//TODO rewrite nbt
-			/*
-            NBTTagCompound nbttagcompound = (NBTTagCompound)nbttaglist.tagAt(i);
+        {
+            NBTTagCompound nbttagcompound = (NBTTagCompound)nbttaglist.getCompoundTagAt(i);
             int j = nbttagcompound.getByte("Slot") & 0xff;
             ItemStack itemstack = ItemStack.loadItemStackFromNBT(nbttagcompound);
 
@@ -57,7 +56,7 @@ public class ChocoSaddleBagInventory extends ChocoBagInventory
             if (j >= 0 && j < mainInventory.length)
             {
                 mainInventory[j] = itemstack;
-            }*/
+            }
         }
 	}
 

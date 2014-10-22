@@ -22,6 +22,8 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockFlower;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
@@ -112,9 +114,8 @@ public class BlockGysahlStem extends BlockFlower
             {
                 Block baseBlockId = theWorld.getBlock(xTmp, yPos - 1, zTmp);
                 float tmpGrowRate = 0.0F;
-//TODO update to 1.7
-				/*
-                if (this.canThisPlantGrowOnThisBlockID(baseBlockId))
+
+                if (this.canThisPlantGrowOnThisBlock(baseBlockId))
                 {
                     tmpGrowRate = 1.0F;
 
@@ -122,7 +123,7 @@ public class BlockGysahlStem extends BlockFlower
                     {
                         tmpGrowRate = 3F;
                     }
-                }*/
+                }
 
                 if (xTmp != xPos || zTmp != zPos)
                 {
@@ -141,19 +142,11 @@ public class BlockGysahlStem extends BlockFlower
         return growRate;
     }
 
-	//TODO update to 1.7
-	/*
-    @Override
-	protected boolean canThisPlantGrowOnThisBlockID(int blockId)
+
+	protected boolean canThisPlantGrowOnThisBlock(Block block)
     {
-		boolean canGrow = false;
-		
-		if(blockId == Block.tilledField.blockID)
-		{
-			canGrow = true;
-		}
-        return canGrow;
-    }*/
+        return block.equals(Blocks.farmland);
+    }
     
 	//TODO check this - old
     @Override
@@ -180,36 +173,33 @@ public class BlockGysahlStem extends BlockFlower
     	}
     }
 
-
-	//TODO update to 1.7
-	/*
     @Override
-    public int idDropped(int i, Random random, int j)
+    public Item getItemDropped(int i, Random random, int j)
     {
     	if (i == 4)
     	{
     		if(random.nextInt(1000) > ModChocoCraft.gysahlGreenMutationRate)
     		{
-    			return ModChocoCraft.gysahlGreenBlock.blockID;
+    			return Item.getItemFromBlock(ModChocoCraft.gysahlGreenBlock);
     		}
     		else 
     		{
     			if(random.nextInt(1000) > ModChocoCraft.gysahlLoveMutationRate)
     			{
-    				return ModChocoCraft.gysahlLoverlyItem.itemID;
+    				return ModChocoCraft.gysahlLoverlyItem;
     			}
     			else
     			{
-    				return ModChocoCraft.gysahlGoldenItem.itemID;
+    				return ModChocoCraft.gysahlGoldenItem;
     			}
     		}
     	}
     	else
         {
-            return -1;
+            return null;
         }
     }
-*/
+
 
 	//Called from a event , does not need override
 	public boolean onBonemealUse(World theWorld, int xPos, int yPos, int zPos)

@@ -120,16 +120,6 @@ public class BlockStraw extends Block
     }
 
     /**
-     * Returns the ID of the items to drop on destruction.
-     */
-	//TODO update to 1.7
-    /*@Override
-    public int idDropped(int par1, Random par2Random, int par3)
-    {
-        return this.itemid;
-    }*/
-
-    /**
      * Returns the quantity of items to drop on block destruction.
      */
     @Override

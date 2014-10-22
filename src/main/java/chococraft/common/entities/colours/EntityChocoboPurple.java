@@ -17,6 +17,7 @@ package chococraft.common.entities.colours;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
@@ -163,13 +164,12 @@ public class EntityChocoboPurple extends EntityChocobo
 		}
 	}
 
-	//TODO update to 1.7
-/*	@Override
-	protected int getDropItemId()
+	@Override
+	protected Item getDropItem()
 	{
-		return ModChocoCraft.chocoboLegRawItem.itemID;
+		return ModChocoCraft.chocoboLegRawItem;
 	}
-*/
+
 
 	// purple special
 	@Override

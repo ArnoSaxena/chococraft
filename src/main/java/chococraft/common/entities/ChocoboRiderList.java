@@ -19,12 +19,11 @@ public class ChocoboRiderList
 	public void readFromNBT(NBTTagList nbttaglist)
 	{
         for (int i = 0; i < nbttaglist.tagCount(); i++)
-        {//TODO rewrite nbt
-			/*
-            NBTTagCompound nbttagcompound = (NBTTagCompound)nbttaglist.tagAt(i);
+        {
+            NBTTagCompound nbttagcompound = (NBTTagCompound)nbttaglist.getCompoundTagAt(i);
             String rider = nbttagcompound.getString("name");
             this.riders.add(rider);
-            */
+
         }
 	}
 

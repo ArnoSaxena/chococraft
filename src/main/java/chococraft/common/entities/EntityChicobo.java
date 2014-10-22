@@ -22,6 +22,7 @@ import chococraft.common.network.PacketRegistry;
 import chococraft.common.network.clientSide.ChicoboCanGrowUp;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.EntityAgeable;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -66,8 +67,7 @@ public class EntityChicobo extends EntityAnimalChocobo
 	public void setColor(chocoboColor color)
 	{
 		this.color = color;
-		//TODO update to 1.7
-//        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setAttribute(this.getColorMaxHealth());
+        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(this.getColorMaxHealth());
 		this.setHealth(this.getColorMaxHealth());
 		if (color == chocoboColor.PURPLE)
 		{
@@ -79,9 +79,8 @@ public class EntityChicobo extends EntityAnimalChocobo
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-		//TODO update to 1.7
-//        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setAttribute(10);
-//        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setAttribute(0.25D);
+        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(10);
+        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.25D);
     }
 
 	@Override

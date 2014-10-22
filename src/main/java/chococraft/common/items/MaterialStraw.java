@@ -11,7 +11,6 @@ public class MaterialStraw extends Material
 	public MaterialStraw(MapColor mapColor)
 	{
 		super(mapColor);
-		// TODO Auto-generated constructor stub
 	}
 	
 	@Override

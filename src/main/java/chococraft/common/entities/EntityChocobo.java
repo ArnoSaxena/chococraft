@@ -22,6 +22,7 @@ import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
@@ -72,8 +73,7 @@ public abstract class EntityChocobo extends EntityChocoboRideable
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-		//TODO update to 1.7
-        //this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setAttribute(this.getChocoboMaxHealth());
+        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(this.getChocoboMaxHealth());
     }
 	
 	@Override
@@ -447,8 +447,8 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 		}
 	}
 
-	//TODO what do we need to override for this (1.7)
-	protected Item getDropItemId()
+	@Override
+	protected Item getDropItem()
 	{
 		if (isBurning())
 		{

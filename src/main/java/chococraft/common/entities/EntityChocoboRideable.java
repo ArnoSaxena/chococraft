@@ -26,6 +26,7 @@ import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.DamageSource;
@@ -99,13 +100,11 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo
 		this.setWander(!this.isFollowing() && !this.isSaddled() && !this.isPackBagged());
 		if(nbttagcompound.hasKey("SaddleBagInventory") && null != this.bagsInventory)
 		{
-			//TODO rewrite nbt
-			//this.bagsInventory.readFromNBT(nbttagcompound.getTagList("SaddleBagInventory"));
+			this.bagsInventory.readFromNBT((NBTTagList) nbttagcompound.getTag("SaddleBagInventory"));
 		}
 		if(nbttagcompound.hasKey("riderList") && null != this.riderList)
 		{
-			//TODO rewrite nbt
-			//this.riderList.readFromNBT(nbttagcompound.getTagList("riderList"));
+			this.riderList.readFromNBT((NBTTagList) nbttagcompound.getTag("riderList"));
 		}
 	}    
 
