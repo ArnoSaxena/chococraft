@@ -62,7 +62,7 @@ public class ClientProxyChocoCraft extends CommonProxyChocoCraft
     @Override
     public void registerEventListener()
     {
-
+		super.registerEventListener();
     }
     
     @Override
