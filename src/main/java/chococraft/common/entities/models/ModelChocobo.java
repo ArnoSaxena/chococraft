@@ -239,6 +239,7 @@ public class ModelChocobo extends ModelBase
 		this.setLeftLegXRotation(0.0F);
 	}
 
+	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
 	{
 		// this super method is empty
@@ -284,6 +285,7 @@ public class ModelChocobo extends ModelBase
 		model.rotateAngleZ = z;
 	}
 
+	@Override
 	public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity entity)
 	{
 		// this super method is empty ...

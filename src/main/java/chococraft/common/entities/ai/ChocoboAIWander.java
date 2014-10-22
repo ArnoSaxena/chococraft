@@ -23,7 +23,8 @@ public class ChocoboAIWander extends EntityAIBase
     /**
      * Returns whether the EntityAIBase should begin execution.
      */
-    public boolean shouldExecute()
+    @Override
+	public boolean shouldExecute()
     {
         if (this.chocobo.getAge() >= 100)
         {
@@ -58,7 +59,8 @@ public class ChocoboAIWander extends EntityAIBase
     /**
      * Returns whether an in-progress EntityAIBase should continue executing
      */
-    public boolean continueExecuting()
+    @Override
+	public boolean continueExecuting()
     {
         return !this.chocobo.getNavigator().noPath();
     }
@@ -66,7 +68,8 @@ public class ChocoboAIWander extends EntityAIBase
     /**
      * Execute a one shot task or start executing a continuous task
      */
-    public void startExecuting()
+    @Override
+	public void startExecuting()
     {
         this.chocobo.getNavigator().tryMoveToXYZ(this.xPosition, this.yPosition, this.zPosition, this.speed);        
     }

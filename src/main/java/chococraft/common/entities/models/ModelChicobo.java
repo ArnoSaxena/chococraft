@@ -44,7 +44,8 @@ public class ModelChicobo extends ModelBase
         leftleg.setRotationPoint(1.0F, 22F, 0.5F);
     }
 
-    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
+    @Override
+	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
         setRotationAngles(f, f1, f2, f3, f4, f5);
         head.render(f5);

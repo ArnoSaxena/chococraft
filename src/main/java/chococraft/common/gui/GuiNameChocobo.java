@@ -36,11 +36,13 @@ public class GuiNameChocobo extends GuiScreen
 		this.parentGuiScreen = guiscreen;
 	}
 
+	@Override
 	public void updateScreen()
 	{
 		this.theGuiTextField.updateCursorCounter();
 	}
 
+	@Override
 	@SuppressWarnings("unchecked")
 	public void initGui()
 	{
@@ -57,11 +59,13 @@ public class GuiNameChocobo extends GuiScreen
 		this.theGuiTextField.setMaxStringLength(20);
 	}
 
+	@Override
 	public void onGuiClosed()
 	{
 		Keyboard.enableRepeatEvents(false);
 	}
 
+	@Override
 	protected void actionPerformed(GuiButton guibutton)
 	{
 		if (!guibutton.enabled)
@@ -79,6 +83,7 @@ public class GuiNameChocobo extends GuiScreen
 		}
 	}
 
+	@Override
 	protected void keyTyped(char c, int i)
 	{
 		this.theGuiTextField.textboxKeyTyped(c, i);
@@ -89,12 +94,14 @@ public class GuiNameChocobo extends GuiScreen
 		}
 	}
 
+	@Override
 	protected void mouseClicked(int i, int j, int k)
 	{
 		super.mouseClicked(i, j, k);
 		theGuiTextField.mouseClicked(i, j, k);
 	}
 
+	@Override
 	public void drawScreen(int i, int j, float f)
 	{
 		//StringTranslate stringtranslate = StringTranslate.getInstance();

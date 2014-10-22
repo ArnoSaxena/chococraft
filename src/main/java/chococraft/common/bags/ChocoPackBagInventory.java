@@ -38,6 +38,7 @@ public class ChocoPackBagInventory extends ChocoBagInventory
         return this.entitychocobo.getName() + " saddle bags";
 	}
 	
+	@Override
 	public void readFromNBT(NBTTagList nbttaglist) {
         mainInventory = new ItemStack[INV_SIZE_BIG];
 
@@ -60,6 +61,7 @@ public class ChocoPackBagInventory extends ChocoBagInventory
         }
 	}
 
+	@Override
 	public NBTBase writeToNBT(NBTTagList nbtTagList) {
         for (int i = 0; i < mainInventory.length; i++)
         {

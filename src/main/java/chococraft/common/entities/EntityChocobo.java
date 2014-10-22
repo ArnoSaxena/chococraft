@@ -108,6 +108,7 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 
 	abstract public String getEntityColourTexture();
 
+	@Override
 	public String getEntityTexture()
 	{
 		String s = Constants.CHOCOBO_ENTITY_TEXTURES;
@@ -147,6 +148,7 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 		return s;
 	}
 
+	@Override
 	public void onUpdate()
 	{
         
@@ -188,6 +190,7 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 	    return super.getAIMoveSpeed();
     }
 
+	@Override
 	public void moveEntityWithHeading(float strafe, float forward)
 	{
 	    if (this.riddenByEntity != null)
@@ -294,6 +297,7 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 		}
 	}
 
+	@Override
 	protected String getLivingSound()
 	{
 		if (ModChocoCraft.livingSoundProb != 0 
@@ -308,16 +312,19 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 		}
 	}
 
+	@Override
 	protected String getHurtSound()
 	{
 		return "chococraft:choco_kweh";
 	}
 
+	@Override
 	protected String getDeathSound()
 	{
 		return "chococraft:choco_kweh";
 	}
 
+	@Override
 	public boolean interact(EntityPlayer entityplayer)
 	{
 		boolean interacted  = super.interact(entityplayer);
@@ -376,6 +383,7 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 		return interacted;
 	}
 	
+	@Override
 	protected boolean onEmptyHandInteraction(EntityPlayer entityplayer)
 	{
 		return super.onEmptyHandInteraction(entityplayer);
@@ -436,6 +444,7 @@ public abstract class EntityChocobo extends EntityChocoboRideable
     	}
 	}
 
+	@Override
 	protected void dropFewItems(boolean par1, int par2)
 	{
 		if (this.isServer())
@@ -457,6 +466,7 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 		}
 	}
 
+	@Override
 	public void updateEntityActionState()
 	{
 		if(this instanceof EntityChocoboPurple)

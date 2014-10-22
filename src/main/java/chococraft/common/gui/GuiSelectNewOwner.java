@@ -44,11 +44,13 @@ public class GuiSelectNewOwner extends GuiScreen
 		this.pGuiScreen = guiscreen;
 	}
 
+	@Override
 	public void updateScreen()
 	{
 		this.tfNewOnwer.updateCursorCounter();
 	}
 
+	@Override
 	@SuppressWarnings("unchecked")
 	public void initGui()
 	{
@@ -113,11 +115,13 @@ public class GuiSelectNewOwner extends GuiScreen
 		}
 	}
 
+	@Override
 	public void onGuiClosed()
 	{
 		Keyboard.enableRepeatEvents(false);
 	}
 
+	@Override
 	protected void actionPerformed(GuiButton guibutton)
 	{
 		if (!guibutton.enabled)
@@ -157,6 +161,7 @@ public class GuiSelectNewOwner extends GuiScreen
 		this.selPlListIdx = ChocoboMathHelper.clamp((this.selPlListIdx + step), 0, (selPlayerSize - step + 1));
 	}
 
+	@Override
 	protected void keyTyped(char c, int i)
 	{
 		this.tfNewOnwer.textboxKeyTyped(c, i);
@@ -198,6 +203,7 @@ public class GuiSelectNewOwner extends GuiScreen
 		((GuiButton)this.buttonList.get(0)).enabled = !this.tfNewOnwer.getText().isEmpty();
 	}
 	
+	@Override
 	protected void mouseClicked(int x, int y, int k)
 	{
 		super.mouseClicked(x, y, k);
@@ -211,6 +217,7 @@ public class GuiSelectNewOwner extends GuiScreen
 		}
 	}
 
+	@Override
 	public void drawScreen(int i, int j, float f)
 	{
 		//StringTranslate stringtranslate = StringTranslate.getInstance();

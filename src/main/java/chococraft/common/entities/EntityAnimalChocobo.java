@@ -251,6 +251,7 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
     	}
     }
     
+	@Override
 	public boolean isInLove()
     {
         return (this.dataWatcher.getWatchableObjectByte(Constants.DW_ID_EAC_FLAGS) & Constants.DW_VAL_EAC_INLOVE_ON) != 0;
@@ -366,7 +367,8 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
     	return (this.isMale() ? "Male" : "Female");
     }
 	
-    protected boolean isMovementCeased()
+    @Override
+	protected boolean isMovementCeased()
     {
         return false;
     }
@@ -408,6 +410,7 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
 		this.showAmountHeartsOrSmokeFx(this.isFollowing(), 7);
 	}
 	
+	@Override
 	public EntityPlayer getOwner()
     {
 		EntityPlayer owner = this.worldObj.getPlayerEntityByName(this.func_152113_b());//getOwnerName
@@ -874,6 +877,7 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
 		}
 	}
 
+	@Override
 	public boolean isChild()
     {
 		return this instanceof EntityChicobo;

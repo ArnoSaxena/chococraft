@@ -38,10 +38,12 @@ public class GuiChangeOwner extends GuiScreen
 		this.ppGuiScreen = ppScreen;
 	}
 
+	@Override
 	public void updateScreen()
 	{
 	}
 
+	@Override
 	@SuppressWarnings("unchecked")
 	public void initGui()
 	{
@@ -54,11 +56,13 @@ public class GuiChangeOwner extends GuiScreen
 		this.buttonList.add(new GuiButton(1, this.width / 2 - 100, this.height / 4 + 120 + 12, "Cancel"));
 	}
 
+	@Override
 	public void onGuiClosed()
 	{
 		Keyboard.enableRepeatEvents(false);
 	}
 
+	@Override
 	protected void actionPerformed(GuiButton guibutton)
 	{
 		if (!guibutton.enabled)
@@ -84,11 +88,13 @@ public class GuiChangeOwner extends GuiScreen
 		}
 	}
 
+	@Override
 	protected void mouseClicked(int mouseX, int mouseY, int which)
 	{
 		super.mouseClicked(mouseX, mouseY, which);
 	}
 
+	@Override
 	public void drawScreen(int scrX, int scrY, float f)
 	{
 		//StringTranslate stringtranslate = StringTranslate.getInstance();

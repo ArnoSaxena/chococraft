@@ -39,27 +39,32 @@ public class EntityChocoboRed extends EntityChocobo
 		this.airbornSpeedFactor = Constants.CHOCOBO_RED_AIRSPEEDFACT;
 	}
 
+	@Override
 	public void writeSpawnData(ByteBuf data)
 	{
 		super.writeSpawnData(data);
 	}
 
+	@Override
 	public void readSpawnData(ByteBuf data)
 	{
 		super.readSpawnData(data);
 	}
 
+	@Override
 	public void writeEntityToNBT(NBTTagCompound nbttagcompound)
 	{
 		super.writeEntityToNBT(nbttagcompound);
 	}
 
+	@Override
 	public void readEntityFromNBT(NBTTagCompound nbttagcompound)
 	{
 		super.readEntityFromNBT(nbttagcompound);
 	}
 
     //@SideOnly(Side.CLIENT)
+	@Override
 	public String getEntityColourTexture()
 	{
 		return "redchocobo.png";
@@ -80,6 +85,7 @@ public class EntityChocoboRed extends EntityChocobo
 		}
 	}
 	
+	@Override
 	public void setLandSpeedFactor(boolean mounted)
 	{
 		if (mounted)
@@ -92,11 +98,13 @@ public class EntityChocoboRed extends EntityChocobo
 		}
 	}
 
+	@Override
 	public void setJumpHigh(boolean mounted)
 	{
 		this.canJumpHigh = mounted && Constants.CHOCOBO_RED_CANJUMPHIGH;
 	}
 
+	@Override
 	public void setRiderAbilities(boolean mounted){}
 
 	@Override
@@ -105,6 +113,7 @@ public class EntityChocoboRed extends EntityChocobo
 		return 50.0F;
 	}
 
+	@Override
 	protected void fall(float fallHeight)
 	{
 	}

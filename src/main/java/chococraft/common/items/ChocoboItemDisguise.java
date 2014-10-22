@@ -41,7 +41,8 @@ public class ChocoboItemDisguise extends ItemArmor
 		this.itemIcon = iconRegister.registerIcon(Constants.TCC_MODID + ":" + name);
 	}
 	
-    public int getItemEnchantability()
+    @Override
+	public int getItemEnchantability()
     {
         return this.material.getEnchantability();
     }

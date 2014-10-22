@@ -220,11 +220,13 @@ public class EntityChicobo extends EntityAnimalChocobo
 		return this.dataWatcher.getWatchableObjectInt(Constants.DW_ID_CHIC_TIMEUNTILADULT);
 	}        
 
+	@Override
 	public boolean isChild()
 	{
 		return true;
 	}
 
+	@Override
 	public void onLivingUpdate()
 	{
 		super.onLivingUpdate();
@@ -265,11 +267,13 @@ public class EntityChicobo extends EntityAnimalChocobo
 		}
 	}
 
+	@Override
 	protected void entityInit()
 	{
 		super.entityInit();
 	}
 
+	@Override
 	protected String getLivingSound()
 	{
 		if (rand.nextInt(2) == 0)
@@ -282,16 +286,19 @@ public class EntityChicobo extends EntityAnimalChocobo
 		}
 	}
 
+	@Override
 	protected String getHurtSound()
 	{
 		return "choco_kweh";
 	}
 
+	@Override
 	protected String getDeathSound()
 	{
 		return "choco_kweh";
 	}
 
+	@Override
 	public boolean interact(EntityPlayer entityplayer)
 	{
 		boolean interacted = super.interact(entityplayer);
@@ -410,6 +417,7 @@ public class EntityChicobo extends EntityAnimalChocobo
 		return null;
 	}
 
+	@Override
 	public boolean canMateWith(EntityAnimal entityAnimal)
 	{
 		return false;

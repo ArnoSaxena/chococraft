@@ -27,7 +27,8 @@ public class ChocoboAIWatchClosest extends EntityAIBase
     /**
      * Returns whether the EntityAIBase should begin execution.
      */
-    public boolean shouldExecute()
+    @Override
+	public boolean shouldExecute()
     {
     	if (this.theWatcher.getRNG().nextFloat() >= 0.5F)
     	{
@@ -56,7 +57,8 @@ public class ChocoboAIWatchClosest extends EntityAIBase
     /**
      * Returns whether an in-progress EntityAIBase should continue executing
      */
-    public boolean continueExecuting()
+    @Override
+	public boolean continueExecuting()
     {
         return this.closestEntity.isEntityAlive() && (this.theWatcher.getDistanceSqToEntity(this.closestEntity) <= (double) (this.watchDistance * this.watchDistance) && this.lookTime > 0);
     }
@@ -64,7 +66,8 @@ public class ChocoboAIWatchClosest extends EntityAIBase
     /**
      * Execute a one shot task or start executing a continuous task
      */
-    public void startExecuting()
+    @Override
+	public void startExecuting()
     {
         this.lookTime = 40 + this.theWatcher.getRNG().nextInt(40);
     }
@@ -72,7 +75,8 @@ public class ChocoboAIWatchClosest extends EntityAIBase
     /**
      * Resets the task
      */
-    public void resetTask()
+    @Override
+	public void resetTask()
     {
         this.closestEntity = null;
     }
@@ -80,7 +84,8 @@ public class ChocoboAIWatchClosest extends EntityAIBase
     /**
      * Updates the task
      */
-    public void updateTask()
+    @Override
+	public void updateTask()
     {
         this.theWatcher.getLookHelper().setLookPosition(this.closestEntity.posX, this.closestEntity.posY + (double)this.closestEntity.getEyeHeight(), this.closestEntity.posZ, 10.0F, (float)this.theWatcher.getVerticalFaceSpeed());
         --this.lookTime;

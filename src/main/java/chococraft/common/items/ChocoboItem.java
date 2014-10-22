@@ -31,6 +31,7 @@ public class ChocoboItem extends Item
 		//this.setCreativeTab(ModChocoCraft.chocoboCreativeItems);
 	}
 
+	@Override
 	public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player)
 	{
 		super.onItemRightClick(itemStack, world, player);		

@@ -69,6 +69,7 @@ public class EntityChocoboPurple extends EntityChocobo
 	}	
 
     //@SideOnly(Side.CLIENT)
+	@Override
 	public String getEntityColourTexture()
 	{
 		return "purplechocobo.png";
@@ -87,11 +88,13 @@ public class EntityChocoboPurple extends EntityChocobo
 		}
 	}
 	
-    public boolean handleLavaMovement()
+    @Override
+	public boolean handleLavaMovement()
     {
         return false;
     }
 	
+	@Override
 	public void setLandSpeedFactor(boolean mounted)
 	{
 		if (mounted)
@@ -104,11 +107,13 @@ public class EntityChocoboPurple extends EntityChocobo
 		}
 	}
 
+	@Override
 	public void setJumpHigh(boolean mounted)
 	{
 		this.canJumpHigh = mounted && Constants.CHOCOBO_PURPLE_CANJUMPHIGH;
 	}
 
+	@Override
 	public void setRiderAbilities(boolean mounted)
 	{
 		if(this.riddenByEntity instanceof EntityPlayer && ModChocoCraft.riderBuffsEnabled)

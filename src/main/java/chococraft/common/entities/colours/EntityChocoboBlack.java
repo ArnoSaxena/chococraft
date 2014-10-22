@@ -41,27 +41,32 @@ public class EntityChocoboBlack extends EntityChocobo
 		this.airbornSpeedFactor = Constants.CHOCOBO_BLACK_AIRSPEEDFACT;
 	}
 
+	@Override
 	public void writeSpawnData(ByteBuf data)
 	{
 		super.writeSpawnData(data);
 	}
 
+	@Override
 	public void readSpawnData(ByteBuf data)
 	{
 		super.readSpawnData(data);
 	}	
 	
     //@SideOnly(Side.CLIENT)
+	@Override
 	public String getEntityColourTexture()
 	{
 		return "blackchocobo.png";
 	}
 
+	@Override
 	public void writeEntityToNBT(NBTTagCompound nbttagcompound)
 	{
 		super.writeEntityToNBT(nbttagcompound);
 	}
 
+	@Override
 	public void readEntityFromNBT(NBTTagCompound nbttagcompound)
 	{
 		super.readEntityFromNBT(nbttagcompound);
@@ -92,6 +97,7 @@ public class EntityChocoboBlack extends EntityChocobo
 //		}
 //	}
 	
+	@Override
 	public void setLandSpeedFactor(boolean mounted)
 	{
 		if (mounted)
@@ -104,11 +110,13 @@ public class EntityChocoboBlack extends EntityChocobo
 		}
 	}
 	
+	@Override
 	public void setJumpHigh(boolean mounted)
 	{
 		this.canJumpHigh = mounted && Constants.CHOCOBO_BLACK_CANJUMPHIGH;
 	}
 	
+	@Override
 	public void setRiderAbilities(boolean mounted)
 	{
 		if(this.riddenByEntity instanceof EntityPlayer && ModChocoCraft.riderBuffsEnabled)
@@ -124,6 +132,7 @@ public class EntityChocoboBlack extends EntityChocobo
 		return 40.0F;
 	}
 
+	@Override
 	protected void fall(float fallHeight)
 	{
 		super.fall(fallHeight);

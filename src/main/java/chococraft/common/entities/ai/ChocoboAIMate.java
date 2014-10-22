@@ -25,7 +25,8 @@ public class ChocoboAIMate extends EntityAIBase
     /**
      * Returns whether the EntityAIBase should begin execution.
      */
-    public boolean shouldExecute()
+    @Override
+	public boolean shouldExecute()
     {
         if (!this.theChocobo.isInLove())
         {
@@ -41,7 +42,8 @@ public class ChocoboAIMate extends EntityAIBase
     /**
      * Returns whether an in-progress EntityAIBase should continue executing
      */
-    public boolean continueExecuting()
+    @Override
+	public boolean continueExecuting()
     {
         return this.targetMate.isEntityAlive() && this.targetMate.isInLove() && this.spawnBabyDelay < 3;
     }
@@ -49,7 +51,8 @@ public class ChocoboAIMate extends EntityAIBase
     /**
      * Resets the task
      */
-    public void resetTask()
+    @Override
+	public void resetTask()
     {
         this.targetMate = null;
         this.spawnBabyDelay = 0;
@@ -58,7 +61,8 @@ public class ChocoboAIMate extends EntityAIBase
     /**
      * Updates the task
      */
-    public void updateTask()
+    @Override
+	public void updateTask()
     {
         this.theChocobo.getLookHelper().setLookPositionWithEntity(this.targetMate, 10.0F, (float)this.theChocobo.getVerticalFaceSpeed());
         this.theChocobo.getNavigator().tryMoveToEntityLiving(this.targetMate, this.moveSpeed);

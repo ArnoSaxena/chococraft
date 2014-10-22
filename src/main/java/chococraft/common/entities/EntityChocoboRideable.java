@@ -148,7 +148,8 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo
 		super.onLivingUpdate();
 	}
     
-    public boolean canBePushed()
+    @Override
+	public boolean canBePushed()
     {
         return true;
     }
@@ -271,6 +272,7 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo
 		return interacted;
 	}
 
+	@Override
 	protected boolean onEmptyHandInteraction(EntityPlayer entityplayer)
 	{
 		boolean interacted = super.onEmptyHandInteraction(entityplayer);
