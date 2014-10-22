@@ -63,7 +63,7 @@ public class ClientProxyChocoCraft extends CommonProxyChocoCraft
     @Override
     public void registerEventListener()
     {
-			MinecraftForge.EVENT_BUS.register(new ChocoCraftEventClient());
+
     }
     
     @Override
