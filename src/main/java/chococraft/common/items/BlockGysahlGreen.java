@@ -14,52 +14,55 @@
 
 package chococraft.common.items;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockFlower;
-import net.minecraft.client.renderer.texture.IconRegister;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.util.Icon;
 import chococraft.common.Constants;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.block.BlockFlower;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.util.IIcon;
 
 
 public class BlockGysahlGreen extends BlockFlower
 {
-	public BlockGysahlGreen(int blockId)
+	public BlockGysahlGreen()
     {
-        super(blockId);
-        setTickRandomly(true);
+		super(0);//what does this integer do? TODO
+		setTickRandomly(true);
         float f = 0.5F;
         setBlockBounds(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, 0.25F, 0.5F + f);
-        this.setCreativeTab(CreativeTabs.tabDecorations);
-        this.disableStats();
+		this.setCreativeTab(null);
+
+		this.disableStats();
     }
 
     @SideOnly(Side.CLIENT)
     @Override
-    public Icon getIcon(int i, int j)
+    public IIcon getIcon(int i, int j)
 	{
     	return this.blockIcon;
 	}
     
     @Override
-    public void registerIcons(IconRegister iconRegister)
+    public void registerBlockIcons(IIconRegister iconRegister)
     {
     	this.blockIcon = iconRegister.registerIcon(Constants.TCC_MODID + ":" + Constants.KEY_GY_GREEN);
     }
-	
+
+	//TODO
+	/*
     @Override
 	protected boolean canThisPlantGrowOnThisBlockID(int blockId)
     {
 		boolean canGrow = false;
-		
-		if(blockId == Block.tilledField.blockID 
+		if(blockId == Block.tilledField.blockID
 				|| blockId == Block.grass.blockID
 				|| blockId == Block.dirt.blockID)
 		{
 			canGrow = true;
 		}
         return canGrow;
-    }
+
+	return true;
+	}
+	*/
 }

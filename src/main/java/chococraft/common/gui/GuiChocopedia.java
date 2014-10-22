@@ -162,9 +162,9 @@ public class GuiChocopedia extends GuiScreen
 	
     private void updateButtons()
     {
-        this.buttonNextPage.drawButton = this.currPage < ChocopediaPages.Instance().getNPages() - 1;
-        this.buttonPreviousPage.drawButton = this.currPage > 0;
-        this.buttonDone.drawButton = true;
+        this.buttonNextPage.enabled = this.currPage < ChocopediaPages.Instance().getNPages() - 1;
+        this.buttonPreviousPage.enabled = this.currPage > 0;
+        this.buttonDone.enabled = true;
     }
 
 	protected GuiButton createGuiButton(int id, int xPos, int yPos, String label)
@@ -251,7 +251,7 @@ public class GuiChocopedia extends GuiScreen
 			drawDefaultBackground();
 			String breedStatus = "";
 			String gender = this.chocobo.getGender();
-			String ownerName = (new StringBuilder()).append("owner: ").append(this.chocobo.getOwnerName()).toString();
+			String ownerName = (new StringBuilder()).append("owner: ").append(this.chocobo.func_152113_b()).toString();//getOwnerName
 			String hungry = chocobo.isHungry() ? " (hungry)" : "";
 			String health = (new StringBuilder()).append("health: ").append(chocobo.getHealth()).append("/").append(chocobo.getMaxHealth()).append(hungry).toString();
 
@@ -264,17 +264,17 @@ public class GuiChocopedia extends GuiScreen
 				breedStatus = "can breed";
 			}
 
-			this.drawCenteredString(this.fontRenderer, this.chocobo.getName(), this.width / 2, (height / 4 - 60) + 20, 0xffffff);
+			this.drawCenteredString(this.mc.fontRenderer, this.chocobo.getName(), this.width / 2, (height / 4 - 60) + 20, 0xffffff);
 
 			int posY = 24;
 			int posX = this.width / 2 + 10;
 			int fontColour = 0xa0a0a0;
 
-			this.drawString(this.fontRenderer, ownerName,   posX, (posY += 24), fontColour);
-			this.drawString(this.fontRenderer, health,      posX, (posY += 24), fontColour);
-			this.drawString(this.fontRenderer, gender + " (" + breedStatus + ")",      posX, (posY += 24), fontColour);
+			this.drawString(this.mc.fontRenderer, ownerName,   posX, (posY += 24), fontColour);
+			this.drawString(this.mc.fontRenderer, health,      posX, (posY += 24), fontColour);
+			this.drawString(this.mc.fontRenderer, gender + " (" + breedStatus + ")",      posX, (posY += 24), fontColour);
 
-			if(this.chocobo.getOwnerName().equals("Torojima"))
+			if(this.chocobo.func_152113_b().equals("Torojima") || this.chocobo.func_152113_b().equals("clienthax"))//getOwnerName
 			{
 				// it's me, display debug information
 				int debugLineHeight = 13;
@@ -286,16 +286,16 @@ public class GuiChocopedia extends GuiScreen
 				String biomeDisplayString = "Biome: " + biomeName;
 
 				String chocoAmountString = (new StringBuilder()).append("Chocos: ").append(amountChocobos).append(" wild: ").append(amountWildChocobos).toString();
-				this.drawString(this.fontRenderer, chocoAmountString,   posX, (posY += debugLineHeight), debugFontColour);
-				this.drawString(this.fontRenderer, biomeDisplayString,   posX, (posY += debugLineHeight), debugFontColour);
-				this.drawString(this.fontRenderer, "Spawn: " + ModChocoCraft.spawnDbStatus,   posX, (posY += debugLineHeight), debugFontColour);
+				this.drawString(this.mc.fontRenderer, chocoAmountString,   posX, (posY += debugLineHeight), debugFontColour);
+				this.drawString(this.mc.fontRenderer, biomeDisplayString,   posX, (posY += debugLineHeight), debugFontColour);
+				this.drawString(this.mc.fontRenderer, "Spawn: " + ModChocoCraft.spawnDbStatus,   posX, (posY += debugLineHeight), debugFontColour);
 
 				long spawnTimeDelay = this.chocobo.worldObj.getTotalWorldTime() - ModChocoCraft.spawnDbTimeDelay;
 				String spawnTimeDelayString = (new StringBuilder()).append("Spawn Time: ").append(spawnTimeDelay).toString();
-				this.drawString(this.fontRenderer, spawnTimeDelayString,   posX, (posY += debugLineHeight), debugFontColour);
+				this.drawString(this.mc.fontRenderer, spawnTimeDelayString,   posX, (posY += debugLineHeight), debugFontColour);
 
 				String statusRemoteClient = (new StringBuilder()).append("Remote Cient: ").append(Boolean.toString(ModChocoCraft.isRemoteClient)).toString();
-				this.drawString(this.fontRenderer, statusRemoteClient,   posX, (posY += debugLineHeight), debugFontColour);
+				this.drawString(this.mc.fontRenderer, statusRemoteClient,   posX, (posY += debugLineHeight), debugFontColour);
 			}
 		}
 		else
@@ -310,14 +310,14 @@ public class GuiChocopedia extends GuiScreen
 			if (this.currPage == 0)
 			{
 				int posY = 50;
-				int titelWidth = this.fontRenderer.getStringWidth(this.bookTitle);
-				this.fontRenderer.drawString(EnumChatFormatting.GOLD + this.bookTitle, xCenter + 36 + (116 - titelWidth) / 2, posY, 0);
+				int titelWidth = this.mc.fontRenderer.getStringWidth(this.bookTitle);
+				this.mc.fontRenderer.drawString(EnumChatFormatting.GOLD + this.bookTitle, xCenter + 36 + (116 - titelWidth) / 2, posY, 0);
 				
 				posY += 10;
-				int authorWidth = this.fontRenderer.getStringWidth(this.bookAuthor);
-				this.fontRenderer.drawString(EnumChatFormatting.DARK_GRAY + this.bookAuthor, xCenter + 36 + (116 - authorWidth) / 2, posY, 0);
+				int authorWidth = this.mc.fontRenderer.getStringWidth(this.bookAuthor);
+				this.mc.fontRenderer.drawString(EnumChatFormatting.DARK_GRAY + this.bookAuthor, xCenter + 36 + (116 - authorWidth) / 2, posY, 0);
 				
-				if(this.player.username.equals("Torojima"))
+				if(this.player.getDisplayName().equals("Torojima") || this.player.getDisplayName().equals("clienthax"))
 				{
 					String biomeDisplayString = "Biome: " + this.player.worldObj.getBiomeGenForCoords((int)this.player.posX, (int)this.player.posZ).biomeName;
 					String spawnStatus = "Spawn: " + ModChocoCraft.spawnDbStatus;
@@ -329,13 +329,13 @@ public class GuiChocopedia extends GuiScreen
 					String statusRemoteClient = (new StringBuilder()).append("Remote: ").append(Boolean.toString(ModChocoCraft.isRemoteClient)).toString();
 					
 					posY += 30;
-					this.fontRenderer.drawString(biomeDisplayString, xCenter + 36, posY, 0);
+					this.mc.fontRenderer.drawString(biomeDisplayString, xCenter + 36, posY, 0);
 					posY += 10;
-					this.fontRenderer.drawString(spawnStatus, xCenter + 36, posY, 0);
+					this.mc.fontRenderer.drawString(spawnStatus, xCenter + 36, posY, 0);
 					posY += 10;
-					this.fontRenderer.drawString(chocoAmountString, xCenter + 36, posY, 0);
+					this.mc.fontRenderer.drawString(chocoAmountString, xCenter + 36, posY, 0);
 					posY += 10;
-					this.fontRenderer.drawString(statusRemoteClient, xCenter + 36, posY, 0);
+					this.mc.fontRenderer.drawString(statusRemoteClient, xCenter + 36, posY, 0);
 				}
 			}
 			else
@@ -348,15 +348,15 @@ public class GuiChocopedia extends GuiScreen
 					int indicatorCurrentPage = this.currPage -1;
 					int indicatorAmountPages = ChocopediaPages.Instance().getNPages() - 2;
 					String pageIndicator = String.format(StatCollector.translateToLocal("book.pageIndicator"), new Object[] {indicatorCurrentPage, indicatorAmountPages});
-					int pageIndicatorWidth = this.fontRenderer.getStringWidth(pageIndicator);
-					this.fontRenderer.drawString(pageIndicator, xCenter - pageIndicatorWidth + this.bookImageWidth - 44, 2 + 16, 0);
+					int pageIndicatorWidth = this.mc.fontRenderer.getStringWidth(pageIndicator);
+					this.mc.fontRenderer.drawString(pageIndicator, xCenter - pageIndicatorWidth + this.bookImageWidth - 44, 2 + 16, 0);
 				}
 
 				if (this.currPage >= 0 && this.currPage < pages.getNPages())
 				{
 					pageContent = pages.getPage(this.currPage);
 				}
-				this.fontRenderer.drawSplitString(pageContent, xCenter + 36, 2 + 16 + 16, 116, 0);
+				this.mc.fontRenderer.drawSplitString(pageContent, xCenter + 36, 2 + 16 + 16, 116, 0);
 			}
 		}
 		super.drawScreen(i, j, f);

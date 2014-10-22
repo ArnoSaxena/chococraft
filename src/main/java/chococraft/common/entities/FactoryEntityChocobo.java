@@ -73,7 +73,7 @@ public class FactoryEntityChocobo
 	{
 		EntityChocobo chocobo = FactoryEntityChocobo.createNewChocobo(world, color);
 		chocobo.setName(name);
-		chocobo.setOwner(owner);
+		chocobo.func_152115_b(owner);//setOwner
 		chocobo.setHidename(hidename);
 		chocobo.setTamed(tamed);
 		chocobo.setFollowing(following);
@@ -86,7 +86,7 @@ public class FactoryEntityChocobo
 	{
 		EntityChocobo chocobo = FactoryEntityChocobo.createNewChocobo(world, sourceChocobo.color);
 		chocobo.setName(sourceChocobo.getName());
-		chocobo.setOwner(sourceChocobo.getOwnerName());
+		chocobo.func_152115_b(sourceChocobo.func_152113_b());//setOwner(getOwnerName);
 		chocobo.setHidename(sourceChocobo.isHidename());
 		chocobo.setTamed(sourceChocobo.isTamed());
 		chocobo.setFollowing(sourceChocobo.isFollowing());
@@ -110,7 +110,7 @@ public class FactoryEntityChocobo
 	{
 		EntityChicobo entityChicobo = FactoryEntityChocobo.createNewChicobo(world, color);
 		entityChicobo.setName(name);
-		entityChicobo.setOwner(owner);
+		entityChicobo.func_152115_b(owner);//setOwner
 		entityChicobo.setHidename(hidename);
 		entityChicobo.setTamed(tamed);
 		entityChicobo.setFollowing(following);

@@ -51,7 +51,7 @@ public class GuiNameChocobo extends GuiScreen
 		//this.buttonList.add(new GuiButton(1, this.width / 2 - 100, this.height / 4 + 120 + 12, stringtranslate.translateKey("gui.cancel")));
 		this.buttonList.add(new GuiButton(0, this.width / 2 - 100, this.height / 4 + 96 + 12, "Accept"));
 		this.buttonList.add(new GuiButton(1, this.width / 2 - 100, this.height / 4 + 120 + 12, "Cancel"));
-		this.theGuiTextField = new GuiTextField(this.fontRenderer, this.width / 2 - 100, 60, 200, 20);
+		this.theGuiTextField = new GuiTextField(this.mc.fontRenderer, this.width / 2 - 100, 60, 200, 20);
 		this.theGuiTextField.setText(this.chocobo.getName());
 		this.theGuiTextField.setFocused(true);
 		this.theGuiTextField.setMaxStringLength(20);
@@ -102,8 +102,8 @@ public class GuiNameChocobo extends GuiScreen
 		String s = (this.chocobo instanceof EntityChicobo) ? "Chicobo" : "Chocobo";
 		//this.drawCenteredString(this.fontRenderer, stringtranslate.translateKey((new StringBuilder()).append("Name your ").append(s).toString()), this.width / 2, (this.height / 4 - 60) + 20, 0xffffff);
 		//this.drawString(this.fontRenderer, stringtranslate.translateKey("New name:"), this.width / 2 - 100, 47, 0xa0a0a0);
-		this.drawCenteredString(this.fontRenderer, (new StringBuilder()).append("Name your ").append(s).toString(), this.width / 2, (this.height / 4 - 60) + 20, 0xffffff);
-		this.drawString(this.fontRenderer, "New name:", this.width / 2 - 100, 47, 0xa0a0a0);
+		this.drawCenteredString(this.mc.fontRenderer, (new StringBuilder()).append("Name your ").append(s).toString(), this.width / 2, (this.height / 4 - 60) + 20, 0xffffff);
+		this.drawString(this.mc.fontRenderer, "New name:", this.width / 2 - 100, 47, 0xa0a0a0);
 		this.theGuiTextField.drawTextBox();
 		super.drawScreen(i, j, f);
 	}

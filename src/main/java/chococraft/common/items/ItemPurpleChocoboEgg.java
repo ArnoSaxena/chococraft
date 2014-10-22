@@ -24,9 +24,9 @@ import chococraft.common.entities.EntityPurpleChocoboEgg;
 
 public class ItemPurpleChocoboEgg extends ChocoboItem
 {
-    public ItemPurpleChocoboEgg(int itemIndex)
+    public ItemPurpleChocoboEgg()
     {
-        super(itemIndex);
+        super();
         this.maxStackSize = 64;
         this.setUnlocalizedName(Constants.KEY_EGG_PURPLE);
 		this.setCreativeTab(CreativeTabs.tabMisc);

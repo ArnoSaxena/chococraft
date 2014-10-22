@@ -67,7 +67,7 @@ public class GuiSelectNewOwner extends GuiScreen
 		this.buttonList.add(new GuiButton(2, this.width / 2 + 90, this.height / 2 - 50, 40, 20, "last"));
 		this.buttonList.add(new GuiButton(3, this.width / 2 + 90, this.height / 2 - 20, 40, 20, "next"));
 
-		this.tfNewOnwer = new GuiTextField(this.fontRenderer, this.width / 2 - 100, this.height / 4 + 96 + 12, 180, 20);
+		this.tfNewOnwer = new GuiTextField(this.mc.fontRenderer, this.width / 2 - 100, this.height / 4 + 96 + 12, 180, 20);
 		this.tfNewOnwer.setText("");
 		this.tfNewOnwer.setFocused(true);
 		this.tfNewOnwer.setCanLoseFocus(false);
@@ -91,7 +91,7 @@ public class GuiSelectNewOwner extends GuiScreen
 
 	private GuiClickTextField createPlayerListTextField(int x, int y)
 	{
-		GuiClickTextField gctf = new GuiClickTextField(this.fontRenderer, x, y, 180, 20);
+		GuiClickTextField gctf = new GuiClickTextField(this.mc.fontRenderer, x, y, 180, 20);
 		gctf.setReceiver(this);
 		gctf.setFocused(false);
 		return gctf;
@@ -221,9 +221,9 @@ public class GuiSelectNewOwner extends GuiScreen
 		messageSB.append((this.chocobo instanceof EntityChicobo) ? "Chicobo" : "Chocobo");
 		//String message = stringtranslate.translateKey(messageSB.toString());
 		String message = messageSB.toString();
-		this.drawCenteredString(this.fontRenderer, message, this.width / 2, (this.height / 4 - 60) + 20, 0xffffff);		
+		this.drawCenteredString(this.mc.fontRenderer, message, this.width / 2, (this.height / 4 - 60) + 20, 0xffffff);
 		//this.drawString(this.fontRenderer, stringtranslate.translateKey("to new owner:"), this.width / 2 - 100, 30, 0xa0a0a0);		
-		this.drawString(this.fontRenderer, "to new owner:", this.width / 2 - 100, 30, 0xa0a0a0);		
+		this.drawString(this.mc.fontRenderer, "to new owner:", this.width / 2 - 100, 30, 0xa0a0a0);
 		this.tfNewOnwer.drawTextBox();
 		for(GuiTextField gtf : this.tfArPlayerList)
 		{
@@ -246,11 +246,11 @@ public class GuiSelectNewOwner extends GuiScreen
 			if(playerObj instanceof EntityPlayer)
 			{
 				EntityPlayer player = (EntityPlayer)playerObj;
-				if(nameStart == null || player.username.startsWith(nameStart))
+				if(nameStart == null || player.getDisplayName().startsWith(nameStart))
 				{
 					//if(!player.equals(this.chocobo.getOwner()))
 					{
-						playerNames.add(player.username);
+						playerNames.add(player.getDisplayName());
 					}
 				}
 			}

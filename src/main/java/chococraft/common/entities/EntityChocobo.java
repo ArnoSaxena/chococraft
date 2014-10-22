@@ -18,12 +18,13 @@ package chococraft.common.entities;
 import java.util.List;
 import java.util.Random;
 
+import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -36,9 +37,6 @@ import chococraft.common.entities.ai.ChocoboAIMate;
 import chococraft.common.entities.colours.EntityChocoboPurple;
 import chococraft.common.helper.ChocoboMathHelper;
 import chococraft.common.helper.ChocoboParticleHelper;
-
-import com.google.common.io.ByteArrayDataInput;
-import com.google.common.io.ByteArrayDataOutput;
 
 public abstract class EntityChocobo extends EntityChocoboRideable
 {	
@@ -74,17 +72,18 @@ public abstract class EntityChocobo extends EntityChocoboRideable
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setAttribute(this.getChocoboMaxHealth());
+		//TODO update to 1.7
+        //this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setAttribute(this.getChocoboMaxHealth());
     }
 	
 	@Override
-	public void writeSpawnData(ByteArrayDataOutput data)
+	public void writeSpawnData(ByteBuf data)
 	{
 		super.writeSpawnData(data);
 	}
 
 	@Override
-	public void readSpawnData(ByteArrayDataInput data)
+	public void readSpawnData(ByteBuf data)
 	{
 		super.readSpawnData(data);
 	}
@@ -333,12 +332,12 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 			}
 			else
 			{
-				if (itemstack.itemID == ModChocoCraft.gysahlPinkItem.itemID)
+				if (itemstack.getItem().equals(ModChocoCraft.gysahlPinkItem))
 				{
 					this.onPaint(entityplayer, true);
 					interacted = true;
 				}
-				else if (itemstack.itemID == ModChocoCraft.gysahlRedItem.itemID)
+				else if (itemstack.getItem().equals(ModChocoCraft.gysahlRedItem))
 				{
 					this.onPaint(entityplayer, false);
 					interacted = true;
@@ -348,12 +347,12 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 					this.onBreedGysahlUse(entityplayer, isGoldenGysahl(itemstack));
 					interacted = true;
 				}
-				else if (itemstack.itemID == ModChocoCraft.chocoboFeatherItem.itemID)
+				else if (itemstack.getItem().equals(ModChocoCraft.chocoboFeatherItem))
 				{
 					this.onFeatherUse(entityplayer);
 					interacted = true;
 				}
-				else if (itemstack.itemID == Item.silk.itemID)
+				else if (itemstack.getItem().equals(Items.string))
 				{
 					this.onSilkUse(entityplayer);
 					interacted = true;
@@ -448,15 +447,16 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 		}
 	}
 
-	protected int getDropItemId()
+	//TODO what do we need to override for this (1.7)
+	protected Item getDropItemId()
 	{
 		if (isBurning())
 		{
-			return ModChocoCraft.chocoboLegCookedItem.itemID;
+			return ModChocoCraft.chocoboLegCookedItem;
 		}
 		else
 		{
-			return ModChocoCraft.chocoboLegRawItem.itemID;
+			return ModChocoCraft.chocoboLegRawItem;
 		}
 	}
 

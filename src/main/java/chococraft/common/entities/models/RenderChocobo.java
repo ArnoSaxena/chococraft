@@ -40,10 +40,10 @@ public class RenderChocobo extends RenderLiving
 	public void renderChocobo(EntityChocobo entitychocobo, double d, double d1, double d2, float f, float f1)
 	{
 		int maxNameDistance = 20;
-		super.doRenderLiving(entitychocobo, d, d1, d2, f, f1);
+		super.doRender(entitychocobo, d, d1, d2, f, f1);
 		if (entitychocobo.canRenderName())
 		{
-			super.renderLivingLabel(entitychocobo, entitychocobo.getName(), d, (d1 + ModChocoCraft.renderNameHeight), d2, maxNameDistance);
+			super.func_147906_a(entitychocobo, entitychocobo.getName(), d, (d1 + ModChocoCraft.renderNameHeight), d2, maxNameDistance);//renderLivingLabel
 		}
 	}
 
@@ -58,7 +58,7 @@ public class RenderChocobo extends RenderLiving
 	}
 
 	@Override
-	public void doRenderLiving(EntityLiving entityliving, double d, double d1, double d2,
+	public void doRender(EntityLiving entityliving, double d, double d1, double d2,
 			float f, float f1)
 	{
 		renderChocobo((EntityChocobo)entityliving, d, d1, d2, f, f1);

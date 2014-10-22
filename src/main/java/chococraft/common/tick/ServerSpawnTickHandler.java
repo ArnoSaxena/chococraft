@@ -1,20 +1,24 @@
 package chococraft.common.tick;
 
-import java.util.EnumSet;
 import java.util.Iterator;
 
 import chococraft.common.ModChocoCraft;
 import chococraft.common.entities.spawner.ChocoboSpawner;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.gameevent.TickEvent;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
-import cpw.mods.fml.common.IScheduledTickHandler;
-import cpw.mods.fml.common.TickType;
 
-public class ServerSpawnTickHandler implements IScheduledTickHandler
+public class ServerSpawnTickHandler
 {
-	@Override
-	public void tickStart(EnumSet<TickType> type, Object... tickData)
+	public static int spawnTimer = 0;
+	@SubscribeEvent
+	public void worldTick(TickEvent.WorldTickEvent event)
 	{
+		if(spawnTimer++ < ModChocoCraft.spawnTimeDelay)
+			return;
+		spawnTimer = 0;
+
         Iterator<?> playerIter = MinecraftServer.getServer().getConfigurationManager().playerEntityList.iterator();
         while (playerIter.hasNext())
         {
@@ -22,27 +26,6 @@ public class ServerSpawnTickHandler implements IScheduledTickHandler
             ChocoboSpawner.doChocoboSpawning(player.worldObj, player.posX, player.posY, player.posZ);
             ModChocoCraft.spawnDbTimeDelay = player.worldObj.getTotalWorldTime();
         }
-	}
-
-	@Override
-	public void tickEnd(EnumSet<TickType> type, Object... tickData) {}
-
-	@Override
-	public EnumSet<TickType> ticks()
-	{
-		return EnumSet.of(TickType.SERVER);
-	}
-
-	@Override
-	public String getLabel()
-	{
-		return "chocobo.tick.spawn";
-	}
-
-	@Override
-	public int nextTickSpacing()
-	{
-		return ModChocoCraft.spawnTimeDelay;
 	}
 
 }

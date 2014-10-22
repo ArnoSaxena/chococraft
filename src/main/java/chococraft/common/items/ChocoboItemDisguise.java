@@ -1,9 +1,8 @@
 package chococraft.common.items;
 
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
-import net.minecraft.item.EnumArmorMaterial;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import chococraft.common.Constants;
@@ -23,9 +22,9 @@ public class ChocoboItemDisguise extends ItemArmor
     public final int renderIndex;
     private final ChocoboArmourMaterial material;
 
-	public ChocoboItemDisguise(int itemIndex, ChocoboArmourMaterial armourMaterial, int renderIndex, int armorType)
+	public ChocoboItemDisguise(ChocoboArmourMaterial armourMaterial, int renderIndex, int armorType)
 	{
-		super(itemIndex, EnumArmorMaterial.GOLD, renderIndex, armorType);
+		super(ArmorMaterial.GOLD, renderIndex, armorType);
 		this.material = armourMaterial;
 		this.renderIndex = renderIndex;
 		this.damageReduceAmount = this.material.getDamageReductionAmount(this.armorType);
@@ -36,7 +35,7 @@ public class ChocoboItemDisguise extends ItemArmor
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public void registerIcons(IconRegister iconRegister)
+	public void registerIcons(IIconRegister iconRegister)
 	{
 		String name = this.getUnlocalizedName().substring(5);
 		this.itemIcon = iconRegister.registerIcon(Constants.TCC_MODID + ":" + name);
@@ -53,21 +52,21 @@ public class ChocoboItemDisguise extends ItemArmor
     }
 
 	@Override
-    public String getArmorTexture(ItemStack itemstack, Entity entity, int slot, int layer)
+    public String getArmorTexture(ItemStack itemstack, Entity entity, int slot, String type)
 	{
-	    if (itemstack.itemID == ModChocoCraft.chocoDisguiseHelmetItem.itemID)
+	    if (itemstack.getItem().equals(ModChocoCraft.chocoDisguiseHelmetItem))
 	    {
 	      return Constants.CHOCOBO_ARMOUR_TEXTURES_1;
 	    }
-	    if (itemstack.itemID == ModChocoCraft.chocoDisguisePlateItem.itemID)
+	    if (itemstack.getItem().equals(ModChocoCraft.chocoDisguisePlateItem))
 	    {
 	      return Constants.CHOCOBO_ARMOUR_TEXTURES_1;
 	    }
-	    if (itemstack.itemID == ModChocoCraft.chocoDisguiseLegsItem.itemID)
+	    if (itemstack.getItem().equals(ModChocoCraft.chocoDisguiseLegsItem))
 	    {
 	      return Constants.CHOCOBO_ARMOUR_TEXTURES_2;
 	    }
-	    if (itemstack.itemID == ModChocoCraft.chocoDisguiseBootsItem.itemID)
+	    if (itemstack.getItem().equals(ModChocoCraft.chocoDisguiseBootsItem))
 	    {
 	      return Constants.CHOCOBO_ARMOUR_TEXTURES_1;
 	    }

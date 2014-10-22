@@ -14,6 +14,7 @@
 
 package chococraft.common.entities.colours;
 
+import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
@@ -24,9 +25,6 @@ import chococraft.common.ModChocoCraft;
 import chococraft.common.entities.EntityAnimalChocobo;
 import chococraft.common.entities.EntityChicobo;
 import chococraft.common.entities.EntityChocobo;
-
-import com.google.common.io.ByteArrayDataInput;
-import com.google.common.io.ByteArrayDataOutput;
 
 public class EntityChocoboPurple extends EntityChocobo
 {	
@@ -46,13 +44,13 @@ public class EntityChocoboPurple extends EntityChocobo
 	}
 
 	@Override
-	public void writeSpawnData(ByteArrayDataOutput data)
+	public void writeSpawnData(ByteBuf data)
 	{
 		super.writeSpawnData(data);
 	}
 
 	@Override
-	public void readSpawnData(ByteArrayDataInput data)
+	public void readSpawnData(ByteBuf data)
 	{
 		super.readSpawnData(data);
 	}
@@ -165,11 +163,13 @@ public class EntityChocoboPurple extends EntityChocobo
 		}
 	}
 
-	@Override
+	//TODO update to 1.7
+/*	@Override
 	protected int getDropItemId()
 	{
 		return ModChocoCraft.chocoboLegRawItem.itemID;
 	}
+*/
 
 	// purple special
 	@Override
@@ -186,7 +186,7 @@ public class EntityChocoboPurple extends EntityChocobo
 			this.entityToAttack = null;
 			otherParent.entityToAttack = null;
 			int eggAmount = this.rand.nextInt(10) == 0 ? 3 : 1;
-			this.dropItem(ModChocoCraft.purpleChocoboEggItem.itemID, eggAmount);
+			this.dropItem(ModChocoCraft.purpleChocoboEggItem, eggAmount);
 		}
 	}
 

@@ -14,41 +14,41 @@
 
 package chococraft.common.items;
 
-import java.util.ArrayList;
-import java.util.Random;
-
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockFlower;
-import net.minecraft.client.renderer.texture.IconRegister;
-import net.minecraft.entity.item.EntityItem;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
-import net.minecraft.world.World;
 import chococraft.common.Constants;
 import chococraft.common.ModChocoCraft;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockFlower;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.IIcon;
+import net.minecraft.world.World;
+
+import java.util.ArrayList;
+import java.util.Random;
 
 
 public class BlockGysahlStem extends BlockFlower
 {
 	static final int MAX_STAGE = 4; 
-	private ArrayList<Icon> icons;
+	private ArrayList<IIcon> icons;
 	
-	public BlockGysahlStem(int blockId)
+	public BlockGysahlStem()
     {
-        super(blockId);
+        super(5);//what is this!?
         this.setTickRandomly(true);
         float f = 0.5F;
         this.setBlockBounds(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, 0.25F, 0.5F + f);
         this.setCreativeTab(null);
         this.disableStats();
-        this.setStepSound(soundGrassFootstep);
+        this.setStepSound(soundTypeGrass);
     }
 
     @SideOnly(Side.CLIENT)
     @Override
-    public Icon getIcon(int i, int j)
+    public IIcon getIcon(int i, int j)
 	{
     	if(j < this.icons.size())
     	{
@@ -58,9 +58,9 @@ public class BlockGysahlStem extends BlockFlower
 	}
     
     @Override
-    public void registerIcons(IconRegister iconRegister)
+    public void registerBlockIcons(IIconRegister iconRegister)
     {
-    	this.icons = new ArrayList<Icon>();
+    	this.icons = new ArrayList<IIcon>();
     	this.icons.add(0, iconRegister.registerIcon(Constants.TCC_MODID + ":" + Constants.KEY_GY_STEM01));
     	this.icons.add(1, iconRegister.registerIcon(Constants.TCC_MODID + ":" + Constants.KEY_GY_STEM02));
     	this.icons.add(2, iconRegister.registerIcon(Constants.TCC_MODID + ":" + Constants.KEY_GY_STEM03));
@@ -93,25 +93,27 @@ public class BlockGysahlStem extends BlockFlower
 	private float getGrowthRate(World theWorld, int xPos, int yPos, int zPos)
     {
         float growRate = 1.0F;
-        int i = theWorld.getBlockId(xPos, yPos, zPos - 1);
-        int j = theWorld.getBlockId(xPos, yPos, zPos + 1);
-        int k = theWorld.getBlockId(xPos - 1, yPos, zPos);
-        int l = theWorld.getBlockId(xPos + 1, yPos, zPos);
-        int i1 = theWorld.getBlockId(xPos - 1, yPos, zPos - 1);
-        int j1 = theWorld.getBlockId(xPos + 1, yPos, zPos - 1);
-        int k1 = theWorld.getBlockId(xPos + 1, yPos, zPos + 1);
-        int l1 = theWorld.getBlockId(xPos - 1, yPos, zPos + 1);
-        boolean samePlantLeftOrRight = k == blockID || l == blockID;
-        boolean samePlantFrontOrBack = i == blockID || j == blockID;
-        boolean samePlantAnyCorner = i1 == blockID || j1 == blockID || k1 == blockID || l1 == blockID;
+        Block i = theWorld.getBlock(xPos, yPos, zPos - 1);
+		Block j = theWorld.getBlock(xPos, yPos, zPos + 1);
+		Block k = theWorld.getBlock(xPos - 1, yPos, zPos);
+		Block l = theWorld.getBlock(xPos + 1, yPos, zPos);
+		Block i1 = theWorld.getBlock(xPos - 1, yPos, zPos - 1);
+		Block j1 = theWorld.getBlock(xPos + 1, yPos, zPos - 1);
+		Block k1 = theWorld.getBlock(xPos + 1, yPos, zPos + 1);
+		Block l1 = theWorld.getBlock(xPos - 1, yPos, zPos + 1);
+
+        boolean samePlantLeftOrRight = k.equals(this) || l.equals(this);//k == blockID || l == blockID;
+        boolean samePlantFrontOrBack = i.equals(this) || j.equals(this);//i == blockID || j == blockID;
+        boolean samePlantAnyCorner = i1.equals(this) || j1.equals(this) || k1.equals(this) || l1.equals(this);;//i1 == blockID || j1 == blockID || k1 == blockID || l1 == blockID;
 
         for (int xTmp = xPos - 1; xTmp <= xPos + 1; xTmp++)
         {
             for (int zTmp = zPos - 1; zTmp <= zPos + 1; zTmp++)
             {
-                int baseBlockId = theWorld.getBlockId(xTmp, yPos - 1, zTmp);
+                Block baseBlockId = theWorld.getBlock(xTmp, yPos - 1, zTmp);
                 float tmpGrowRate = 0.0F;
-
+//TODO update to 1.7
+				/*
                 if (this.canThisPlantGrowOnThisBlockID(baseBlockId))
                 {
                     tmpGrowRate = 1.0F;
@@ -120,7 +122,7 @@ public class BlockGysahlStem extends BlockFlower
                     {
                         tmpGrowRate = 3F;
                     }
-                }
+                }*/
 
                 if (xTmp != xPos || zTmp != zPos)
                 {
@@ -138,7 +140,9 @@ public class BlockGysahlStem extends BlockFlower
 
         return growRate;
     }
-	
+
+	//TODO update to 1.7
+	/*
     @Override
 	protected boolean canThisPlantGrowOnThisBlockID(int blockId)
     {
@@ -149,9 +153,9 @@ public class BlockGysahlStem extends BlockFlower
 			canGrow = true;
 		}
         return canGrow;
-    }
+    }*/
     
-	//TODO check this
+	//TODO check this - old
     @Override
     public void dropBlockAsItemWithChance(World world, int i, int j, int k, int l, float f, int i1)
     {
@@ -176,6 +180,9 @@ public class BlockGysahlStem extends BlockFlower
     	}
     }
 
+
+	//TODO update to 1.7
+	/*
     @Override
     public int idDropped(int i, Random random, int j)
     {
@@ -202,7 +209,9 @@ public class BlockGysahlStem extends BlockFlower
             return -1;
         }
     }
+*/
 
+	//Called from a event , does not need override
 	public boolean onBonemealUse(World theWorld, int xPos, int yPos, int zPos)
 	{
 		if(theWorld.getBlockMetadata(xPos, yPos, zPos) < MAX_STAGE)

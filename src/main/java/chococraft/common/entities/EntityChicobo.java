@@ -15,22 +15,18 @@
 
 package chococraft.common.entities;
 
+import chococraft.common.Constants;
+import chococraft.common.ModChocoCraft;
+import chococraft.common.helper.ChocoboEntityHelper;
+import chococraft.common.network.PacketRegistry;
+import chococraft.common.network.clientSide.ChicoboCanGrowUp;
+import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.EntityAgeable;
-import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
-import chococraft.common.Constants;
-import chococraft.common.ModChocoCraft;
-import chococraft.common.helper.ChocoboEntityHelper;
-import chococraft.common.network.clientSide.PacketChicoboCanGrowUp;
-
-import com.google.common.io.ByteArrayDataInput;
-import com.google.common.io.ByteArrayDataOutput;
-
-import cpw.mods.fml.common.network.PacketDispatcher;
 
 
 public class EntityChicobo extends EntityAnimalChocobo
@@ -70,7 +66,8 @@ public class EntityChicobo extends EntityAnimalChocobo
 	public void setColor(chocoboColor color)
 	{
 		this.color = color;
-        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setAttribute(this.getColorMaxHealth());
+		//TODO update to 1.7
+//        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setAttribute(this.getColorMaxHealth());
 		this.setHealth(this.getColorMaxHealth());
 		if (color == chocoboColor.PURPLE)
 		{
@@ -82,12 +79,13 @@ public class EntityChicobo extends EntityAnimalChocobo
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setAttribute(10);
-        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setAttribute(0.25D);
+		//TODO update to 1.7
+//        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setAttribute(10);
+//        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setAttribute(0.25D);
     }
 
 	@Override
-	public void writeSpawnData(ByteArrayDataOutput data)
+	public void writeSpawnData(ByteBuf data)
 	{
 		super.writeSpawnData(data);
 
@@ -98,7 +96,7 @@ public class EntityChicobo extends EntityAnimalChocobo
 	}
 
 	@Override
-	public void readSpawnData(ByteArrayDataInput data)
+	public void readSpawnData(ByteBuf data)
 	{
 		super.readSpawnData(data);
 		
@@ -304,7 +302,7 @@ public class EntityChicobo extends EntityAnimalChocobo
 			ItemStack itemstack = entityplayer.inventory.getCurrentItem();
 			if(itemstack != null)
 			{
-				if (itemstack.itemID == ModChocoCraft.gysahlCakeItem.itemID)
+				if (itemstack.getItem().equals(ModChocoCraft.gysahlCakeItem))
 				{
 					this.onGysahlCakeUse(entityplayer);
 					interacted = true;
@@ -314,7 +312,7 @@ public class EntityChicobo extends EntityAnimalChocobo
 //					this.onGysahlChibiUse(entityplayer);
 //					interacted = true;
 //				}
-				else if (itemstack.itemID == ModChocoCraft.chocoboFeatherItem.itemID)
+				else if (itemstack.getItem().equals(ModChocoCraft.chocoboFeatherItem))
 				{
 					this.onFeatherUse(entityplayer);
 					interacted = true;
@@ -412,7 +410,7 @@ public class EntityChicobo extends EntityAnimalChocobo
 	@Override
 	public boolean canRenderName()
 	{
-		return super.canRenderName() && this.getName() != "";
+		return super.canRenderName() && !this.getName().equals("");
 	}
 
 	@Override
@@ -430,8 +428,8 @@ public class EntityChicobo extends EntityAnimalChocobo
 	{
 		if(this.isClient())
 		{
-			PacketChicoboCanGrowUp packet = new PacketChicoboCanGrowUp(this);
-			PacketDispatcher.sendPacketToServer(packet.getPacket());
+			ChicoboCanGrowUp packet = new ChicoboCanGrowUp(this);
+			PacketRegistry.INSTANCE.sendToServer(packet);
 		}		
 	}
 }

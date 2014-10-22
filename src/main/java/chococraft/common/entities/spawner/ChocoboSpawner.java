@@ -141,7 +141,8 @@ public final class ChocoboSpawner
 				int chocoPosY = 0;
 				if(ChocoboBiomeHelper.isWorldHell(world))
 				{
-					chocoPosY = world.getFirstUncoveredBlock(chocoPosX, chocoPosZ);
+					//chocoPosY = world.getFirstUncoveredBlock(chocoPosX, chocoPosZ);//shouldn't work anyway, this returned block id
+					chocoPosY = world.getTopSolidOrLiquidBlock(chocoPosX, chocoPosZ);
 				}
 				else
 				{
@@ -221,7 +222,8 @@ public final class ChocoboSpawner
 		int tmpPosY = 0;
 		if(ChocoboBiomeHelper.isWorldHell(world))
 		{
-			tmpPosY = world.getFirstUncoveredBlock(tmpPosX, tmpPosZ);
+			//tmpPosY = world.getFirstUncoveredBlock(tmpPosX, tmpPosZ);
+			tmpPosY = world.getTopSolidOrLiquidBlock(tmpPosX, tmpPosZ);
 		}
 		else
 		{
@@ -253,7 +255,7 @@ public final class ChocoboSpawner
 		}
 		
 		//Boolean notLiquidCube = !world.getBlockMaterial(posX, posY, posZ).isLiquid();
-		if(world.getBlockMaterial(posX, posY, posZ).isLiquid())
+		if(world.getBlock(posX, posY, posZ).getMaterial().isLiquid())
 		{
 			return false;
 		}
@@ -280,7 +282,7 @@ public final class ChocoboSpawner
 		{
 			for(int z = posZ -1; z <= posZ +1; z++)
 			{
-				if(!world.isBlockNormalCube(x, posY, z))
+				if(!world.getBlock(x, posY, z).isNormalCube())
 				{
 					return false;
 				}

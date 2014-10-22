@@ -14,7 +14,7 @@
 
 package chococraft.common.items;
 
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -26,9 +26,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class ChocoboItem extends Item
 {
-	public ChocoboItem(int itemId)
+	public ChocoboItem()
 	{
-		super(itemId);
 		//this.setCreativeTab(ModChocoCraft.chocoboCreativeItems);
 	}
 
@@ -40,7 +39,7 @@ public class ChocoboItem extends Item
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public void registerIcons(IconRegister iconRegister)
+	public void registerIcons(IIconRegister iconRegister)
 	{
 		String name = this.getUnlocalizedName().substring(5);
 		this.itemIcon = iconRegister.registerIcon(Constants.TCC_MODID + ":" + name);

@@ -1,42 +1,41 @@
 package chococraft.common.items;
 
-import java.util.Random;
-
 import chococraft.common.Constants;
-
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+
+import java.util.Random;
 
 
 
 public class BlockStraw extends Block
 {
-    public BlockStraw(int par1)
+    public BlockStraw()
     {
-        super(par1, Material.circuits);
+        super(Material.circuits);
         this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.0625F, 1.0F);
         this.setCreativeTab(CreativeTabs.tabDecorations);
     }
     
     @SideOnly(Side.CLIENT)
     @Override
-    public Icon getIcon(int i, int j)
+    public IIcon getIcon(int i, int j)
 	{
     	return this.blockIcon;
 	}
     
     @Override
-    public void registerIcons(IconRegister iconRegister)
+    public void registerBlockIcons(IIconRegister iconRegister)
     {
     	this.blockIcon = iconRegister.registerIcon(Constants.TCC_MODID + ":" + Constants.KEY_STRAW);
     }
@@ -80,7 +79,7 @@ public class BlockStraw extends Block
     }
 
     @Override
-    public void onNeighborBlockChange(World world, int posX, int posY, int posZ, int par5)
+    public void onNeighborBlockChange(World world, int posX, int posY, int posZ, Block par5)
     {
         this.canStrawStay(world, posX, posY, posZ);
     }
@@ -89,7 +88,7 @@ public class BlockStraw extends Block
     {
         if (!this.canPlaceBlockAt(world, posX, posY, posZ))
         {
-            world.setBlock(posX, posY, posZ, this.blockID, 0, 2);
+            world.setBlock(posX, posY, posZ, this, 0, 2);
             return false;
         }
         else
@@ -104,9 +103,8 @@ public class BlockStraw extends Block
     @Override
     public boolean canPlaceBlockAt(World world, int posX, int posY, int posZ)
     {
-        int atBlockId = world.getBlockId(posX, posY - 1, posZ);
-        Block block = Block.blocksList[atBlockId];
-        return block != null && (Block.blocksList[atBlockId].isOpaqueCube()) ? world.getBlockMaterial(posX, posY - 1, posZ).blocksMovement() : false;
+        Block block = world.getBlock(posX, posY - 1, posZ);
+        return block != null && (block.isOpaqueCube()) ? block.getMaterial().blocksMovement() : false;
     }
 
     /**
@@ -124,11 +122,12 @@ public class BlockStraw extends Block
     /**
      * Returns the ID of the items to drop on destruction.
      */
-    @Override
+	//TODO update to 1.7
+    /*@Override
     public int idDropped(int par1, Random par2Random, int par3)
     {
-        return this.blockID;
-    }
+        return this.itemid;
+    }*/
 
     /**
      * Returns the quantity of items to drop on block destruction.
@@ -153,7 +152,7 @@ public class BlockStraw extends Block
     {
         if (world.getSavedLightValue(EnumSkyBlock.Block, posX, posY, posZ) > 11)
         {
-            world.setBlock(posX, posY, posZ, this.blockID, 0, 2);
+            world.setBlock(posX, posY, posZ, this, 0, 2);
         }
     }
 

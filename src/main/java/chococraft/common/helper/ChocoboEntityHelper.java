@@ -19,6 +19,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.ActiveRenderInfo;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.ChunkPosition;
@@ -85,14 +86,14 @@ public class ChocoboEntityHelper
     {
     	Vec3 vector = ActiveRenderInfo.projectViewFromEntity(entity, 90.0F);
         ChunkPosition chunkPos = new ChunkPosition(vector);
-        int blockFrontId = world.getBlockId(chunkPos.x, chunkPos.y, chunkPos.z);
-        int blockAboveId = world.getBlockId(chunkPos.x, chunkPos.y + 1, chunkPos.z);
-        if(0 == blockFrontId || 0 == blockAboveId)
+        Block blockFront = world.getBlock(chunkPos.chunkPosX, chunkPos.chunkPosY, chunkPos.chunkPosZ);
+        Block blockAbove = world.getBlock(chunkPos.chunkPosX, chunkPos.chunkPosY + 1, chunkPos.chunkPosZ);
+        if(blockAbove.equals(Blocks.air) || blockFront.equals(Blocks.air))
         {
         	return false;
         }
-        boolean frontWater = Block.blocksList[blockFrontId].blockMaterial == Material.water;
-        boolean aboveWater = Block.blocksList[blockAboveId].blockMaterial == Material.water;
+        boolean frontWater = blockFront.getMaterial().equals(Material.water);
+        boolean aboveWater = blockAbove.getMaterial().equals(Material.water);
         if(frontWater && aboveWater)
         {
         	return true;

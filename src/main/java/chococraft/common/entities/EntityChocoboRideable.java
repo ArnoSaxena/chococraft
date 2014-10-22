@@ -14,6 +14,15 @@
 
 package chococraft.common.entities;
 
+import chococraft.common.Constants;
+import chococraft.common.ModChocoCraft;
+import chococraft.common.bags.ChocoBagInventory;
+import chococraft.common.bags.ChocoPackBagInventory;
+import chococraft.common.bags.ChocoSaddleBagInventory;
+import chococraft.common.network.PacketRegistry;
+import chococraft.common.network.serverSide.ChocoboDropGear;
+import chococraft.common.network.serverSide.ChocoboMount;
+import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -21,17 +30,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
-import chococraft.common.Constants;
-import chococraft.common.ModChocoCraft;
-import chococraft.common.bags.ChocoBagInventory;
-import chococraft.common.bags.ChocoPackBagInventory;
-import chococraft.common.bags.ChocoSaddleBagInventory;
-import chococraft.common.network.serverSide.PacketChocoboDropGear;
-import chococraft.common.network.serverSide.PacketChocoboMount;
-import com.google.common.io.ByteArrayDataInput;
-import com.google.common.io.ByteArrayDataOutput;
-import cpw.mods.fml.common.network.PacketDispatcher;
-
 
 public abstract class EntityChocoboRideable extends EntityAnimalChocobo
 {
@@ -101,16 +99,18 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo
 		this.setWander(!this.isFollowing() && !this.isSaddled() && !this.isPackBagged());
 		if(nbttagcompound.hasKey("SaddleBagInventory") && null != this.bagsInventory)
 		{
-			this.bagsInventory.readFromNBT(nbttagcompound.getTagList("SaddleBagInventory"));
+			//TODO rewrite nbt
+			//this.bagsInventory.readFromNBT(nbttagcompound.getTagList("SaddleBagInventory"));
 		}
 		if(nbttagcompound.hasKey("riderList") && null != this.riderList)
 		{
-			this.riderList.readFromNBT(nbttagcompound.getTagList("riderList"));
+			//TODO rewrite nbt
+			//this.riderList.readFromNBT(nbttagcompound.getTagList("riderList"));
 		}
 	}    
 
     @Override
-	public void writeSpawnData(ByteArrayDataOutput data)
+	public void writeSpawnData(ByteBuf data)
 	{
 		super.writeSpawnData(data);
 		data.writeBoolean(this.isSaddled());
@@ -119,7 +119,7 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo
 	}
 
     @Override
-	public void readSpawnData(ByteArrayDataInput data)
+	public void readSpawnData(ByteBuf data)
 	{
 		super.readSpawnData(data);
 		this.setSaddled(data.readBoolean());
@@ -162,18 +162,18 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo
 		{
 			if(this.isSaddled())
 			{
-				this.dropItem(ModChocoCraft.chocoboSaddleItem.itemID, 1);
+				this.dropItem(ModChocoCraft.chocoboSaddleItem, 1);
 			}
 			
 			if(this.isSaddleBagged())
 			{
-				this.dropItem(ModChocoCraft.chocoboSaddleBagsItem.itemID, 1);
+				this.dropItem(ModChocoCraft.chocoboSaddleBagsItem, 1);
 				this.bagsInventory.dropAllItems();
 			}
 			
 			if(this.isPackBagged())
 			{
-				this.dropItem(ModChocoCraft.chocoboPackBagsItem.itemID, 1);
+				this.dropItem(ModChocoCraft.chocoboPackBagsItem, 1);
 				this.bagsInventory.dropAllItems();
 			}
 		}
@@ -195,22 +195,22 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo
 			ItemStack itemstack = entityplayer.inventory.getCurrentItem();
 			if(itemstack != null)
 			{
-				if (itemstack.itemID == ModChocoCraft.chocoboSaddleItem.itemID)
+				if (itemstack.getItem().equals(ModChocoCraft.chocoboSaddleItem))
 				{
 					this.onSaddleUse(entityplayer);
 					interacted = true;
 				}
-				else if (itemstack.itemID == ModChocoCraft.chocoboSaddleBagsItem.itemID)
+				else if (itemstack.getItem().equals(ModChocoCraft.chocoboSaddleBagsItem))
 				{
 					this.onSaddleBagsUse(entityplayer);
 					interacted = true;
 				}
-				else if (itemstack.itemID == ModChocoCraft.chocoboPackBagsItem.itemID)
+				else if (itemstack.getItem().equals(ModChocoCraft.chocoboPackBagsItem))
 				{
 					this.onPackBagsUse(entityplayer);
 					interacted = true;
 				}
-				else if (itemstack.itemID == ModChocoCraft.chocoboWhistleItem.itemID)
+				else if (itemstack.getItem().equals(ModChocoCraft.chocoboWhistleItem))
 				{
 					this.onWhistleUse();
 					interacted = true;
@@ -263,12 +263,12 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo
 
 		if(entityplayer.isSneaking() && this.isSaddleBagged())
 		{
-			entityplayer.openGui(ModChocoCraft.instance, 0, worldObj, this.entityId, 0, 0);
+			entityplayer.openGui(ModChocoCraft.instance, 0, worldObj, this.getEntityId(), 0, 0);
 			interacted = true;
 		}
 		else if (entityplayer.isSneaking() && this.isPackBagged())
 		{
-			entityplayer.openGui(ModChocoCraft.instance, 0, worldObj, this.entityId, 1, 0);
+			entityplayer.openGui(ModChocoCraft.instance, 0, worldObj, this.getEntityId(), 1, 0);
 			interacted = true;
 		}
 		return interacted;
@@ -537,8 +537,8 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo
 	{
 		if(this.isClient())
 		{
-			PacketChocoboMount packet = new PacketChocoboMount(this);
-			PacketDispatcher.sendPacketToServer(packet.getPacket());
+			ChocoboMount packet = new ChocoboMount(this);
+			PacketRegistry.INSTANCE.sendToServer(packet);
 		}
 	}
 	
@@ -546,8 +546,8 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo
 	{
 		if(this.isClient())
 		{
-			PacketChocoboDropGear packet = new PacketChocoboDropGear(this);
-			PacketDispatcher.sendPacketToServer(packet.getPacket());
+			ChocoboDropGear packet = new ChocoboDropGear(this);
+			PacketRegistry.INSTANCE.sendToServer(packet);
 			this.setSaddleBagged(false);
 			this.setSaddled(false);
 			this.setPackBagged(false);

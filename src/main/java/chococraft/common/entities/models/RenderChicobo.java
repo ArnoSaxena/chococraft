@@ -35,11 +35,11 @@ public class RenderChicobo extends RenderLiving
     public void renderChicobo(EntityChicobo entitychicobo, double d, double d1, double d2,
             float f, float f1)
     {
-        super.doRenderLiving(entitychicobo, d, d1, d2, f, f1);
+        super.doRender(entitychicobo, d, d1, d2, f, f1);
         if (entitychicobo.canRenderName())
         {
         	String tmpName = entitychicobo.getName();
-            super.renderLivingLabel(entitychicobo, tmpName, d, d1, d2, 20);
+            super.func_147906_a(entitychicobo, tmpName, d, d1, d2, 20);//renderLivingLabel
         }
     }
 

@@ -1,17 +1,18 @@
 package chococraft.client;
 
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.client.event.sound.SoundLoadEvent;
-import net.minecraftforge.event.ForgeSubscribe;
 import chococraft.common.ChocoCraftEventCommon;
 
 public class ChocoCraftEventClient extends ChocoCraftEventCommon
 {
-    @ForgeSubscribe
+    @SubscribeEvent
     public void onSound(SoundLoadEvent event)
     {
         try
         {
-            event.manager.addSound("chococraft:choco_kweh.ogg");
+			//TODO update to 1.7
+//            event.manager.addSound("chococraft:choco_kweh.ogg");
         }
         catch (Exception e)
         {

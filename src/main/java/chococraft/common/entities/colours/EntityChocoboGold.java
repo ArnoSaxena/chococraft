@@ -14,6 +14,7 @@
 
 package chococraft.common.entities.colours;
 
+import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
@@ -22,9 +23,6 @@ import chococraft.common.Constants;
 import chococraft.common.entities.EntityChocobo;
 import chococraft.common.entities.FactoryEntityChocobo;
 import chococraft.common.helper.ChocoboParticleHelper;
-
-import com.google.common.io.ByteArrayDataInput;
-import com.google.common.io.ByteArrayDataOutput;
 
 public class EntityChocoboGold extends EntityChocobo
 {
@@ -43,12 +41,12 @@ public class EntityChocoboGold extends EntityChocobo
 		this.airbornSpeedFactor = Constants.CHOCOBO_GOLD_AIRSPEEDFACT;
 	}
 
-	public void writeSpawnData(ByteArrayDataOutput data)
+	public void writeSpawnData(ByteBuf data)
 	{
 		super.writeSpawnData(data);
 	}
 
-	public void readSpawnData(ByteArrayDataInput data)
+	public void readSpawnData(ByteBuf data)
 	{
 		super.readSpawnData(data);
 	}
@@ -167,7 +165,7 @@ public class EntityChocoboGold extends EntityChocobo
 
 		if (this.isServer())
 		{
-			EntityChocobo entitychocobo = FactoryEntityChocobo.createChocobo(this.worldObj, isPink ? chocoboColor.PINK : chocoboColor.RED, this.getName(), this.getOwnerName(), this.isHidename(), this.isTamed(), this.isFollowing(), this.isWander(), this.isMale());
+			EntityChocobo entitychocobo = FactoryEntityChocobo.createChocobo(this.worldObj, isPink ? chocoboColor.PINK : chocoboColor.RED, this.getName(), this.func_152113_b()/*this.getOwnerName()*/, this.isHidename(), this.isTamed(), this.isFollowing(), this.isWander(), this.isMale());
 			entitychocobo.setLocationAndAngles(posX, posY, posZ, rotationYaw, 0.0F);
 			entitychocobo.setGrowingAge(this.getGrowingAge());
 			entitychocobo.setSaddled(this.isSaddled());

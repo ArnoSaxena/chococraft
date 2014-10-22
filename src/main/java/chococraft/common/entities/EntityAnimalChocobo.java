@@ -18,13 +18,20 @@ package chococraft.common.entities;
 import java.util.List;
 import java.util.Random;
 
+import chococraft.common.network.PacketRegistry;
+import chococraft.common.network.clientSide.*;
+import chococraft.common.network.clientSide.ChocoboChangeOwner;
+import chococraft.common.network.serverSide.ChocoboSetInLove;
+import cpw.mods.fml.common.network.ByteBufUtils;
+import cpw.mods.fml.common.network.NetworkRegistry;
+import io.netty.buffer.ByteBuf;
 import net.minecraft.block.Block;
-import net.minecraft.block.StepSound;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ai.EntityAIPanic;
 import net.minecraft.entity.passive.EntityTameable;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.pathfinding.PathEntity;
@@ -45,18 +52,7 @@ import chococraft.common.gui.GuiStarter;
 import chococraft.common.helper.ChocoboEntityHelper;
 import chococraft.common.helper.ChocoboMathHelper;
 import chococraft.common.helper.ChocoboParticleHelper;
-import chococraft.common.network.clientSide.PacketChocoboHealth;
-import chococraft.common.network.clientSide.PacketChocoboHunger;
-import chococraft.common.network.clientSide.PacketChocoboParticles;
-import chococraft.common.network.clientSide.PacketChocoboTamed;
-import chococraft.common.network.serverSide.PacketChocoboAttribute;
-import chococraft.common.network.serverSide.PacketChocoboChangeOwner;
-import chococraft.common.network.serverSide.PacketChocoboSetInLove;
 
-import com.google.common.io.ByteArrayDataInput;
-import com.google.common.io.ByteArrayDataOutput;
-
-import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
 
 public abstract class EntityAnimalChocobo extends EntityTameable implements IEntityAdditionalSpawnData
@@ -177,23 +173,23 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
     }
     
     @Override
-    public void writeSpawnData(ByteArrayDataOutput data)
+    public void writeSpawnData(ByteBuf buf)
     {
-    	data.writeUTF(this.getName());
-    	data.writeBoolean(this.isMale());
-    	data.writeBoolean(this.isHidename());
-    	data.writeBoolean(this.isWander());
-    	data.writeBoolean(this.isFollowing());
+		ByteBufUtils.writeUTF8String(buf, this.getName());
+		buf.writeBoolean(this.isMale());
+		buf.writeBoolean(this.isHidename());
+		buf.writeBoolean(this.isWander());
+		buf.writeBoolean(this.isFollowing());
 	}
 
     @Override
-	public void readSpawnData(ByteArrayDataInput data)
+	public void readSpawnData(ByteBuf buf)
 	{
-		this.setName(data.readUTF());
-		this.setIsMale(data.readBoolean());
-		this.setHidename(data.readBoolean());
-		this.setWander(data.readBoolean());
-		this.setFollowing(data.readBoolean());
+		this.setName(ByteBufUtils.readUTF8String(buf));
+		this.setIsMale(buf.readBoolean());
+		this.setHidename(buf.readBoolean());
+		this.setWander(buf.readBoolean());
+		this.setFollowing(buf.readBoolean());
 	}
 	
 	abstract public String getEntityTexture();
@@ -418,19 +414,19 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
 	
 	public EntityPlayer getOwner()
     {
-		EntityPlayer owner = this.worldObj.getPlayerEntityByName(this.getOwnerName());		
+		EntityPlayer owner = this.worldObj.getPlayerEntityByName(this.func_152113_b());//getOwnerName
 		if(null == owner)
 		{
 
 			if(this.worldObj.playerEntities.size() == 1)
 			{
-				if(this.getOwnerName().equals("Player"))
+				if(this.func_152113_b().equals("Player"))//getOwnerName
 				{
 					Object playerObj = this.worldObj.playerEntities.get(0);
 					if(playerObj instanceof EntityPlayer)
 					{
 						EntityPlayer updatedOwner = (EntityPlayer)playerObj;
-						this.setOwner(updatedOwner.username);
+						this.func_152115_b(updatedOwner.getDisplayName());//setOwner
 						owner = updatedOwner;
 					}
 				}
@@ -440,7 +436,7 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
 					if(playerObj instanceof EntityPlayer)
 					{
 						EntityPlayer offlinePlayer = (EntityPlayer)playerObj;
-						if(offlinePlayer.username.equals("Player"))
+						if(offlinePlayer.getDisplayName().equals("Player"))
 						{
 							owner = offlinePlayer;	
 						}
@@ -484,8 +480,8 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
 					int d100 = this.rand.nextInt(100);
 					if(d100 < ModChocoCraft.penHealProbability)
 					{
-						int blockBelowId = this.worldObj.getBlockId(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.boundingBox.minY), MathHelper.floor_double(this.posZ));
-						if(blockBelowId == ModChocoCraft.strawBlock.blockID)
+						Block blockBelow = this.worldObj.getBlock(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.boundingBox.minY), MathHelper.floor_double(this.posZ));
+						if(blockBelow.equals(ModChocoCraft.strawBlock))
 						{
 							int range = ModChocoCraft.penHealCauldronRange;
 							if(this.isFilledCauldronNear(this.posX, this.posY, this.posZ, range, 2, range))
@@ -539,8 +535,7 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
 		{
 			for(int z = posZ - rangeZ; z <= posZ + rangeZ; z++)
 			{
-				int blockId = this.worldObj.getBlockId(x, posY, z);
-				if(blockId == Block.cauldron.blockID)
+				if(this.worldObj.getBlock(x, posY, z).equals(Blocks.cauldron))
 				{
 		            int fillStatus = this.worldObj.getBlockMetadata(x, posY, z);
 		            if(fillStatus > 0)
@@ -560,17 +555,17 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
     	ItemStack itemstack = entityplayer.inventory.getCurrentItem();
     	if(itemstack != null)
     	{
-    		if (itemstack.itemID == ModChocoCraft.chocopediaItem.itemID)
+    		if (itemstack.getItem().equals(ModChocoCraft.chocopediaItem))
     		{
     			this.onChocopediaUse();
     			interacted = true;
     		}
-    		else if (itemstack.itemID == ModChocoCraft.gysahlGreenBlock.blockID)
+    		else if (itemstack.getItem().equals(ModChocoCraft.gysahlGreenBlock))
     		{
     			this.onGysahlGreenUse(entityplayer);
     			interacted = true;
     		}
-    		else if(itemstack.itemID == Item.writableBook.itemID)
+    		else if(itemstack.getItem().equals(Items.writable_book))
     		{
     			this.onWritableBookUse(entityplayer);
     			interacted = true;
@@ -604,7 +599,7 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
     protected void onWritableBookUse(EntityPlayer player)
     {
     	ItemStack currentItem = player.getCurrentEquippedItem();
-    	currentItem.itemID = ModChocoCraft.chocopediaItem.itemID;
+    	currentItem = new ItemStack(ModChocoCraft.chocopediaItem, 1);
     }
 
     protected void onGysahlGreenUse(EntityPlayer entityplayer)
@@ -622,7 +617,7 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
     				this.setFollowing(false);
     				this.setHidename(true);
     				this.worldObj.setEntityState(this, (byte)7);
-    				this.setOwner(entityplayer.username);
+    				this.func_152115_b(entityplayer.getDisplayName());//setOwner
     				this.sendTamedUpdate();
     			}
     			else
@@ -791,7 +786,7 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
     
     public boolean canSpawnAtLoc(int x, int y, int z)
     {
-    	if(!this.worldObj.doesBlockHaveSolidTopSurface(x, y - 1, z))
+    	if(!World.doesBlockHaveSolidTopSurface(worldObj, x, y - 1, z))
     	{
     		return false;
     	}
@@ -839,7 +834,7 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
     
     public void changeOwner(String newOwner)
     {
-    	this.setOwner(newOwner);
+    	this.func_152115_b(newOwner);//setOwner
     	this.sendChangeOwnerUpdate();
     }
 
@@ -885,12 +880,12 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
 
     protected boolean isLoverlyGysahl(ItemStack itemstack)
     {
-        return itemstack.itemID == ModChocoCraft.gysahlLoverlyItem.itemID;
+        return itemstack.getItem().equals(ModChocoCraft.gysahlLoverlyItem);
     }
 
     protected boolean isGoldenGysahl(ItemStack itemstack)
     {
-        return itemstack.itemID == ModChocoCraft.gysahlGoldenItem.itemID;
+        return itemstack.getItem().equals(ModChocoCraft.gysahlGoldenItem);
     }
 
 	protected void useItem(EntityPlayer entityplayer)
@@ -927,12 +922,12 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
             int blockPosX = MathHelper.floor_double(this.posX);
             int blockPosY = MathHelper.floor_double(this.posY - 0.2D - (double)this.yOffset);
             int blockPosZ = MathHelper.floor_double(this.posZ);
-            int blockId = this.worldObj.getBlockId(blockPosX, blockPosY, blockPosZ);
+            Block block = this.worldObj.getBlock(blockPosX, blockPosY, blockPosZ);
             
-            if (blockId > 0)
+            if (block != null)
             {
-                StepSound stepsound = Block.blocksList[blockId].stepSound;
-                this.worldObj.playSoundAtEntity(this, stepsound.getStepSound(), stepsound.getVolume() * 0.5F, stepsound.getPitch() * 0.75F);
+                Block.SoundType stepsound = block.stepSound;
+                this.worldObj.playSoundAtEntity(this, stepsound.soundName, stepsound.getVolume() * 0.5F, stepsound.getPitch() * 0.75F);
             }
         }
     }
@@ -951,9 +946,9 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
 				for (int j = 0; j <= 4; j++)
 				{
 					if ((i < 1 || j < 1 || i > 3 || j > 3) 
-							&& this.worldObj.isBlockOpaqueCube(entityPosX + i, entityPosY - 1, entityPosZ + j) 
-							&& !this.worldObj.isBlockOpaqueCube(entityPosX + i, entityPosY, entityPosZ + j) 
-							&& !this.worldObj.isBlockOpaqueCube(entityPosX + i, entityPosY + 1, entityPosZ + j))
+							&& this.worldObj.getBlock(entityPosX + i, entityPosY - 1, entityPosZ + j).isOpaqueCube()
+							&& !this.worldObj.getBlock(entityPosX + i, entityPosY, entityPosZ + j).isOpaqueCube()
+							&& !this.worldObj.getBlock(entityPosX + i, entityPosY + 1, entityPosZ + j).isOpaqueCube() )
 					{
 						float gPosX = (float)(entityPosX + i) + 0.5F;
 						float gPosY = entityPosY;
@@ -1169,8 +1164,8 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
 	{
 		if(this.isClient())
 		{
-			PacketChocoboChangeOwner packet = new PacketChocoboChangeOwner(this);
-			PacketDispatcher.sendPacketToServer(packet.getPacket());
+			ChocoboChangeOwner packet = new ChocoboChangeOwner(this);
+			PacketRegistry.INSTANCE.sendToServer(packet);
 		}
 	}
 	
@@ -1178,9 +1173,10 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
     {
 		if (this.isServer())
 		{
-			PacketChocoboTamed packet = new PacketChocoboTamed(this);
+			ChocoboTamed packet = new ChocoboTamed(this);
 			int dimension = this.worldObj.provider.dimensionId;
-			PacketDispatcher.sendPacketToAllAround(this.lastTickPosX, this.lastTickPosY, this.lastTickPosZ, 16*5, dimension, packet.getPacket());
+			NetworkRegistry.TargetPoint targetPoint = new NetworkRegistry.TargetPoint(dimension, this.lastTickPosX, this.lastTickPosY, this.lastTickPosZ, 16*5);
+			PacketRegistry.INSTANCE.sendToAllAround(packet, targetPoint);
 		}
 	}
 	
@@ -1188,8 +1184,8 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
     {
     	if (this.isClient())
 		{
-			PacketChocoboAttribute packet = new PacketChocoboAttribute(this);
-			PacketDispatcher.sendPacketToServer(packet.getPacket());
+			ChocoboAttribute packet = new ChocoboAttribute(this);
+			PacketRegistry.INSTANCE.sendToServer(packet);
 		}
 	}
     
@@ -1197,9 +1193,10 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
     {
 		if (this.isServer())
 		{
-			PacketChocoboHunger packet = new PacketChocoboHunger(this);
+			ChocoboHunger packet = new ChocoboHunger(this);
 			int dimension = this.worldObj.provider.dimensionId;
-			PacketDispatcher.sendPacketToAllAround(this.lastTickPosX, this.lastTickPosY, this.lastTickPosZ, 16*5, dimension, packet.getPacket());
+			NetworkRegistry.TargetPoint targetPoint = new NetworkRegistry.TargetPoint(dimension, this.lastTickPosX, this.lastTickPosY, this.lastTickPosZ, 16*5);
+			PacketRegistry.INSTANCE.sendToAllAround(packet, targetPoint);
 		}
     }
     
@@ -1207,9 +1204,10 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
 	{
 		if (this.isServer())
 		{
-			PacketChocoboHealth packet = new PacketChocoboHealth(this);
+			ChocoboHealth packet = new ChocoboHealth(this);
 			int dimension = this.worldObj.provider.dimensionId;
-			PacketDispatcher.sendPacketToAllAround(this.lastTickPosX, this.lastTickPosY, this.lastTickPosZ, 16*5, dimension, packet.getPacket());
+			NetworkRegistry.TargetPoint targetPoint = new NetworkRegistry.TargetPoint(dimension, this.lastTickPosX, this.lastTickPosY, this.lastTickPosZ, 16*5);
+			PacketRegistry.INSTANCE.sendToAllAround(packet, targetPoint);
 		}
 	}
 	
@@ -1217,9 +1215,10 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
 	{
 		if (this.isServer())
 		{
-			PacketChocoboParticles packet = new PacketChocoboParticles(chocobo, particleName, amount);
+			ChocoboParticles packet = new ChocoboParticles(chocobo, particleName, amount);
 			int dimension = chocobo.worldObj.provider.dimensionId;
-			PacketDispatcher.sendPacketToAllAround(chocobo.lastTickPosX, chocobo.lastTickPosY, chocobo.lastTickPosZ, 16*5, dimension, packet.getPacket());
+			NetworkRegistry.TargetPoint targetPoint = new NetworkRegistry.TargetPoint(dimension, this.lastTickPosX, this.lastTickPosY, this.lastTickPosZ, 16*5);
+			PacketRegistry.INSTANCE.sendToAllAround(packet, targetPoint);
 		}		
 	}
 	
@@ -1227,8 +1226,8 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
 	{
 		if(this.isClient())
 		{
-			PacketChocoboSetInLove packet = new PacketChocoboSetInLove(this);
-			PacketDispatcher.sendPacketToServer(packet.getPacket());			
+			ChocoboSetInLove packet = new ChocoboSetInLove(this);
+			PacketRegistry.INSTANCE.sendToAll(packet);
 		}
 	}
 }

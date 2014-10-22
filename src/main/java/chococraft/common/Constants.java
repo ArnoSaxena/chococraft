@@ -16,40 +16,11 @@ package chococraft.common;
 
 public class Constants
 {
-	public final static String TCC_VERSION = "3.0.3";
+	public final static String TCC_VERSION = "4.0.3";
 	public final static String TCC_MODID = "chococraft";
 	public final static String TCC_NAME = "Torojimas ChocoCraft";
-
-	// default item id's (reserved 22601-22650)
-	public static int CHOCOBO_SADDLE_ID          = 22601;
-	public static int GYSAHL_SEEDS_ID            = 22602;
-	public static int GYSAHL_LOVERLY_ID          = 22603;
-	public static int GYSAHL_GOLDEN_ID           = 22604;
-	public static int GYSAHL_PINK_ID             = 22605;
-	public static int GYSAHL_RED_ID              = 22606;
-	public static int GYSAHL_PICKLES_ID          = 22607;
-	public static int GYSAHL_PICKLES_RAW_ID      = 22608;
-	public static int GYSAHL_CAKE_ID             = 22609;
-	public static int CHOCOBO_LEG_RAW_ID         = 22610;
-	public static int CHOCOBO_LEG_COOKED_ID      = 22611;
-	public static int CHOCOBO_FEATHER_ID         = 22612;
-	public static int CHOCOBO_SADDLE_BAGS_ID     = 22613;
-	public static int CHOCOBO_PACK_BAGS_ID       = 22614;
-	public static int CHOCOBO_WHISTLE_ID         = 22615;
-	public static int CHOCOPEDIA_ID              = 22616;
-	public static int PURPLE_CHOCOBO_EGG_ID      = 22617;
-	public static int CHOCO_DISGUISE_HELMET_ID   = 22618;
-	public static int CHOCO_DISGUISE_PLATE_ID    = 22619;
-	public static int CHOCO_DISGUISE_LEGS_ID     = 22620;
-	public static int CHOCO_DISGUISE_BOOTS_ID    = 22621;
-	public static int CHOCOPEDIA_LIQUEFIED_ID    = 22622;
 	
-	// default (flower) block id's (reserved 1551 to 1555)
-	public static int GYSAHL_GREEN_BLOCK_ID      = 1551;
-	public static int GYSAHL_STEM_BLOCK_ID       = 1552;
-	public static int STRAW_BLOCK_ID             = 1553;
-	
-	// default entity id's
+	// default entity id's - not really needed as forge gives 255 per mod now
 	public static int CHOCOBO_YELLOW_ID  = 600;
 	public static int CHOCOBO_GREEN_ID   = 601;
 	public static int CHOCOBO_BLUE_ID    = 602;

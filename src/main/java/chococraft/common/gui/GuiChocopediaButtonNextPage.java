@@ -42,8 +42,6 @@ public class GuiChocopediaButtonNextPage extends GuiButton
      */
     public void drawButton(Minecraft mc, int par2, int par3)
     {
-        if (this.drawButton)
-        {
             boolean flag = par2 >= this.xPosition && par3 >= this.yPosition && par2 < this.xPosition + this.width && par3 < this.yPosition + this.height;
             GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
             //mc.renderEngine.bindTexture("/gui/book.png");
@@ -62,6 +60,6 @@ public class GuiChocopediaButtonNextPage extends GuiButton
             }
 
             this.drawTexturedModalRect(this.xPosition, this.yPosition, k, l, 23, 13);
-        }
+
     }
 }

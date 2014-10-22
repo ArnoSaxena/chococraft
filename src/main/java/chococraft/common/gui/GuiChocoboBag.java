@@ -64,8 +64,8 @@ public class GuiChocoboBag extends GuiContainer
 			chocLabelYPos = 6;
 		}
 		
-		fontRenderer.drawString(StatCollector.translateToLocal(this.chocoBagInv.getInvName()), 8, chocLabelYPos, 0x404040);
-		fontRenderer.drawString(StatCollector.translateToLocal(this.playerInv.getInvName()), 8, plyLabelYPos, 0x404040);
+		mc.fontRenderer.drawString(StatCollector.translateToLocal(this.chocoBagInv.getInvName()), 8, chocLabelYPos, 0x404040);
+		mc.fontRenderer.drawString(StatCollector.translateToLocal(this.playerInv.getInventoryName()), 8, plyLabelYPos, 0x404040);
 	}
 
 	@Override

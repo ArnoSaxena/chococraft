@@ -13,7 +13,7 @@ public class ChocoboBiomeHelper
 	public static BiomeGenBase[] getBiomeGenBaseArray()
 	{
 		ArrayList bgbList= new ArrayList();
-		for(BiomeGenBase bgb : BiomeGenBase.biomeList)
+		for(BiomeGenBase bgb : BiomeGenBase.getBiomeGenArray())
 		{
 			if(null != bgb)
 			{

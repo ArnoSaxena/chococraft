@@ -14,6 +14,7 @@
 
 package chococraft.common.entities.colours;
 
+import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
@@ -22,9 +23,6 @@ import net.minecraft.world.World;
 import chococraft.common.Constants;
 import chococraft.common.ModChocoCraft;
 import chococraft.common.entities.EntityChocobo;
-
-import com.google.common.io.ByteArrayDataInput;
-import com.google.common.io.ByteArrayDataOutput;
 
 public class EntityChocoboBlack extends EntityChocobo
 {
@@ -43,12 +41,12 @@ public class EntityChocoboBlack extends EntityChocobo
 		this.airbornSpeedFactor = Constants.CHOCOBO_BLACK_AIRSPEEDFACT;
 	}
 
-	public void writeSpawnData(ByteArrayDataOutput data)
+	public void writeSpawnData(ByteBuf data)
 	{
 		super.writeSpawnData(data);
 	}
 
-	public void readSpawnData(ByteArrayDataInput data)
+	public void readSpawnData(ByteBuf data)
 	{
 		super.readSpawnData(data);
 	}	

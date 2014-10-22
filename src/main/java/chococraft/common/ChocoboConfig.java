@@ -345,15 +345,9 @@ public class ChocoboConfig
 					return ChocoboBiomeHelper.getBiomeGenBaseArray();								
 
 				}
-				for(int i = 0; i < BiomeGenBase.biomeList.length; i++)
-				{
-					if(null != BiomeGenBase.biomeList[i])
-					{
-						if(value.trim().equals(BiomeGenBase.biomeList[i].biomeName))
-						{
-							bgbList.add(BiomeGenBase.biomeList[i]);
-						}
-					}
+				for(BiomeGenBase biomeGenBase : BiomeGenBase.getBiomeGenArray()) {
+					if(biomeGenBase != null && value.trim().equals(biomeGenBase.biomeName))
+						bgbList.add(biomeGenBase);
 				}
 			}
 		}
@@ -514,7 +508,7 @@ public class ChocoboConfig
 	{
 		String bgbNameList = "";
 		Boolean firstName = true;
-		for(BiomeGenBase bgb : BiomeGenBase.biomeList)
+		for(BiomeGenBase bgb : BiomeGenBase.getBiomeGenArray())
 		{
 			if(null != bgb)
 			{

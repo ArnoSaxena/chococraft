@@ -14,51 +14,45 @@
 
 package chococraft.common;
 
-import net.minecraft.entity.player.EntityPlayer;
-import chococraft.common.network.clientSide.PacketChocoboLocalSetupUpdate;
-import chococraft.common.network.clientSide.PacketChocoboSetupUpdate;
-import cpw.mods.fml.common.IPlayerTracker;
-import cpw.mods.fml.common.network.PacketDispatcher;
-import cpw.mods.fml.common.network.Player;
+import chococraft.common.network.PacketRegistry;
+import chococraft.common.network.clientSide.ChocoboLocalSetupUpdate;
+import chococraft.common.network.clientSide.ChocoboSetupUpdate;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.gameevent.PlayerEvent;
+import net.minecraft.entity.player.EntityPlayerMP;
 
 
-public class ChocoboPlayerTracker implements IPlayerTracker
+public class ChocoboPlayerTracker
 {
 
-	@Override
-	public void onPlayerLogin(EntityPlayer player)
+	@SubscribeEvent
+	public void onPlayerLogin(PlayerEvent.PlayerLoggedInEvent event)
 	{
-		this.sendSetupUpdate(player);
+		this.sendSetupUpdate((EntityPlayerMP)event.player);
 	}
 
-	@Override
-	public void onPlayerLogout(EntityPlayer player)
+	@SubscribeEvent
+	public void onPlayerLogout(PlayerEvent.PlayerLoggedOutEvent event)
 	{
-		this.sendLocalSetupUpdate(player);
+		this.sendLocalSetupUpdate((EntityPlayerMP)event.player);
 	}
 
-
-	@Override
-	public void onPlayerChangedDimension(EntityPlayer player){}
-
-	@Override
-	public void onPlayerRespawn(EntityPlayer player){}
 	
-	protected void sendSetupUpdate(EntityPlayer player)
+	protected void sendSetupUpdate(EntityPlayerMP player)
 	{
 		if (!player.worldObj.isRemote)
 		{
-			PacketChocoboSetupUpdate packet = new PacketChocoboSetupUpdate(player);
-			PacketDispatcher.sendPacketToPlayer(packet.getPacket(), (Player)player);
+			ChocoboSetupUpdate packet = new ChocoboSetupUpdate();
+			PacketRegistry.INSTANCE.sendTo(packet, player);
 		}		
 	}
 	
-	protected void sendLocalSetupUpdate(EntityPlayer player)
+	protected void sendLocalSetupUpdate(EntityPlayerMP player)
 	{
 		if (!player.worldObj.isRemote)
 		{
-			PacketChocoboLocalSetupUpdate packet = new PacketChocoboLocalSetupUpdate(player);
-			PacketDispatcher.sendPacketToPlayer(packet.getPacket(), (Player)player);
+			ChocoboLocalSetupUpdate packet = new ChocoboLocalSetupUpdate();
+			PacketRegistry.INSTANCE.sendTo(packet, player);
 		}		
 	}
 }

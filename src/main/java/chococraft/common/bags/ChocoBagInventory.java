@@ -26,7 +26,6 @@ public abstract class ChocoBagInventory implements IInventory
 {
 	protected ItemStack[] mainInventory;
 	protected EntityChocoboRideable entitychocobo;
-	protected boolean inventoryChanged;
 	
 	@Override
 	public int getSizeInventory()
@@ -81,12 +80,6 @@ public abstract class ChocoBagInventory implements IInventory
 			this.setInventorySlotContents(slot, null);
 		}
 		return stack;
-	}
-	
-	@Override
-	public void onInventoryChanged()
-	{
-        this.inventoryChanged = true;
 	}
 
 	@Override
@@ -146,25 +139,12 @@ public abstract class ChocoBagInventory implements IInventory
 			inventory.setInventorySlotContents(invIdx, null);
 		}
 	}
-	
-	@Override
-	public void openChest() {}
-
-	@Override
-	public void closeChest() {}
 
 	abstract public void readFromNBT(NBTTagList nbttaglist);
 	
 	abstract public NBTBase writeToNBT(NBTTagList nbtTagList);
 	
 	abstract public String getInvName();
-	
-	@Override
-	public boolean isInvNameLocalized()
-	{
-		//TODO localise name ...
-		return false;
-	}
 
 	@Override
 	public boolean isItemValidForSlot(int i, ItemStack itemstack)

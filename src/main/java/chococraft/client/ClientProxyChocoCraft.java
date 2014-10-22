@@ -14,29 +14,21 @@
 
 package chococraft.client;
 
-import net.minecraft.client.entity.EntityPlayerSP;
-import net.minecraft.entity.Entity;
-import net.minecraftforge.common.MinecraftForge;
 import chococraft.common.CommonProxyChocoCraft;
 import chococraft.common.entities.EntityChicobo;
 import chococraft.common.entities.EntityChocoboRideable;
 import chococraft.common.entities.RiderActionState;
-import chococraft.common.entities.colours.EntityChocoboBlack;
-import chococraft.common.entities.colours.EntityChocoboBlue;
-import chococraft.common.entities.colours.EntityChocoboGold;
-import chococraft.common.entities.colours.EntityChocoboGreen;
-import chococraft.common.entities.colours.EntityChocoboPink;
-import chococraft.common.entities.colours.EntityChocoboPurple;
-import chococraft.common.entities.colours.EntityChocoboRed;
-import chococraft.common.entities.colours.EntityChocoboWhite;
-import chococraft.common.entities.colours.EntityChocoboYellow;
+import chococraft.common.entities.colours.*;
 import chococraft.common.entities.models.ModelChicobo;
 import chococraft.common.entities.models.ModelChocobo;
 import chococraft.common.entities.models.RenderChicobo;
 import chococraft.common.entities.models.RenderChocobo;
-import chococraft.common.network.serverSide.PacketChocoboUpdateRiderActionState;
+import chococraft.common.network.PacketRegistry;
+import chococraft.common.network.serverSide.ChocoboUpdateRiderActionState;
 import cpw.mods.fml.client.registry.RenderingRegistry;
-import cpw.mods.fml.common.network.PacketDispatcher;
+import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.entity.Entity;
+import net.minecraftforge.common.MinecraftForge;
 
 public class ClientProxyChocoCraft extends CommonProxyChocoCraft
 {
@@ -83,8 +75,8 @@ public class ClientProxyChocoCraft extends CommonProxyChocoCraft
             
         	if(chocobo.riderActionState.isChanged())
         	{
-        		PacketChocoboUpdateRiderActionState packet = new PacketChocoboUpdateRiderActionState(chocobo, entity);
-        		PacketDispatcher.sendPacketToServer(packet.getPacket());
+        		ChocoboUpdateRiderActionState packet = new ChocoboUpdateRiderActionState(chocobo, entity);
+        		PacketRegistry.INSTANCE.sendToServer(packet);
         	}
         	
             chocobo.riderActionState.resetChanged();

@@ -35,7 +35,7 @@ public class WorldGenGysahls implements IWorldGenerator
 				int randPosX = chunkX*16 + random.nextInt(16);
 				int randPosZ = chunkZ*16 + random.nextInt(16);
 				int randPosY = world.getTopSolidOrLiquidBlock(randPosX, randPosZ);
-				new WorldGenFlowers(ModChocoCraft.gysahlGreenBlock.blockID).generate(world, random, randPosX, randPosY, randPosZ);
+				new WorldGenFlowers(ModChocoCraft.gysahlGreenBlock).generate(world, random, randPosX, randPosY, randPosZ);
 			}
 		}
 	}

@@ -102,7 +102,7 @@ public class GuiChangeOwner extends GuiScreen
 		messageSB.append("?");		
 		//String message = stringtranslate.translateKey(messageSB.toString());
 		
-		this.drawCenteredString(this.fontRenderer, messageSB.toString(), this.width / 2, (this.height / 4 - 60) + 20, 0xffffff);
+		this.drawCenteredString(this.mc.fontRenderer, messageSB.toString(), this.width / 2, (this.height / 4 - 60) + 20, 0xffffff);
 		super.drawScreen(scrX, scrY, f);
 	}
 	
@@ -113,7 +113,7 @@ public class GuiChangeOwner extends GuiScreen
 			if(playerObj instanceof EntityPlayer)
 			{
 				EntityPlayer player = (EntityPlayer)playerObj;
-				if(player.username.equals(name))
+				if(player.getDisplayName().equals(name))
 				{
 					return true;
 				}

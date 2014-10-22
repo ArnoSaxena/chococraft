@@ -14,43 +14,12 @@
 
 package chococraft.common;
 
-import java.io.File;
-
-import net.minecraft.block.Block;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityEggInfo;
-import net.minecraft.entity.EntityList;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.WeightedRandomChestContent;
-import net.minecraft.world.biome.BiomeGenBase;
-import net.minecraftforge.common.ChestGenHooks;
-import net.minecraftforge.common.Configuration;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.Property;
 import chococraft.client.ClientProxyChocoCraft;
 import chococraft.common.entities.EntityChicobo;
-import chococraft.common.entities.colours.EntityChocoboBlack;
-import chococraft.common.entities.colours.EntityChocoboBlue;
-import chococraft.common.entities.colours.EntityChocoboGold;
-import chococraft.common.entities.colours.EntityChocoboGreen;
-import chococraft.common.entities.colours.EntityChocoboPink;
-import chococraft.common.entities.colours.EntityChocoboPurple;
-import chococraft.common.entities.colours.EntityChocoboRed;
-import chococraft.common.entities.colours.EntityChocoboWhite;
-import chococraft.common.entities.colours.EntityChocoboYellow;
+import chococraft.common.entities.colours.*;
 import chococraft.common.gui.ChocoboGuiHandler;
-import chococraft.common.items.BlockGysahlGreen;
-import chococraft.common.items.BlockGysahlStem;
-import chococraft.common.items.BlockStraw;
-import chococraft.common.items.ChocoboArmourMaterial;
-import chococraft.common.items.ChocoboItem;
-import chococraft.common.items.ChocoboItemDisguise;
-import chococraft.common.items.ChocoboItemFood;
-import chococraft.common.items.ItemGysahlSeeds;
-import chococraft.common.items.ItemPurpleChocoboEgg;
-import chococraft.common.network.ChocoboPacketHandler;
+import chococraft.common.items.*;
+import chococraft.common.network.PacketRegistry;
 import chococraft.common.tick.ServerSpawnTickHandler;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
@@ -60,18 +29,28 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
-import cpw.mods.fml.common.registry.TickRegistry;
 import cpw.mods.fml.relauncher.Side;
+import net.minecraft.block.Block;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityList;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.WeightedRandomChestContent;
+import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraftforge.common.ChestGenHooks;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.config.Configuration;
+
+import java.io.File;
 
 @Mod(modid=Constants.TCC_MODID, name=Constants.TCC_NAME, version=Constants.TCC_VERSION)
-@NetworkMod(clientSideRequired = true, serverSideRequired = false, 
-		channels = { Constants.PCHAN_CHOCOBO },
-		packetHandler = ChocoboPacketHandler.class)
 public class ModChocoCraft
 {	
 	public static Configuration mainConfiguration;
@@ -79,32 +58,6 @@ public class ModChocoCraft
 	//public static CreativeTabs chocoboCreativeItems;
 
 	public static boolean debugMode = false;
-	
-	public static Property chocoboSaddleId;	
-	public static Property gysahlSeedsId;    
-	public static Property gysahlLoverlyId;
-	public static Property gysahlGoldenId;
-	public static Property gysahlPinkId;
-	public static Property gysahlRedId;
-	public static Property gysahlChibiId;
-	public static Property gysahlCakeId;
-	public static Property gysahlPicklesId;
-	public static Property gysahlPicklesRawId;
-	public static Property chocoboLegRawId;
-	public static Property chocoboLegCookedId;
-	public static Property chocoboFeatherId;
-	public static Property chocoboSaddleBagsId;
-	public static Property chocoboPackBagsId;
-	public static Property chocoboWhistleId;
-	public static Property chocopediaId;
-	public static Property purpleChocoboEggId;
-	public static Property chocoDisguiseHelmetId;
-	public static Property chocoDisguisePlateId;
-	public static Property chocoDisguiseLegsId;
-	public static Property chocoDisguiseBootsId;	
-	public static Property gysahlGreenBlockId;
-	public static Property gysahlStemBlockId;
-	public static Property strawBlockId;
 
 	public static Item chocoboSaddleItem;
 	public static Item gysahlSeedsItem;
@@ -238,40 +191,16 @@ public class ModChocoCraft
 	@EventHandler
 	public void preLoadChocoCraft(FMLPreInitializationEvent preInitEvent)
 	{
+
+		PacketRegistry.registerPackets();
+
 		chocoboHeight = 1.9F;
 		chocoboWidth = 1.3F;
 		
 		mainConfiguration = new Configuration(preInitEvent.getSuggestedConfigurationFile());
 		configFolder = preInitEvent.getModConfigurationDirectory();
 		mainConfiguration.load();
-		
-		chocoboSaddleId = mainConfiguration.getItem(Configuration.CATEGORY_ITEM, "chocoboSaddleItem.id", Constants.CHOCOBO_SADDLE_ID);
-		gysahlSeedsId = mainConfiguration.getItem(Configuration.CATEGORY_ITEM, "gysahlSeedsItem.id", Constants.GYSAHL_SEEDS_ID);
-		gysahlLoverlyId = mainConfiguration.getItem(Configuration.CATEGORY_ITEM, "gysahlLoverlyItem.id", Constants.GYSAHL_LOVERLY_ID);
-		gysahlGoldenId = mainConfiguration.getItem(Configuration.CATEGORY_ITEM, "gysahlGoldenItem.id", Constants.GYSAHL_GOLDEN_ID);
-		gysahlPinkId = mainConfiguration.getItem(Configuration.CATEGORY_ITEM, "gysahlPinkItem.id", Constants.GYSAHL_PINK_ID);
-		gysahlRedId = mainConfiguration.getItem(Configuration.CATEGORY_ITEM, "gysahlRedItem.id", Constants.GYSAHL_RED_ID);
-		gysahlCakeId = mainConfiguration.getItem(Configuration.CATEGORY_ITEM, "gysahlCakeItem.id", Constants.GYSAHL_CAKE_ID);
-		gysahlPicklesId = mainConfiguration.getItem(Configuration.CATEGORY_ITEM, "gysahlPicklesItem.id", Constants.GYSAHL_PICKLES_ID);
-		gysahlPicklesRawId = mainConfiguration.getItem(Configuration.CATEGORY_ITEM, "gysahlPicklesRawItem.id", Constants.GYSAHL_PICKLES_RAW_ID);
-		chocoboLegRawId = mainConfiguration.getItem(Configuration.CATEGORY_ITEM, "chocoboLegRawItem.id", Constants.CHOCOBO_LEG_RAW_ID);
-		chocoboLegCookedId = mainConfiguration.getItem(Configuration.CATEGORY_ITEM, "chocoboLegCookedItem.id", Constants.CHOCOBO_LEG_COOKED_ID);
-		chocoboFeatherId = mainConfiguration.getItem(Configuration.CATEGORY_ITEM, "chocoboFeatherItem.id", Constants.CHOCOBO_FEATHER_ID);
-		chocoboSaddleBagsId = mainConfiguration.getItem(Configuration.CATEGORY_ITEM, "chocoboSaddleBagsItem.id", Constants.CHOCOBO_SADDLE_BAGS_ID);
-		chocoboPackBagsId = mainConfiguration.getItem(Configuration.CATEGORY_ITEM, "chocoboPackBagsItem.id", Constants.CHOCOBO_PACK_BAGS_ID);
-		chocoboWhistleId = mainConfiguration.getItem(Configuration.CATEGORY_ITEM, "chocoboWhistleItem.id", Constants.CHOCOBO_WHISTLE_ID);
-		chocopediaId = mainConfiguration.getItem(Configuration.CATEGORY_ITEM, "chocopediaItem.id", Constants.CHOCOPEDIA_ID);
-		purpleChocoboEggId = mainConfiguration.getItem(Configuration.CATEGORY_ITEM, "purpleChocoboEggItem.id", Constants.PURPLE_CHOCOBO_EGG_ID);
-
-		chocoDisguiseHelmetId = mainConfiguration.getItem(Configuration.CATEGORY_ITEM, "chocoDisguiseHelmetItem.id", Constants.CHOCO_DISGUISE_HELMET_ID);
-		chocoDisguisePlateId = mainConfiguration.getItem(Configuration.CATEGORY_ITEM, "chocoDisguisePlateItem.id", Constants.CHOCO_DISGUISE_PLATE_ID);
-		chocoDisguiseLegsId = mainConfiguration.getItem(Configuration.CATEGORY_ITEM, "chocoDisguiseLegsItem.id", Constants.CHOCO_DISGUISE_LEGS_ID);
-		chocoDisguiseBootsId = mainConfiguration.getItem(Configuration.CATEGORY_ITEM, "chocoDisguiseBootsItem.id", Constants.CHOCO_DISGUISE_BOOTS_ID);
-
-		gysahlGreenBlockId = mainConfiguration.getBlock("gysahlGreenBlock.id", Constants.GYSAHL_GREEN_BLOCK_ID);
-		gysahlStemBlockId = mainConfiguration.getBlock("gysahlStemBlock.id", Constants.GYSAHL_STEM_BLOCK_ID);
-		strawBlockId = mainConfiguration.getBlock("strawBlock.id", Constants.STRAW_BLOCK_ID);
-		
+		//ID's used to be here
 		mainConfiguration.save();
 
 		chocoboWingFlutter   = Constants.DEFAULT_CHOCOBO_WING_FLUTTER;
@@ -353,14 +282,15 @@ public class ModChocoCraft
 
 		this.addChocoboSpawns();
 		
-		GameRegistry.registerWorldGenerator(new WorldGenGysahls());
-		GameRegistry.registerPlayerTracker(new ChocoboPlayerTracker());
+		GameRegistry.registerWorldGenerator(new WorldGenGysahls(), 5);//TODO check how weights work
+
+		FMLCommonHandler.instance().bus().register(new ChocoboPlayerTracker());
 				
 		proxy.registerRenderThings();
 
-		NetworkRegistry.instance().registerGuiHandler(this, new ChocoboGuiHandler());
-		
-		TickRegistry.registerScheduledTickHandler(new ServerSpawnTickHandler(), Side.SERVER);
+		NetworkRegistry.INSTANCE.registerGuiHandler(this, new ChocoboGuiHandler());
+
+		FMLCommonHandler.instance().bus().register(new ServerSpawnTickHandler());
 	}
 
 	@EventHandler
@@ -376,110 +306,110 @@ public class ModChocoCraft
 	private void createItemInstances()
 	{
 		// Chocopedia
-		chocopediaItem = (new ChocoboItem(chocopediaId.getInt())).setUnlocalizedName(Constants.KEY_CHOCOPEDIA).setMaxStackSize(1);
+		chocopediaItem = new ChocoboItem().setUnlocalizedName(Constants.KEY_CHOCOPEDIA).setMaxStackSize(1);
 		LanguageRegistry.addName(chocopediaItem, "Chocopedia");
 		chocopediaItem.setCreativeTab(CreativeTabs.tabTools);
 
 		// Chocobo Feather
-		chocoboFeatherItem = (new ChocoboItem(chocoboFeatherId.getInt())).setUnlocalizedName(Constants.KEY_FEATHER).setMaxStackSize(64);
+		chocoboFeatherItem = new ChocoboItem().setUnlocalizedName(Constants.KEY_FEATHER).setMaxStackSize(64);
 		LanguageRegistry.addName(chocoboFeatherItem, "Chocobo Feather");
 		chocoboFeatherItem.setCreativeTab(CreativeTabs.tabMaterials);
 		
 		// riding gear
 		// Chocobo Saddle
-		chocoboSaddleItem = (new ChocoboItem(chocoboSaddleId.getInt())).setUnlocalizedName(Constants.KEY_SADDLE).setMaxStackSize(5);
+		chocoboSaddleItem = new ChocoboItem().setUnlocalizedName(Constants.KEY_SADDLE).setMaxStackSize(5);
 		LanguageRegistry.addName(chocoboSaddleItem, "Chocobo Saddle");
 		chocoboSaddleItem.setCreativeTab(CreativeTabs.tabTransport);
 
 		// Chocobo Saddle Bags
-		chocoboSaddleBagsItem = (new ChocoboItem(chocoboSaddleBagsId.getInt())).setUnlocalizedName(Constants.KEY_SADDLEBAG).setMaxStackSize(8);
+		chocoboSaddleBagsItem = new ChocoboItem().setUnlocalizedName(Constants.KEY_SADDLEBAG).setMaxStackSize(8);
 		LanguageRegistry.addName(chocoboSaddleBagsItem, "Chocobo Saddle Bags");
 		chocoboSaddleBagsItem.setCreativeTab(CreativeTabs.tabTransport);
 
 		// Chocobo Pack Bags
-		chocoboPackBagsItem = (new ChocoboItem(chocoboPackBagsId.getInt())).setUnlocalizedName(Constants.KEY_PACKBAG).setMaxStackSize(8);
+		chocoboPackBagsItem = new ChocoboItem().setUnlocalizedName(Constants.KEY_PACKBAG).setMaxStackSize(8);
 		LanguageRegistry.addName(chocoboPackBagsItem, "Chocobo Pack Bags");
 		chocoboPackBagsItem.setCreativeTab(CreativeTabs.tabTransport);
 
 		// Gysahls
 		// Gysahl seeds
-		gysahlSeedsItem = (new ItemGysahlSeeds(gysahlSeedsId.getInt(), gysahlStemBlockId.getInt(), Block.tilledField.blockID));
+		gysahlSeedsItem = (new ItemGysahlSeeds(gysahlStemBlock, Blocks.farmland));
 		LanguageRegistry.addName(gysahlSeedsItem, "Gysahl Seeds");
 		//gysahlSeedsItem.setCreativeTab(chocoboCreativeItems);
 
 		// Loverly Gysahl
-		gysahlLoverlyItem = (new ChocoboItem(gysahlLoverlyId.getInt())).setUnlocalizedName(Constants.KEY_GY_LOVERLY).setMaxStackSize(64);
+		gysahlLoverlyItem = new ChocoboItem().setUnlocalizedName(Constants.KEY_GY_LOVERLY).setMaxStackSize(64);
 		LanguageRegistry.addName(gysahlLoverlyItem, "Loverly Gysahl");
 		gysahlLoverlyItem.setCreativeTab(CreativeTabs.tabMisc);
 
 		// Golden Gysahl
-		gysahlGoldenItem = (new ChocoboItem(gysahlGoldenId.getInt())).setUnlocalizedName(Constants.KEY_GY_GOLDEN).setMaxStackSize(64);
+		gysahlGoldenItem = new ChocoboItem().setUnlocalizedName(Constants.KEY_GY_GOLDEN).setMaxStackSize(64);
 		LanguageRegistry.addName(gysahlGoldenItem, "Golden Gysahl");
 		gysahlGoldenItem.setCreativeTab(CreativeTabs.tabMisc);
 
 		// Pink Gysahl
-		gysahlPinkItem = (new ChocoboItem(gysahlPinkId.getInt())).setUnlocalizedName(Constants.KEY_GY_PINK).setMaxStackSize(64);
+		gysahlPinkItem = new ChocoboItem().setUnlocalizedName(Constants.KEY_GY_PINK).setMaxStackSize(64);
 		LanguageRegistry.addName(gysahlPinkItem, "Pink Gysahl");
 		gysahlPinkItem.setCreativeTab(CreativeTabs.tabMisc);
 
 		// Red Gysahl
-		gysahlRedItem = (new ChocoboItem(gysahlRedId.getInt())).setUnlocalizedName(Constants.KEY_GY_RED).setMaxStackSize(64);
+		gysahlRedItem = new ChocoboItem().setUnlocalizedName(Constants.KEY_GY_RED).setMaxStackSize(64);
 		LanguageRegistry.addName(gysahlRedItem, "Red Gysahl");
 		gysahlRedItem.setCreativeTab(CreativeTabs.tabMisc);
 
 		// Gysahl Cake
-		gysahlCakeItem = (new ChocoboItem(gysahlCakeId.getInt())).setUnlocalizedName(Constants.KEY_GY_CAKE).setMaxStackSize(8);
+		gysahlCakeItem = new ChocoboItem().setUnlocalizedName(Constants.KEY_GY_CAKE).setMaxStackSize(8);
 		LanguageRegistry.addName(gysahlCakeItem, "Gysahl Cake");
 		gysahlCakeItem.setCreativeTab(CreativeTabs.tabMisc);
 
 		// Chocob Whistle
-		chocoboWhistleItem = (new ChocoboItem(chocoboWhistleId.getInt())).setUnlocalizedName(Constants.KEY_WHISTLE).setMaxStackSize(64);
+		chocoboWhistleItem = new ChocoboItem().setUnlocalizedName(Constants.KEY_WHISTLE).setMaxStackSize(64);
 		LanguageRegistry.addName(chocoboWhistleItem, "Chocobo Whistle");
 		chocoboWhistleItem.setCreativeTab(CreativeTabs.tabTools);
 
 		// Nether Chocobo Egg
-		purpleChocoboEggItem = new ItemPurpleChocoboEgg(purpleChocoboEggId.getInt());
+		purpleChocoboEggItem = new ItemPurpleChocoboEgg();
 		LanguageRegistry.addName(purpleChocoboEggItem, "Purple Chocobo Egg");
 
 		// Armour
 		// Chocodisguise Helmet
-		chocoDisguiseHelmetItem = new ChocoboItemDisguise(chocoDisguiseHelmetId.getInt(), ChocoboArmourMaterial.CHOCOFEATHER, proxy.addArmor(Constants.KEY_DISGUISE), 0);
+		chocoDisguiseHelmetItem = new ChocoboItemDisguise(ChocoboArmourMaterial.CHOCOFEATHER, proxy.addArmor(Constants.KEY_DISGUISE), 0);
 		chocoDisguiseHelmetItem.setUnlocalizedName(Constants.KEY_DISGUISE_HEAD);
 		LanguageRegistry.addName(chocoDisguiseHelmetItem, "Chocodisguise Helmet");
 
 		// Chocodisguise Plate
-		chocoDisguisePlateItem = new ChocoboItemDisguise(chocoDisguisePlateId.getInt(), ChocoboArmourMaterial.CHOCOFEATHER, proxy.addArmor(Constants.KEY_DISGUISE), 1);
+		chocoDisguisePlateItem = new ChocoboItemDisguise(ChocoboArmourMaterial.CHOCOFEATHER, proxy.addArmor(Constants.KEY_DISGUISE), 1);
 		chocoDisguisePlateItem.setUnlocalizedName(Constants.KEY_DISGUISE_BODY);
 		LanguageRegistry.addName(chocoDisguisePlateItem, "Chocodisguise Body");
 
 		// Chocodisguise Legs
-		chocoDisguiseLegsItem = new ChocoboItemDisguise(chocoDisguiseLegsId.getInt(), ChocoboArmourMaterial.CHOCOFEATHER, proxy.addArmor(Constants.KEY_DISGUISE), 2);
+		chocoDisguiseLegsItem = new ChocoboItemDisguise(ChocoboArmourMaterial.CHOCOFEATHER, proxy.addArmor(Constants.KEY_DISGUISE), 2);
 		chocoDisguiseLegsItem.setUnlocalizedName(Constants.KEY_DISGUISE_LEGS);
 		LanguageRegistry.addName(chocoDisguiseLegsItem, "Chocodisguise Legs");
 
 		// Chocodisguise Boots
-		chocoDisguiseBootsItem = new ChocoboItemDisguise(chocoDisguiseBootsId.getInt(), ChocoboArmourMaterial.CHOCOFEATHER, proxy.addArmor(Constants.KEY_DISGUISE), 3);
+		chocoDisguiseBootsItem = new ChocoboItemDisguise(ChocoboArmourMaterial.CHOCOFEATHER, proxy.addArmor(Constants.KEY_DISGUISE), 3);
 		chocoDisguiseBootsItem.setUnlocalizedName(Constants.KEY_DISGUISE_BOOTS);
 		LanguageRegistry.addName(chocoDisguiseBootsItem, "Chocodisguise Boots");
 
 		// food items
 		// Raw Chocobo Leg
-		chocoboLegRawItem = new ChocoboItemFood(chocoboLegRawId.getInt(), 4, true);
+		chocoboLegRawItem = new ChocoboItemFood(4, true);
 		chocoboLegRawItem.setUnlocalizedName(Constants.KEY_LEG_RAW);
 		LanguageRegistry.addName(chocoboLegRawItem, "Raw Chocobo Leg");
 
 		// Cooked Chocobo Leg
-		chocoboLegCookedItem = new ChocoboItemFood(chocoboLegCookedId.getInt(), 8, false);
+		chocoboLegCookedItem = new ChocoboItemFood(8, false);
 		chocoboLegCookedItem.setUnlocalizedName(Constants.KEY_LEG_COOKED);
 		LanguageRegistry.addName(chocoboLegCookedItem, "Cooked Chocobo Leg");
 		
 		// Gysahl Pickles
-		gysahlPicklesRawItem = (new ChocoboItem(gysahlPicklesRawId.getInt()));
+		gysahlPicklesRawItem = new ChocoboItem();
 		gysahlPicklesRawItem.setUnlocalizedName(Constants.KEY_GY_PICKLES_RAW).setMaxStackSize(64);
 		LanguageRegistry.addName(gysahlPicklesRawItem, "Gysahl Raw Pickles");
 		gysahlPicklesRawItem.setCreativeTab(CreativeTabs.tabMisc);
 
-		gysahlPicklesItem = new ChocoboItemFood(gysahlPicklesId.getInt(), 2, false);
+		gysahlPicklesItem = new ChocoboItemFood(2, false);
 		gysahlPicklesItem.setUnlocalizedName(Constants.KEY_GY_PICKLES);
 		LanguageRegistry.addName(gysahlPicklesItem, "Gysahl Pickles");
 		gysahlPicklesItem.setCreativeTab(CreativeTabs.tabMisc);
@@ -488,25 +418,26 @@ public class ModChocoCraft
 	private void createBlockInstances()
 	{
 		String gysahlStemBlockName = "item.gysahlStemBlock";
-		gysahlStemBlock = new BlockGysahlStem(gysahlStemBlockId.getInt()).setStepSound(Block.soundGrassFootstep).setHardness(0.0F).setUnlocalizedName(gysahlStemBlockName);
+
+		gysahlStemBlock = new BlockGysahlStem().setStepSound(Block.soundTypeGrass).setHardness(0.0F).setBlockName(gysahlStemBlockName);
 		GameRegistry.registerBlock(gysahlStemBlock, gysahlStemBlockName);
 		LanguageRegistry.addName(gysahlStemBlock, "Gysahl Stem");
 
 		String gysahlGreenBlockName = "item.gysahlGreenBlock";
-		gysahlGreenBlock = new BlockGysahlGreen(gysahlGreenBlockId.getInt()).setStepSound(Block.soundGrassFootstep).setHardness(0.0F).setUnlocalizedName(gysahlGreenBlockName);
+		gysahlGreenBlock = new BlockGysahlGreen().setStepSound(Block.soundTypeGrass).setHardness(0.0F).setBlockName(gysahlGreenBlockName);
 		GameRegistry.registerBlock(gysahlGreenBlock, gysahlGreenBlockName);
 		LanguageRegistry.addName(gysahlGreenBlock, "Gysahl Green");
 		
 		String strawBlockName = "item.strawBlock";
-		strawBlock = new BlockStraw(strawBlockId.getInt()).setStepSound(Block.soundGrassFootstep).setHardness(0.0F).setUnlocalizedName(strawBlockName);
+		strawBlock = new BlockStraw().setStepSound(Block.soundTypeGrass).setHardness(0.0F).setBlockName(strawBlockName);
 		GameRegistry.registerBlock(strawBlock, strawBlockName);
 		LanguageRegistry.addName(strawBlock, "Straw");
 	}
 
 	private void addSmeltings()
 	{
-		GameRegistry.addSmelting(chocoboLegRawItem.itemID, new ItemStack(chocoboLegCookedItem), 0.1F);
-		GameRegistry.addSmelting(gysahlPicklesRawItem.itemID, new ItemStack(gysahlPicklesItem), 0.1F);
+		GameRegistry.addSmelting(chocoboLegRawItem, new ItemStack(chocoboLegCookedItem), 0.1F);
+		GameRegistry.addSmelting(gysahlPicklesRawItem, new ItemStack(gysahlPicklesItem), 0.1F);
 	}
 
 	private void addRecipes()
@@ -516,15 +447,15 @@ public class ModChocoCraft
 		{
 			"-X-", 
 			" Y ", 
-			Character.valueOf('X'), Item.leather, 
+			Character.valueOf('X'), Items.leather,
 			Character.valueOf('Y'), chocoboFeatherItem, 
-			Character.valueOf('-'), Item.silk
+			Character.valueOf('-'), Items.string
 		});
 		
 		// transforming vanilla saddle into chocobo saddle
 		GameRegistry.addShapelessRecipe(new ItemStack(chocoboSaddleItem, 1), new Object[]
 		{
-			Item.saddle,
+			Items.saddle,
 		    new ItemStack(chocoboFeatherItem, 1)
 		});
 
@@ -534,7 +465,7 @@ public class ModChocoCraft
 			" Y ",
 			"X X", 
 			" X ", 
-			Character.valueOf('X'), Item.leather, 
+			Character.valueOf('X'), Items.leather,
 			Character.valueOf('Y'), chocoboFeatherItem
 		});
 
@@ -544,10 +475,10 @@ public class ModChocoCraft
 			"-Y-",
 			"C C", 
 			"-X-", 
-			Character.valueOf('C'), Block.cloth, 
-			Character.valueOf('X'), Item.leather, 
+			Character.valueOf('C'), Blocks.wool,
+			Character.valueOf('X'), Items.leather,
 			Character.valueOf('Y'), chocoboFeatherItem,
-			Character.valueOf('-'), Item.silk
+			Character.valueOf('-'), Items.string
 		});
 
 		// chocopedia
@@ -556,18 +487,18 @@ public class ModChocoCraft
 			"FGF", 
 			"IBI", 
 			"FLF", 
-			Character.valueOf('B'), Item.book,
+			Character.valueOf('B'), Items.book,
 			Character.valueOf('F'), chocoboFeatherItem,
-			Character.valueOf('I'), new ItemStack(Item.dyePowder, 1, 0),
-			Character.valueOf('L'), new ItemStack(Item.dyePowder, 1, 4),
-			Character.valueOf('G'), Item.goldNugget
+			Character.valueOf('I'), new ItemStack(Items.dye, 1, 0),
+			Character.valueOf('L'), new ItemStack(Items.dye, 1, 4),
+			Character.valueOf('G'), Items.gold_nugget
 		});
 
 		// chocobo whistle
 		GameRegistry.addShapelessRecipe(new ItemStack(chocoboWhistleItem, 1), new Object[]
 		{
 			chocoboFeatherItem, 
-			new ItemStack(Item.ingotGold, 1)
+			new ItemStack(Items.gold_ingot, 1)
 		});
 
 		// gysahl seeds
@@ -583,31 +514,31 @@ public class ModChocoCraft
 			"SES", 
 			"WGW", 
 			Character.valueOf('G'), gysahlGreenBlock, 
-			Character.valueOf('M'), Item.bucketMilk, 
-			Character.valueOf('S'), Item.sugar, 
-			Character.valueOf('W'), Item.wheat,
-			Character.valueOf('E'), Item.egg
+			Character.valueOf('M'), Items.milk_bucket,
+			Character.valueOf('S'), Items.sugar,
+			Character.valueOf('W'), Items.wheat,
+			Character.valueOf('E'), Items.egg
 		});
 		
 		// gysahl pickles
 		GameRegistry.addShapelessRecipe(new ItemStack(gysahlPicklesRawItem, 2), new Object[]
 		{
 			new ItemStack(gysahlGreenBlock, 1),
-			new ItemStack(Item.sugar, 1)
+			new ItemStack(Items.sugar, 1)
 		});
 
 		// pink gysahl
 		GameRegistry.addShapelessRecipe(new ItemStack(gysahlPinkItem, 1), new Object[]
 		{
 			new ItemStack(gysahlGreenBlock, 1), 
-			new ItemStack(Item.dyePowder, 1, 9)
+			new ItemStack(Items.dye, 1, 9)
 		});
 
 		// red gysahl
 		GameRegistry.addShapelessRecipe(new ItemStack(gysahlRedItem, 1), new Object[]
 		{
 			new ItemStack(gysahlGreenBlock, 1), 
-			new ItemStack(Item.dyePowder, 1, 1)
+			new ItemStack(Items.dye, 1, 1)
 		});
 
 		// chocobo disguise
@@ -644,36 +575,36 @@ public class ModChocoCraft
 		GameRegistry.addRecipe(new ItemStack(strawBlock, 8), new Object[]
 		{
 			"WW",
-			Character.valueOf('W'), Item.wheat
+			Character.valueOf('W'), Items.wheat
 		});
 		                                                        		
 		// alternative recipes for vanilla items with chocobo feathers
 		// arrows
-		GameRegistry.addRecipe(new ItemStack(Item.arrow, 4), new Object[]
+		GameRegistry.addRecipe(new ItemStack(Items.arrow, 4), new Object[]
 		{
 			" F ",
 		    " S ",
 		    " Y ",
-		    Character.valueOf('F'), Item.flint, 
-		    Character.valueOf('S'), Item.stick, 
+		    Character.valueOf('F'), Items.flint,
+		    Character.valueOf('S'), Items.stick,
 		    Character.valueOf('Y'), chocoboFeatherItem
 		});
 
 		// writable Book
-		GameRegistry.addShapelessRecipe(new ItemStack(Item.writableBook, 1), new Object[]
+		GameRegistry.addShapelessRecipe(new ItemStack(Items.writable_book, 1), new Object[]
 		{
-			new ItemStack(Item.book, 1),
-			new ItemStack(Item.dyePowder, 1, 0),
+			new ItemStack(Items.book, 1),
+			new ItemStack(Items.dye, 1, 0),
 			new ItemStack(chocoboFeatherItem, 1)
 		});
 
 		// leash (lead)
-		GameRegistry.addRecipe(new ItemStack(Item.leash, 2), new Object[]
+		GameRegistry.addRecipe(new ItemStack(Items.lead, 2), new Object[]
 		{
 			"SS ",
 			"SF ",
 			"  S",
-			Character.valueOf('S'), Item.silk,
+			Character.valueOf('S'), Items.string,
 			Character.valueOf('F'), chocoboFeatherItem
 		});
 		
@@ -704,7 +635,8 @@ public class ModChocoCraft
 		LanguageRegistry.instance().addStringLocalization("entity." + Constants.TCC_MODID  + "." + entityName + ".name", "en_US", visibleName);
 		EntityRegistry.registerModEntity(entityClass, entityName, entityID, instance, 128, 1, true);		
 		EntityList.IDtoClassMapping.put(entityID, entityClass);
-		EntityList.entityEggs.put(entityID, new EntityEggInfo(entityID, eggColor, eggDotsColor));
+		//TODO update to 1.7
+		//EntityList.entityEggs.put(entityID, new EntityEggInfo(entityID, eggColor, eggDotsColor));
 	}
 
 	private int getRGBInt(int rInt, int gInt, int bInt)

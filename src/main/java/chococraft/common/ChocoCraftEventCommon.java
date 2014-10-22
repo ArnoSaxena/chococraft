@@ -14,7 +14,17 @@
 
 package chococraft.common;
 
-import net.minecraft.block.Block;
+import chococraft.common.entities.EntityChocobo;
+import chococraft.common.entities.colours.EntityChocoboPurple;
+import chococraft.common.gui.GuiStarter;
+import chococraft.common.helper.ChocoboPlayerHelper;
+import chococraft.common.items.BlockGysahlStem;
+import chococraft.common.network.PacketRegistry;
+import chococraft.common.network.serverSide.ChocoboSpawnItem;
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.eventhandler.Event;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.relauncher.Side;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.EntityPigZombie;
 import net.minecraft.entity.monster.EntitySkeleton;
@@ -22,42 +32,32 @@ import net.minecraft.entity.monster.EntityWitch;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
-import net.minecraftforge.event.Event.Result;
-import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.BonemealEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.Action;
-import chococraft.common.entities.EntityChocobo;
-import chococraft.common.entities.colours.EntityChocoboPurple;
-import chococraft.common.gui.GuiStarter;
-import chococraft.common.helper.ChocoboPlayerHelper;
-import chococraft.common.items.BlockGysahlStem;
-import chococraft.common.network.serverSide.PacketChocoboSpawnItem;
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.network.PacketDispatcher;
-import cpw.mods.fml.relauncher.Side;
 
 public class ChocoCraftEventCommon
 {
-	@ForgeSubscribe
+	@SubscribeEvent
 	public void onUseBonemeal(BonemealEvent event)
 	{
-		if (event.ID == ModChocoCraft.gysahlStemBlock.blockID)
+		if (event.block.equals(ModChocoCraft.gysahlStemBlock))
 		{
-			if (((BlockGysahlStem)ModChocoCraft.gysahlStemBlock).onBonemealUse(event.world, event.X, event.Y, event.Z))
+			if (((BlockGysahlStem)ModChocoCraft.gysahlStemBlock).onBonemealUse(event.world, event.x, event.y, event.z))
 			{
-				event.setResult(Result.ALLOW);
+				event.setResult(Event.Result.ALLOW);
 			}
 		}
 	}
     
-    @ForgeSubscribe
+    @SubscribeEvent
     public void onBurnDamage(LivingAttackEvent event)
     {
     	if(event.entity instanceof EntityPlayer)
@@ -75,7 +75,7 @@ public class ChocoCraftEventCommon
     	}
     }
     
-    @ForgeSubscribe
+    @SubscribeEvent
     public void onPlayerAttackMount(LivingAttackEvent event)
     {
     	if(event.entity instanceof EntityChocobo)
@@ -94,7 +94,7 @@ public class ChocoCraftEventCommon
     	}
     }
     
-    @ForgeSubscribe
+    @SubscribeEvent
     public void onPlayerAttackInventory(LivingAttackEvent event)
     {
     	if(event.entity instanceof EntityChocobo)
@@ -115,7 +115,7 @@ public class ChocoCraftEventCommon
     	}
     }
     
-    @ForgeSubscribe
+    @SubscribeEvent
     public void onChocoboSuffocateInWall(LivingAttackEvent event)
     {
     	if(event.entity instanceof EntityChocobo)
@@ -127,7 +127,7 @@ public class ChocoCraftEventCommon
     	}
     }
     
-    @ForgeSubscribe
+    @SubscribeEvent
     public void chocoboDamageHandling(LivingHurtEvent event)
     {
     	if(event.entity instanceof EntityChocobo)
@@ -137,7 +137,7 @@ public class ChocoCraftEventCommon
     	}
     }
     
-    @ForgeSubscribe
+    @SubscribeEvent
     public void onChocopediaRightClick(PlayerInteractEvent event)
     {
     	if(event.action == Action.RIGHT_CLICK_AIR)
@@ -148,7 +148,7 @@ public class ChocoCraftEventCommon
         		ItemStack currentItem = player.getCurrentEquippedItem();
         		if(currentItem != null)
         		{        			
-        			if(currentItem.itemID == ModChocoCraft.chocopediaItem.itemID)
+        			if(currentItem.getItem().equals(ModChocoCraft.chocopediaItem))
         			{
         				GuiStarter.startChocopediaGui(null);
         				if(event.isCancelable())
@@ -161,7 +161,7 @@ public class ChocoCraftEventCommon
     	}
     }
     
-    @ForgeSubscribe
+    @SubscribeEvent
     public void onFeatherRightClick(PlayerInteractEvent event)
     {
     	if(event.action == Action.RIGHT_CLICK_BLOCK)
@@ -172,13 +172,13 @@ public class ChocoCraftEventCommon
         		ItemStack currentItem = player.getCurrentEquippedItem();
         		if(currentItem != null)
         		{        			
-        			if(currentItem.itemID == ModChocoCraft.chocoboFeatherItem.itemID)
+        			if(currentItem.getItem().equals(ModChocoCraft.chocoboFeatherItem))
         			{
-        				if(player.worldObj.getBlockId(event.x, event.y, event.z) == Block.bookShelf.blockID)
+        				if(player.worldObj.getBlock(event.x, event.y, event.z) == Blocks.bookshelf)
         				{
            	        		player.worldObj.setBlockToAir(event.x, event.y, event.z);
            	        		ChocoboPlayerHelper.useCurrentItem(player);
-           	        		ItemStack itemstack = new ItemStack(ModChocoCraft.chocopediaItem.itemID, 1, 0);
+           	        		ItemStack itemstack = new ItemStack(ModChocoCraft.chocopediaItem, 1, 0);
            	        		this.sendCreateChocopediaItem(player.worldObj, itemstack, (double)event.x, (double)event.y, (double)event.z);
         				}
         			}
@@ -191,12 +191,12 @@ public class ChocoCraftEventCommon
 	{
 		if(Side.CLIENT == FMLCommonHandler.instance().getEffectiveSide())
 		{
-			PacketChocoboSpawnItem packet = new PacketChocoboSpawnItem(world, stack, posX, posY, posZ);
-			PacketDispatcher.sendPacketToServer(packet.getPacket());			
+			ChocoboSpawnItem packet = new ChocoboSpawnItem(world, stack, posX, posY, posZ);
+			PacketRegistry.INSTANCE.sendToServer(packet);
 		}
 	}
 	
-	@ForgeSubscribe
+	@SubscribeEvent
 	public void onSkeletonAndZombiDropEvent(LivingDropsEvent event)
 	{
 		if (this.isChocopediaDropEntity(event.entityLiving))
@@ -204,7 +204,7 @@ public class ChocoCraftEventCommon
 			double d100 = Math.random() * 100;
 			if (d100 < Constants.CHOCOPEDIA_MOB_DROP_RATE)
 			{
-				event.entityLiving.dropItem(ModChocoCraft.chocopediaItem.itemID, 1);
+				event.entityLiving.dropItem(ModChocoCraft.chocopediaItem, 1);
 			}
 		}
 	}
