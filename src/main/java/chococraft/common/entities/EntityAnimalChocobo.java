@@ -15,15 +15,21 @@
 
 package chococraft.common.entities;
 
-import java.util.List;
-import java.util.Random;
-
+import chococraft.common.Constants;
+import chococraft.common.ModChocoCraft;
+import chococraft.common.entities.ai.*;
+import chococraft.common.gui.GuiStarter;
+import chococraft.common.helper.ChocoboEntityHelper;
+import chococraft.common.helper.ChocoboMathHelper;
+import chococraft.common.helper.ChocoboParticleHelper;
 import chococraft.common.network.PacketRegistry;
 import chococraft.common.network.clientSide.*;
-import chococraft.common.network.clientSide.ChocoboChangeOwner;
+import chococraft.common.network.serverSide.ChocoboAttribute;
+import chococraft.common.network.serverSide.ChocoboChangeOwner;
 import chococraft.common.network.serverSide.ChocoboSetInLove;
 import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.network.NetworkRegistry;
+import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
@@ -32,6 +38,7 @@ import net.minecraft.entity.passive.EntityTameable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.pathfinding.PathEntity;
@@ -40,20 +47,9 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
-import chococraft.common.Constants;
-import chococraft.common.ModChocoCraft;
-import chococraft.common.entities.ai.ChocoboAIFollowOwner;
-import chococraft.common.entities.ai.ChocoboAILookIdle;
-import chococraft.common.entities.ai.ChocoboAISwimming;
-import chococraft.common.entities.ai.ChocoboAITeleportToOwner;
-import chococraft.common.entities.ai.ChocoboAIWander;
-import chococraft.common.entities.ai.ChocoboAIWatchClosest;
-import chococraft.common.gui.GuiStarter;
-import chococraft.common.helper.ChocoboEntityHelper;
-import chococraft.common.helper.ChocoboMathHelper;
-import chococraft.common.helper.ChocoboParticleHelper;
 
-import cpw.mods.fml.common.registry.IEntityAdditionalSpawnData;
+import java.util.List;
+import java.util.Random;
 
 public abstract class EntityAnimalChocobo extends EntityTameable implements IEntityAdditionalSpawnData
 {
@@ -140,8 +136,8 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
     {
 		super.entityInit();
 		this.dataWatcher.addObject(Constants.DW_ID_EAC_NAME, "");
-		this.dataWatcher.addObject(Constants.DW_ID_EAC_FLAGS, Byte.valueOf((byte)0));		
-		this.dataWatcher.addObject(Constants.DW_ID_EAC_TIME_UNTIL_HUNGER, new Integer(0));
+		this.dataWatcher.addObject(Constants.DW_ID_EAC_FLAGS, (byte) 0);
+		this.dataWatcher.addObject(Constants.DW_ID_EAC_TIME_UNTIL_HUNGER, 0);
     }
 	
     @Override
@@ -266,11 +262,11 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
 
         if (inLove)
         {
-            this.dataWatcher.updateObject(Constants.DW_ID_EAC_FLAGS, Byte.valueOf((byte)(eacFlags | Constants.DW_VAL_EAC_INLOVE_ON)));
+            this.dataWatcher.updateObject(Constants.DW_ID_EAC_FLAGS, (byte) (eacFlags | Constants.DW_VAL_EAC_INLOVE_ON));
         }
         else
         {
-            this.dataWatcher.updateObject(Constants.DW_ID_EAC_FLAGS, Byte.valueOf((byte)(eacFlags & Constants.DW_VAL_EAC_INLOVE_OFF)));
+            this.dataWatcher.updateObject(Constants.DW_ID_EAC_FLAGS, (byte) (eacFlags & Constants.DW_VAL_EAC_INLOVE_OFF));
         }
         this.sendSetInLoveUpdate();
     }
@@ -286,11 +282,11 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
 
         if (isMale)
         {
-            this.dataWatcher.updateObject(Constants.DW_ID_EAC_FLAGS, Byte.valueOf((byte)(eacFlags | Constants.DW_VAL_EAC_ISMALE_ON)));
+            this.dataWatcher.updateObject(Constants.DW_ID_EAC_FLAGS, (byte) (eacFlags | Constants.DW_VAL_EAC_ISMALE_ON));
         }
         else
         {
-            this.dataWatcher.updateObject(Constants.DW_ID_EAC_FLAGS, Byte.valueOf((byte)(eacFlags & Constants.DW_VAL_EAC_ISMALE_OFF)));
+            this.dataWatcher.updateObject(Constants.DW_ID_EAC_FLAGS, (byte) (eacFlags & Constants.DW_VAL_EAC_ISMALE_OFF));
         }
     }
     
@@ -310,11 +306,11 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
 
         if (hidename)
         {
-            this.dataWatcher.updateObject(Constants.DW_ID_EAC_FLAGS, Byte.valueOf((byte)(eacFlags | Constants.DW_VAL_EAC_HIDENAME_ON)));
+            this.dataWatcher.updateObject(Constants.DW_ID_EAC_FLAGS, (byte) (eacFlags | Constants.DW_VAL_EAC_HIDENAME_ON));
         }
         else
         {
-            this.dataWatcher.updateObject(Constants.DW_ID_EAC_FLAGS, Byte.valueOf((byte)(eacFlags & Constants.DW_VAL_EAC_HIDENAME_OFF)));
+            this.dataWatcher.updateObject(Constants.DW_ID_EAC_FLAGS, (byte) (eacFlags & Constants.DW_VAL_EAC_HIDENAME_OFF));
         }
 
         if (this.isClient())
@@ -332,11 +328,11 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
 
         if (wander)
         {
-            this.dataWatcher.updateObject(Constants.DW_ID_EAC_FLAGS, Byte.valueOf((byte)(eacFlags | Constants.DW_VAL_EAC_WANDER_ON)));
+            this.dataWatcher.updateObject(Constants.DW_ID_EAC_FLAGS, (byte) (eacFlags | Constants.DW_VAL_EAC_WANDER_ON));
         }
         else
         {
-            this.dataWatcher.updateObject(Constants.DW_ID_EAC_FLAGS, Byte.valueOf((byte)(eacFlags & Constants.DW_VAL_EAC_WANDER_OFF)));
+            this.dataWatcher.updateObject(Constants.DW_ID_EAC_FLAGS, (byte) (eacFlags & Constants.DW_VAL_EAC_WANDER_OFF));
         }
 
         if (this.isClient())
@@ -354,11 +350,11 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
 
         if (following)
         {
-            this.dataWatcher.updateObject(Constants.DW_ID_EAC_FLAGS, Byte.valueOf((byte)(eacFlags | Constants.DW_VAL_EAC_FOLLOWING_ON)));
+            this.dataWatcher.updateObject(Constants.DW_ID_EAC_FLAGS, (byte) (eacFlags | Constants.DW_VAL_EAC_FOLLOWING_ON));
         }
         else
         {
-            this.dataWatcher.updateObject(Constants.DW_ID_EAC_FLAGS, Byte.valueOf((byte)(eacFlags & Constants.DW_VAL_EAC_FOLLOWING_OFF)));
+            this.dataWatcher.updateObject(Constants.DW_ID_EAC_FLAGS, (byte) (eacFlags & Constants.DW_VAL_EAC_FOLLOWING_OFF));
         }
 
         if (this.isClient())
@@ -555,13 +551,16 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
     	ItemStack itemstack = entityplayer.inventory.getCurrentItem();
     	if(itemstack != null)
     	{
+			System.out.println(itemstack.getItem().toString());
     		if (itemstack.getItem().equals(ModChocoCraft.chocopediaItem))
     		{
+				System.out.println("pedia!");
     			this.onChocopediaUse();
     			interacted = true;
     		}
-    		else if (itemstack.getItem().equals(ModChocoCraft.gysahlGreenBlock))
+    		else if (itemstack.getItem().equals(Item.getItemFromBlock(ModChocoCraft.gysahlGreenBlock)))
     		{
+				System.out.println("greens!");
     			this.onGysahlGreenUse(entityplayer);
     			interacted = true;
     		}
