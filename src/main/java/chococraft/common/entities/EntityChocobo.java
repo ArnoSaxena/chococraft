@@ -63,7 +63,7 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 	protected void entityInit()
 	{
 		super.entityInit();
-        this.dataWatcher.addObject(Constants.DW_ID_CHOC_FLAGS, Byte.valueOf((byte)0));
+        this.dataWatcher.addObject(Constants.DW_ID_CHOC_FLAGS, (byte) 0);
 	}
 	
 	protected abstract float getChocoboMaxHealth();

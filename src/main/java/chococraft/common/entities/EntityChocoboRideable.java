@@ -63,7 +63,7 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo
 	protected void entityInit()
 	{
 		super.entityInit();
-		this.dataWatcher.addObject(Constants.DW_ID_ECR_FLAGS, Byte.valueOf((byte)0));
+		this.dataWatcher.addObject(Constants.DW_ID_ECR_FLAGS, (byte) 0);
 	}
 
     @Override
@@ -417,11 +417,11 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo
 
 		if (saddled)
 		{
-			this.dataWatcher.updateObject(Constants.DW_ID_ECR_FLAGS, Byte.valueOf((byte)(ecrFlags | Constants.DW_VAL_ECR_SADDLED_ON)));
+			this.dataWatcher.updateObject(Constants.DW_ID_ECR_FLAGS, (byte) (ecrFlags | Constants.DW_VAL_ECR_SADDLED_ON));
 		}
 		else
 		{
-			this.dataWatcher.updateObject(Constants.DW_ID_ECR_FLAGS, Byte.valueOf((byte)(ecrFlags & Constants.DW_VAL_ECR_SADDLED_OFF)));
+			this.dataWatcher.updateObject(Constants.DW_ID_ECR_FLAGS, (byte) (ecrFlags & Constants.DW_VAL_ECR_SADDLED_OFF));
 		}
 		//this.texture = this.getEntityTexture();
 	}
@@ -472,12 +472,12 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo
 			if (saddleBags)
 			{
 				this.bagsInventory = new ChocoSaddleBagInventory(this);
-				this.dataWatcher.updateObject(Constants.DW_ID_ECR_FLAGS, Byte.valueOf((byte)(ecrFlags | Constants.DW_VAL_ECR_SADDLEBAGGED_ON)));
+				this.dataWatcher.updateObject(Constants.DW_ID_ECR_FLAGS, (byte) (ecrFlags | Constants.DW_VAL_ECR_SADDLEBAGGED_ON));
 			}
 			else
 			{
 				this.bagsInventory = null;
-				this.dataWatcher.updateObject(Constants.DW_ID_ECR_FLAGS, Byte.valueOf((byte)(ecrFlags & Constants.DW_VAL_ECR_SADDLEBAGGED_OFF)));
+				this.dataWatcher.updateObject(Constants.DW_ID_ECR_FLAGS, (byte) (ecrFlags & Constants.DW_VAL_ECR_SADDLEBAGGED_OFF));
 			}
 			//this.texture = this.getEntityTexture();
 		}    	
@@ -496,12 +496,12 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo
 			if (packBagged)
 			{
 				this.bagsInventory = new ChocoPackBagInventory(this);
-				this.dataWatcher.updateObject(Constants.DW_ID_ECR_FLAGS, Byte.valueOf((byte)(ecrFlags | Constants.DW_VAL_ECR_PACKBAGGED_ON)));
+				this.dataWatcher.updateObject(Constants.DW_ID_ECR_FLAGS, (byte) (ecrFlags | Constants.DW_VAL_ECR_PACKBAGGED_ON));
 			}
 			else
 			{
 				this.bagsInventory = null;
-				this.dataWatcher.updateObject(Constants.DW_ID_ECR_FLAGS, Byte.valueOf((byte)(ecrFlags & Constants.DW_VAL_ECR_PACKBAGGED_OFF)));
+				this.dataWatcher.updateObject(Constants.DW_ID_ECR_FLAGS, (byte) (ecrFlags & Constants.DW_VAL_ECR_PACKBAGGED_OFF));
 			}
 			//this.texture = this.getEntityTexture();
 		}

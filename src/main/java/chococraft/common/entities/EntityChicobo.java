@@ -37,8 +37,8 @@ public class EntityChicobo extends EntityAnimalChocobo
 	public EntityChicobo(World world)
 	{
 		super(world);
-		this.dataWatcher.addObject(Constants.DW_ID_CHIC_FLAGS, Byte.valueOf((byte)0));
-		this.dataWatcher.addObject(Constants.DW_ID_CHIC_TIMEUNTILADULT, new Integer(rand.nextInt(2000) + 27000));
+		this.dataWatcher.addObject(Constants.DW_ID_CHIC_FLAGS, (byte) 0);
+		this.dataWatcher.addObject(Constants.DW_ID_CHIC_TIMEUNTILADULT, rand.nextInt(2000) + 27000);
 		this.setColor(chocoboColor.YELLOW);
 		this.setSize(0.5F, 0.5F);
 		this.growUp = false;
@@ -203,11 +203,11 @@ public class EntityChicobo extends EntityAnimalChocobo
 
 		if (canGrowUp)
 		{
-			this.dataWatcher.updateObject(Constants.DW_ID_CHIC_FLAGS, Byte.valueOf((byte)(watchedFlags | 4)));
+			this.dataWatcher.updateObject(Constants.DW_ID_CHIC_FLAGS, (byte) (watchedFlags | 4));
 		}
 		else
 		{
-			this.dataWatcher.updateObject(Constants.DW_ID_CHIC_FLAGS, Byte.valueOf((byte)(watchedFlags & -5)));
+			this.dataWatcher.updateObject(Constants.DW_ID_CHIC_FLAGS, (byte) (watchedFlags & -5));
 		}
 	}
 
@@ -306,12 +306,7 @@ public class EntityChicobo extends EntityAnimalChocobo
 				{
 					this.onGysahlCakeUse(entityplayer);
 					interacted = true;
-				} 
-//				else if (itemstack.itemID == ModChocoCraft.gysahlChibiItem.shiftedIndex)
-//				{
-//					this.onGysahlChibiUse(entityplayer);
-//					interacted = true;
-//				}
+				}
 				else if (itemstack.getItem().equals(ModChocoCraft.chocoboFeatherItem))
 				{
 					this.onFeatherUse(entityplayer);
