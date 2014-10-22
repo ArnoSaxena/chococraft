@@ -1,6 +1,5 @@
 package chococraft.common.entities.ai;
 
-import java.util.Iterator;
 import java.util.List;
 
 import net.minecraft.entity.ai.EntityAIBase;
@@ -83,19 +82,15 @@ public class ChocoboAIMate extends EntityAIBase
 		List list = this.theWorld.getEntitiesWithinAABB(EntityChocobo.class, this.theChocobo.boundingBox.expand((double)f, (double)f, (double)f));
         double d0 = Double.MAX_VALUE;
         EntityChocobo chocobo = null;
-        @SuppressWarnings("rawtypes")
-		Iterator iterator = list.iterator();
 
-        while (iterator.hasNext())
-        {
-            EntityChocobo chocoboIter = (EntityChocobo)iterator.next();
+		for (Object aList : list) {
+			EntityChocobo chocoboIter = (EntityChocobo) aList;
 
-            if (this.theChocobo.canMateWith(chocoboIter) && this.theChocobo.getDistanceSqToEntity(chocoboIter) < d0)
-            {
-                chocobo = chocoboIter;
-                d0 = this.theChocobo.getDistanceSqToEntity(chocoboIter);
-            }
-        }
+			if (this.theChocobo.canMateWith(chocoboIter) && this.theChocobo.getDistanceSqToEntity(chocoboIter) < d0) {
+				chocobo = chocoboIter;
+				d0 = this.theChocobo.getDistanceSqToEntity(chocoboIter);
+			}
+		}
         return chocobo;
     }
 

@@ -101,12 +101,8 @@ public class EntityChocoboYellow extends EntityChocobo
 
 	public boolean getCanSpawnHere()
 	{
-		if(ChocoboEntityHelper.countWildChocobos(this.worldObj) >= ModChocoCraft.spawnGroupMax)
-		{
-			return false;
-		}
+		return ChocoboEntityHelper.countWildChocobos(this.worldObj) < ModChocoCraft.spawnGroupMax && this.rand.nextInt(100) <= ModChocoCraft.spawnProbability && super.getCanSpawnHere();
 
-		return this.rand.nextInt(100) <= ModChocoCraft.spawnProbability && super.getCanSpawnHere();
 	}
 
 	public void setRiderAbilities(boolean mounted){}

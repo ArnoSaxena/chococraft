@@ -155,7 +155,7 @@ public final class ChocoboSpawner
 				Boolean canSpawnLoc = canChocoboSpawnAtLocation(world, chocoPosX, chocoPosY, chocoPosZ);
 
 				// create the entity to be spawn if it can spawn
-				if(canSpawnLoc && canSpawnHere)
+				if(canSpawnLoc)
 				{
 					chocoboColor color = ChocoboBiomeHelper.isWorldHell(world) ? chocoboColor.PURPLE : chocoboColor.YELLOW;
 					EntityChocobo newChocobo = FactoryEntityChocobo.createNewChocobo(world, color);
@@ -260,12 +260,8 @@ public final class ChocoboSpawner
 		}
 		
 		//Boolean notNormalTwoAbove = !isNormalCubeAround(world, posX, posY + 2, posZ);
-		if(isNormalCubesAround(world, posX, posY + 2, posZ))
-		{
-			return false;
-		}
+		return !isNormalCubesAround(world, posX, posY + 2, posZ);
 
-		return true;
 		//return normalCubeBelow && notNormalCube && notLiquidCube && notNormalAbove && notNormalTwoAbove;
 	}
 	

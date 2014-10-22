@@ -26,7 +26,6 @@ import cpw.mods.fml.common.eventhandler.Event;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.relauncher.Side;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.monster.EntityPigZombie;
 import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.entity.monster.EntityWitch;
 import net.minecraft.entity.monster.EntityZombie;
@@ -213,7 +212,6 @@ public class ChocoCraftEventCommon
 	{
 		return entity instanceof EntityZombie
 				|| entity instanceof EntitySkeleton
-				|| entity instanceof EntityPigZombie
 				|| entity instanceof EntityWitch
 				|| entity instanceof EntityVillager;
 	}

@@ -29,10 +29,9 @@ public class ChocoboRiderList
 
 	public NBTBase writeToNBT(NBTTagList nbtTagList)
 	{
-		for (int i = 0; i < this.riders.size(); i++)
-		{
+		for (String rider : this.riders) {
 			NBTTagCompound nbttagcompound = new NBTTagCompound();
-			nbttagcompound.setString("name", this.riders.get(i));
+			nbttagcompound.setString("name", rider);
 			nbtTagList.appendTag(nbttagcompound);
 		}
 		return nbtTagList;

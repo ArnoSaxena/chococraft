@@ -1,13 +1,13 @@
 package chococraft.common.tick;
 
-import java.util.Iterator;
-
 import chococraft.common.ModChocoCraft;
 import chococraft.common.entities.spawner.ChocoboSpawner;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
+
+import java.util.List;
 
 public class ServerSpawnTickHandler
 {
@@ -19,13 +19,11 @@ public class ServerSpawnTickHandler
 			return;
 		spawnTimer = 0;
 
-        Iterator<?> playerIter = MinecraftServer.getServer().getConfigurationManager().playerEntityList.iterator();
-        while (playerIter.hasNext())
-        {
-            EntityPlayerMP player = (EntityPlayerMP)playerIter.next();
-            ChocoboSpawner.doChocoboSpawning(player.worldObj, player.posX, player.posY, player.posZ);
-            ModChocoCraft.spawnDbTimeDelay = player.worldObj.getTotalWorldTime();
-        }
+		for(EntityPlayerMP player : (List<EntityPlayerMP>)MinecraftServer.getServer().getConfigurationManager().playerEntityList)
+		{
+			ChocoboSpawner.doChocoboSpawning(player.worldObj, player.posX, player.posY, player.posZ);
+			ModChocoCraft.spawnDbTimeDelay = player.worldObj.getTotalWorldTime();
+		}
 	}
 
 }

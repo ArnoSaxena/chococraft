@@ -569,8 +569,7 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
     
 	protected boolean onEmptyHandInteraction(EntityPlayer entityplayer)
 	{
-		boolean interacted = false;
-		return interacted;
+		return false;
 	}
 	
     protected void onChocopediaUse()
@@ -590,8 +589,8 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
     
     protected void onWritableBookUse(EntityPlayer player)
     {
-    	ItemStack currentItem = player.getCurrentEquippedItem();
-    	currentItem = new ItemStack(ModChocoCraft.chocopediaItem, 1);
+		int selectedSlot = player.inventory.currentItem;
+		player.inventory.mainInventory[selectedSlot] = new ItemStack(ModChocoCraft.chocopediaItem, 1);
     }
 
     protected void onGysahlGreenUse(EntityPlayer entityplayer)
@@ -739,22 +738,19 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
         if (this.isInLove())
         {
             List list = this.worldObj.getEntitiesWithinAABB(EntityChocobo.class, this.boundingBox.expand(8F, 8F, 8F));
-            for (int i = 0; i < list.size(); i++)
-            {
-                EntityChocobo otherChoco = (EntityChocobo)list.get(i);
-                
-                if(otherChoco != this)
-                {
-                	boolean canMate = otherChoco.isInLove() && otherChoco.isMale() != this.isMale();
-                	
-                	if(canMate && !otherChoco.isChild())
-                	{
-                		this.hasMate = true;
-                		otherChoco.hasMate = true;
-                		return otherChoco;
-                	}
-                }
-            }
+			for (Object aList : list) {
+				EntityChocobo otherChoco = (EntityChocobo) aList;
+
+				if (otherChoco != this) {
+					boolean canMate = otherChoco.isInLove() && otherChoco.isMale() != this.isMale();
+
+					if (canMate && !otherChoco.isChild()) {
+						this.hasMate = true;
+						otherChoco.hasMate = true;
+						return otherChoco;
+					}
+				}
+			}
         }
         return null;
     }
@@ -778,12 +774,8 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
     
     public boolean canSpawnAtLoc(int x, int y, int z)
     {
-    	if(!World.doesBlockHaveSolidTopSurface(worldObj, x, y - 1, z))
-    	{
-    		return false;
-    	}
+		return World.doesBlockHaveSolidTopSurface(worldObj, x, y - 1, z) && ChocoboEntityHelper.isSpaceAroundLocationFree(this.worldObj, x, y, z, 1, 3, 1);
 
-		return ChocoboEntityHelper.isSpaceAroundLocationFree(this.worldObj, x, y, z, 1, 3, 1);
 	}
     
     public boolean teleportToOwner()
@@ -1123,16 +1115,14 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
         double distance = 9999;
         EntityPlayer nearestPlayer = null;
 
-        for (int j = 0; j < list1.size(); j++)
-        {
-            EntityPlayer player = (EntityPlayer)list1.get(j);
+		for (Object aList1 : list1) {
+			EntityPlayer player = (EntityPlayer) aList1;
 			double tmpDist = this.getDistanceToEntity(player);
-			if(tmpDist < distance)
-			{
+			if (tmpDist < distance) {
 				distance = tmpDist;
 				nearestPlayer = player;
 			}
-        }
+		}
         return nearestPlayer;
     }
     

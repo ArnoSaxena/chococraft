@@ -104,7 +104,7 @@ public class BlockStraw extends Block
     public boolean canPlaceBlockAt(World world, int posX, int posY, int posZ)
     {
         Block block = world.getBlock(posX, posY - 1, posZ);
-        return block != null && (block.isOpaqueCube()) ? block.getMaterial().blocksMovement() : false;
+        return block != null && (block.isOpaqueCube()) && block.getMaterial().blocksMovement();
     }
 
     /**

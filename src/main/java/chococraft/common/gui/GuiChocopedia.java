@@ -249,6 +249,7 @@ public class GuiChocopedia extends GuiScreen
 		if(null != this.chocobo)
 		{
 			drawDefaultBackground();
+			@SuppressWarnings("UnusedAssignment")
 			String breedStatus = "";
 			String gender = this.chocobo.getGender();
 			String ownerName = (new StringBuilder()).append("owner: ").append(this.chocobo.func_152113_b()).toString();//getOwnerName

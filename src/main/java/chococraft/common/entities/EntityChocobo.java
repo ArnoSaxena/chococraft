@@ -378,8 +378,7 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 	
 	protected boolean onEmptyHandInteraction(EntityPlayer entityplayer)
 	{
-		boolean interacted = super.onEmptyHandInteraction(entityplayer);
-		return interacted;
+		return super.onEmptyHandInteraction(entityplayer);
 	}
 	
 	public void onBreedGysahlUse(EntityPlayer player, boolean fedGold)
@@ -490,14 +489,11 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 				List list = worldObj.getEntitiesWithinAABBExcludingEntity(this.riddenByEntity, boundingBox.expand(1.0D, 1.0D, 1.0D));
 				if (list != null)
 				{
-					for (int i = 0; i < list.size(); i++)
-					{
-						Entity entity = (Entity)list.get(i);
-						if (!entity.isDead)
-						{
-							if(this.riddenByEntity instanceof EntityPlayer)
-							{
-								entity.onCollideWithPlayer((EntityPlayer)this.riddenByEntity);
+					for (Object aList : list) {
+						Entity entity = (Entity) aList;
+						if (!entity.isDead) {
+							if (this.riddenByEntity instanceof EntityPlayer) {
+								entity.onCollideWithPlayer((EntityPlayer) this.riddenByEntity);
 							}
 						}
 					}
@@ -560,13 +556,8 @@ public abstract class EntityChocobo extends EntityChocoboRideable
     		if(otherEntity instanceof EntityChocobo)
     		{
     			EntityChocobo otherChocobo = (EntityChocobo)otherEntity;
-    			
-    			if(this.isMale() == otherChocobo.isMale())
-    			{
-    				return false;
-    			}
 
-				return !(!this.isInLove() || !otherChocobo.isInLove());
+				return this.isMale() != otherChocobo.isMale() && !(!this.isInLove() || !otherChocobo.isInLove());
 
 			}
     	}

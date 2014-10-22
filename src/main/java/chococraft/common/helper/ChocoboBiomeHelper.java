@@ -65,12 +65,7 @@ public class ChocoboBiomeHelper
 	public static boolean isBiomeHell(World world, int posX, int posZ)
 	{
 		BiomeGenBase chocoBgb = world.getBiomeGenForCoords(posX, posZ);
-		if(chocoBgb instanceof BiomeGenHell)
-		{
-			return true;
-		}
-
-		return chocoBgb instanceof BiomeGenEnd;
+		return chocoBgb instanceof BiomeGenHell || chocoBgb instanceof BiomeGenEnd;
 
 	}
 	
