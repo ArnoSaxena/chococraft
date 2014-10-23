@@ -866,7 +866,10 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
     }
 
 	protected void useItem(EntityPlayer entityplayer)
-	{
+	{//TODO isn't this just consumeItem?
+		if(entityplayer.capabilities.isCreativeMode)
+			return;
+
 		ItemStack itemstack = entityplayer.inventory.getCurrentItem();
 		itemstack.stackSize--;
 		if (itemstack.stackSize <= 0)
