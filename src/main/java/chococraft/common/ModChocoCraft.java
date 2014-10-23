@@ -15,6 +15,7 @@
 package chococraft.common;
 
 import chococraft.client.ClientProxyChocoCraft;
+import chococraft.common.config.ChocoboConfig;
 import chococraft.common.entities.EntityChicobo;
 import chococraft.common.entities.colours.*;
 import chococraft.common.gui.ChocoboGuiHandler;
@@ -38,7 +39,6 @@ import cpw.mods.fml.relauncher.Side;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityList;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -182,12 +182,8 @@ public class ModChocoCraft
 
 		chocoboHeight = 1.9F;
 		chocoboWidth = 1.3F;
-		
-		mainConfiguration = new Configuration(preInitEvent.getSuggestedConfigurationFile());
+
 		configFolder = preInitEvent.getModConfigurationDirectory();
-		mainConfiguration.load();
-		//ID's used to be here
-		mainConfiguration.save();
 
 		chocoboWingFlutter   = Constants.DEFAULT_CHOCOBO_WING_FLUTTER;
 		hungerEnabled        = Constants.DEFAULT_HUNGER_ENABLED;

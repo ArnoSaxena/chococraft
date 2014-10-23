@@ -12,7 +12,7 @@
 // <date>2012-05-09</date>
 // <summary>Writes and reades the config eintries from the defined file into and from the static variables of the mod_chocobo class</summary>
 
-package chococraft.common;
+package chococraft.common.config;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -26,6 +26,8 @@ import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
+import chococraft.common.Constants;
+import chococraft.common.ModChocoCraft;
 import chococraft.common.helper.ChocoboBiomeHelper;
 import chococraft.common.helper.ChocoboMathHelper;
 import net.minecraft.world.biome.BiomeGenBase;

@@ -1,6 +1,6 @@
 package chococraft.common.network.clientSide;
 
-import chococraft.common.ChocoboConfig;
+import chococraft.common.config.ChocoboConfig;
 import chococraft.common.ModChocoCraft;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
