@@ -18,6 +18,7 @@ package chococraft.common.entities;
 import java.util.List;
 import java.util.Random;
 
+import chococraft.common.config.ChocoCraftItems;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
@@ -32,7 +33,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import chococraft.common.Constants;
+import chococraft.common.config.Constants;
 import chococraft.common.ModChocoCraft;
 import chococraft.common.entities.ai.ChocoboAIMate;
 import chococraft.common.entities.colours.EntityChocoboPurple;
@@ -338,12 +339,12 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 			}
 			else
 			{
-				if (itemstack.getItem().equals(ModChocoCraft.gysahlPinkItem))
+				if (itemstack.getItem().equals(ChocoCraftItems.gysahlPinkItem))
 				{
 					this.onPaint(entityplayer, true);
 					interacted = true;
 				}
-				else if (itemstack.getItem().equals(ModChocoCraft.gysahlRedItem))
+				else if (itemstack.getItem().equals(ChocoCraftItems.gysahlRedItem))
 				{
 					this.onPaint(entityplayer, false);
 					interacted = true;
@@ -353,7 +354,7 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 					this.onBreedGysahlUse(entityplayer, isGoldenGysahl(itemstack));
 					interacted = true;
 				}
-				else if (itemstack.getItem().equals(ModChocoCraft.chocoboFeatherItem))
+				else if (itemstack.getItem().equals(ChocoCraftItems.chocoboFeatherItem))
 				{
 					this.onFeatherUse(entityplayer);
 					interacted = true;
@@ -440,7 +441,7 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 	{
     	if (this.isServer())
     	{
-    		this.entityDropItem(new ItemStack(ModChocoCraft.chocoboFeatherItem, 1), 0.0F);
+    		this.entityDropItem(new ItemStack(ChocoCraftItems.chocoboFeatherItem, 1), 0.0F);
     	}
 	}
 
@@ -458,11 +459,11 @@ public abstract class EntityChocobo extends EntityChocoboRideable
 	{
 		if (isBurning())
 		{
-			return ModChocoCraft.chocoboLegCookedItem;
+			return ChocoCraftItems.chocoboLegCookedItem;
 		}
 		else
 		{
-			return ModChocoCraft.chocoboLegRawItem;
+			return ChocoCraftItems.chocoboLegRawItem;
 		}
 	}
 

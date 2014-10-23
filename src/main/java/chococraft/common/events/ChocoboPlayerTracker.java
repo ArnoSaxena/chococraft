@@ -12,7 +12,7 @@
 // <date>2012-12-16</date>
 // <summary>Player tracker for login and logoff events</summary>
 
-package chococraft.common;
+package chococraft.common.events;
 
 import chococraft.common.network.PacketRegistry;
 import chococraft.common.network.clientSide.ChocoboLocalSetupUpdate;

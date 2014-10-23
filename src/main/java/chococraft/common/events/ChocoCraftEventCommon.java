@@ -12,8 +12,11 @@
 // <date>2013-06-08</date>
 // <summary>Class for registering event listeners</summary>
 
-package chococraft.common;
+package chococraft.common.events;
 
+import chococraft.common.config.Constants;
+import chococraft.common.config.ChocoCraftBlocks;
+import chococraft.common.config.ChocoCraftItems;
 import chococraft.common.entities.EntityChocobo;
 import chococraft.common.entities.colours.EntityChocoboPurple;
 import chococraft.common.gui.GuiStarter;
@@ -47,9 +50,9 @@ public class ChocoCraftEventCommon
 	@SubscribeEvent
 	public void onUseBonemeal(BonemealEvent event)
 	{
-		if (event.block.equals(ModChocoCraft.gysahlStemBlock))
+		if (event.block.equals(ChocoCraftBlocks.gysahlStemBlock))
 		{
-			if (((BlockGysahlStem)ModChocoCraft.gysahlStemBlock).onBonemealUse(event.world, event.x, event.y, event.z))
+			if (((BlockGysahlStem) ChocoCraftBlocks.gysahlStemBlock).onBonemealUse(event.world, event.x, event.y, event.z))
 			{
 				event.setResult(Event.Result.ALLOW);
 			}
@@ -147,7 +150,7 @@ public class ChocoCraftEventCommon
         		ItemStack currentItem = player.getCurrentEquippedItem();
         		if(currentItem != null)
         		{        			
-        			if(currentItem.getItem().equals(ModChocoCraft.chocopediaItem))
+        			if(currentItem.getItem().equals(ChocoCraftItems.chocopediaItem))
         			{
         				GuiStarter.startChocopediaGui(null);
         				if(event.isCancelable())
@@ -171,13 +174,13 @@ public class ChocoCraftEventCommon
         		ItemStack currentItem = player.getCurrentEquippedItem();
         		if(currentItem != null)
         		{        			
-        			if(currentItem.getItem().equals(ModChocoCraft.chocoboFeatherItem))
+        			if(currentItem.getItem().equals(ChocoCraftItems.chocoboFeatherItem))
         			{
         				if(player.worldObj.getBlock(event.x, event.y, event.z) == Blocks.bookshelf)
         				{
            	        		player.worldObj.setBlockToAir(event.x, event.y, event.z);
            	        		ChocoboPlayerHelper.useCurrentItem(player);
-           	        		ItemStack itemstack = new ItemStack(ModChocoCraft.chocopediaItem, 1, 0);
+           	        		ItemStack itemstack = new ItemStack(ChocoCraftItems.chocopediaItem, 1, 0);
            	        		this.sendCreateChocopediaItem(player.worldObj, itemstack, (double)event.x, (double)event.y, (double)event.z);
         				}
         			}
@@ -203,7 +206,7 @@ public class ChocoCraftEventCommon
 			double d100 = Math.random() * 100;
 			if (d100 < Constants.CHOCOPEDIA_MOB_DROP_RATE)
 			{
-				event.entityLiving.dropItem(ModChocoCraft.chocopediaItem, 1);
+				event.entityLiving.dropItem(ChocoCraftItems.chocopediaItem, 1);
 			}
 		}
 	}

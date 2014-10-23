@@ -14,7 +14,7 @@
 
 package chococraft.common.network;
 
-import chococraft.common.Constants;
+import chococraft.common.config.Constants;
 import chococraft.common.network.clientSide.*;
 import chococraft.common.network.serverSide.*;
 import cpw.mods.fml.common.network.NetworkRegistry;

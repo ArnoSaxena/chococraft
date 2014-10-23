@@ -14,6 +14,7 @@
 
 package chococraft.common.entities.colours;
 
+import chococraft.common.config.ChocoCraftItems;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.player.EntityPlayer;
@@ -21,7 +22,7 @@ import net.minecraft.item.Item;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
-import chococraft.common.Constants;
+import chococraft.common.config.Constants;
 import chococraft.common.ModChocoCraft;
 import chococraft.common.entities.EntityAnimalChocobo;
 import chococraft.common.entities.EntityChicobo;
@@ -164,7 +165,7 @@ public class EntityChocoboPurple extends EntityChocobo
 	@Override
 	protected Item getDropItem()
 	{
-		return ModChocoCraft.chocoboLegRawItem;
+		return ChocoCraftItems.chocoboLegRawItem;
 	}
 
 
@@ -183,7 +184,7 @@ public class EntityChocoboPurple extends EntityChocobo
 			this.entityToAttack = null;
 			otherParent.entityToAttack = null;
 			int eggAmount = this.rand.nextInt(10) == 0 ? 3 : 1;
-			this.dropItem(ModChocoCraft.purpleChocoboEggItem, eggAmount);
+			this.dropItem(ChocoCraftItems.purpleChocoboEggItem, eggAmount);
 		}
 	}
 

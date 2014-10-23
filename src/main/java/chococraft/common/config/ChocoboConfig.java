@@ -26,7 +26,6 @@ import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
-import chococraft.common.Constants;
 import chococraft.common.ModChocoCraft;
 import chococraft.common.helper.ChocoboBiomeHelper;
 import chococraft.common.helper.ChocoboMathHelper;

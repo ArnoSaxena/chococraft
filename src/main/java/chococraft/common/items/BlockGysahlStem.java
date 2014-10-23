@@ -14,8 +14,10 @@
 
 package chococraft.common.items;
 
-import chococraft.common.Constants;
+import chococraft.common.config.Constants;
 import chococraft.common.ModChocoCraft;
+import chococraft.common.config.ChocoCraftBlocks;
+import chococraft.common.config.ChocoCraftItems;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
@@ -46,6 +48,8 @@ public class BlockGysahlStem extends BlockFlower
         this.setCreativeTab(null);
         this.disableStats();
         this.setStepSound(soundTypeGrass);
+		setHardness(0f);
+		setBlockName("gysahlStemBlock");
     }
 
     @SideOnly(Side.CLIENT)
@@ -166,7 +170,7 @@ public class BlockGysahlStem extends BlockFlower
     			float f2 = world.rand.nextFloat() * f1 + (1.0F - f1) * 0.5F;
     			float f3 = world.rand.nextFloat() * f1 + (1.0F - f1) * 0.5F;
     			float f4 = world.rand.nextFloat() * f1 + (1.0F - f1) * 0.5F;
-    			EntityItem entityitem = new EntityItem(world, (float)i + f2, (float)j + f3, (float)k + f4, new ItemStack(ModChocoCraft.gysahlSeedsItem));
+    			EntityItem entityitem = new EntityItem(world, (float)i + f2, (float)j + f3, (float)k + f4, new ItemStack(ChocoCraftItems.gysahlSeedsItem));
     			entityitem.delayBeforeCanPickup = 10;
     			world.spawnEntityInWorld(entityitem);
     		}
@@ -180,17 +184,17 @@ public class BlockGysahlStem extends BlockFlower
     	{
     		if(random.nextInt(1000) > ModChocoCraft.gysahlGreenMutationRate)
     		{
-    			return Item.getItemFromBlock(ModChocoCraft.gysahlGreenBlock);
+    			return Item.getItemFromBlock(ChocoCraftBlocks.gysahlGreenBlock);
     		}
     		else 
     		{
     			if(random.nextInt(1000) > ModChocoCraft.gysahlLoveMutationRate)
     			{
-    				return ModChocoCraft.gysahlLoverlyItem;
+    				return ChocoCraftItems.gysahlLoverlyItem;
     			}
     			else
     			{
-    				return ModChocoCraft.gysahlGoldenItem;
+    				return ChocoCraftItems.gysahlGoldenItem;
     			}
     		}
     	}

@@ -14,7 +14,7 @@
 
 package chococraft.common.entities;
 
-import chococraft.common.Constants;
+import chococraft.common.config.Constants;
 import chococraft.common.ModChocoCraft;
 import chococraft.common.entities.EntityAnimalChocobo.chocoboColor;
 import chococraft.common.network.PacketRegistry;

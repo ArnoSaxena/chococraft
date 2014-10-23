@@ -1,6 +1,6 @@
 package chococraft.common.items;
 
-import chococraft.common.Constants;
+import chococraft.common.config.Constants;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;

@@ -18,7 +18,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import chococraft.common.Constants;
+import chococraft.common.config.Constants;
 import chococraft.common.entities.EntityPurpleChocoboEgg;
 
 

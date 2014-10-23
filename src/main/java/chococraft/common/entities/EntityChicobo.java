@@ -15,8 +15,8 @@
 
 package chococraft.common.entities;
 
-import chococraft.common.Constants;
-import chococraft.common.ModChocoCraft;
+import chococraft.common.config.Constants;
+import chococraft.common.config.ChocoCraftItems;
 import chococraft.common.helper.ChocoboEntityHelper;
 import chococraft.common.network.PacketRegistry;
 import chococraft.common.network.clientSide.ChicoboCanGrowUp;
@@ -307,12 +307,12 @@ public class EntityChicobo extends EntityAnimalChocobo
 			ItemStack itemstack = entityplayer.inventory.getCurrentItem();
 			if(itemstack != null)
 			{
-				if (itemstack.getItem().equals(ModChocoCraft.gysahlCakeItem))
+				if (itemstack.getItem().equals(ChocoCraftItems.gysahlCakeItem))
 				{
 					this.onGysahlCakeUse(entityplayer);
 					interacted = true;
 				}
-				else if (itemstack.getItem().equals(ModChocoCraft.chocoboFeatherItem))
+				else if (itemstack.getItem().equals(ChocoCraftItems.chocoboFeatherItem))
 				{
 					this.onFeatherUse(entityplayer);
 					interacted = true;

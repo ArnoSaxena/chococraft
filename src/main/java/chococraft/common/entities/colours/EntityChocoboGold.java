@@ -19,7 +19,7 @@ import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
-import chococraft.common.Constants;
+import chococraft.common.config.Constants;
 import chococraft.common.entities.EntityChocobo;
 import chococraft.common.entities.FactoryEntityChocobo;
 import chococraft.common.helper.ChocoboParticleHelper;

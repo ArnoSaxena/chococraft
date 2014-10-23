@@ -2,7 +2,7 @@ package chococraft.common.items;
 
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.ItemFood;
-import chococraft.common.Constants;
+import chococraft.common.config.Constants;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 

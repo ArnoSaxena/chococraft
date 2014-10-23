@@ -12,10 +12,11 @@
 // <date>2012-10-25</date>
 // <summary>ChocoCraft Common proxy</summary>
 
-package chococraft.common;
+package chococraft.common.proxy;
 
 import chococraft.common.entities.EntityChocoboRideable;
 import chococraft.common.entities.RiderActionState;
+import chococraft.common.events.ChocoCraftEventCommon;
 import net.minecraft.entity.Entity;
 import net.minecraftforge.common.MinecraftForge;
 

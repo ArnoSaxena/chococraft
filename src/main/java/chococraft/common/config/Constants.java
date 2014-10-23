@@ -12,7 +12,7 @@
 // <date>2012-09-10</date>
 // <summary>Container class for all global used constants</summary>
 
-package chococraft.common;
+package chococraft.common.config;
 
 public class Constants
 {

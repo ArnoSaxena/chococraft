@@ -1,12 +1,12 @@
 package chococraft.common.items;
 
+import chococraft.common.config.ChocoCraftItems;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
-import chococraft.common.Constants;
-import chococraft.common.ModChocoCraft;
+import chococraft.common.config.Constants;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -55,19 +55,19 @@ public class ChocoboItemDisguise extends ItemArmor
 	@Override
     public String getArmorTexture(ItemStack itemstack, Entity entity, int slot, String type)
 	{
-	    if (itemstack.getItem().equals(ModChocoCraft.chocoDisguiseHelmetItem))
+	    if (itemstack.getItem().equals(ChocoCraftItems.chocoDisguiseHelmetItem))
 	    {
 	      return Constants.CHOCOBO_ARMOUR_TEXTURES_1;
 	    }
-	    if (itemstack.getItem().equals(ModChocoCraft.chocoDisguisePlateItem))
+	    if (itemstack.getItem().equals(ChocoCraftItems.chocoDisguisePlateItem))
 	    {
 	      return Constants.CHOCOBO_ARMOUR_TEXTURES_1;
 	    }
-	    if (itemstack.getItem().equals(ModChocoCraft.chocoDisguiseLegsItem))
+	    if (itemstack.getItem().equals(ChocoCraftItems.chocoDisguiseLegsItem))
 	    {
 	      return Constants.CHOCOBO_ARMOUR_TEXTURES_2;
 	    }
-	    if (itemstack.getItem().equals(ModChocoCraft.chocoDisguiseBootsItem))
+	    if (itemstack.getItem().equals(ChocoCraftItems.chocoDisguiseBootsItem))
 	    {
 	      return Constants.CHOCOBO_ARMOUR_TEXTURES_1;
 	    }

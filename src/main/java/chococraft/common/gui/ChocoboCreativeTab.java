@@ -1,8 +1,8 @@
 package chococraft.common.gui;
 
+import chococraft.common.config.ChocoCraftItems;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
-import chococraft.common.ModChocoCraft;
 
 
 public class ChocoboCreativeTab extends CreativeTabs
@@ -15,7 +15,7 @@ public class ChocoboCreativeTab extends CreativeTabs
 	@Override
 	public Item getTabIconItem()
 	{
-	    return ModChocoCraft.chocoboFeatherItem;
+	    return ChocoCraftItems.chocoboFeatherItem;
 	}
 
 }

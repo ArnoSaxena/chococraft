@@ -14,7 +14,7 @@
 
 package chococraft.client;
 
-import chococraft.common.CommonProxyChocoCraft;
+import chococraft.common.proxy.CommonProxyChocoCraft;
 import chococraft.common.entities.EntityChicobo;
 import chococraft.common.entities.EntityChocoboRideable;
 import chococraft.common.entities.RiderActionState;

@@ -14,11 +14,12 @@
 
 package chococraft.common.entities;
 
-import chococraft.common.Constants;
+import chococraft.common.config.Constants;
 import chococraft.common.ModChocoCraft;
 import chococraft.common.bags.ChocoBagInventory;
 import chococraft.common.bags.ChocoPackBagInventory;
 import chococraft.common.bags.ChocoSaddleBagInventory;
+import chococraft.common.config.ChocoCraftItems;
 import chococraft.common.network.PacketRegistry;
 import chococraft.common.network.serverSide.ChocoboDropGear;
 import chococraft.common.network.serverSide.ChocoboMount;
@@ -162,18 +163,18 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo
 		{
 			if(this.isSaddled())
 			{
-				this.dropItem(ModChocoCraft.chocoboSaddleItem, 1);
+				this.dropItem(ChocoCraftItems.chocoboSaddleItem, 1);
 			}
 			
 			if(this.isSaddleBagged())
 			{
-				this.dropItem(ModChocoCraft.chocoboSaddleBagsItem, 1);
+				this.dropItem(ChocoCraftItems.chocoboSaddleBagsItem, 1);
 				this.bagsInventory.dropAllItems();
 			}
 			
 			if(this.isPackBagged())
 			{
-				this.dropItem(ModChocoCraft.chocoboPackBagsItem, 1);
+				this.dropItem(ChocoCraftItems.chocoboPackBagsItem, 1);
 				this.bagsInventory.dropAllItems();
 			}
 		}
@@ -194,22 +195,22 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo
 			ItemStack itemstack = entityplayer.inventory.getCurrentItem();
 			if(itemstack != null)
 			{
-				if (itemstack.getItem().equals(ModChocoCraft.chocoboSaddleItem))
+				if (itemstack.getItem().equals(ChocoCraftItems.chocoboSaddleItem))
 				{
 					this.onSaddleUse(entityplayer);
 					interacted = true;
 				}
-				else if (itemstack.getItem().equals(ModChocoCraft.chocoboSaddleBagsItem))
+				else if (itemstack.getItem().equals(ChocoCraftItems.chocoboSaddleBagsItem))
 				{
 					this.onSaddleBagsUse(entityplayer);
 					interacted = true;
 				}
-				else if (itemstack.getItem().equals(ModChocoCraft.chocoboPackBagsItem))
+				else if (itemstack.getItem().equals(ChocoCraftItems.chocoboPackBagsItem))
 				{
 					this.onPackBagsUse(entityplayer);
 					interacted = true;
 				}
-				else if (itemstack.getItem().equals(ModChocoCraft.chocoboWhistleItem))
+				else if (itemstack.getItem().equals(ChocoCraftItems.chocoboWhistleItem))
 				{
 					this.onWhistleUse();
 					interacted = true;

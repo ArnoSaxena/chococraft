@@ -15,8 +15,10 @@
 
 package chococraft.common.entities;
 
-import chococraft.common.Constants;
+import chococraft.common.config.Constants;
 import chococraft.common.ModChocoCraft;
+import chococraft.common.config.ChocoCraftBlocks;
+import chococraft.common.config.ChocoCraftItems;
 import chococraft.common.entities.ai.*;
 import chococraft.common.gui.GuiStarter;
 import chococraft.common.helper.ChocoboEntityHelper;
@@ -473,7 +475,7 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
 					if(d100 < ModChocoCraft.penHealProbability)
 					{
 						Block blockBelow = this.worldObj.getBlock(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.boundingBox.minY), MathHelper.floor_double(this.posZ));
-						if(blockBelow.equals(ModChocoCraft.strawBlock))
+						if(blockBelow.equals(ChocoCraftBlocks.strawBlock))
 						{
 							int range = ModChocoCraft.penHealCauldronRange;
 							if(this.isFilledCauldronNear(this.posX, this.posY, this.posZ, range, 2, range))
@@ -548,12 +550,12 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
     	if(itemstack != null)
     	{
 			System.out.println(itemstack.getItem().toString());
-    		if (itemstack.getItem().equals(ModChocoCraft.chocopediaItem))
+    		if (itemstack.getItem().equals(ChocoCraftItems.chocopediaItem))
     		{
     			this.onChocopediaUse();
     			interacted = true;
     		}
-    		else if (itemstack.getItem().equals(Item.getItemFromBlock(ModChocoCraft.gysahlGreenBlock)))
+    		else if (itemstack.getItem().equals(Item.getItemFromBlock(ChocoCraftBlocks.gysahlGreenBlock)))
     		{
     			this.onGysahlGreenUse(entityplayer);
     			interacted = true;
@@ -591,7 +593,7 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
     protected void onWritableBookUse(EntityPlayer player)
     {
 		int selectedSlot = player.inventory.currentItem;
-		player.inventory.mainInventory[selectedSlot] = new ItemStack(ModChocoCraft.chocopediaItem, 1);
+		player.inventory.mainInventory[selectedSlot] = new ItemStack(ChocoCraftItems.chocopediaItem, 1);
     }
 
     protected void onGysahlGreenUse(EntityPlayer entityplayer)
@@ -857,12 +859,12 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
 
     protected boolean isLoverlyGysahl(ItemStack itemstack)
     {
-        return itemstack.getItem().equals(ModChocoCraft.gysahlLoverlyItem);
+        return itemstack.getItem().equals(ChocoCraftItems.gysahlLoverlyItem);
     }
 
     protected boolean isGoldenGysahl(ItemStack itemstack)
     {
-        return itemstack.getItem().equals(ModChocoCraft.gysahlGoldenItem);
+        return itemstack.getItem().equals(ChocoCraftItems.gysahlGoldenItem);
     }
 
 	protected void useItem(EntityPlayer entityplayer)
@@ -1115,20 +1117,18 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
     
     protected EntityPlayer getNearestPlayer()
     {
-        @SuppressWarnings("rawtypes")
-		List list1 = this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, boundingBox.expand(8F, 8F, 8F));
-        double distance = 9999;
-        EntityPlayer nearestPlayer = null;
-
-		for (Object aList1 : list1) {
-			EntityPlayer player = (EntityPlayer) aList1;
-			double tmpDist = this.getDistanceToEntity(player);
-			if (tmpDist < distance) {
-				distance = tmpDist;
+		EntityPlayer nearestPlayer = null;
+		double distance = 9999;
+		List<EntityPlayer> players = this.worldObj.getEntitiesWithinAABB(EntityPlayer.class, boundingBox.expand(8F, 8F, 8F));
+		for(EntityPlayer player : players) {
+			double tmpDistance = this.getDistanceToEntity(player);
+			if(tmpDistance < distance) {
+				distance = tmpDistance;
 				nearestPlayer = player;
 			}
 		}
-        return nearestPlayer;
+
+		return nearestPlayer;
     }
     
 	public boolean canRenderName()

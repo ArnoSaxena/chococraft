@@ -14,9 +14,10 @@
 
 package chococraft.common.items;
 
-import chococraft.common.Constants;
+import chococraft.common.config.Constants;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockFlower;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.util.IIcon;
@@ -31,8 +32,11 @@ public class BlockGysahlGreen extends BlockFlower
         float f = 0.5F;
         setBlockBounds(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, 0.25F, 0.5F + f);
 		this.setCreativeTab(null);
-
 		this.disableStats();
+		setStepSound(Block.soundTypeGrass);
+		setHardness(0.0F);
+		setBlockName("gysahlGreenBlock");
+
     }
 
     @SideOnly(Side.CLIENT)

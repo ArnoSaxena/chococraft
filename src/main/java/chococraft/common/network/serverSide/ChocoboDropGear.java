@@ -1,6 +1,6 @@
 package chococraft.common.network.serverSide;
 
-import chococraft.common.ModChocoCraft;
+import chococraft.common.config.ChocoCraftItems;
 import chococraft.common.entities.EntityAnimalChocobo;
 import chococraft.common.entities.EntityChocoboRideable;
 import chococraft.common.network.PacketHelper;
@@ -48,20 +48,20 @@ public class ChocoboDropGear implements IMessage {
 
 				if(chocoRideable.isSaddleBagged())
 				{
-					chocoRideable.entityDropItem(new ItemStack(ModChocoCraft.chocoboSaddleBagsItem, 1), 0.0F);
+					chocoRideable.entityDropItem(new ItemStack(ChocoCraftItems.chocoboSaddleBagsItem, 1), 0.0F);
 					chocoRideable.getChocoBagInventory().dropAllItems();
 					chocoRideable.setSaddleBagged(false);
 				}
 
 				if(chocoRideable.isSaddled())
 				{
-					chocoRideable.entityDropItem(new ItemStack(ModChocoCraft.chocoboSaddleItem, 1), 0.0F);
+					chocoRideable.entityDropItem(new ItemStack(ChocoCraftItems.chocoboSaddleItem, 1), 0.0F);
 					chocoRideable.setSaddled(false);
 				}
 
 				if(chocoRideable.isPackBagged())
 				{
-					chocoRideable.entityDropItem(new ItemStack(ModChocoCraft.chocoboPackBagsItem, 1), 0.0F);
+					chocoRideable.entityDropItem(new ItemStack(ChocoCraftItems.chocoboPackBagsItem, 1), 0.0F);
 					//chocoRideable.getChocoBagInventory().dropAllItems(); TODO
 					chocoRideable.setPackBagged(false);
 				}
