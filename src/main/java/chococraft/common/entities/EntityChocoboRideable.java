@@ -29,6 +29,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 public abstract class EntityChocoboRideable extends EntityAnimalChocobo
@@ -368,10 +369,12 @@ public abstract class EntityChocoboRideable extends EntityAnimalChocobo
 	public void updateRiderPosition()
 	{
 		if (this.riddenByEntity != null)
-		{
-			double deltaPosX = Math.cos((double)(this.rotationYaw - 90) * Math.PI / 180.0D) * 0.4;
-			double deltaPosZ = Math.sin((double)(this.rotationYaw - 90) * Math.PI / 180.0D) * 0.4;
-			this.riddenByEntity.setPosition(this.posX + deltaPosX, this.posY + this.getMountedYOffset() + this.riddenByEntity.getYOffset(), this.posZ + deltaPosZ);
+		{//TODO fix this so the player actually is ontop of the model..
+			double deltaPosX = MathHelper.cos((this.rotationYaw - 90) * (float)Math.PI / 180.0F) * 0.4F;
+			double deltaPosZ = MathHelper.sin((this.rotationYaw - 90) * (float)Math.PI / 180.0F) * 0.4F;
+			this.riddenByEntity.setPosition(this.posX + deltaPosX,
+					this.posY + this.getMountedYOffset() + this.riddenByEntity.getYOffset(),
+					this.posZ + deltaPosZ);
 		}
 	}   
 

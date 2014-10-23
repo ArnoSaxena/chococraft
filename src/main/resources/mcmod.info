@@ -1,12 +1,12 @@
 [
 {
   "modid": "chococraft",
-  "name": "Torojima's ChocoCraft",
+  "name": "Clienthax's ChocoCraft",
   "description": "Adds a mountable, breedable mob and supporting items.",
-  "version": "3.0.3",
+  "version": "4.0.3",
   "credits": "",
   "logoFile": "chococraft_icon.png",
-  "mcversion": "1.6.4",
+  "mcversion": "1.7.10",
   "url": "http://www.minecraftforum.net/topic/1119809-",
   "updateUrl": "",
   "authors": ["Torojima <al-s@gmx.de>, Micdoodle"],

@@ -18,7 +18,7 @@ public class Constants
 {
 	public final static String TCC_VERSION = "4.0.3";
 	public final static String TCC_MODID = "chococraft";
-	public final static String TCC_NAME = "Clienthaxs ChocoCraft";
+	public final static String TCC_NAME = "Clienthax's ChocoCraft";
 	
 	// default entity id's - not really needed as forge gives 255 per mod now
 	public static int CHOCOBO_YELLOW_ID  = 600;
