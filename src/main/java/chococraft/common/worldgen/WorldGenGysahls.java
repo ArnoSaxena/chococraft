@@ -12,10 +12,11 @@
 // <date>2012-05-09</date>
 // <summary>distributing wild Gysahl greens in a newly generated chunk</summary>
 
-package chococraft.common;
+package chococraft.common.worldgen;
 
 import java.util.Random;
 
+import chococraft.common.ModChocoCraft;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenFlowers;

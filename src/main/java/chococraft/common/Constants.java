@@ -20,18 +20,6 @@ public class Constants
 	public final static String TCC_MODID = "chococraft";
 	public final static String TCC_NAME = "Clienthax's ChocoCraft";
 	
-	// default entity id's - not really needed as forge gives 255 per mod now
-	public static int CHOCOBO_YELLOW_ID  = 600;
-	public static int CHOCOBO_GREEN_ID   = 601;
-	public static int CHOCOBO_BLUE_ID    = 602;
-	public static int CHOCOBO_WHITE_ID   = 603;
-	public static int CHOCOBO_BLACK_ID   = 604;
-	public static int CHOCOBO_GOLD_ID    = 605;
-	public static int CHOCOBO_RED_ID     = 606;
-	public static int CHOCOBO_PINK_ID    = 607;
-	public static int CHOCOBO_PURPLE_ID  = 608;
-	public static int CHOCOBO_CHICOBO_ID = 609;
-	
 	// resource folder
 	public static String CHOCOBO_RESOURCES_FOLDER = "textures/entities/";
 	

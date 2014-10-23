@@ -550,13 +550,11 @@ public abstract class EntityAnimalChocobo extends EntityTameable implements IEnt
 			System.out.println(itemstack.getItem().toString());
     		if (itemstack.getItem().equals(ModChocoCraft.chocopediaItem))
     		{
-				System.out.println("pedia!");
     			this.onChocopediaUse();
     			interacted = true;
     		}
     		else if (itemstack.getItem().equals(Item.getItemFromBlock(ModChocoCraft.gysahlGreenBlock)))
     		{
-				System.out.println("greens!");
     			this.onGysahlGreenUse(entityplayer);
     			interacted = true;
     		}
