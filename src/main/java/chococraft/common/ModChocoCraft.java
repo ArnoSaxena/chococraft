@@ -43,8 +43,6 @@ public class ModChocoCraft
 {	
 	public static Configuration mainConfiguration;
 
-	//public static CreativeTabs chocoboCreativeItems;
-
 	public static boolean debugMode = false;
 
 	// setup
@@ -225,13 +223,6 @@ public class ModChocoCraft
 
 		FMLCommonHandler.instance().bus().register(new ServerSpawnTickHandler());
 	}
-
-//	// initialising methods
-//	private void createCreativeTab()
-//	{
-		//chocoboCreativeItems = new ChocoboCreativeTab("Chocobo Items");
-//		LanguageRegistry.instance().addStringLocalization("itemGroup." + chocoboCreativeItems.getTabLabel(), "en_US", "ChocoCraft");		
-//	}
 	
 
 }
