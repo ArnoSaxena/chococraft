@@ -14,14 +14,15 @@
 
 package chococraft.common.items;
 
-import chococraft.common.config.Constants;
 import chococraft.common.ModChocoCraft;
 import chococraft.common.config.ChocoCraftBlocks;
+import chococraft.common.config.ChocoCraftCreativeTabs;
 import chococraft.common.config.ChocoCraftItems;
+import chococraft.common.config.Constants;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockFlower;
+import net.minecraft.block.BlockBush;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.init.Blocks;
@@ -34,18 +35,17 @@ import java.util.ArrayList;
 import java.util.Random;
 
 
-public class BlockGysahlStem extends BlockFlower
+public class BlockGysahlStem extends BlockBush
 {
 	static final int MAX_STAGE = 4; 
 	private ArrayList<IIcon> icons;
 	
 	public BlockGysahlStem()
     {
-        super(5);//what is this!?
         this.setTickRandomly(true);
         float f = 0.5F;
         this.setBlockBounds(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, 0.25F, 0.5F + f);
-        this.setCreativeTab(null);
+		this.setCreativeTab(ChocoCraftCreativeTabs.tabChococraft);
         this.disableStats();
         this.setStepSound(soundTypeGrass);
 		setHardness(0f);
