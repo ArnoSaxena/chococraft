@@ -1,5 +1,6 @@
 package chococraft.common.items;
 
+import chococraft.common.config.ChocoCraftCreativeTabs;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.ItemFood;
 import chococraft.common.config.Constants;
@@ -12,6 +13,7 @@ public class ChocoboItemFood extends ItemFood
 	{
 		super(healAmt, wolfsFavorite);
 		this.maxStackSize = 64;
+		this.setCreativeTab(ChocoCraftCreativeTabs.tabChococraft);
 	}
 	
 	@SideOnly(Side.CLIENT)
