@@ -34,3 +34,5 @@ item.legRaw.name=Raw Chocobo Leg
 item.legCooked.name=Cooked Chocobo Leg
 item.gysahl_rawpickles.name=Gysahl Raw Pickles
 item.gysahl_pickles.name=Gysahl Pickles
+
+itemGroup.ChocoCraft=ChocoCraft

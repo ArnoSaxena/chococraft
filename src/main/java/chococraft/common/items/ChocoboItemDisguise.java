@@ -1,5 +1,6 @@
 package chococraft.common.items;
 
+import chococraft.common.config.ChocoCraftCreativeTabs;
 import chococraft.common.config.ChocoCraftItems;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -30,7 +31,7 @@ public class ChocoboItemDisguise extends ItemArmor
 		this.damageReduceAmount = this.material.getDamageReductionAmount(this.armorType);
         this.setMaxDamage(this.material.getDurability(this.armorType));
 		this.maxStackSize = 1;
-		this.setCreativeTab(CreativeTabs.tabTools);
+		this.setCreativeTab(ChocoCraftCreativeTabs.tabChococraft);
 	}
 
 	@SideOnly(Side.CLIENT)

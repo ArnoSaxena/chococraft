@@ -14,6 +14,7 @@
 
 package chococraft.common.items;
 
+import chococraft.common.config.ChocoCraftCreativeTabs;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -29,7 +30,7 @@ public class ItemPurpleChocoboEgg extends ChocoboItem
         super();
         this.maxStackSize = 64;
         this.setUnlocalizedName(Constants.KEY_EGG_PURPLE);
-		this.setCreativeTab(CreativeTabs.tabMisc);
+		this.setCreativeTab(ChocoCraftCreativeTabs.tabChococraft);
     }
 
     @Override

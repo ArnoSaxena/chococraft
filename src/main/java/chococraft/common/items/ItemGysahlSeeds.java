@@ -1,5 +1,6 @@
 package chococraft.common.items;
 
+import chococraft.common.config.ChocoCraftCreativeTabs;
 import chococraft.common.config.Constants;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -13,7 +14,7 @@ public class ItemGysahlSeeds extends ItemSeeds
 	public ItemGysahlSeeds(Block block, Block soilBlock)
 	{
 		super(block, soilBlock);
-		this.setCreativeTab(CreativeTabs.tabMaterials);
+		this.setCreativeTab(ChocoCraftCreativeTabs.tabChococraft);
 		this.setUnlocalizedName(Constants.KEY_GY_SEEDS);
 	}
 	

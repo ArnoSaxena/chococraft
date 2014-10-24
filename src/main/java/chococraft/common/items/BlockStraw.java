@@ -1,5 +1,6 @@
 package chococraft.common.items;
 
+import chococraft.common.config.ChocoCraftCreativeTabs;
 import chococraft.common.config.Constants;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -24,7 +25,7 @@ public class BlockStraw extends Block
     {
         super(Material.circuits);
         this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.0625F, 1.0F);
-        this.setCreativeTab(CreativeTabs.tabDecorations);
+		this.setCreativeTab(ChocoCraftCreativeTabs.tabChococraft);
 		setStepSound(Block.soundTypeGrass);
 		setHardness(0.0F);
 		setBlockName("strawBlock");
