@@ -75,11 +75,6 @@ public class RenderChocobo extends RenderLiving
 	{
 		float scaleFactor = 0.8F;
 		GL11.glScalef(scaleFactor, scaleFactor, scaleFactor);
-
-		if (entitychocobo.riddenByEntity != null)
-		{
-			GL11.glTranslated(0.5, 0.0, -0.5);
-		}
 	}
 
 	@Override
