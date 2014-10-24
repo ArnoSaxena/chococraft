@@ -27,7 +27,7 @@ public class CommonProxyChocoCraft
         
     }
     
-    public static void registerRenderInformation()
+    public void registerRenderInformation()
     {
         //No rendering for servers.
     }

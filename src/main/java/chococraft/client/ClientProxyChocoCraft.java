@@ -38,8 +38,9 @@ public class ClientProxyChocoCraft extends CommonProxyChocoCraft
         //MinecraftForgeClient.preloadTexture(Constants.CHOCOBO_ARMOUR_TEXTURES_1);
         //MinecraftForgeClient.preloadTexture(Constants.CHOCOBO_ARMOUR_TEXTURES_2);
     }
-    
-    public static void registerRenderInformation()
+
+	@Override
+    public void registerRenderInformation()
     {
         RenderingRegistry.registerEntityRenderingHandler(EntityChocoboYellow.class, new RenderChocobo(new ModelChocobo(), 0.5F));
         RenderingRegistry.registerEntityRenderingHandler(EntityChocoboGreen.class, new RenderChocobo(new ModelChocobo(), 0.5F));
