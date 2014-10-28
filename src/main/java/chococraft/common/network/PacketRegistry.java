@@ -43,7 +43,6 @@ public static final SimpleNetworkWrapper INSTANCE = NetworkRegistry.INSTANCE.new
 		INSTANCE.registerMessage(ChocoboDropGear.Handler.class, ChocoboDropGear.class, id++, Side.SERVER);
 		INSTANCE.registerMessage(ChocoboMount.Handler.class, ChocoboMount.class, id++, Side.SERVER);
 		INSTANCE.registerMessage(ChocoboSetInLove.Handler.class, ChocoboSetInLove.class, id++, Side.SERVER);
-		INSTANCE.registerMessage(ChocoboSpawnItem.Handler.class, ChocoboSpawnItem.class, id++, Side.SERVER);
 		INSTANCE.registerMessage(ChocoboUpdateRiderActionState.Handler.class, ChocoboUpdateRiderActionState.class, id++, Side.SERVER);
 
 	}

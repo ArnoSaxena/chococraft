@@ -23,12 +23,12 @@ import chococraft.common.gui.GuiStarter;
 import chococraft.common.helper.ChocoboPlayerHelper;
 import chococraft.common.items.BlockGysahlStem;
 import chococraft.common.network.PacketRegistry;
-import chococraft.common.network.serverSide.ChocoboSpawnItem;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.eventhandler.Event;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.relauncher.Side;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.entity.monster.EntityWitch;
 import net.minecraft.entity.monster.EntityZombie;
@@ -176,27 +176,20 @@ public class ChocoCraftEventCommon
         		{        			
         			if(currentItem.getItem().equals(ChocoCraftItems.chocoboFeatherItem))
         			{
+						if(!event.world.isRemote)
         				if(player.worldObj.getBlock(event.x, event.y, event.z) == Blocks.bookshelf)
         				{
            	        		player.worldObj.setBlockToAir(event.x, event.y, event.z);
            	        		ChocoboPlayerHelper.useCurrentItem(player);
            	        		ItemStack itemstack = new ItemStack(ChocoCraftItems.chocopediaItem, 1, 0);
-           	        		this.sendCreateChocopediaItem(player.worldObj, itemstack, (double)event.x, (double)event.y, (double)event.z);
+							EntityItem entityItem = new EntityItem(player.worldObj, event.x, event.y, event.z, itemstack);
+							player.worldObj.spawnEntityInWorld(entityItem);
         				}
         			}
     			}
     		}
     	}
     }
-    
-	protected void sendCreateChocopediaItem(World world, ItemStack stack, double posX, double posY, double posZ)
-	{
-		if(Side.CLIENT == FMLCommonHandler.instance().getEffectiveSide())
-		{
-			ChocoboSpawnItem packet = new ChocoboSpawnItem(world, stack, posX, posY, posZ);
-			PacketRegistry.INSTANCE.sendToServer(packet);
-		}
-	}
 	
 	@SubscribeEvent
 	public void onSkeletonAndZombiDropEvent(LivingDropsEvent event)
