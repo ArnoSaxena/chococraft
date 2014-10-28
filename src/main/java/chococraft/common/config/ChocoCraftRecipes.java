@@ -13,7 +13,8 @@ public class ChocoCraftRecipes {
 	public static void registerRecipes()
 	{
 		// chocobo saddle
-		GameRegistry.addRecipe(new ItemStack(ChocoCraftItems.chocoboSaddleItem, 1),
+		GameRegistry.addRecipe(
+				new ItemStack(ChocoCraftItems.chocoboSaddleItem, 1),
 				"-X-",
 				" Y ",
 				'X', Items.leather,
@@ -29,7 +30,8 @@ public class ChocoCraftRecipes {
 		);
 
 		// chocobo saddle bag
-		GameRegistry.addRecipe(new ItemStack(ChocoCraftItems.chocoboSaddleBagsItem, 1),
+		GameRegistry.addRecipe(
+				new ItemStack(ChocoCraftItems.chocoboSaddleBagsItem, 1),
 				" Y ",
 				"X X",
 				" X ",
@@ -38,7 +40,8 @@ public class ChocoCraftRecipes {
 		);
 
 		// chocobo pack bag
-		GameRegistry.addRecipe(new ItemStack(ChocoCraftItems.chocoboPackBagsItem, 1),
+		GameRegistry.addRecipe(
+				new ItemStack(ChocoCraftItems.chocoboPackBagsItem, 1),
 				"-Y-",
 				"C C",
 				"-X-",
@@ -49,7 +52,8 @@ public class ChocoCraftRecipes {
 		);
 
 		// chocopedia
-		GameRegistry.addRecipe(new ItemStack(ChocoCraftItems.chocopediaItem, 1),
+		GameRegistry.addRecipe(
+				new ItemStack(ChocoCraftItems.chocopediaItem, 1),
 				"FGF",
 				"IBI",
 				"FLF",
@@ -123,27 +127,31 @@ public class ChocoCraftRecipes {
 				'Y', ChocoCraftItems.chocoboFeatherItem
 		);
 
-		GameRegistry.addRecipe(new ItemStack(ChocoCraftItems.chocoDisguiseLegsItem, 1),
+		GameRegistry.addRecipe(
+				new ItemStack(ChocoCraftItems.chocoDisguiseLegsItem, 1),
 				"YYY",
 				"Y Y",
 				"Y Y",
 				'Y', ChocoCraftItems.chocoboFeatherItem
 		);
 
-		GameRegistry.addRecipe(new ItemStack(ChocoCraftItems.chocoDisguiseBootsItem, 1),
+		GameRegistry.addRecipe(
+				new ItemStack(ChocoCraftItems.chocoDisguiseBootsItem, 1),
 				"Y Y",
 				"Y Y",
 				'Y', ChocoCraftItems.chocoboFeatherItem
 		);
 
-		GameRegistry.addRecipe(new ItemStack(ChocoCraftBlocks.strawBlock, 8),
+		GameRegistry.addRecipe(
+				new ItemStack(ChocoCraftBlocks.strawBlock, 8),
 				"WW",
 				'W', Items.wheat
 		);
 
 		// alternative recipes for vanilla items with chocobo feathers
 		// arrows
-		GameRegistry.addRecipe(new ItemStack(Items.arrow, 4),
+		GameRegistry.addRecipe(
+				new ItemStack(Items.arrow, 4),
 				" F ",
 				" S ",
 				" Y ",
