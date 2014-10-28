@@ -196,8 +196,8 @@ public class ModChocoCraft
     	
     	ChocoboConfig.readConfigFileInit();
 
-		ChocoCraftItems.registerItems();
 		ChocoCraftBlocks.registerBlocks();
+		ChocoCraftItems.registerItems();
 	}
 	
 	@EventHandler
