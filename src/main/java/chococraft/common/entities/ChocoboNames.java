@@ -64,7 +64,6 @@ public class ChocoboNames
     public static String getRandomMaleName()
     {
         Random random = new Random();
-
         int i = maleNames.length;
         int j = random.nextInt(i);
         return maleNames[j];

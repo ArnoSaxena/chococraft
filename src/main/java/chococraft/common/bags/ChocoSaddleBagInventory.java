@@ -39,8 +39,7 @@ public class ChocoSaddleBagInventory extends ChocoBagInventory
 	}
 	
 	@Override
-	public void readFromNBT(NBTTagList nbttaglist)
-	{
+	public void readFromNBT(NBTTagList nbttaglist) {
         mainInventory = new ItemStack[INV_SIZE_SMALL];
 
         for (int i = 0; i < nbttaglist.tagCount(); i++)
@@ -62,8 +61,7 @@ public class ChocoSaddleBagInventory extends ChocoBagInventory
 	}
 
 	@Override
-	public NBTBase writeToNBT(NBTTagList nbtTagList)
-	{
+	public NBTBase writeToNBT(NBTTagList nbtTagList) {
         for (int i = 0; i < mainInventory.length; i++)
         {
             if (this.mainInventory[i] != null)
