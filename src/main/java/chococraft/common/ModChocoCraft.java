@@ -129,7 +129,7 @@ public class ModChocoCraft
 	@Instance(Constants.TCC_MODID)
 	public static ModChocoCraft instance;
 
-	@SidedProxy(clientSide = "chococraft.client.ClientProxyChocoCraft", serverSide = "chococraft.common.CommonProxyChocoCraft")
+	@SidedProxy(clientSide = "chococraft.client.ClientProxyChocoCraft", serverSide = "chococraft.common.proxy.CommonProxyChocoCraft")
 	public static CommonProxyChocoCraft proxy;
 
 	@EventHandler
