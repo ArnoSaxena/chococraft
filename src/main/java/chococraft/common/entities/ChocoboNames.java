@@ -18,8 +18,6 @@ import java.util.Random;
 
 public class ChocoboNames
 {
-	public static final int MALE = 0;
-	public static final int FEMALE = 1;
 	
     private static String maleNames[] =
     {

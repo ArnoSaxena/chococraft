@@ -52,8 +52,7 @@ public class EntityChocoboBlack extends EntityChocobo
 	{
 		super.readSpawnData(data);
 	}	
-	
-    //@SideOnly(Side.CLIENT)
+
 	@Override
 	public String getEntityColourTexture()
 	{
@@ -84,18 +83,6 @@ public class EntityChocoboBlack extends EntityChocobo
 			this.stepHeight = 0.5F;
 		}
 	}
-
-//	public void setLandMovementFactor(boolean mounted)
-//	{
-//		if (mounted)
-//		{
-//			this.landMovementFactor = Constants.CHOCOBO_BLACK_LANDMOVEFACT;
-//		}
-//		else
-//		{
-//			this.landMovementFactor = Constants.CHOCOBO_DEFAULT_LANDMOVEFACT;			
-//		}
-//	}
 	
 	@Override
 	public void setLandSpeedFactor(boolean mounted)

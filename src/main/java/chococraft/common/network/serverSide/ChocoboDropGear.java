@@ -62,7 +62,7 @@ public class ChocoboDropGear implements IMessage {
 				if(chocoRideable.isPackBagged())
 				{
 					chocoRideable.entityDropItem(new ItemStack(ChocoCraftItems.chocoboPackBagsItem, 1), 0.0F);
-					//chocoRideable.getChocoBagInventory().dropAllItems(); TODO
+					chocoRideable.getChocoBagInventory().dropAllItems();
 					chocoRideable.setPackBagged(false);
 				}
 			}

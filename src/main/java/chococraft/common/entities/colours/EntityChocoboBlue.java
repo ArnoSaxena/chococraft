@@ -65,7 +65,6 @@ public class EntityChocoboBlue extends EntityChocobo
 		super.readEntityFromNBT(nbttagcompound);
 	}
 
-    //@SideOnly(Side.CLIENT)
 	@Override
 	public String getEntityColourTexture()
 	{
