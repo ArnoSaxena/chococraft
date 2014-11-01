@@ -6,3 +6,11 @@ chococraft/.DS_Store
 chococraft/common/.DS_Store
 
 MinecraftForumOP_preGysahlMutation.txt
+
+.gradle
+build
+out
+run
+*.iws
+*.ipr
+*.iml

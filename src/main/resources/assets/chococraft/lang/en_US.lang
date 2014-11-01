@@ -1,0 +1,38 @@
+entity.Chicobo.name=Chicobo
+entity.ChocoboYellow.name=Yellow Chocobo
+entity.ChocoboGreen.name=Green Chocobo
+entity.ChocoboBlue.name=Blue Chocobo
+entity.ChocoboWhite.name=White Chocobo
+entity.ChocoboBlack.name=Black Chocobo
+entity.ChocoboGold.name=Gold Chocobo
+entity.ChocoboPink.name=Pink Chocobo
+entity.ChocoboRed.name=Red Chocobo
+entity.ChocoboPurple.name=Purple Chocobo
+
+tile.gysahlStemBlock.name=Gysahl Stem
+tile.gysahlGreenBlock.name=Gysahl Green
+tile.strawBlock.name=Straw
+
+item.chocopedia.name=Chocopedia
+item.chocoboFeather.name=Chocobo Feather
+item.chocoboSaddle.name=Chocobo Saddle
+item.saddlebag.name=Chocobo Saddle Bags
+item.packbag.name=Chocobo Pack Bags
+item.gysahl_seeds.name=Gysahl Seeds
+item.gysahl_loverly.name=Loverly Gysahl
+item.gysahl_golden.name=Golden Gysahl
+item.gysahl_pink.name=Pink Gysahl
+item.gysahl_red.name=Red Gysahl
+item.gysahl_cake.name=Gysahl Cake
+item.whistle.name=Chocobo Whistle
+item.eggPurple.name=Purple Chocobo Egg
+item.disguiseHead.name=Chocodisguise Helmet
+item.disguiseBody.name=Chocodisguise Body
+item.disguiseLegs.name=Chocodisguise Legs
+item.disguiseBoots.name=Chocodisguise Boots
+item.legRaw.name=Raw Chocobo Leg
+item.legCooked.name=Cooked Chocobo Leg
+item.gysahl_rawpickles.name=Gysahl Raw Pickles
+item.gysahl_pickles.name=Gysahl Pickles
+
+itemGroup.ChocoCraft=ChocoCraft

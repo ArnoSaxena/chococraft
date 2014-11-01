@@ -1,0 +1,564 @@
+// <copyright file="EntityChocoboRideable.java">
+// Copyright (c) 2012 All Right Reserved, http://chococraft.arno-saxena.de/
+//
+// THIS CODE AND INFORMATION ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY 
+// KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
+// PARTICULAR PURPOSE.
+//
+// </copyright>
+// <author>Arno Saxena</author>
+// <email>al-s@gmx.de</email>
+// <date>2012-09-10</date>
+// <summary>Abstract entity class for everything connected to the Chocobo as a mount</summary>
+
+package chococraft.common.entities;
+
+import chococraft.common.config.Constants;
+import chococraft.common.ModChocoCraft;
+import chococraft.common.bags.ChocoBagInventory;
+import chococraft.common.bags.ChocoPackBagInventory;
+import chococraft.common.bags.ChocoSaddleBagInventory;
+import chococraft.common.config.ChocoCraftItems;
+import chococraft.common.network.PacketRegistry;
+import chococraft.common.network.serverSide.ChocoboDropGear;
+import chococraft.common.network.serverSide.ChocoboMount;
+import io.netty.buffer.ByteBuf;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.MathHelper;
+import net.minecraft.world.World;
+
+public abstract class EntityChocoboRideable extends EntityAnimalChocobo
+{
+	protected double prevMotionX;
+	protected double prevMotionZ;
+	protected boolean shouldSteer;    
+	protected boolean flying;
+	protected boolean isHighJumping;
+	
+	public RiderActionState riderActionState;
+
+	protected ChocoBagInventory bagsInventory;    
+	protected ChocoboRiderList riderList;
+
+	public EntityChocoboRideable(World world)
+	{
+		super(world);
+		this.ignoreFrustumCheck = true;
+		this.riderList = new ChocoboRiderList();
+		this.riderActionState = new RiderActionState();
+	}
+	
+	
+	abstract public void setStepHeight(boolean mounted);
+	//abstract public void setLandMovementFactor(boolean mounted);
+	abstract public void setLandSpeedFactor(boolean mounted);
+	abstract public void setJumpHigh(boolean mounted);
+	abstract public void setRiderAbilities(boolean mounted);
+	
+    @Override
+	protected void entityInit()
+	{
+		super.entityInit();
+		this.dataWatcher.addObject(Constants.DW_ID_ECR_FLAGS, (byte) 0);
+	}
+
+    @Override
+	public boolean isAIEnabled()
+	{
+		return this.riddenByEntity == null;
+	}
+
+    @Override
+	public void writeEntityToNBT(NBTTagCompound nbttagcompound)
+	{
+		super.writeEntityToNBT(nbttagcompound);
+		nbttagcompound.setBoolean("Saddle", this.isSaddled());
+		nbttagcompound.setBoolean("SaddleBag", this.isSaddleBagged());
+		nbttagcompound.setBoolean("PackBag", this.isPackBagged());
+		if(null != this.bagsInventory)
+		{
+			nbttagcompound.setTag("SaddleBagInventory", this.bagsInventory.writeToNBT(new NBTTagList()));
+		}
+		if(null != this.riderList)
+		{
+			nbttagcompound.setTag("riderList", this.riderList.writeToNBT(new NBTTagList()));
+		}
+	}
+
+    @Override
+	public void readEntityFromNBT(NBTTagCompound nbttagcompound)
+	{
+		super.readEntityFromNBT(nbttagcompound);
+		this.setSaddled(nbttagcompound.getBoolean("Saddle"));
+		this.setSaddleBagged(nbttagcompound.getBoolean("SaddleBag"));
+		this.setPackBagged(nbttagcompound.getBoolean("PackBag"));
+		this.setWander(!this.isFollowing() && !this.isSaddled() && !this.isPackBagged());
+		if(nbttagcompound.hasKey("SaddleBagInventory") && null != this.bagsInventory)
+		{
+			this.bagsInventory.readFromNBT((NBTTagList) nbttagcompound.getTag("SaddleBagInventory"));
+		}
+		if(nbttagcompound.hasKey("riderList") && null != this.riderList)
+		{
+			this.riderList.readFromNBT((NBTTagList) nbttagcompound.getTag("riderList"));
+		}
+	}    
+
+    @Override
+	public void writeSpawnData(ByteBuf data)
+	{
+		super.writeSpawnData(data);
+		data.writeBoolean(this.isSaddled());
+		data.writeBoolean(this.isSaddleBagged());
+		data.writeBoolean(this.isPackBagged());
+	}
+
+    @Override
+	public void readSpawnData(ByteBuf data)
+	{
+		super.readSpawnData(data);
+		this.setSaddled(data.readBoolean());
+		this.setSaddleBagged(data.readBoolean());
+		this.setPackBagged(data.readBoolean());
+	}
+    
+    public void setRiderActionState(RiderActionState ras)
+    {
+    	this.riderActionState.setMoveStrafe(ras.getMoveStrafe());
+    	this.riderActionState.setMoveForward(ras.getMoveForward());
+    	this.riderActionState.setJump(ras.isJump());
+    	this.riderActionState.setSneak(ras.isSneak());
+    }
+
+    @Override
+	public void onLivingUpdate()
+	{
+		if (this.riddenByEntity != null)
+		{
+			ModChocoCraft.proxy.updateRiderActionState(this, this.riddenByEntity);
+			
+			this.setRotationYawAndPitch();
+
+			this.setRiderAbilities(true);
+		}
+        
+		super.onLivingUpdate();
+	}
+    
+    @Override
+	public boolean canBePushed()
+    {
+        return true;
+    }
+
+    @Override
+	public void onDeath(DamageSource damageSource)
+	{
+		if(this.isServer())
+		{
+			if(this.isSaddled())
+			{
+				this.dropItem(ChocoCraftItems.chocoboSaddleItem, 1);
+			}
+			
+			if(this.isSaddleBagged())
+			{
+				this.dropItem(ChocoCraftItems.chocoboSaddleBagsItem, 1);
+				this.bagsInventory.dropAllItems();
+			}
+			
+			if(this.isPackBagged())
+			{
+				this.dropItem(ChocoCraftItems.chocoboPackBagsItem, 1);
+				this.bagsInventory.dropAllItems();
+			}
+		}
+		super.onDeath(damageSource);
+	}
+
+    @Override
+	public boolean interact(EntityPlayer entityplayer)
+	{
+		boolean interacted = super.interact(entityplayer);
+		if(!interacted)
+		{
+			// if Chocobo has saddlebag shift-click will allways open it 
+			if(entityplayer.isSneaking() && (this.isSaddleBagged() || this.isPackBagged())){
+				return this.onOpenSaddlePackBagInteraction(entityplayer);
+			}
+
+			ItemStack itemstack = entityplayer.inventory.getCurrentItem();
+			if(itemstack != null)
+			{
+				if (itemstack.getItem().equals(ChocoCraftItems.chocoboSaddleItem))
+				{
+					this.onSaddleUse(entityplayer);
+					interacted = true;
+				}
+				else if (itemstack.getItem().equals(ChocoCraftItems.chocoboSaddleBagsItem))
+				{
+					this.onSaddleBagsUse(entityplayer);
+					interacted = true;
+				}
+				else if (itemstack.getItem().equals(ChocoCraftItems.chocoboPackBagsItem))
+				{
+					this.onPackBagsUse(entityplayer);
+					interacted = true;
+				}
+				else if (itemstack.getItem().equals(ChocoCraftItems.chocoboWhistleItem))
+				{
+					this.onWhistleUse();
+					interacted = true;
+				}
+			}
+		}
+		return interacted;
+	}
+
+	public void onSaddleUse(EntityPlayer entityplayer)
+	{
+		if (this.isTamed() && !this.isSaddled() && !this.isPackBagged())
+		{
+			this.setSaddled(true);
+			this.setWander(false);
+			this.setFollowing(false);
+			this.useItem(entityplayer);
+		}
+	}
+
+	public void onPackBagsUse(EntityPlayer entityplayer)
+	{
+		if(this.isTamed() && !this.isSaddled() && !this.isPackBagged())
+		{
+			this.setPackBagged(true);
+			this.setWander(false);
+			this.setFollowing(true);
+			this.useItem(entityplayer);
+		}
+	}
+
+	public void onSaddleBagsUse(EntityPlayer entityplayer)
+	{
+		if (this.isTamed() && this.isSaddled() && !this.isSaddleBagged())
+		{
+			this.setSaddleBagged(true);
+			this.useItem(entityplayer);
+		}
+	}
+
+	public void onWhistleUse()
+	{
+		// whistle no longer for untaming but for teleporting last ridden chocobo to player...
+		// also this should go to EntityChocoboRideable
+	}
+
+	protected boolean onOpenSaddlePackBagInteraction(EntityPlayer entityplayer)
+	{
+		boolean interacted = false;
+
+		if(entityplayer.isSneaking() && this.isSaddleBagged())
+		{
+			entityplayer.openGui(ModChocoCraft.instance, 0, worldObj, this.getEntityId(), 0, 0);
+			interacted = true;
+		}
+		else if (entityplayer.isSneaking() && this.isPackBagged())
+		{
+			entityplayer.openGui(ModChocoCraft.instance, 0, worldObj, this.getEntityId(), 1, 0);
+			interacted = true;
+		}
+		return interacted;
+	}
+
+	@Override
+	protected boolean onEmptyHandInteraction(EntityPlayer entityplayer)
+	{
+		boolean interacted = super.onEmptyHandInteraction(entityplayer);
+		
+		if(this.isSaddled())
+		{
+			if (this.riddenByEntity == null || this.riddenByEntity == entityplayer)
+			{
+				if(this.isClient())
+				{
+                    this.sendMountUpdate();
+					if (this.riddenByEntity == null)
+					{
+                        this.mountChocobo(entityplayer);
+					}
+				}
+
+				interacted = true;
+			}
+		}
+		return interacted;
+	}
+
+	protected void setRotationYawAndPitch()
+	{
+		if (this.riddenByEntity != null && this.riddenByEntity instanceof EntityPlayer)
+		{
+			if(this.isServer())
+			{
+				this.rotationPitch = 0.0F;
+				EntityPlayer rider = (EntityPlayer)this.riddenByEntity;
+				this.rotationYaw = rider.rotationYaw;
+				this.prevRotationYaw = rider.rotationYaw;
+				this.setRotation(this.rotationYaw, this.rotationPitch);
+			}
+		}
+	}
+
+	/**
+	 * Tries to moves the entity by the passed in displacement. Args: x, y, z
+	 */
+	@Override
+	public void moveEntity(double moveX, double moveY, double moveZ)
+	{
+	    if (this.riddenByEntity instanceof EntityPlayer)
+	    {
+	        if (this.riderActionState.isJump())
+	        {
+	            if (this.canFly)
+	            {
+	                this.motionY = 0.5D;
+	                this.setFlying(true);
+	            }
+	            else if (this.canJumpHigh && !this.isHighJumping)
+	            {
+	                this.motionY += 0.4D;
+	                this.isHighJumping = true;
+	            }
+	        }
+	        else
+	        {
+	        	this.motionY = -0.1D;
+	        }
+	        
+            if (this.riddenByEntity.isSneaking())
+            {
+                if(this.canFly)
+                {
+                    this.motionY = -0.5D;
+                }
+
+                if(this.inWater && this.canBreatheUnderwater())
+                {
+                    this.motionY -= 0.15D;
+                }
+            }
+	    }
+	    
+	    super.moveEntity(moveX, moveY, moveZ);
+	}
+
+	public void setFlying(Boolean flying)
+	{
+		this.flying = flying;
+	}
+
+	public Boolean isFlying()
+	{
+		return this.flying;
+	}
+
+	@Override
+	public void updateRiderPosition()
+	{
+		if (this.riddenByEntity != null)
+		{//TODO fix this so the player actually is ontop of the model..
+			double deltaPosX = MathHelper.cos((this.rotationYaw - 90) * (float)Math.PI / 180.0F) * 0.4F;
+			double deltaPosZ = MathHelper.sin((this.rotationYaw - 90) * (float)Math.PI / 180.0F) * 0.4F;
+			this.riddenByEntity.setPosition(this.posX + deltaPosX,
+					this.posY + this.getMountedYOffset() + this.riddenByEntity.getYOffset(),
+					this.posZ + deltaPosZ);
+		}
+	}   
+
+	//    public void trample(Entity entity)
+	//    {
+		//    	if(entity instanceof EntityAnimalChoco)
+	//    	{
+	//    		return;
+	//    	}
+	//    	
+	//        double addVX = -MathHelper.sin((rotationYaw * (float)Math.PI) / 180F);
+	//        double addVY = 0.3D;
+	//        double addVZ = MathHelper.cos((rotationYaw * (float)Math.PI) / 180F);
+	//        double vFactor = 0.5D;
+	//
+	//        if ((entity instanceof EntityMob) && ChocoboHelper.isHostile(entity))
+	//        {
+	//            this.attackEntityAsMob(entity);
+	//            vFactor = 1.5D;
+	//        }
+	//        entity.addVelocity(addVX, addVY, addVZ);
+	//        entity.motionX *= vFactor;
+	//        entity.motionZ *= vFactor;
+	//    }
+
+
+    @Override
+	public double getMountedYOffset()
+	{
+		return 1.65D;
+	}
+
+	public boolean isSaddled()
+	{
+		return (this.dataWatcher.getWatchableObjectByte(Constants.DW_ID_ECR_FLAGS) & Constants.DW_VAL_ECR_SADDLED_ON) != 0;
+	}
+
+	public void setSaddled(boolean saddled)
+	{
+		byte ecrFlags = this.dataWatcher.getWatchableObjectByte(Constants.DW_ID_ECR_FLAGS);
+
+		if (saddled)
+		{
+			this.dataWatcher.updateObject(Constants.DW_ID_ECR_FLAGS, (byte) (ecrFlags | Constants.DW_VAL_ECR_SADDLED_ON));
+		}
+		else
+		{
+			this.dataWatcher.updateObject(Constants.DW_ID_ECR_FLAGS, (byte) (ecrFlags & Constants.DW_VAL_ECR_SADDLED_OFF));
+		}
+		//this.texture = this.getEntityTexture();
+	}
+	
+	@Override
+	public void toggleFollowWanderStay()
+	{
+		if(!ModChocoCraft.saddledCanWander && (this.isSaddled() || this.isPackBagged()))
+		{
+			this.toggleFollowStay();
+		}
+		else
+		{
+			super.toggleFollowWanderStay();
+		}
+	}
+
+	
+	// Chocobo as inventory
+	public IInventory getIInventory()
+	{
+		return this.bagsInventory;
+	}
+	
+	public ChocoBagInventory getChocoBagInventory()
+	{
+		return this.bagsInventory;
+	}
+
+	public void injectInventory(ChocoBagInventory inventory)
+	{
+		if(inventory != null)
+		{
+			this.bagsInventory = inventory;
+		}
+	}	
+	
+	public Boolean isSaddleBagged()
+	{
+		return (this.dataWatcher.getWatchableObjectByte(Constants.DW_ID_ECR_FLAGS) & Constants.DW_VAL_ECR_SADDLEBAGGED_ON) != 0;
+	}
+
+	public void setSaddleBagged(boolean saddleBags)
+	{
+		if(saddleBags != this.isSaddleBagged() || this.bagsInventory == null)
+		{
+			byte ecrFlags = this.dataWatcher.getWatchableObjectByte(Constants.DW_ID_ECR_FLAGS);
+			if (saddleBags)
+			{
+				this.bagsInventory = new ChocoSaddleBagInventory(this);
+				this.dataWatcher.updateObject(Constants.DW_ID_ECR_FLAGS, (byte) (ecrFlags | Constants.DW_VAL_ECR_SADDLEBAGGED_ON));
+			}
+			else
+			{
+				this.bagsInventory = null;
+				this.dataWatcher.updateObject(Constants.DW_ID_ECR_FLAGS, (byte) (ecrFlags & Constants.DW_VAL_ECR_SADDLEBAGGED_OFF));
+			}
+			//this.texture = this.getEntityTexture();
+		}    	
+	}
+
+	public Boolean isPackBagged()
+	{
+		return (this.dataWatcher.getWatchableObjectByte(Constants.DW_ID_ECR_FLAGS) & Constants.DW_VAL_ECR_PACKBAGGED_ON) != 0;
+	}
+
+	public void setPackBagged(boolean packBagged)
+	{
+		if(packBagged != this.isPackBagged() || this.bagsInventory == null)
+		{
+			byte ecrFlags = this.dataWatcher.getWatchableObjectByte(Constants.DW_ID_ECR_FLAGS);
+			if (packBagged)
+			{
+				this.bagsInventory = new ChocoPackBagInventory(this);
+				this.dataWatcher.updateObject(Constants.DW_ID_ECR_FLAGS, (byte) (ecrFlags | Constants.DW_VAL_ECR_PACKBAGGED_ON));
+			}
+			else
+			{
+				this.bagsInventory = null;
+				this.dataWatcher.updateObject(Constants.DW_ID_ECR_FLAGS, (byte) (ecrFlags & Constants.DW_VAL_ECR_PACKBAGGED_OFF));
+			}
+			//this.texture = this.getEntityTexture();
+		}
+	}
+
+    @Override
+	protected boolean canDespawn()
+	{
+		return super.canDespawn() && !isSaddled();
+	}
+
+	public void mountChocobo(EntityPlayer player)
+	{
+		player.setSprinting(false);
+		this.setStepHeight(true);
+		this.setJumpHigh(true);
+		//this.setLandMovementFactor(true);
+		this.setLandSpeedFactor(true);
+		player.mountEntity(this);
+	}
+
+	public void dismountChocobo(EntityPlayer player)
+	{
+		this.isJumping = false;
+		this.setStepHeight(false);
+		this.setJumpHigh(false);
+		//this.setLandMovementFactor(false);
+		this.setLandSpeedFactor(false);
+		player.mountEntity(null);
+	}
+	
+	public void sendMountUpdate()
+	{
+		if(this.isClient())
+		{
+			ChocoboMount packet = new ChocoboMount(this);
+			PacketRegistry.INSTANCE.sendToServer(packet);
+		}
+	}
+	
+	public void sendDropSaddleAndBags()
+	{
+		if(this.isClient())
+		{
+			ChocoboDropGear packet = new ChocoboDropGear(this);
+			PacketRegistry.INSTANCE.sendToServer(packet);
+			this.setSaddleBagged(false);
+			this.setSaddled(false);
+			this.setPackBagged(false);
+		}
+	}
+	
+	@Override
+    public boolean shouldRiderFaceForward(EntityPlayer player)
+    {
+    	return true;
+    }
+}
