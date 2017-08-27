@@ -24,4 +24,11 @@ http://www.minecraftforum.net/topic/1119809-
 
 or follow us on twitter  https://twitter.com/Torojima
 
+
+License information
+
+The source code of this mod, which is located under src/main/java, is licensed under the MIT license, see LICENSE-code.md
+
+https://licensebuttons.net/l/by-sa/3.0/88x31.png The assets in this mod are licensed under CC-BY-SA 4.0 with one exception: The chocobo "kweh" sound, located under src/main/resources/assets/chococraft/sounds/entities/chocobo/chocobo.ogg is was taken from Final Fantasy 7 and is property of SquareEnix CO., LTD
+
 Torojima
